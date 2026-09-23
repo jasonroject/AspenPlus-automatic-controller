@@ -1,0 +1,32 @@
+{
+  "model_path": "C:\\Users\\Administrator\\Documents\\AspenTech\\Aspen Plus V15.0\\SCW-1\\SCW-1.bkp",
+  "blocks": [
+    {
+      "name": "B1",
+      "type": "反应器 (Reactor / RPlug)",
+      "conditions": {
+        "反应温度": 450.0,
+        "操作压力": 25.0,
+        "反应器长度": 250.0,
+        "反应器管径": 10.0
+      },
+      "param_nodes": {
+        "反应温度": "REAC_TEMP",
+        "操作压力": "PRES",
+        "反应器长度": "LENGTH",
+        "反应器管径": "DIAM"
+      },
+      "path": "\\Data\\Blocks\\B1"
+    }
+  ],
+  "streams": [
+    {
+      "name": "FEED",
+      "path": "\\Data\\Streams\\FEED"
+    },
+    {
+      "name": "PROD",
+      "path": "\\Data\\Streams\\PROD"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "model_path": "C:\\Users\\Administrator\\Documents\\AspenTech\\Aspen Plus V15.0\\SCW-1\\SCW-1.bkp",
+  "captured_at": "2026-09-23T15:00:48",
+  "blocks": {
+    "B1": {
+      "heat_kW": 0.0422,
+      "power_kW": null
+    }
+  },
+  "streams": {
+    "FEED": {
+      "temperature_C": 420.0,
+      "pressure_MPa": 2533125.0,
+      "mass_flow_kg_h": 1.0,
+      "composition_kg_h": {
+        "H2O": 0.999
+      }
+    },
+    "PROD": {
+      "temperature_C": 450.0,
+      "pressure_MPa": 2533125.0,
+      "mass_flow_kg_h": 1.0,
+      "composition_kg_h": {
+        "H2O": 0.999
+      }
+    }
+  }
+}

@@ -1,0 +1,228 @@
+{
+  "model_path": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-16\\project1jason\\aspenmodel\\heatrecovery.bkp",
+  "captured_at": "2026-09-23T14:59:22",
+  "blocks": {
+    "B6": {
+      "heat_kW": 0.1939,
+      "power_kW": null
+    },
+    "COOLER": {
+      "heat_kW": -2.1035,
+      "power_kW": null
+    },
+    "HEATCHAG": {
+      "heat_kW": null,
+      "power_kW": null
+    },
+    "HEATER": {
+      "heat_kW": 1.0005,
+      "power_kW": null
+    },
+    "PUMP": {
+      "heat_kW": null,
+      "power_kW": 2.1717
+    },
+    "REACTOR": {
+      "heat_kW": 2.8809,
+      "power_kW": null
+    },
+    "VALVE": {
+      "heat_kW": null,
+      "power_kW": null
+    }
+  },
+  "streams": {
+    "FEED": {
+      "temperature_C": 25.0,
+      "pressure_MPa": 0.1013,
+      "mass_flow_kg_h": 360000.0,
+      "composition_kg_h": {
+        "GUAIA-01": 16200.0,
+        "ANISOLE": 5400.0,
+        "PPE": 24300.0,
+        "DPE": 8100.0,
+        "H2O": 306000.0
+      }
+    },
+    "S2": {
+      "temperature_C": 45.8296,
+      "pressure_MPa": 25.0,
+      "mass_flow_kg_h": 360000.0,
+      "composition_kg_h": {
+        "GUAIA-01": 16200.0,
+        "ANISOLE": 5400.0,
+        "PPE": 24300.0,
+        "DPE": 8100.0,
+        "H2O": 306000.0
+      }
+    },
+    "S3": {
+      "temperature_C": 329.85,
+      "pressure_MPa": 25.0,
+      "mass_flow_kg_h": 360000.0,
+      "composition_kg_h": {
+        "GUAIA-01": 16200.0,
+        "ANISOLE": 5400.0,
+        "PPE": 24300.0,
+        "DPE": 8100.0,
+        "H2O": 306000.0
+      }
+    },
+    "S4": {
+      "temperature_C": 329.85,
+      "pressure_MPa": 25.0,
+      "mass_flow_kg_h": 360000.9288,
+      "composition_kg_h": {
+        "GUAIA-01": 0.7122,
+        "CAT": 14062.5075,
+        "ANISOLE": 4812.4447,
+        "PPE": 3259.0627,
+        "PEA": 5167.4092,
+        "STYRENE": 1889.877,
+        "ETHYLBEN": 4624.7073,
+        "DPE": 8053.7049,
+        "PHENO-01": 2561.7223,
+        "BENZENE": 13.8526,
+        "O-CRE-01": 8650.1552,
+        "CH4O": 1437.1042,
+        "ACETI-01": 3.6817,
+        "H2O": 304152.7381,
+        "CH4": 108.8862,
+        "CO2": 519.5921,
+        "C": 630.8175,
+        "CO": 51.9551
+      }
+    },
+    "S5": {
+      "temperature_C": 39.85,
+      "pressure_MPa": 25.0,
+      "mass_flow_kg_h": 360000.9288,
+      "composition_kg_h": {
+        "GUAIA-01": 0.7122,
+        "CAT": 14062.5075,
+        "ANISOLE": 4812.4447,
+        "PPE": 3259.0627,
+        "PEA": 5167.4092,
+        "STYRENE": 1889.877,
+        "ETHYLBEN": 4624.7073,
+        "DPE": 8053.7049,
+        "PHENO-01": 2561.7223,
+        "BENZENE": 13.8526,
+        "O-CRE-01": 8650.1552,
+        "CH4O": 1437.1042,
+        "ACETI-01": 3.6817,
+        "H2O": 304152.7381,
+        "CH4": 108.8862,
+        "CO2": 519.5921,
+        "C": 630.8175,
+        "CO": 51.9551
+      }
+    },
+    "S6": {
+      "temperature_C": 39.85,
+      "pressure_MPa": 0.1,
+      "mass_flow_kg_h": 360000.9288,
+      "composition_kg_h": {
+        "GUAIA-01": 0.7122,
+        "CAT": 14062.5075,
+        "ANISOLE": 4812.4447,
+        "PPE": 3259.0627,
+        "PEA": 5167.4092,
+        "STYRENE": 1889.877,
+        "ETHYLBEN": 4624.7073,
+        "DPE": 8053.7049,
+        "PHENO-01": 2561.7223,
+        "BENZENE": 13.8526,
+        "O-CRE-01": 8650.1552,
+        "CH4O": 1437.1042,
+        "ACETI-01": 3.6817,
+        "H2O": 304152.7381,
+        "CH4": 108.8862,
+        "CO2": 519.5921,
+        "C": 630.8175,
+        "CO": 51.9551
+      }
+    },
+    "S7": {
+      "temperature_C": 39.85,
+      "pressure_MPa": 0.0101,
+      "mass_flow_kg_h": 349538.4922,
+      "composition_kg_h": {
+        "GUAIA-01": 0.7122,
+        "CAT": 14062.3154,
+        "ANISOLE": 4804.8441,
+        "PPE": 3259.0627,
+        "PEA": 5167.2708,
+        "STYRENE": 149.6526,
+        "ETHYLBEN": 172.1399,
+        "DPE": 8053.6141,
+        "PHENO-01": 2553.5258,
+        "BENZENE": 0.3711,
+        "O-CRE-01": 8650.1512,
+        "CH4O": 1368.3557,
+        "ACETI-01": 3.6622,
+        "H2O": 300613.5133,
+        "CH4": 2.1137,
+        "CO2": 45.9389,
+        "C": 630.8175,
+        "CO": 0.431
+      }
+    },
+    "S8": {
+      "temperature_C": 39.85,
+      "pressure_MPa": 0.0101,
+      "mass_flow_kg_h": 10462.4383,
+      "composition_kg_h": {
+        "CAT": 0.1921,
+        "ANISOLE": 7.6005,
+        "PEA": 0.1384,
+        "STYRENE": 1740.2244,
+        "ETHYLBEN": 4452.5674,
+        "PHENO-01": 8.1965,
+        "BENZENE": 13.4815,
+        "CH4O": 68.7486,
+        "H2O": 3539.2247,
+        "CH4": 106.7725,
+        "CO2": 473.6532,
+        "CO": 51.5241
+      }
+    },
+    "S9": {
+      "temperature_C": 314.85,
+      "pressure_MPa": 25.0,
+      "mass_flow_kg_h": 360000.0,
+      "composition_kg_h": {
+        "GUAIA-01": 16200.0,
+        "ANISOLE": 5400.0,
+        "PPE": 24300.0,
+        "DPE": 8100.0,
+        "H2O": 306000.0
+      }
+    },
+    "S10": {
+      "temperature_C": 97.9046,
+      "pressure_MPa": 25.0,
+      "mass_flow_kg_h": 360000.9288,
+      "composition_kg_h": {
+        "GUAIA-01": 0.7122,
+        "CAT": 14062.5075,
+        "ANISOLE": 4812.4447,
+        "PPE": 3259.0627,
+        "PEA": 5167.4092,
+        "STYRENE": 1889.877,
+        "ETHYLBEN": 4624.7073,
+        "DPE": 8053.7049,
+        "PHENO-01": 2561.7223,
+        "BENZENE": 13.8526,
+        "O-CRE-01": 8650.1552,
+        "CH4O": 1437.1042,
+        "ACETI-01": 3.6817,
+        "H2O": 304152.7381,
+        "CH4": 108.8862,
+        "CO2": 519.5921,
+        "C": 630.8175,
+        "CO": 51.9551
+      }
+    }
+  }
+}

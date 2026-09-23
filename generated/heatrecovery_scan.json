@@ -1,0 +1,138 @@
+{
+  "model_path": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-16\\project1jason\\aspenmodel\\heatrecovery.bkp",
+  "blocks": [
+    {
+      "name": "B6",
+      "type": "加热器 (Heater)",
+      "conditions": {
+        "目标温度": 313.0,
+        "热负荷 Duty": null,
+        "操作压力": 0.1
+      },
+      "param_nodes": {
+        "目标温度": "TEMP",
+        "操作压力": "PRES"
+      },
+      "path": "\\Data\\Blocks\\B6"
+    },
+    {
+      "name": "COOLER",
+      "type": "冷却器 (Cooler / Heater)",
+      "conditions": {
+        "目标温度": 313.0,
+        "热负荷 Duty": null,
+        "操作压力": 25.0
+      },
+      "param_nodes": {
+        "目标温度": "TEMP",
+        "操作压力": "PRES"
+      },
+      "path": "\\Data\\Blocks\\COOLER"
+    },
+    {
+      "name": "HEATCHAG",
+      "type": "换热器 (Heat Exchanger / HeatX)",
+      "conditions": {
+        "操作压力": null,
+        "压降 DELP": null
+      },
+      "param_nodes": {},
+      "path": "\\Data\\Blocks\\HEATCHAG"
+    },
+    {
+      "name": "HEATER",
+      "type": "加热器 (Heater)",
+      "conditions": {
+        "目标温度": 603.0,
+        "热负荷 Duty": null,
+        "操作压力": 25.0
+      },
+      "param_nodes": {
+        "目标温度": "TEMP",
+        "操作压力": "PRES"
+      },
+      "path": "\\Data\\Blocks\\HEATER"
+    },
+    {
+      "name": "PUMP",
+      "type": "泵/压缩机 (Pump / Compressor)",
+      "conditions": {
+        "出口压力": 25.0,
+        "压差 DELP": null
+      },
+      "param_nodes": {
+        "出口压力": "PRES"
+      },
+      "path": "\\Data\\Blocks\\PUMP"
+    },
+    {
+      "name": "REACTOR",
+      "type": "反应器 (Reactor / RPlug)",
+      "conditions": {
+        "反应温度": 603.0,
+        "操作压力": 25.0,
+        "反应器长度": 20.0,
+        "反应器管径": 10.0
+      },
+      "param_nodes": {
+        "反应温度": "REAC_TEMP",
+        "操作压力": "PRES",
+        "反应器长度": "LENGTH",
+        "反应器管径": "DIAM"
+      },
+      "path": "\\Data\\Blocks\\REACTOR"
+    },
+    {
+      "name": "VALVE",
+      "type": "阀门 (Valve)",
+      "conditions": {
+        "出口压力": null,
+        "阀门压降": null
+      },
+      "param_nodes": {},
+      "path": "\\Data\\Blocks\\VALVE"
+    }
+  ],
+  "streams": [
+    {
+      "name": "FEED",
+      "path": "\\Data\\Streams\\FEED"
+    },
+    {
+      "name": "S2",
+      "path": "\\Data\\Streams\\S2"
+    },
+    {
+      "name": "S3",
+      "path": "\\Data\\Streams\\S3"
+    },
+    {
+      "name": "S4",
+      "path": "\\Data\\Streams\\S4"
+    },
+    {
+      "name": "S5",
+      "path": "\\Data\\Streams\\S5"
+    },
+    {
+      "name": "S6",
+      "path": "\\Data\\Streams\\S6"
+    },
+    {
+      "name": "S7",
+      "path": "\\Data\\Streams\\S7"
+    },
+    {
+      "name": "S8",
+      "path": "\\Data\\Streams\\S8"
+    },
+    {
+      "name": "S9",
+      "path": "\\Data\\Streams\\S9"
+    },
+    {
+      "name": "S10",
+      "path": "\\Data\\Streams\\S10"
+    }
+  ]
+}
