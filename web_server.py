@@ -11,6 +11,8 @@ import json
 import math
 import mimetypes
 import secrets
+import subprocess
+import sys
 import threading
 import webbrowser
 from datetime import datetime
@@ -30,6 +32,21 @@ PLAN_ROOT = ROOT / "generated" / "web-plans"
 
 class BusyError(ValueError):
     pass
+
+
+def choose_model_file(initial_path):
+    completed = subprocess.run(
+        [sys.executable, "-X", "utf8", str(ROOT / "model_picker.py"), "--initial-path", initial_path],
+        capture_output=True, encoding="utf-8",
+        creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0),
+    )
+    try:
+        response = json.loads(completed.stdout)
+    except (ValueError, TypeError) as exc:
+        raise ValueError("无法打开文件选择窗口，请确认 Python 已安装 Tkinter；也可以继续填写模型路径。") from exc
+    if completed.returncode or response.get("error"):
+        raise ValueError(response.get("error") or "文件选择窗口未正常关闭，请重试。")
+    return response.get("model_path")
 
 
 def json_safe(value):
@@ -152,11 +169,15 @@ def make_runner(model, catalog):
 
 
 class AutomationService:
-    def __init__(self, scanner=scan_aspen, runner_factory=make_runner):
+    def __init__(self, scanner=scan_aspen, runner_factory=make_runner, file_picker=choose_model_file):
         self.token = secrets.token_urlsafe(32)
         self.lock = threading.RLock()
         self.scanner = scanner
         self.runner_factory = runner_factory
+        self.file_picker = file_picker
+        self.picking_model = False
+        self.picker_done = threading.Event()
+        self.picker_done.set()
         self.model_path = ""
         self.catalog = {}
         self.downloads = {}
@@ -180,7 +201,7 @@ class AutomationService:
     def state(self):
         with self.lock:
             snapshot = copy.deepcopy(dict(token=self.token, model_path=self.model_path,
-                catalog=self.catalog, job=self.job, busy=self.job["status"] == "running"))
+                catalog=self.catalog, job=self.job, busy=self.job["status"] == "running" or self.picking_model))
         snapshot["models"] = self.known_models()
         return json_safe(snapshot)
 
@@ -191,12 +212,29 @@ class AutomationService:
 
     def _reserve(self, kind, total=0):
         # Caller holds lock: reserve before starting a thread or accepting another job.
-        if self.job["status"] == "running":
+        if self.job["status"] == "running" or self.picking_model:
             raise BusyError("当前操作尚未结束，请等待完成，或停止后续运行。")
         self.job = dict(id=secrets.token_hex(12), kind=kind, status="running", total=total,
                         completed=0, current=0, results=[], logs=[], error=None,
                         summary_url=None, stop_requested=False)
         return self.job["id"]
+
+    def browse_model(self, payload):
+        initial_path = payload.get("model_path", "")
+        if not isinstance(initial_path, str):
+            raise ValueError("模型路径必须是文字。")
+        with self.lock:
+            if self.job["status"] == "running" or self.picking_model:
+                raise BusyError("请先完成当前操作或关闭已经打开的文件选择窗口。")
+            self.picking_model = True
+            self.picker_done.clear()
+        try:
+            selected = self.file_picker(initial_path)
+            return {"model_path": str(model_file(selected)) if selected else None}
+        finally:
+            with self.lock:
+                self.picking_model = False
+                self.picker_done.set()
 
     def start_scan(self, payload):
         model = model_file(payload.get("model_path"))
@@ -410,6 +448,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             if not isinstance(payload, dict):
                 raise ValueError("请求必须是 JSON 对象。")
             routes = {"/api/scan": self.server.service.start_scan,
+                      "/api/browse-model": self.server.service.browse_model,
                       "/api/catalog": self.server.service.catalog_import,
                       "/api/plan": self.server.service.save_plan,
                       "/api/run": self.server.service.start_run,
@@ -453,7 +492,11 @@ def main():
         if server.service.state()["busy"]:
             print("正在等待当前模型操作结束；后续运行已停止。", flush=True)
             server.service.stop()
-            server.service.worker.join()
+            if server.service.worker is not None:
+                server.service.worker.join()
+            if server.service.picking_model:
+                print("请关闭文件选择窗口，以结束本机服务。", flush=True)
+                server.service.picker_done.wait()
     finally:
         server.server_close()
 

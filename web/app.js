@@ -70,6 +70,9 @@
     const response = await fetch(path,{method:body === undefined ? "GET" : "POST",headers:body === undefined ? {} : {"Content-Type":"application/json","X-Session-Token":state.token},body:body === undefined ? undefined : JSON.stringify(body),cache:"no-store"});
     let data;
     try { data=await response.json(); } catch { throw new Error(`本机服务返回了无法读取的响应（${response.status}）。请检查启动窗口。`); }
+    if (response.status === 404 && path === "/api/browse-model") {
+      throw new Error("当前运行的本机服务尚未更新，暂不支持浏览文件。请关闭旧的网页版启动窗口，重新运行“启动网页版.bat”，再刷新此页面。");
+    }
     if (!response.ok) throw new Error(data.error || `请求失败（${response.status}）`);
     return data;
   }
@@ -83,7 +86,7 @@
     const locked=isLocked();
     const ready=modelReady();
     const count=state.columns.length;
-    const controls=["import-plan","export-plan","load-example","scan-model","model-select","model-path","add-columns","add-row","generate-rows","duplicate-rows","delete-rows","copy-table","confirm-columns","confirm-range","confirm-fill"];
+    const controls=["import-plan","export-plan","load-example","scan-model","browse-model","model-select","model-path","add-columns","add-row","generate-rows","duplicate-rows","delete-rows","copy-table","confirm-columns","confirm-range","confirm-fill"];
     for (const id of controls) $(id).disabled=locked;
     $("add-columns").disabled=locked || !ready;
     $("generate-rows").disabled=locked || !count;
@@ -253,6 +256,19 @@
       $("alert").hidden=true;await fetchState();
     });
   }
+  async function browseModel() {
+    await action(async () => {
+      const button=$("browse-model");button.textContent="等待选择文件…";
+      try {
+        const result=await api("/api/browse-model",{model_path:$("model-path").value});
+        if(!result.model_path) return;
+        $("model-path").value=result.model_path;syncModelSelect();queueSaveDraft();
+        $("alert").hidden=true;
+        $("model-note").textContent="文件已选好，点击“读取模型参数”继续。";
+        toast("已填入模型路径，点击“读取模型参数”即可继续。");
+      } finally { button.textContent="浏览本机文件"; }
+    });
+  }
   function openPicker() {
     if(isLocked()) return;
     if(!modelReady()) { showAlert("先点击“读取模型参数”，再添加参数列。");return; }
@@ -398,6 +414,7 @@
     $("model-select").addEventListener("change",() => {if($("model-select").value) $("model-path").value=$("model-select").value;renderControls();queueSaveDraft();});
     $("model-path").addEventListener("input",() => {syncModelSelect();renderControls();queueSaveDraft();});
     $("scan-model").addEventListener("click",scanModel);
+    $("browse-model").addEventListener("click",browseModel);
     $("load-example").addEventListener("click",loadExample);
     $("add-columns").addEventListener("click",openPicker);
     $("add-row").addEventListener("click",addRow);

@@ -315,6 +315,65 @@ class HttpTests(WebFixture):
                 self.assertEqual(self.request("POST", "/api/stop", {}, headers)[0], 403)
         self.assertEqual(self.request("POST", "/api/stop", {}, self.auth())[0], 200)
 
+    def test_browse_model_select_cancel_and_failure_keep_existing_plan(self):
+        selected = self.directory / "试验 模型.bkp"
+        selected.write_bytes(b"test")
+        self.service_instance.model_path = str(self.model)
+        self.service_instance.catalog = copy.deepcopy(CATALOG)
+        initial = str(self.model)
+        calls = []
+        self.service_instance.file_picker = lambda path: calls.append(path) or str(selected)
+        self.assertEqual(self.request("POST", "/api/browse-model", {}, {})[0], 403)
+        self.assertEqual(calls, [])
+        status, _, body = self.request("POST", "/api/browse-model", {"model_path": initial}, self.auth())
+        self.assertEqual(status, 200)
+        self.assertEqual(json.loads(body)["model_path"], str(selected.resolve()))
+        self.assertEqual(calls, [initial])
+        self.service_instance.file_picker = lambda path: None
+        status, _, body = self.request("POST", "/api/browse-model", {}, self.auth())
+        self.assertEqual((status, json.loads(body)), (200, {"model_path": None}))
+        self.service_instance.file_picker = lambda path: str(self.directory / "missing.bkp")
+        self.assertEqual(self.request("POST", "/api/browse-model", {}, self.auth())[0], 400)
+        self.assertFalse(self.service_instance.state()["busy"])
+        self.assertEqual(self.service_instance.model_path, initial)
+        self.assertEqual(self.service_instance.catalog, CATALOG)
+
+    def test_open_picker_blocks_duplicate_dialog_and_simulation(self):
+        entered, release = threading.Event(), threading.Event()
+        def picker(path):
+            entered.set()
+            if not release.wait(3):
+                raise ValueError("test picker was not released")
+            return None
+        self.service_instance.file_picker = picker
+        worker = threading.Thread(target=lambda: self.service_instance.browse_model({}))
+        worker.start()
+        try:
+            self.assertTrue(entered.wait(1))
+            self.assertTrue(self.service_instance.state()["busy"])
+            for endpoint, payload in (("/api/browse-model", {}), ("/api/run", self.plan()),
+                                      ("/api/scan", {"model_path": str(self.model)})):
+                self.assertEqual(self.request("POST", endpoint, payload, self.auth())[0], 409)
+        finally:
+            release.set()
+            worker.join(3)
+        self.assertFalse(worker.is_alive())
+        self.assertFalse(self.service_instance.state()["busy"])
+        self.service_instance.job["status"] = "running"
+        self.assertEqual(self.request("POST", "/api/browse-model", {}, self.auth())[0], 409)
+
+    def test_native_picker_uses_existing_folder_and_releases_tk(self):
+        from model_picker import select_model
+        with patch("tkinter.Tk") as root, patch("tkinter.filedialog.askopenfilename", return_value=str(self.model)) as ask:
+            self.assertEqual(select_model(str(self.model)), str(self.model))
+            self.assertEqual(ask.call_args.kwargs["initialdir"], str(self.directory))
+            self.assertEqual(ask.call_args.kwargs["initialfile"], self.model.name)
+            root.return_value.destroy.assert_called_once()
+        with patch("tkinter.Tk") as root, patch("tkinter.filedialog.askopenfilename", side_effect=RuntimeError("dialog error")):
+            with self.assertRaises(RuntimeError):
+                select_model()
+            root.return_value.destroy.assert_called_once()
+
     def test_post_rejects_malformed_json_nonfinite_values_and_wrong_type(self):
         headers = {**self.auth(), "Content-Type": "application/json"}
         for raw in (b"{", b"[]", b'{"value":NaN}', b'{"value":Infinity}'):
