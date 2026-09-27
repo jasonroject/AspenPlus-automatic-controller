@@ -20,6 +20,7 @@ import json
 import sys
 from datetime import datetime
 from pathlib import Path
+from result_units import convert_quantity
 
 try:
     import pythoncom
@@ -88,37 +89,56 @@ def discover_names(aspen, base_path):
     return names
 
 
+def _capture_quantity(aspen, paths, target, source):
+    for path in paths:
+        node = aspen.Tree.FindNode(path)
+        if node is None:
+            continue
+        try:
+            value = _safe_float(node.Value)
+        except Exception:
+            continue
+        if value is None:
+            continue
+        try:
+            unit = node.UnitString
+        except Exception:
+            unit = ""
+        source[path] = {"value": value, "unit": unit}
+        return round(convert_quantity(value, unit, target), 6)
+    return None
+
+
 def capture_block(aspen, bname):
-    return {
-        "heat_kW": None if (q := resolve_block_heat(aspen, bname)) is None else round(q / 1000, 4),
-        "power_kW": None if (w := resolve_block_power(aspen, bname)) is None else round(w, 4),
-    }
+    source = {}
+    base = rf"\Data\Blocks\{bname}\Output"
+    heat = _capture_quantity(aspen, [base + "\\" + key for key in
+        ("QCALC", "DUTY", "UTIL_DUTY")], "kW", source)
+    power = _capture_quantity(aspen, [base + "\\" + key for key in
+        ("ACT_POWER", "BRAKE_POWER", "POWER", "ELEC_POWER", "IN_POWER", "WNET", "FLUID_POWER")], "kW", source)
+    return {"heat_kW": heat, "power_kW": power, "source_quantities": source}
 
 
 def capture_stream(aspen, sname):
-    t_node = aspen.Tree.FindNode(rf"\Data\Streams\{sname}\Output\TEMP_OUT\MIXED")
-    p_node = aspen.Tree.FindNode(rf"\Data\Streams\{sname}\Output\PRES_OUT\MIXED")
-    f_node = aspen.Tree.FindNode(rf"\Data\Streams\{sname}\Output\MASSFLMX\MIXED")
-
-    t_val = _safe_float(getattr(t_node, "Value", None))
-    p_val = _safe_float(getattr(p_node, "Value", None))
-    f_val = _safe_float(getattr(f_node, "Value", None))
-
+    source = {}
+    base = rf"\Data\Streams\{sname}\Output"
+    temperature = _capture_quantity(aspen, [base + r"\TEMP_OUT\MIXED"], "C", source)
+    pressure = _capture_quantity(aspen, [base + r"\PRES_OUT\MIXED"], "MPa", source)
+    flow = _capture_quantity(aspen, [base + r"\MASSFLMX\MIXED"], "kg/h", source)
     composition = {}
-    comps_node = aspen.Tree.FindNode(rf"\Data\Streams\{sname}\Output\MASSFLOW\MIXED")
-    if comps_node:
-        for k in range(comps_node.Elements.Count):
-            c = comps_node.Elements.Item(k)
-            mass_kg_h = _safe_float(getattr(c, "Value", None))
-            if mass_kg_h and (mass_kg_h * 3600) >= 0.1:
-                composition[c.Name] = round(mass_kg_h * 3600, 4)
-
-    return {
-        "temperature_C": None if t_val is None else round(t_val - 273.15, 4),
-        "pressure_MPa": None if p_val is None else round(p_val * 0.101325, 4),
-        "mass_flow_kg_h": None if f_val is None else round(f_val * 3600, 4),
-        "composition_kg_h": composition,
-    }
+    comps_path = base + r"\MASSFLOW\MIXED"
+    comps = aspen.Tree.FindNode(comps_path)
+    if comps is not None:
+        for i in range(comps.Elements.Count):
+            child = comps.Elements.Item(i)
+            if child is None:
+                continue
+            value = _capture_quantity(aspen, [comps_path + "\\" + child.Name], "kg/h", source)
+            if value is not None:
+                composition[child.Name] = value
+    return {"temperature_C": temperature, "pressure_MPa": pressure,
+            "mass_flow_kg_h": flow, "composition_kg_h": composition,
+            "source_quantities": source}
 
 
 def capture_all(aspen, model_path):
@@ -129,10 +149,20 @@ def capture_all(aspen, model_path):
     print(f">>> 正在抓取 {len(block_names)} 个设备、{len(stream_names)} 条物流的数据...", flush=True)
     blocks = {bname: capture_block(aspen, bname) for bname in block_names}
     streams = {sname: capture_stream(aspen, sname) for sname in stream_names}
+    run_status = {}
+    for key in ("RSTAT", "UOSSTAT", "UOSSTAT2", "PER_ERROR", "CVSTAT", "ITSTAT"):
+        try:
+            node = aspen.Tree.FindNode(r"\Data\Results Summary\Run-Status\Output" + "\\" + key)
+            if node is not None:
+                run_status[key] = node.Value
+        except Exception:
+            pass
 
     return {
         "model_path": str(model_path),
         "captured_at": datetime.now().isoformat(timespec="seconds"),
+        "unit_conversion": "node-unit-aware-v1",
+        "aspen_run_status": run_status,
         "blocks": blocks,
         "streams": streams,
     }

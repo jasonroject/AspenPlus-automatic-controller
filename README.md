@@ -1,81 +1,47 @@
-# AspenPlus-automatic-controller
+# Aspen Plus 自动化控制工具
 
-通过 [pywin32](https://pypi.org/project/pywin32/) 的 COM 接口自动控制 Aspen Plus，实现「模型扫描 → 生成专用控制脚本 → 写入运行参数 → 触发计算 → 抓取并导出结果」的全流程自动化，替代人工在 Aspen 图形界面里逐个点开设备核对工况的重复劳动。
+用浏览器编排 Aspen Plus 运行表，支持设备及物流参数搜索、多设备联合工况、批量计算与 JSON/CSV 结果导出。本机 Python 服务负责连接 Aspen，网页负责编辑和查看进度。
 
-## 功能概览
+## 快速开始
 
-- **模型扫描 (`test_aspen_control.py`)**：打开指定的 Aspen `.bkp` 模型，遍历 `\Data\Blocks` 与 `\Data\Streams` 节点，自动识别每个设备类型（反应器 / 换热器 / 泵与压缩机 / 阀门 / 加热冷却器等）及其关键输入参数，输出：
-  - `generated/<模型名>_scan.json`：结构化扫描结果；
-  - `generated/<模型名>_control.py`：**该模型专用**的控制脚本（自动生成，含可直接修改的设备参数表）。
-- **专用控制脚本 (`generated/*_control.py`)**：由扫描步骤自动生成，内含 `BLOCKS_CONFIG`（设备运行参数，可手工编辑数值后重新写入 Aspen 并计算）与 `STREAMS_CONFIG`（关注的物流列表）。运行后会：
-  1. 重置模型（`Engine.Reinit()`）；
-  2. 把 `BLOCKS_CONFIG` 中设置的参数写回 Aspen 对应节点；
-  3. 触发计算（`Engine.Run()`）并在控制台实时打印进度；
-  4. 打印各设备热负荷/电耗与各物流温度、压力、流量、组分分布；
-  5. 调用数据抓取模块，将结果落盘。
-- **数据抓取模块 (`test_datacatch.py`)**：把一次 Aspen 运行的结果（设备热负荷/电耗、物流温度/压力/流量/组分）落盘为：
-  - `outputdata/<模型名>/<时间戳>/results.json`
-  - `outputdata/<模型名>/<时间戳>/blocks.csv`
-  - `outputdata/<模型名>/<时间戳>/streams.csv`
+1. 双击 [启动网页版.bat](启动网页版.bat)，等待浏览器打开 [本机工作台](http://127.0.0.1:8765)。
+2. 选择发现的本机模型，或填写 `.bkp` 文件的完整路径，点击“读取模型参数”。
+3. **添加参数列**决定一次计算要修改哪些变量，**添加运行行**决定运行几次；同一行可以设置多个设备的参数。
+4. 填写数值，点击“开始运行”；网页显示每行进度，完成后可“下载汇总 CSV”。
 
-  既可独立运行（自行打开 Aspen、计算、导出），也可被专用控制脚本作为模块直接调用。
+若本机已有热回收模型示例配置，可以点击“试用已有方案”载入；载入示例不会自动计算。本机模型与新增参数目录不随源码分发，新用户请先读取自己的 `.bkp` 模型，再添加参数列。切换模型后应重新读取参数。
 
-## 目录结构
+使用期间保持启动窗口打开。直接双击 `web/index.html` 不能连接 Aspen；需要先启动本机服务。原来的 [桌面版](启动批处理GUI.bat) 仍可使用，操作说明见指南。
 
-```
-automatic/
-├── test_aspen_control.py      # 模型扫描 + 专用控制脚本生成器
-├── test_datacatch.py          # 结果抓取/导出模块（JSON + CSV）
-├── generated/                 # 扫描结果 + 各模型专用控制脚本（自动生成）
-│   ├── <模型名>_scan.json
-│   └── <模型名>_control.py
-└── outputdata/                # 每次运行导出的结果，按 模型名/时间戳 归档
-    └── <模型名>/<时间戳>/
-        ├── results.json
-        ├── blocks.csv
-        └── streams.csv
-```
+## 文档入口
 
-## 环境依赖
+| 文档 | 用途 |
+|---|---|
+| [使用指南](docs/使用指南.md) | 网页版入门、运行表含义、桌面版操作、命令行、排错与结果单位说明 |
 
-- Windows + 已安装 Aspen Plus（需要注册 `Apwn.Document` COM 组件）
-- Python 3.x
-- [pywin32](https://pypi.org/project/pywin32/)：
+本机实测附件和历史文档归档保留在 `validation/` 与 `docs/` 下，新增文件默认不纳入版本控制。
 
-  ```bash
-  py -3 -m pip install pywin32
-  ```
+## 程序与数据
 
-## 使用方法
+| 路径 | 作用 |
+|---|---|
+| `web/index.html` | 浏览器工作台：模型选择、参数列、运行行与进度 |
+| `web_server.py` / `启动网页版.bat` | 本机网页服务与启动入口，连接现有 Aspen 批量计算模块 |
+| `batch_gui.py` / `scan_dialog.py` / `column_picker.py` | 运行表、参数列选择与批量生成行 |
+| `parameter_catalog.py` | 输入扫描、参数写入和回读校验 |
+| `batch_runner.py` | 批量计算与汇总 |
+| `test_datacatch.py` / `result_units.py` | 结果提取与单位转换 |
+| `test_aspen_control.py` | 传统模型扫描与专用控制脚本生成入口 |
+| `generated/` | 控制脚本、扫描结果和配置 |
+| `outputdata/` | 日常计算输出 |
+| `validation/` | 实测记录与验证输出 |
+| `docs/` | 当前使用指南、实测报告及历史归档 |
 
-1. **扫描模型，生成专用控制脚本**
+`test_aspen_control.py` 和 `test_datacatch.py` 是正式功能模块。自动化回归测试为 `test_parameter_control.py`、`test_gui_control.py`、`test_web_server.py`，另有基础检查 `test_batch_runner.py`。
 
-   ```bash
-   py test_aspen_control.py "C:\path\to\your_model.bkp"
-   ```
+## 使用边界
 
-   不传参数时，默认扫描仓库内置的示例模型路径（需按实际环境修改脚本中的 `DEFAULT_MODEL_PATH`）。
-
-2. **编辑生成的专用脚本**
-
-   打开 `generated/<模型名>_control.py`，在 `BLOCKS_CONFIG` 中按需修改设备运行参数（如反应温度、压力、热负荷等），也可手工填写 `power_override_kW` 以在 Aspen 未直接输出功耗节点时补充数值。
-
-3. **运行专用脚本，写入参数并计算**
-
-   ```bash
-   py generated\<模型名>_control.py
-   ```
-
-   运行完成后会在控制台打印设备/物流计算摘要，并自动导出结果到 `outputdata/`。
-
-4. **单独抓取已运行模型的结果（可选）**
-
-   ```bash
-   py test_datacatch.py "C:\path\to\your_model.bkp"
-   ```
-
-## 注意事项
-
-- 脚本中的模型路径为本机路径示例，请根据自己的环境替换。
-- Aspen 的功耗节点单位为 kW，脚本已按此假设处理，请勿再除以 1000。
-- `outputdata/` 中的结果按「模型名/时间戳」自动归档，便于追溯历史运行记录。
+- 参数使用模型原生单位；候选节点是否可写取决于模型规格，运行时会做写入和回读检查。
+- 每行重新载入模型，空白参数保留模型原值；全空行仍按原模型运行一次。停止操作会等待当前工况结束。
+- 运行成功表示控制和导出流程完成，不等同于完整收敛或物理合理性认证。
+- 新导出已修正旧版流量和热负荷单位换算。历史文件未改写，需要重新导出后再用于定量比较；旧生成脚本的控制台打印也仍有旧逻辑。

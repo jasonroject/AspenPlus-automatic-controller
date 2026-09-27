@@ -1,2 +1,9 @@
 __pycache__/
 *.pyc
+
+# Local model configurations, run data, and research records.
+/generated/
+/outputdata/
+/validation/
+/docs/archive/
+/docs/优化与实测报告-20260926.md
