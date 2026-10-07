@@ -328,6 +328,10 @@ class AutomationService:
                         self.downloads[job_id] = {"summary.csv": Path(summary_csv),
                                                  "summary.json": Path(summary_json),
                                                  "plan.json": directory / "web_run_plan.json"}
+                        component_csv = directory / "batch_stream_components.csv"
+                        if component_csv.is_file():
+                            self.downloads[job_id]["components.csv"] = component_csv
+                            self.job["components_url"] = f"/api/download/{job_id}/components.csv"
                         self.job["summary_url"] = f"/api/download/{job_id}/summary.csv"
                         self.job["output_dir"] = str(directory)
                 except BaseException as exc:
@@ -415,7 +419,8 @@ class RequestHandler(BaseHTTPRequestHandler):
                 if file is None or not file.is_file():
                     return self._send({"error": "结果不存在，或当前服务已重启。"}, 404)
                 return self._send(file.read_bytes(), content_type="application/octet-stream", attachment=file.name)
-            files = {"/": "index.html", "/index.html": "index.html", "/app.css": "app.css", "/app.js": "app.js"}
+            files = {"/": "index.html", "/index.html": "index.html", "/app.css": "app.css", "/app.js": "app.js",
+                     "/stream_components.js": "stream_components.js"}
             if path not in files:
                 return self._send({"error": "页面不存在。"}, 404)
             file = WEB_ROOT / files[path]

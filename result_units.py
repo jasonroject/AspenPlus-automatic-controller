@@ -18,6 +18,12 @@ def convert_quantity(value, unit, target):
         "kg/h": {"kg/hr": 1, "kg/h": 1, "kg/sec": 3600, "kg/s": 3600,
                  "kg/min": 60, "gm/sec": 3.6, "g/s": 3.6, "gm/hr": .001,
                  "g/hr": .001, "lb/hr": .45359237, "lb/sec": 1632.932532},
+        "kmol/h": {"kmol/hr": 1, "kmol/h": 1, "kmol/sec": 3600,
+                   "kmol/s": 3600, "kmol/min": 60, "mol/hr": .001,
+                   "mol/h": .001, "mol/sec": 3.6, "mol/s": 3.6,
+                   "lbmol/hr": .45359237, "lbmol/h": .45359237},
+        "fraction": {"": 1, "fraction": 1, "unitless": 1,
+                     "dimensionless": 1, "%": .01, "percent": .01},
     }
     if unit in factors.get(target, {}):
         return number * factors[target][unit]

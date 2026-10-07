@@ -43,6 +43,7 @@ class FakeRunner:
         # The real BatchRunner writes no summary CSV if no rows ran.
         if self.batch_results:
             csv_file.write_text("name,status\nfirst,success\n", encoding="utf-8")
+        (self.directory / "batch_stream_components.csv").write_text("物流,组分\nOUT,WATER\n", encoding="utf-8")
         return json_file, csv_file, self.directory
 
 
@@ -224,7 +225,7 @@ class ServiceTests(WebFixture):
         self.assertEqual(state["job"]["status"], "stopped")
         self.assertEqual(state["job"]["completed"], 1)
         self.assertEqual(state["job"]["total"], 2)
-        self.assertEqual(set(service.downloads[job_id]), {"summary.csv", "summary.json", "plan.json"})
+        self.assertEqual(set(service.downloads[job_id]), {"summary.csv", "summary.json", "plan.json", "components.csv"})
         saved = json.loads(service.downloads[job_id]["plan.json"].read_text(encoding="utf-8"))
         self.assertEqual(saved["parameter_columns"], [TEMPERATURE, PRESSURE])
         self.assertEqual(len(saved["parameter_sets"]), 2)
@@ -408,6 +409,16 @@ class HttpTests(WebFixture):
         saved = json.loads(body)
         self.assertEqual(len(saved["parameter_sets"]), 2)
         self.assertEqual(saved["parameter_columns"], [TEMPERATURE, PRESSURE])
+        state = self.service_instance.state()
+        self.assertEqual(state["job"]["components_url"], f"/api/download/{job_id}/components.csv")
+        status, headers, body = self.request("GET", state["job"]["components_url"])
+        self.assertEqual(status, 200)
+        self.assertIn("attachment", headers["Content-Disposition"])
+        self.assertIn("OUT,WATER", body.decode("utf-8"))
+
+    def test_component_renderer_is_available_as_a_local_asset(self):
+        (self.web / "stream_components.js").write_text("/* component renderer */", encoding="utf-8")
+        self.assertEqual(self.request("GET", "/stream_components.js")[0], 200)
 
     def test_export_plan_uses_http_download_and_preserves_empty_rows_and_columns(self):
         source = self.plan()

@@ -25,6 +25,14 @@
 - 网页读取、桌面读取、批量运行和新生成的控制脚本使用同一个连接入口；每次创建独立模型实例。
 - 接口未注册时提供明确提示；许可证和启动错误保留原始原因，避免隐藏为“没有参数”。
 
+## 2026-10-07：完整流股组分导出
+
+- 每次运行自动提取所有流股，保留全部模型组分，并按实际子物流（例如 MIXED、CISOLID、NC）记录数据。
+- 组分质量流量不再固定截断到六位小数；零含量保留为 0，未返回的数值保留为空，并记录提取状态。
+- 新增 `stream_components.csv` 和批次 `batch_stream_components.csv`：提供质量流量、摩尔流量、质量分率、摩尔分率及子物流明细。未知单位保留原始读数和诊断信息。
+- `streams.csv` 和原有批次汇总 CSV 也包含所有组分的质量流量列；网页可展开每条流股的组分表，或点击“下载全部组分 CSV”。
+- 明细中的 `TOTAL` 是物流合计，不要与其子物流行重复求和。热量/功等无组分输出的流股仍保留，并标记无组分输出。
+
 **更新后需重启本机服务。** 先等待当前计算结束，保存方案并下载需要的结果，再关闭旧的启动窗口；拉取最新代码后重新双击 `启动网页版.bat`，在浏览器按 `Ctrl + F5` 刷新。只刷新网页不会更新已经运行的 Python 后台。具体步骤见[使用指南](docs/使用指南.md#更新已有安装)。
 
 ## 文档入口
@@ -53,7 +61,7 @@
 | `validation/` | 实测记录与验证输出 |
 | `docs/` | 当前使用指南、实测报告及历史归档 |
 
-`test_aspen_control.py` 和 `test_datacatch.py` 是正式功能模块。自动化回归测试为 `test_aspen_connection.py`、`test_parameter_control.py`、`test_gui_control.py`、`test_web_server.py`，另有基础检查 `test_batch_runner.py`。
+`test_aspen_control.py` 和 `test_datacatch.py` 是正式功能模块。自动化回归测试为 `test_aspen_connection.py`、`test_component_export.py`、`test_parameter_control.py`、`test_gui_control.py`、`test_web_server.py`；`test_stream_components.cjs` 检查组分表显示，另有基础检查 `test_batch_runner.py`。
 
 ## 使用边界
 

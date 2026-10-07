@@ -102,6 +102,9 @@ class BatchRunner:
             result["status"] = "success"
             result["blocks"] = capture["blocks"]
             result["streams"] = capture["streams"]
+            result["component_ids"] = capture.get("component_ids", [])
+            result["component_export"] = capture.get("component_export")
+            result["component_csv"] = str(json_path.parent / "stream_components.csv")
             result["aspen_run_status"] = capture.get("aspen_run_status", {})
             result["status_scope"] = "parameter-write-run-export; convergence not independently certified"
             result["timestamp"] = capture["captured_at"]
@@ -199,6 +202,7 @@ class BatchRunner:
         }, ensure_ascii=False, indent=2), encoding="utf-8")
         summary_csv = batch_dir / "batch_summary.csv"
         self._generate_summary_csv(summary_csv)
+        self._generate_component_csv(batch_dir / "batch_stream_components.csv")
 
         print(f"\n>>> 批处理汇总已保存：")
         print(f"    JSON: {summary_json}")
@@ -214,15 +218,19 @@ class BatchRunner:
         all_param_keys = set()
         all_block_names = set()
         all_stream_names = set()
+        all_component_ids = set()
 
         for result in self.batch_results:
             all_param_keys.update(result["parameters"].keys())
             all_block_names.update(result["blocks"].keys())
             all_stream_names.update(result["streams"].keys())
+            all_component_ids.update(datacatch.exported_component_ids(
+                result["streams"], result.get("component_ids", [])))
 
         all_param_keys = sorted(all_param_keys)
         all_block_names = sorted(all_block_names)
         all_stream_names = sorted(all_stream_names)
+        all_component_ids = sorted(all_component_ids)
 
         header = ["运行序号", "运行名称", "状态", "用时(秒)", "错误"]
         header.extend([f"参数.{k}" for k in all_param_keys])
@@ -231,6 +239,8 @@ class BatchRunner:
         header.extend([f"物流.{s}.温度_C" for s in all_stream_names])
         header.extend([f"物流.{s}.压力_MPa" for s in all_stream_names])
         header.extend([f"物流.{s}.流量_kg_h" for s in all_stream_names])
+        header.extend([f"物流.{s}.组分.{comp}.质量流量_kg_h"
+                       for s in all_stream_names for comp in all_component_ids])
 
         with csv_path.open("w", newline="", encoding="utf-8-sig") as f:
             writer = csv.writer(f)
@@ -268,7 +278,25 @@ class BatchRunner:
                     stream_data = result["streams"].get(s, {})
                     row.append(stream_data.get("mass_flow_kg_h", ""))
 
+                for s in all_stream_names:
+                    composition = result["streams"].get(s, {}).get("composition_kg_h", {})
+                    row.extend(composition.get(comp) for comp in all_component_ids)
+
                 writer.writerow(row)
+
+    def _generate_component_csv(self, csv_path):
+        components = sorted({comp for result in self.batch_results
+            for comp in datacatch.exported_component_ids(result["streams"], result.get("component_ids", []))})
+        with Path(csv_path).open("w", newline="", encoding="utf-8-sig") as f:
+            writer = csv.writer(f)
+            writer.writerow(["运行序号", "运行名称", "运行状态"] + datacatch.COMPONENT_CSV_HEADER)
+            for result in self.batch_results:
+                prefix = [result["run_index"], result["run_name"], result["status"]]
+                if not result["streams"]:
+                    writer.writerow(prefix + ["", "", "", None, None, None, None, "无结果"])
+                else:
+                    for row in datacatch.component_rows(result["streams"], components):
+                        writer.writerow(prefix + row)
 
 
 def generate_batch_template(control_script_path: Path):

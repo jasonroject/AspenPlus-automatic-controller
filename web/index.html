@@ -6,6 +6,7 @@
   <meta name="theme-color" content="#142d36">
   <title>Aspen 工作台 · 批量模拟</title>
   <link rel="stylesheet" href="/app.css">
+  <script src="/stream_components.js" defer></script>
   <script src="/app.js" defer></script>
 </head>
 <body>
@@ -31,7 +32,7 @@
       <div class="run-bar"><div class="run-description"><span class="run-symbol">↗</span><div><strong id="run-ready">先读取模型参数，开始编排</strong><span id="run-description">一次运行中，各参数同时生效。</span></div></div><div class="run-actions"><button class="button stop" id="stop-run" hidden>完成当前行后停止</button><button class="button primary run-button" id="start-run">开始运行 <span>→</span></button></div></div>
     </section>
 
-    <section class="card results-card" id="results"><div class="section-heading"><div class="title-line"><span class="section-number">03</span><h2>运行与结果</h2><span class="badge neutral" id="job-badge">等待运行</span></div><a class="button" id="download-summary" href="#" hidden download>↓ 下载汇总 CSV</a></div><div id="job-progress" class="job-progress" hidden><div class="progress-meta"><strong id="progress-label"></strong><span id="progress-count"></span></div><div class="progress-track"><div id="progress-fill"></div></div></div><div class="results-empty" id="results-empty"><span class="empty-result-icon">↗</span><div><strong>下一组发现，从这里开始</strong><p>运行后，这里会显示每行进度、执行状态和计算结果。</p></div></div><div id="result-list" class="result-list"></div><div class="results-footnote" id="results-footnote" hidden>“执行完成”表示参数写入、模拟调用与导出完成。请结合 Aspen 模型状态判断收敛情况。</div><details class="run-log" id="log-details"><summary>查看运行日志 <span id="log-count">0 条</span></summary><pre id="run-log" aria-live="off">还没有运行日志。</pre></details></section>
+    <section class="card results-card" id="results"><div class="section-heading"><div class="title-line"><span class="section-number">03</span><h2>运行与结果</h2><span class="badge neutral" id="job-badge">等待运行</span></div><div class="header-actions"><a class="button" id="download-summary" href="#" hidden download>↓ 下载汇总 CSV</a><a class="button" id="download-components" href="#" hidden download>↓ 下载全部组分 CSV</a></div></div><div id="job-progress" class="job-progress" hidden><div class="progress-meta"><strong id="progress-label"></strong><span id="progress-count"></span></div><div class="progress-track"><div id="progress-fill"></div></div></div><div class="results-empty" id="results-empty"><span class="empty-result-icon">↗</span><div><strong>下一组发现，从这里开始</strong><p>运行后，这里会显示每行进度、执行状态和计算结果。</p></div></div><div id="result-list" class="result-list"></div><div class="results-footnote" id="results-footnote" hidden>“执行完成”表示参数写入、模拟调用与导出完成。请结合 Aspen 模型状态判断收敛情况。</div><details class="run-log" id="log-details"><summary>查看运行日志 <span id="log-count">0 条</span></summary><pre id="run-log" aria-live="off">还没有运行日志。</pre></details></section>
     <footer class="page-footer"><span>ASPEN WORKSPACE</span><span>本机运行 · 原模型独立加载 · 结果集中保存</span></footer>
   </main>
 
