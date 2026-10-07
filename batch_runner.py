@@ -33,6 +33,7 @@ except ImportError:
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import test_datacatch as datacatch
 from parameter_catalog import legacy_catalog, apply_parameters
+from aspen_connection import create_aspen_document
 
 OUTPUT_ROOT = Path(__file__).resolve().parent / "outputdata"
 
@@ -74,7 +75,7 @@ class BatchRunner:
         }
 
         try:
-            aspen = win32.DispatchEx("Apwn.Document")
+            aspen = create_aspen_document()
             aspen.InitFromArchive2(str(self.model_path))
             aspen.Visible = 0
             aspen.SuppressDialogs = 1

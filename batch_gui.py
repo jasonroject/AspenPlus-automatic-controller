@@ -16,6 +16,7 @@ from scan_dialog import MultiScanDialog
 from types import SimpleNamespace
 from column_picker import ColumnPicker
 from parameter_labels import column_title, parameter_title, parameter_detail
+from aspen_connection import create_aspen_document
 
 
 class BatchRunnerGUI:
@@ -312,7 +313,7 @@ class BatchRunnerGUI:
             pythoncom.CoInitialize()
             aspen = None
             try:
-                aspen = win32com.client.DispatchEx("Apwn.Document")
+                aspen = create_aspen_document()
                 aspen.InitFromArchive2(fn)
                 aspen.Visible = 0
                 aspen.SuppressDialogs = 1

@@ -21,6 +21,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 from result_units import convert_quantity
+from aspen_connection import create_aspen_document
 
 try:
     import pythoncom
@@ -173,7 +174,7 @@ def run_and_capture(model_path):
     pythoncom.CoInitialize()
     aspen = None
     try:
-        aspen = win32.Dispatch("Apwn.Document")
+        aspen = create_aspen_document()
         aspen.InitFromArchive2(str(model_path))
         aspen.Visible = 0
         aspen.SuppressDialogs = 1

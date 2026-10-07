@@ -5,6 +5,7 @@ from pathlib import Path
 import sys
 import threading
 import time
+from aspen_connection import create_aspen_document
 
 try:
     import pythoncom
@@ -65,7 +66,7 @@ def resolve_block_power(aspen, bname, power_override_kW=None):
 
 def scan_model(model_path):
     print(f"正在安全扫描 Aspen 模型：{model_path}")
-    aspen = win32.Dispatch("Apwn.Document")
+    aspen = create_aspen_document()
     blocks_data = []
     streams_data = []
 
@@ -257,6 +258,7 @@ import win32com.client as win32
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import test_datacatch as datacatch
+from aspen_connection import create_aspen_document
 
 
 MODEL_PATH = Path(r"{model_path}")
@@ -327,7 +329,7 @@ def run_with_monitor(model_path, timeout_seconds=3600, visible=True):
         pythoncom.CoInitialize()
         aspen = None
         try:
-            aspen = win32.Dispatch("Apwn.Document")
+            aspen = create_aspen_document()
             aspen.InitFromArchive2(str(model_path))
             aspen.Visible = int(visible)
             aspen.SuppressDialogs = 1

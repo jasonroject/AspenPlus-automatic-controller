@@ -23,6 +23,7 @@ from urllib.request import urlopen
 
 from parameter_catalog import coerce_value, discover_parameters
 from parameter_labels import is_common, parameter_detail, parameter_title
+from aspen_connection import create_aspen_document
 
 ROOT = Path(__file__).resolve().parent
 WEB_ROOT = ROOT / "web"
@@ -143,11 +144,10 @@ def validate_plan(payload):
 
 def scan_aspen(model):
     import pythoncom
-    import win32com.client
     pythoncom.CoInitialize()
     aspen = None
     try:
-        aspen = win32com.client.DispatchEx("Apwn.Document")
+        aspen = create_aspen_document()
         aspen.InitFromArchive2(str(model))
         aspen.Visible = 0
         aspen.SuppressDialogs = 1

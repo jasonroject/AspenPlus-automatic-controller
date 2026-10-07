@@ -19,6 +19,12 @@
 - 文件选择窗口打开时，暂时禁止重复选择和启动计算；选好后点击“读取模型参数”继续。
 - 旧后台缺少新接口时，网页会提示重新启动服务，避免只显示“接口不存在”。
 
+## 2026-10-07：修复模型参数读取
+
+- 自动识别已注册的 Aspen Plus 版本接口，兼容仅有 `Apwn.Document.41.0`、没有通用 `Apwn.Document` 的安装。
+- 网页读取、桌面读取、批量运行和新生成的控制脚本使用同一个连接入口；每次创建独立模型实例。
+- 接口未注册时提供明确提示；许可证和启动错误保留原始原因，避免隐藏为“没有参数”。
+
 **更新后需重启本机服务。** 先等待当前计算结束，保存方案并下载需要的结果，再关闭旧的启动窗口；拉取最新代码后重新双击 `启动网页版.bat`，在浏览器按 `Ctrl + F5` 刷新。只刷新网页不会更新已经运行的 Python 后台。具体步骤见[使用指南](docs/使用指南.md#更新已有安装)。
 
 ## 文档入口
@@ -38,6 +44,7 @@
 | `model_picker.py` | 本机 `.bkp` 文件选择窗口，使用 Tkinter 自动回填路径 |
 | `batch_gui.py` / `scan_dialog.py` / `column_picker.py` | 运行表、参数列选择与批量生成行 |
 | `parameter_catalog.py` | 输入扫描、参数写入和回读校验 |
+| `aspen_connection.py` | 识别本机 Aspen COM 接口并创建独立模型实例 |
 | `batch_runner.py` | 批量计算与汇总 |
 | `test_datacatch.py` / `result_units.py` | 结果提取与单位转换 |
 | `test_aspen_control.py` | 传统模型扫描与专用控制脚本生成入口 |
@@ -46,7 +53,7 @@
 | `validation/` | 实测记录与验证输出 |
 | `docs/` | 当前使用指南、实测报告及历史归档 |
 
-`test_aspen_control.py` 和 `test_datacatch.py` 是正式功能模块。自动化回归测试为 `test_parameter_control.py`、`test_gui_control.py`、`test_web_server.py`，另有基础检查 `test_batch_runner.py`。
+`test_aspen_control.py` 和 `test_datacatch.py` 是正式功能模块。自动化回归测试为 `test_aspen_connection.py`、`test_parameter_control.py`、`test_gui_control.py`、`test_web_server.py`，另有基础检查 `test_batch_runner.py`。
 
 ## 使用边界
 
