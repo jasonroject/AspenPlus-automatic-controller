@@ -1,14 +1,23 @@
 import {TABLES,blankProject,suggest,parseCSV,adaptAspen,assess,rank,clean} from './universal-core.mjs';
 import {readiness,eligibleCases,resultGuidance} from './workspace-state.mjs';
+import {t,mountLanguage,translatePage} from './i18n.mjs';
+import {renderResultVisuals,clearResultVisuals} from './result-visuals.mjs';
+import {readSession,writeSession,referenceLink,validateWorkspaceShape} from './workspace-session.mjs';
+import {scanPreferences} from './uncertainty-diagnostics.mjs';
+import {preferenceControlsHTML,renderPreferenceScan} from './uncertainty-views.mjs';
+import {readSpreadsheet} from './spreadsheet-import.mjs';
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt=(v,n=4)=>Number.isFinite(v)?(v!==0&&Math.abs(v)<10**(-n)?v.toExponential(2):v.toLocaleString('en-US',{maximumFractionDigits:n})):'—';
-let project=blankProject(),sheets=[],matrix=[],report=null,ranking=null,activeTab='import',pendingJSON=false,busy=false;
+let project=blankProject(),sheets=[],matrix=[],report=null,ranking=null,preferenceScan=null,activeTab='import',pendingJSON=false,busy=false;
 const appliedSheets=new Set();
-const message=(t,error=false)=>{$('#message').hidden=false;$('#message').textContent=t;$('#message').dataset.kind=error?'error':'info';};
+let referenceProject=null,restoring=true,persistTimer;
+mountLanguage(document.querySelector('.workbench-header'));
+
+const message=(text,error=false)=>{$('#message').hidden=false;$('#message').textContent=t(text);$('#message').dataset.kind=error?'error':'info';};
 function updateWorkflow(){
   const ready=readiness(project),index=['import','context','results'].indexOf(activeTab);
   $('#workflow-count').textContent=`Step ${index+1} of 3`;
-  $('#workflow-title').textContent=activeTab==='import'?'Start with your data.':activeTab==='context'?'Make the basis explicit.':'Understand your results.';
+  $('#workflow-title').textContent=activeTab==='import'?'Import & map':activeTab==='context'?'Review basis':'Results & comparison';
   $('#workflow-description').textContent=pendingJSON?'Your JSON edits are not applied. Apply JSON edits in step 1 before continuing.':activeTab==='import'?(sheets.length?`${appliedSheets.size} of ${sheets.length} worksheets applied. Review each mapping, apply it, then continue to the basis.`:ready.hasCases?'Your project is loaded. Continue to review its basis and factors.':'Choose an export, or try the guided example first. Nothing is uploaded to a server.'):activeTab==='context'?'Review the checklist and calculation basis, then calculate. Missing evidence will stay visible.':'Start with the summary, inspect any issues, then explore energy, impacts and comparison.';
   for(const b of document.querySelectorAll('[data-tab]')){b.disabled=busy||(b.dataset.tab==='results'&&!report)||(pendingJSON&&b.dataset.tab!=='import');b.dataset.complete=String(b.dataset.tab==='import'&&ready.hasCases||b.dataset.tab==='context'&&Boolean(report));}
   for(const id of ['import-next','edit-context'])$('#'+id).disabled=busy||!ready.hasCases||pendingJSON;
@@ -32,9 +41,11 @@ function updateWorkflow(){
   $('#go-compare').disabled=!report;
   $('#go-compare').textContent=count<2?'Comparison requirements →':'Compare cases →';
   $('#comparison-hint').textContent=!report?'Calculate a project to compare cases.':count<2?`${count} eligible case${count===1?'':'s'} for this category. Add or complete cases in step 1: at least two balanced cases with energy, yield and complete category factors are needed.`:!project.meta.comparable_cases?'Next: return to step 2 and confirm that the cases share a comparable function, boundary and allocation.':`${count} eligible cases. Set your priorities below, then compare. No performance threshold is imposed.`;
+  translatePage();
+  if(!restoring)schedulePersist();
 }
 function showTab(name,scroll=true){if(pendingJSON&&name!=='import'){message('Apply or discard the pending JSON edits in step 1 first.',true);return;}if(name==='results'&&!report){message('Review the basis in step 2, then calculate to unlock results.');return;}activeTab=name;for(const b of document.querySelectorAll('[data-tab]')){const on=b.dataset.tab===name;b.setAttribute('aria-pressed',String(on));if(on)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');$('#tab-'+b.dataset.tab).hidden=!on;}updateWorkflow();if(scroll){$('#workflow-title').scrollIntoView({block:'start',behavior:'instant'});$('#workflow-title').focus({preventScroll:true});}}
-function invalidate(){report=null;ranking=null;for(const id of ['balance-body','impact-results','rank-results','results-summary','result-error-list','energy-chart','energy-kpis','balance-status','flow-body'])$('#'+id).innerHTML='';if(activeTab==='results')showTab('context',false);else updateWorkflow();}
+function invalidate(){report=null;ranking=null;preferenceScan=null;clearResultVisuals($('#result-visuals'));for(const id of ['balance-body','impact-results','rank-results','results-summary','result-error-list','energy-kpis','balance-status','flow-body'])$('#'+id).innerHTML='';if(activeTab==='results')showTab('context',false);else updateWorkflow();}
 function sync(){
   pendingJSON=false;invalidate();$('#project-json').value=JSON.stringify(project,null,2);
   $('#table-counts').innerHTML=Object.keys(TABLES).map(k=>`<button class="table-chip" data-edit-table="${k}"><strong>${esc(k)}</strong><span>${project[k].length} rows ${project[k].length?'✓':'· add data'}</span></button>`).join('');
@@ -56,7 +67,7 @@ function context(){
   project.meta.calorie_J=$('#calorie').value?Number($('#calorie').value):null;project.meta.inventory_complete=$('#inventory-complete').checked;project.meta.comparable_cases=$('#comparable').checked;
 }
 function loadProject(data){
-  const p=adaptAspen(data);if(!p.meta||Object.keys(TABLES).some(k=>!Array.isArray(p[k])))throw new Error('Invalid normalized project: meta and five tables required');
+  const p=validateWorkspaceShape(adaptAspen(data));
   project=p;sheets=[];matrix=[];appliedSheets.clear();$('#mapping-panel').hidden=true;$('#files').value='';sync();showTab('context');message(`Loaded ${project.meta.name||'project'}. Next: review the basis below, then calculate.`);
 }
 function download(name,data){const u=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);}
@@ -64,7 +75,8 @@ function guarded(fn){return async(...args)=>{try{await fn(...args);}catch(e){mes
 function importing(fn){return guarded(async(...args)=>{if(busy)return;busy=true;updateWorkflow();message('Reading data locally…');try{await fn(...args);}finally{busy=false;if(args[0]?.target===$('#files'))$('#files').value='';updateWorkflow();}});}
 function rowsForSheet(){
   const src=sheets[Number($('#sheet').value)];if(!src)return[];
-  let rows=src.rows.slice(Number($('#header-row').value)-1);
+  const header=Number($('#header-row').value);if(!Number.isInteger(header)||header<1||header>100)throw new Error(t('Header row must be an integer from 1 to 100.','表头行必须为 1 至 100 的整数。'));
+  let rows=src.rows.slice(header-1);
   if($('#transpose').checked){const width=Math.max(0,...rows.map(r=>r.length));rows=Array.from({length:width},(_,i)=>rows.map(r=>r[i]??''));}
   if(rows.length<2)throw new Error('Choose a header row with data below it');
   if(rows.length>10001)throw new Error('Limit: 10,000 rows per worksheet. Split larger exports into cases.');
@@ -91,9 +103,7 @@ $('#files').addEventListener('change',importing(async e=>{
   for(const file of files){const bytes=await file.arrayBuffer();
     if(/\.(csv|tsv)$/i.test(file.name))next.push({name:file.name,rows:parseCSV(new TextDecoder($('#encoding').value,{fatal:true}).decode(bytes))});
     else if(/\.(xlsx|xls)$/i.test(file.name)){
-      const wb=XLSX.read(bytes,{type:'array',cellFormula:true,sheetRows:10002});
-      for(const name of wb.SheetNames){const sheet=wb.Sheets[name];if(sheet['!fullref'])throw new Error('Worksheet exceeds the row limit. Split it before importing; no truncated data were applied.');if(Object.values(sheet).some(c=>c&&typeof c==='object'&&c.f))throw new Error('Formula cells are not recalculated. Export a values-only workbook before import.');
-        const rows=XLSX.utils.sheet_to_json(sheet,{header:1,defval:'',raw:true,blankrows:false});if(rows.length)next.push({name:file.name+' / '+name,rows});}
+      next.push(...readSpreadsheet(bytes,XLSX,file.name));
     }else throw new Error('Unsupported file type; export CSV, Excel or JSON from Aspen first');
   }
   if(!next.length)throw new Error('No data worksheets found');sheets=next;appliedSheets.clear();$('#files').value='';invalidate();
@@ -131,13 +141,17 @@ $('#go-compare').addEventListener('click',()=>$('#comparison-section').scrollInt
 for(const id of ['mapping-body','header-row','transpose','table-type'])$('#'+id).addEventListener('input',()=>{appliedSheets.delete(Number($('#sheet').value));updateWorkflow();});
 function issues(errors){return errors.length?`<div class="audit-issues"><ul>${errors.map(e=>`<li>${esc(e)}</li>`).join('')}</ul></div>`:'';}
 function metric(label,value,unit){return `<article class="overview-kpi"><div class="overview-kpi-label">${esc(label)}</div><div class="overview-kpi-value">${fmt(value,5)} <span class="overview-kpi-unit">${esc(unit)}</span></div></article>`;}
-function energyChart(blocks){
-  if(!blocks.length)return'';const width=800,height=50+blocks.length*36,max=Math.max(1,...blocks.flatMap(b=>[Math.abs(b.heat),Math.abs(b.power)]));
-  return `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Signed external heat and work by block"><text x="15" y="18" fill="#222" font-size="13">Heat (solid) and shaft work (outline) · kW · positive into block</text><line x1="430" y1="30" x2="430" y2="${height}" stroke="#777"/>${blocks.map((b,i)=>{const y=48+i*36;return `<text x="15" y="${y+8}" fill="#222" font-size="13">${esc(b.id)}</text>`+['heat','power'].map((k,j)=>{const length=Math.abs(b[k])/max*260;return `<rect x="${b[k]<0?430-length:430}" y="${y+j*12}" width="${length}" height="8" fill="${j?'white':'#333'}" stroke="#333"/><text x="710" y="${y+j*12+8}" fill="#222" font-size="11">${fmt(b[k],3)}</text>`;}).join('');}).join('')}</svg>`;
+function impactDetails(i){
+  const incompatible=i.errors.includes('Category factors must use one declared method and impact unit');
+  const partial=Number.isFinite(i.nominal_subtotal);
+  const heading=incompatible?t('Mixed methods or units','方法或单位不一致'):esc(i.unit)+'/kg product';
+  const state=i.complete?t('Declared inventory fully characterized','声明的清单已全部表征'):partial?t('INCOMPLETE — partial subtotal only','不完整——仅为部分小计'):t('INCOMPLETE — no category total','不完整——无类别合计');
+  const support=i.complete?`<div class="table-scroll"><table><thead><tr><th>α level</th><th>Lower bound</th><th>Upper bound</th></tr></thead><tbody>${i.cuts.map(c=>`<tr><td>${c.alpha}</td><td>${fmt(c.range[0],6)}</td><td>${fmt(c.range[1],6)}</td></tr>`).join('')}</tbody></table></div>`:partial?`<p>${t(`Covered-row nominal subtotal: ${fmt(i.nominal_subtotal,6)}. This is not a complete footprint.`)}</p>`:`<p>${incompatible?t('Subtotal unavailable: incompatible methods or units. Inspect each contribution in its own declared context.','小计不可用：方法或单位不一致。请按各贡献项自身声明的依据分别查看。'):t('Subtotal unavailable. Review the reported calculation issues.','小计不可用，请检查报告的计算问题。')}</p>`;
+  return `<div class="impact-card"><h3><span data-no-i18n>${esc(i.category)}</span> · <span>${heading}</span></h3><p><span>${state}</span> · ${i.covered}/${i.total} <span>${t('inventory rows','条清单记录')}</span> · <span data-no-i18n>${incompatible?'':esc(i.method)}</span></p>${issues(i.errors)}${support}<details><summary>Contribution and factor lineage</summary><div class="table-scroll"><table><thead><tr><th>Inventory</th><th>Nominal contribution</th>${incompatible?'<th>Method</th>':''}<th>Factor</th><th>Source</th></tr></thead><tbody>${i.contributions.map(c=>`<tr><td data-no-i18n>${esc(c.name)}</td><td>${fmt(c.nominal)}${incompatible?` <span data-no-i18n>${esc(c.unit)}/kg</span>`:''}</td>${incompatible?`<td data-no-i18n>${esc(c.method)}</td>`:''}<td data-no-i18n>${esc(c.factor_id)}</td><td data-no-i18n>${esc(c.source)}</td></tr>`).join('')}</tbody></table></div></details></div>`;
 }
 function render(){
   const r=report.results.find(x=>x.id===$('#result-case').value);if(!r)return;const b=r.balance;
-  const guidance=resultGuidance(r),impact=r.impacts[0];
+  const guidance=resultGuidance(r),impact=r.impacts.find(i=>i.category===$('#rank-category').value)||r.impacts[0];
   const kpi=(label,value,unit,note)=>`<article class="overview-kpi"><div class="overview-kpi-label">${esc(label)}</div><div class="overview-kpi-value">${typeof value==='number'?fmt(value,3):esc(value)} <span class="overview-kpi-unit">${esc(unit)}</span></div><p class="panel-foot">${esc(note)}</p></article>`;
   $('#results-summary').innerHTML=kpi('Balance check',b.within_tolerance?'Closed':b.complete?'Review':'Incomplete','',b.within_tolerance?'Numerical tolerance met; not physical validation.':'Open the issues below before comparing.')+kpi('Purchased energy',r.energy?.at(-1).range[0]??'Unavailable','kWh/kg','Nominal value · allocated target-product basis')+kpi(impact?.category||'Environmental impact',impact?.complete?impact.nominal_subtotal:'Unavailable',impact?.complete?`${impact.unit}/kg`:'',impact?.complete?'Nominal value · declared inventory only':'Complete factors and inventory scope first.')+kpi('Target / feed yield',r.yield?r.yield[1]*100:'Unavailable',r.yield?'%':'','Nominal mass yield · declared reference feed');
   $('#result-error-list').innerHTML=guidance.errors.length?`<div class="audit-issues"><h3>${guidance.errors.length} item${guidance.errors.length===1?'':'s'} to review</h3><ul>${guidance.errors.map(e=>`<li>${esc(e)}</li>`).join('')}</ul></div>`:'<p class="result-clear">✓ No missing-data or balance issues reported for this case. Review the declared scope before interpreting its impact.</p>';
@@ -146,23 +160,88 @@ function render(){
   $('#impact-scope').textContent=`Declared boundary: ${project.meta.boundary}.${project.meta.native_warnings?' Native report: '+project.meta.native_warnings:''}`;
   $('#balance-status').innerHTML=`<p>${b.complete?(b.within_tolerance?'Declared balances meet the numerical tolerance. Physical validation is separate.':'Balances computed, but numerical tolerance exceeded. This case is excluded from ranking.'):'Balance incomplete — totals withheld.'}</p><p class="panel-foot">${esc(b.tolerance)}</p>`+issues([...b.errors,...r.issues]);
   $('#energy-kpis').innerHTML=b.total?metric('External heating',b.total.external_heat_in_kW,'kW')+metric('External cooling',b.total.external_heat_out_kW,'kW')+metric('Boundary energy residual',b.total.energy_residual_kW,'kW'):'';
-  $('#energy-chart').innerHTML=energyChart(b.blocks);
+  renderResultVisuals($('#result-visuals'),{project,report,caseId:r.id,category:$('#rank-category').value});
+  renderHandoff();
   $('#balance-body').innerHTML=b.blocks.map(x=>`<tr><td>${esc(x.id)}</td><td>${fmt(x.heat)}</td><td>${fmt(x.power)}</td><td>${fmt(x.mass_residual_kg_h,7)}</td><td>${fmt(x.energy_residual_kW,7)}</td></tr>`).join('');
   $('#flow-body').innerHTML=b.streams.map(s=>`<tr><td>${esc(s.id)}</td><td>${esc(s.from)} → ${esc(s.to)}</td><td>${fmt(s.mass)}</td><td>${fmt(s.enthalpy)}</td></tr>`).join('');
-  $('#impact-results').innerHTML=(r.energy?`<p>Purchased-energy intensity, α = 0 support: <strong>${r.energy[0].range.map(v=>fmt(v,4)).join('–')} kWh/kg product</strong>.</p>`:'')+(r.impacts.length?r.impacts.map(i=>`<div class="impact-card"><h3>${esc(i.category)} · ${esc(i.unit)}/kg product</h3><p>${i.complete?'Declared inventory fully characterized':'INCOMPLETE — partial subtotal only'} · ${i.covered}/${i.total} inventory rows · ${esc(i.method)}</p>${issues(i.errors)}${i.complete?`<div class="table-scroll"><table><thead><tr><th>α level</th><th>Lower bound</th><th>Upper bound</th></tr></thead><tbody>${i.cuts.map(c=>`<tr><td>${c.alpha}</td><td>${fmt(c.range[0],6)}</td><td>${fmt(c.range[1],6)}</td></tr>`).join('')}</tbody></table></div>`:`<p>Covered-row nominal subtotal: ${fmt(i.nominal_subtotal,6)}. This is not a complete footprint.</p>`}<details><summary>Contribution and factor lineage</summary><div class="table-scroll"><table><thead><tr><th>Inventory</th><th>Nominal contribution</th><th>Factor</th><th>Source</th></tr></thead><tbody>${i.contributions.map(c=>`<tr><td>${esc(c.name)}</td><td>${fmt(c.nominal)}</td><td>${esc(c.factor_id)}</td><td>${esc(c.source)}</td></tr>`).join('')}</tbody></table></div></details></div>`).join(''):'<p>Impact totals are unavailable. Review the reference-product inputs and factor coverage.</p>');
+  $('#impact-results').innerHTML=(r.energy?`<p>Purchased-energy intensity, α = 0 support: <strong>${r.energy[0].range.map(v=>fmt(v,4)).join('–')} kWh/kg product</strong>.</p>`:'')+(r.impacts.length?r.impacts.map(impactDetails).join(''):'<p>Impact totals are unavailable. Review the reference-product inputs and factor coverage.</p>');
   for(const [index,card] of [...$('#impact-results').querySelectorAll('.impact-card')].entries()){
     const i=r.impacts[index];if(!i.complete)continue;const table=card.querySelector('.table-scroll'),details=document.createElement('details');details.innerHTML='<summary>Inspect all five possibility levels</summary>';table.before(details);details.append(table);
     const summary=document.createElement('div');summary.className='impact-values';summary.innerHTML=`<div><span>Lower support · α = 0</span><strong>${fmt(i.cuts[0].range[0],4)}</strong></div><div><span>Nominal · α = 1</span><strong>${fmt(i.nominal_subtotal,4)}</strong></div><div><span>Upper support · α = 0</span><strong>${fmt(i.cuts[0].range[1],4)}</strong></div>`;details.before(summary);
   }
   updateWorkflow();
 }
-$('#calculate').addEventListener('click',guarded(()=>{if(pendingJSON)throw new Error('Apply the pending JSON edits first');context();invalidate();const next=assess(project);if(!next.results.length)throw new Error('Import at least one case');report=next;ranking=null;$('#rank-results').innerHTML='';$('#result-case').innerHTML=report.results.map(r=>`<option>${esc(r.id)}</option>`).join('');$('#rank-category').innerHTML=report.categories.map(c=>`<option>${esc(c)}</option>`).join('');render();showTab('results');message('Analysis updated. Start with the summary; review any issues before using the comparison.');}));
+$('#calculate').addEventListener('click',guarded(()=>{if(pendingJSON)throw new Error('Apply the pending JSON edits first');context();invalidate();const next=assess(project);if(!next.results.length)throw new Error('Import at least one case');report=next;ranking=null;$('#rank-results').innerHTML='';$('#result-case').innerHTML=report.results.map(r=>`<option value="${esc(r.id)}">${esc(r.id)}</option>`).join('');$('#rank-category').innerHTML=report.categories.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('');render();showTab('results');message('Analysis updated. Start with the summary; review any issues before using the comparison.');}));
 $('#result-case').addEventListener('change',render);
 $('#rank').addEventListener('click',guarded(()=>{
-  ranking=null;$('#rank-results').innerHTML='';if(!report)throw new Error('Calculate first');ranking=rank(report,$('#rank-category').value,['energy','impact','yield'].map(k=>$('#weight-'+k).value),project.meta.comparable_cases);
-  $('#rank-results').innerHTML=`<p>Weights normalized to ${ranking.weights.map(v=>fmt(v,3)).join(' / ')}. Excluded incomplete cases: ${esc(ranking.excluded.join(', ')||'none')}.</p><div class="table-scroll" tabindex="0"><table><thead><tr><th>Case</th><th>Nominal score</th><th>Low / medium / high membership</th><th>Score support</th><th>Possible rank range</th></tr></thead><tbody>${ranking.rows.map(r=>`<tr><td>${esc(r.id)}</td><td>${fmt(r.score)}</td><td>${r.membership.map(v=>fmt(v,3)).join(' / ')}</td><td>${r.score_support.map(v=>fmt(v,3)).join('–')}</td><td>${r.possible_rank.join('–')}</td></tr>`).join('')}</tbody></table></div>`;
+  ranking=null;preferenceScan=null;$('#rank-results').innerHTML='';if(!report)throw new Error('Calculate first');ranking=rank(report,$('#rank-category').value,['energy','impact','yield'].map(k=>$('#weight-'+k).value),project.meta.comparable_cases);
+  $('#rank-results').innerHTML=`<p>Weights normalized to ${ranking.weights.map(v=>fmt(v,3)).join(' / ')}. Excluded incomplete cases: ${esc(ranking.excluded.join(', ')||'none')}.</p><div class="table-scroll" tabindex="0"><table><thead><tr><th>Case</th><th>Nominal score</th><th>Low / medium / high membership</th><th>Score support</th><th>Possible rank range</th></tr></thead><tbody>${ranking.rows.map(r=>`<tr><td>${esc(r.id)}</td><td>${fmt(r.score)}</td><td>${r.membership.map(v=>fmt(v,3)).join(' / ')}</td><td>${r.score_support.map(v=>fmt(v,3)).join('–')}</td><td>${r.possible_rank.join('–')}</td></tr>`).join('')}</tbody></table></div>`+preferenceControlsHTML();
 }));
-for(const input of document.querySelectorAll('#rank-category,[id^="weight-"]'))input.addEventListener('input',()=>{ranking=null;$('#rank-results').innerHTML='<p>Weights or category changed. Evaluate ranking again.</p>';updateWorkflow();});
-$('#export-results').addEventListener('click',()=>{if(!report)return;download('process-analysis.json',{project,report,ranking,created_at:new Date().toISOString()});message('Analysis and audit saved, including your inputs, assumptions and available ranking.');});
-sync();
-$('#message').hidden=true;
+for(const input of document.querySelectorAll('#rank-category,[id^="weight-"]'))input.addEventListener('input',()=>{if(input.id==='rank-category'&&report)render();ranking=null;preferenceScan=null;$('#rank-results').innerHTML='<p>Weights or category changed. Evaluate ranking again.</p>';updateWorkflow();});
+$('#result-visuals').addEventListener('resultcategorychange',event=>{if(!report?.categories.includes(event.detail.category))return;$('#rank-category').value=event.detail.category;ranking=null;preferenceScan=null;$('#rank-results').innerHTML='<p>Weights or category changed. Evaluate ranking again.</p>';render();});
+$('#export-results').addEventListener('click',()=>{if(!report)return;download('process-analysis.json',{project,report,ranking,preference_scan:preferenceScan,created_at:new Date().toISOString()});message('Analysis and audit saved, including your inputs, assumptions and available ranking.');});
+
+function renderHandoff(){
+  const link=referenceLink(project,referenceProject);
+  $('#open-prediction').href=link.href;
+  $('#open-prediction').textContent=link.matches?t('Continue to HTL prediction →','继续到 HTL 预测 →'):t('Explore the HTL reference lab →','浏览 HTL 参考模型 →');
+  $('#handoff-description').textContent=link.matches?t('This is the supplied native HTL export. Open the same nominal 325 °C / 8.5 m HR condition in the frozen prediction lab.','这是提供的原生 HTL 导出。在冻结预测模块中打开同一名义工况：325 °C / 8.5 m、HR。'):t('Imported-data comparisons use the declared fuzzy supports above. The separate HTL lab explores the older reference model, not the 17-case pilot.','导入数据的比较采用上方声明的模糊支持区间。独立的 HTL 分析模块用于探索旧参考模型，不是 17 工况试运行模型。');
+  $('#handoff-scope').textContent=t('The lab uses an older frozen reference model, separate from both the 17-case pilot and your imported project. Your applied inputs and results will be restored when you return to this tab.','预测模块使用旧的冻结参考模型，与 17 工况试运行模型和本次导入项目相互独立。返回本标签页时，将恢复已应用输入和计算结果。');
+  if(link.matches){
+    const current=report?.results.find(row=>row.id===project.cases[0].id),specific=current?.energy?.find(cut=>cut.alpha===1)?.range[0],product=Number(project.cases[0].product_rate);
+    const explanation=t('The prediction lab shows electricity per 100 kg wet feed over 1 h; this workspace shows purchased energy per kg target product. Carbon footprint remains per kg target. Predicted values can differ from the native outputs.','预测模块的电耗按 100 kg 湿进料、1 h 展示；此工作区按每 kg 目标产品展示购入能量。碳足迹仍按每 kg 目标产品。预测值可能与原生输出不同。');
+    $('#handoff-scope').textContent+=' '+explanation;
+    if(Number.isFinite(specific)&&Number.isFinite(product))$('#handoff-scope').textContent+=' '+t(`Native basis conversion: ${fmt(specific,4)} kWh/kg × ${fmt(product,4)} kg = ${fmt(specific*product,4)} kWh per 100 kg wet feed.`,`原生基准换算：${fmt(specific,4)} kWh/kg × ${fmt(product,4)} kg = ${fmt(specific*product,4)} kWh / 100 kg 湿进料。`);
+  }
+
+}
+function currentSession(){
+  return {project,draft:pendingJSON?$('#project-json').value:null,activeTab,calculated:Boolean(report),caseId:$('#result-case').value,category:$('#rank-category').value,
+    weights:['energy','impact','yield'].map(k=>$('#weight-'+k).value),ranking,preferenceScan:Boolean(preferenceScan),
+    sheets,applied:[...appliedSheets],sheet:$('#sheet').value,header:$('#header-row').value,transpose:$('#transpose').checked,type:$('#table-type').value,mode:$('#apply-mode').value,reviewedHeader:matrix[0]??null,
+    mappings:[...document.querySelectorAll('#mapping-body tr')].map(row=>({field:row.dataset.field,column:row.querySelector('select').value,constant:row.querySelector('input').value}))};
+}
+function persist(){
+  if(restoring)return;let saved=false;try{saved=writeSession(sessionStorage,currentSession());}catch{}
+  $('#session-status').textContent=saved?t('Retained in this tab. Download a copy to keep it.','已保留在本标签页。下载副本可长期保存。'):t('Tab recovery unavailable. Download your applied project; staged worksheets must be imported again.','标签页恢复不可用。请下载已应用项目；暂存工作表需重新导入。');
+}
+function schedulePersist(){clearTimeout(persistTimer);persistTimer=setTimeout(persist,250);}
+function restore(){
+  let state;try{state=readSession(sessionStorage);}catch{}
+  if(!state){sync();$('#message').hidden=true;restoring=false;return;}
+  try{
+    project=state.project;sync();
+    if(state.sheets?.length){
+      sheets=state.sheets;for(const index of state.applied||[])appliedSheets.add(index);
+      $('#sheet').innerHTML=sheets.map((sheet,i)=>`<option value="${i}">${esc(sheet.name)}</option>`).join('');
+      $('#sheet').value=state.sheet||'0';$('#header-row').value=state.header||'1';$('#transpose').checked=Boolean(state.transpose);$('#table-type').value=state.type||'streams';$('#apply-mode').value=state.mode||'replace';$('#mapping-panel').hidden=false;
+      try{
+        mapping();
+        if(JSON.stringify(matrix[0])===JSON.stringify(state.reviewedHeader)){
+          for(const row of document.querySelectorAll('#mapping-body tr')){const mapped=state.mappings?.find(m=>m.field===row.dataset.field);if(mapped){row.querySelector('select').value=mapped.column;row.querySelector('input').value=mapped.constant;}}
+        }else matrix=[]; // A changed header must be suggested and reviewed again.
+      }catch{matrix=[];$('#mapping-body').innerHTML='';$('#preview').innerHTML='';}
+    }
+    if(state.weights)for(const [index,key] of ['energy','impact','yield'].entries())$('#weight-'+key).value=state.weights[index];
+    if(state.calculated&&typeof state.draft!=='string'){
+      report=assess(project);$('#result-case').innerHTML=report.results.map(r=>`<option value="${esc(r.id)}">${esc(r.id)}</option>`).join('');
+      $('#rank-category').innerHTML=report.categories.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('');
+      if(report.results.some(r=>r.id===state.caseId))$('#result-case').value=state.caseId;
+      if(report.categories.includes(state.category))$('#rank-category').value=state.category;
+      render();
+      if(state.ranking&&project.meta.comparable_cases){$('#rank').click();if(state.preferenceScan){preferenceScan=scanPreferences(report,$('#rank-category').value,true);renderPreferenceScan($('#rank-results [data-preference-output]'),preferenceScan);}}
+    }
+    if(typeof state.draft==='string'){pendingJSON=true;$('#project-json').value=state.draft;$('#project-json').closest('details').open=true;}
+    const tab=pendingJSON?'import':state.activeTab==='results'&&!report?'context':state.activeTab;
+    showTab(['import','context','results'].includes(tab)?tab:'import',false);
+    message(sheets.length&&!matrix.length?t('Inputs and drafts restored. Correct the header row, then suggest and review the mapping again.','输入与草稿已恢复。请修正表头行后重新建议并检查字段映射。'):t('Restored this tab’s workspace. Your inputs, mappings and pending edits are retained.','已恢复本标签页的工作区，包括输入、字段映射和待应用的编辑。'));
+  }catch{report=null;pendingJSON=false;activeTab='import';sync();showTab('import',false);message(t('Applied inputs restored. Review the tables and calculate again.','已恢复已应用输入，请检查数据表后重新计算。'));}
+  restoring=false;updateWorkflow();
+}
+restore();
+window.addEventListener('pagehide',persist);
+document.addEventListener('input',schedulePersist);document.addEventListener('change',schedulePersist);
+window.addEventListener('languagechange',()=>{if(report){render();if(preferenceScan)renderPreferenceScan($('#rank-results [data-preference-output]'),preferenceScan);}else updateWorkflow();translatePage();});
+fetch('data/universal-htl.json').then(r=>{if(!r.ok)throw new Error('Reference unavailable');return r.json();}).then(data=>{referenceProject=data;if(report)renderHandoff();}).catch(()=>{});
+
+$('#rank-results').addEventListener('click',guarded(event=>{if(!event.target.closest('[data-preference-run]'))return;preferenceScan=scanPreferences(report,$('#rank-category').value,project.meta.comparable_cases);renderPreferenceScan($('#rank-results [data-preference-output]'),preferenceScan);schedulePersist();}));

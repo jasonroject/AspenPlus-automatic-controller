@@ -4,6 +4,10 @@
 
 新增：[HTL 自动扫描、能耗/碳足迹预测与排名稳定性](htl_pipeline/README.md)，[在线分析页面](https://vercel-pi-ten-59.vercel.app/pipeline.html)。
 
+通用本地模型接入：[已核查模型配置、隔离扫描与能量/LCA 分析](process_pipeline/README.md)，[本地模型页面源码](analysis_web/models.html)。包含支持范围、新环境安装步骤，以及无需 Aspen 的循环流程复现实例；外部模型仍需逐一核查节点、单位和核算映射。
+
+预览 Process Studio 首页与上述分析页面：在仓库根目录运行 `python serve_web.py`，打开 `http://127.0.0.1:8766`。该静态服务默认仅监听本机，隐藏本地配置与原生模型文件、禁用目录列表并关闭开发缓存；不启动 Aspen。下方旧版批处理工作台仍使用其独立的 8765 服务。
+
 用浏览器编排 Aspen Plus 运行表，支持设备及物流参数搜索、多设备联合工况、批量计算与 JSON/CSV 结果导出。本机 Python 服务负责连接 Aspen，网页负责编辑和查看进度。
 
 ## 快速开始

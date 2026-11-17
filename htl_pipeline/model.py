@@ -63,8 +63,10 @@ def predict(models, coefficients, t, length, electricity_multiplier=1.):
 
 def metrics(actual, prediction):
     actual, prediction = np.asarray(actual, float), np.asarray(prediction, float)
-    mask = np.isfinite(actual) & np.isfinite(prediction) & (actual > 0)
-    actual, prediction = actual[mask], prediction[mask]
+    if (actual.ndim != 1 or prediction.shape != actual.shape or not len(actual) or
+            not np.isfinite(actual).all() or not np.isfinite(prediction).all() or
+            np.any(actual <= 0) or np.any(prediction <= 0)):
+        raise ValueError('Validation requires complete, finite, positive actual/prediction pairs; no rows are dropped')
     error = abs(prediction / actual - 1) * 100
     return {'n': len(actual), 'RMSE': float(np.sqrt(np.mean((prediction-actual)**2))),
             'median_APE_pct': float(np.median(error)), 'p95_APE_pct': float(np.quantile(error,.95)),

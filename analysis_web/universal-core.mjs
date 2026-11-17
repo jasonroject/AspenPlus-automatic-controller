@@ -25,8 +25,12 @@ export const clean = x => String(x??'').trim();
 const normalized = x=>clean(x).toLowerCase().replace(/[\s_\-./()[\]°]/g,'');
 export const present = x=>x!==null&&x!==undefined&&clean(x)!=='';
 export function number(x,label='value') {
-  if(!present(x)||typeof x==='boolean'||!Number.isFinite(Number(x))) throw new Error(`${label}: a finite number is required`);
+  if(!['number','string'].includes(typeof x)||!present(x)||!Number.isFinite(Number(x))) throw new Error(`${label}: a finite scalar number is required`);
   return Number(x);
+}
+function finiteResult(value,label='Calculation'){
+  if(!Number.isFinite(value))throw new Error(`${label}: non-finite result or numeric overflow; check values and units`);
+  return value;
 }
 export function similarity(a,b) {
   a=normalized(a);b=normalized(b);if(!a||!b)return 0;
@@ -58,11 +62,12 @@ export function parseCSV(text) {
 function unitKey(unit){return clean(unit).toLowerCase().replace(/\s/g,'').replaceAll('hr','h').replaceAll('sec','s').replaceAll('³','3');}
 export function convert(value,unit,dimension,calorieJ=null) {
   const v=number(value),u=unitKey(unit);
+  const converted=factor=>finiteResult(v*factor,`Converted ${dimension}`);
   // SI prefixes are case-sensitive: milli must never become mega.
   const original=clean(unit).replace(/\s/g,'').replaceAll('hr','h');
-  if(dimension==='energy'&&original==='mW')return v*1e-6;
-  if(dimension==='energy'&&original==='mJ/h')return v/3.6e9;
-  if(dimension==='enthalpy'&&original==='mJ/kg')return v*1e-6;
+  if(dimension==='energy'&&original==='mW')return converted(1e-6);
+  if(dimension==='energy'&&original==='mJ/h')return finiteResult(v/3.6e9,'Converted energy');
+  if(dimension==='enthalpy'&&original==='mJ/kg')return converted(1e-6);
   if((u==='mw'&&original!=='MW')||(u.startsWith('mj/')&&!original.startsWith('MJ/')))throw new Error(`Ambiguous SI prefix in ${unit}; use MW/MJ or explicit milli units`);
   const factors={mass:{'kg/h':1,'kg/s':3600,'kg/min':60,'g/s':3.6,'g/h':.001,'gm/s':3.6,'t/h':1000,'lb/h':.45359237,'lb/s':1632.932532},
     energy:{kw:1,w:.001,mw:1000,'kj/s':1,'j/s':.001,'kj/h':1/3600,'mj/h':1/3.6,'gj/h':1000/3.6,'kwh/h':1,'btu/h':1055.05585262/3600000},
@@ -70,17 +75,18 @@ export function convert(value,unit,dimension,calorieJ=null) {
   if(/cal/.test(u)){
     if(![4.184,4.1868].includes(Number(calorieJ)))throw new Error('Calorie convention must be explicitly selected (4.184 or 4.1868 J/cal)');
     const c=Number(calorieJ),cs={energy:{'cal/s':c/1000,'kcal/h':c/3600,'kcal/s':c},enthalpy:{'cal/g':c,'cal/gm':c,'kcal/kg':c}};
-    if(Object.hasOwn(cs[dimension]||{},u))return v*cs[dimension][u];
+    if(Object.hasOwn(cs[dimension]||{},u))return converted(cs[dimension][u]);
   }
   if(!Object.hasOwn(factors[dimension]||{},u))throw new Error(`Unsupported ${dimension} unit: ${unit||'(missing)'}`);
-  return v*factors[dimension][u];
+  return converted(factors[dimension][u]);
 }
 export function rate(value,unit,denominator,calorieJ=null){
-  const d=unitKey(denominator);
+  const d=unitKey(denominator),original=clean(denominator).replace(/\s/g,'');
+  if((d==='mj'&&original!=='MJ')||(d==='gj'&&original!=='GJ'))throw new Error(`Ambiguous SI prefix in factor denominator ${denominator}; use MJ or GJ`);
   if(d==='kg')return convert(value,unit,'mass',calorieJ);
   if(d==='kwh')return convert(value,unit,'energy',calorieJ);
-  if(d==='mj')return convert(value,unit,'energy',calorieJ)*3.6;
-  if(d==='gj')return convert(value,unit,'energy',calorieJ)*.0036;
+  if(d==='mj')return finiteResult(convert(value,unit,'energy',calorieJ)*3.6,'Inventory rate');
+  if(d==='gj')return finiteResult(convert(value,unit,'energy',calorieJ)*.0036,'Inventory rate');
   if(d==='m3')return convert(value,unit,'volume',calorieJ);
   if(d==='kmol')return convert(value,unit,'molar',calorieJ);
   throw new Error(`Unsupported factor denominator: ${denominator}`);
@@ -89,22 +95,26 @@ export function triangle(mode,low,high,label='parameter'){
   const m=number(mode,label),l=present(low)?number(low,label+' lower'):m,h=present(high)?number(high,label+' upper'):m;
   if(l<0||l>m||m>h)throw new Error(`${label}: require 0 ≤ lower ≤ mode ≤ upper`);return [l,m,h];
 }
-export function cut(t,alpha){if(alpha<0||alpha>1)throw new Error('Alpha must be in [0,1]');return [t[0]+alpha*(t[1]-t[0]),t[2]-alpha*(t[2]-t[1])];}
-const add=(a,b)=>[a[0]+b[0],a[1]+b[1]];
-const multiply=(a,b)=>[a[0]*b[0],a[1]*b[1]]; // only nonnegative physical inputs admitted
-const divide=(a,b)=>{if(b[0]<=0)throw new Error('Reference product lower bound must be positive');return [a[0]/b[1],a[1]/b[0]];};
-const scale=(a,s)=>a.map(v=>v*s);
-const sum=xs=>xs.reduce((a,b)=>a+b,0);
-function unique(rows,key,label){const ids=new Set();for(const r of rows){if(typeof r.id!=='string'||r.id!==r.id.trim())throw new Error(`${label}: IDs must be text without surrounding spaces`);const id=key(r);if(!id||ids.has(id))throw new Error(`${label}: missing or duplicate ID ${id}`);ids.add(id);}}
+export function cut(t,alpha){alpha=number(alpha,'Alpha');if(alpha<0||alpha>1)throw new Error('Alpha must be in [0,1]');return [finiteResult(t[0]+alpha*(t[1]-t[0]),'Alpha-cut lower bound'),finiteResult(t[2]-alpha*(t[2]-t[1]),'Alpha-cut upper bound')];}
+const add=(a,b)=>[finiteResult(a[0]+b[0]),finiteResult(a[1]+b[1])];
+const multiply=(a,b)=>[finiteResult(a[0]*b[0]),finiteResult(a[1]*b[1])]; // only nonnegative physical inputs admitted
+const divide=(a,b)=>{if(b[0]<=0)throw new Error('Reference product lower bound must be positive');return [finiteResult(a[0]/b[1]),finiteResult(a[1]/b[0])];};
+const scale=(a,s)=>a.map(v=>finiteResult(v*s));
+const sum=xs=>xs.reduce((a,b)=>finiteResult(a+b,'Sum'),0);
+function unique(rows,key,label){const ids=new Set();for(const r of rows){if(!r||typeof r!=='object'||Array.isArray(r))throw new Error(`${label}: rows must be objects`);if(typeof r.id!=='string'||r.id!==r.id.trim())throw new Error(`${label}: IDs must be text without surrounding spaces`);const id=key(r);if(!id||ids.has(id))throw new Error(`${label}: missing or duplicate ID ${id}`);ids.add(id);}}
 export function validateProject(project){
   if(project.schema_version!==1)throw new Error('Expected schema_version 1');
   if(project.meta?.steady_state!==true)throw new Error('This release supports steady-state rate balances; batch/transient accumulation is not supported');
   if(!/^1\s+kg(?:\s|$)/i.test(clean(project.meta.functional_unit)))throw new Error('This release normalizes to 1 kg declared product; functional_unit must begin with "1 kg"');
   for(const k of Object.keys(TABLES))if(!Array.isArray(project[k]))throw new Error(`${k} must be an array`);
-  unique(project.cases,r=>clean(r.id),'Cases');unique(project.factors,r=>clean(r.id)&&clean(r.category)?`${r.id}/${r.category}`:'','Factors');
-  for(const k of ['streams','blocks','inventory'])unique(project[k],r=>clean(r.case_id)&&clean(r.id)?`${r.case_id}/${r.id}`:'',k);
+  unique(project.cases,r=>clean(r.id),'Cases');unique(project.factors,r=>clean(r.id)&&clean(r.category)?JSON.stringify([r.id,r.category]):'','Factors');
+  for(const k of ['streams','blocks','inventory'])unique(project[k],r=>clean(r.case_id)&&clean(r.id)?JSON.stringify([r.case_id,r.id]):'',k);
+  if(project.blocks.some(r=>r.id==='BOUNDARY'))throw new Error('Block ID BOUNDARY is reserved for external connections; rename the equipment block');
   const ids=new Set(project.cases.map(c=>clean(c.id)));
-  for(const k of ['streams','blocks','inventory'])for(const r of project[k])if(!ids.has(clean(r.case_id)))throw new Error(`${k} ${r.id}: unknown case ${r.case_id}; import Cases first`);
+  for(const k of ['streams','blocks','inventory'])for(const r of project[k]){
+    if(typeof r.case_id!=='string'||r.case_id!==r.case_id.trim())throw new Error(`${k} ${r.id}: case_id must be text without surrounding spaces`);
+    if(!ids.has(r.case_id))throw new Error(`${k} ${r.id}: unknown case ${r.case_id}; import Cases first`);
+  }
   return project;
 }
 export function balance(project,c){
@@ -116,7 +126,7 @@ export function balance(project,c){
     if(![r.from,r.to].every(x=>x==='BOUNDARY'||ids.has(x))||r.from===r.to)throw new Error('from/to must name different known blocks or BOUNDARY');
     const mass=convert(r.mass_flow,r.mass_unit,'mass',cal);if(mass<0)throw new Error('Negative mass flow; reverse the stream endpoints explicitly');
     const direct=present(r.enthalpy_flow)?convert(r.enthalpy_flow,r.energy_unit,'energy',cal):null;
-    const specific=present(r.specific_enthalpy)?mass*convert(r.specific_enthalpy,r.enthalpy_unit,'enthalpy',cal)/3600:null;
+    const specific=present(r.specific_enthalpy)?finiteResult(mass*convert(r.specific_enthalpy,r.enthalpy_unit,'enthalpy',cal)/3600,'Stream enthalpy rate'):null;
     if(direct===null&&specific===null)throw new Error('Total enthalpy flow or mass-specific enthalpy required; missing is not zero');
     if(direct!==null&&specific!==null&&Math.abs(direct-specific)>Math.max(1e-6,Math.abs(direct)*1e-4))throw new Error('Total and mass-specific enthalpy disagree');
     streams.push({...r,mass,enthalpy:direct??specific});
@@ -126,12 +136,15 @@ export function balance(project,c){
     const ins=streams.filter(s=>s.to===b.id),outs=streams.filter(s=>s.from===b.id);
     if(!ins.length||!outs.length)throw new Error('Complete inlet and outlet connections are required');
     const mi=sum(ins.map(s=>s.mass)),mo=sum(outs.map(s=>s.mass)),hi=sum(ins.map(s=>s.enthalpy)),ho=sum(outs.map(s=>s.enthalpy));
-    const massScale=Math.max(mi,mo,1e-12),energyScale=Math.max(Math.abs(hi),Math.abs(ho),Math.abs(heat)+Math.abs(power),1e-12);
-    units.push({id:b.id,heat,power,mass_residual_kg_h:mo-mi,energy_residual_kW:ho-hi-heat-power,mass_relative:Math.abs(mo-mi)/massScale,energy_relative:Math.abs(ho-hi-heat-power)/energyScale,within_tolerance:Math.abs(mo-mi)<=Math.max(.01,.001*massScale)&&Math.abs(ho-hi-heat-power)<=Math.max(.01,.001*energyScale)});
+    const massScale=Math.max(mi,mo,1e-12),energyScale=Math.max(Math.abs(hi),Math.abs(ho),finiteResult(Math.abs(heat)+Math.abs(power),'Block duty scale'),1e-12);
+    const massResidual=finiteResult(mo-mi,'Block mass residual'),energyResidual=finiteResult(ho-hi-heat-power,'Block energy residual');
+    units.push({id:b.id,heat,power,mass_residual_kg_h:massResidual,energy_residual_kW:energyResidual,mass_relative:Math.abs(massResidual)/massScale,energy_relative:Math.abs(energyResidual)/energyScale,within_tolerance:Math.abs(massResidual)<=Math.max(.01,.001*massScale)&&Math.abs(energyResidual)<=Math.max(.01,.001*energyScale)});
   }catch(e){errors.push(`Block ${b.id}: ${e.message}`);}}
   const inbound=streams.filter(s=>s.from==='BOUNDARY'),outbound=streams.filter(s=>s.to==='BOUNDARY');
   if(!inbound.length||!outbound.length)errors.push('Explicit external feed and product/waste boundary streams are needed');
-  return {complete:errors.length===0,within_tolerance:errors.length===0&&units.every(b=>b.within_tolerance),tolerance:'Per block: max(0.01 kg/h, 0.1% mass throughput); max(0.01 kW, 0.1% absolute enthalpy/duty scale). Numerical consistency only.',errors,streams,blocks:units,total:errors.length?null:{mass_residual_kg_h:sum(outbound.map(s=>s.mass))-sum(inbound.map(s=>s.mass)),energy_residual_kW:sum(outbound.map(s=>s.enthalpy))-sum(inbound.map(s=>s.enthalpy))-sum(units.map(b=>b.heat+b.power)),external_heat_in_kW:sum(units.map(b=>Math.max(0,b.heat))),external_heat_out_kW:sum(units.map(b=>Math.max(0,-b.heat))),work_in_kW:sum(units.map(b=>Math.max(0,b.power))),work_out_kW:sum(units.map(b=>Math.max(0,-b.power)))}};
+  let total=null;
+  if(!errors.length)try{total={mass_residual_kg_h:finiteResult(sum(outbound.map(s=>s.mass))-sum(inbound.map(s=>s.mass)),'Boundary mass residual'),energy_residual_kW:finiteResult(sum(outbound.map(s=>s.enthalpy))-sum(inbound.map(s=>s.enthalpy))-sum(units.map(b=>finiteResult(b.heat+b.power))),'Boundary energy residual'),external_heat_in_kW:sum(units.map(b=>Math.max(0,b.heat))),external_heat_out_kW:sum(units.map(b=>Math.max(0,-b.heat))),work_in_kW:sum(units.map(b=>Math.max(0,b.power))),work_out_kW:sum(units.map(b=>Math.max(0,-b.power)))};}catch(e){errors.push(`Boundary: ${e.message}`);}
+  return {complete:errors.length===0,within_tolerance:errors.length===0&&units.every(b=>b.within_tolerance),tolerance:'Per block: max(0.01 kg/h, 0.1% mass throughput); max(0.01 kW, 0.1% absolute enthalpy/duty scale). Numerical consistency only.',errors,streams,blocks:units,total};
 }
 export function assess(project){
   validateProject(project);
@@ -142,7 +155,7 @@ export function assess(project){
       product=triangle(c.product_rate,c.product_low,c.product_high,'Product').map(v=>convert(v,c.mass_unit,'mass',cal));
       if(product[0]<=0)throw new Error('Product lower bound must be positive');
       allocation=number(c.allocation,'Allocation share');if(allocation<0||allocation>1)throw new Error('Allocation share must be in [0,1]');
-      if(present(c.feed_rate)){feed=convert(c.feed_rate,c.mass_unit,'mass',cal);if(feed<=0)throw new Error('Feed rate must be positive');result.yield=product.map(v=>v/feed);}
+      if(present(c.feed_rate)){feed=convert(c.feed_rate,c.mass_unit,'mass',cal);if(feed<=0)throw new Error('Feed rate must be positive');result.yield=product.map(v=>finiteResult(v/feed,'Target/feed yield'));}
     }catch(e){result.issues.push(e.message);return result;}
     const inventory=project.inventory.filter(r=>r.case_id===c.id);
     const contextIssues=[];
@@ -157,18 +170,23 @@ export function assess(project){
     for(const category of categories){
       const factors=project.factors.filter(f=>f.category===category),errors=[...contextIssues],contributions=[];
       const methods=new Set(factors.map(f=>clean(f.method))),units=new Set(factors.map(f=>clean(f.impact_unit)));
-      if(methods.size!==1||methods.has('')||units.size!==1||units.has(''))errors.push('Category factors must use one declared method and impact unit');
+      const consistentContext=methods.size===1&&!methods.has('')&&units.size===1&&!units.has('');
+      if(!consistentContext)errors.push('Category factors must use one declared method and impact unit');
       const terms=[];
       for(const row of inventory){try{
         const f=factors.find(f=>f.id===row.factor_id);if(!f)throw new Error(`Missing ${category} factor ${row.factor_id||'(unmapped)'}`);
         if(!clean(f.source)||!clean(row.source))throw new Error('Inventory and factor provenance are required');
         if(!['energy','material','emission','waste'].includes(row.kind))throw new Error('Inventory kind must be energy, material, emission or waste');
         const amount=triangle(row.amount,row.amount_low,row.amount_high,`Inventory ${row.id}`).map(v=>rate(v,row.unit,f.denominator_unit,cal));
-        const factor=triangle(f.value,f.low,f.high,`Factor ${f.id}`);terms.push({amount,factor});
-        contributions.push({id:row.id,name:row.name||row.id,nominal:amount[1]*factor[1]*allocation/product[1],factor_id:f.id,source:f.source});
+        const factor=triangle(f.value,f.low,f.high,`Factor ${f.id}`),nominal=finiteResult(amount[1]*factor[1]*allocation/product[1],'Nominal impact contribution');
+        terms.push({amount,factor});contributions.push({id:row.id,name:row.name||row.id,nominal,factor_id:f.id,source:f.source,...(consistentContext?{}:{unit:clean(f.impact_unit),method:clean(f.method)})});
       }catch(e){errors.push(`${row.id}: ${e.message}`);}}
-      const cuts=alphas.map(alpha=>({alpha,range:scale(divide(terms.map(t=>multiply(cut(t.amount,alpha),cut(t.factor,alpha))).reduce(add,[0,0]),cut(product,alpha)),allocation)}));
-      result.impacts.push({category,unit:[...units][0],method:[...methods][0],complete:!errors.length,errors,covered:terms.length,total:inventory.length,cuts,contributions,nominal_subtotal:sum(contributions.map(x=>x.nominal))});
+      let cuts=[],subtotal=null;
+      if(consistentContext){
+        try{cuts=alphas.map(alpha=>({alpha,range:scale(divide(terms.map(t=>multiply(cut(t.amount,alpha),cut(t.factor,alpha))).reduce(add,[0,0]),cut(product,alpha)),allocation)}));}catch(e){errors.push(`Impact support: ${e.message}`);}
+        try{subtotal=sum(contributions.map(x=>x.nominal));}catch(e){errors.push(`Impact subtotal: ${e.message}`);}
+      }
+      result.impacts.push({category,unit:[...units][0],method:[...methods][0],complete:!errors.length,errors,covered:terms.length,total:inventory.length,cuts,contributions,nominal_subtotal:subtotal});
     }
     if(!categories.length)result.issues.push('No impact factors imported; LCA totals are unavailable');
     return result;
@@ -177,12 +195,16 @@ export function assess(project){
 }
 export function rank(report,category,weights=[1,1,1],comparable=false){
   if(!comparable)throw new Error('Confirm that compared cases provide the same function and use comparable system boundaries and allocation');
-  weights=weights.map(w=>number(w,'Weight'));if(weights.some(w=>w<0)||sum(weights)<=0)throw new Error('Use nonnegative weights with a positive sum');weights=weights.map(w=>w/sum(weights));
+  if(!Array.isArray(weights)||weights.length!==3)throw new Error('Exactly three weights are required: energy, impact and yield');
+  weights=weights.map(w=>number(w,'Weight'));if(weights.some(w=>w<0)||Math.max(...weights)<=0)throw new Error('Use nonnegative weights with a positive sum');
+  const maximum=Math.max(...weights),scaledWeights=weights.map(w=>w/maximum),weightSum=sum(scaledWeights);weights=scaledWeights.map(w=>w/weightSum);
   const rows=report.results.filter(r=>r.balance.within_tolerance&&!r.issues.length&&r.energy&&r.yield&&r.impacts.some(i=>i.category===category&&i.complete));
   if(rows.length<2)throw new Error('At least two complete, comparable cases are needed for ranking');
   const values=rows.map(r=>[r.energy.at(-1).range[0],r.impacts.find(i=>i.category===category).cuts.at(-1).range[0],r.yield[1]]);
   const anchors=[0,1,2].map(k=>[Math.min(...values.map(v=>v[k])),Math.max(...values.map(v=>v[k]))]);
-  const utility=(v,k)=>{const [lo,hi]=anchors[k];if(hi===lo)return .5;const x=Math.min(1,Math.max(0,(v-lo)/(hi-lo)));return k===2?x:1-x;};
+  // Equivalent source units can differ by a few floating-point steps. Such a
+  // span has no resolved scoring range; this is not a performance threshold.
+  const utility=(v,k)=>{const [lo,hi]=anchors[k];if(hi===lo||(hi-lo)/Math.max(Math.abs(lo),Math.abs(hi))<=16*Number.EPSILON)return .5;const x=Math.min(1,Math.max(0,(v-lo)/(hi-lo)));return k===2?x:1-x;};
   const graded=x=>[Math.max(0,1-2*x),1-Math.abs(2*x-1),Math.max(0,2*x-1)];
   const ranked=rows.map((r,i)=>{
     const memberships=values[i].map((v,k)=>graded(utility(v,k)));
@@ -201,10 +223,13 @@ export function adaptAspen(raw){
   const p=blankProject();p.meta.name='Aspen export (mapping required)';const source='Imported Aspen JSON';
   p.cases=[{id:'case-1',product_rate:'',mass_unit:'kg/h',allocation:1,source}];
   for(const [id,s] of Object.entries(raw.streams)){
-    const native=s.MASSFLMX;
-    p.streams.push({case_id:'case-1',id,from:'',to:'',mass_flow:native?.value??s.mass_flow_kg_h??'',mass_unit:native?.unit??'kg/h',specific_enthalpy:s.HMX_MASS?.value??'',enthalpy_unit:s.HMX_MASS?.unit??'',source});
+    const native=s.MASSFLMX,useNative=native?.value!==null&&native?.value!==undefined;
+    p.streams.push({case_id:'case-1',id,from:'',to:'',mass_flow:useNative?native.value:s.mass_flow_kg_h??'',mass_unit:useNative?native.unit??'':s.mass_flow_kg_h!==null&&s.mass_flow_kg_h!==undefined?'kg/h':'',specific_enthalpy:s.HMX_MASS?.value??'',enthalpy_unit:s.HMX_MASS?.unit??'',source});
   }
-  for(const [id,b] of Object.entries(raw.blocks))p.blocks.push({case_id:'case-1',id,heat:b.heat_kW??b['\\QCALC']?.value??'',power:b.power_kW??b['\\WNET']?.value??'',energy_unit:'kW',heat_unit:b['\\QCALC']?.unit||'kW',power_unit:b['\\WNET']?.unit||'kW',source});
+  for(const [id,b] of Object.entries(raw.blocks)){
+    const normalizedHeat=b.heat_kW!==null&&b.heat_kW!==undefined,normalizedPower=b.power_kW!==null&&b.power_kW!==undefined;
+    p.blocks.push({case_id:'case-1',id,heat:normalizedHeat?b.heat_kW:b['\\QCALC']?.value??'',power:normalizedPower?b.power_kW:b['\\WNET']?.value??'',energy_unit:'',heat_unit:normalizedHeat?'kW':b['\\QCALC']?.unit??'',power_unit:normalizedPower?'kW':b['\\WNET']?.unit??'',source});
+  }
   // Native raw records carry mixed units; do not force heat and power into one unit.
   if(raw.T_K)p.meta.name='Native Aspen raw export; normalize block Q/W units before calculation';
   return p;

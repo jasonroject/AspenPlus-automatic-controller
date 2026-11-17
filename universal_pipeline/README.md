@@ -14,11 +14,10 @@ Unsupported: native Aspen binary simulation in browser; batch/transient accumula
 
 ```powershell
 node --test universal_pipeline/core.test.mjs
-python -X utf8 universal_pipeline/build_examples.py
-python -m http.server 8766 --bind 127.0.0.1 --directory analysis_web
+python serve_web.py
 ```
 
-The synthetic example has independently hand-checkable heat balances and two illustrative impact categories; its factors are not environmental database evidence. The native HTL example is built from the original T325p00_L8p50 raw JSON, inherits explicit fixed-background factors and records the source-model SHA-256 and native warnings. The pure general calculation reproduces its separately audited foreground carbon footprint. Rebuilding that fixture requires local private raw outputs; the committed fixture can be tested without Aspen.
+The synthetic example has independently hand-checkable heat balances and two illustrative impact categories; its factors are not environmental database evidence. The native HTL example is built from the original T325p00_L8p50 raw JSON, inherits explicit fixed-background factors and records the source-model SHA-256 and native warnings. The pure general calculation reproduces its separately audited foreground carbon footprint. Rebuilding that fixture with `python -X utf8 universal_pipeline/build_examples.py` requires local private raw outputs; the committed fixture can be tested without Aspen. The loopback preview rejects hidden/local-configuration and native-archive paths, disables directory listings, and returns uncached assets.
 
 The HTL fixture preserves the older accounting scope: heater/reactor electricity and fixed pump inventory, with feed/direct-gas/wastewater burdens. Separator heat and cooling-service burdens are excluded explicitly in its displayed boundary. It demonstrates reproduction of the declared inventory, not a complete whole-plant LCA. The general energy balance still reports every declared external block duty, including separator heat.
 

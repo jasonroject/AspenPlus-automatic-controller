@@ -1,7 +1,8 @@
 import {mountChrome,escapeHTML} from './site.mjs';
 import {exampleCode,runExample} from './demo.mjs';
+import {getLanguage} from './i18n.mjs';
 // Preserve links shared before the public landing page was introduced.
-if(/^#view=(overview|cases|process|lca|screening|sources)(?:&|$)/.test(location.hash))location.replace('workspace.zh.html'+location.hash);
+if(/^#view=(overview|cases|process|lca|screening|sources)(?:&|$)/.test(location.hash))location.replace((getLanguage()==='zh'?'workspace.zh.html':'index.en.html')+location.hash);
 mountChrome('Home');
 document.querySelector('#hero-code').innerHTML=exampleCode.split('\n').map((line,i)=>`<span class="code-line" style="--n:${i}">${escapeHTML(line)||' '}</span>`).join('');
 const toggle=document.querySelector('#motion-toggle');

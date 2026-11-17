@@ -12,3 +12,8 @@ body{background:#fafaf9;font-size:14px}.sidebar{position:fixed;inset:0 auto 0 0;
 
 .panel-heading p,.example-panel>p{font-size:13px}.sidebar .nav-item{font-size:13px}.help-link,.workbench-header nav{font-size:12px}
 @media(max-width:700px){.overview-heading h1{font-size:29px}.overview-heading .eyebrow{margin-bottom:12px}.overview-heading p{margin-bottom:12px}.workspace main{padding-top:25px}.overview-heading{margin-bottom:18px}.workflow-heading{margin:23px 0 20px}.workbench-header nav,.sidebar .nav-item{font-size:11px}.help-link{font-size:11px}}
+
+/* Charts and the reference-model handoff remain inside the results hierarchy. */
+html{scroll-behavior:auto}
+#visual-section,#prediction-handoff{scroll-margin-top:100px}.next-lab{display:flex;align-items:center;gap:28px;background:#f4f4f1}.next-lab>div{flex:1}.next-lab p{font-size:13px;line-height:1.8}.next-lab .button{flex-shrink:0;text-decoration:none}.workbench-header .language-switch{margin-left:0}
+@media(max-width:700px){.next-lab{flex-direction:column;align-items:stretch}.next-lab .button{text-align:center}.workbench-header{gap:10px}.workbench-header .wordmark{margin-right:auto}.workbench-header>.button{margin-left:0}.workbench-header nav{order:4}.results-nav{flex-wrap:wrap}}

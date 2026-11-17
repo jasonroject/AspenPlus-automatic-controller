@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFile} from 'node:fs/promises';
+import {readFile,readdir} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
 import {summarizeExample,exampleCode} from '../analysis_web/demo.mjs';
 import {docs} from '../analysis_web/docs-content.mjs';
 const project=JSON.parse(await readFile(new URL('../analysis_web/data/universal-example.json',import.meta.url),'utf8'));
@@ -23,5 +24,32 @@ test('documentation article links and on-page IDs resolve',()=>{
   const ids=new Set(docs.map(d=>d.id));assert.equal(ids.size,docs.length);
   for(const doc of docs){const anchors=[...doc.body.matchAll(/id="([^"]+)"/g)].map(m=>m[1]);assert.equal(new Set(anchors).size,anchors.length,doc.id);
     for(const [,id] of doc.body.matchAll(/href="#([^"]+)"/g))assert.ok(ids.has(id),`${doc.id}: unknown article ${id}`);
+  }
+});
+
+test('native pilot documentation preserves failed independent checks and matches published error values',async()=>{
+  const summary=JSON.parse(await readFile(new URL('../analysis_web/data/generic-htl-pilot/summary.json',import.meta.url),'utf8'));
+  const evaluation=JSON.parse(await readFile(new URL('../analysis_web/data/generic-htl-pilot/evaluation.json',import.meta.url),'utf8'));
+  const article=docs.find(doc=>doc.id==='models').body;
+  assert.equal(summary.prediction_enabled,false);assert.equal(summary.exploratory,true);
+  assert.match(article,/<h2 id="pilot">/);assert.match(article,/ordinary prediction remains disabled/);
+  for(const split of ['holdout','verification'])for(const result of Object.values(summary.splits[split].metrics))assert.ok(article.includes((100*result.max_relative_error).toFixed(4)+'%'));
+  const failedPoints=evaluation.records.filter(row=>row.split==='verification'&&Object.entries(evaluation.criteria).some(([key,policy])=>Math.abs(row.predicted[key]-row.actual[key])/Math.max(Math.abs(row.actual[key]),policy.relative_floor)>policy.max_relative_error));
+  assert.equal(failedPoints.length,1);assert.equal(failedPoints[0].id,'verify-T335-L8p5');
+  assert.match(article,/335 °C \/ 8\.5 m verification point/);assert.match(article,/345 °C \/ 17\.5 m point passed all three checks/);
+  for(const file of ['README.md','index.json'])assert.ok(article.includes('data/generic-htl-pilot/'+file));
+});
+
+test('published native pilot JSON bytes match the complete evidence manifest',async()=>{
+  const directory=new URL('../analysis_web/data/generic-htl-pilot/',import.meta.url);
+  const manifest=JSON.parse(await readFile(new URL('index.json',directory),'utf8'));
+  const declared=Object.keys(manifest.files).sort();
+  const actual=(await readdir(directory)).filter(name=>name.endsWith('.json')&&name!=='index.json').sort();
+  assert.equal(declared.length,14);assert.deepEqual(actual,declared);
+  for(const name of declared){
+    assert.match(name,/^[\w.-]+\.json$/);
+    const bytes=await readFile(new URL(name,directory));
+    assert.equal(bytes.length,manifest.files[name].bytes,`${name}: byte size`);
+    assert.equal(createHash('sha256').update(bytes).digest('hex'),manifest.files[name].sha256,`${name}: SHA256`);
   }
 });

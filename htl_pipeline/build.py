@@ -9,6 +9,7 @@ import numpy as np
 import pandas as pd
 from threadpoolctl import threadpool_limits
 from model import train, predict, metrics, TARGETS, BOUNDS
+from diagnostics import frozen_training_audit, metric_variability, scenario_diagnostics
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
@@ -63,17 +64,41 @@ def fresh_records(coefficients):
     return pd.DataFrame(accepted), ledger
 
 def validation(models, coeff, data):
-    usable = data[data.accepted & data.temperature_C.between(310,350) & data.length_m.between(5,20)]
-    if usable.empty: return {}, []
-    predicted = predict(models, coeff, usable.temperature_C, usable.length_m)
     columns = ['target_kg_h','STD_electricity_kWh','HR_electricity_kWh','CF_STD','CF_HR']
-    scores = {k:metrics(usable[k],predicted[k]) for k in columns}
+    coordinates_finite = np.isfinite(data[['temperature_C','length_m']].to_numpy(float)).all(axis=1)
+    usable = data[data.temperature_C.between(310,350) & data.length_m.between(5,20)]
+    coverage = {'complete': False, 'expected_in_domain': len(usable),
+                'nonfinite_coordinates': int((~coordinates_finite).sum()),
+                'unaccepted_in_domain': int((~usable.accepted.astype(bool)).sum()), 'metrics': {}}
+    if usable.empty:
+        coverage['error'] = 'No in-domain validation points'
+        return {}, [], coverage
+    try:
+        predicted = predict(models, coeff, usable.temperature_C, usable.length_m)
+    except (ValueError, KeyError, FloatingPointError) as error:
+        coverage['error'] = str(error)
+        return {}, [], coverage
+    scores = {}
+    for key in columns:
+        actual = usable[key].to_numpy(float)
+        predictions = np.asarray(predicted[key], float)
+        valid = np.isfinite(actual) & np.isfinite(predictions) & (actual > 0) & (predictions > 0)
+        coverage['metrics'][key] = {'expected': len(usable), 'valid_pairs': int(valid.sum()),
+                                    'complete': bool(valid.all())}
+        try:
+            scores[key] = metrics(actual, predictions)
+        except ValueError as error:
+            coverage['metrics'][key]['error'] = str(error)
+    coverage['complete'] = (not coverage['nonfinite_coordinates'] and not coverage['unaccepted_in_domain']
+                            and len(scores) == len(columns) and
+                            all(row['complete'] for row in coverage['metrics'].values()))
     comparison = []
+    finite_or_none = lambda value: float(value) if np.isfinite(value) else None
     for i, (_, row) in enumerate(usable.iterrows()):
         comparison.append({'temperature_C':row.temperature_C,'length_m':row.length_m,
-                           'actual':{k:float(row[k]) for k in columns},
-                           'prediction':{k:float(predicted[k][i]) for k in columns}})
-    return scores, comparison
+                           'actual':{k:finite_or_none(row[k]) for k in columns},
+                           'prediction':{k:finite_or_none(predicted[k][i]) for k in columns}})
+    return scores, comparison, coverage
 
 def robustness(models, coeff):
     # Interior candidates permit the complete perturbation box, without clipping.
@@ -82,7 +107,7 @@ def robustness(models, coeff):
     n = 1024
     shared = np.random.default_rng(20261117).uniform(-1,1,(n,3))
     nominal = predict(models, coeff, tt, ll)
-    output = {}
+    output, diagnostics = {}, {}
     for scenario in ['STD','HR']:
         energy_key, cf_key = scenario+'_electricity_kWh', 'CF_'+scenario
         arrays = {k:np.empty((len(tt),n)) for k in ['target_kg_h',energy_key,cf_key]}
@@ -100,6 +125,7 @@ def robustness(models, coeff):
         ranks = np.empty_like(order)
         np.put_along_axis(ranks,order,np.arange(1,len(tt)+1)[:,None],axis=0)
         nominal_rank = np.argsort(np.argsort(-nominal_score))+1
+        diagnostics[scenario] = scenario_diagnostics(score, nominal_score, ranks, nominal_rank, tt, ll)
         rows=[]
         for i,(t,l) in enumerate(zip(tt,ll)):
             rows.append({'temperature_C':t,'length_m':l,'nominal_rank':int(nominal_rank[i]),
@@ -108,7 +134,8 @@ def robustness(models, coeff):
                          'rank_p05_p50_p95':np.quantile(ranks[i],[.05,.5,.95]).tolist(),
                          'first_half_top1':float(np.mean(ranks[i,:n//2]==1)),
                          'second_half_top1':float(np.mean(ranks[i,n//2:]==1)),
-                         'intervals':{k:np.quantile(a[i],[.05,.5,.95]).tolist() for k,a in arrays.items()}})
+                         'intervals':{k:np.quantile(a[i],[.05,.5,.95]).tolist() for k,a in arrays.items()},
+                         'variability':{k:metric_variability(a[i], nominal[k][i]) for k,a in arrays.items()}})
         rows.sort(key=lambda r:(-r['top1_fraction'],r['nominal_rank']))
         output[scenario]=rows
     return {'samples':n,'candidate_count':len(tt),'seed':20261117,
@@ -117,28 +144,45 @@ def robustness(models, coeff):
             'common_random_numbers':True,'weights':{'yield':1/3,'energy':1/3,'carbon':1/3},
             'scope':'Conditional operating/background-factor scenario sensitivity, not physical reliability. No pass/fail threshold. GP, kinetic and thermophysical uncertainty are not jointly propagated.',
             'candidate_scope':'312–348 °C in 2 °C steps; 6–19 m in 1 m steps. Full perturbation boxes remain inside the prediction domain.',
-            'scenarios':output}
+            'variability_definition':'Population standard deviation of the finite scenario ensemble (ddof=0). CV=100*SD/abs(mean); relative P05-P95 span=100*(P95-P05)/abs(P50). Zero denominators are explicitly unavailable.',
+            'method_metadata':{'numpy_version':np.__version__,
+                'quantiles':{'method':'numpy.quantile linear (Hyndman-Fan type 7)',
+                             'position':'p*(N-1), linearly interpolated between neighboring sorted values'},
+                'standard_deviation_ddof':0,
+                'zero_denominators':'null with explicit reason; no replacement epsilon',
+                'spearman':'Pearson correlation of average ranks; exact score ties use midranks',
+                'ordinal_rank_assignment':'Existing numpy.argsort default (quicksort in this runtime); not stable for exact ties',
+                'top1_tie_policy':'One ordinal first place per draw; exact top-score ties are not given fractional credit. Their order may depend on NumPy version.',
+                'sampling_interpretation':'Nested-prefix frequency drift is descriptive only; it establishes neither model accuracy nor sufficient Monte Carlo sample size.'},
+            'diagnostics':diagnostics, 'scenarios':output}
 
 def analyze():
     coeff = json.loads((REF/'lca_coefficients.json').read_text())
     models = joblib.load(OUT/'models.joblib')
     data = pd.read_csv(REF/'native_samples.csv')
+    training = json.loads((OUT/'training.json').read_text())
     fresh, ledger = fresh_records(coeff)
-    hold_scores, hold_rows = validation(models,coeff,data[data.split=='holdout'])
-    fresh_scores, fresh_rows = validation(models,coeff,fresh) if len(fresh) else ({},[])
+    integrity = frozen_training_audit(models, data, training, (REF/'native_samples.csv').read_bytes(),
+                                     (OUT/'models.joblib').read_bytes(), (REF/'lca_coefficients.json').read_bytes(),
+                                     zip(fresh.temperature_C, fresh.length_m) if len(fresh) else ())
+    hold_scores, hold_rows, hold_coverage = validation(models,coeff,data[data.split=='holdout'])
+    fresh_scores, fresh_rows, fresh_coverage = validation(models,coeff,fresh) if len(fresh) else ({},[],{'complete':False,'expected_in_domain':0,'error':'No accepted fresh verification points'})
     required = {(325.,8.5),(335.,12.5),(345.,7.5)}
     checked = set(zip(fresh.temperature_C, fresh.length_m)) if len(fresh) else set()
-    gate = bool(hold_scores and required <= checked and all(r['accepted'] for r in ledger)) and all(s['median_APE_pct']<=2 and s['p95_APE_pct']<=5 for s in hold_scores.values())
+    gate = bool(integrity['passed'] and hold_coverage['complete'] and fresh_coverage['complete']
+                and required <= checked and all(r['accepted'] for r in ledger)) and all(s['median_APE_pct']<=2 and s['p95_APE_pct']<=5 for s in hold_scores.values())
     # Fresh verification is an additional release gate, not training data.
     gate = gate and all(s['max_APE_pct']<=5 for s in fresh_scores.values())
     tt,ll=np.meshgrid(np.arange(310.,350.001,.5),np.arange(5.,20.001,.25),indexing='ij')
-    values=predict(models,coeff,tt,ll)
-    grid=pd.DataFrame({k:values[k] for k in ['temperature_C','length_m']+TARGETS+['CF_STD','CF_HR']})
+    columns=['temperature_C','length_m']+TARGETS+['CF_STD','CF_HR']
+    values=predict(models,coeff,tt,ll) if integrity['passed'] else {}
+    grid=pd.DataFrame({k:values[k] for k in columns}) if values else pd.DataFrame(columns=columns)
     grid.to_csv(OUT/'prediction_grid.csv',index=False)
     result={'version':'htl-pilot-20261117','status':'validated_simulator_pilot' if gate else 'validation_failed',
         'prediction_enabled':bool(gate),'bounds':BOUNDS,'basis':{'wet_feed_kg':100,'duration_h':1,'pressure_MPa':25},
         'scope':'Original HTL model compounds; CAT plus o-cresol at reactor outlet. Simulator validation only.',
-        'accounting':coeff,'native_reference_count':len(data),'training':json.loads((OUT/'training.json').read_text()),
+        'accounting':coeff,'native_reference_count':len(data),'training':training,
+        'validation_integrity':integrity,'validation_coverage':{'holdout':hold_coverage,'fresh':fresh_coverage},
         'holdout_metrics':hold_scores,'fresh_metrics':fresh_scores,'fresh_runs':ledger,
         'historical_failed_attempts':pd.read_csv(REF/'failed_samples.csv').fillna('').to_dict('records'),
         'grid':{'temperature_step_C':.5,'length_step_m':.25,'rows':grid.to_dict('records')},
