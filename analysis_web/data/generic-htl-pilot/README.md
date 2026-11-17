@@ -14,7 +14,7 @@ The 12 training points alone determine the GP. The 3 holdout points and 2 off-gr
 
 ## Try it in the website
 
-1. Open [Local Aspen models](../../models.html), select **Already have results?**, then **Try the 17-case HTL pilot**.
+1. Open [Local Aspen models](../../models.html), select **Already have results? Open files →**, choose **v1 · original 17-case pilot** under **Worked HTL example**, then select **Load selected example**.
 2. Review the five reported check counts. Select **Open this scan in analysis** and calculate balances and impacts. The 17-case selector and source tables remain available.
 3. Return to **Local Aspen models → Explore models, predictions and scenarios**. **Model checks** shows observations, frozen groups, supplied/predicted pairs and the failed independent checks. **Mean predictions** and **Scenario ranges** remain explicitly exploratory.
 

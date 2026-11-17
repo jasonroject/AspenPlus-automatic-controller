@@ -79,14 +79,14 @@ $('#models-app').addEventListener('click',async event=>{const button=event.targe
   else if(button.id==='open-existing-results'){step=1;render();$('#model-results').scrollIntoView({block:'start'});}
   else if(button.dataset.copy)await copyText(command[button.dataset.copy],button);
   else if(button.id==='example-profile')await readProfile(async()=>{const response=await fetch('data/htl-model-profile.json');if(!response.ok)throw new Error(t('The profile example is unavailable. Import a reviewed local profile.','配置示例暂不可用，请导入已核查的本地配置。'));return response.json();});
-  else if(button.id==='load-pilot-project')await readScanProject(async()=>{const response=await fetch(examplePaths[exampleVersion]+'/project.json',{cache:'no-store'});if(!response.ok)throw new Error(t('The HTL pilot is unavailable. Import your local project instead.','HTL 示例暂不可用，请导入本地项目。'));return response.json();});
+  else if(button.id==='load-pilot-project'){$('#scan-results').value='';await readScanProject(async()=>{const response=await fetch(examplePaths[exampleVersion]+'/project.json',{cache:'no-store'});if(!response.ok)throw new Error(t('The HTL pilot is unavailable. Import your local project instead.','HTL 示例暂不可用，请导入本地项目。'));return response.json();});}
   else if(button.id==='generate-plan'){plan=buildPlan(profile,settings,splitMode);status='';render();}
   else if(button.id==='download-profile')download('aspen-profile.json',profile);
   else if(button.id==='download-model-plan')download('scan-plan.json',plan);
   else if(button.id==='open-scan-analysis'){if(!loadedProject)return;if(!writeSession(sessionStorage,{project:loadedProject,activeTab:'context',calculated:false,draft:null}))throw new Error(t('Tab storage is unavailable. Open the downloaded project manually in Process import.','标签页存储不可用，请在“过程数据导入”中手动打开已下载项目。'));location.href='universal.html';}
 }catch(error){note(error.message,true);}});
 $('#models-app').addEventListener('change',async event=>{try{
-  if(event.target.id==='project-example-version'){exampleVersion=event.target.value==='v1'?'v1':'v2';++resultRevision;loadedProject=null;$('#scan-result-summary').innerHTML='';$('#open-scan-analysis').disabled=true;$('#example-evidence-link').href='docs.html#models/'+(exampleVersion==='v2'?'pilot-v2':'pilot');note(t('Select Load selected example to open this version.','请点击“加载所选演示数据”打开此版本。'));persistModels();}
+  if(event.target.id==='project-example-version'){exampleVersion=event.target.value==='v1'?'v1':'v2';$('#scan-results').value='';++resultRevision;loadedProject=null;$('#scan-result-summary').innerHTML='';$('#open-scan-analysis').disabled=true;$('#example-evidence-link').href='docs.html#models/'+(exampleVersion==='v2'?'pilot-v2':'pilot');note(t('Select Load selected example to open this version.','请点击“加载所选演示数据”打开此版本。'));persistModels();}
   if(event.target.id==='profile-file'){const file=event.target.files[0];if(file)await readProfile(()=>readJSON(file));}
   if(event.target.id==='scan-results'){
     const file=event.target.files[0];if(file)await readScanProject(()=>readJSON(file));

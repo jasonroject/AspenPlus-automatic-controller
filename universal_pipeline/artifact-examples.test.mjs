@@ -10,8 +10,8 @@ const v2={...structuredClone(v1),native_case_count:37,accepted_case_count:37,tra
 const flush=()=>new Promise(resolve=>setImmediate(resolve));
 const reply=data=>({ok:true,text:async()=>JSON.stringify(data)});
 class Container{
-  constructor(){this.listeners=new Map();this.controls={innerHTML:''};this.select={tagName:'SELECT'};this.message={hidden:true,textContent:''};this.view={innerHTML:'',replaceChildren(){this.innerHTML='';}};}
-  querySelector(selector){return {'#artifact-example-controls':this.controls,'#artifact-example-version':this.select,'#artifact-message':this.message,'#artifact-view':this.view}[selector]||null;}
+  constructor(){this.listeners=new Map();this.controls={innerHTML:''};this.select={tagName:'SELECT'};this.message={hidden:true,textContent:''};this.view={innerHTML:'',replaceChildren(){this.innerHTML='';}};let filename='';this.file={id:'artifact-file',files:[],get value(){return filename;},set value(value){filename=value;if(!value)this.files=[];}};}
+  querySelector(selector){return {'#artifact-example-controls':this.controls,'#artifact-example-version':this.select,'#artifact-message':this.message,'#artifact-view':this.view,'#artifact-file':this.file}[selector]||null;}
   addEventListener(type,fn){this.listeners.set(type,fn);}removeEventListener(type){this.listeners.delete(type);}
   change(value){return this.listeners.get('change')({target:{id:'artifact-example-version',value}});}
   click(version,file='predictions.json'){const button={disabled:false,dataset:{artifactExample:`data/generic-htl-${version==='v2'?'extension':'pilot'}/${file}`}};return this.listeners.get('click')({target:{closest:selector=>selector==='[data-artifact-example]'?button:null}});}
@@ -83,4 +83,21 @@ test('late index discovery cannot switch a user-selected local result, and unmou
     cleanup();const abandoned=new Container(),next={};pending.length=0;cleanup=mountModelArtifacts(abandoned,next);cleanup();
     assert.ok(pending.every(request=>request.signal.aborted));pending.forEach(request=>request.resolve(reply(v2)));await flush();assert.equal(next.exampleIndexes.v2,undefined);
   }finally{cleanup?.();globalThis.fetch=old;}
+});
+
+test('accepted example navigation clears a stale upload name without clearing a local read or a language change',async()=>{
+  const oldFetch=globalThis.fetch,oldWindow=globalThis.window,listeners=new Map(),container=new Container(),state={exampleIndexes:{v1:inspectArtifactExampleIndex(v1,'v1'),v2:inspectArtifactExampleIndex(v2,'v2')}};let cleanup;
+  globalThis.window={addEventListener:(key,fn)=>listeners.set(key,fn),removeEventListener:key=>listeners.delete(key)};
+  try{
+    cleanup=mountModelArtifacts(container,state);
+    const select=read=>{container.file.value='C:\\fakepath\\local-result.json';container.file.files=[{name:'local-result.json',size:1,text:read}];return container.listeners.get('change')({type:'change',target:container.file});};
+    let resolve;const pending=select(()=>new Promise(done=>{resolve=done;}));
+    assert.equal(typeof resolve,'function');assert.match(container.file.value,/local-result.json$/);
+    setLanguage('zh');listeners.get('languagechange')();assert.match(container.file.value,/local-result.json$/);
+    resolve(JSON.stringify(original));await pending;assert.equal(state.artifactSource.name,'local-result.json');assert.match(container.file.value,/local-result.json$/);
+    await container.change('v3');await container.change('v1');assert.match(container.file.value,/local-result.json$/);
+    await container.change('v2');assert.equal(container.file.value,'');assert.equal(state.artifact,null);
+    await select(async()=>JSON.stringify(original));assert.match(container.file.value,/local-result.json$/);
+    globalThis.fetch=async()=>reply(original);await container.click('v2');assert.equal(container.file.value,'');assert.equal(state.artifactSource.version,'v2');
+  }finally{cleanup?.();setLanguage('en');globalThis.fetch=oldFetch;if(oldWindow===undefined)delete globalThis.window;else globalThis.window=oldWindow;}
 });
