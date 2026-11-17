@@ -1,0 +1,175 @@
+{
+  "mode": "Built-in image_gen",
+  "date": "2026-11-17",
+  "selected": "01",
+  "logos": [
+    {
+      "id": "01",
+      "name": "Open loop",
+      "concept": "Open rounded pipe loop",
+      "path": "assets/brand/logo-01.png",
+      "prompt": "Create ONE original minimalist black-and-white logo symbol for 'Process Studio', a scientific process engineering software platform for material and energy balances and life-cycle analysis. Concept 01 'Open loop': a single bold continuous rounded-square pipe path with an open gap at upper right, two small circular terminal nodes at the gap, and one short inset horizontal branch suggesting a P, strong deliberate negative space. It must look like a premium developer-tool identity: extremely clean flat geometric shape, black on pure white, centered, no text or letters written as typography, no wordmark, no mockups, no shadows, no gradients, no texture, no watermarks. Use a large simple mark occupying 65% of a square canvas, generous white margins. Optically balanced at favicon size. Must be original, not the OpenAI knot logo or any other brand's logo."
+    },
+    {
+      "id": "02",
+      "name": "Converge",
+      "concept": "Three parallel thick horizontal tracks enter from left and merge smoothly into one rounded node at right, a balanced compact square symbol.",
+      "path": "assets/brand/logo-02.png",
+      "prompt": "Create ONE original black-and-white logo symbol for Process Studio, a scientific process engineering platform for energy balances and life-cycle analysis. Concept 02 'Converge': Three parallel thick horizontal tracks enter from left and merge smoothly into one rounded node at right, a balanced compact square symbol. Premium developer-tool identity. Extremely clean flat geometric shape, pure black on pure white, centered. No wordmark, no captions, no mockups, no shadows, no gradients, no texture, no watermark, no brand names or typography. A large simple mark occupying 65 percent of a square canvas with generous white margins, optically balanced at favicon size. Original identity, never the OpenAI knot or another company's existing logo."
+    },
+    {
+      "id": "03",
+      "name": "Exchange",
+      "concept": "Two opposing U-shaped pipe bends with small terminal circles, forming a symmetrical heat exchanger sign with generous whitespace.",
+      "path": "assets/brand/logo-03.png",
+      "prompt": "Create ONE original black-and-white logo symbol for Process Studio, a scientific process engineering platform for energy balances and life-cycle analysis. Concept 03 'Exchange': Two opposing U-shaped pipe bends with small terminal circles, forming a symmetrical heat exchanger sign with generous whitespace. Premium developer-tool identity. Extremely clean flat geometric shape, pure black on pure white, centered. No wordmark, no captions, no mockups, no shadows, no gradients, no texture, no watermark, no brand names or typography. A large simple mark occupying 65 percent of a square canvas with generous white margins, optically balanced at favicon size. Original identity, never the OpenAI knot or another company's existing logo."
+    },
+    {
+      "id": "04",
+      "name": "Branch",
+      "concept": "A bold vertical trunk splits into three smoothly curved branches with circular ends; abstract process network, no leaf.",
+      "path": "assets/brand/logo-04.png",
+      "prompt": "Create ONE original black-and-white logo symbol for Process Studio, a scientific process engineering platform for energy balances and life-cycle analysis. Concept 04 'Branch': A bold vertical trunk splits into three smoothly curved branches with circular ends; abstract process network, no leaf. Premium developer-tool identity. Extremely clean flat geometric shape, pure black on pure white, centered. No wordmark, no captions, no mockups, no shadows, no gradients, no texture, no watermark, no brand names or typography. A large simple mark occupying 65 percent of a square canvas with generous white margins, optically balanced at favicon size. Original identity, never the OpenAI knot or another company's existing logo."
+    },
+    {
+      "id": "05",
+      "name": "Orbit",
+      "concept": "Two offset incomplete concentric rings connected at one side with a short radial bar; asymmetric engineered balance.",
+      "path": "assets/brand/logo-05.png",
+      "prompt": "Create ONE original black-and-white logo symbol for Process Studio, a scientific process engineering platform for energy balances and life-cycle analysis. Concept 05 'Orbit': Two offset incomplete concentric rings connected at one side with a short radial bar; asymmetric engineered balance. Premium developer-tool identity. Extremely clean flat geometric shape, pure black on pure white, centered. No wordmark, no captions, no mockups, no shadows, no gradients, no texture, no watermark, no brand names or typography. A large simple mark occupying 65 percent of a square canvas with generous white margins, optically balanced at favicon size. Original identity, never the OpenAI knot or another company's existing logo."
+    },
+    {
+      "id": "06",
+      "name": "Module",
+      "concept": "Four rounded square blocks around a central small square gap, one upper block cut into a simple pipe elbow.",
+      "path": "assets/brand/logo-06.png",
+      "prompt": "Create ONE original black-and-white logo symbol for Process Studio, a scientific process engineering platform for energy balances and life-cycle analysis. Concept 06 'Module': Four rounded square blocks around a central small square gap, one upper block cut into a simple pipe elbow. Premium developer-tool identity. Extremely clean flat geometric shape, pure black on pure white, centered. No wordmark, no captions, no mockups, no shadows, no gradients, no texture, no watermark, no brand names or typography. A large simple mark occupying 65 percent of a square canvas with generous white margins, optically balanced at favicon size. Original identity, never the OpenAI knot or another company's existing logo."
+    },
+    {
+      "id": "07",
+      "name": "Monogram",
+      "concept": "Original geometric PS monogram made from two broad rounded continuous bands, clever negative space, legible but abstract.",
+      "path": "assets/brand/logo-07.png",
+      "prompt": "Create ONE original black-and-white logo symbol for Process Studio, a scientific process engineering platform for energy balances and life-cycle analysis. Concept 07 'Monogram': Original geometric PS monogram made from two broad rounded continuous bands, clever negative space, legible but abstract. Premium developer-tool identity. Extremely clean flat geometric shape, pure black on pure white, centered. No wordmark, no captions, no mockups, no shadows, no gradients, no texture, no watermark, no brand names or typography. A large simple mark occupying 65 percent of a square canvas with generous white margins, optically balanced at favicon size. Original identity, never the OpenAI knot or another company's existing logo."
+    },
+    {
+      "id": "08",
+      "name": "Flux",
+      "concept": "Three gently curved parallel ribbons flow diagonally across a compact circular silhouette with open ends.",
+      "path": "assets/brand/logo-08.png",
+      "prompt": "Create ONE original black-and-white logo symbol for Process Studio, a scientific process engineering platform for energy balances and life-cycle analysis. Concept 08 'Flux': Three gently curved parallel ribbons flow diagonally across a compact circular silhouette with open ends. Premium developer-tool identity. Extremely clean flat geometric shape, pure black on pure white, centered. No wordmark, no captions, no mockups, no shadows, no gradients, no texture, no watermark, no brand names or typography. A large simple mark occupying 65 percent of a square canvas with generous white margins, optically balanced at favicon size. Original identity, never the OpenAI knot or another company's existing logo."
+    },
+    {
+      "id": "09",
+      "name": "Contour",
+      "concept": "Three nested rounded diamond outlines with a clean intentional shared break on the right.",
+      "path": "assets/brand/logo-09.png",
+      "prompt": "Create ONE original black-and-white logo symbol for Process Studio, a scientific process engineering platform for energy balances and life-cycle analysis. Concept 09 'Contour': Three nested rounded diamond outlines with a clean intentional shared break on the right. Premium developer-tool identity. Extremely clean flat geometric shape, pure black on pure white, centered. No wordmark, no captions, no mockups, no shadows, no gradients, no texture, no watermark, no brand names or typography. A large simple mark occupying 65 percent of a square canvas with generous white margins, optically balanced at favicon size. Original identity, never the OpenAI knot or another company's existing logo."
+    },
+    {
+      "id": "10",
+      "name": "Bridge",
+      "concept": "Two heavy upright rounded pillars joined by a short upper arch and a single lower dot at center, compact precise silhouette.",
+      "path": "assets/brand/logo-10.png",
+      "prompt": "Create ONE original black-and-white logo symbol for Process Studio, a scientific process engineering platform for energy balances and life-cycle analysis. Concept 10 'Bridge': Two heavy upright rounded pillars joined by a short upper arch and a single lower dot at center, compact precise silhouette. Premium developer-tool identity. Extremely clean flat geometric shape, pure black on pure white, centered. No wordmark, no captions, no mockups, no shadows, no gradients, no texture, no watermark, no brand names or typography. A large simple mark occupying 65 percent of a square canvas with generous white margins, optically balanced at favicon size. Original identity, never the OpenAI knot or another company's existing logo."
+    },
+    {
+      "id": "11",
+      "name": "Balance",
+      "concept": "Two solid circular terminals balanced on a broad U-shaped cradle, a central upright short bar, geometric scientific balance.",
+      "path": "assets/brand/logo-11.png",
+      "prompt": "Create ONE original black-and-white logo symbol for Process Studio, a scientific process engineering platform for energy balances and life-cycle analysis. Concept 11 'Balance': Two solid circular terminals balanced on a broad U-shaped cradle, a central upright short bar, geometric scientific balance. Premium developer-tool identity. Extremely clean flat geometric shape, pure black on pure white, centered. No wordmark, no captions, no mockups, no shadows, no gradients, no texture, no watermark, no brand names or typography. A large simple mark occupying 65 percent of a square canvas with generous white margins, optically balanced at favicon size. Original identity, never the OpenAI knot or another company's existing logo."
+    },
+    {
+      "id": "12",
+      "name": "Loop",
+      "concept": "A single bold angular rounded pipe traces an asymmetric square circuit with a small circle inset at lower right.",
+      "path": "assets/brand/logo-12.png",
+      "prompt": "Create ONE original black-and-white logo symbol for Process Studio, a scientific process engineering platform for energy balances and life-cycle analysis. Concept 12 'Loop': A single bold angular rounded pipe traces an asymmetric square circuit with a small circle inset at lower right. Premium developer-tool identity. Extremely clean flat geometric shape, pure black on pure white, centered. No wordmark, no captions, no mockups, no shadows, no gradients, no texture, no watermark, no brand names or typography. A large simple mark occupying 65 percent of a square canvas with generous white margins, optically balanced at favicon size. Original identity, never the OpenAI knot or another company's existing logo."
+    },
+    {
+      "id": "13",
+      "name": "Cascade",
+      "concept": "Three thick staggered rounded horizontal bars connected by short descending turns, an elegant compact cascade.",
+      "path": "assets/brand/logo-13.png",
+      "prompt": "Create ONE original black-and-white logo symbol for Process Studio, a scientific process engineering platform for energy balances and life-cycle analysis. Concept 13 'Cascade': Three thick staggered rounded horizontal bars connected by short descending turns, an elegant compact cascade. Premium developer-tool identity. Extremely clean flat geometric shape, pure black on pure white, centered. No wordmark, no captions, no mockups, no shadows, no gradients, no texture, no watermark, no brand names or typography. A large simple mark occupying 65 percent of a square canvas with generous white margins, optically balanced at favicon size. Original identity, never the OpenAI knot or another company's existing logo."
+    },
+    {
+      "id": "14",
+      "name": "Prism",
+      "concept": "Three simple parallelograms forming an open isometric cube with large negative-space center, bold flat black.",
+      "path": "assets/brand/logo-14.png",
+      "prompt": "Create ONE original black-and-white logo symbol for Process Studio, a scientific process engineering platform for energy balances and life-cycle analysis. Concept 14 'Prism': Three simple parallelograms forming an open isometric cube with large negative-space center, bold flat black. Premium developer-tool identity. Extremely clean flat geometric shape, pure black on pure white, centered. No wordmark, no captions, no mockups, no shadows, no gradients, no texture, no watermark, no brand names or typography. A large simple mark occupying 65 percent of a square canvas with generous white margins, optically balanced at favicon size. Original identity, never the OpenAI knot or another company's existing logo."
+    },
+    {
+      "id": "15",
+      "name": "Aperture",
+      "concept": "A thick circular ring with a single squared inward notch and small detached square on upper right, no shutter blades.",
+      "path": "assets/brand/logo-15.png",
+      "prompt": "Create ONE original black-and-white logo symbol for Process Studio, a scientific process engineering platform for energy balances and life-cycle analysis. Concept 15 'Aperture': A thick circular ring with a single squared inward notch and small detached square on upper right, no shutter blades. Premium developer-tool identity. Extremely clean flat geometric shape, pure black on pure white, centered. No wordmark, no captions, no mockups, no shadows, no gradients, no texture, no watermark, no brand names or typography. A large simple mark occupying 65 percent of a square canvas with generous white margins, optically balanced at favicon size. Original identity, never the OpenAI knot or another company's existing logo."
+    },
+    {
+      "id": "16",
+      "name": "Channels",
+      "concept": "Two interlocking broad U-shaped channels offset diagonally, clean gaps between, calm original silhouette.",
+      "path": "assets/brand/logo-16.png",
+      "prompt": "Create ONE original black-and-white logo symbol for Process Studio, a scientific process engineering platform for energy balances and life-cycle analysis. Concept 16 'Channels': Two interlocking broad U-shaped channels offset diagonally, clean gaps between, calm original silhouette. Premium developer-tool identity. Extremely clean flat geometric shape, pure black on pure white, centered. No wordmark, no captions, no mockups, no shadows, no gradients, no texture, no watermark, no brand names or typography. A large simple mark occupying 65 percent of a square canvas with generous white margins, optically balanced at favicon size. Original identity, never the OpenAI knot or another company's existing logo."
+    },
+    {
+      "id": "17",
+      "name": "Signal",
+      "concept": "Four vertical rounded bars of differing heights framed by a partial square bracket, centered compact identity.",
+      "path": "assets/brand/logo-17.png",
+      "prompt": "Create ONE original black-and-white logo symbol for Process Studio, a scientific process engineering platform for energy balances and life-cycle analysis. Concept 17 'Signal': Four vertical rounded bars of differing heights framed by a partial square bracket, centered compact identity. Premium developer-tool identity. Extremely clean flat geometric shape, pure black on pure white, centered. No wordmark, no captions, no mockups, no shadows, no gradients, no texture, no watermark, no brand names or typography. A large simple mark occupying 65 percent of a square canvas with generous white margins, optically balanced at favicon size. Original identity, never the OpenAI knot or another company's existing logo."
+    },
+    {
+      "id": "18",
+      "name": "Boundary",
+      "concept": "An open bold rounded rectangle containing two connected solid circles on a horizontal axis, clear engineered mark.",
+      "path": "assets/brand/logo-18.png",
+      "prompt": "Create ONE original black-and-white logo symbol for Process Studio, a scientific process engineering platform for energy balances and life-cycle analysis. Concept 18 'Boundary': An open bold rounded rectangle containing two connected solid circles on a horizontal axis, clear engineered mark. Premium developer-tool identity. Extremely clean flat geometric shape, pure black on pure white, centered. No wordmark, no captions, no mockups, no shadows, no gradients, no texture, no watermark, no brand names or typography. A large simple mark occupying 65 percent of a square canvas with generous white margins, optically balanced at favicon size. Original identity, never the OpenAI knot or another company's existing logo."
+    },
+    {
+      "id": "19",
+      "name": "Fold",
+      "concept": "A single wide ribbon folded twice into a compact angular S, contrasting black fills and white negative seams, absolutely flat.",
+      "path": "assets/brand/logo-19.png",
+      "prompt": "Create ONE original black-and-white logo symbol for Process Studio, a scientific process engineering platform for energy balances and life-cycle analysis. Concept 19 'Fold': A single wide ribbon folded twice into a compact angular S, contrasting black fills and white negative seams, absolutely flat. Premium developer-tool identity. Extremely clean flat geometric shape, pure black on pure white, centered. No wordmark, no captions, no mockups, no shadows, no gradients, no texture, no watermark, no brand names or typography. A large simple mark occupying 65 percent of a square canvas with generous white margins, optically balanced at favicon size. Original identity, never the OpenAI knot or another company's existing logo."
+    },
+    {
+      "id": "20",
+      "name": "Junction",
+      "concept": "Three curved pipe arms meet at a central circular hub, Y topology, terminal tips squared and smooth outer curves.",
+      "path": "assets/brand/logo-20.png",
+      "prompt": "Create ONE original black-and-white logo symbol for Process Studio, a scientific process engineering platform for energy balances and life-cycle analysis. Concept 20 'Junction': Three curved pipe arms meet at a central circular hub, Y topology, terminal tips squared and smooth outer curves. Premium developer-tool identity. Extremely clean flat geometric shape, pure black on pure white, centered. No wordmark, no captions, no mockups, no shadows, no gradients, no texture, no watermark, no brand names or typography. A large simple mark occupying 65 percent of a square canvas with generous white margins, optically balanced at favicon size. Original identity, never the OpenAI knot or another company's existing logo."
+    },
+    {
+      "id": "21",
+      "name": "Stack",
+      "concept": "Three offset horizontal pill-shaped outlines with a shared left spine, compact modern data-layer symbol.",
+      "path": "assets/brand/logo-21.png",
+      "prompt": "Create ONE original black-and-white logo symbol for Process Studio, a scientific process engineering platform for energy balances and life-cycle analysis. Concept 21 'Stack': Three offset horizontal pill-shaped outlines with a shared left spine, compact modern data-layer symbol. Premium developer-tool identity. Extremely clean flat geometric shape, pure black on pure white, centered. No wordmark, no captions, no mockups, no shadows, no gradients, no texture, no watermark, no brand names or typography. A large simple mark occupying 65 percent of a square canvas with generous white margins, optically balanced at favicon size. Original identity, never the OpenAI knot or another company's existing logo."
+    },
+    {
+      "id": "22",
+      "name": "Circuit",
+      "concept": "A bold C-shaped rounded square pipe surrounding a small connected inner square on the right, negative-space P suggestion.",
+      "path": "assets/brand/logo-22.png",
+      "prompt": "Create ONE original black-and-white logo symbol for Process Studio, a scientific process engineering platform for energy balances and life-cycle analysis. Concept 22 'Circuit': A bold C-shaped rounded square pipe surrounding a small connected inner square on the right, negative-space P suggestion. Premium developer-tool identity. Extremely clean flat geometric shape, pure black on pure white, centered. No wordmark, no captions, no mockups, no shadows, no gradients, no texture, no watermark, no brand names or typography. A large simple mark occupying 65 percent of a square canvas with generous white margins, optically balanced at favicon size. Original identity, never the OpenAI knot or another company's existing logo."
+    },
+    {
+      "id": "23",
+      "name": "Field",
+      "concept": "A 3 by 3 arrangement of solid circles with three center-row circles joined by a broad horizontal bar.",
+      "path": "assets/brand/logo-23.png",
+      "prompt": "Create ONE original black-and-white logo symbol for Process Studio, a scientific process engineering platform for energy balances and life-cycle analysis. Concept 23 'Field': A 3 by 3 arrangement of solid circles with three center-row circles joined by a broad horizontal bar. Premium developer-tool identity. Extremely clean flat geometric shape, pure black on pure white, centered. No wordmark, no captions, no mockups, no shadows, no gradients, no texture, no watermark, no brand names or typography. A large simple mark occupying 65 percent of a square canvas with generous white margins, optically balanced at favicon size. Original identity, never the OpenAI knot or another company's existing logo."
+    },
+    {
+      "id": "24",
+      "name": "Trace",
+      "concept": "Two parallel continuous stair-step paths with rounded elbows and opposite circular terminals, strong diagonal motion.",
+      "path": "assets/brand/logo-24.png",
+      "prompt": "Create ONE original black-and-white logo symbol for Process Studio, a scientific process engineering platform for energy balances and life-cycle analysis. Concept 24 'Trace': Two parallel continuous stair-step paths with rounded elbows and opposite circular terminals, strong diagonal motion. Premium developer-tool identity. Extremely clean flat geometric shape, pure black on pure white, centered. No wordmark, no captions, no mockups, no shadows, no gradients, no texture, no watermark, no brand names or typography. A large simple mark occupying 65 percent of a square canvas with generous white margins, optically balanced at favicon size. Original identity, never the OpenAI knot or another company's existing logo."
+    }
+  ]
+}
