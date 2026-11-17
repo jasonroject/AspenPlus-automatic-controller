@@ -6,9 +6,24 @@ import {resultVisualData,renderResultVisuals,clearResultVisuals} from '../analys
 import {buildResultExport,supportDomain} from '../analysis_web/result-exports.mjs';
 import {buildCSV,standaloneSVG} from '../analysis_web/chart-export.mjs';
 import {setLanguage} from '../analysis_web/i18n.mjs';
+import {applyProjectEdit} from '../analysis_web/workspace-provenance.mjs';
 
 const fixture=name=>JSON.parse(fs.readFileSync(new URL(`../analysis_web/data/${name}.json`,import.meta.url),'utf8'));
 const view=(project,category)=>resultVisualData(project,assess(project),project.cases[0].id,category);
+
+test('exports distinguish locally modified accounting from its preserved native source',()=>{
+  const source=fixture('universal-htl'),draft=structuredClone(source);draft.cases[0].product_rate+=1;
+  const changed=applyProjectEdit(source,draft),data=view(changed);
+  for(const kind of ['supports','contributions','equipment','cases']){
+    const chart=buildResultExport(data,kind);
+    assert.equal(chart.metadata.declared_evidence,'locally_modified');
+    assert.equal(chart.metadata.source_model_sha256,'');
+    assert.equal(chart.metadata.origin_model_sha256,source.meta.source_sha256);
+    assert.match(chart.metadata.origin_scope,/checks do not cover/);
+    assert.ok(chart.rows.every(row=>row.locally_modified===true&&row.origin_model_sha256===source.meta.source_sha256&&row.source_model_sha256===''));
+    assert.match(buildCSV(chart.columns,chart.rows),/Historical origin model SHA256/);
+  }
+});
 
 test('native support export preserves every alpha bound, provenance and possibility interpretation',()=>{
   const project=fixture('universal-htl'),data=view(project),before=JSON.stringify(data),chart=buildResultExport(data,'supports');

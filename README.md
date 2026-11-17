@@ -6,6 +6,10 @@
 
 通用本地模型接入：[已核查模型配置、隔离扫描与能量/LCA 分析](process_pipeline/README.md)，[本地模型页面源码](analysis_web/models.html)。包含支持范围、新环境安装步骤，以及无需 Aspen 的循环流程复现实例；外部模型仍需逐一核查节点、单位和核算映射。
 
+HTL 通用模型示例可在[本地模型工作区](https://vercel-pi-ten-59.vercel.app/models.html)选择版本，核查说明见[中英文档](https://vercel-pi-ten-59.vercel.app/docs.html#models/pilot-v2)。[v1 的 17 工况证据](analysis_web/data/generic-htl-pilot/README.md)保留原有复核失败与探索性状态；[v2 的一次自适应扩点](analysis_web/data/generic-htl-extension/README.md)合并为 37 个唯一坐标：20 个训练、3 个历史留出、14 个复核，另保留中心重复记录，共 38 条原生运行记录。复核组由历史 2 点、局部 8 点及全新前瞻 4 点组成，分别报告，不把已知数据称为新的独立验证。
+
+v2 在未改变的 5% 误差标准下通过声明的仿真复现检查；全新 4 点的能耗、产率、气候影响最大相对误差分别为 0.344730%、1.352620%、1.108113%。这只支持在声明训练支持域内重现该 Aspen 模型，不证明物理可靠性、完整全厂 LCA 或现实成功概率。v1、局部复核与 v2 均保留；它们与 `pipeline.html` 的旧 HTL 参考模型相互独立。
+
 预览 Process Studio 首页与上述分析页面：在仓库根目录运行 `python serve_web.py`，打开 `http://127.0.0.1:8766`。该静态服务默认仅监听本机，隐藏本地配置与原生模型文件、禁用目录列表并关闭开发缓存；不启动 Aspen。下方旧版批处理工作台仍使用其独立的 8765 服务。
 
 用浏览器编排 Aspen Plus 运行表，支持设备及物流参数搜索、多设备联合工况、批量计算与 JSON/CSV 结果导出。本机 Python 服务负责连接 Aspen，网页负责编辑和查看进度。

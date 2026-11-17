@@ -4,6 +4,8 @@ import {readFile,readdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {summarizeExample,exampleCode} from '../analysis_web/demo.mjs';
 import {docs} from '../analysis_web/docs-content.mjs';
+import {docs as docsZh} from '../analysis_web/docs-content.zh.mjs';
+import {extensionEvidence} from '../analysis_web/docs-extension-data.mjs';
 const project=JSON.parse(await readFile(new URL('../analysis_web/data/universal-example.json',import.meta.url),'utf8'));
 test('public runnable example preserves hand-checked results and possibility interpretation',()=>{
   const result=summarizeExample(project);
@@ -52,4 +54,55 @@ test('published native pilot JSON bytes match the complete evidence manifest',as
     assert.equal(bytes.length,manifest.files[name].bytes,`${name}: byte size`);
     assert.equal(createHash('sha256').update(bytes).digest('hex'),manifest.files[name].sha256,`${name}: SHA256`);
   }
+});
+
+test('published v2 JSON bytes match all 21 manifest entries with no extra JSON',async()=>{
+  const directory=new URL('../analysis_web/data/generic-htl-extension/',import.meta.url);
+  const manifest=JSON.parse(await readFile(new URL('index.json',directory),'utf8'));
+  const declared=Object.keys(manifest.files).sort();
+  const actual=(await readdir(directory)).filter(name=>name.endsWith('.json')&&name!=='index.json').sort();
+  assert.equal(declared.length,21);assert.deepEqual(actual,declared);
+  assert.deepEqual([manifest.native_case_count,manifest.accepted_case_count,manifest.training_count,
+    manifest.holdout_count,manifest.verification_count,manifest.fresh_verification_count,manifest.retained_native_run_count],
+  [37,37,20,3,14,4,38]);
+  assert.equal(manifest.prediction_enabled,true);assert.equal(manifest.exploratory,false);assert.equal(manifest.physical_validation,false);
+  for(const name of declared){
+    assert.match(name,/^[\w.-]+\.json$/);
+    const bytes=await readFile(new URL(name,directory));
+    assert.equal(bytes.length,manifest.files[name].bytes,`${name}: byte size`);
+    assert.equal(createHash('sha256').update(bytes).digest('hex'),manifest.files[name].sha256,`${name}: SHA256`);
+  }
+});
+
+test('both v2 documentation tables and README values bind to frozen public cohort reports',async()=>{
+  const directory=new URL('../analysis_web/data/generic-htl-extension/',import.meta.url);
+  const loaded={};
+  for(const [name,expected] of Object.entries(extensionEvidence.source_sha256)){
+    const bytes=await readFile(new URL(name,directory));
+    assert.equal(createHash('sha256').update(bytes).digest('hex'),expected,`${name}: documentation source hash`);
+    loaded[name]=JSON.parse(bytes.toString('utf8'));
+  }
+  const summary=loaded['summary.json'],groups=loaded['cohort-evaluation.json'].cohorts,local=loaded['local-perturbation-comparison.json'];
+  for(const [key,value] of Object.entries(extensionEvidence.summary))assert.deepEqual(value,summary[key],`summary.${key}`);
+  for(const [name,group] of Object.entries(extensionEvidence.cohort_evaluation.cohorts)){
+    assert.deepEqual(group.metrics,groups[name].metrics,name);
+    assert.equal(group.prospectively_reserved_for_v2,name==='prospective_verification_4');
+  }
+  assert.deepEqual(extensionEvidence.local_comparison.new_eight.metrics,local.new_eight.metrics);
+  assert.deepEqual(extensionEvidence.local_comparison.center_repeat,local.center_repeat);
+  assert.equal(extensionEvidence.local_comparison.model_sha256,summary.baseline_model_sha256);
+  for(const collection of [docs,docsZh]){
+    const article=collection.find(doc=>doc.id==='models').body;
+    for(const id of ['pilot','pilot-local','pilot-v2'])assert.equal((article.match(new RegExp(`<h2 id="${id}">`,'g'))||[]).length,1);
+    const section=article.split('<h2 id="pilot-v2">')[1].split('<h2 id="artifacts">')[0];
+    const body=section.match(/<tbody>(.*?)<\/tbody>/s)[1];assert.equal((body.match(/<tr>/g)||[]).length,12);
+    for(const group of Object.values(extensionEvidence.cohort_evaluation.cohorts))for(const metric of Object.values(group.metrics)){
+      assert.ok(body.includes(`<td>${Number(metric.mae.toPrecision(7))}</td>`));
+      assert.ok(body.includes(`<td>${Number(metric.rmse.toPrecision(7))}</td>`));
+      assert.ok(body.includes(`<td>${(100*metric.max_relative_error).toFixed(6)}%</td>`));
+    }
+    for(const metric of Object.values(local.new_eight.metrics))assert.ok(article.includes((100*metric.max_relative_error).toFixed(6)+'%'));
+  }
+  const readmes=await Promise.all(['../README.md','../analysis_web/README.md'].map(path=>readFile(new URL(path,import.meta.url),'utf8')));
+  for(const text of readmes)for(const metric of Object.values(groups.prospective_verification_4.metrics))assert.ok(text.includes((100*metric.max_relative_error).toFixed(6)+'%'));
 });

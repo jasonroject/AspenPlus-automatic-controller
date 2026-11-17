@@ -99,7 +99,7 @@ test('one uploader clears stale results and responds to metric/preference/filter
   await container.change({id:'artifact-preference',value:'equal'});assert.equal(state.preference,'equal');
   const failed=failedFixture();await container.change({id:'artifact-file',files:[{size:100,text:async()=>JSON.stringify(failed)}]});
   await container.change({id:'artifact-robust-filter',value:'failed'});assert.equal(state.robustFilter,'failed');assert.equal(state.robustPage,0);
-  container.listeners.get('click')({target:{closest:()=>({disabled:false,dataset:{artifactPage:'robust',pageDirection:'1'}})}});
+  container.listeners.get('click')({target:{closest:selector=>selector==='[data-artifact-page]'?({disabled:false,dataset:{artifactPage:'robust',pageDirection:'1'}}):null}});
   assert.equal(state.robustPage,1);assert.equal(container.details.open,true);
   failed.records.pop();await container.change({id:'artifact-file',files:[{size:100,text:async()=>JSON.stringify(failed)}]});
   assert.equal(state.artifact,null);assert.equal(container.view.innerHTML,'');assert.match(container.message.textContent,/missing or excess/);

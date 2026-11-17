@@ -2,9 +2,12 @@ import {t,translatePage} from './i18n.mjs';
 import {escapeHTML as esc} from './site.mjs';
 import {inspectArtifact,artifactSeries,finiteDomain,domainFraction,domainTick,recordPage} from './model-artifact-data.mjs';
 import {robustnessViewHTML} from './robustness-artifact-view.mjs';
+import {buildModelArtifactExport} from './model-artifact-exports.mjs';
+import {downloadText,downloadSVG} from './chart-export.mjs';
 const number=value=>!Number.isFinite(value)?'—':value!==0&&(Math.abs(value)>=1e7||Math.abs(value)<1e-5)?value.toExponential(5):value.toLocaleString('en-US',{maximumSignificantDigits:7});
 const percent=value=>!Number.isFinite(value)?'—':Number.isFinite(value*100)?`${number(value*100)}%`:`${number(value)} × 100%`;
 const numericText=value=>Number.isFinite(value)?String(value):'';
+const chartExports=(kind,ready)=>`<div class="model-chart-exports" role="group" aria-label="${t('Export this chart','导出此图')}"><button type="button" data-artifact-export="${kind}" data-format="svg" ${ready?'':'disabled'}>${t('Save SVG','保存 SVG')}</button><button type="button" data-artifact-export="${kind}" data-format="csv" ${ready?'':'disabled'}>${t('Save data CSV','保存数据 CSV')}</button></div>`;
 const label=spec=>`${spec.id} · ${spec.unit||'1'}`;
 function accountingBasisHTML(a){
   if(!a.basis||!Object.values(a.basis).some(value=>value?.trim()))return `<p class="panel-foot">${t('Accounting basis: inspect the matching profile or dataset.','核算基准请查看匹配的配置或数据集。')}</p>`;
@@ -12,8 +15,26 @@ function accountingBasisHTML(a){
   return `<details data-artifact-basis><summary>${t('Accounting basis','核算基准')}</summary><dl class="model-list">${fields.map(([key,en,zh])=>`<dt>${t(en,zh)}</dt><dd data-no-i18n>${esc(a.basis[key]?.trim()||t('Not declared','未声明'))}</dd>`).join('')}</dl><p class="panel-foot">${t('These declarations are supplied with the dataset. The units alone do not identify the target product or system boundary.','以上声明来自数据集，仅凭单位无法确定目标产品或系统边界。')}</p></details>`;
 }
 export function artifactExamplePath(value){
-  if(typeof value!=='string'||!/^data\/generic-htl-pilot\/[A-Za-z0-9][A-Za-z0-9._-]*\.json$/.test(value)||value.includes('..'))throw new Error('Use a reviewed JSON example in data/generic-htl-pilot/');
+  if(typeof value!=='string'||!/^data\/generic-htl-(?:pilot|extension)\/(?:index|model\.bundle|predictions|robustness)\.json$/.test(value))throw new Error('Use a reviewed JSON example from the two published HTL packages');
   return value;
+}
+const exampleVersions={v1:{directory:'generic-htl-pilot',counts:[17,12,3,2]},v2:{directory:'generic-htl-extension',counts:[37,20,3,14]}};
+const exampleFiles=['model.bundle.json','predictions.json','robustness.json'];
+const exampleName=version=>version==='v2'?t('v2 · 37 cases','v2 · 37 工况'):t('v1 · 17 cases','v1 · 17 工况');
+const exampleKind=file=>file==='model.bundle.json'?t('Model checks','模型校验'):file==='predictions.json'?t('Mean predictions','均值预测'):t('Scenario ranges','情景范围');
+export function inspectArtifactExampleIndex(raw,version){
+  const spec=Object.hasOwn(exampleVersions,version)?exampleVersions[version]:null,object=value=>value!==null&&typeof value==='object'&&!Array.isArray(value);
+  if(!spec||!object(raw)||raw.version!==1)throw new Error('Unsupported example index');
+  const [native,training,holdout,verification]=spec.counts;
+  if(raw.native_case_count!==native||raw.accepted_case_count!==native||raw.training_count!==training||raw.holdout_count!==holdout||raw.verification_count!==verification)throw new Error('Example index case groups do not match this version');
+  if(typeof raw.prediction_enabled!=='boolean'||typeof raw.exploratory!=='boolean'||raw.prediction_enabled===raw.exploratory||raw.physical_validation!==false)throw new Error('Example index qualification declarations are incomplete or inconsistent');
+  if(!object(raw.files)||exampleFiles.some(file=>!object(raw.files[file])||typeof raw.files[file].sha256!=='string'||!/^[a-f0-9]{64}$/i.test(raw.files[file].sha256)||!Number.isInteger(raw.files[file].bytes)||raw.files[file].bytes<=0||raw.files[file].bytes>20*1024*1024))throw new Error('Example index is missing the complete result manifest');
+  return {version,nativeCaseCount:native,trainingCount:training,holdoutCount:holdout,verificationCount:verification,predictionEnabled:raw.prediction_enabled,exploratory:raw.exploratory};
+}
+function exampleControlsHTML(state){
+  const version=state.exampleVersion||'v1',index=state.exampleIndexes?.[version],ready=Boolean(index),availability=state.exampleAvailability?.[version];
+  const status=index?(index.predictionEnabled?t('Package declares its prescribed model checks passed; prediction is enabled. This browser has not independently verified that claim.','数据包声明规定的模型检查已通过，预测已启用；浏览器未独立验证该声明。'):t('Exploratory model: regular prediction is disabled. Exported predictions and scenarios remain available for inspection.','探索性模型：常规预测未启用。已导出的预测和情景仍可供检查。')):availability==='unavailable'?t('Package index unavailable. No qualification status is established.','数据包索引不可用，尚未确认资格状态。'):t('Checking the published package index… No qualification status is established yet.','正在检查公开数据包索引……尚未确认资格状态。');
+  return `<label class="model-example-version">${t('Example version','示例版本')}<select id="artifact-example-version"><option value="v1" ${version==='v1'?'selected':''}>${exampleName('v1')}</option><option value="v2" ${version==='v2'?'selected':''} ${state.exampleIndexes?.v2?'':'disabled'}>${exampleName('v2')}${state.exampleIndexes?.v2?'':t(' · unavailable',' · 暂不可用')}</option></select></label><div class="model-button-row">${exampleFiles.map(file=>`<button type="button" class="button secondary" data-artifact-example="data/${exampleVersions[version].directory}/${file}" ${ready?'':'disabled'}>${exampleName(version)} · ${exampleKind(file)}</button>`).join('')}</div><p class="panel-foot">${status}</p>`;
 }
 const issueTranslations={
   'Producer did not mark this record as available.':'导出工具未声明该记录可用。',
@@ -41,7 +62,7 @@ export function artifactScatter(points,xLabel,yLabel,title,parity=false){
   return `<svg class="model-artifact-chart" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(title)}" data-no-i18n><title>${esc(title)}</title>${body}<text x="${left}" y="13">${esc(yLabel)}</text><text x="${left+pw/2}" y="${h-12}" text-anchor="middle">${esc(xLabel)}</text></svg>`;
 }
 function pagination(page,kind){return `<div class="model-button-row"><button class="button secondary" data-artifact-page="${kind}" data-page-direction="-1" ${page.page===0?'disabled':''}>${t('Previous','上一页')}</button><span>${page.start}–${page.end} / ${page.total}</span><button class="button secondary" data-artifact-page="${kind}" data-page-direction="1" ${page.page===page.count-1?'disabled':''}>${t('Next','下一页')}</button></div>`;}
-export function modelArtifactPanel(){return `<details class="model-artifacts" id="model-artifacts"><summary>${t('Explore models, predictions and scenarios','查看模型、预测与情景结果')}</summary><p>${t('Import a local surrogate bundle, prediction result or scenario analysis to inspect coverage, held-out comparisons and retained failures.','导入本地代理模型包、预测或情景分析结果，查看覆盖、留出对照和保留的失败记录。')}</p><div class="model-example-files"><p><strong>${t('HTL pilot · exploratory model','HTL 示例 · 探索性模型')}</strong></p><div class="model-button-row"><button type="button" class="button secondary" data-artifact-example="data/generic-htl-pilot/model.bundle.json">${t('Model checks','模型校验')}</button><button type="button" class="button secondary" data-artifact-example="data/generic-htl-pilot/predictions.json">${t('Mean predictions','均值预测')}</button><button type="button" class="button secondary" data-artifact-example="data/generic-htl-pilot/robustness.json">${t('Scenario ranges','情景范围')}</button></div><p class="panel-foot">${t('Its independent verification errors exceeded the prespecified 5% limit. These predictions and scenarios are retained for inspection, with regular prediction disabled.','其独立复核误差超过预先规定的 5% 上限。预测与情景结果保留供检查，常规预测未启用。')}</p></div><label class="model-upload">${t('Choose model results JSON','选择模型结果 JSON')}<input id="artifact-file" type="file" accept=".json"></label><p id="artifact-message" role="status" hidden></p><div id="artifact-view"></div><details><summary>${t('Create these files locally','在本地生成这些文件')}</summary><pre class="model-code" data-no-i18n>python -m process_pipeline.surrogate fit dataset.json --config criteria.json --output model.bundle.json
+export function modelArtifactPanel(){return `<details class="model-artifacts" id="model-artifacts"><summary>${t('Explore models, predictions and scenarios','查看模型、预测与情景结果')}</summary><p>${t('Import a local surrogate bundle, prediction result or scenario analysis to inspect coverage, held-out comparisons and retained failures.','导入本地代理模型包、预测或情景分析结果，查看覆盖、留出对照和保留的失败记录。')}</p><div class="model-example-files" id="artifact-example-controls">${exampleControlsHTML({})}</div><label class="model-upload">${t('Choose model results JSON','选择模型结果 JSON')}<input id="artifact-file" type="file" accept=".json"></label><p id="artifact-message" role="status" hidden></p><div id="artifact-view"></div><details><summary>${t('Create these files locally','在本地生成这些文件')}</summary><pre class="model-code" data-no-i18n>python -m process_pipeline.surrogate fit dataset.json --config criteria.json --output model.bundle.json
 python -m process_pipeline.surrogate evaluate model.bundle.json --output model-evaluation.json
 python -m process_pipeline.surrogate predict model.bundle.json --points queries.json --output predictions.json
 python -m process_pipeline.robustness model.bundle.json --config scenarios.json --output robustness.json</pre><p>${t('The local tool checks hashes, frozen validation groups, explicit error criteria and the actual training domain. This viewer reads exported results; it does not fit or execute a model.','本地工具检查哈希、固定校验分组、明确的误差标准和实际训练域。本页面读取导出结果，不拟合或运行模型。')}</p></details></details>`;}
@@ -58,7 +79,7 @@ export function artifactViewHTML(a,state){
     ${a.warningCount?`<p class="panel-foot">${a.warningCount} ${t('records include exported warnings. Open records and sources below to inspect them, including warnings on otherwise available records.','条记录包含导出的警告。请展开下方记录与来源查看，包括仍可绘制记录上的警告。')}</p>`:''}
     ${a.trainingWarnings.length?`<details data-artifact-training><summary>${t('Fit warnings','拟合警告')} · ${a.trainingWarnings.length}</summary><p class="panel-foot">${t('Exported optimizer diagnostics are separate from native-run evidence and validation errors.','导出的优化器诊断与原生运行证据、校验误差分别保留。')}</p><ul class="model-list">${a.trainingWarnings.map(row=>`<li data-no-i18n>${esc(row.response)}: ${esc(row.message)}</li>`).join('')}</ul></details>`:''}
     <div class="import-actions"><label>${t('Input axis','输入坐标')}<select id="artifact-input">${a.inputs.map(spec=>`<option value="${esc(spec.id)}" ${spec.id===state.input?'selected':''}>${esc(label(spec))}</option>`).join('')}</select></label><label>${t('Response','响应指标')}<select id="artifact-response">${a.responses.map(spec=>`<option value="${esc(spec.id)}" ${spec.id===state.response?'selected':''}>${esc(label(spec))}</option>`).join('')}</select></label></div>
-    <div class="model-artifact-plots"><section><h3>${t('Input and response coverage','输入与响应覆盖')}</h3><div class="model-chart-scroll">${artifactScatter(series.observations,label(input),label(response),t('Input and response coverage','输入与响应覆盖'))}</div><p class="panel-foot">${t('Each point is an exported record. Other inputs may also vary; this is not a controlled response curve. Filled points are training records; hollow points are other declared groups.','每个点对应一条导出记录，其他输入也可能变化，这不是固定其余变量后的响应曲线。实心点表示训练记录，空心点表示其他声明分组。')}</p></section>${a.bundle?`<section><h3>${t('Held-out predictions vs supplied outputs','留出预测与提供的输出对照')}</h3><div class="model-chart-scroll">${artifactScatter(series.pairs,t('Supplied output','提供的输出')+' · '+response.unit,t('Predicted','预测')+' · '+response.unit,t('Held-out comparison','留出对照'),true)}</div><p class="panel-foot">${t('The dashed line is equality. Only complete held-out or verification pairs are drawn; all other records remain below. Values are read from the exported evaluation.','虚线表示相等。仅绘制完整的留出或复核数据对，其余记录均保留在下方。数值读取自导出的校验结果。')}</p></section>`:''}</div>
+    <div class="model-artifact-plots"><section data-artifact-chart="coverage"><h3>${t('Input and response coverage','输入与响应覆盖')}</h3><div class="model-chart-scroll">${artifactScatter(series.observations,label(input),label(response),t('Input and response coverage','输入与响应覆盖'))}</div><p class="panel-foot">${t('Each point is an exported record. Other inputs may also vary; this is not a controlled response curve. Filled points are training records; hollow points are other declared groups.','每个点对应一条导出记录，其他输入也可能变化，这不是固定其余变量后的响应曲线。实心点表示训练记录，空心点表示其他声明分组。')}</p>${chartExports('coverage',series.observations.length)}</section>${a.bundle?`<section data-artifact-chart="parity"><h3>${t('Held-out predictions vs supplied outputs','留出预测与提供的输出对照')}</h3><div class="model-chart-scroll">${artifactScatter(series.pairs,t('Supplied output','提供的输出')+' · '+response.unit,t('Predicted','预测')+' · '+response.unit,t('Held-out comparison','留出对照'),true)}</div><p class="panel-foot">${t('The dashed line is equality. Only complete held-out or verification pairs are drawn; all other records remain below. Values are read from the exported evaluation.','虚线表示相等。仅绘制完整的留出或复核数据对，其余记录均保留在下方。数值读取自导出的校验结果。')}</p>${chartExports('parity',series.pairs.length)}</section>`:''}</div>
     ${a.bundle?validationHTML(a,response,state):''}
     <details data-artifact-records><summary>${t('Inspect records and sources','检查记录与来源')}</summary><div class="table-scroll"><table><thead><tr><th>ID / ${t('Group','分组')}</th><th>${esc(label(input))}</th><th>${esc(label(response))}</th><th>${t('Status / source','状态 / 来源')}</th></tr></thead><tbody>${page.rows.map(row=>`<tr><th data-no-i18n>${esc(row.id)}<br>${esc(row.split||'prediction')}</th><td title="${esc(numericText(row.inputs?.[state.input]))}">${number(row.inputs?.[state.input])}</td><td title="${esc(numericText(row.outputs?.[state.response]))}">${number(row.outputs?.[state.response])}</td><td>${row.displayValid?t('Available','可用'):t('Unavailable','不可用')}<br><span data-no-i18n>${esc(recordNote(row))}</span></td></tr>`).join('')}</tbody></table></div>${pagination(page,'rows')}</details>
     <p class="model-readout" data-no-i18n>Model SHA-256: ${esc(a.modelHash)}</p><p class="panel-foot">${t('The local Python tool verifies model digests. This browser view checks display fields and preserves the declared hashes; it does not independently recompute or attest them.','模型摘要由本地 Python 工具验证。浏览器检查展示字段并保留声明的哈希，不独立重算或认证这些哈希。')}</p>`;
@@ -70,10 +91,15 @@ function validationHTML(a,response,state){
     <details data-artifact-pairs><summary>${t('Supplied and predicted values','提供值与预测值')}</summary><div class="table-scroll"><table><thead><tr><th>ID / ${t('Group','分组')}</th><th>${t('Supplied','提供值')} · ${esc(response.unit)}</th><th>${t('Predicted','预测')} · ${esc(response.unit)}</th><th>${t('Status / error / source','状态 / 错误 / 来源')}</th></tr></thead><tbody>${page.rows.map(row=>`<tr><th data-no-i18n>${esc(row.id)}<br>${esc(row.split||'unspecified')}</th><td title="${esc(numericText(row.actual?.[response.id]))}">${number(row.actual?.[response.id])}</td><td title="${esc(numericText(row.predicted?.[response.id]))}">${number(row.predicted?.[response.id])}</td><td>${row.displayValid?t('Available','可用'):t('Unavailable','不可用')}<br><span data-no-i18n>${esc(recordNote(row))}</span></td></tr>`).join('')}</tbody></table></div>${pagination(page,'pairs')}</details></details>`;
 }
 export function mountModelArtifacts(container,state={artifact:null,input:null,response:null,page:0,pairPage:0}){
-  const query=selector=>container.querySelector(selector);let active=true,revision=0;
+  const query=selector=>container.querySelector(selector);let active=true,revision=0,readController=null;
+  const examplesEnabled=query('#artifact-example-version')?.tagName==='SELECT',indexControllers=[];
+  state.exampleVersion=Object.hasOwn(exampleVersions,state.exampleVersion)?state.exampleVersion:'v1';
+  state.exampleIndexes??={};state.exampleAvailability??={};
   const detailKeys=['basis','validation','pairs','records','training','robust-summary','robust-queries','robust-methods','robust-lineage'];
   const languageTarget=typeof window==='undefined'?null:window;
+  function renderExamples(){if(examplesEnabled){const focused=typeof document!=='undefined'&&document.activeElement?.id==='artifact-example-version';query('#artifact-example-controls').innerHTML=exampleControlsHTML(state);if(focused)query('#artifact-example-version')?.focus?.({preventScroll:true});}}
   function render(){
+    renderExamples();
     const view=query('#artifact-view');if(!state.artifact){view.replaceChildren();return;}
     const disclosures=detailKeys.map(key=>[key,query(`[data-artifact-${key}]`)]).filter(([,element])=>element).map(([key,element])=>[key,element.open]);
     const focused=typeof document==='undefined'?null:document.activeElement;let focusSelector=null;
@@ -82,20 +108,21 @@ export function mountModelArtifacts(container,state={artifact:null,input:null,re
       else if(['rows','pairs','robust'].includes(focused.dataset?.artifactPage)&&['-1','1'].includes(focused.dataset?.pageDirection))focusSelector=`[data-artifact-page="${focused.dataset.artifactPage}"][data-page-direction="${focused.dataset.pageDirection}"]`;
       else if(focused.tagName==='SUMMARY'){const key=detailKeys.find(key=>focused.closest?.(`[data-artifact-${key}]`));if(key)focusSelector=`[data-artifact-${key}] > summary`;}
     }
-    view.innerHTML=artifactViewHTML(state.artifact,state);
+    const source=state.artifactSource,heading=source?`<h3 data-artifact-loaded>${t('Loaded artifact','已加载结果')}: <span data-no-i18n>${esc(source.version?`${exampleName(source.version)} · ${exampleKind(source.file)}`:source.name)}</span></h3>`:'';
+    view.innerHTML=heading+artifactViewHTML(state.artifact,state);
     for(const [key,open] of disclosures){const detail=query(`[data-artifact-${key}]`);if(detail)detail.open=open;}
     translatePage(container);
     if(focusSelector)query(focusSelector)?.focus?.({preventScroll:true});
   }
-  function clear(){state.artifact=null;state.page=0;state.pairPage=0;state.robustPage=0;state.robustFilter='all';render();}
-  async function readArtifact(read){
-    const ticket=++revision;clear();const message=query('#artifact-message');message.hidden=false;message.textContent=t('Reading results…','正在读取结果…');
+  function clear(){state.artifact=null;state.artifactSource=null;state.page=0;state.pairPage=0;state.robustPage=0;state.robustFilter='all';render();}
+  async function readArtifact(read,source){
+    const ticket=++revision;readController?.abort();readController=new AbortController();const signal=readController.signal;state.exampleChoiceMade=true;clear();const message=query('#artifact-message');message.hidden=false;message.textContent=t('Reading results…','正在读取结果…');
     try{
-      const text=await read();if(!active||ticket!==revision)return;
+      const text=await read(signal);if(!active||ticket!==revision)return;
       if(text===null){message.textContent=t('No file selected. Previous results were cleared.','未选择文件，之前的结果已清除。');return;}
       if(typeof text!=='string')throw new Error(t('The result must be JSON text.','结果必须是 JSON 文本。'));
       if(new TextEncoder().encode(text).length>20*1024*1024)throw new Error(t('Maximum file size: 20 MB','文件最大 20 MB'));
-      const artifact=inspectArtifact(JSON.parse(text));state.artifact=artifact;render();
+      const artifact=inspectArtifact(JSON.parse(text));state.artifact=artifact;state.artifactSource=source;render();
       message.textContent=artifact.robustness?t('Scenario results loaded. Choose a response metric and preference.','情景结果已加载。请选择响应指标和偏好权重。'):t('Results loaded. Choose an input and response to explore.','结果已加载。选择输入和响应指标即可查看。');
     }catch(error){if(!active||ticket!==revision)return;clear();message.textContent=error instanceof Error?error.message:String(error);}
   }
@@ -106,7 +133,12 @@ export function mountModelArtifacts(container,state={artifact:null,input:null,re
         if(!file)return null;
         if(file.size>20*1024*1024)throw new Error(t('Maximum file size: 20 MB','文件最大 20 MB'));
         return file.text();
-      });
+      },{name:event.target.files?.[0]?.name||t('Local result file','本地结果文件')});
+    }else if(event.target.id==='artifact-example-version'){
+      const version=event.target.value;if(!Object.hasOwn(exampleVersions,version)||!state.exampleIndexes[version]){renderExamples();return;}
+      if(version===state.exampleVersion)return;
+      state.exampleVersion=version;state.exampleChoiceMade=true;++revision;readController?.abort();clear();
+      const message=query('#artifact-message');message.hidden=false;message.textContent=t('Example version changed. Previous results were cleared; choose one of this version’s result buttons.','示例版本已切换。之前的结果已清除，请选择此版本的结果按钮。');
     }else if(event.target.id==='artifact-input'||event.target.id==='artifact-response'){
       state[event.target.id==='artifact-input'?'input':'response']=event.target.value;render();
     }else if(event.target.id==='artifact-preference'){
@@ -116,19 +148,52 @@ export function mountModelArtifacts(container,state={artifact:null,input:null,re
     }
   }
   async function click(event){
+    const exportButton=event.target.closest?.('[data-artifact-export]');
+    if(exportButton){
+      if(exportButton.disabled||!state.artifact)return;
+      const message=query('#artifact-message');message.hidden=false;
+      try{
+        const kind=exportButton.dataset.artifactExport,format=exportButton.dataset.format;
+        if(!['coverage','parity'].includes(kind)||!['svg','csv'].includes(format))return;
+        const data=buildModelArtifactExport(state.artifact,kind,{inputId:state.input,responseId:state.response});
+        if(format==='csv')downloadText(data.filename+'.csv',data.csv,'text/csv;charset=utf-8');
+        else downloadSVG(data.filename+'.svg',query(`[data-artifact-chart="${kind}"] svg`),data.svgOptions);
+        message.textContent=t('Chart saved with units and source information.','图表已保存，包含单位与来源信息。');
+      }catch(error){message.textContent=error instanceof Error?error.message:String(error);}
+      return;
+    }
     const example=event.target.closest?.('[data-artifact-example]');
-    if(example?.dataset?.artifactExample!==undefined){if(example.disabled)return;await readArtifact(async()=>{
-      const path=artifactExamplePath(example.dataset.artifactExample),response=await fetch(path,{cache:'no-store',credentials:'same-origin'});
+    if(example?.dataset?.artifactExample!==undefined){if(example.disabled)return;let path;
+      try{path=artifactExamplePath(example.dataset.artifactExample);}catch(error){await readArtifact(()=>{throw error;});return;}
+      const version=path.includes('/generic-htl-extension/')?'v2':'v1',file=path.split('/').at(-1);
+      if(!exampleFiles.includes(file))return;
+      if(examplesEnabled&&(version!==state.exampleVersion||!state.exampleIndexes[version]))return;
+      await readArtifact(async signal=>{
+      const response=await fetch(path,{cache:'no-store',credentials:'same-origin',signal});
       if(!response.ok)throw new Error(t('The reviewed example is unavailable. Previous results were cleared.','已审核示例暂不可用，之前的结果已清除。'));
       return response.text();
-    });return;}
+    },{version,file});return;}
     const button=event.target.closest?.('[data-artifact-page]');if(!button||button.disabled||!state.artifact)return;
     const kind=button.dataset.artifactPage,direction=Number(button.dataset.pageDirection);if(!['rows','pairs','robust'].includes(kind)||![-1,1].includes(direction))return;
     const key=kind==='pairs'?'pairPage':kind==='robust'?'robustPage':'page';state[key]=(state[key]??0)+direction;render();
     query(kind==='pairs'?'[data-artifact-validation]':kind==='robust'?'[data-artifact-robust-queries]':'[data-artifact-records]').open=true;if(kind==='pairs')query('[data-artifact-pairs]').open=true;
   }
+  async function loadIndex(version){
+    if(state.exampleIndexes[version])return;
+    state.exampleAvailability[version]='loading';const controller=new AbortController();indexControllers.push(controller);renderExamples();
+    try{
+      const response=await fetch(artifactExamplePath(`data/${exampleVersions[version].directory}/index.json`),{cache:'no-store',credentials:'same-origin',signal:controller.signal});
+      if(!response.ok)throw new Error('Unavailable example index');
+      const text=await response.text();if(!active)return;
+      if(new TextEncoder().encode(text).length>1024*1024)throw new Error('Example index is too large');
+      state.exampleIndexes[version]=inspectArtifactExampleIndex(JSON.parse(text),version);state.exampleAvailability[version]='available';
+      if(version==='v2'&&!state.exampleChoiceMade&&!state.artifact)state.exampleVersion='v2';
+    }catch{if(!active)return;state.exampleAvailability[version]='unavailable';delete state.exampleIndexes[version];}
+    if(active)renderExamples();
+  }
   function languageChange(){if(active)render();}
   container.addEventListener('change',change);container.addEventListener('click',click);render();
   languageTarget?.addEventListener('languagechange',languageChange);
-  return()=>{active=false;revision++;container.removeEventListener('change',change);container.removeEventListener('click',click);languageTarget?.removeEventListener('languagechange',languageChange);};
+  if(examplesEnabled){void loadIndex('v1');void loadIndex('v2');}
+  return()=>{active=false;revision++;readController?.abort();indexControllers.forEach(controller=>controller.abort());container.removeEventListener('change',change);container.removeEventListener('click',click);languageTarget?.removeEventListener('languagechange',languageChange);};
 }

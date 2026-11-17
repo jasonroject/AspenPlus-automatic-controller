@@ -1,0 +1,74 @@
+[
+  {
+    "id": "local-01",
+    "scenario_id": "temperature-low-length-low",
+    "prediction_record_id": "HTL-T330-L12p5::temperature-low-length-low",
+    "new_coordinate": true,
+    "original_point_id": null,
+    "original_split": null
+  },
+  {
+    "id": "local-02",
+    "scenario_id": "temperature-low-length-center",
+    "prediction_record_id": "HTL-T330-L12p5::temperature-low-length-center",
+    "new_coordinate": true,
+    "original_point_id": null,
+    "original_split": null
+  },
+  {
+    "id": "local-03",
+    "scenario_id": "temperature-low-length-high",
+    "prediction_record_id": "HTL-T330-L12p5::temperature-low-length-high",
+    "new_coordinate": true,
+    "original_point_id": null,
+    "original_split": null
+  },
+  {
+    "id": "local-04",
+    "scenario_id": "temperature-center-length-low",
+    "prediction_record_id": "HTL-T330-L12p5::temperature-center-length-low",
+    "new_coordinate": true,
+    "original_point_id": null,
+    "original_split": null
+  },
+  {
+    "id": "local-05",
+    "scenario_id": "temperature-center-length-center",
+    "prediction_record_id": "HTL-T330-L12p5::temperature-center-length-center",
+    "new_coordinate": false,
+    "original_point_id": "case-008",
+    "original_split": "holdout"
+  },
+  {
+    "id": "local-06",
+    "scenario_id": "temperature-center-length-high",
+    "prediction_record_id": "HTL-T330-L12p5::temperature-center-length-high",
+    "new_coordinate": true,
+    "original_point_id": null,
+    "original_split": null
+  },
+  {
+    "id": "local-07",
+    "scenario_id": "temperature-high-length-low",
+    "prediction_record_id": "HTL-T330-L12p5::temperature-high-length-low",
+    "new_coordinate": true,
+    "original_point_id": null,
+    "original_split": null
+  },
+  {
+    "id": "local-08",
+    "scenario_id": "temperature-high-length-center",
+    "prediction_record_id": "HTL-T330-L12p5::temperature-high-length-center",
+    "new_coordinate": true,
+    "original_point_id": null,
+    "original_split": null
+  },
+  {
+    "id": "local-09",
+    "scenario_id": "temperature-high-length-high",
+    "prediction_record_id": "HTL-T330-L12p5::temperature-high-length-high",
+    "new_coordinate": true,
+    "original_point_id": null,
+    "original_split": null
+  }
+]

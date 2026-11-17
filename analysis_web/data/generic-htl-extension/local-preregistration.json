@@ -1,0 +1,28 @@
+{
+  "created_at": "2026-11-17T16:36:57.735088+00:00",
+  "design_origin": "Coordinate-center candidate fixed before fitting, not chosen from the rank results",
+  "candidate_id": "HTL-T330-L12p5",
+  "candidate_inputs": {
+    "reactor_temperature_K": 603.15,
+    "tube_length_m": 12.5
+  },
+  "native_model_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+  "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+  "config_sha256": "100a1aa36dad9e93ede02f86487aba198dd71f84da5a405228f675dbd6af60d4",
+  "plan_sha256": "a7a14fc892ccf3f3a817018ab56f16aa48a2774ddfdbd78ba928177cf47c2b49",
+  "criteria_sha256": "4f813ab1ed7df2a85008dc75682ebb9d42fd73fb123b2699659666bf5d5ef8d9",
+  "file_sha256": {
+    "plan.json": "e7d324aee672f794a495ea59e1a3109c55ae7ec7e4b11ed81fef545d8b888f64",
+    "mapping.json": "02498d3dcdba9fea98d568c10828b61aca31b3a04e58c023053c779b3b200319"
+  },
+  "case_count": 9,
+  "new_coordinate_count": 8,
+  "repeat_original_holdout_count": 1,
+  "split": "verification",
+  "fitting_performed_before_preparation": false,
+  "model_sha256": null,
+  "model_binding": "Bind to the original frozen 17-point pilot bundle in the later comparison result; never refit using these runs",
+  "reporting": "All nine requests retained. Report new-eight mean-prediction errors separately; center repeat checks execution repeatability against the original holdout. Any failed point prevents a complete-check pass; no replacement or survivor-only pass.",
+  "criteria": "Reuse the original 5 percent relative error rules and explicit response-unit floors; prediction checks, not operating performance thresholds.",
+  "scope": "One local perturbation neighborhood. Does not validate nine-candidate rankings, continuous-region extrema, probabilities, GP predictive uncertainty, LCA backgrounds, or physical reliability."
+}

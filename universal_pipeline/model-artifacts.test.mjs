@@ -98,7 +98,7 @@ test('both record and evaluation tables page through all retained failures, incl
   const visited=Array.from({length:4},(_,page)=>recordPage(artifact.pairs,page).rows).flat();assert.equal(visited.length,151);
   const container=new Container(),mounted={artifact,page:0,pairPage:0};mountModelArtifacts(container,mounted);
   const button={disabled:false,dataset:{artifactPage:'pairs',pageDirection:'1'}};
-  container.listeners.get('click')({target:{closest:()=>button}});assert.equal(mounted.pairPage,1);assert.equal(mounted.page,0);assert.equal(container.details.open,true);
+  container.listeners.get('click')({target:{closest:selector=>selector==='[data-artifact-page]'?button:null}});assert.equal(mounted.pairPage,1);assert.equal(mounted.page,0);assert.equal(container.details.open,true);
 });
 
 class Container {
