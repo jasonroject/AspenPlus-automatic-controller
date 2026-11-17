@@ -1,5 +1,7 @@
 # 水热液化分析前端
 
+新增预测与鲁棒性入口：`pipeline.html`。使用现有 121 个原生工况的冻结分割，新增 3 点 Aspen 复核，提供 4,941 个 GP 预测网格及 266 个候选工况的 1,024 组扰动分析。比较能耗、碳足迹、单体产出的波动和排名稳定性，不设工况达标门槛。网页可下载原生扫描计划，本地 Windows/Aspen 执行；原始 `study.json` 保留。计算边界、误差、警告与复现方法见 [HTL pipeline](../htl_pipeline/README.md)。
+
 线上英文版：https://vercel-pi-ten-59.vercel.app/index.en.html ；中文版：https://vercel-pi-ten-59.vercel.app/ 。2026-11-17 已部署并在 Ego 验证。当前通过 Vercel CLI 手动发布，GitHub 推送尚未配置自动部署。
 
 在仓库根目录运行 `python -m http.server 8766 --bind 127.0.0.1 --directory analysis_web`，打开 `http://127.0.0.1:8766`。

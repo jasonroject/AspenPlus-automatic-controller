@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>HTL Studio | Prediction & Robustness</title>
+  <link rel="preload" href="vendor/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="app.css"><link rel="stylesheet" href="studio.css?v=6">
+  <link rel="stylesheet" href="monochrome.css?v=8"><link rel="stylesheet" href="pipeline.css?v=1">
+</head>
+<body data-theme="monochrome" data-view="pipeline">
+  <aside class="sidebar">
+    <a class="brand" href="index.en.html"><span class="brand-mark">H</span><span>HTL Studio<small>Hydrothermal Liquefaction</small></span></a>
+    <div class="sidebar-label">Research Workspace</div>
+    <nav aria-label="Main navigation">
+      <a class="nav-item" href="index.en.html#view=overview">Overview</a>
+      <a class="nav-item" href="index.en.html#view=cases">Case Data</a>
+      <a class="nav-item" href="index.en.html#view=process">Process & Equipment</a>
+      <a class="nav-item" href="index.en.html#view=lca">Life Cycle Assessment</a>
+      <a class="nav-item" href="index.en.html#view=screening">Case Screening</a>
+      <a class="nav-item active" href="pipeline.html" aria-current="page">Prediction & Robustness</a>
+      <a class="nav-item" href="index.en.html#view=sources">Data Sources</a>
+    </nav>
+    <div class="studio-sidebar-note">Simulator-based research<small>100 kg wet feed · 1 h<br>25 MPa · Fixed feed composition</small></div>
+  </aside>
+  <div class="workspace">
+    <header class="pipeline-top"><span>HTL / ANALYSIS LAB</span><a href="index.en.html">Back to archived study ↗</a></header>
+    <main>
+      <header class="overview-heading"><div><p class="overview-eyebrow">NATIVE SCANS → PREDICTION → SCENARIO STABILITY</p><h1>Prediction & Robustness</h1><p>Explore energy demand, carbon footprint and operating sensitivity.</p></div><button id="download-analysis" class="button secondary" disabled>Download analysis ↓</button></header>
+      <p id="pipeline-error" role="alert" hidden></p>
+      <p id="pipeline-status" class="pipeline-notice" role="status">Loading verified analysis…</p>
+      <div id="evidence-stats" class="premium-kpis"></div>
+      <nav class="pipeline-tabs" aria-label="Analysis sections">
+        <button data-section="predict" aria-pressed="true">Predict a condition</button>
+        <button data-section="robust" aria-pressed="false">Robustness</button>
+        <button data-section="evidence" aria-pressed="false">Scans & validation</button>
+      </nav>
+      <section id="section-predict">
+        <article class="panel">
+          <div class="panel-heading"><div><h2>Operating condition</h2><p>Actual temperature · 310–350 °C · Tube length 5–20 m</p></div><span class="pill">Surrogate prediction</span></div>
+          <form id="prediction-form" class="prediction-controls">
+            <label>Temperature / °C<input id="predict-temperature" type="number" min="310" max="350" step="0.5" value="330" required></label>
+            <label>Tube length / m<input id="predict-length" type="number" min="5" max="20" step="0.25" value="10" required></label>
+            <label>Scenario<select id="predict-scenario"><option value="HR">HR · Heat recovery</option><option value="STD">STD · Standard heating</option></select></label>
+            <button class="button primary" id="predict-button" disabled>Show prediction →</button>
+          </form>
+          <p class="panel-foot">The web preview uses a precomputed GP grid: 0.5 °C × 0.25 m. Each cell is a prediction, not a new Aspen run.</p>
+          <p id="prediction-error" role="alert" hidden></p>
+        </article>
+        <div id="prediction-result" class="premium-kpis" aria-live="polite"></div>
+        <article class="panel"><div class="panel-heading"><h2>How carbon footprint is calculated</h2></div><p>Fixed feed burden + electricity × grid factor + direct CO₂/CH₄ burden + wastewater treatment. Divide by target monomer mass.</p><p class="panel-foot">The background providers and characterization factors stay fixed. This is a climate-impact calculation, not a new openLCA calculation or a complete environmental-impact assessment.</p></article>
+        <article class="panel"><div class="panel-heading"><div><h2>Plan a native verification</h2><p>Download a small scan plan for the local Aspen runner.</p></div><button id="download-plan" class="button secondary" disabled>Download 3-point plan ↓</button></div><p class="panel-foot">Aspen runs on the Windows workstation. This public website does not start or control Aspen. The plan contains the current grid point and two nearby valid points.</p></article>
+      </section>
+      <section id="section-robust" hidden>
+        <article class="panel"><div class="panel-heading"><div><h2>Stability under operating variation</h2><p>No pass/fail threshold. Compare fluctuations and ranking stability.</p></div><label>Scenario <select id="robust-scenario"><option>HR</option><option>STD</option></select></label></div>
+          <div class="assumptions"><span>Temperature ±2 °C</span><span>Effective length ±0.25 m</span><span>Electricity factor ±10%</span></div>
+          <p id="robust-description" class="panel-foot"></p><p class="panel-foot">Independent uniform scenario assumptions, not measured uncertainty distributions. Equal weights: higher monomer output, lower energy, lower carbon footprint. Ranking scales stay fixed at nominal values. GP prediction error, kinetics and property uncertainty are not propagated here.</p>
+        </article>
+        <article class="panel"><div class="panel-heading"><div><h2>Candidate ranking stability</h2><p>P05–P95 ranges summarize the specified scenarios, not physical reliability or prediction confidence.</p></div><label>Order by <select id="robust-order"><option value="frequency">Top-1 frequency</option><option value="nominal">Nominal rank</option></select></label></div>
+          <p class="panel-foot">Showing 20 candidates. Scroll horizontally for all ranges. Inspect opens the nominal condition.</p>
+          <div class="table-scroll" tabindex="0" role="region" aria-label="Robustness results"><table><thead><tr><th>Condition</th><th>Nominal rank</th><th>Top-1</th><th>Top-5</th><th>Rank P05–P95</th><th>Monomers / kg<br>P05–P95</th><th>Energy / kWh<br>P05–P95</th><th>CF / kg CO₂-eq/kg<br>P05–P95</th><th></th></tr></thead><tbody id="robust-body"></tbody></table></div>
+          <p id="stability-note" class="panel-foot"></p>
+        </article>
+      </section>
+      <section id="section-evidence" hidden>
+        <article class="panel"><div class="panel-heading"><div><h2>Fresh Aspen verification</h2><p>New points are kept out of training. Every completed or failed attempt remains visible.</p></div></div><div class="table-scroll" tabindex="0" role="region" aria-label="Native scan results"><table><thead><tr><th>Actual temperature / °C</th><th>Length / m</th><th>Status</th><th>Mass residual / kg/h</th><th>Max device energy residual / kW</th></tr></thead><tbody id="scan-body"></tbody></table></div></article>
+        <article class="panel"><div class="panel-heading"><div><h2>Prediction checks</h2><p id="validation-description"></p></div></div><div class="table-scroll" tabindex="0" role="region" aria-label="Prediction validation"><table><thead><tr><th>Response</th><th>Holdout median error</th><th>Holdout max error</th><th>Fresh max error</th></tr></thead><tbody id="validation-body"></tbody></table></div><p class="panel-foot">These errors measure reproduction of the Aspen model, not agreement with experiments. Historical holdouts have not been refitted.</p></article>
+        <article class="panel"><div class="panel-heading"><h2>Scope & traceability</h2></div><ul id="limitations"></ul><p id="failure-note" class="panel-foot"></p><a href="data/pipeline.json" download>Download results and provenance JSON ↓</a></article>
+      </section>
+      <footer>Independent analysis module · Original manuscript archive preserved · Simulation evidence</footer>
+    </main>
+  </div>
+  <script src="pipeline.js?v=1"></script>
+</body>
+</html>
