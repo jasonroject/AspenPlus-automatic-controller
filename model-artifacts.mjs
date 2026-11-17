@@ -151,6 +151,7 @@ export function mountModelArtifacts(container,state={artifact:null,input:null,re
     }else if(event.target.id==='artifact-example-version'){
       const version=event.target.value;if(!Object.hasOwn(exampleVersions,version)||!state.exampleIndexes[version]){renderExamples();return;}
       if(version===state.exampleVersion)return;
+      const selectedFile=query('#artifact-file');if(selectedFile)selectedFile.value='';
       state.exampleVersion=version;state.exampleChoiceMade=true;++revision;readController?.abort();clear();
       const message=query('#artifact-message');message.hidden=false;message.textContent=t('Example version changed. Previous results were cleared; choose one of this version’s result buttons.','示例版本已切换。之前的结果已清除，请选择此版本的结果按钮。');
     }else if(event.target.id==='artifact-input'||event.target.id==='artifact-response'){
@@ -183,6 +184,7 @@ export function mountModelArtifacts(container,state={artifact:null,input:null,re
       const version=path.includes('/generic-htl-extension/')?'v2':'v1',file=path.split('/').at(-1);
       if(!exampleFiles.includes(file))return;
       if(examplesEnabled&&(version!==state.exampleVersion||!state.exampleIndexes[version]))return;
+      const selectedFile=query('#artifact-file');if(selectedFile)selectedFile.value='';
       await readArtifact(async signal=>{
       const response=await fetch(path,{cache:'no-store',credentials:'same-origin',signal});
       if(!response.ok)throw new Error(t('The reviewed example is unavailable. Previous results were cleared.','已审核示例暂不可用，之前的结果已清除。'));
