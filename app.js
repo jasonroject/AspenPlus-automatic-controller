@@ -24,8 +24,10 @@ const state = {
   scenario: "STD",
   view: "overview",
   equipment: "reactor",
+  resultTab: "device",
   points: [],
 };
+const equipmentIds = ["feed", "pump", "exchanger", "heater", "reactor", "cooler", "separator"];
 const titles = {
   overview: ["项目概览", "全流程分析工作台", "从能量集成到环境评价与工况选择"],
   sources: [
@@ -516,6 +518,11 @@ function requestedWorkspace() {
     ? {
         view: params.get("view"),
         case: params.get("case"),
+        equipment: params.get("equipment"),
+        resultTab: params.get("tab"),
+        temperature: params.get("temperature"),
+        scenarioFilter: params.get("scenario"),
+        search: params.get("search"),
         weights: params.has("weights")
           ? params.get("weights").split(",").map(Number)
           : undefined,
@@ -533,11 +540,26 @@ function setWeights(weights) {
     (key, index) => ($("#weight-" + key).value = weights[index]),
   );
 }
+function restoreWorkspaceControls(saved) {
+  setWeights(saved.weights);
+  state.equipment = equipmentIds.includes(saved.equipment) ? saved.equipment : "reactor";
+  setResultTab(saved.resultTab === "compare" ? "compare" : "device", false);
+  for (const [selector, value] of [["#temperature-filter", saved.temperature], ["#scenario-filter", saved.scenarioFilter]]) {
+    const select = $(selector);
+    select.value = Array.from(select.options).some((option) => option.value === value) ? value : "";
+  }
+  $("#case-search").value = typeof saved.search === "string" ? saved.search : "";
+}
 function saveWorkspace(mode = "push") {
   if (!state.data) return;
   const saved = {
     view: state.view,
     case: currentCase().id,
+    equipment: state.equipment,
+    resultTab: state.resultTab,
+    temperature: $("#temperature-filter").value,
+    scenarioFilter: $("#scenario-filter").value,
+    search: $("#case-search").value,
     weights: ["yield", "char", "cf"].map((key) =>
       Number($("#weight-" + key).value),
     ),
@@ -552,6 +574,11 @@ function saveWorkspace(mode = "push") {
     new URLSearchParams({
       view: saved.view,
       case: saved.case,
+      equipment: saved.equipment,
+      tab: saved.resultTab,
+      temperature: saved.temperature,
+      scenario: saved.scenarioFilter,
+      search: saved.search,
       weights: saved.weights.join(","),
     }).toString();
   if (mode !== "none" && hash !== location.hash)
@@ -562,7 +589,7 @@ history.scrollRestoration = "manual";
 window.addEventListener("popstate", () => {
   if (!state.data) return;
   const saved = requestedWorkspace();
-  setWeights(saved.weights);
+  restoreWorkspaceControls(saved);
   const item =
     state.data.cases.find((row) => row.id === saved.case) || currentCase();
   selectCase(item, titles[saved.view] ? saved.view : "overview", {
@@ -617,9 +644,12 @@ $("#case-select").addEventListener("change", (event) => {
     state.data.cases.find((row) => row.condition_id === event.target.value);
   if (item) selectCase(item);
 });
-$("#temperature-filter").addEventListener("change", renderCases);
-$("#scenario-filter").addEventListener("change", renderCases);
-$("#case-search").addEventListener("input", renderCases);
+for (const [selector, eventName] of [["#temperature-filter", "change"], ["#scenario-filter", "change"], ["#case-search", "input"]]) {
+  $(selector).addEventListener(eventName, () => {
+    renderCases();
+    saveWorkspace("replace");
+  });
+}
 $("#download").addEventListener("click", downloadCase);
 document.querySelectorAll('input[type="range"]').forEach((input) =>
   input.addEventListener("input", () => {
@@ -710,7 +740,7 @@ async function initialize() {
     $("#schema-label").textContent = `数据结构 v${data.schema_version}`;
     $("#download").disabled = false;
     const saved = requestedWorkspace();
-    setWeights(saved.weights);
+    restoreWorkspaceControls(saved);
     $("#inspector-temperature").disabled = false;
     $("#inspector-length").disabled = false;
     selectCase(
@@ -1012,7 +1042,7 @@ function renderPlant() {
 }
 
 function selectEquipment(id) {
-  if (!state.data) return;
+  if (!state.data || !equipmentIds.includes(id)) return;
   state.equipment = id;
   setResultTab("device");
   renderPlant();
@@ -1038,13 +1068,16 @@ function changeInspector() {
   if (item) selectCase(item);
 }
 
-function setResultTab(tab) {
+function setResultTab(tab, persist = true) {
+  if (!["device", "compare"].includes(tab)) return;
+  state.resultTab = tab;
   document.querySelectorAll("[data-result-tab]").forEach((button) => {
     const active = button.dataset.resultTab === tab;
     button.setAttribute("aria-selected", String(active));
     button.tabIndex = active ? 0 : -1;
     $("#result-" + button.dataset.resultTab).hidden = !active;
   });
+  if (persist) saveWorkspace("replace");
 }
 document
   .querySelectorAll("[data-result-tab]")
