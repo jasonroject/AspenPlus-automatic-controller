@@ -1,5 +1,6 @@
 // UI-only translations. Imported values, model identifiers and code remain unchanged.
 export const dictionary = {
+  'Climate change':'气候变化',
   'Analysis sections':'分析模块',
   'Robustness results':'鲁棒性结果',
   'Native scan results':'原生扫描结果',

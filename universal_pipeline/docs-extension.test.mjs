@@ -32,6 +32,9 @@ test('both languages retain local-v1 and separate v2 cohort scopes',()=>{
   assert.match(en,/38 execution records/);assert.match(en,/Ordinary prediction remains disabled/);
   assert.match(en,/not fresh independent tests/);assert.match(en,/not operating-performance thresholds/);
   assert.match(zh,/4 个全新前瞻复核点/);assert.match(zh,/复核针对冻结 v1/);
+  assert.match(en,/manifest byte size and SHA-256/);assert.match(en,/temperature in K and tube length in m/);
+  assert.match(en,/Other uploaded models still use the local CLI/);assert.match(en,/reopen it with Choose model results JSON/);
+  assert.match(zh,/公开 v2 模型包与清单的字节数及 SHA-256 一致/);assert.match(zh,/实际训练凸包/);
 });
 
 test('invalid counts, model identity, floors or scope cannot produce publishable copy',()=>{
