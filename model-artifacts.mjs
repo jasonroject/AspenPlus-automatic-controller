@@ -4,6 +4,7 @@ import {inspectArtifact,artifactSeries,finiteDomain,domainFraction,domainTick,re
 import {robustnessViewHTML} from './robustness-artifact-view.mjs';
 import {buildModelArtifactExport} from './model-artifact-exports.mjs';
 import {downloadText,downloadSVG} from './chart-export.mjs';
+import {createModelQueryState,modelQueryHTML,handleModelQueryEvent} from './model-query-view.mjs';
 const number=value=>!Number.isFinite(value)?'—':value!==0&&(Math.abs(value)>=1e7||Math.abs(value)<1e-5)?value.toExponential(5):value.toLocaleString('en-US',{maximumSignificantDigits:7});
 const percent=value=>!Number.isFinite(value)?'—':Number.isFinite(value*100)?`${number(value*100)}%`:`${number(value)} × 100%`;
 const numericText=value=>Number.isFinite(value)?String(value):'';
@@ -29,7 +30,13 @@ export function inspectArtifactExampleIndex(raw,version){
   if(raw.native_case_count!==native||raw.accepted_case_count!==native||raw.training_count!==training||raw.holdout_count!==holdout||raw.verification_count!==verification)throw new Error('Example index case groups do not match this version');
   if(typeof raw.prediction_enabled!=='boolean'||typeof raw.exploratory!=='boolean'||raw.prediction_enabled===raw.exploratory||raw.physical_validation!==false)throw new Error('Example index qualification declarations are incomplete or inconsistent');
   if(!object(raw.files)||exampleFiles.some(file=>!object(raw.files[file])||typeof raw.files[file].sha256!=='string'||!/^[a-f0-9]{64}$/i.test(raw.files[file].sha256)||!Number.isInteger(raw.files[file].bytes)||raw.files[file].bytes<=0||raw.files[file].bytes>20*1024*1024))throw new Error('Example index is missing the complete result manifest');
-  return {version,nativeCaseCount:native,trainingCount:training,holdoutCount:holdout,verificationCount:verification,predictionEnabled:raw.prediction_enabled,exploratory:raw.exploratory};
+  return {version,nativeCaseCount:native,trainingCount:training,holdoutCount:holdout,verificationCount:verification,predictionEnabled:raw.prediction_enabled,exploratory:raw.exploratory,modelBundleSha256:raw.files['model.bundle.json'].sha256.toLowerCase(),modelBundleBytes:raw.files['model.bundle.json'].bytes};
+}
+export async function verifyPublishedQueryBundle(bytes,source,indexes,subtle=globalThis.crypto?.subtle){
+  if(source?.version!=='v2'||source.file!=='model.bundle.json'||!(bytes instanceof Uint8Array)||!subtle)return false;
+  const index=indexes?.v2;if(!index?.predictionEnabled||index.exploratory)return false;
+  if(bytes.byteLength!==index.modelBundleBytes)return false;
+  try{const digest=await subtle.digest('SHA-256',bytes);return [...new Uint8Array(digest)].map(value=>value.toString(16).padStart(2,'0')).join('')===index.modelBundleSha256;}catch{return false;}
 }
 function exampleControlsHTML(state){
   const version=state.exampleVersion||'v1',index=state.exampleIndexes?.[version],ready=Boolean(index),availability=state.exampleAvailability?.[version];
@@ -65,7 +72,7 @@ function pagination(page,kind){return `<div class="model-button-row"><button cla
 export function modelArtifactPanel(){return `<details class="model-artifacts" id="model-artifacts"><summary>${t('Explore models, predictions and scenarios','查看模型、预测与情景结果')}</summary><p>${t('Import a local surrogate bundle, prediction result or scenario analysis to inspect coverage, held-out comparisons and retained failures.','导入本地代理模型包、预测或情景分析结果，查看覆盖、留出对照和保留的失败记录。')}</p><div class="model-example-files" id="artifact-example-controls">${exampleControlsHTML({})}</div><label class="model-upload">${t('Choose model results JSON','选择模型结果 JSON')}<input id="artifact-file" type="file" accept=".json"></label><p id="artifact-message" role="status" hidden></p><div id="artifact-view"></div><details><summary>${t('Create these files locally','在本地生成这些文件')}</summary><pre class="model-code" data-no-i18n>python -m process_pipeline.surrogate fit dataset.json --config criteria.json --output model.bundle.json
 python -m process_pipeline.surrogate evaluate model.bundle.json --output model-evaluation.json
 python -m process_pipeline.surrogate predict model.bundle.json --points queries.json --output predictions.json
-python -m process_pipeline.robustness model.bundle.json --config scenarios.json --output robustness.json</pre><p>${t('The local tool checks hashes, frozen validation groups, explicit error criteria and the actual training domain. This viewer reads exported results; it does not fit or execute a model.','本地工具检查哈希、固定校验分组、明确的误差标准和实际训练域。本页面读取导出结果，不拟合或运行模型。')}</p></details></details>`;}
+python -m process_pipeline.robustness model.bundle.json --config scenarios.json --output robustness.json</pre><p>${t('The local tool checks hashes, frozen validation groups, explicit error criteria and the actual training domain. Imported files are inspected here. The reviewed public HTL v2 also supports bounded mean estimates; model fitting and native Aspen execution remain local.','本地工具检查哈希、固定校验分组、明确的误差标准和实际训练域。本页面检查导入文件，并支持已审核公开 HTL v2 的域内均值试算；模型拟合与 Aspen 原生运行仍在本地完成。')}</p></details></details>`;}
 export function artifactViewHTML(a,state){
   if(a.robustness)return accountingBasisHTML(a)+robustnessViewHTML(a,state);
   state.input=a.inputs.some(x=>x.id===state.input)?state.input:a.inputs[0].id;
@@ -75,7 +82,7 @@ export function artifactViewHTML(a,state){
   const status=a.bundle?(a.declaredEnabled?t('Producer declares prediction enabled (unverified)','导出工具声明预测已启用（未经独立验证）'):t('Exploratory model / prediction disabled','探索模型 / 常规预测未启用')):t('Exported prediction requests','已导出的预测请求');
   return `<div class="model-artifact-summary"><span><small>${t('Profile','模型配置')}</small><strong data-no-i18n>${esc(a.profileId)}</strong></span><span><small>${t('Displayable records','可绘制记录')}</small><strong>${a.validCount} / ${a.rows.length}</strong></span><span><small>${t('Unavailable records','不可绘制记录')}</small><strong>${a.failedCount}</strong></span></div>
     <p class="model-help"><strong>${status}</strong><br>${t('Declared evidence','声明的证据类型')}: <span data-no-i18n>${esc(a.evidence)}</span>. ${t('This is an exported claim, not independent verification of a native Aspen run or physical performance.','这是导出文件中的声明，不是对原生 Aspen 运行或物理性能的独立验证。')}</p>
-    ${accountingBasisHTML(a)}
+    ${accountingBasisHTML(a)}${modelQueryHTML(state.queryState)}
     ${a.warningCount?`<p class="panel-foot">${a.warningCount} ${t('records include exported warnings. Open records and sources below to inspect them, including warnings on otherwise available records.','条记录包含导出的警告。请展开下方记录与来源查看，包括仍可绘制记录上的警告。')}</p>`:''}
     ${a.trainingWarnings.length?`<details data-artifact-training><summary>${t('Fit warnings','拟合警告')} · ${a.trainingWarnings.length}</summary><p class="panel-foot">${t('Exported optimizer diagnostics are separate from native-run evidence and validation errors.','导出的优化器诊断与原生运行证据、校验误差分别保留。')}</p><ul class="model-list">${a.trainingWarnings.map(row=>`<li data-no-i18n>${esc(row.response)}: ${esc(row.message)}</li>`).join('')}</ul></details>`:''}
     <div class="import-actions"><label>${t('Input axis','输入坐标')}<select id="artifact-input">${a.inputs.map(spec=>`<option value="${esc(spec.id)}" ${spec.id===state.input?'selected':''}>${esc(label(spec))}</option>`).join('')}</select></label><label>${t('Response','响应指标')}<select id="artifact-response">${a.responses.map(spec=>`<option value="${esc(spec.id)}" ${spec.id===state.response?'selected':''}>${esc(label(spec))}</option>`).join('')}</select></label></div>
@@ -95,7 +102,7 @@ export function mountModelArtifacts(container,state={artifact:null,input:null,re
   const examplesEnabled=query('#artifact-example-version')?.tagName==='SELECT',indexControllers=[];
   state.exampleVersion=Object.hasOwn(exampleVersions,state.exampleVersion)?state.exampleVersion:'v1';
   state.exampleIndexes??={};state.exampleAvailability??={};
-  const detailKeys=['basis','validation','pairs','records','training','robust-summary','robust-queries','robust-methods','robust-lineage'];
+  const detailKeys=['basis','query','validation','pairs','records','training','robust-summary','robust-queries','robust-methods','robust-lineage'];
   const languageTarget=typeof window==='undefined'?null:window;
   function renderExamples(){if(examplesEnabled){const focused=typeof document!=='undefined'&&document.activeElement?.id==='artifact-example-version';query('#artifact-example-controls').innerHTML=exampleControlsHTML(state);if(focused)query('#artifact-example-version')?.focus?.({preventScroll:true});}}
   function render(){
@@ -114,19 +121,26 @@ export function mountModelArtifacts(container,state={artifact:null,input:null,re
     translatePage(container);
     if(focusSelector)query(focusSelector)?.focus?.({preventScroll:true});
   }
-  function clear(){state.artifact=null;state.artifactSource=null;state.page=0;state.pairPage=0;state.robustPage=0;state.robustFilter='all';render();}
+  function clear(){state.artifact=null;state.artifactSource=null;state.verifiedExampleBytes=false;state.queryState=null;state.page=0;state.pairPage=0;state.robustPage=0;state.robustFilter='all';render();}
   async function readArtifact(read,source){
     const ticket=++revision;readController?.abort();readController=new AbortController();const signal=readController.signal;state.exampleChoiceMade=true;clear();const message=query('#artifact-message');message.hidden=false;message.textContent=t('Reading results…','正在读取结果…');
     try{
-      const text=await read(signal);if(!active||ticket!==revision)return;
-      if(text===null){message.textContent=t('No file selected. Previous results were cleared.','未选择文件，之前的结果已清除。');return;}
+      const payload=await read(signal);if(!active||ticket!==revision)return;
+      if(payload===null){message.textContent=t('No file selected. Previous results were cleared.','未选择文件，之前的结果已清除。');return;}
+      const text=typeof payload==='string'?payload:payload?.text;
       if(typeof text!=='string')throw new Error(t('The result must be JSON text.','结果必须是 JSON 文本。'));
       if(new TextEncoder().encode(text).length>20*1024*1024)throw new Error(t('Maximum file size: 20 MB','文件最大 20 MB'));
-      const artifact=inspectArtifact(JSON.parse(text));state.artifact=artifact;state.artifactSource=source;render();
+      const artifact=inspectArtifact(JSON.parse(text)),exampleIndex=state.exampleIndexes?.v2,verifiedExampleBytes=await verifyPublishedQueryBundle(payload?.bytes,source,state.exampleIndexes);
+      if(!active||ticket!==revision)return;
+      state.artifact=artifact;state.artifactSource=source;state.verifiedExampleBytes=verifiedExampleBytes&&state.exampleIndexes?.v2===exampleIndex;
+      if(state.verifiedExampleBytes){try{state.queryState=createModelQueryState(artifact.raw,{trustedV2:true,sourcePath:'data/generic-htl-extension/model.bundle.json',sourceSha256:exampleIndex.modelBundleSha256});}catch{state.queryState=null;}}
+      render();
       message.textContent=artifact.robustness?t('Scenario results loaded. Choose a response metric and preference.','情景结果已加载。请选择响应指标和偏好权重。'):t('Results loaded. Choose an input and response to explore.','结果已加载。选择输入和响应指标即可查看。');
+      if(source?.version==='v2'&&source.file==='model.bundle.json'&&!state.queryState)message.textContent=t('Exported results are available. Direct estimates could not be enabled for this file; reload the reviewed example to try again.','导出结果可以查看。此文件未能启用直接试算，请重新加载已审核示例后再试。');
     }catch(error){if(!active||ticket!==revision)return;clear();message.textContent=error instanceof Error?error.message:String(error);}
   }
   async function change(event){
+    if(handleModelQueryEvent(event,state.queryState))return;
     if(event.target.id==='artifact-file'){
       await readArtifact(async()=>{
         const file=event.target.files?.[0];
@@ -148,6 +162,7 @@ export function mountModelArtifacts(container,state={artifact:null,input:null,re
     }
   }
   async function click(event){
+    if(handleModelQueryEvent(event,state.queryState))return;
     const exportButton=event.target.closest?.('[data-artifact-export]');
     if(exportButton){
       if(exportButton.disabled||!state.artifact)return;
@@ -171,6 +186,11 @@ export function mountModelArtifacts(container,state={artifact:null,input:null,re
       await readArtifact(async signal=>{
       const response=await fetch(path,{cache:'no-store',credentials:'same-origin',signal});
       if(!response.ok)throw new Error(t('The reviewed example is unavailable. Previous results were cleared.','已审核示例暂不可用，之前的结果已清除。'));
+      if(version==='v2'&&file==='model.bundle.json'){
+        const bytes=new Uint8Array(await response.arrayBuffer());
+        if(bytes.byteLength>20*1024*1024)throw new Error(t('Maximum file size: 20 MB','文件最大 20 MB'));
+        return {text:new TextDecoder('utf-8',{fatal:true}).decode(bytes),bytes};
+      }
       return response.text();
     },{version,file});return;}
     const button=event.target.closest?.('[data-artifact-page]');if(!button||button.disabled||!state.artifact)return;
@@ -192,8 +212,9 @@ export function mountModelArtifacts(container,state={artifact:null,input:null,re
     if(active)renderExamples();
   }
   function languageChange(){if(active)render();}
-  container.addEventListener('change',change);container.addEventListener('click',click);render();
+  function input(event){handleModelQueryEvent(event,state.queryState);}
+  container.addEventListener('input',input);container.addEventListener('change',change);container.addEventListener('click',click);render();
   languageTarget?.addEventListener('languagechange',languageChange);
   if(examplesEnabled){void loadIndex('v1');void loadIndex('v2');}
-  return()=>{active=false;revision++;readController?.abort();indexControllers.forEach(controller=>controller.abort());container.removeEventListener('change',change);container.removeEventListener('click',click);languageTarget?.removeEventListener('languagechange',languageChange);};
+  return()=>{active=false;revision++;readController?.abort();indexControllers.forEach(controller=>controller.abort());container.removeEventListener('input',input);container.removeEventListener('change',change);container.removeEventListener('click',click);languageTarget?.removeEventListener('languagechange',languageChange);};
 }

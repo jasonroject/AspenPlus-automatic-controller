@@ -74,7 +74,7 @@ export function inspectArtifact(value){
   if((bundle?value.bundle_version:value.result_version)!==1)fail('Unsupported model artifact version');
   const metadata=bundle?value.dataset_metadata:value;
   if(!object(metadata))fail('Missing model declarations');
-  const inputs=declarations(metadata.inputs,'input'),responses=declarations(metadata.responses,'response'),basis=bundle?accountingBasis(metadata.basis):null;
+  const inputs=declarations(metadata.inputs,'input'),responses=declarations(metadata.responses,'response'),basis=accountingBasis(bundle?metadata.basis:value.dataset_metadata?.basis);
   const observations=records(bundle?value.observations:value.records,bundle?'observation':'prediction');
   const rows=observations.map(row=>{
     const issues=[];
