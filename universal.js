@@ -6,6 +6,7 @@ import {readSession,writeSession,referenceLink,validateWorkspaceShape} from './w
 import {scanPreferences} from './uncertainty-diagnostics.mjs';
 import {preferenceControlsHTML,renderPreferenceScan} from './uncertainty-views.mjs';
 import {readSpreadsheet} from './spreadsheet-import.mjs';
+import {applyProjectEdit} from './workspace-provenance.mjs';
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt=(v,n=4)=>Number.isFinite(v)?(v!==0&&Math.abs(v)<10**(-n)?v.toExponential(2):v.toLocaleString('en-US',{maximumFractionDigits:n})):'—';
 let project=blankProject(),sheets=[],matrix=[],report=null,ranking=null,preferenceScan=null,activeTab='import',pendingJSON=false,busy=false;
@@ -16,6 +17,8 @@ mountLanguage(document.querySelector('.workbench-header'));
 const message=(text,error=false)=>{$('#message').hidden=false;$('#message').textContent=t(text);$('#message').dataset.kind=error?'error':'info';};
 function updateWorkflow(){
   const ready=readiness(project),index=['import','context','results'].indexOf(activeTab);
+  $('#provenance-notice').hidden=project.meta.locally_modified!==true;
+  $('#provenance-notice').textContent=report?t('Results recalculated from your edited inputs. Original run checks describe the historical source only.','已根据修改后的输入重新计算结果。原始运行检查仅说明历史来源。'):t('Edited locally. Original run checks describe the historical source only. Recalculate to assess the current inputs.','已在本地修改。原始运行检查仅说明历史来源；请重新计算，检查当前输入。');
   $('#workflow-count').textContent=`Step ${index+1} of 3`;
   $('#workflow-title').textContent=activeTab==='import'?'Import & map':activeTab==='context'?'Review basis':'Results & comparison';
   $('#workflow-description').textContent=pendingJSON?'Your JSON edits are not applied. Apply JSON edits in step 1 before continuing.':activeTab==='import'?(sheets.length?`${appliedSheets.size} of ${sheets.length} worksheets applied. Review each mapping, apply it, then continue to the basis.`:ready.hasCases?'Your project is loaded. Continue to review its basis and factors.':'Choose an export, or try the guided example first. Nothing is uploaded to a server.'):activeTab==='context'?'Review the checklist and calculation basis, then calculate. Missing evidence will stay visible.':'Start with the summary, inspect any issues, then explore energy, impacts and comparison.';
@@ -48,7 +51,8 @@ function showTab(name,scroll=true){if(pendingJSON&&name!=='import'){message('App
 function invalidate(){report=null;ranking=null;preferenceScan=null;clearResultVisuals($('#result-visuals'));for(const id of ['balance-body','impact-results','rank-results','results-summary','result-error-list','energy-kpis','balance-status','flow-body'])$('#'+id).innerHTML='';if(activeTab==='results')showTab('context',false);else updateWorkflow();}
 function sync(){
   pendingJSON=false;invalidate();$('#project-json').value=JSON.stringify(project,null,2);
-  $('#table-counts').innerHTML=Object.keys(TABLES).map(k=>`<button class="table-chip" data-edit-table="${k}"><strong>${esc(k)}</strong><span>${project[k].length} rows ${project[k].length?'✓':'· add data'}</span></button>`).join('');
+  const labels={streams:t('Streams','物流'),blocks:t('Blocks','设备'),cases:t('Cases','工况'),inventory:t('Inventory','清单'),factors:t('Impact factors','影响因子')};
+  $('#table-counts').innerHTML=Object.keys(TABLES).map(k=>`<button class="table-chip" data-edit-table="${k}"><strong>${esc(labels[k])}</strong><span>${project[k].length} rows ${project[k].length?'✓':'· add data'}</span></button>`).join('');
   const meta=project.meta;for(const [id,key] of [['project-name','name'],['boundary','boundary'],['functional-unit','functional_unit'],['allocation-method','allocation_method'],['enthalpy-basis','enthalpy_basis']])$('#'+id).value=meta[key]||'';
   $('#calorie').value=meta.calorie_J??'';$('#inventory-complete').checked=meta.inventory_complete===true;$('#comparable').checked=meta.comparable_cases===true;
   $('#coverage-summary').textContent=`${project.cases.length} cases · ${project.inventory.length} inventory rows · ${project.factors.length} factor entries. Add or edit them in Import & map.`;
@@ -59,16 +63,20 @@ function editRows(){
   const row=project[table][start];$('#data-editor').innerHTML=row?fields.map(f=>`<label>${esc(f)}<input data-row="${start}" data-field="${f}" aria-label="Row ${start+1} ${f}" value="${esc(row[f]??'')}"></label>`).join('')+`<div><p>Row ${start+1} of ${project[table].length}</p><button class="table-action" data-remove="${start}">Remove row</button></div>`:'<p>No row at this position. Select a valid row number or Add row.</p>';
 }
 $('#edit-table').addEventListener('change',()=>{$('#row-start').value=1;editRows();});$('#row-start').addEventListener('change',editRows);
-$('#data-editor').addEventListener('input',e=>{const input=e.target;if(!input.dataset.field)return;project[$('#edit-table').value][Number(input.dataset.row)][input.dataset.field]=input.value;invalidate();$('#project-json').value=JSON.stringify(project,null,2);message('Table edit retained locally. Recalculate to update the analysis.');});
-$('#data-editor').addEventListener('click',e=>{const b=e.target.closest('[data-remove]');if(!b||pendingJSON||busy)return;project[$('#edit-table').value].splice(Number(b.dataset.remove),1);context();sync();message('Removed the row from this local project. Original file unchanged.');});
-$('#add-row').addEventListener('click',()=>{const table=$('#edit-table').value;project[table].push(Object.fromEntries(TABLES[table].map(f=>[f,f==='case_id'&&project.cases.length===1?project.cases[0].id:''])));$('#row-start').value=project[table].length;context();sync();message('Added a blank row. Supply units, source and required values before calculating.');});
+$('#data-editor').addEventListener('input',e=>{const input=e.target;if(!input.dataset.field)return;const row=project[$('#edit-table').value][Number(input.dataset.row)];if(String(row[input.dataset.field]??'')===input.value)return;const previous=structuredClone(project);row[input.dataset.field]=input.value;project=applyProjectEdit(previous,project);invalidate();$('#project-json').value=JSON.stringify(project,null,2);message('Table edit retained locally. Recalculate to update the analysis.');});
+$('#data-editor').addEventListener('click',e=>{const b=e.target.closest('[data-remove]');if(!b||pendingJSON||busy)return;const previous=structuredClone(project);project[$('#edit-table').value].splice(Number(b.dataset.remove),1);context();project=applyProjectEdit(previous,project);sync();message('Removed the row from this local project. Original file unchanged.');});
+$('#add-row').addEventListener('click',()=>{const previous=structuredClone(project),table=$('#edit-table').value;project[table].push(Object.fromEntries(TABLES[table].map(f=>[f,f==='case_id'&&project.cases.length===1?project.cases[0].id:''])));$('#row-start').value=project[table].length;context();project=applyProjectEdit(previous,project);sync();message('Added a blank row. Supply units, source and required values before calculating.');});
 function context(){
-  for(const [id,key] of [['project-name','name'],['boundary','boundary'],['functional-unit','functional_unit'],['allocation-method','allocation_method'],['enthalpy-basis','enthalpy_basis']])project.meta[key]=$('#'+id).value.trim();
-  project.meta.calorie_J=$('#calorie').value?Number($('#calorie').value):null;project.meta.inventory_complete=$('#inventory-complete').checked;project.meta.comparable_cases=$('#comparable').checked;
+  const previous=structuredClone(project);
+  for(const [id,key] of [['project-name','name'],['boundary','boundary'],['functional-unit','functional_unit'],['allocation-method','allocation_method'],['enthalpy-basis','enthalpy_basis']]){const value=$('#'+id).value;if(String(project.meta[key]??'')!==value)project.meta[key]=value.trim();}
+  const calorie=$('#calorie').value,oldCalorie=project.meta.calorie_J;
+  if(String(oldCalorie??'')!==calorie&&!(calorie!==''&&oldCalorie!=null&&Number.isFinite(Number(calorie))&&Number(calorie)===Number(oldCalorie)))project.meta.calorie_J=calorie?Number(calorie):null;
+  for(const [id,key] of [['inventory-complete','inventory_complete'],['comparable','comparable_cases']])if((project.meta[key]===true)!==$('#'+id).checked)project.meta[key]=$('#'+id).checked;
+  project=applyProjectEdit(previous,project);
 }
-function loadProject(data){
+function loadProject(data,edited=false){
   const p=validateWorkspaceShape(adaptAspen(data));
-  project=p;sheets=[];matrix=[];appliedSheets.clear();$('#mapping-panel').hidden=true;$('#files').value='';sync();showTab('context');message(`Loaded ${project.meta.name||'project'}. Next: review the basis below, then calculate.`);
+  project=edited?applyProjectEdit(project,p):p;sheets=[];matrix=[];appliedSheets.clear();$('#mapping-panel').hidden=true;$('#files').value='';sync();showTab('context');message(`Loaded ${project.meta.name||'project'}. Next: review the basis below, then calculate.`);
 }
 function download(name,data){const u=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);}
 function guarded(fn){return async(...args)=>{try{await fn(...args);}catch(e){message(e.message,true);$('#message').scrollIntoView({block:'center'});}finally{updateWorkflow();}};}
@@ -119,10 +127,10 @@ $('#apply-table').addEventListener('click',guarded(()=>{
   const identifiers=['id','case_id','from','to','factor_id','category'];
   const rows=current.slice(1).filter(r=>r.some(v=>clean(v)!=='')).map(row=>Object.fromEntries(fields.map(f=>{let v=f.index>=0?(row[f.index]??''):f.constant;if(identifiers.includes(f.field))v=clean(v);return[f.field,v];})));
   if(!rows.length)throw new Error('No data rows');const type=$('#table-type').value;
-  context();project[type]=$('#apply-mode').value==='append'?[...project[type],...rows]:rows;appliedSheets.add(Number($('#sheet').value));
-  project.meta.inventory_complete=false;project.meta.comparable_cases=false;sync();message(`Applied ${rows.length} rows to ${type}. Review the remaining worksheets and calculation basis.`);
+  const previous=structuredClone(project);context();project[type]=$('#apply-mode').value==='append'?[...project[type],...rows]:rows;appliedSheets.add(Number($('#sheet').value));
+  project.meta.inventory_complete=false;project.meta.comparable_cases=false;project=applyProjectEdit(previous,project);sync();message(`Applied ${rows.length} rows to ${type}. Review the remaining worksheets and calculation basis.`);
 }));
-$('#apply-json').addEventListener('click',guarded(()=>loadProject(JSON.parse($('#project-json').value))));
+$('#apply-json').addEventListener('click',guarded(()=>loadProject(JSON.parse($('#project-json').value),true)));
 $('#load-demo').addEventListener('click',importing(async()=>{const r=await fetch('data/universal-example.json');if(!r.ok)throw new Error('Example unavailable');loadProject(await r.json());}));
 $('#load-htl').addEventListener('click',importing(async()=>{const r=await fetch('data/universal-htl.json');if(!r.ok)throw new Error('Example unavailable');loadProject(await r.json());}));
 $('#template').addEventListener('click',()=>{const wb=XLSX.utils.book_new();for(const [name,fields]of Object.entries(TABLES))XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet([fields]),name);XLSX.writeFile(wb,'process-import-template.xlsx');});

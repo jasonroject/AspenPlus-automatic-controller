@@ -32,6 +32,16 @@ export function validateWorkspaceShape(project){
   const warnings=project.meta.native_warnings;
   if(warnings!==undefined&&warnings!==null&&typeof warnings!=='string'&&!(Array.isArray(warnings)&&warnings.every(item=>typeof item==='string')))throw new Error('Native warnings must be text or a list of text');
   validateScanAudit(project.meta.scan_audit);
+  if(project.meta.locally_modified!==undefined&&typeof project.meta.locally_modified!=='boolean')throw new Error('Local modification flag must be boolean');
+  if(project.meta.origin!==undefined){
+    const origin=project.meta.origin;
+    if(!object(origin))throw new Error('Historical origin must be an object');
+    for(const field of ['scope','evidence_type','source_sha256','model_profile_id'])if(origin[field]!==undefined&&origin[field]!==null&&typeof origin[field]!=='string')throw new Error(`Historical origin ${field} must be text or null`);
+    if(!cell(origin.name))throw new Error('Historical origin name must be a scalar value');
+    validateScanAudit(origin.scan_audit);
+    const historicalWarnings=origin.native_warnings;
+    if(historicalWarnings!==undefined&&historicalWarnings!==null&&typeof historicalWarnings!=='string'&&!(Array.isArray(historicalWarnings)&&historicalWarnings.every(item=>typeof item==='string')))throw new Error('Historical native warnings must be text or a list of text');
+  }
   for(const [table,fields] of Object.entries(TABLES)){
     if(!Array.isArray(project[table]))throw new Error(`Project ${table} must be an array`);
     for(const [index,row] of project[table].entries()){

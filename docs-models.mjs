@@ -1,4 +1,6 @@
 // Native-model documentation shares exact commands between interface languages.
+import {extensionSections} from './docs-extension.mjs';
+import {extensionEvidence} from './docs-extension-data.mjs';
 const commands=[
 'python -m process_pipeline.cli inspect-model --model "C:\\models\\process.bkp" --output "C:\\analysis\\discovery.json"',
 'python -m process_pipeline.cli scan --profile "C:\\analysis\\aspen-profile.json" --plan "C:\\analysis\\scan-plan.json" --model "C:\\models\\process.bkp" --output "C:\\analysis\\job-001"',
@@ -43,6 +45,7 @@ code(0),'<p>The command writes <code>discovery-profile-draft.json</code>. Comple
 '<p>This HR pilot reports purchased energy in kWh/kg outlet target and climate impact per kg of the same target; yield is the target/feed mass ratio. The target is catechol + o-cresol before separation. The older HTL lab instead displays electricity and target mass per 100 kg wet feed over 1 h, while its footprint remains per kg target. Compare only after aligning these denominators and declared inventories.</p>',
 '<p>Open <a href="models.html">Local Aspen models</a> to try the 17-case project and inspect model checks, mean predictions or finite scenarios. Complete scenario coverage means every requested query was evaluated; it does not mean the predictor passed validation. Leading shares are not probabilities, and the run checks do not establish physical validation. This generic pilot is separate from the older HTL reference model.</p>',
 '<p>For source scope and reproducibility, read the <a href="data/generic-htl-pilot/README.md">pilot package notes</a> or download the <a href="data/generic-htl-pilot/index.json" download>file manifest and hashes</a>. Native model archives and private raw execution directories are not included.</p>',
+extensionSections(extensionEvidence),
 '<h2 id="artifacts">Files and recovery</h2>',
 '<ul><li><code>profile.json + plan.json</code>: reviewed mappings and frozen requested inputs.</li><li><code>ledger.json + runs/</code>: every success/failure, raw evidence, warnings and source lineage.</li><li><code>project.json</code>: browser five-table project, including scan_audit.</li><li><code>dataset.json</code>: audited responses and splits for the generic surrogate.</li><li><code>model.bundle.json</code>: frozen model state, source identity and validation status.</li></ul>',
 '<p>Use a new absolute output directory for each native job. Existing evidence is retained. A draft profile is blocked while required metadata or operating assumptions remain unreviewed. The inherited HTL foreground inventory is not a full-plant LCA.</p>'
@@ -78,6 +81,7 @@ code(0),'<p>命令生成 <code>discovery-profile-draft.json</code>。补齐缺�
 '<p>本 HR 试运行的购入能耗以 kWh/kg 出口目标单体表示，气候影响也按每 kg 相同目标单体核算；产率为目标产物与进料的质量比。目标单体是分离前的邻苯二酚与邻甲酚。旧 HTL 模块的电耗和单体量按 100 kg 湿进料、1 h 展示，碳足迹仍按每 kg 目标单体。比较前需统一分母和声明的清单边界。</p>',
 '<p>打开<a href="models.html">本地 Aspen 模型</a>，试用 17 工况项目，并检查模型误差、均值预测或有限情景。情景覆盖完整只表示所有请求均已评估，不表示预测器通过验证；领先份额不是概率，运行检查也不能证明物理有效性。本通用试运行与旧版 HTL 参考模型相互独立。</p>',
 '<p>来源范围与复现说明见<a href="data/generic-htl-pilot/README.md">试运行数据包说明</a>，也可下载<a href="data/generic-htl-pilot/index.json" download>文件清单与哈希</a>。数据包不包含原生模型档案或私人原始运行目录。</p>',
+extensionSections(extensionEvidence,true),
 '<h2 id="artifacts">文件与恢复</h2>',
 '<ul><li><code>profile.json + plan.json</code>：核查后的映射和预先冻结的请求输入。</li><li><code>ledger.json + runs/</code>：全部成功/失败记录、原始证据、警告与来源。</li><li><code>project.json</code>：供浏览器使用的五张表，包含 scan_audit。</li><li><code>dataset.json</code>：供通用代理模型使用的指标与数据划分。</li><li><code>model.bundle.json</code>：冻结模型、来源身份及验证状态。</li></ul>',
 '<p>每次原生任务使用新的绝对输出目录，已有证据保留。必要元数据或操作假设未核查时，草稿会明确阻止扫描。HTL 示例继承的前景清单不能称为完整全厂 LCA。</p>'

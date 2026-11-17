@@ -1,0 +1,1050 @@
+{
+  "native_runs_retained": 38,
+  "unique_cases": 37,
+  "unique_accepted": 37,
+  "cases": [
+    {
+      "id": "case-001",
+      "batch": "generic-native-pilot-17",
+      "source": "generic-native-pilot-17/runs/case-001/raw.json",
+      "split": "training",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "635de4cdc24f875a9618e2a9bb7e6c76814ba640b63412b505032308c01e7cc3",
+      "report_sha256": "0812ba6f7537615679b33c3ea935db1cbb4a98bf95d9e71e2022665bc3cec524",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "case-002",
+      "batch": "generic-native-pilot-17",
+      "source": "generic-native-pilot-17/runs/case-002/raw.json",
+      "split": "training",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "dbf98e4cc2b1d6642f0b5a09621e6eb9dfcfe6ea160cd1c37c74fea6f390cc6a",
+      "report_sha256": "24c201d77fea47d5ed959be778f1beb0c399f9242d33f80dde8ed0535bdf03c3",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "case-003",
+      "batch": "generic-native-pilot-17",
+      "source": "generic-native-pilot-17/runs/case-003/raw.json",
+      "split": "training",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "6d3d39ddbd172654a0020f14ecf2a195251b94fc2c78642dd532c19370b6c889",
+      "report_sha256": "cdce59d22e6dba91be8ca87f5bf40b7084048e505c731f4c0145990c99524fda",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "case-004",
+      "batch": "generic-native-pilot-17",
+      "source": "generic-native-pilot-17/runs/case-004/raw.json",
+      "split": "holdout",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "299590a69f4a955a62c977321a9c6d4acf3fd86a3f7dba3ad0b3e28dd829a3a1",
+      "report_sha256": "fd70216ecfeb7331e3a751a7e3416394de445fde6ad2bb37c0b892dd2ca17d92",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "case-005",
+      "batch": "generic-native-pilot-17",
+      "source": "generic-native-pilot-17/runs/case-005/raw.json",
+      "split": "training",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "90e3c531a0900324c0802758c5699f53ce20acfa4b7492d28129ce004b894f40",
+      "report_sha256": "7e4a043e9539a463e00ded95ee0171dbf1ddb1b96a4d46aea328818e476f1a85",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "case-006",
+      "batch": "generic-native-pilot-17",
+      "source": "generic-native-pilot-17/runs/case-006/raw.json",
+      "split": "holdout",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "4b22940b8f60d8c58c2c49b8ffb00b02d2a35407592da8bbb5a28a26fb914b89",
+      "report_sha256": "5f89a62d6d4ca93803c93b1a7b5e466d2548c60e78dda48b9a36a8c3e1d265f9",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "case-007",
+      "batch": "generic-native-pilot-17",
+      "source": "generic-native-pilot-17/runs/case-007/raw.json",
+      "split": "training",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "354639912e30b1a281e179ba9fe73530cc13e41e47711081cf62782970869d0a",
+      "report_sha256": "804bf8729d88fbec2cacd8892e4ae744897db11e5209b95301621f54fcf45f64",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "case-008",
+      "batch": "generic-native-pilot-17",
+      "source": "generic-native-pilot-17/runs/case-008/raw.json",
+      "split": "holdout",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "0f6a9d0e8b341dea5e7dd9ebf318bd7599ec5105c07dd11322e2c572690815fc",
+      "report_sha256": "86408ffd9ef008e70ea1099541a0154d5309b9200c8438fb2f7e12620631868f",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "case-009",
+      "batch": "generic-native-pilot-17",
+      "source": "generic-native-pilot-17/runs/case-009/raw.json",
+      "split": "training",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "1d43cd94c258f492b5a3f60ab87a56dbce23f3ff325f7c2c8592e7ebd32ad723",
+      "report_sha256": "881d18062ce2694b9bbd1e1b8d4e4315bf59a4966d11a438af41d3742f315e27",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "case-010",
+      "batch": "generic-native-pilot-17",
+      "source": "generic-native-pilot-17/runs/case-010/raw.json",
+      "split": "training",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "fe51b1ccc647c090d033edec7b5d28256e3f4db032d6578edd4199d84e3dc2c3",
+      "report_sha256": "9b5b4550db8c9bdbfaddee9bba64ee04246676f24d65ee22054ab6f046812b22",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "case-011",
+      "batch": "generic-native-pilot-17",
+      "source": "generic-native-pilot-17/runs/case-011/raw.json",
+      "split": "training",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "4e8bfd9c69f817655b331a9986a4bc80ac3875a27ca27893fb0135753150708f",
+      "report_sha256": "74c53544b32d111ea3efa4cc760600dcffaa5bb0c652f8d98ca20cb8fb46c22e",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "case-012",
+      "batch": "generic-native-pilot-17",
+      "source": "generic-native-pilot-17/runs/case-012/raw.json",
+      "split": "training",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "fd78b999f75db4586288275ef46339e262fc793047bbd681fab54813ba5be5b1",
+      "report_sha256": "b6622457fe7c0e7155522077db868075d38402a16248cb038f64a7e62ecb8870",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "case-013",
+      "batch": "generic-native-pilot-17",
+      "source": "generic-native-pilot-17/runs/case-013/raw.json",
+      "split": "training",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "2130dea0fccfc1a87e067fef1f26a0e5c987920f7353e63be31d34e838d8c48d",
+      "report_sha256": "d5f79620ed747b141de72739e2bd40e88e1eba9b9f674af69d898ba8260a072f",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "case-014",
+      "batch": "generic-native-pilot-17",
+      "source": "generic-native-pilot-17/runs/case-014/raw.json",
+      "split": "training",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "5a7138d93eaac8461e4609fba70804df0227214c066c73786946148319dc60f6",
+      "report_sha256": "341f27108285ac5706a9c854f37899f18afd5a1a317815dbc82c9fe9b8c6a324",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "case-015",
+      "batch": "generic-native-pilot-17",
+      "source": "generic-native-pilot-17/runs/case-015/raw.json",
+      "split": "training",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "e22b258699e6f1b4c91f550fadb2a34337fd6fbdc8c420bba3047ea46c2ee20c",
+      "report_sha256": "480bf41b8b77b50155b270276d025dc001e8da44920b7f2bf5ba10b7b72a9725",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "verify-T335-L8p5",
+      "batch": "generic-native-pilot-17",
+      "source": "generic-native-pilot-17/runs/verify-T335-L8p5/raw.json",
+      "split": "verification",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "45931d9cda3cfbd8555ae8153d46919f15fa2cd7b91847203d9d8b891885400d",
+      "report_sha256": "cfa0b220330289940f39ced541bb8131ce36185384fa68df5a50efb12732a79c",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "verify-T345-L17p5",
+      "batch": "generic-native-pilot-17",
+      "source": "generic-native-pilot-17/runs/verify-T345-L17p5/raw.json",
+      "split": "verification",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "6b9ceb8e58021a79573fc158eab37587fc42f6fb814a9cd5c0fab78c2d24a14e",
+      "report_sha256": "ffc909d53ebfd7ec246e0ac03beac419c82f3e5746a4fee70b80894a305758d9",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "local-01",
+      "batch": "native-local-perturbation-9",
+      "source": "native-local-perturbation-9/runs/local-01/raw.json",
+      "split": "verification",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "2455d167456b079c21ab9114d9b40d2457bb5bb25ce0b4cd0adcf096bde44332",
+      "report_sha256": "7a0596e9e3ce15ab68ad316984e9f118db60d6b0fb4781f9632460b3f37ead0d",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "local-02",
+      "batch": "native-local-perturbation-9",
+      "source": "native-local-perturbation-9/runs/local-02/raw.json",
+      "split": "verification",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "34f7a23e269c6176324d68f19d2246ed2824da0585c86c3e0b916da9ea3bf2e8",
+      "report_sha256": "eff5d259510d073b1b80dfa8043c65c05344746aebfa96ebe90bbf34f136a257",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "local-03",
+      "batch": "native-local-perturbation-9",
+      "source": "native-local-perturbation-9/runs/local-03/raw.json",
+      "split": "verification",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "cf00a48ada734da20726d2747611b6906b4558fbe4bea2c3fd2cdb074a53ff7d",
+      "report_sha256": "bb6635a290644103bc050dec7cc087650134de6c52be32cda8a8036612af86ac",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "local-04",
+      "batch": "native-local-perturbation-9",
+      "source": "native-local-perturbation-9/runs/local-04/raw.json",
+      "split": "verification",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "c767f6b1a821d8aaf0993cc2cde448aefb0bc4c5d2b85627dbd60af2cf771f40",
+      "report_sha256": "b143d3297fcd6d6940599431fae4631b3b31f7c1d571f7bf1faa6fa9d1c76e9b",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "local-05",
+      "batch": "native-local-perturbation-9",
+      "source": "native-local-perturbation-9/runs/local-05/raw.json",
+      "split": "verification",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": false,
+      "raw_file_sha256": "bc6d87271a477148cec42557ea60b89ea803c31323df1e226e15e186fcd7b18a",
+      "report_sha256": "5763cf9dbb796646faef37acbf26f3be71de20305aa02bbe5c2454269932fa1b",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "local-06",
+      "batch": "native-local-perturbation-9",
+      "source": "native-local-perturbation-9/runs/local-06/raw.json",
+      "split": "verification",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "dfc518adebfab9b01769313747c4ff93f62c1df9e5d988bafa7af3022d3c4d5b",
+      "report_sha256": "e15a70399438920279766d53efa311cf4c6a327d44855046d43be1414324a22e",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "local-07",
+      "batch": "native-local-perturbation-9",
+      "source": "native-local-perturbation-9/runs/local-07/raw.json",
+      "split": "verification",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "747d8d7ce71fb63ea11840b0800d91284c9dadd91d8422f2dd77200099ffc406",
+      "report_sha256": "22a6c45164b10e1d181dea9135a7aff04600541fcef661eefa75b5ae9ad5f6f4",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "local-08",
+      "batch": "native-local-perturbation-9",
+      "source": "native-local-perturbation-9/runs/local-08/raw.json",
+      "split": "verification",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "9f7046160a18bac565e54b5da8f5481ea8647209c11c9f00660bbb5e6d514aab",
+      "report_sha256": "584fe6a8b4de156235e5d1b6a771c83c1b7094ab8d2ca498885bd6fce6f54a55",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "local-09",
+      "batch": "native-local-perturbation-9",
+      "source": "native-local-perturbation-9/runs/local-09/raw.json",
+      "split": "verification",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "ed6e5e4e9f8a712181e608b758a324cce936c420c4f41fcc8e4def3e43f2f811",
+      "report_sha256": "06d554688885f33ffa303b6b6d3fe86662e3a0bd251ecf2f0956ffb4445b8422",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "v2-train-T317-L8",
+      "batch": "native-v2-extension-12",
+      "source": "native-v2-extension-12/runs/v2-train-T317-L8/raw.json",
+      "split": "training",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "7e03033b1226b2619f15418aa13733793e0a542a9b88702db71ef31d413c0bbc",
+      "report_sha256": "d7fd1c2fa109baa0d9258a49f074caf2629c32ba8ea8b1500b309dfac154b3b8",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "v2-train-T317-L16p5",
+      "batch": "native-v2-extension-12",
+      "source": "native-v2-extension-12/runs/v2-train-T317-L16p5/raw.json",
+      "split": "training",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "86ba12ac99edf92a792e3694c4a2098f6975ff52dc372e93d3fa5de1f24794cc",
+      "report_sha256": "0914404fc75f3805bfeeeb3caef7f2a03c87e7f9e7dd898fd9e10d52c1d062bd",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "v2-train-T327-L8",
+      "batch": "native-v2-extension-12",
+      "source": "native-v2-extension-12/runs/v2-train-T327-L8/raw.json",
+      "split": "training",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "a0dffd347b5e75e712ececc02c89d4871aef61ca193464cb66b97faf4361a6ba",
+      "report_sha256": "5e3763c111fbc9c751cd5a32634ee506d9acce7f8e678a30f9eefa9e15476a0a",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "v2-train-T327-L16p5",
+      "batch": "native-v2-extension-12",
+      "source": "native-v2-extension-12/runs/v2-train-T327-L16p5/raw.json",
+      "split": "training",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "a632bca0959150434d9a4d22ca6895fbf0986b7b0da97067a8e8f4f51cf27636",
+      "report_sha256": "ad7972cbda47f64da4034128e6569e1a428e6abf2fadd204748a5cc6c46b260b",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "v2-train-T337-L8",
+      "batch": "native-v2-extension-12",
+      "source": "native-v2-extension-12/runs/v2-train-T337-L8/raw.json",
+      "split": "training",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "c80bf51f9f8c50d7f633f1cdd4347a55dd9b2cfbc8c0592e2f779265282c2278",
+      "report_sha256": "8bbc49b7bd1b012c64e3503739de9fdd540802171430c18c8337fef5b0feb278",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "v2-train-T337-L16p5",
+      "batch": "native-v2-extension-12",
+      "source": "native-v2-extension-12/runs/v2-train-T337-L16p5/raw.json",
+      "split": "training",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "453058923048430a2d9896622a90ea15e42d08a933cc63534539d08e28e846dc",
+      "report_sha256": "e6d158500db09f3d2ef12305441c0136322be64576b43bdadaab338123a5b203",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "v2-train-T347-L8",
+      "batch": "native-v2-extension-12",
+      "source": "native-v2-extension-12/runs/v2-train-T347-L8/raw.json",
+      "split": "training",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "ef2c54d29500caaacea8f8e9ac4245cc8e502a747aace08025740143f9b23802",
+      "report_sha256": "337c3f79af6d82f7555a62ddfde18010e2db898da2f7df2755e09d5024e384cb",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "v2-train-T347-L16p5",
+      "batch": "native-v2-extension-12",
+      "source": "native-v2-extension-12/runs/v2-train-T347-L16p5/raw.json",
+      "split": "training",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "c284b89f204b89d572c4485e78ab51fab14993257bb317141aaaa70e74c4b3c0",
+      "report_sha256": "701167b9b17a8bcd120f2b87e3bae844ef148e7307f07e07dba951d366ea3b78",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "v2-verify-T322-L9p75",
+      "batch": "native-v2-extension-12",
+      "source": "native-v2-extension-12/runs/v2-verify-T322-L9p75/raw.json",
+      "split": "verification",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "628b43652b43828fdaf31d2e4224a02b6182d2a24474b8234a2e265d74574365",
+      "report_sha256": "d6c3ba5c07f5c0286fba32aa8cbbe8f8828f285fce3a94885dd706799a5227bc",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "v2-verify-T332-L14",
+      "batch": "native-v2-extension-12",
+      "source": "native-v2-extension-12/runs/v2-verify-T332-L14/raw.json",
+      "split": "verification",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "488273292577341a89b6f55e4812fe8dfaa29cbcee26ad25e9f0eef331611b48",
+      "report_sha256": "95f890482e568613877a8406e26759d19cdcfa2656c55096534b40a74a2ab53c",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "v2-verify-T342-L18p25",
+      "batch": "native-v2-extension-12",
+      "source": "native-v2-extension-12/runs/v2-verify-T342-L18p25/raw.json",
+      "split": "verification",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "d39fe50e746158413cd825045502f4bc0dd4a728f7458228114c38dea4dc60ea",
+      "report_sha256": "03729db57683485aa2e5e974197f4ce2f64749854c119eed756f33506ccf0707",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    },
+    {
+      "id": "v2-verify-T348-L6p75",
+      "batch": "native-v2-extension-12",
+      "source": "native-v2-extension-12/runs/v2-verify-T348-L6p75/raw.json",
+      "split": "verification",
+      "accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "included_in_unique_dataset": true,
+      "raw_file_sha256": "4f653dab859779dd962d9c152a62a43ca89f3ba73cea0e0ee0b2b22d660309f2",
+      "report_sha256": "028022f8086acb0d093834e22c7c41f757610366981563eccef32a7aec5f9bbe",
+      "copy_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "private_document_closed": true,
+      "source_unchanged": true
+    }
+  ],
+  "excluded_repeats": [
+    {
+      "id": "local-05",
+      "batch": "native-local-perturbation-9",
+      "original_point_id": "case-008",
+      "original_split": "holdout",
+      "inputs": {
+        "reactor_temperature_K": 603.15,
+        "tube_length_m": 12.5
+      },
+      "source": "native-local-perturbation-9/runs/local-05/raw.json",
+      "reason": "Repeated original holdout coordinate; retain separately, never duplicate in the fitting dataset or relabel as new verification"
+    }
+  ],
+  "source_unchanged": true,
+  "physical_validation": false,
+  "scope": "Local raw/report/copy/control/core checks. JSON labels alone do not independently authenticate native execution."
+}

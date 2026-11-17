@@ -24,7 +24,7 @@ export function resultVisualData(project, report, caseId, category) {
   const sourceBlocks = project.blocks.filter(r => r.case_id === selected.id);
   return {
     caseId: selected.id, categories, category: selectedCategory,
-    provenance:{project:project.meta.name||'',boundary:project.meta.boundary||'',functionalUnit:project.meta.functional_unit||'',evidence:project.meta.evidence_type||'imported_data',modelHash:project.meta.source_sha256||'',caseSource:project.cases.find(row=>row.id===selected.id)?.source||''},
+    provenance:{project:project.meta.name||'',boundary:project.meta.boundary||'',functionalUnit:project.meta.functional_unit||'',evidence:project.meta.evidence_type||'imported_data',modelHash:project.meta.source_sha256||'',locallyModified:project.meta.locally_modified===true,originModelHash:project.meta.origin?.source_sha256||'',originEvidence:project.meta.origin?.evidence_type||'',caseSource:project.cases.find(row=>row.id===selected.id)?.source||''},
     balanceComplete: selected.balance.complete,
     balanceWithinTolerance: selected.balance.within_tolerance,
     blocks: selected.balance.blocks.map(b => ({...b,source:sourceBlocks.find(row=>row.id===b.id)?.source||''})),
