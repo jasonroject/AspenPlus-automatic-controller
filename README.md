@@ -1,5 +1,7 @@
 # Aspen Plus 自动化控制工具
 
+通用模块：[Aspen 导入、质量/能量衡算、清单影响计算与模糊评价](universal_pipeline/README.md)，[在线导入工作区](https://vercel-pi-ten-59.vercel.app/universal.html)。
+
 新增：[HTL 自动扫描、能耗/碳足迹预测与排名稳定性](htl_pipeline/README.md)，[在线分析页面](https://vercel-pi-ten-59.vercel.app/pipeline.html)。
 
 用浏览器编排 Aspen Plus 运行表，支持设备及物流参数搜索、多设备联合工况、批量计算与 JSON/CSV 结果导出。本机 Python 服务负责连接 Aspen，网页负责编辑和查看进度。

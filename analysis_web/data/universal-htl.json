@@ -1,0 +1,305 @@
+{
+  "schema_version": 1,
+  "meta": {
+    "name": "HTL native verification: 325 C / 8.5 m",
+    "steady_state": true,
+    "enthalpy_basis": "Complete material-stream enthalpy rates on one common reference; Q and W positive inward; no KE/PE or accumulation",
+    "boundary": "Inherited HTL fixed-background accounting: feed, heater/reactor electricity, fixed pump inventory, direct CO2/CH4 and wastewater; excludes separator heat duty and cooling-service burdens; not a full-plant utility inventory",
+    "functional_unit": "1 kg declared target product",
+    "allocation_method": "Single target; no co-product allocation; share 1",
+    "calorie_J": 4.1868,
+    "inventory_complete": true,
+    "comparable_cases": false,
+    "source_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+    "native_warnings": "COOLER, REACTOR, VALVE; numerically audited; not physical validation"
+  },
+  "streams": [
+    {
+      "case_id": "HTL-325-8.5",
+      "id": "FEED",
+      "from": "BOUNDARY",
+      "to": "PUMP",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/h",
+      "enthalpy_flow": -388.560693454,
+      "energy_unit": "kW",
+      "source": "Fresh native run T325p00_L8p50, 2026-11-17; INT_TOL 1e-4; source hash 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed"
+    },
+    {
+      "case_id": "HTL-325-8.5",
+      "id": "S2",
+      "from": "PUMP",
+      "to": "HEATCHAG",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/h",
+      "enthalpy_flow": -386.38897238199996,
+      "energy_unit": "kW",
+      "source": "Fresh native run T325p00_L8p50, 2026-11-17; INT_TOL 1e-4; source hash 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed"
+    },
+    {
+      "case_id": "HTL-325-8.5",
+      "id": "S3",
+      "from": "HEATER",
+      "to": "REACTOR",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/h",
+      "enthalpy_flow": -343.12215436099996,
+      "energy_unit": "kW",
+      "source": "Fresh native run T325p00_L8p50, 2026-11-17; INT_TOL 1e-4; source hash 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed"
+    },
+    {
+      "case_id": "HTL-325-8.5",
+      "id": "S4",
+      "from": "REACTOR",
+      "to": "HEATCHAG",
+      "mass_flow": 100.000103,
+      "mass_unit": "kg/h",
+      "enthalpy_flow": -337.02320149253995,
+      "energy_unit": "kW",
+      "source": "Fresh native run T325p00_L8p50, 2026-11-17; INT_TOL 1e-4; source hash 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed"
+    },
+    {
+      "case_id": "HTL-325-8.5",
+      "id": "S5",
+      "from": "COOLER",
+      "to": "VALVE",
+      "mass_flow": 100.000103,
+      "mass_unit": "kg/h",
+      "enthalpy_flow": -383.737778803505,
+      "energy_unit": "kW",
+      "source": "Fresh native run T325p00_L8p50, 2026-11-17; INT_TOL 1e-4; source hash 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed"
+    },
+    {
+      "case_id": "HTL-325-8.5",
+      "id": "S6",
+      "from": "VALVE",
+      "to": "B6",
+      "mass_flow": 100.000103,
+      "mass_unit": "kg/h",
+      "enthalpy_flow": -383.737778803505,
+      "energy_unit": "kW",
+      "source": "Fresh native run T325p00_L8p50, 2026-11-17; INT_TOL 1e-4; source hash 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed"
+    },
+    {
+      "case_id": "HTL-325-8.5",
+      "id": "S7",
+      "from": "B6",
+      "to": "BOUNDARY",
+      "mass_flow": 99.1357513,
+      "mass_unit": "kg/h",
+      "enthalpy_flow": -382.3779177359126,
+      "energy_unit": "kW",
+      "source": "Fresh native run T325p00_L8p50, 2026-11-17; INT_TOL 1e-4; source hash 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed"
+    },
+    {
+      "case_id": "HTL-325-8.5",
+      "id": "S8",
+      "from": "B6",
+      "to": "BOUNDARY",
+      "mass_flow": 0.864351798,
+      "mass_unit": "kg/h",
+      "enthalpy_flow": -1.1051555060624587,
+      "energy_unit": "kW",
+      "source": "Fresh native run T325p00_L8p50, 2026-11-17; INT_TOL 1e-4; source hash 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed"
+    },
+    {
+      "case_id": "HTL-325-8.5",
+      "id": "S9",
+      "from": "HEATCHAG",
+      "to": "HEATER",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/h",
+      "enthalpy_flow": -347.123931528,
+      "energy_unit": "kW",
+      "source": "Fresh native run T325p00_L8p50, 2026-11-17; INT_TOL 1e-4; source hash 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed"
+    },
+    {
+      "case_id": "HTL-325-8.5",
+      "id": "S10",
+      "from": "HEATCHAG",
+      "to": "COOLER",
+      "mass_flow": 100.000103,
+      "mass_unit": "kg/h",
+      "enthalpy_flow": -376.2882420844901,
+      "energy_unit": "kW",
+      "source": "Fresh native run T325p00_L8p50, 2026-11-17; INT_TOL 1e-4; source hash 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed"
+    }
+  ],
+  "blocks": [
+    {
+      "case_id": "HTL-325-8.5",
+      "id": "PUMP",
+      "heat": 0,
+      "power": 2.1717208,
+      "energy_unit": "kW",
+      "source": "Fresh native run T325p00_L8p50, 2026-11-17; INT_TOL 1e-4; source hash 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; zero-duty conventions from audited process ports"
+    },
+    {
+      "case_id": "HTL-325-8.5",
+      "id": "HEATCHAG",
+      "heat": 0,
+      "power": 0,
+      "energy_unit": "kW",
+      "source": "Fresh native run T325p00_L8p50, 2026-11-17; INT_TOL 1e-4; source hash 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; zero-duty conventions from audited process ports"
+    },
+    {
+      "case_id": "HTL-325-8.5",
+      "id": "HEATER",
+      "heat": 4.0017766538844,
+      "power": 0,
+      "energy_unit": "kW",
+      "source": "Fresh native run T325p00_L8p50, 2026-11-17; INT_TOL 1e-4; source hash 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; zero-duty conventions from audited process ports"
+    },
+    {
+      "case_id": "HTL-325-8.5",
+      "id": "REACTOR",
+      "heat": 6.098953051188,
+      "power": 0,
+      "energy_unit": "kW",
+      "source": "Fresh native run T325p00_L8p50, 2026-11-17; INT_TOL 1e-4; source hash 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; zero-duty conventions from audited process ports"
+    },
+    {
+      "case_id": "HTL-325-8.5",
+      "id": "COOLER",
+      "heat": -7.449536563632,
+      "power": 0,
+      "energy_unit": "kW",
+      "source": "Fresh native run T325p00_L8p50, 2026-11-17; INT_TOL 1e-4; source hash 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; zero-duty conventions from audited process ports"
+    },
+    {
+      "case_id": "HTL-325-8.5",
+      "id": "VALVE",
+      "heat": 0,
+      "power": 0,
+      "energy_unit": "kW",
+      "source": "Fresh native run T325p00_L8p50, 2026-11-17; INT_TOL 1e-4; source hash 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; zero-duty conventions from audited process ports"
+    },
+    {
+      "case_id": "HTL-325-8.5",
+      "id": "B6",
+      "heat": 0.25470638624736003,
+      "power": 0,
+      "energy_unit": "kW",
+      "source": "Fresh native run T325p00_L8p50, 2026-11-17; INT_TOL 1e-4; source hash 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; zero-duty conventions from audited process ports"
+    }
+  ],
+  "cases": [
+    {
+      "id": "HTL-325-8.5",
+      "product_rate": 5.500864712016662,
+      "feed_rate": 100,
+      "mass_unit": "kg/h",
+      "allocation": 1,
+      "source": "Fresh native run T325p00_L8p50, 2026-11-17; INT_TOL 1e-4; source hash 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed"
+    }
+  ],
+  "inventory": [
+    {
+      "case_id": "HTL-325-8.5",
+      "id": "feed",
+      "name": "feed",
+      "kind": "material",
+      "amount": 100,
+      "unit": "kg/h",
+      "factor_id": "feed",
+      "source": "Fresh native run T325p00_L8p50, 2026-11-17; INT_TOL 1e-4; source hash 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed"
+    },
+    {
+      "case_id": "HTL-325-8.5",
+      "id": "electricity",
+      "name": "electricity",
+      "kind": "energy",
+      "amount": 12.2727297050724,
+      "unit": "kWh/h",
+      "factor_id": "electricity",
+      "source": "Fresh native run T325p00_L8p50, 2026-11-17; INT_TOL 1e-4; source hash 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; pump inventory fixed at 2.172 kWh/h"
+    },
+    {
+      "case_id": "HTL-325-8.5",
+      "id": "CO2",
+      "name": "CO2",
+      "kind": "emission",
+      "amount": 0.0339951446,
+      "unit": "kg/h",
+      "factor_id": "CO2",
+      "source": "Fresh native run T325p00_L8p50, 2026-11-17; INT_TOL 1e-4; source hash 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed"
+    },
+    {
+      "case_id": "HTL-325-8.5",
+      "id": "CH4",
+      "name": "CH4",
+      "kind": "emission",
+      "amount": 0.016028400793,
+      "unit": "kg/h",
+      "factor_id": "CH4",
+      "source": "Fresh native run T325p00_L8p50, 2026-11-17; INT_TOL 1e-4; source hash 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed"
+    },
+    {
+      "case_id": "HTL-325-8.5",
+      "id": "wastewater",
+      "name": "wastewater",
+      "kind": "waste",
+      "amount": 84.544290579,
+      "unit": "kg/h",
+      "factor_id": "wastewater",
+      "source": "Fresh native run T325p00_L8p50, 2026-11-17; INT_TOL 1e-4; source hash 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed"
+    }
+  ],
+  "factors": [
+    {
+      "id": "feed",
+      "category": "Climate change",
+      "value": 0.5198121043815267,
+      "low": 0.5198121043815267,
+      "high": 0.5198121043815267,
+      "denominator_unit": "kg",
+      "impact_unit": "kg CO2-eq",
+      "method": "Inherited HTL fixed-background climate accounting",
+      "source": "Inherited HTL lca_coefficients.json; fixed original providers; not a fresh openLCA calculation"
+    },
+    {
+      "id": "electricity",
+      "category": "Climate change",
+      "value": 0.6750590250697887,
+      "low": 0.6075531225628098,
+      "high": 0.7425649275767676,
+      "denominator_unit": "kWh",
+      "impact_unit": "kg CO2-eq",
+      "method": "Inherited HTL fixed-background climate accounting",
+      "source": "Inherited HTL lca_coefficients.json; fixed original providers; not a fresh openLCA calculation; +/-10% electricity factor is an illustrative fuzzy support"
+    },
+    {
+      "id": "CO2",
+      "category": "Climate change",
+      "value": 1.0,
+      "low": 1.0,
+      "high": 1.0,
+      "denominator_unit": "kg",
+      "impact_unit": "kg CO2-eq",
+      "method": "Inherited HTL fixed-background climate accounting",
+      "source": "Inherited HTL lca_coefficients.json; fixed original providers; not a fresh openLCA calculation"
+    },
+    {
+      "id": "CH4",
+      "category": "Climate change",
+      "value": 36.0,
+      "low": 36.0,
+      "high": 36.0,
+      "denominator_unit": "kg",
+      "impact_unit": "kg CO2-eq",
+      "method": "Inherited HTL fixed-background climate accounting",
+      "source": "Inherited HTL lca_coefficients.json; fixed original providers; not a fresh openLCA calculation"
+    },
+    {
+      "id": "wastewater",
+      "category": "Climate change",
+      "value": 0.00017333571211124749,
+      "low": 0.00017333571211124749,
+      "high": 0.00017333571211124749,
+      "denominator_unit": "kg",
+      "impact_unit": "kg CO2-eq",
+      "method": "Inherited HTL fixed-background climate accounting",
+      "source": "Inherited HTL lca_coefficients.json; fixed original providers; not a fresh openLCA calculation"
+    }
+  ]
+}
