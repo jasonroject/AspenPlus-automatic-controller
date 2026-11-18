@@ -8,6 +8,30 @@ import {preferenceControlsHTML,renderPreferenceScan} from './uncertainty-views.m
 import {readSpreadsheet} from './spreadsheet-import.mjs';
 import {applyProjectEdit} from './workspace-provenance.mjs';
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let sheetJsPromise=null;
+function loadSheetJS(){
+  if(typeof globalThis.XLSX!=='undefined')return Promise.resolve(globalThis.XLSX);
+  if(sheetJsPromise)return sheetJsPromise;
+  sheetJsPromise=new Promise((resolve,reject)=>{
+    const existing=document.querySelector('script[data-sheetjs]');
+    if(existing){
+      existing.addEventListener('load',()=>resolve(globalThis.XLSX));
+      existing.addEventListener('error',()=>reject(new Error('Could not load the Excel helper. Check your network and try again.')));
+      return;
+    }
+    const script=document.createElement('script');
+    script.src='vendor/xlsx.full.min.js';
+    script.async=true;
+    script.dataset.sheetjs='1';
+    script.onload=()=>{
+      if(typeof globalThis.XLSX==='undefined')reject(new Error('Excel helper loaded without XLSX global'));
+      else resolve(globalThis.XLSX);
+    };
+    script.onerror=()=>{sheetJsPromise=null;reject(new Error('Could not load the Excel helper. Check your network and try again.'));};
+    document.head.appendChild(script);
+  });
+  return sheetJsPromise;
+}
 const fmt=(v,n=4)=>Number.isFinite(v)?(v!==0&&Math.abs(v)<10**(-n)?v.toExponential(2):v.toLocaleString('en-US',{maximumFractionDigits:n})):'—';
 let project=blankProject(),sheets=[],matrix=[],report=null,ranking=null,preferenceScan=null,activeTab='import',pendingJSON=false,busy=false;
 const appliedSheets=new Set();
@@ -111,6 +135,7 @@ $('#files').addEventListener('change',importing(async e=>{
   for(const file of files){const bytes=await file.arrayBuffer();
     if(/\.(csv|tsv)$/i.test(file.name))next.push({name:file.name,rows:parseCSV(new TextDecoder($('#encoding').value,{fatal:true}).decode(bytes))});
     else if(/\.(xlsx|xls)$/i.test(file.name)){
+      const XLSX=await loadSheetJS();
       next.push(...readSpreadsheet(bytes,XLSX,file.name));
     }else throw new Error('Unsupported file type; export CSV, Excel or JSON from Aspen first');
   }
@@ -133,7 +158,7 @@ $('#apply-table').addEventListener('click',guarded(()=>{
 $('#apply-json').addEventListener('click',guarded(()=>loadProject(JSON.parse($('#project-json').value),true)));
 $('#load-demo').addEventListener('click',importing(async()=>{const r=await fetch('data/universal-example.json');if(!r.ok)throw new Error('Example unavailable');loadProject(await r.json());}));
 $('#load-htl').addEventListener('click',importing(async()=>{const r=await fetch('data/universal-htl.json');if(!r.ok)throw new Error('Example unavailable');loadProject(await r.json());}));
-$('#template').addEventListener('click',()=>{const wb=XLSX.utils.book_new();for(const [name,fields]of Object.entries(TABLES))XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet([fields]),name);XLSX.writeFile(wb,'process-import-template.xlsx');});
+$('#template').addEventListener('click',guarded(async()=>{message('Preparing Excel template…');const XLSX=await loadSheetJS();const wb=XLSX.utils.book_new();for(const [name,fields]of Object.entries(TABLES))XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet([fields]),name);XLSX.writeFile(wb,'process-import-template.xlsx');message('Excel template downloaded.');}));
 $('#save-project').addEventListener('click',()=>{if(pendingJSON)return;context();download('process-project.json',project);message('Project saved. Keep this JSON file to restore your inputs later.');});
 for(const b of document.querySelectorAll('[data-tab]'))b.addEventListener('click',()=>showTab(b.dataset.tab));
 $('#edit-context').addEventListener('click',()=>showTab('context'));$('#back-import').addEventListener('click',()=>{context();$('#project-json').value=JSON.stringify(project,null,2);showTab('import');});
