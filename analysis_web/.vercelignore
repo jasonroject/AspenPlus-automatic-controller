@@ -17,3 +17,11 @@
 **/*.[pP]12
 
 # Open-source notices in vendor/LICENSE-*.txt remain included.
+
+# Huge brand/plant originals live in ../brand-archive (outside this deploy root).
+# Guard against accidental reintroduction under assets/.
+assets/brand/*.png
+!assets/brand/logo-01-icon.png
+assets/process-skid.png
+assets/exchanger.png
+assets/heater.png
