@@ -1,0 +1,14 @@
+const task=await taskSpace(10);const page=task.page('p1');const assert=(await import('node:assert/strict')).default;const fs=await import('node:fs/promises');
+const base='C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/cad-drawing-20261117/';await page.cdp('Emulation.setDeviceMetricsOverride',{width:1130,height:750,deviceScaleFactor:1,mobile:false});
+await page.focus('loc=css:[data-testid="cad-2d-canvas"]');await page.keyboard.press('Control+z');assert.equal(await page.evaluate(()=>document.querySelectorAll('.object-select').length),2);await page.keyboard.press('Control+y');
+await page.click('loc=css:.object-select[title="定位点 #1"]');
+assert.equal(await page.evaluate(()=>!!document.querySelector('.inspector input[aria-label="拉伸高度 Z"]')),false);
+await page.fill('loc=css:.inspector input[aria-label="点 X"]','1.23456789');await page.keyboard.press('Enter');
+await page.fill('loc=css:.inspector input[aria-label="点 Y"]','2.3456789');await page.keyboard.press('Enter');
+const dp=page.waitForEvent('download',{timeout:30000});await page.click('loc=css:.header-actions button[title="下载可继续编辑的工程文件"]');await(await dp).saveAs(base+'edited-points.extrudecad.json');
+const shapes=JSON.parse(await fs.readFile(base+'edited-points.extrudecad.json','utf8')).shapes;assert.deepEqual(shapes[0].points,[{x:1.23456789,y:2.3456789}]);assert.deepEqual(shapes[2].points,[{x:0,y:0},{x:40,y:30}]);
+await page.click('loc=role:button[name="锁定 定位点 #1"]');assert.equal(await page.evaluate(()=>document.querySelector('.inspector input[aria-label="点 X"]').disabled),true);await page.click('loc=role:button[name="解锁 定位点 #1"]');
+await page.click('loc=css:.view-switch button >> nth=0');await page.focus('loc=css:.view-switch button >> nth=0');await page.keyboard.press('f');
+await page.screenshot({path:base+'points-lines-3d.png'});
+console.log(await page.evaluate(()=>({canvas:[...document.querySelectorAll('canvas')].map(c=>({label:c.getAttribute('aria-label'),width:c.width,height:c.height,rect:{x:c.getBoundingClientRect().x,y:c.getBoundingClientRect().y,width:c.getBoundingClientRect().width,height:c.getBoundingClientRect().height}})),error:document.querySelector('[role="alert"]')?.textContent})));
+await fs.writeFile(base+'checks-points-edit.json',JSON.stringify({undoConnectPreservesPoints:true,redo:true,exactXY:true,lineIndependentOfPoint:true,lockPreventsEditing:true},null,2));

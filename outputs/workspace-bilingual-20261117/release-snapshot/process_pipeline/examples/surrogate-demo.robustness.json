@@ -1,0 +1,21 @@
+{
+  "config_version": 1,
+  "candidates": [
+    {"id": "A", "inputs": {"x": -0.5, "y": 0.0}},
+    {"id": "B", "inputs": {"x": 0.0, "y": 0.0}},
+    {"id": "C", "inputs": {"x": 0.5, "y": 0.0}}
+  ],
+  "perturbations": {
+    "x": {"unit": "1", "halfwidth": 0.5},
+    "y": {"unit": "1", "halfwidth": 0.0}
+  },
+  "scenarios": [
+    {"id": "left", "offsets": {"x": -1.0, "y": 0.0}},
+    {"id": "center", "offsets": {"x": 0.0, "y": 0.0}},
+    {"id": "right", "offsets": {"x": 1.0, "y": 0.0}}
+  ],
+  "preferences": [
+    {"id": "energy", "weights": {"energy": 1.0, "signed_heat": 0.0, "zero_impact": 0.0}},
+    {"id": "equal", "weights": {"energy": 1.0, "signed_heat": 1.0, "zero_impact": 1.0}}
+  ]
+}

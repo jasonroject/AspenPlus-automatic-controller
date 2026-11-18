@@ -1,0 +1,182 @@
+[
+  {
+    "temperature_C": 310.0,
+    "length_m": 14.0,
+    "actual": {
+      "target_kg_h": 5.350536365635946,
+      "STD_electricity_kWh": 46.76188665607594,
+      "HR_electricity_kWh": 11.0449056514008,
+      "CF_STD": 15.712558127802229,
+      "CF_HR": 11.2062677808556
+    },
+    "prediction": {
+      "target_kg_h": 5.350227816641252,
+      "STD_electricity_kWh": 46.76910614465358,
+      "HR_electricity_kWh": 11.081634920750592,
+      "CF_STD": 15.714594535643648,
+      "CF_HR": 11.211767673452583
+    }
+  },
+  {
+    "temperature_C": 316.0,
+    "length_m": 10.8,
+    "actual": {
+      "target_kg_h": 5.299851553446826,
+      "STD_electricity_kWh": 48.370838480399954,
+      "HR_electricity_kWh": 11.279898380154002,
+      "CF_STD": 16.069199815293285,
+      "CF_HR": 11.344808271399986
+    },
+    "prediction": {
+      "target_kg_h": 5.297910813284136,
+      "STD_electricity_kWh": 48.36476272436273,
+      "HR_electricity_kWh": 11.35266139761998,
+      "CF_STD": 16.074310166729006,
+      "CF_HR": 11.358233600327361
+    }
+  },
+  {
+    "temperature_C": 316.0,
+    "length_m": 17.6,
+    "actual": {
+      "target_kg_h": 5.718106654798207,
+      "STD_electricity_kWh": 51.02671789451996,
+      "HR_electricity_kWh": 13.935777794274,
+      "CF_STD": 15.275263457651588,
+      "CF_HR": 10.896440995152844
+    },
+    "prediction": {
+      "target_kg_h": 5.718533371080885,
+      "STD_electricity_kWh": 51.01354277890718,
+      "HR_electricity_kWh": 13.855847604800857,
+      "CF_STD": 15.272730757518248,
+      "CF_HR": 10.88635476731721
+    }
+  },
+  {
+    "temperature_C": 318.0,
+    "length_m": 8.4,
+    "actual": {
+      "target_kg_h": 4.77639077860636,
+      "STD_electricity_kWh": 48.30789309645604,
+      "HR_electricity_kWh": 10.7461874359848,
+      "CF_STD": 17.80638624430071,
+      "CF_HR": 12.497698245678777
+    },
+    "prediction": {
+      "target_kg_h": 4.805393583881651,
+      "STD_electricity_kWh": 48.266414128492634,
+      "HR_electricity_kWh": 10.78525143540824,
+      "CF_STD": 17.69216074071555,
+      "CF_HR": 12.426827796720254
+    }
+  },
+  {
+    "temperature_C": 322.0,
+    "length_m": 11.8,
+    "actual": {
+      "target_kg_h": 5.813785780738574,
+      "STD_electricity_kWh": 51.74174721384399,
+      "HR_electricity_kWh": 13.2177599826996,
+      "CF_STD": 15.0821856381429,
+      "CF_HR": 10.609030581722235
+    },
+    "prediction": {
+      "target_kg_h": 5.813047628585732,
+      "STD_electricity_kWh": 51.781654502531744,
+      "HR_electricity_kWh": 13.356868565491045,
+      "CF_STD": 15.089658253818198,
+      "CF_HR": 10.627455259709103
+    }
+  },
+  {
+    "temperature_C": 324.0,
+    "length_m": 13.3,
+    "actual": {
+      "target_kg_h": 5.91147277006285,
+      "STD_electricity_kWh": 53.65819509377596,
+      "HR_electricity_kWh": 14.6420955513804,
+      "CF_STD": 15.089067735366353,
+      "CF_HR": 10.6336348604154
+    },
+    "prediction": {
+      "target_kg_h": 5.9162244469261465,
+      "STD_electricity_kWh": 53.58803137523622,
+      "HR_electricity_kWh": 14.548713240003964,
+      "CF_STD": 15.067051421743203,
+      "CF_HR": 10.612547662432364
+    }
+  },
+  {
+    "temperature_C": 330.0,
+    "length_m": 9.5,
+    "actual": {
+      "target_kg_h": 6.008132251966736,
+      "STD_electricity_kWh": 54.67923328478398,
+      "HR_electricity_kWh": 14.138807763324,
+      "CF_STD": 14.94182337704961,
+      "CF_HR": 10.386800454664268
+    },
+    "prediction": {
+      "target_kg_h": 5.992552397777183,
+      "STD_electricity_kWh": 54.75316269595262,
+      "HR_electricity_kWh": 14.294307624304922,
+      "CF_STD": 14.990949452235972,
+      "CF_HR": 10.433272948608362
+    }
+  },
+  {
+    "temperature_C": 340.0,
+    "length_m": 19.5,
+    "actual": {
+      "target_kg_h": 6.07991961118179,
+      "STD_electricity_kWh": 64.37788506745997,
+      "HR_electricity_kWh": 21.111067507008,
+      "CF_STD": 16.095473171923135,
+      "CF_HR": 11.291518917904
+    },
+    "prediction": {
+      "target_kg_h": 6.082130925394137,
+      "STD_electricity_kWh": 64.36532113644213,
+      "HR_electricity_kWh": 21.095245302152726,
+      "CF_STD": 16.08790892612184,
+      "CF_HR": 11.285339634916001
+    }
+  },
+  {
+    "temperature_C": 348.0,
+    "length_m": 16.2,
+    "actual": {
+      "target_kg_h": 6.21465970497881,
+      "STD_electricity_kWh": 67.83207801727195,
+      "HR_electricity_kWh": 22.174500471888,
+      "CF_STD": 16.179451535250454,
+      "CF_HR": 11.219958779735167
+    },
+    "prediction": {
+      "target_kg_h": 6.2149201716232465,
+      "STD_electricity_kWh": 67.83565447114444,
+      "HR_electricity_kWh": 22.142419638379906,
+      "CF_STD": 16.17925379371498,
+      "CF_HR": 11.216095827611209
+    }
+  },
+  {
+    "temperature_C": 350.0,
+    "length_m": 7.3,
+    "actual": {
+      "target_kg_h": 6.46578615546072,
+      "STD_electricity_kWh": 64.86979791211601,
+      "HR_electricity_kWh": 18.578574219324,
+      "CF_STD": 15.06026530915971,
+      "CF_HR": 10.227239968698694
+    },
+    "prediction": {
+      "target_kg_h": 6.461166215114193,
+      "STD_electricity_kWh": 64.92046502482863,
+      "HR_electricity_kWh": 18.594234259375387,
+      "CF_STD": 15.07807277549887,
+      "CF_HR": 10.237934148120713
+    }
+  }
+]

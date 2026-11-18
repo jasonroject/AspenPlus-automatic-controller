@@ -1,0 +1,19 @@
+{
+  "criteria": {
+    "purchased_energy_kWh_kg": {
+      "unit": "kWh/kg",
+      "max_relative_error": 0.05,
+      "relative_floor": 0.01
+    },
+    "yield_fraction": {
+      "unit": "1",
+      "max_relative_error": 0.05,
+      "relative_floor": 0.001
+    },
+    "impact:Climate change": {
+      "unit": "kg CO2-eq/kg",
+      "max_relative_error": 0.05,
+      "relative_floor": 0.01
+    }
+  }
+}

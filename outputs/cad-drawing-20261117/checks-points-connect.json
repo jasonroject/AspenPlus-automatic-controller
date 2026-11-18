@@ -1,0 +1,13 @@
+{
+  "independentPoints": true,
+  "pointClick": true,
+  "pointUndo": true,
+  "connectTwoSelectedPoints": true,
+  "actualTypes": [
+    "point",
+    "point",
+    "segment"
+  ],
+  "length": 50,
+  "zeroThickness": true
+}

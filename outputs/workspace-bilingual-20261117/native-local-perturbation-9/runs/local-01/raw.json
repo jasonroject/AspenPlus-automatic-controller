@@ -1,0 +1,342 @@
+{
+  "capture_version": 1,
+  "profile_id": "htl-reference-hr",
+  "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+  "model_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+  "case_id": "local-01",
+  "split": "verification",
+  "parameters": {
+    "reactor_temperature_K": 601.15,
+    "tube_length_m": 12.25
+  },
+  "evidence_type": "native_simulation",
+  "started_at": "2026-11-17T16:38:44.762822+00:00",
+  "control_succeeded": true,
+  "solver_accepted": true,
+  "warnings": [
+    "* Calculations were completed with warnings                                *",
+    "* completed with warnings:                                                 *",
+    "*   COOLER    REACTOR   VALVE                                              *"
+  ],
+  "physical_validation": false,
+  "source_model_path": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-16\\project1jason\\automatic\\outputs\\htl_pipeline\\live\\source_HR.bkp",
+  "model_copy_path": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-16\\project1jason\\automatic\\outputs\\workspace-bilingual-20261117\\native-local-perturbation-9\\runs\\local-01\\input.bkp",
+  "readouts": {
+    "mass_FEED": {
+      "path": "\\Data\\Streams\\FEED\\Output\\MASSFLMX\\MIXED",
+      "value": 100.0,
+      "unit": "kg/hr"
+    },
+    "h_FEED": {
+      "path": "\\Data\\Streams\\FEED\\Output\\HMX_MASS\\MIXED",
+      "value": -3341.02058,
+      "unit": "cal/gm"
+    },
+    "mass_S2": {
+      "path": "\\Data\\Streams\\S2\\Output\\MASSFLMX\\MIXED",
+      "value": 100.0,
+      "unit": "kg/hr"
+    },
+    "h_S2": {
+      "path": "\\Data\\Streams\\S2\\Output\\HMX_MASS\\MIXED",
+      "value": -3322.34714,
+      "unit": "cal/gm"
+    },
+    "mass_S3": {
+      "path": "\\Data\\Streams\\S3\\Output\\MASSFLMX\\MIXED",
+      "value": 100.0,
+      "unit": "kg/hr"
+    },
+    "h_S3": {
+      "path": "\\Data\\Streams\\S3\\Output\\HMX_MASS\\MIXED",
+      "value": -2942.82428,
+      "unit": "cal/gm"
+    },
+    "mass_S4": {
+      "path": "\\Data\\Streams\\S4\\Output\\MASSFLMX\\MIXED",
+      "value": 100.00015,
+      "unit": "kg/hr"
+    },
+    "h_S4": {
+      "path": "\\Data\\Streams\\S4\\Output\\HMX_MASS\\MIXED",
+      "value": -2865.47692,
+      "unit": "cal/gm"
+    },
+    "mass_S5": {
+      "path": "\\Data\\Streams\\S5\\Output\\MASSFLMX\\MIXED",
+      "value": 100.00015,
+      "unit": "kg/hr"
+    },
+    "h_S5": {
+      "path": "\\Data\\Streams\\S5\\Output\\HMX_MASS\\MIXED",
+      "value": -3280.29398,
+      "unit": "cal/gm"
+    },
+    "mass_S6": {
+      "path": "\\Data\\Streams\\S6\\Output\\MASSFLMX\\MIXED",
+      "value": 100.00015,
+      "unit": "kg/hr"
+    },
+    "h_S6": {
+      "path": "\\Data\\Streams\\S6\\Output\\HMX_MASS\\MIXED",
+      "value": -3280.29398,
+      "unit": "cal/gm"
+    },
+    "mass_S7": {
+      "path": "\\Data\\Streams\\S7\\Output\\MASSFLMX\\MIXED",
+      "value": 98.3774282,
+      "unit": "kg/hr"
+    },
+    "h_S7": {
+      "path": "\\Data\\Streams\\S7\\Output\\HMX_MASS\\MIXED",
+      "value": -3311.464,
+      "unit": "cal/gm"
+    },
+    "mass_S8": {
+      "path": "\\Data\\Streams\\S8\\Output\\MASSFLMX\\MIXED",
+      "value": 1.62272179,
+      "unit": "kg/hr"
+    },
+    "h_S8": {
+      "path": "\\Data\\Streams\\S8\\Output\\HMX_MASS\\MIXED",
+      "value": -1138.40462,
+      "unit": "cal/gm"
+    },
+    "mass_S9": {
+      "path": "\\Data\\Streams\\S9\\Output\\MASSFLMX\\MIXED",
+      "value": 100.0,
+      "unit": "kg/hr"
+    },
+    "h_S9": {
+      "path": "\\Data\\Streams\\S9\\Output\\HMX_MASS\\MIXED",
+      "value": -2978.20318,
+      "unit": "cal/gm"
+    },
+    "mass_S10": {
+      "path": "\\Data\\Streams\\S10\\Output\\MASSFLMX\\MIXED",
+      "value": 100.00015,
+      "unit": "kg/hr"
+    },
+    "h_S10": {
+      "path": "\\Data\\Streams\\S10\\Output\\HMX_MASS\\MIXED",
+      "value": -3209.62037,
+      "unit": "cal/gm"
+    },
+    "power_PUMP": {
+      "path": "\\Data\\Blocks\\PUMP\\Output\\WNET",
+      "value": 2.1717208,
+      "unit": "kW"
+    },
+    "heat_HEATER": {
+      "path": "\\Data\\Blocks\\HEATER\\Output\\QCALC",
+      "value": 982.747369,
+      "unit": "cal/sec"
+    },
+    "heat_REACTOR": {
+      "path": "\\Data\\Blocks\\REACTOR\\Output\\QCALC",
+      "value": 2148.41829,
+      "unit": "cal/sec"
+    },
+    "heat_COOLER": {
+      "path": "\\Data\\Blocks\\COOLER\\Output\\QCALC",
+      "value": -1963.15896,
+      "unit": "cal/sec"
+    },
+    "heat_B6": {
+      "path": "\\Data\\Blocks\\B6\\Output\\QCALC",
+      "value": 113.684656,
+      "unit": "cal/sec"
+    },
+    "S7_CAT": {
+      "path": "\\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CAT",
+      "value": 3.67586223,
+      "unit": "kg/hr"
+    },
+    "S8_CAT": {
+      "path": "\\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CAT",
+      "value": 2.95823359e-05,
+      "unit": "kg/hr"
+    },
+    "S7_O-CRE-01": {
+      "path": "\\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\O-CRE-01",
+      "value": 2.33479794,
+      "unit": "kg/hr"
+    },
+    "S8_O-CRE-01": {
+      "path": "\\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\O-CRE-01",
+      "value": 6.68994471e-07,
+      "unit": "kg/hr"
+    },
+    "S7_CO2": {
+      "path": "\\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CO2",
+      "value": 0.00989315287,
+      "unit": "kg/hr"
+    },
+    "S8_CO2": {
+      "path": "\\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CO2",
+      "value": 0.0600994057,
+      "unit": "kg/hr"
+    },
+    "S7_CH4": {
+      "path": "\\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CH4",
+      "value": 0.000904461711,
+      "unit": "kg/hr"
+    },
+    "S8_CH4": {
+      "path": "\\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CH4",
+      "value": 0.0269193287,
+      "unit": "kg/hr"
+    },
+    "S7_H2O": {
+      "path": "\\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\H2O",
+      "value": 83.9531078,
+      "unit": "kg/hr"
+    },
+    "S8_H2O": {
+      "path": "\\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\H2O",
+      "value": 0.575885056,
+      "unit": "kg/hr"
+    }
+  },
+  "input_readback": {
+    "reactor_temperature_K": {
+      "path": "\\Data\\Blocks\\REACTOR\\Input\\REAC_TEMP",
+      "value": 601.15,
+      "unit": "K"
+    },
+    "tube_length_m": {
+      "path": "\\Data\\Blocks\\REACTOR\\Input\\LENGTH",
+      "value": 12.25,
+      "unit": "meter"
+    },
+    "heater_temperature_K": {
+      "path": "\\Data\\Blocks\\HEATER\\Input\\TEMP",
+      "value": 601.15,
+      "unit": "K"
+    },
+    "integration_tolerance": {
+      "path": "\\Data\\Blocks\\REACTOR\\Input\\INT_TOL",
+      "value": 0.0001,
+      "unit": ""
+    },
+    "maximum_integration_steps": {
+      "path": "\\Data\\Blocks\\REACTOR\\Input\\MAX_NSTEP",
+      "value": 100000,
+      "unit": ""
+    }
+  },
+  "solver_checks": [
+    {
+      "path": "\\Data\\Blocks\\PUMP\\Output\\BLKSTAT",
+      "value": 0,
+      "unit": "",
+      "accepted": true,
+      "label": "PUMP native block status (0 normal, 2 retained warning); completion report also required",
+      "accepted_values": [
+        0,
+        2
+      ]
+    },
+    {
+      "path": "\\Data\\Blocks\\HEATCHAG\\Output\\BLKSTAT",
+      "value": 0,
+      "unit": "",
+      "accepted": true,
+      "label": "HEATCHAG native block status (0 normal, 2 retained warning); completion report also required",
+      "accepted_values": [
+        0,
+        2
+      ]
+    },
+    {
+      "path": "\\Data\\Blocks\\HEATER\\Output\\BLKSTAT",
+      "value": 0,
+      "unit": "",
+      "accepted": true,
+      "label": "HEATER native block status (0 normal, 2 retained warning); completion report also required",
+      "accepted_values": [
+        0,
+        2
+      ]
+    },
+    {
+      "path": "\\Data\\Blocks\\REACTOR\\Output\\BLKSTAT",
+      "value": 2,
+      "unit": "",
+      "accepted": true,
+      "label": "REACTOR native block status (0 normal, 2 retained warning); completion report also required",
+      "accepted_values": [
+        0,
+        2
+      ]
+    },
+    {
+      "path": "\\Data\\Blocks\\COOLER\\Output\\BLKSTAT",
+      "value": 2,
+      "unit": "",
+      "accepted": true,
+      "label": "COOLER native block status (0 normal, 2 retained warning); completion report also required",
+      "accepted_values": [
+        0,
+        2
+      ]
+    },
+    {
+      "path": "\\Data\\Blocks\\VALVE\\Output\\BLKSTAT",
+      "value": 2,
+      "unit": "",
+      "accepted": true,
+      "label": "VALVE native block status (0 normal, 2 retained warning); completion report also required",
+      "accepted_values": [
+        0,
+        2
+      ]
+    },
+    {
+      "path": "\\Data\\Blocks\\B6\\Output\\BLKSTAT",
+      "value": 0,
+      "unit": "",
+      "accepted": true,
+      "label": "B6 native block status (0 normal, 2 retained warning); completion report also required",
+      "accepted_values": [
+        0,
+        2
+      ]
+    }
+  ],
+  "input_readback_after_run": {
+    "reactor_temperature_K": {
+      "path": "\\Data\\Blocks\\REACTOR\\Input\\REAC_TEMP",
+      "value": 601.15,
+      "unit": "K"
+    },
+    "tube_length_m": {
+      "path": "\\Data\\Blocks\\REACTOR\\Input\\LENGTH",
+      "value": 12.25,
+      "unit": "meter"
+    },
+    "heater_temperature_K": {
+      "path": "\\Data\\Blocks\\HEATER\\Input\\TEMP",
+      "value": 601.15,
+      "unit": "K"
+    },
+    "integration_tolerance": {
+      "path": "\\Data\\Blocks\\REACTOR\\Input\\INT_TOL",
+      "value": 0.0001,
+      "unit": ""
+    },
+    "maximum_integration_steps": {
+      "path": "\\Data\\Blocks\\REACTOR\\Input\\MAX_NSTEP",
+      "value": 100000,
+      "unit": ""
+    }
+  },
+  "elapsed_seconds": 157.98855559993535,
+  "report_sha256": "7a0596e9e3ce15ab68ad316984e9f118db60d6b0fb4781f9632460b3f37ead0d",
+  "report_available": true,
+  "report_completion_accepted": true,
+  "private_document_closed": true,
+  "source_sha256_after": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+  "source_unchanged": true,
+  "finished_at": "2026-11-17T16:41:39.880614+00:00"
+}

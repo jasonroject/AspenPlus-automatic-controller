@@ -1,0 +1,42 @@
+[
+  {
+    "label": "Ctrl append sleeve",
+    "selected": [
+      "圆角底板",
+      "导向套筒"
+    ]
+  },
+  {
+    "label": "Ctrl toggle sleeve off",
+    "selected": [
+      "圆角底板"
+    ]
+  },
+  {
+    "label": "Shift append sleeve",
+    "selected": [
+      "圆角底板",
+      "导向套筒"
+    ]
+  },
+  {
+    "label": "Ctrl blank preserves selection",
+    "selected": [
+      "圆角底板",
+      "导向套筒"
+    ]
+  },
+  {
+    "label": "Blank clears selection",
+    "selected": []
+  },
+  {
+    "label": "Visible uncommitted preview",
+    "layout": "viewport-grid layout-2d-only",
+    "panel": false,
+    "status": [
+      "二维轮廓预览 · 尚未应用确认应用取消预览"
+    ],
+    "count": 6
+  }
+]

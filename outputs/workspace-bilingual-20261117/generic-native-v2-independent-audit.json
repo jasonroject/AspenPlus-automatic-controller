@@ -1,0 +1,1215 @@
+{
+  "audit_passed": true,
+  "unique_native_cases": 37,
+  "native_runs_retained": 38,
+  "counts": {
+    "training": 20,
+    "holdout": 3,
+    "verification": 14
+  },
+  "model_sha256": "0ae413ef6cb13ac09abccdb37d060103eb94b4488b65310e8eadef3d1d6903bf",
+  "validation_passed": true,
+  "prediction_enabled": true,
+  "split_error_checks": {
+    "holdout": {
+      "purchased_energy_kWh_kg": {
+        "mae": 0.023763161393353105,
+        "rmse": 0.027671394137089512,
+        "max_relative_error": 0.015437342146556385
+      },
+      "yield_fraction": {
+        "mae": 0.0003087639476128783,
+        "rmse": 0.00034576729520477157,
+        "max_relative_error": 0.008545865639752221
+      },
+      "impact:Climate change": {
+        "mae": 0.0745632801135514,
+        "rmse": 0.0854832458330785,
+        "max_relative_error": 0.008368428191174905
+      }
+    },
+    "verification": {
+      "purchased_energy_kWh_kg": {
+        "mae": 0.02751508973833158,
+        "rmse": 0.03259485333018136,
+        "max_relative_error": 0.021747243427309774
+      },
+      "yield_fraction": {
+        "mae": 0.00043084793884227187,
+        "rmse": 0.0004910082353773605,
+        "max_relative_error": 0.013526195023085578
+      },
+      "impact:Climate change": {
+        "mae": 0.07650485782590317,
+        "rmse": 0.0845918158410564,
+        "max_relative_error": 0.012117068315895527
+      }
+    }
+  },
+  "prospective_verification_4": {
+    "expected": 4,
+    "valid_pairs": 4,
+    "complete": true,
+    "passed": true,
+    "metrics": {
+      "purchased_energy_kWh_kg": {
+        "unit": "kWh/kg",
+        "expected": 4,
+        "valid_pairs": 4,
+        "complete": true,
+        "mae": 0.006876995256198781,
+        "rmse": 0.007009348044924911,
+        "max_relative_error": 0.003447298394845694,
+        "relative_floor": 0.01,
+        "criterion": 0.05,
+        "passed": true
+      },
+      "yield_fraction": {
+        "unit": "1",
+        "expected": 4,
+        "valid_pairs": 4,
+        "complete": true,
+        "mae": 0.0003079337859152025,
+        "rmse": 0.0004481197175962983,
+        "max_relative_error": 0.013526195023085578,
+        "relative_floor": 0.001,
+        "criterion": 0.05,
+        "passed": true
+      },
+      "impact:Climate change": {
+        "unit": "kg CO2-eq/kg",
+        "expected": 4,
+        "valid_pairs": 4,
+        "complete": true,
+        "mae": 0.062203329842851485,
+        "rmse": 0.07374323683101336,
+        "max_relative_error": 0.01108113023219526,
+        "relative_floor": 0.01,
+        "criterion": 0.05,
+        "passed": true
+      }
+    },
+    "role": "verification",
+    "out_of_sample": true,
+    "prospectively_reserved_for_v2": true,
+    "records": [
+      {
+        "id": "v2-verify-T322-L9p75",
+        "split": "verification",
+        "inputs": {
+          "reactor_temperature_K": 595.15,
+          "tube_length_m": 9.75
+        },
+        "actual": {
+          "purchased_energy_kWh_kg": 2.1868892358504577,
+          "yield_fraction": 0.05568797609716879,
+          "impact:Climate change": 10.922795778273489
+        },
+        "source": "native-v2-extension-12/runs/v2-verify-T322-L9p75/raw.json",
+        "evidence_type": "native_simulation",
+        "predicted": {
+          "purchased_energy_kWh_kg": 2.179350376098005,
+          "yield_fraction": 0.05583332457602163,
+          "impact:Climate change": 10.801758855754768
+        },
+        "constraints_passed": true,
+        "errors": []
+      },
+      {
+        "id": "v2-verify-T332-L14",
+        "split": "verification",
+        "inputs": {
+          "reactor_temperature_K": 605.15,
+          "tube_length_m": 14
+        },
+        "actual": {
+          "purchased_energy_kWh_kg": 2.801625489898055,
+          "yield_fraction": 0.06084713670448617,
+          "impact:Climate change": 10.666048995999322
+        },
+        "source": "native-v2-extension-12/runs/v2-verify-T332-L14/raw.json",
+        "evidence_type": "native_simulation",
+        "predicted": {
+          "purchased_energy_kWh_kg": 2.797093183735998,
+          "yield_fraction": 0.0607750163243148,
+          "impact:Climate change": 10.696003141617272
+        },
+        "constraints_passed": true,
+        "errors": []
+      },
+      {
+        "id": "v2-verify-T342-L18p25",
+        "split": "verification",
+        "inputs": {
+          "reactor_temperature_K": 615.15,
+          "tube_length_m": 18.25
+        },
+        "actual": {
+          "purchased_energy_kWh_kg": 3.4697509375377993,
+          "yield_fraction": 0.061238914358775993,
+          "impact:Climate change": 11.233637850583095
+        },
+        "source": "native-v2-extension-12/runs/v2-verify-T342-L18p25/raw.json",
+        "evidence_type": "native_simulation",
+        "predicted": {
+          "purchased_energy_kWh_kg": 3.4774707892593044,
+          "yield_fraction": 0.06138372889297557,
+          "impact:Climate change": 11.211377016169012
+        },
+        "constraints_passed": true,
+        "errors": []
+      },
+      {
+        "id": "v2-verify-T348-L6p75",
+        "split": "verification",
+        "inputs": {
+          "reactor_temperature_K": 621.15,
+          "tube_length_m": 6.75
+        },
+        "actual": {
+          "purchased_energy_kWh_kg": 2.719626189774287,
+          "yield_fraction": 0.06427910797922881,
+          "impact:Climate change": 10.135894490559352
+        },
+        "source": "native-v2-extension-12/runs/v2-verify-T348-L6p75/raw.json",
+        "evidence_type": "native_simulation",
+        "predicted": {
+          "purchased_energy_kWh_kg": 2.727343153163067,
+          "yield_fraction": 0.06340965622879179,
+          "impact:Climate change": 10.211455907380003
+        },
+        "constraints_passed": true,
+        "errors": []
+      }
+    ],
+    "scope": "New prospectively reserved v2 coordinates"
+  },
+  "original_failed_point": {
+    "expected": 1,
+    "valid_pairs": 1,
+    "complete": true,
+    "passed": true,
+    "metrics": {
+      "purchased_energy_kWh_kg": {
+        "unit": "kWh/kg",
+        "expected": 1,
+        "valid_pairs": 1,
+        "complete": true,
+        "mae": 0.030079928881167284,
+        "rmse": 0.030079928881167284,
+        "max_relative_error": 0.012390090922659181,
+        "relative_floor": 0.01,
+        "criterion": 0.05,
+        "passed": true
+      },
+      "yield_fraction": {
+        "unit": "1",
+        "expected": 1,
+        "valid_pairs": 1,
+        "complete": true,
+        "mae": 0.00064591109562364,
+        "rmse": 0.00064591109562364,
+        "max_relative_error": 0.01052598232303656,
+        "relative_floor": 0.001,
+        "criterion": 0.05,
+        "passed": true
+      },
+      "impact:Climate change": {
+        "unit": "kg CO2-eq/kg",
+        "expected": 1,
+        "valid_pairs": 1,
+        "complete": true,
+        "mae": 0.10655456898793148,
+        "rmse": 0.10655456898793148,
+        "max_relative_error": 0.010375901138481919,
+        "relative_floor": 0.01,
+        "criterion": 0.05,
+        "passed": true
+      }
+    },
+    "record": {
+      "id": "verify-T335-L8p5",
+      "split": "verification",
+      "inputs": {
+        "reactor_temperature_K": 608.15,
+        "tube_length_m": 8.5
+      },
+      "actual": {
+        "purchased_energy_kWh_kg": 2.427740770340649,
+        "yield_fraction": 0.0613634980376165,
+        "impact:Climate change": 10.269427933612839
+      },
+      "source": "generic-native-pilot-17/runs/verify-T335-L8p5/raw.json",
+      "evidence_type": "native_simulation",
+      "predicted": {
+        "purchased_energy_kWh_kg": 2.3976608414594818,
+        "yield_fraction": 0.06200940913324014,
+        "impact:Climate change": 10.162873364624907
+      },
+      "constraints_passed": true,
+      "errors": []
+    },
+    "v1_frozen_record": {
+      "id": "verify-T335-L8p5",
+      "split": "verification",
+      "inputs": {
+        "reactor_temperature_K": 608.15,
+        "tube_length_m": 8.5
+      },
+      "actual": {
+        "purchased_energy_kWh_kg": 2.427740770340649,
+        "yield_fraction": 0.0613634980376165,
+        "impact:Climate change": 10.269427933612839
+      },
+      "source": "runs/verify-T335-L8p5/raw.json",
+      "evidence_type": "native_simulation",
+      "predicted": {
+        "purchased_energy_kWh_kg": 2.5676232806233035,
+        "yield_fraction": 0.05536727329249123,
+        "impact:Climate change": 11.248792781854693
+      },
+      "constraints_passed": true,
+      "errors": []
+    },
+    "scope": "Previously known v1 failure, retained as development evidence; not a new independent test"
+  },
+  "scalar_mean_checks": [
+    {
+      "id": "case-001",
+      "split": "training",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 2.895765884246538,
+        "yield_fraction": 0.027673645131258615,
+        "impact:Climate change": 20.807561640868393
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 2.8957658774063173,
+        "yield_fraction": 0.02767364506608284,
+        "impact:Climate change": 20.807561526792423
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 6.840220834192223e-09,
+        "yield_fraction": 6.517577449960399e-11,
+        "impact:Climate change": 1.1407597000356873e-07
+      },
+      "scope": "Training residual, not independent validation"
+    },
+    {
+      "id": "case-002",
+      "split": "training",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 2.065465292526096,
+        "yield_fraction": 0.05131097984657566,
+        "impact:Climate change": 11.61593505824727
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 2.0654652929946034,
+        "yield_fraction": 0.05131098016873314,
+        "impact:Climate change": 11.615934988804918
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 4.685074550536683e-10,
+        "yield_fraction": 3.2215747430841546e-10,
+        "impact:Climate change": 6.944235231287621e-08
+      },
+      "scope": "Training residual, not independent validation"
+    },
+    {
+      "id": "case-003",
+      "split": "training",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 2.341713680433808,
+        "yield_fraction": 0.055559172478569625,
+        "impact:Climate change": 11.082964406145303
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 2.3417136926152478,
+        "yield_fraction": 0.055559172527826516,
+        "impact:Climate change": 11.082964409376768
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 1.2181439856817633e-08,
+        "yield_fraction": 4.925689023327351e-11,
+        "impact:Climate change": 3.231464873465484e-09
+      },
+      "scope": "Training residual, not independent validation"
+    },
+    {
+      "id": "case-004",
+      "split": "holdout",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 2.6863470465998716,
+        "yield_fraction": 0.035080838813966106,
+        "impact:Climate change": 16.717968805736213
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 2.7112294304682427,
+        "yield_fraction": 0.03481720668919655,
+        "impact:Climate change": 16.835487650490247
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 0.02488238386837116,
+        "yield_fraction": 0.00026363212476955555,
+        "impact:Climate change": 0.11751884475403429
+      },
+      "scope": "Frozen held-out/verification prediction"
+    },
+    {
+      "id": "case-005",
+      "split": "training",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 2.2572614758694542,
+        "yield_fraction": 0.05765003981134084,
+        "impact:Climate change": 10.67122297587204
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 2.257261486153525,
+        "yield_fraction": 0.057650039245132775,
+        "impact:Climate change": 10.671223089819675
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 1.028407092817929e-08,
+        "yield_fraction": 5.662080665436164e-10,
+        "impact:Climate change": 1.1394763532734942e-07
+      },
+      "scope": "Training residual, not independent validation"
+    },
+    {
+      "id": "case-006",
+      "split": "holdout",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 2.706607985223567,
+        "yield_fraction": 0.05796269131322667,
+        "impact:Climate change": 11.001051510466587
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 2.7124740665066747,
+        "yield_fraction": 0.0578179146893739,
+        "impact:Climate change": 11.018956495683668
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 0.005866081283107505,
+        "yield_fraction": 0.0001447766238527673,
+        "impact:Climate change": 0.01790498521708095
+      },
+      "scope": "Frozen held-out/verification prediction"
+    },
+    {
+      "id": "case-007",
+      "split": "training",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 2.5560993785572976,
+        "yield_fraction": 0.04400948179207828,
+        "impact:Climate change": 13.644745630865824
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 2.556099365632918,
+        "yield_fraction": 0.044009482222378576,
+        "impact:Climate change": 13.644745663592843
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 1.2924379788614715e-08,
+        "yield_fraction": 4.303002953953694e-10,
+        "impact:Climate change": 3.272701931678057e-08
+      },
+      "scope": "Training residual, not independent validation"
+    },
+    {
+      "id": "case-008",
+      "split": "holdout",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 2.6261657378409473,
+        "yield_fraction": 0.06060042552121615,
+        "impact:Climate change": 10.547501675749563
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 2.5856247188123236,
+        "yield_fraction": 0.061118308615432666,
+        "impact:Climate change": 10.4592356653809
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 0.040541019028623726,
+        "yield_fraction": 0.0005178830942165133,
+        "impact:Climate change": 0.08826601036866322
+      },
+      "scope": "Frozen held-out/verification prediction"
+    },
+    {
+      "id": "case-009",
+      "split": "training",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 3.1027846169210185,
+        "yield_fraction": 0.0596131692866609,
+        "impact:Climate change": 11.104017541253086
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 3.1027845725238743,
+        "yield_fraction": 0.059613169265935066,
+        "impact:Climate change": 11.104017462098058
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 4.439714418325025e-08,
+        "yield_fraction": 2.0725830773837828e-11,
+        "impact:Climate change": 7.915502742150693e-08
+      },
+      "scope": "Training residual, not independent validation"
+    },
+    {
+      "id": "case-010",
+      "split": "training",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 2.5012682329913387,
+        "yield_fraction": 0.05381846195780881,
+        "impact:Climate change": 11.480289219401683
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 2.5012681994350654,
+        "yield_fraction": 0.05381846260631624,
+        "impact:Climate change": 11.480289130464513
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 3.355627331558253e-08,
+        "yield_fraction": 6.485074283135717e-10,
+        "impact:Climate change": 8.893717051705607e-08
+      },
+      "scope": "Training residual, not independent validation"
+    },
+    {
+      "id": "case-011",
+      "split": "training",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 2.9863124608541898,
+        "yield_fraction": 0.06230661649533429,
+        "impact:Climate change": 10.636261970192013
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 2.986312408837504,
+        "yield_fraction": 0.062306617400248836,
+        "impact:Climate change": 10.63626161770931
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 5.201668562548889e-08,
+        "yield_fraction": 9.049145460737762e-10,
+        "impact:Climate change": 3.5248270258136927e-07
+      },
+      "scope": "Training residual, not independent validation"
+    },
+    {
+      "id": "case-012",
+      "split": "training",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 3.500809816987609,
+        "yield_fraction": 0.0607020408360424,
+        "impact:Climate change": 11.332329567782349
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 3.5008098874267133,
+        "yield_fraction": 0.06070204078881166,
+        "impact:Climate change": 11.332329696427855
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 7.043910432713574e-08,
+        "yield_fraction": 4.72307401522265e-11,
+        "impact:Climate change": 1.2864550669178243e-07
+      },
+      "scope": "Training residual, not independent validation"
+    },
+    {
+      "id": "case-013",
+      "split": "training",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 2.5515979702003797,
+        "yield_fraction": 0.06263008512588299,
+        "impact:Climate change": 10.189807099713368
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 2.551598022788791,
+        "yield_fraction": 0.06263008426194488,
+        "impact:Climate change": 10.189807242199269
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 5.258841140332038e-08,
+        "yield_fraction": 8.639381016140035e-10,
+        "impact:Climate change": 1.4248590041177067e-07
+      },
+      "scope": "Training residual, not independent validation"
+    },
+    {
+      "id": "case-014",
+      "split": "training",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 3.3612242632982814,
+        "yield_fraction": 0.0633310369820657,
+        "impact:Climate change": 10.86325893249218
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 3.3612243040739376,
+        "yield_fraction": 0.06333103644682936,
+        "impact:Climate change": 10.863259215613141
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 4.077565618487711e-08,
+        "yield_fraction": 5.352363413591021e-10,
+        "impact:Climate change": 2.8312096134186504e-07
+      },
+      "scope": "Training residual, not independent validation"
+    },
+    {
+      "id": "case-015",
+      "split": "training",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 3.9343193686028597,
+        "yield_fraction": 0.061069091495752695,
+        "impact:Climate change": 11.739262433661667
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 3.9343193258868814,
+        "yield_fraction": 0.06106909154521536,
+        "impact:Climate change": 11.739262375252435
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 4.271597831007057e-08,
+        "yield_fraction": 4.946266313199388e-11,
+        "impact:Climate change": 5.840923122946151e-08
+      },
+      "scope": "Training residual, not independent validation"
+    },
+    {
+      "id": "verify-T335-L8p5",
+      "split": "verification",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 2.427740770340649,
+        "yield_fraction": 0.0613634980376165,
+        "impact:Climate change": 10.269427933612839
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 2.3976608414594827,
+        "yield_fraction": 0.06200940913324042,
+        "impact:Climate change": 10.162873364626307
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 0.030079928881166396,
+        "yield_fraction": 0.0006459110956239175,
+        "impact:Climate change": 0.1065545689865317
+      },
+      "scope": "Frozen held-out/verification prediction"
+    },
+    {
+      "id": "verify-T345-L17p5",
+      "split": "verification",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 3.5439860096625613,
+        "yield_fraction": 0.061618044047683,
+        "impact:Climate change": 11.25957895313683
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 3.548146752364733,
+        "yield_fraction": 0.06172813707306546,
+        "impact:Climate change": 11.24424298846393
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 0.004160742702171927,
+        "yield_fraction": 0.00011009302538245863,
+        "impact:Climate change": 0.015335964672900104
+      },
+      "scope": "Frozen held-out/verification prediction"
+    },
+    {
+      "id": "local-01",
+      "split": "verification",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 2.542397513415583,
+        "yield_fraction": 0.06010690421330371,
+        "impact:Climate change": 10.5451229150657
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 2.4871073758023394,
+        "yield_fraction": 0.06076019560165744,
+        "impact:Climate change": 10.417346940305013
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 0.05529013761324375,
+        "yield_fraction": 0.0006532913883537314,
+        "impact:Climate change": 0.12777597476068792
+      },
+      "scope": "Frozen held-out/verification prediction"
+    },
+    {
+      "id": "local-02",
+      "split": "verification",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 2.5587770708031314,
+        "yield_fraction": 0.060124065152109746,
+        "impact:Climate change": 10.556797327898847
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 2.510877102606831,
+        "yield_fraction": 0.060678510447411356,
+        "impact:Climate change": 10.455811370894288
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 0.0478999681963006,
+        "yield_fraction": 0.0005544452953016102,
+        "impact:Climate change": 0.10098595700455881
+      },
+      "scope": "Frozen held-out/verification prediction"
+    },
+    {
+      "id": "local-03",
+      "split": "verification",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 2.574568795454647,
+        "yield_fraction": 0.060136263114628184,
+        "impact:Climate change": 10.568687305381571
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 2.5342301499042827,
+        "yield_fraction": 0.060592393287131334,
+        "impact:Climate change": 10.493577146454331
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 0.04033864555036404,
+        "yield_fraction": 0.0004561301725031497,
+        "impact:Climate change": 0.07511015892723982
+      },
+      "scope": "Frozen held-out/verification prediction"
+    },
+    {
+      "id": "local-04",
+      "split": "verification",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 2.6092164442836023,
+        "yield_fraction": 0.06060001078667651,
+        "impact:Climate change": 10.532868274416336
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 2.5607712121042083,
+        "yield_fraction": 0.06123931161066427,
+        "impact:Climate change": 10.416205220468198
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 0.048445232179394004,
+        "yield_fraction": 0.0006393008239877554,
+        "impact:Climate change": 0.11666305394813747
+      },
+      "scope": "Frozen held-out/verification prediction"
+    },
+    {
+      "id": "local-06",
+      "split": "verification",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 2.643110560848479,
+        "yield_fraction": 0.060593175785922465,
+        "impact:Climate change": 10.563191841417078
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 2.609823385193624,
+        "yield_fraction": 0.060998973905843225,
+        "impact:Climate change": 10.500767487083044
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 0.03328717565485473,
+        "yield_fraction": 0.0004057981199207597,
+        "impact:Climate change": 0.06242435433403415
+      },
+      "scope": "Frozen held-out/verification prediction"
+    },
+    {
+      "id": "local-07",
+      "split": "verification",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 2.6783126985708092,
+        "yield_fraction": 0.06103535494626566,
+        "impact:Climate change": 10.532211894062131
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 2.637962005207683,
+        "yield_fraction": 0.0616122784079009,
+        "impact:Climate change": 10.432322149865197
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 0.04035069336312613,
+        "yield_fraction": 0.000576923461635237,
+        "impact:Climate change": 0.09988974419693442
+      },
+      "scope": "Frozen held-out/verification prediction"
+    },
+    {
+      "id": "local-08",
+      "split": "verification",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 2.695564044093695,
+        "yield_fraction": 0.06102311375859947,
+        "impact:Climate change": 10.548972849662272
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 2.663462002844005,
+        "yield_fraction": 0.061460296450702175,
+        "impact:Climate change": 10.478315380487656
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 0.03210204124968996,
+        "yield_fraction": 0.0004371826921027028,
+        "impact:Climate change": 0.07065746917461624
+      },
+      "scope": "Frozen held-out/verification prediction"
+    },
+    {
+      "id": "local-09",
+      "split": "verification",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 2.7138550191455035,
+        "yield_fraction": 0.06099464236457248,
+        "impact:Climate change": 10.568998245803078
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 2.6881063092239863,
+        "yield_fraction": 0.06131570228989252,
+        "impact:Climate change": 10.522140801618242
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 0.025748709921517232,
+        "yield_fraction": 0.00032105992532004135,
+        "impact:Climate change": 0.04685744418483573
+      },
+      "scope": "Frozen held-out/verification prediction"
+    },
+    {
+      "id": "v2-train-T317-L8",
+      "split": "training",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 2.2856415324485826,
+        "yield_fraction": 0.04541491778838208,
+        "impact:Climate change": 13.081259666468746
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 2.2856415323277224,
+        "yield_fraction": 0.0454149182472794,
+        "impact:Climate change": 13.081259742844155
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 1.208602107283241e-10,
+        "yield_fraction": 4.5889731598025563e-10,
+        "impact:Climate change": 7.637540910820917e-08
+      },
+      "scope": "Training residual, not independent validation"
+    },
+    {
+      "id": "v2-train-T317-L16p5",
+      "split": "training",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 2.417777504050745,
+        "yield_fraction": 0.05740625258592484,
+        "impact:Climate change": 10.844726546074522
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 2.417777501209657,
+        "yield_fraction": 0.05740625235138877,
+        "impact:Climate change": 10.844726639092645
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 2.8410882535467863e-09,
+        "yield_fraction": 2.3453607111978414e-10,
+        "impact:Climate change": 9.301812298190271e-08
+      },
+      "scope": "Training residual, not independent validation"
+    },
+    {
+      "id": "v2-train-T327-L8",
+      "split": "training",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 2.257834669973307,
+        "yield_fraction": 0.055222530333287015,
+        "impact:Climate change": 11.053685060791118
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 2.2578346421247453,
+        "yield_fraction": 0.05522253003843412,
+        "impact:Climate change": 11.053685061832354
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 2.784856167892258e-08,
+        "yield_fraction": 2.94852892102071e-10,
+        "impact:Climate change": 1.0412364304102084e-09
+      },
+      "scope": "Training residual, not independent validation"
+    },
+    {
+      "id": "v2-train-T327-L16p5",
+      "split": "training",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 2.778158416033458,
+        "yield_fraction": 0.05964577805634839,
+        "impact:Climate change": 10.814133369617974
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 2.7781584112084565,
+        "yield_fraction": 0.05964577848273285,
+        "impact:Climate change": 10.814133180548273
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 4.82500128740071e-09,
+        "yield_fraction": 4.2638446245968353e-10,
+        "impact:Climate change": 1.8906970034038295e-07
+      },
+      "scope": "Training residual, not independent validation"
+    },
+    {
+      "id": "v2-train-T337-L8",
+      "split": "training",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 2.442266544759971,
+        "yield_fraction": 0.061764126017254686,
+        "impact:Climate change": 10.22658514456401
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 2.4422666970460556,
+        "yield_fraction": 0.06176412429962474,
+        "impact:Climate change": 10.226585530332832
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 1.5228608463146998e-07,
+        "yield_fraction": 1.7176299479948476e-09,
+        "impact:Climate change": 3.8576882133156687e-07
+      },
+      "scope": "Training residual, not independent validation"
+    },
+    {
+      "id": "v2-train-T337-L16p5",
+      "split": "training",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 3.1600258653550126,
+        "yield_fraction": 0.0611204776193759,
+        "impact:Climate change": 10.951982390853011
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 3.160025877076366,
+        "yield_fraction": 0.061120477244548076,
+        "impact:Climate change": 10.95198259313093
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 1.1721353221361142e-08,
+        "yield_fraction": 3.7482782155873196e-10,
+        "impact:Climate change": 2.0227791885929491e-07
+      },
+      "scope": "Training residual, not independent validation"
+    },
+    {
+      "id": "v2-train-T347-L8",
+      "split": "training",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 2.8415538384563037,
+        "yield_fraction": 0.06411831823739761,
+        "impact:Climate change": 10.268135935703642
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 2.841553714211672,
+        "yield_fraction": 0.06411831960015957,
+        "impact:Climate change": 10.26813551318147
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 1.242446319160706e-07,
+        "yield_fraction": 1.3627619588341133e-09,
+        "impact:Climate change": 4.2252217191673935e-07
+      },
+      "scope": "Training residual, not independent validation"
+    },
+    {
+      "id": "v2-train-T347-L16p5",
+      "split": "training",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 3.5504164351623304,
+        "yield_fraction": 0.0620059630369119,
+        "impact:Climate change": 11.219040084673184
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 3.5504164350197778,
+        "yield_fraction": 0.062005963135999057,
+        "impact:Climate change": 11.219039993634565
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 1.425526363618701e-10,
+        "yield_fraction": 9.908715514761468e-11,
+        "impact:Climate change": 9.103861842163496e-08
+      },
+      "scope": "Training residual, not independent validation"
+    },
+    {
+      "id": "v2-verify-T322-L9p75",
+      "split": "verification",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 2.1868892358504577,
+        "yield_fraction": 0.05568797609716879,
+        "impact:Climate change": 10.922795778273489
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 2.1793503760980113,
+        "yield_fraction": 0.055833324576021616,
+        "impact:Climate change": 10.801758855754636
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 0.007538859752446392,
+        "yield_fraction": 0.00014534847885282892,
+        "impact:Climate change": 0.12103692251885256
+      },
+      "scope": "Frozen held-out/verification prediction"
+    },
+    {
+      "id": "v2-verify-T332-L14",
+      "split": "verification",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 2.801625489898055,
+        "yield_fraction": 0.06084713670448617,
+        "impact:Climate change": 10.666048995999322
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 2.7970931837360062,
+        "yield_fraction": 0.06077501632431503,
+        "impact:Climate change": 10.696003141614893
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 0.004532306162048805,
+        "yield_fraction": 7.212038017113953e-05,
+        "impact:Climate change": 0.029954145615571193
+      },
+      "scope": "Frozen held-out/verification prediction"
+    },
+    {
+      "id": "v2-verify-T342-L18p25",
+      "split": "verification",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 3.4697509375377993,
+        "yield_fraction": 0.061238914358775993,
+        "impact:Climate change": 11.233637850583095
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 3.4774707892593177,
+        "yield_fraction": 0.06138372889297567,
+        "impact:Climate change": 11.211377016169218
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 0.007719851721518456,
+        "yield_fraction": 0.0001448145341996776,
+        "impact:Climate change": 0.022260834413877717
+      },
+      "scope": "Frozen held-out/verification prediction"
+    },
+    {
+      "id": "v2-verify-T348-L6p75",
+      "split": "verification",
+      "native_outputs": {
+        "purchased_energy_kWh_kg": 2.719626189774287,
+        "yield_fraction": 0.06427910797922881,
+        "impact:Climate change": 10.135894490559352
+      },
+      "scalar_mean": {
+        "purchased_energy_kWh_kg": 2.727343153163094,
+        "yield_fraction": 0.06340965622879166,
+        "impact:Climate change": 10.21145590737856
+      },
+      "absolute_residual": {
+        "purchased_energy_kWh_kg": 0.00771696338880723,
+        "yield_fraction": 0.0008694517504371502,
+        "impact:Climate change": 0.07556141681920892
+      },
+      "scope": "Frozen held-out/verification prediction"
+    }
+  ],
+  "native_residual_checks": [
+    {
+      "id": "case-001",
+      "maximum_block_mass_residual_kg_h": 0.0002250000000003638,
+      "maximum_block_energy_residual_kW": 1.0260575955614581e-06
+    },
+    {
+      "id": "case-002",
+      "maximum_block_mass_residual_kg_h": 6.399999999473494e-05,
+      "maximum_block_energy_residual_kW": 4.011468490716652e-07
+    },
+    {
+      "id": "case-003",
+      "maximum_block_mass_residual_kg_h": 0.0005160000000046239,
+      "maximum_block_energy_residual_kW": 5.446756858873414e-07
+    },
+    {
+      "id": "case-004",
+      "maximum_block_mass_residual_kg_h": 9.099999999762076e-05,
+      "maximum_block_energy_residual_kW": 8.887253670764039e-07
+    },
+    {
+      "id": "case-005",
+      "maximum_block_mass_residual_kg_h": 0.00010199999999827014,
+      "maximum_block_energy_residual_kW": 1.9037444696223815e-06
+    },
+    {
+      "id": "case-006",
+      "maximum_block_mass_residual_kg_h": 0.00015500000000656655,
+      "maximum_block_energy_residual_kW": 9.257189628186779e-07
+    },
+    {
+      "id": "case-007",
+      "maximum_block_mass_residual_kg_h": 0.00011200000000144428,
+      "maximum_block_energy_residual_kW": 2.17705033203619e-06
+    },
+    {
+      "id": "case-008",
+      "maximum_block_mass_residual_kg_h": 0.00015700000000151704,
+      "maximum_block_energy_residual_kW": 1.8105205807916747e-06
+    },
+    {
+      "id": "case-009",
+      "maximum_block_mass_residual_kg_h": 0.0002190000000013015,
+      "maximum_block_energy_residual_kW": 6.433915469283846e-07
+    },
+    {
+      "id": "case-010",
+      "maximum_block_mass_residual_kg_h": 8.400000000108321e-05,
+      "maximum_block_energy_residual_kW": 5.316935265398115e-07
+    },
+    {
+      "id": "case-011",
+      "maximum_block_mass_residual_kg_h": 0.0002910000000042601,
+      "maximum_block_energy_residual_kW": 1.67646508586472e-06
+    },
+    {
+      "id": "case-012",
+      "maximum_block_mass_residual_kg_h": 0.00019500000000505224,
+      "maximum_block_energy_residual_kW": 1.0770952769689757e-06
+    },
+    {
+      "id": "case-013",
+      "maximum_block_mass_residual_kg_h": 0.00011000000000649379,
+      "maximum_block_energy_residual_kW": 9.117920303225446e-07
+    },
+    {
+      "id": "case-014",
+      "maximum_block_mass_residual_kg_h": 0.0004119999999971924,
+      "maximum_block_energy_residual_kW": 1.150056732512894e-06
+    },
+    {
+      "id": "case-015",
+      "maximum_block_mass_residual_kg_h": 0.00032099999999957163,
+      "maximum_block_energy_residual_kW": 1.5227187120103736e-06
+    },
+    {
+      "id": "verify-T335-L8p5",
+      "maximum_block_mass_residual_kg_h": 0.00010600000000238197,
+      "maximum_block_energy_residual_kW": 1.286114215126588e-06
+    },
+    {
+      "id": "verify-T345-L17p5",
+      "maximum_block_mass_residual_kg_h": 0.0005879999999933716,
+      "maximum_block_energy_residual_kW": 1.3690068954019807e-06
+    },
+    {
+      "id": "local-01",
+      "maximum_block_mass_residual_kg_h": 0.00015000000000497948,
+      "maximum_block_energy_residual_kW": 7.617167891993404e-07
+    },
+    {
+      "id": "local-02",
+      "maximum_block_mass_residual_kg_h": 0.0001869999999968286,
+      "maximum_block_energy_residual_kW": 6.334547855146866e-07
+    },
+    {
+      "id": "local-03",
+      "maximum_block_mass_residual_kg_h": 0.00012900000000115597,
+      "maximum_block_energy_residual_kW": 9.693674733468605e-07
+    },
+    {
+      "id": "local-04",
+      "maximum_block_mass_residual_kg_h": 0.00013800000000685486,
+      "maximum_block_energy_residual_kW": 1.6271770918452333e-06
+    },
+    {
+      "id": "local-06",
+      "maximum_block_mass_residual_kg_h": 0.00011700000000303135,
+      "maximum_block_energy_residual_kW": 9.122429673880106e-07
+    },
+    {
+      "id": "local-07",
+      "maximum_block_mass_residual_kg_h": 0.00018599999999935335,
+      "maximum_block_energy_residual_kW": 7.873227332311217e-07
+    },
+    {
+      "id": "local-08",
+      "maximum_block_mass_residual_kg_h": 0.0001330000000052678,
+      "maximum_block_energy_residual_kW": 1.449423267629868e-06
+    },
+    {
+      "id": "local-09",
+      "maximum_block_mass_residual_kg_h": 0.00017499999999870397,
+      "maximum_block_energy_residual_kW": 1.7531393685654706e-06
+    },
+    {
+      "id": "v2-train-T317-L8",
+      "maximum_block_mass_residual_kg_h": 0.000240000000005125,
+      "maximum_block_energy_residual_kW": 1.855670808431631e-06
+    },
+    {
+      "id": "v2-train-T317-L16p5",
+      "maximum_block_mass_residual_kg_h": 0.00019500000000505224,
+      "maximum_block_energy_residual_kW": 1.919157065377597e-06
+    },
+    {
+      "id": "v2-train-T327-L8",
+      "maximum_block_mass_residual_kg_h": 7.899999999949614e-05,
+      "maximum_block_energy_residual_kW": 1.359587463056755e-06
+    },
+    {
+      "id": "v2-train-T327-L16p5",
+      "maximum_block_mass_residual_kg_h": 0.00019100000000094042,
+      "maximum_block_energy_residual_kW": 8.75041235914864e-07
+    },
+    {
+      "id": "v2-train-T337-L8",
+      "maximum_block_mass_residual_kg_h": 0.00010399999999322063,
+      "maximum_block_energy_residual_kW": 1.58410092032657e-06
+    },
+    {
+      "id": "v2-train-T337-L16p5",
+      "maximum_block_mass_residual_kg_h": 0.00020399999999654028,
+      "maximum_block_energy_residual_kW": 4.779209348271252e-07
+    },
+    {
+      "id": "v2-train-T347-L8",
+      "maximum_block_mass_residual_kg_h": 0.0002769999999969741,
+      "maximum_block_energy_residual_kW": 2.036233674118648e-06
+    },
+    {
+      "id": "v2-train-T347-L16p5",
+      "maximum_block_mass_residual_kg_h": 0.00019100000000094042,
+      "maximum_block_energy_residual_kW": 2.0867395018608903e-06
+    },
+    {
+      "id": "v2-verify-T322-L9p75",
+      "maximum_block_mass_residual_kg_h": 8.300000000360797e-05,
+      "maximum_block_energy_residual_kW": 1.6839051628636525e-06
+    },
+    {
+      "id": "v2-verify-T332-L14",
+      "maximum_block_mass_residual_kg_h": 0.00013599999999769352,
+      "maximum_block_energy_residual_kW": 7.560092996072854e-07
+    },
+    {
+      "id": "v2-verify-T342-L18p25",
+      "maximum_block_mass_residual_kg_h": 0.0001869999999968286,
+      "maximum_block_energy_residual_kW": 5.797128324047662e-07
+    },
+    {
+      "id": "v2-verify-T348-L6p75",
+      "maximum_block_mass_residual_kg_h": 0.00012200000000461841,
+      "maximum_block_energy_residual_kW": 6.591583741055729e-07
+    }
+  ],
+  "robustness_checks": {
+    "queries": 81,
+    "complete": true,
+    "preferences": 3
+  },
+  "old_source_file_hashes_checked": 361,
+  "model_refitted": false,
+  "native_execution_performed": false,
+  "physical_validation": false,
+  "scope": "Independent scalar covariance/mean arithmetic, native conversions/residuals/fixed LCIA, fixed roles and separate fresh-cohort errors, unchanged deterministic scenario design and rank arithmetic. No universal accuracy, probability, physical validation, or external authenticity claim."
+}

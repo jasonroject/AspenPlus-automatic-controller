@@ -1,0 +1,8 @@
+{
+  "id": "v2-verify-T322-L9p75",
+  "parameters": {
+    "reactor_temperature_K": 595.15,
+    "tube_length_m": 9.75
+  },
+  "split": "verification"
+}

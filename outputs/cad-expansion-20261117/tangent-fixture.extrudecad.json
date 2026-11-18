@@ -1,0 +1,70 @@
+{
+  "app": "ExtrudeCAD Studio",
+  "fileType": "extrudecad-project",
+  "version": 1,
+  "savedAt": "2026-11-17T05:24:27.095Z",
+  "shapes": [
+    {
+      "id": "outer",
+      "name": "外轮廓",
+      "type": "polygon",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 10,
+          "y": 0
+        },
+        {
+          "x": 10,
+          "y": 10
+        },
+        {
+          "x": 0,
+          "y": 10
+        }
+      ],
+      "zHeight": 20,
+      "zOffset": 10,
+      "bevel": 0,
+      "color": "#46515f",
+      "materialPreset": "steel",
+      "visible": true,
+      "locked": false,
+      "holePoints": []
+    },
+    {
+      "id": "tangent",
+      "name": "相切菱形",
+      "type": "polygon",
+      "points": [
+        {
+          "x": 5,
+          "y": 0
+        },
+        {
+          "x": 7,
+          "y": 2
+        },
+        {
+          "x": 5,
+          "y": 4
+        },
+        {
+          "x": 3,
+          "y": 2
+        }
+      ],
+      "zHeight": 5,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#46515f",
+      "materialPreset": "steel",
+      "visible": true,
+      "locked": false,
+      "holePoints": []
+    }
+  ]
+}

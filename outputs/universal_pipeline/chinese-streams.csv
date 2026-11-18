@@ -1,0 +1,5 @@
+工况,物流,上游,下游,质量流量_kg_h,焓流,功率单位,来源
+A,FEED,BOUNDARY,HEATER,10,0,kW,synthetic
+A,OUT,HEATER,BOUNDARY,10,10,kW,synthetic
+B,FEED,BOUNDARY,HEATER,10,0,kW,synthetic
+B,OUT,HEATER,BOUNDARY,10,8,kW,synthetic

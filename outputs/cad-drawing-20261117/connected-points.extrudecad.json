@@ -1,0 +1,66 @@
+{
+  "app": "ExtrudeCAD Studio",
+  "fileType": "extrudecad-project",
+  "version": 1,
+  "savedAt": "2026-11-17T07:28:22.726Z",
+  "shapes": [
+    {
+      "id": "cad-point-dba8fe5b-3f24-4302-b7af-f8f0454b97a5",
+      "name": "定位点 #1",
+      "type": "point",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-point-31d71054-f401-453d-b03d-6964d20e911a",
+      "name": "定位点 #2",
+      "type": "point",
+      "points": [
+        {
+          "x": 40,
+          "y": 30
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-segment-ca20815d-7d74-4ab1-9379-da86f6476a7f",
+      "name": "连线 (定位点 #1 → 定位点 #2)",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 40,
+          "y": 30
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    }
+  ]
+}

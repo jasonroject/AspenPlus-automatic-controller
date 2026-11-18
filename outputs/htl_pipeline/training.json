@@ -1,0 +1,43 @@
+{
+  "models": {
+    "target_kg_h": {
+      "training_count": 90,
+      "kernel": "Matern52",
+      "CV_log_RMSE": 0.09081923987218177,
+      "fitted_kernel": "1.1**2 * Matern(length_scale=[0.399, 0.992], nu=2.5) + WhiteKernel(noise_level=1e-08)"
+    },
+    "STD_electricity_kWh": {
+      "training_count": 90,
+      "kernel": "Matern52",
+      "CV_log_RMSE": 0.007998028820313944,
+      "fitted_kernel": "1.2**2 * Matern(length_scale=[0.459, 1.23], nu=2.5) + WhiteKernel(noise_level=1e-08)"
+    },
+    "HR_electricity_kWh": {
+      "training_count": 75,
+      "kernel": "Matern52",
+      "CV_log_RMSE": 0.009660457870634683,
+      "fitted_kernel": "0.955**2 * Matern(length_scale=[0.235, 1.22], nu=2.5) + WhiteKernel(noise_level=1e-08)"
+    },
+    "water_kg_h": {
+      "training_count": 90,
+      "kernel": "Matern52",
+      "CV_log_RMSE": 0.00016234943425549663,
+      "fitted_kernel": "0.884**2 * Matern(length_scale=[0.073, 0.644], nu=2.5) + WhiteKernel(noise_level=1e-08)"
+    },
+    "direct_kgCO2eq_h": {
+      "training_count": 90,
+      "kernel": "Matern52",
+      "CV_log_RMSE": 0.21286805034110431,
+      "fitted_kernel": "1.01**2 * Matern(length_scale=[0.385, 1.17], nu=2.5) + WhiteKernel(noise_level=1e-08)"
+    }
+  },
+  "warnings": [
+    "lbfgs failed to converge after 11 iteration(s) (status=2):\nABNORMAL: \n\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html",
+    "lbfgs failed to converge after 12 iteration(s) (status=2):\nABNORMAL: \n\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html",
+    "lbfgs failed to converge after 13 iteration(s) (status=2):\nABNORMAL: \n\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html",
+    "lbfgs failed to converge after 15 iteration(s) (status=2):\nABNORMAL: \n\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html"
+  ],
+  "reference_sha256": "f0998c0be91b02ce9e513c20e69b53e13fdfa9edd0fdd6584e3dd63ccbde52d7",
+  "selection": "Training-only four-fold CV; reserved holdouts and fresh points never fitted.",
+  "use_gate": "For each energy/target/CF: holdout median APE <=2%, p95 APE <=5%; report all failures."
+}

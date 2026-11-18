@@ -1,0 +1,37 @@
+{
+  "id": "verify-T345-L17p5",
+  "split": "verification",
+  "inputs": {
+    "reactor_temperature_K": 618.15,
+    "tube_length_m": 17.5
+  },
+  "gates": {
+    "control_succeeded": true,
+    "solver_accepted": true,
+    "numerical_closure": true,
+    "lcia_complete": true,
+    "metric_inputs_complete": true
+  },
+  "accepted": true,
+  "source": "runs/verify-T345-L17p5/raw.json",
+  "evidence_type": "native_simulation",
+  "warnings": [
+    "* Calculations were completed with warnings                                *",
+    "* completed with warnings:                                                 *",
+    "*   COOLER    REACTOR   VALVE                                              *"
+  ],
+  "error": null,
+  "metrics": {
+    "purchased_energy_kWh_kg": 3.5439860096625613,
+    "yield_fraction": 0.061618044047683,
+    "impacts": {
+      "Climate change": {
+        "value": 11.25957895313683,
+        "unit": "kg CO2-eq/kg",
+        "complete": true
+      }
+    }
+  },
+  "normalization_complete": true,
+  "physical_validation": false
+}

@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "model": "reference HTL HR model",
+  "units": {
+    "temperature_C": "actual degrees Celsius",
+    "length_m": "m"
+  },
+  "points": [
+    {
+      "temperature_C": 335,
+      "length_m": 12.5
+    },
+    {
+      "temperature_C": 336,
+      "length_m": 12.5
+    },
+    {
+      "temperature_C": 335,
+      "length_m": 13
+    }
+  ]
+}

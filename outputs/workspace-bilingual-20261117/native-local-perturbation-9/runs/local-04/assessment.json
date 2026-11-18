@@ -1,0 +1,387 @@
+{
+  "assessment_version": 1,
+  "core": "analysis_web/universal-core.mjs",
+  "report": {
+    "schema_version": 1,
+    "assumptions": {
+      "basis": "Steady state; 1 kg declared target product; Q and W positive into each block; no accumulation/KE/PE terms",
+      "uncertainty": "Nonnegative triangular fuzzy inputs, Cartesian alpha-cut outer bounds. Possibility levels, not probabilities or confidence intervals. Shared dependencies can widen the bounds.",
+      "boundary": "Inherited HTL fixed-background accounting: feed, heater/reactor electricity, fixed pump inventory, direct CO2/CH4 and wastewater; excludes separator heat duty and cooling-service burdens; not a full-plant utility inventory"
+    },
+    "categories": [
+      "Climate change"
+    ],
+    "results": [
+      {
+        "id": "local-04",
+        "balance": {
+          "complete": true,
+          "within_tolerance": true,
+          "tolerance": "Per block: max(0.01 kg/h, 0.1% mass throughput); max(0.01 kW, 0.1% absolute enthalpy/duty scale). Numerical consistency only.",
+          "errors": [],
+          "streams": [
+            {
+              "case_id": "local-04",
+              "id": "FEED",
+              "from": "BOUNDARY",
+              "to": "PUMP",
+              "mass_flow": 100,
+              "mass_unit": "kg/hr",
+              "specific_enthalpy": -3341.02058,
+              "enthalpy_unit": "cal/gm",
+              "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-04; raw evidence runs/local-04/raw.json; \\Data\\Streams\\FEED\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\FEED\\Output\\HMX_MASS\\MIXED",
+              "mass": 100,
+              "enthalpy": -388.560693454
+            },
+            {
+              "case_id": "local-04",
+              "id": "S2",
+              "from": "PUMP",
+              "to": "HEATCHAG",
+              "mass_flow": 100,
+              "mass_unit": "kg/hr",
+              "specific_enthalpy": -3322.34714,
+              "enthalpy_unit": "cal/gm",
+              "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-04; raw evidence runs/local-04/raw.json; \\Data\\Streams\\S2\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S2\\Output\\HMX_MASS\\MIXED",
+              "mass": 100,
+              "enthalpy": -386.388972382
+            },
+            {
+              "case_id": "local-04",
+              "id": "S3",
+              "from": "HEATER",
+              "to": "REACTOR",
+              "mass_flow": 100,
+              "mass_unit": "kg/hr",
+              "specific_enthalpy": -2937.6899,
+              "enthalpy_unit": "cal/gm",
+              "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-04; raw evidence runs/local-04/raw.json; \\Data\\Streams\\S3\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S3\\Output\\HMX_MASS\\MIXED",
+              "mass": 100,
+              "enthalpy": -341.6533353699999
+            },
+            {
+              "case_id": "local-04",
+              "id": "S4",
+              "from": "REACTOR",
+              "to": "HEATCHAG",
+              "mass_flow": 100.000138,
+              "mass_unit": "kg/hr",
+              "specific_enthalpy": -2856.47664,
+              "enthalpy_unit": "cal/gm",
+              "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-04; raw evidence runs/local-04/raw.json; \\Data\\Streams\\S4\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S4\\Output\\HMX_MASS\\MIXED",
+              "mass": 100.000138,
+              "enthalpy": -332.20869167936183
+            },
+            {
+              "case_id": "local-04",
+              "id": "S5",
+              "from": "COOLER",
+              "to": "VALVE",
+              "mass_flow": 100.000138,
+              "mass_unit": "kg/hr",
+              "specific_enthalpy": -3277.41063,
+              "enthalpy_unit": "cal/gm",
+              "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-04; raw evidence runs/local-04/raw.json; \\Data\\Streams\\S5\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S5\\Output\\HMX_MASS\\MIXED",
+              "mass": 100.000138,
+              "enthalpy": -381.1633822737416
+            },
+            {
+              "case_id": "local-04",
+              "id": "S6",
+              "from": "VALVE",
+              "to": "B6",
+              "mass_flow": 100.000138,
+              "mass_unit": "kg/hr",
+              "specific_enthalpy": -3277.41063,
+              "enthalpy_unit": "cal/gm",
+              "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-04; raw evidence runs/local-04/raw.json; \\Data\\Streams\\S6\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S6\\Output\\HMX_MASS\\MIXED",
+              "mass": 100.000138,
+              "enthalpy": -381.1633822737416
+            },
+            {
+              "case_id": "local-04",
+              "id": "S7",
+              "from": "B6",
+              "to": "BOUNDARY",
+              "mass_flow": 98.2464482,
+              "mass_unit": "kg/hr",
+              "specific_enthalpy": -3311.09964,
+              "enthalpy_unit": "cal/gm",
+              "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-04; raw evidence runs/local-04/raw.json; \\Data\\Streams\\S7\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S7\\Output\\HMX_MASS\\MIXED",
+              "mass": 98.2464482,
+              "enthalpy": -378.3282952867053
+            },
+            {
+              "case_id": "local-04",
+              "id": "S8",
+              "from": "B6",
+              "to": "BOUNDARY",
+              "mass_flow": 1.7536901,
+              "mass_unit": "kg/hr",
+              "specific_enthalpy": -1137.97932,
+              "enthalpy_unit": "cal/gm",
+              "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-04; raw evidence runs/local-04/raw.json; \\Data\\Streams\\S8\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S8\\Output\\HMX_MASS\\MIXED",
+              "mass": 1.7536901,
+              "enthalpy": -2.320956147489395
+            },
+            {
+              "case_id": "local-04",
+              "id": "S9",
+              "from": "HEATCHAG",
+              "to": "HEATER",
+              "mass_flow": 100,
+              "mass_unit": "kg/hr",
+              "specific_enthalpy": -2973.76223,
+              "enthalpy_unit": "cal/gm",
+              "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-04; raw evidence runs/local-04/raw.json; \\Data\\Streams\\S9\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S9\\Output\\HMX_MASS\\MIXED",
+              "mass": 100,
+              "enthalpy": -345.84854734899994
+            },
+            {
+              "case_id": "local-04",
+              "id": "S10",
+              "from": "HEATCHAG",
+              "to": "COOLER",
+              "mass_flow": 100.000138,
+              "mass_unit": "kg/hr",
+              "specific_enthalpy": -3205.06107,
+              "enthalpy_unit": "cal/gm",
+              "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-04; raw evidence runs/local-04/raw.json; \\Data\\Streams\\S10\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S10\\Output\\HMX_MASS\\MIXED",
+              "mass": 100.000138,
+              "enthalpy": -372.7491168340714
+            }
+          ],
+          "blocks": [
+            {
+              "id": "PUMP",
+              "heat": 0,
+              "power": 2.1717208,
+              "mass_residual_kg_h": 0,
+              "energy_residual_kW": 2.719999683264973e-7,
+              "mass_relative": 0,
+              "energy_relative": 7.00019258017662e-10,
+              "within_tolerance": true
+            },
+            {
+              "id": "HEATCHAG",
+              "heat": 0,
+              "power": 0,
+              "mass_residual_kg_h": 0,
+              "energy_residual_kW": -1.2170949048595503e-7,
+              "mass_relative": 0,
+              "energy_relative": 1.6937084066967976e-10,
+              "within_tolerance": true
+            },
+            {
+              "id": "HEATER",
+              "heat": 4.19521149054,
+              "power": 0,
+              "mass_residual_kg_h": 0,
+              "energy_residual_kW": 4.884600208754364e-7,
+              "mass_relative": 0,
+              "energy_relative": 1.4123523855155173e-9,
+              "within_tolerance": true
+            },
+            {
+              "id": "REACTOR",
+              "heat": 9.444642976296,
+              "power": 0,
+              "mass_residual_kg_h": 0.00013800000000685486,
+              "energy_residual_kW": 7.143420877042672e-7,
+              "mass_relative": 0.0000013799980956711765,
+              "energy_relative": 2.090838911116313e-9,
+              "within_tolerance": true
+            },
+            {
+              "id": "COOLER",
+              "heat": -8.414265509172001,
+              "power": 0,
+              "mass_residual_kg_h": 0,
+              "energy_residual_kW": 6.950179809450674e-8,
+              "mass_relative": 0,
+              "energy_relative": 1.823412251195535e-10,
+              "within_tolerance": true
+            },
+            {
+              "id": "VALVE",
+              "heat": 0,
+              "power": 0,
+              "mass_residual_kg_h": 0,
+              "energy_residual_kW": 0,
+              "mass_relative": 0,
+              "energy_relative": 0,
+              "within_tolerance": true
+            },
+            {
+              "id": "B6",
+              "heat": 0.514132466724,
+              "power": 0,
+              "mass_residual_kg_h": 2.9999999640040187e-7,
+              "energy_residual_kW": -0.0000016271770918452333,
+              "mass_relative": 2.9999958150098063e-9,
+              "energy_relative": 4.268975372552018e-9,
+              "within_tolerance": true
+            }
+          ],
+          "total": {
+            "mass_residual_kg_h": 0.00013830000000325526,
+            "energy_residual_kW": -2.045827081076368e-7,
+            "external_heat_in_kW": 14.15398693356,
+            "external_heat_out_kW": 8.414265509172001,
+            "work_in_kW": 2.1717208,
+            "work_out_kW": 0
+          }
+        },
+        "impacts": [
+          {
+            "category": "Climate change",
+            "unit": "kg CO2-eq",
+            "method": "Inherited HTL fixed-background climate accounting",
+            "complete": true,
+            "errors": [],
+            "covered": 5,
+            "total": 5,
+            "cuts": [
+              {
+                "alpha": 0,
+                "range": [
+                  10.356730763508919,
+                  10.709005785323752
+                ]
+              },
+              {
+                "alpha": 0.25,
+                "range": [
+                  10.400765141235773,
+                  10.664971407596896
+                ]
+              },
+              {
+                "alpha": 0.5,
+                "range": [
+                  10.444799518962627,
+                  10.620937029870042
+                ]
+              },
+              {
+                "alpha": 0.75,
+                "range": [
+                  10.48883389668948,
+                  10.57690265214319
+                ]
+              },
+              {
+                "alpha": 1,
+                "range": [
+                  10.532868274416332,
+                  10.532868274416332
+                ]
+              }
+            ],
+            "contributions": [
+              {
+                "id": "feed",
+                "name": "feed",
+                "nominal": 8.577755971221913,
+                "factor_id": "feed",
+                "source": "Inherited HTL lca_coefficients.json; fixed original providers; not a fresh openLCA calculation"
+              },
+              {
+                "id": "electricity",
+                "name": "electricity",
+                "nominal": 1.761375109074149,
+                "factor_id": "electricity",
+                "source": "Inherited HTL lca_coefficients.json; fixed original providers; not a fresh openLCA calculation; +/-10% electricity factor is an illustrative fuzzy support"
+              },
+              {
+                "id": "CO2",
+                "name": "CO2",
+                "nominal": 0.012802288199766643,
+                "factor_id": "CO2",
+                "source": "Inherited HTL lca_coefficients.json; fixed original providers; not a fresh openLCA calculation"
+              },
+              {
+                "id": "CH4",
+                "name": "CH4",
+                "nominal": 0.17851701411146398,
+                "factor_id": "CH4",
+                "source": "Inherited HTL lca_coefficients.json; fixed original providers; not a fresh openLCA calculation"
+              },
+              {
+                "id": "wastewater",
+                "name": "wastewater",
+                "nominal": 0.0024178918090415717,
+                "factor_id": "wastewater",
+                "source": "Inherited HTL lca_coefficients.json; fixed original providers; not a fresh openLCA calculation"
+              }
+            ],
+            "nominal_subtotal": 10.532868274416336
+          }
+        ],
+        "issues": [],
+        "energy": [
+          {
+            "alpha": 0,
+            "range": [
+              2.6092164442836023,
+              2.6092164442836023
+            ]
+          },
+          {
+            "alpha": 0.25,
+            "range": [
+              2.6092164442836023,
+              2.6092164442836023
+            ]
+          },
+          {
+            "alpha": 0.5,
+            "range": [
+              2.6092164442836023,
+              2.6092164442836023
+            ]
+          },
+          {
+            "alpha": 0.75,
+            "range": [
+              2.6092164442836023,
+              2.6092164442836023
+            ]
+          },
+          {
+            "alpha": 1,
+            "range": [
+              2.6092164442836023,
+              2.6092164442836023
+            ]
+          }
+        ],
+        "yield": [
+          0.06060001078667651,
+          0.06060001078667651,
+          0.06060001078667651
+        ]
+      }
+    ]
+  },
+  "cases": [
+    {
+      "id": "local-04",
+      "numerical_closure": true,
+      "lcia_complete": true,
+      "metric_inputs_complete": true,
+      "metrics": {
+        "purchased_energy_kWh_kg": 2.6092164442836023,
+        "yield_fraction": 0.06060001078667651,
+        "impacts": {
+          "Climate change": {
+            "value": 10.532868274416336,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "physical_validation": false
+    }
+  ]
+}

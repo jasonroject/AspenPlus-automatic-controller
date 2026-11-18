@@ -1,0 +1,19 @@
+{
+  "command": [
+    "C:\\Python314\\python.exe",
+    "-m",
+    "unittest",
+    "-v",
+    "universal_pipeline.test_serve_web"
+  ],
+  "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-16\\project1jason\\automatic\\outputs\\workspace-bilingual-20261117\\release-v2-snapshot",
+  "exit_code": 0,
+  "seconds": 0.8398263000417501,
+  "log": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-16\\project1jason\\automatic\\outputs\\workspace-bilingual-20261117\\release-v2-snapshot-logs\\server.log",
+  "tests": {
+    "total": 6,
+    "passed": 6,
+    "skipped": 0,
+    "skip_reasons": {}
+  }
+}

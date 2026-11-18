@@ -1,0 +1,16 @@
+{
+  "twoD5000Percent": true,
+  "twoDAndThreeDWheelDisabled": true,
+  "ctrlWheelCanvasAndSidebarNoPageZoom": true,
+  "chromeDimensionsFixed": true,
+  "panelSizeOptions": true,
+  "fitBothViews": true,
+  "layout": {
+    "width": 1366,
+    "dpr": 1.0000000298023224,
+    "header": 48,
+    "left": 220,
+    "right": 260,
+    "button": 29.729167938232422
+  }
+}

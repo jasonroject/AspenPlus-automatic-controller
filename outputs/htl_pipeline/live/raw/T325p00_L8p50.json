@@ -1,0 +1,2213 @@
+{
+  "temperature_C": 325.0,
+  "length_m": 8.5,
+  "phase": "pilot",
+  "split": "fresh_verification",
+  "region": "original_operating_domain",
+  "T": 325.0,
+  "T_K": 598.15,
+  "L": 8.5,
+  "mode": "field_HR",
+  "completed": true,
+  "int_tol": 0.0001,
+  "max_nstep": 100000,
+  "source_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+  "input_readback": {
+    "LENGTH": {
+      "value": 8.5,
+      "unit": "meter"
+    },
+    "REAC_TEMP": {
+      "value": 598.15,
+      "unit": "K"
+    },
+    "INT_TOL": {
+      "value": 0.0001,
+      "unit": ""
+    },
+    "MAX_NSTEP": {
+      "value": 100000,
+      "unit": ""
+    }
+  },
+  "seconds": 111.8604358000448,
+  "streams": {
+    "FEED": {
+      "MASSFLMX": {
+        "value": 100.0,
+        "unit": "kg/hr"
+      },
+      "MOLEFLMX": {
+        "value": 4.8156026,
+        "unit": "kmol/hr"
+      },
+      "HMX_MASS": {
+        "value": -3341.02058,
+        "unit": "cal/gm"
+      },
+      "TEMP_OUT": {
+        "value": 298.15,
+        "unit": "K"
+      },
+      "PRES_OUT": {
+        "value": 1.0,
+        "unit": "atm"
+      },
+      "RHOMX_MASS": {
+        "value": 1.07716106,
+        "unit": "gm/cc"
+      },
+      "VFRAC": {
+        "value": null,
+        "error": "'\\\\Data\\\\Streams\\\\FEED\\\\Output\\\\VFRAC\\\\MIXED'"
+      },
+      "MASSFLOW": {
+        "\\MIXED\\GUAIA-01": {
+          "value": 4.5,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CAT": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\ANISOLE": {
+          "value": 1.5,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\PPE": {
+          "value": 6.75,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\PEA": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\STYRENE": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\ETHYLBEN": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\DPE": {
+          "value": 2.25,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\PHENO-01": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\BENZENE": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\O-CRE-01": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CH4O": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\ACETI-01": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CH2O": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\H2O": {
+          "value": 85.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CH4": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CO2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\C": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CO": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        }
+      },
+      "MOLEFLOW": {
+        "\\MIXED\\GUAIA-01": {
+          "value": 0.0362495944,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CAT": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\ANISOLE": {
+          "value": 0.0138709183,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\PPE": {
+          "value": 0.034046202,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\PEA": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\STYRENE": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\ETHYLBEN": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\DPE": {
+          "value": 0.0132189027,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\PHENO-01": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\BENZENE": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\O-CRE-01": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CH4O": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\ACETI-01": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CH2O": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\H2O": {
+          "value": 4.71821698,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CH4": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CO2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\C": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CO": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        }
+      }
+    },
+    "S2": {
+      "MASSFLMX": {
+        "value": 100.0,
+        "unit": "kg/hr"
+      },
+      "MOLEFLMX": {
+        "value": 4.8156026,
+        "unit": "kmol/hr"
+      },
+      "HMX_MASS": {
+        "value": -3322.34714,
+        "unit": "cal/gm"
+      },
+      "TEMP_OUT": {
+        "value": 318.979615,
+        "unit": "K"
+      },
+      "PRES_OUT": {
+        "value": 246.730817,
+        "unit": "atm"
+      },
+      "RHOMX_MASS": {
+        "value": 1.0545721,
+        "unit": "gm/cc"
+      },
+      "VFRAC": {
+        "value": null,
+        "error": "'\\\\Data\\\\Streams\\\\S2\\\\Output\\\\VFRAC\\\\MIXED'"
+      },
+      "MASSFLOW": {
+        "\\MIXED\\GUAIA-01": {
+          "value": 4.5,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CAT": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\ANISOLE": {
+          "value": 1.5,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\PPE": {
+          "value": 6.75,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\PEA": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\STYRENE": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\ETHYLBEN": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\DPE": {
+          "value": 2.25,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\PHENO-01": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\BENZENE": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\O-CRE-01": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CH4O": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\ACETI-01": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CH2O": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\H2O": {
+          "value": 85.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CH4": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CO2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\C": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CO": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        }
+      },
+      "MOLEFLOW": {
+        "\\MIXED\\GUAIA-01": {
+          "value": 0.0362495944,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CAT": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\ANISOLE": {
+          "value": 0.0138709183,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\PPE": {
+          "value": 0.034046202,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\PEA": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\STYRENE": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\ETHYLBEN": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\DPE": {
+          "value": 0.0132189027,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\PHENO-01": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\BENZENE": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\O-CRE-01": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CH4O": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\ACETI-01": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CH2O": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\H2O": {
+          "value": 4.71821698,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CH4": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CO2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\C": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CO": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        }
+      }
+    },
+    "S3": {
+      "MASSFLMX": {
+        "value": 100.0,
+        "unit": "kg/hr"
+      },
+      "MOLEFLMX": {
+        "value": 4.8156026,
+        "unit": "kmol/hr"
+      },
+      "HMX_MASS": {
+        "value": -2950.31947,
+        "unit": "cal/gm"
+      },
+      "TEMP_OUT": {
+        "value": 598.15,
+        "unit": "K"
+      },
+      "PRES_OUT": {
+        "value": 246.730817,
+        "unit": "atm"
+      },
+      "RHOMX_MASS": {
+        "value": 0.62466038,
+        "unit": "gm/cc"
+      },
+      "VFRAC": {
+        "value": null,
+        "error": "'\\\\Data\\\\Streams\\\\S3\\\\Output\\\\VFRAC\\\\MIXED'"
+      },
+      "MASSFLOW": {
+        "\\MIXED\\GUAIA-01": {
+          "value": 4.5,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CAT": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\ANISOLE": {
+          "value": 1.5,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\PPE": {
+          "value": 6.75,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\PEA": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\STYRENE": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\ETHYLBEN": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\DPE": {
+          "value": 2.25,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\PHENO-01": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\BENZENE": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\O-CRE-01": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CH4O": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\ACETI-01": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CH2O": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\H2O": {
+          "value": 85.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CH4": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CO2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\C": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CO": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        }
+      },
+      "MOLEFLOW": {
+        "\\MIXED\\GUAIA-01": {
+          "value": 0.0362495944,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CAT": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\ANISOLE": {
+          "value": 0.0138709183,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\PPE": {
+          "value": 0.034046202,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\PEA": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\STYRENE": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\ETHYLBEN": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\DPE": {
+          "value": 0.0132189027,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\PHENO-01": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\BENZENE": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\O-CRE-01": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CH4O": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\ACETI-01": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CH2O": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\H2O": {
+          "value": 4.71821698,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CH4": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CO2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\C": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CO": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        }
+      }
+    },
+    "S4": {
+      "MASSFLMX": {
+        "value": 100.000103,
+        "unit": "kg/hr"
+      },
+      "MOLEFLMX": {
+        "value": 4.82703587,
+        "unit": "kmol/hr"
+      },
+      "HMX_MASS": {
+        "value": -2897.87493,
+        "unit": "cal/gm"
+      },
+      "TEMP_OUT": {
+        "value": 598.15,
+        "unit": "K"
+      },
+      "PRES_OUT": {
+        "value": 246.730817,
+        "unit": "atm"
+      },
+      "RHOMX_MASS": {
+        "value": 0.606619887,
+        "unit": "gm/cc"
+      },
+      "VFRAC": {
+        "value": null,
+        "error": "'\\\\Data\\\\Streams\\\\S4\\\\Output\\\\VFRAC\\\\MIXED'"
+      },
+      "MASSFLOW": {
+        "\\MIXED\\GUAIA-01": {
+          "value": 0.38032665,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CAT": {
+          "value": 3.50337746,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\ANISOLE": {
+          "value": 1.39679372,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\PPE": {
+          "value": 3.43787718,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\PEA": {
+          "value": 1.32069906,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\STYRENE": {
+          "value": 0.371383285,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\ETHYLBEN": {
+          "value": 0.211614175,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\DPE": {
+          "value": 2.24690659,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\PHENO-01": {
+          "value": 0.00275513542,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\BENZENE": {
+          "value": 0.0132227809,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\O-CRE-01": {
+          "value": 1.99748725,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CH4O": {
+          "value": 0.451363187,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\ACETI-01": {
+          "value": 3.50082195e-08,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CH2O": {
+          "value": 0.0155842738,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\H2O": {
+          "value": 84.5442906,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CH4": {
+          "value": 0.0160284008,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CO2": {
+          "value": 0.0339951446,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\C": {
+          "value": 0.0493508628,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CO": {
+          "value": 0.00704739949,
+          "unit": "kg/hr"
+        }
+      },
+      "MOLEFLOW": {
+        "\\MIXED\\GUAIA-01": {
+          "value": 0.00306370818,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CAT": {
+          "value": 0.0318163639,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\ANISOLE": {
+          "value": 0.0129165411,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\PPE": {
+          "value": 0.017340246,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\PEA": {
+          "value": 0.0108106217,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\STYRENE": {
+          "value": 0.00356579803,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\ETHYLBEN": {
+          "value": 0.00199321237,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\DPE": {
+          "value": 0.0132007287,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\PHENO-01": {
+          "value": 2.92747469e-05,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\BENZENE": {
+          "value": 0.00016927621,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\O-CRE-01": {
+          "value": 0.0184713217,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CH4O": {
+          "value": 0.0140865406,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\ACETI-01": {
+          "value": 5.82959653e-10,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CH2O": {
+          "value": 0.00051902113,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\H2O": {
+          "value": 4.69292126,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CH4": {
+          "value": 0.000999104943,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CO2": {
+          "value": 0.000772444879,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\C": {
+          "value": 0.00410880549,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CO": {
+          "value": 0.000251599388,
+          "unit": "kmol/hr"
+        }
+      }
+    },
+    "S5": {
+      "MASSFLMX": {
+        "value": 100.000103,
+        "unit": "kg/hr"
+      },
+      "MOLEFLMX": {
+        "value": 4.82703587,
+        "unit": "kmol/hr"
+      },
+      "HMX_MASS": {
+        "value": -3299.54758,
+        "unit": "cal/gm"
+      },
+      "TEMP_OUT": {
+        "value": 313.0,
+        "unit": "K"
+      },
+      "PRES_OUT": {
+        "value": 246.730817,
+        "unit": "atm"
+      },
+      "RHOMX_MASS": {
+        "value": 1.02585965,
+        "unit": "gm/cc"
+      },
+      "VFRAC": {
+        "value": null,
+        "error": "'\\\\Data\\\\Streams\\\\S5\\\\Output\\\\VFRAC\\\\MIXED'"
+      },
+      "MASSFLOW": {
+        "\\MIXED\\GUAIA-01": {
+          "value": 0.38032665,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CAT": {
+          "value": 3.50337746,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\ANISOLE": {
+          "value": 1.39679372,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\PPE": {
+          "value": 3.43787718,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\PEA": {
+          "value": 1.32069906,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\STYRENE": {
+          "value": 0.371383285,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\ETHYLBEN": {
+          "value": 0.211614175,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\DPE": {
+          "value": 2.24690659,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\PHENO-01": {
+          "value": 0.00275513542,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\BENZENE": {
+          "value": 0.0132227809,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\O-CRE-01": {
+          "value": 1.99748725,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CH4O": {
+          "value": 0.451363187,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\ACETI-01": {
+          "value": 3.50082195e-08,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CH2O": {
+          "value": 0.0155842738,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\H2O": {
+          "value": 84.5442906,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CH4": {
+          "value": 0.0160284008,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CO2": {
+          "value": 0.0339951446,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\C": {
+          "value": 0.0493508628,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CO": {
+          "value": 0.00704739949,
+          "unit": "kg/hr"
+        }
+      },
+      "MOLEFLOW": {
+        "\\MIXED\\GUAIA-01": {
+          "value": 0.00306370818,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CAT": {
+          "value": 0.0318163639,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\ANISOLE": {
+          "value": 0.0129165411,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\PPE": {
+          "value": 0.017340246,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\PEA": {
+          "value": 0.0108106217,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\STYRENE": {
+          "value": 0.00356579803,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\ETHYLBEN": {
+          "value": 0.00199321237,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\DPE": {
+          "value": 0.0132007287,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\PHENO-01": {
+          "value": 2.92747469e-05,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\BENZENE": {
+          "value": 0.00016927621,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\O-CRE-01": {
+          "value": 0.0184713217,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CH4O": {
+          "value": 0.0140865406,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\ACETI-01": {
+          "value": 5.82959653e-10,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CH2O": {
+          "value": 0.00051902113,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\H2O": {
+          "value": 4.69292126,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CH4": {
+          "value": 0.000999104943,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CO2": {
+          "value": 0.000772444879,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\C": {
+          "value": 0.00410880549,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CO": {
+          "value": 0.000251599388,
+          "unit": "kmol/hr"
+        }
+      }
+    },
+    "S6": {
+      "MASSFLMX": {
+        "value": 100.000103,
+        "unit": "kg/hr"
+      },
+      "MOLEFLMX": {
+        "value": 4.82703587,
+        "unit": "kmol/hr"
+      },
+      "HMX_MASS": {
+        "value": -3299.54758,
+        "unit": "cal/gm"
+      },
+      "TEMP_OUT": {
+        "value": 313.0,
+        "unit": "K"
+      },
+      "PRES_OUT": {
+        "value": 0.986923267,
+        "unit": "atm"
+      },
+      "RHOMX_MASS": {
+        "value": 1.02585965,
+        "unit": "gm/cc"
+      },
+      "VFRAC": {
+        "value": null,
+        "error": "'\\\\Data\\\\Streams\\\\S6\\\\Output\\\\VFRAC\\\\MIXED'"
+      },
+      "MASSFLOW": {
+        "\\MIXED\\GUAIA-01": {
+          "value": 0.38032665,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CAT": {
+          "value": 3.50337746,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\ANISOLE": {
+          "value": 1.39679372,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\PPE": {
+          "value": 3.43787718,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\PEA": {
+          "value": 1.32069906,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\STYRENE": {
+          "value": 0.371383285,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\ETHYLBEN": {
+          "value": 0.211614175,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\DPE": {
+          "value": 2.24690659,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\PHENO-01": {
+          "value": 0.00275513542,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\BENZENE": {
+          "value": 0.0132227809,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\O-CRE-01": {
+          "value": 1.99748725,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CH4O": {
+          "value": 0.451363187,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\ACETI-01": {
+          "value": 3.50082195e-08,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CH2O": {
+          "value": 0.0155842738,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\H2O": {
+          "value": 84.5442906,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CH4": {
+          "value": 0.0160284008,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CO2": {
+          "value": 0.0339951446,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\C": {
+          "value": 0.0493508628,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CO": {
+          "value": 0.00704739949,
+          "unit": "kg/hr"
+        }
+      },
+      "MOLEFLOW": {
+        "\\MIXED\\GUAIA-01": {
+          "value": 0.00306370818,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CAT": {
+          "value": 0.0318163639,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\ANISOLE": {
+          "value": 0.0129165411,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\PPE": {
+          "value": 0.017340246,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\PEA": {
+          "value": 0.0108106217,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\STYRENE": {
+          "value": 0.00356579803,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\ETHYLBEN": {
+          "value": 0.00199321237,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\DPE": {
+          "value": 0.0132007287,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\PHENO-01": {
+          "value": 2.92747469e-05,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\BENZENE": {
+          "value": 0.00016927621,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\O-CRE-01": {
+          "value": 0.0184713217,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CH4O": {
+          "value": 0.0140865406,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\ACETI-01": {
+          "value": 5.82959653e-10,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CH2O": {
+          "value": 0.00051902113,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\H2O": {
+          "value": 4.69292126,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CH4": {
+          "value": 0.000999104943,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CO2": {
+          "value": 0.000772444879,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\C": {
+          "value": 0.00410880549,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CO": {
+          "value": 0.000251599388,
+          "unit": "kmol/hr"
+        }
+      }
+    },
+    "S7": {
+      "MASSFLMX": {
+        "value": 99.1357513,
+        "unit": "kg/hr"
+      },
+      "MOLEFLMX": {
+        "value": 4.80317772,
+        "unit": "kmol/hr"
+      },
+      "HMX_MASS": {
+        "value": -3316.52127,
+        "unit": "cal/gm"
+      },
+      "TEMP_OUT": {
+        "value": 313.0,
+        "unit": "K"
+      },
+      "PRES_OUT": {
+        "value": 0.1,
+        "unit": "atm"
+      },
+      "RHOMX_MASS": {
+        "value": 1.02702871,
+        "unit": "gm/cc"
+      },
+      "VFRAC": {
+        "value": null,
+        "error": "'\\\\Data\\\\Streams\\\\S7\\\\Output\\\\VFRAC\\\\MIXED'"
+      },
+      "MASSFLOW": {
+        "\\MIXED\\GUAIA-01": {
+          "value": 0.380319212,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CAT": {
+          "value": 3.50336197,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\ANISOLE": {
+          "value": 1.39609547,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\PPE": {
+          "value": 3.43787718,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\PEA": {
+          "value": 1.32068761,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\STYRENE": {
+          "value": 0.0744561484,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\ETHYLBEN": {
+          "value": 0.020930641,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\DPE": {
+          "value": 2.24689839,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\PHENO-01": {
+          "value": 0.00275213083,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\BENZENE": {
+          "value": 0.00100125362,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\O-CRE-01": {
+          "value": 1.99748691,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CH4O": {
+          "value": 0.443756967,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\ACETI-01": {
+          "value": 3.49481747e-08,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CH2O": {
+          "value": 0.0124624797,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\H2O": {
+          "value": 84.2393747,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CH4": {
+          "value": 0.000923823093,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CO2": {
+          "value": 0.0078380539,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\C": {
+          "value": 0.0493508628,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CO": {
+          "value": 0.000177527199,
+          "unit": "kg/hr"
+        }
+      },
+      "MOLEFLOW": {
+        "\\MIXED\\GUAIA-01": {
+          "value": 0.00306364826,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CAT": {
+          "value": 0.0318162232,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\ANISOLE": {
+          "value": 0.0129100842,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\PPE": {
+          "value": 0.017340246,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\PEA": {
+          "value": 0.010810528,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\STYRENE": {
+          "value": 0.000714882975,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\ETHYLBEN": {
+          "value": 0.000197147534,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\DPE": {
+          "value": 0.0132006805,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\PHENO-01": {
+          "value": 2.92428215e-05,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\BENZENE": {
+          "value": 1.28179101e-05,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\O-CRE-01": {
+          "value": 0.0184713186,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CH4O": {
+          "value": 0.0138491589,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\ACETI-01": {
+          "value": 5.81959782e-10,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CH2O": {
+          "value": 0.000415052404,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\H2O": {
+          "value": 4.67599586,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CH4": {
+          "value": 5.75850473e-05,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CO2": {
+          "value": 0.000178097921,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\C": {
+          "value": 0.00410880549,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CO": {
+          "value": 6.33790304e-06,
+          "unit": "kmol/hr"
+        }
+      }
+    },
+    "S8": {
+      "MASSFLMX": {
+        "value": 0.864351798,
+        "unit": "kg/hr"
+      },
+      "MOLEFLMX": {
+        "value": 0.0238581546,
+        "unit": "kmol/hr"
+      },
+      "HMX_MASS": {
+        "value": -1099.39343,
+        "unit": "cal/gm"
+      },
+      "TEMP_OUT": {
+        "value": 313.0,
+        "unit": "K"
+      },
+      "PRES_OUT": {
+        "value": 0.1,
+        "unit": "atm"
+      },
+      "RHOMX_MASS": {
+        "value": 0.00014105832,
+        "unit": "gm/cc"
+      },
+      "VFRAC": {
+        "value": null,
+        "error": "'\\\\Data\\\\Streams\\\\S8\\\\Output\\\\VFRAC\\\\MIXED'"
+      },
+      "MASSFLOW": {
+        "\\MIXED\\GUAIA-01": {
+          "value": 7.43867456e-06,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CAT": {
+          "value": 1.54883083e-05,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\ANISOLE": {
+          "value": 0.000698244782,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\PPE": {
+          "value": 3.18665371e-18,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\PEA": {
+          "value": 1.14500282e-05,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\STYRENE": {
+          "value": 0.296927137,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\ETHYLBEN": {
+          "value": 0.190683534,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\DPE": {
+          "value": 8.19593254e-06,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\PHENO-01": {
+          "value": 3.00459357e-06,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\BENZENE": {
+          "value": 0.0122215273,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\O-CRE-01": {
+          "value": 3.43708362e-07,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CH4O": {
+          "value": 0.00760622051,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\ACETI-01": {
+          "value": 6.00447993e-11,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CH2O": {
+          "value": 0.00312179408,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\H2O": {
+          "value": 0.304915879,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CH4": {
+          "value": 0.0151045777,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CO2": {
+          "value": 0.0261570907,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\C": {
+          "value": 1.97208084e-65,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CO": {
+          "value": 0.0068698723,
+          "unit": "kg/hr"
+        }
+      },
+      "MOLEFLOW": {
+        "\\MIXED\\GUAIA-01": {
+          "value": 5.99219857e-08,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CAT": {
+          "value": 1.40659023e-07,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\ANISOLE": {
+          "value": 6.45686424e-06,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\PPE": {
+          "value": 1.60731046e-20,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\PEA": {
+          "value": 9.37245487e-08,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\STYRENE": {
+          "value": 0.00285091506,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\ETHYLBEN": {
+          "value": 0.00179606483,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\DPE": {
+          "value": 4.81516598e-08,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\PHENO-01": {
+          "value": 3.19253694e-08,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\BENZENE": {
+          "value": 0.0001564583,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\O-CRE-01": {
+          "value": 3.17836708e-09,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CH4O": {
+          "value": 0.000237381641,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\ACETI-01": {
+          "value": 9.99870768e-13,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CH2O": {
+          "value": 0.000103968726,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\H2O": {
+          "value": 0.0169254033,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CH4": {
+          "value": 0.000941519896,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CO2": {
+          "value": 0.000594346957,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\C": {
+          "value": 1.64189563e-66,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CO": {
+          "value": 0.000245261485,
+          "unit": "kmol/hr"
+        }
+      }
+    },
+    "S9": {
+      "MASSFLMX": {
+        "value": 100.0,
+        "unit": "kg/hr"
+      },
+      "MOLEFLMX": {
+        "value": 4.8156026,
+        "unit": "kmol/hr"
+      },
+      "HMX_MASS": {
+        "value": -2984.72856,
+        "unit": "cal/gm"
+      },
+      "TEMP_OUT": {
+        "value": 583.15,
+        "unit": "K"
+      },
+      "PRES_OUT": {
+        "value": 246.730817,
+        "unit": "atm"
+      },
+      "RHOMX_MASS": {
+        "value": 0.664806391,
+        "unit": "gm/cc"
+      },
+      "VFRAC": {
+        "value": null,
+        "error": "'\\\\Data\\\\Streams\\\\S9\\\\Output\\\\VFRAC\\\\MIXED'"
+      },
+      "MASSFLOW": {
+        "\\MIXED\\GUAIA-01": {
+          "value": 4.5,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CAT": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\ANISOLE": {
+          "value": 1.5,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\PPE": {
+          "value": 6.75,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\PEA": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\STYRENE": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\ETHYLBEN": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\DPE": {
+          "value": 2.25,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\PHENO-01": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\BENZENE": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\O-CRE-01": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CH4O": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\ACETI-01": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CH2O": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\H2O": {
+          "value": 85.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CH4": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CO2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\C": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CO": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        }
+      },
+      "MOLEFLOW": {
+        "\\MIXED\\GUAIA-01": {
+          "value": 0.0362495944,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CAT": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\ANISOLE": {
+          "value": 0.0138709183,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\PPE": {
+          "value": 0.034046202,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\PEA": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\STYRENE": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\ETHYLBEN": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\DPE": {
+          "value": 0.0132189027,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\PHENO-01": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\BENZENE": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\O-CRE-01": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CH4O": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\ACETI-01": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CH2O": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\H2O": {
+          "value": 4.71821698,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CH4": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CO2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\C": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CO": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        }
+      }
+    },
+    "S10": {
+      "MASSFLMX": {
+        "value": 100.000103,
+        "unit": "kg/hr"
+      },
+      "MOLEFLMX": {
+        "value": 4.82703587,
+        "unit": "kmol/hr"
+      },
+      "HMX_MASS": {
+        "value": -3235.49316,
+        "unit": "cal/gm"
+      },
+      "TEMP_OUT": {
+        "value": 364.28676,
+        "unit": "K"
+      },
+      "PRES_OUT": {
+        "value": 246.730817,
+        "unit": "atm"
+      },
+      "RHOMX_MASS": {
+        "value": 0.970222894,
+        "unit": "gm/cc"
+      },
+      "VFRAC": {
+        "value": null,
+        "error": "'\\\\Data\\\\Streams\\\\S10\\\\Output\\\\VFRAC\\\\MIXED'"
+      },
+      "MASSFLOW": {
+        "\\MIXED\\GUAIA-01": {
+          "value": 0.38032665,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CAT": {
+          "value": 3.50337746,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\ANISOLE": {
+          "value": 1.39679372,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\PPE": {
+          "value": 3.43787718,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\PEA": {
+          "value": 1.32069906,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\STYRENE": {
+          "value": 0.371383285,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\ETHYLBEN": {
+          "value": 0.211614175,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\DPE": {
+          "value": 2.24690659,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\PHENO-01": {
+          "value": 0.00275513542,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\BENZENE": {
+          "value": 0.0132227809,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\O-CRE-01": {
+          "value": 1.99748725,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CH4O": {
+          "value": 0.451363187,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\ACETI-01": {
+          "value": 3.50082195e-08,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CH2O": {
+          "value": 0.0155842738,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\H2O": {
+          "value": 84.5442906,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CH4": {
+          "value": 0.0160284008,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CO2": {
+          "value": 0.0339951446,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\C": {
+          "value": 0.0493508628,
+          "unit": "kg/hr"
+        },
+        "\\MIXED\\CO": {
+          "value": 0.00704739949,
+          "unit": "kg/hr"
+        }
+      },
+      "MOLEFLOW": {
+        "\\MIXED\\GUAIA-01": {
+          "value": 0.00306370818,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CAT": {
+          "value": 0.0318163639,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\ANISOLE": {
+          "value": 0.0129165411,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\PPE": {
+          "value": 0.017340246,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\PEA": {
+          "value": 0.0108106217,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\STYRENE": {
+          "value": 0.00356579803,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\ETHYLBEN": {
+          "value": 0.00199321237,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\DPE": {
+          "value": 0.0132007287,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\PHENO-01": {
+          "value": 2.92747469e-05,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\BENZENE": {
+          "value": 0.00016927621,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\O-CRE-01": {
+          "value": 0.0184713217,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CH4O": {
+          "value": 0.0140865406,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\ACETI-01": {
+          "value": 5.82959653e-10,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CH2O": {
+          "value": 0.00051902113,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\H2O": {
+          "value": 4.69292126,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CH4": {
+          "value": 0.000999104943,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CO2": {
+          "value": 0.000772444879,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\C": {
+          "value": 0.00410880549,
+          "unit": "kmol/hr"
+        },
+        "\\MIXED\\CO": {
+          "value": 0.000251599388,
+          "unit": "kmol/hr"
+        }
+      }
+    }
+  },
+  "blocks": {
+    "PUMP": {
+      "\\BLKSTAT": {
+        "value": 0,
+        "unit": ""
+      },
+      "\\BLKMSG": {
+        "value": null,
+        "unit": ""
+      },
+      "\\QCALC": {
+        "value": null,
+        "error": "'\\\\Data\\\\Blocks\\\\PUMP\\\\Output\\\\QCALC'"
+      },
+      "\\WNET": {
+        "value": 2.1717208,
+        "unit": "kW"
+      },
+      "\\RES_TIME": {
+        "value": null,
+        "error": "'\\\\Data\\\\Blocks\\\\PUMP\\\\Output\\\\RES_TIME'"
+      }
+    },
+    "HEATCHAG": {
+      "\\BLKSTAT": {
+        "value": 0,
+        "unit": ""
+      },
+      "\\BLKMSG": {
+        "value": null,
+        "unit": ""
+      },
+      "\\QCALC": {
+        "value": null,
+        "error": "'\\\\Data\\\\Blocks\\\\HEATCHAG\\\\Output\\\\QCALC'"
+      },
+      "\\WNET": {
+        "value": null,
+        "error": "'\\\\Data\\\\Blocks\\\\HEATCHAG\\\\Output\\\\WNET'"
+      },
+      "\\RES_TIME": {
+        "value": null,
+        "error": "'\\\\Data\\\\Blocks\\\\HEATCHAG\\\\Output\\\\RES_TIME'"
+      }
+    },
+    "HEATER": {
+      "\\BLKSTAT": {
+        "value": 0,
+        "unit": ""
+      },
+      "\\BLKMSG": {
+        "value": null,
+        "unit": ""
+      },
+      "\\QCALC": {
+        "value": 955.807933,
+        "unit": "cal/sec"
+      },
+      "\\WNET": {
+        "value": null,
+        "error": "'\\\\Data\\\\Blocks\\\\HEATER\\\\Output\\\\WNET'"
+      },
+      "\\RES_TIME": {
+        "value": null,
+        "error": "'\\\\Data\\\\Blocks\\\\HEATER\\\\Output\\\\RES_TIME'"
+      }
+    },
+    "REACTOR": {
+      "\\BLKSTAT": {
+        "value": 2,
+        "unit": ""
+      },
+      "\\BLKMSG": {
+        "value": "REACTION RATE IS SET TO ZERO FOR SOME REACTIONS",
+        "unit": ""
+      },
+      "\\QCALC": {
+        "value": 1456.70991,
+        "unit": "cal/sec"
+      },
+      "\\WNET": {
+        "value": null,
+        "error": "'\\\\Data\\\\Blocks\\\\REACTOR\\\\Output\\\\WNET'"
+      },
+      "\\RES_TIME": {
+        "value": 1.23119636,
+        "unit": "hr"
+      }
+    },
+    "COOLER": {
+      "\\BLKSTAT": {
+        "value": 2,
+        "unit": ""
+      },
+      "\\BLKMSG": {
+        "value": "PROBLEM(S) ENCOUNTERED DURING PHASE STABILITY CHECK",
+        "unit": ""
+      },
+      "\\QCALC": {
+        "value": -1779.29124,
+        "unit": "cal/sec"
+      },
+      "\\WNET": {
+        "value": null,
+        "error": "'\\\\Data\\\\Blocks\\\\COOLER\\\\Output\\\\WNET'"
+      },
+      "\\RES_TIME": {
+        "value": null,
+        "error": "'\\\\Data\\\\Blocks\\\\COOLER\\\\Output\\\\RES_TIME'"
+      }
+    },
+    "VALVE": {
+      "\\BLKSTAT": {
+        "value": 2,
+        "unit": ""
+      },
+      "\\BLKMSG": {
+        "value": "PROBLEM(S) ENCOUNTERED DURING PHASE STABILITY CHECK",
+        "unit": ""
+      },
+      "\\QCALC": {
+        "value": null,
+        "error": "'\\\\Data\\\\Blocks\\\\VALVE\\\\Output\\\\QCALC'"
+      },
+      "\\WNET": {
+        "value": null,
+        "error": "'\\\\Data\\\\Blocks\\\\VALVE\\\\Output\\\\WNET'"
+      },
+      "\\RES_TIME": {
+        "value": null,
+        "error": "'\\\\Data\\\\Blocks\\\\VALVE\\\\Output\\\\RES_TIME'"
+      }
+    },
+    "B6": {
+      "\\BLKSTAT": {
+        "value": 0,
+        "unit": ""
+      },
+      "\\BLKMSG": {
+        "value": null,
+        "unit": ""
+      },
+      "\\QCALC": {
+        "value": 60.8355752,
+        "unit": "cal/sec"
+      },
+      "\\WNET": {
+        "value": null,
+        "error": "'\\\\Data\\\\Blocks\\\\B6\\\\Output\\\\WNET'"
+      },
+      "\\RES_TIME": {
+        "value": null,
+        "error": "'\\\\Data\\\\Blocks\\\\B6\\\\Output\\\\RES_TIME'"
+      }
+    }
+  },
+  "warnings": []
+}

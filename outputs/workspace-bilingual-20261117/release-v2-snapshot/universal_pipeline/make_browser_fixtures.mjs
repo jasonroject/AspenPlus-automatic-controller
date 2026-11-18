@@ -1,0 +1,14 @@
+import fs from 'node:fs';
+import {createRequire} from 'node:module';
+import {fileURLToPath} from 'node:url';
+import {TABLES} from '../analysis_web/universal-core.mjs';
+const require=createRequire(import.meta.url),XLSX=require('../analysis_web/vendor/xlsx.full.min.js');
+const out=new URL('../outputs/universal_pipeline/',import.meta.url);fs.mkdirSync(out,{recursive:true});
+const p=JSON.parse(fs.readFileSync(new URL('../analysis_web/data/universal-example.json',import.meta.url),'utf8'));
+const wb=XLSX.utils.book_new();for(const [name,fields]of Object.entries(TABLES))XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet([fields,...p[name].map(r=>fields.map(k=>r[k]??''))]),name);
+fs.writeFileSync(new URL('generic-import.xlsx',out),XLSX.write(wb,{type:'buffer',bookType:'xlsx'}));
+fs.writeFileSync(new URL('chinese-streams.csv',out),'工况,物流,上游,下游,质量流量_kg_h,焓流,功率单位,来源\r\nA,FEED,BOUNDARY,HEATER,10,0,kW,synthetic\r\nA,OUT,HEATER,BOUNDARY,10,10,kW,synthetic\r\nB,FEED,BOUNDARY,HEATER,10,0,kW,synthetic\r\nB,OUT,HEATER,BOUNDARY,10,8,kW,synthetic\r\n','utf8');
+const missing=structuredClone(p);missing.factors=missing.factors.filter(f=>!(f.id==='feed'&&f.category==='Illustrative climate'));
+fs.writeFileSync(new URL('missing-factor.json',out),JSON.stringify(missing,null,2));
+const formula=XLSX.utils.book_new(),sheet=XLSX.utils.aoa_to_sheet([['id','heat'],['H1',10]]);sheet.B2.f='5+5';XLSX.utils.book_append_sheet(formula,sheet,'blocks');fs.writeFileSync(new URL('formula-rejected.xlsx',out),XLSX.write(formula,{type:'buffer',bookType:'xlsx'}));
+console.log('Created browser fixtures',fileURLToPath(out));

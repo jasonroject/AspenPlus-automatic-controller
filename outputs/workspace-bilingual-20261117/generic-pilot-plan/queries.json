@@ -1,0 +1,20 @@
+{
+  "units": {
+    "reactor_temperature_K": "K",
+    "tube_length_m": "meter"
+  },
+  "points": [
+    {
+      "reactor_temperature_K": 598.15,
+      "tube_length_m": 10
+    },
+    {
+      "reactor_temperature_K": 608.15,
+      "tube_length_m": 8.5
+    },
+    {
+      "reactor_temperature_K": 618.15,
+      "tube_length_m": 17.5
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+const {base,fs,assert,setup,toggle,save,xy,graph}=await import('./helpers.mjs');const task=await taskSpace(1),p=task.page('p1');await setup(p);await toggle(p,'切换智能对齐参考线',false);await toggle(p,'切换网格吸附',false);await toggle(p,'切换对象捕捉',false);
+await p.evaluate(()=>{window.cadQAFocusEvents=[];window.addEventListener('blur',()=>window.cadQAFocusEvents.push('blur'));document.addEventListener('visibilitychange',()=>window.cadQAFocusEvents.push(document.visibilityState));});
+const q=await xy(p,0,0);await p.mouse.move(q.x,q.y);await p.mouse.down();await p.mouse.move(q.x+56,q.y-28);
+await task.page('p2').click('[contenteditable="true"]');console.log({tabs:(await task.tabs()).map(t=>({label:t.label,active:t.active})),focusEvents:await p.evaluate(()=>({events:window.cadQAFocusEvents,visibility:document.visibilityState,focus:document.hasFocus()}))});
+await p.click('.object-select[title="B"]');await p.mouse.up();const s=await save(p,'native-blur-after');console.log({point:s.find(s=>s.id==='B').points[0]});await fs.writeFile(base+'checks-focus.json',JSON.stringify({events:await p.evaluate(()=>window.cadQAFocusEvents),point:s.find(s=>s.id==='B').points[0]},null,2));

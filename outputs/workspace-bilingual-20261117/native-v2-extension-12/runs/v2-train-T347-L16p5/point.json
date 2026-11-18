@@ -1,0 +1,8 @@
+{
+  "id": "v2-train-T347-L16p5",
+  "parameters": {
+    "reactor_temperature_K": 620.15,
+    "tube_length_m": 16.5
+  },
+  "split": "training"
+}

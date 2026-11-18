@@ -1,0 +1,11 @@
+const task=await taskSpace(10);const page=task.page('p1');
+await page.reload();await page.waitForSelector('.object-select');
+const downloadPromise=page.waitForEvent('download',{timeout:30000});
+await page.click('loc=css:.header-actions button[title="下载可继续编辑的工程文件"]');const download=await downloadPromise;
+await download.saveAs('C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/cad-expansion-20261117/original-project.extrudecad.json');
+await page.click('loc=role:button[name="关闭操作提示"]');
+await page.cdp('Emulation.setDeviceMetricsOverride',{width:1130,height:650,deviceScaleFactor:1,mobile:false});
+console.log(await page.screenshot({path:'C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/cad-expansion-20261117/expanded-workspace.png'}));
+await page.click('loc=role:button[name="添加基础几何体"]');
+console.log(await page.evaluate(()=>document.querySelector('#cad-command-panel')?.innerText));
+console.log(await page.screenshot({path:'C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/cad-expansion-20261117/create-panel.png'}));

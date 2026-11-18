@@ -1,0 +1,11 @@
+const task=await taskSpace(10);const page=task.page('p1');
+const downloadPromise=page.waitForEvent('download',{timeout:30000});
+await page.click('loc=role:button[name="导出 STL"]');
+const download=await downloadPromise;const path='C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/ego-cad-20261117/verified-model.stl';await download.saveAs(path);
+const fs=await import('node:fs/promises');const stl=await fs.readFile(path,'utf8');const vertices=[...stl.matchAll(/vertex\s+([-\d.e+]+)\s+([-\d.e+]+)\s+([-\d.e+]+)/g)].map(m=>m.slice(1).map(Number));const bounds=[0,1,2].map(i=>[Math.min(...vertices.map(v=>v[i])),Math.max(...vertices.map(v=>v[i]))]);if(vertices.length===0||bounds[0][1]-bounds[0][0]!==112)throw Error('STL geometry mismatch');console.log({vertices:vertices.length,bounds});
+await fs.writeFile('C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/ego-cad-20261117/checks-stl.json',JSON.stringify({vertices:vertices.length,bounds},null,2));
+await page.click('loc=role:button[name="关闭导出窗口"]');
+await page.cdp('Emulation.setDeviceMetricsOverride',{width:1130,height:650,deviceScaleFactor:1,mobile:false});
+await page.click('loc=role:button[name="打开布尔运算菜单"]');await page.click('loc=css:[data-testid="boolean-op-union"]');
+await page.waitForSelector('loc=css:[data-testid="boolean-preview-cancel"]');
+console.log(await page.screenshot({path:'C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/ego-cad-20261117/final-preview-1130.png'}));

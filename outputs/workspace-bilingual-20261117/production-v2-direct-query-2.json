@@ -1,0 +1,131 @@
+{
+  "result_version": 1,
+  "kind": "surrogate_prediction",
+  "evidence_type": "browser_surrogate_prediction",
+  "exploratory": false,
+  "dataset_metadata": {
+    "dataset_version": 1,
+    "profile_id": "htl-reference-hr",
+    "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+    "model_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+    "basis": {
+      "functional_unit": "1 kg declared target product",
+      "boundary": "Inherited HTL fixed-background accounting: feed, heater/reactor electricity, fixed pump inventory, direct CO2/CH4 and wastewater; excludes separator heat duty and cooling-service burdens; not a full-plant utility inventory",
+      "allocation_method": "Single target; no co-product allocation; share 1",
+      "enthalpy_basis": "Complete material-stream enthalpy rates on one common reference; Q and W positive inward; no KE/PE or accumulation",
+      "calorie_J": 4.1868
+    },
+    "evidence_type": "native_simulation",
+    "inputs": [
+      {
+        "id": "reactor_temperature_K",
+        "unit": "K",
+        "min": 583.15,
+        "max": 623.15
+      },
+      {
+        "id": "tube_length_m",
+        "unit": "meter",
+        "min": 5,
+        "max": 20
+      }
+    ],
+    "responses": [
+      {
+        "id": "purchased_energy_kWh_kg",
+        "unit": "kWh/kg",
+        "direction": "min",
+        "value_domain": "nonnegative"
+      },
+      {
+        "id": "yield_fraction",
+        "unit": "1",
+        "direction": "max",
+        "value_domain": "nonnegative"
+      },
+      {
+        "id": "impact:Climate change",
+        "unit": "kg CO2-eq/kg",
+        "direction": "min",
+        "value_domain": "nonnegative"
+      }
+    ],
+    "physical_validation": false,
+    "dataset_sha256": "90fa8bfcc9b276640a291172e5bd2adb942f8877fd5756439f6cda58ebb420c1"
+  },
+  "model_sha256": "0ae413ef6cb13ac09abccdb37d060103eb94b4488b65310e8eadef3d1d6903bf",
+  "bundle_sha256": "ea4e0bb1aa3c23a45e63c7308a38ce37c2a669f7848fc113728d2c4d4d3987d4",
+  "dataset_sha256": "90fa8bfcc9b276640a291172e5bd2adb942f8877fd5756439f6cda58ebb420c1",
+  "profile_id": "htl-reference-hr",
+  "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+  "native_model_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+  "source_file": {
+    "path": "data/generic-htl-extension/model.bundle.json",
+    "sha256": "6fd977c333ba74db25f5b83d0bbb30b6dbc5c5f56ec44fcaafe99cafd36bc5c4",
+    "byte_sha256_verified": true
+  },
+  "native_execution_performed": false,
+  "physical_validation": false,
+  "inputs": [
+    {
+      "id": "reactor_temperature_K",
+      "unit": "K",
+      "min": 583.15,
+      "max": 623.15
+    },
+    {
+      "id": "tube_length_m",
+      "unit": "meter",
+      "min": 5,
+      "max": 20
+    }
+  ],
+  "responses": [
+    {
+      "id": "purchased_energy_kWh_kg",
+      "unit": "kWh/kg",
+      "direction": "min",
+      "value_domain": "nonnegative"
+    },
+    {
+      "id": "yield_fraction",
+      "unit": "1",
+      "direction": "max",
+      "value_domain": "nonnegative"
+    },
+    {
+      "id": "impact:Climate change",
+      "unit": "kg CO2-eq/kg",
+      "direction": "min",
+      "value_domain": "nonnegative"
+    }
+  ],
+  "scope": "Frozen surrogate means inside declared bounds and actual training support. No new Aspen run, energy/LCA recalculation, uncertainty interval or physical validation. Bundle/native claims are not independently authenticated here.",
+  "records": [
+    {
+      "id": "browser-query-1",
+      "kind": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 605.15,
+        "tube_length_m": 14
+      },
+      "input_units": {
+        "reactor_temperature_K": "K",
+        "tube_length_m": "meter"
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.7970931837360062,
+        "yield_fraction": 0.06077501632431503,
+        "impact:Climate change": 10.696003141614893
+      },
+      "units": {
+        "purchased_energy_kWh_kg": "kWh/kg",
+        "yield_fraction": "1",
+        "impact:Climate change": "kg CO2-eq/kg"
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source": "Browser mean evaluation of data/generic-htl-extension/model.bundle.json"
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "app": "ExtrudeCAD Studio",
+  "fileType": "extrudecad-project",
+  "version": 1,
+  "savedAt": "2026-11-17T13:30:34.903Z",
+  "shapes": [
+    {
+      "id": "cad-point-f02a1990-ea29-41f0-8718-3c09b69010b0",
+      "name": "定位点 #1",
+      "type": "point",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-point-ade111cf-1dc5-4291-afbe-b8c5fc1d649c",
+      "name": "定位点 #2",
+      "type": "point",
+      "points": [
+        {
+          "x": 40,
+          "y": 0
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-segment-4b7ce266-ac88-4fcd-9561-567f24c5d996",
+      "name": "两点直线 #1",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 40,
+          "y": 0
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false,
+      "endpointIds": [
+        "cad-point-f02a1990-ea29-41f0-8718-3c09b69010b0",
+        "cad-point-ade111cf-1dc5-4291-afbe-b8c5fc1d649c"
+      ]
+    },
+    {
+      "id": "cad-point-13d80253-8f1b-486c-9b33-158888c518f2",
+      "name": "定位点 #3",
+      "type": "point",
+      "points": [
+        {
+          "x": 60,
+          "y": 20
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-segment-61aa212f-dfb4-48c9-9e4e-1c88df0aa0de",
+      "name": "两点直线 #2",
+      "type": "segment",
+      "points": [
+        {
+          "x": 40,
+          "y": 0
+        },
+        {
+          "x": 60,
+          "y": 20
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false,
+      "endpointIds": [
+        "cad-point-ade111cf-1dc5-4291-afbe-b8c5fc1d649c",
+        "cad-point-13d80253-8f1b-486c-9b33-158888c518f2"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "summary": "导入 DXF 轮廓\n\nroundtrip-original.dxf\n\n文件单位\n自动识别文件单位\n毫米 (mm)\n厘米 (cm)\n米 (m)\n英寸 (in)\n英尺 (ft)\n默认拉伸高度 (mm)\n\n文件未声明单位时，请手动选择单位后继续。\n\n可导入轮廓\n6\n将跳过实体\n0\n源文件单位\nmm\n1 单位 = 1 mm\n已根据 ExtrudeCAD 单孔轮廓标记恢复内孔。\n\n支持 ASCII DXF 中的闭合直线多段线（LWPOLYLINE）和圆（CIRCLE）。外部文件的闭合轮廓分别导入为独立拉伸体，孔洞可用布尔差集处理；ExtrudeCAD 导出的轮廓可恢复其单个内孔。此入口不支持 DWG、STEP。\n\n追加到当前工程 · 可撤销\n取消\n导入 6 个轮廓",
+  "differences": [
+    {
+      "index": 0,
+      "outer": true,
+      "hole": true,
+      "height": true,
+      "elevation": true
+    },
+    {
+      "index": 1,
+      "outer": true,
+      "hole": true,
+      "height": true,
+      "elevation": true
+    },
+    {
+      "index": 2,
+      "outer": true,
+      "hole": true,
+      "height": true,
+      "elevation": true
+    },
+    {
+      "index": 3,
+      "outer": true,
+      "hole": true,
+      "height": true,
+      "elevation": true
+    },
+    {
+      "index": 4,
+      "outer": true,
+      "hole": true,
+      "height": true,
+      "elevation": true
+    },
+    {
+      "index": 5,
+      "outer": true,
+      "hole": true,
+      "height": true,
+      "elevation": true
+    }
+  ],
+  "appendUndo": true
+}

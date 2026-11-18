@@ -7,3 +7,6 @@ __pycache__/
 /validation/
 /docs/archive/
 /docs/优化与实测报告-20260926.md
+
+node_modules/
+**/node_modules/

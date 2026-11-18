@@ -1,0 +1,124 @@
+{
+  "app": "ExtrudeCAD Studio",
+  "fileType": "extrudecad-project",
+  "version": 1,
+  "savedAt": "2026-11-17T06:47:44.655Z",
+  "shapes": [
+    {
+      "id": "cad-line-e761e1a0-6be8-4a6a-81a7-5c6af97f4c60",
+      "name": "直线墙 #1",
+      "type": "line",
+      "points": [
+        {
+          "x": 0,
+          "y": 4
+        },
+        {
+          "x": 40,
+          "y": 4
+        },
+        {
+          "x": 40,
+          "y": -4
+        },
+        {
+          "x": 0,
+          "y": -4
+        }
+      ],
+      "zHeight": 30,
+      "zOffset": 0,
+      "bevel": 0.4,
+      "color": "#A5ADB8",
+      "materialPreset": "steel",
+      "visible": true
+    },
+    {
+      "id": "cad-line-b01e0fd6-6182-4bf2-82dc-c41cf2318dba",
+      "name": "直线墙 #2",
+      "type": "line",
+      "points": [
+        {
+          "x": 36,
+          "y": 0
+        },
+        {
+          "x": 36,
+          "y": 20
+        },
+        {
+          "x": 44,
+          "y": 20
+        },
+        {
+          "x": 44,
+          "y": 0
+        }
+      ],
+      "zHeight": 30,
+      "zOffset": 0,
+      "bevel": 0.4,
+      "color": "#A5ADB8",
+      "materialPreset": "steel",
+      "visible": true
+    },
+    {
+      "id": "cad-line-037fd955-753e-4bdb-aa35-eba18c5f7a4d",
+      "name": "直线墙 #3",
+      "type": "line",
+      "points": [
+        {
+          "x": 41.78885438199983,
+          "y": 16.422291236000337
+        },
+        {
+          "x": 1.7888543819998317,
+          "y": -3.5777087639996634
+        },
+        {
+          "x": -1.7888543819998317,
+          "y": 3.5777087639996634
+        },
+        {
+          "x": 38.21114561800017,
+          "y": 23.577708763999663
+        }
+      ],
+      "zHeight": 30,
+      "zOffset": 0,
+      "bevel": 0.4,
+      "color": "#A5ADB8",
+      "materialPreset": "steel",
+      "visible": true
+    },
+    {
+      "id": "cad-line-c8fa1492-6b71-4b3a-a686-b0903649e66b",
+      "name": "直线墙 #4",
+      "type": "line",
+      "points": [
+        {
+          "x": 60,
+          "y": 4
+        },
+        {
+          "x": 60.5,
+          "y": 4
+        },
+        {
+          "x": 60.5,
+          "y": -4
+        },
+        {
+          "x": 60,
+          "y": -4
+        }
+      ],
+      "zHeight": 30,
+      "zOffset": 0,
+      "bevel": 0.4,
+      "color": "#A5ADB8",
+      "materialPreset": "steel",
+      "visible": true
+    }
+  ]
+}

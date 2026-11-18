@@ -1,0 +1,122 @@
+{
+  "schema_version": "1.0",
+  "study": {
+    "id": "htl-model-compounds-manuscript-20261116",
+    "title": "木质素水热液化 · 全流程分析",
+    "description": "20 个工况 · STD / HR 配对分析",
+    "basis": {
+      "duration_s": 3600,
+      "wet_feed_kg": 100
+    },
+    "source_note": "导入修订论文归档结果；采用经功能单位校正的 LCA 清单。",
+    "screening": {
+      "scenario": "STD",
+      "normalization": "all_20_conditions",
+      "presets": {
+        "yield": [
+          0.6,
+          0.2,
+          0.2
+        ],
+        "char": [
+          0.2,
+          0.6,
+          0.2
+        ],
+        "cf": [
+          0.2,
+          0.2,
+          0.6
+        ]
+      }
+    }
+  },
+  "case": {
+    "id": "T330-L10-HR",
+    "condition_id": "T330-L10",
+    "scenario": "HR",
+    "inputs": {
+      "temperature_k": 603,
+      "nominal_temperature_c": 330,
+      "pressure_pa": 25000000,
+      "length_m": 10,
+      "feed_kg_s": 0.027777777777777776
+    },
+    "outputs": {
+      "target_monomer_kg": 6.02439908,
+      "target_yield_fraction": 0.0602439908,
+      "char_proxy_kg": 0.0912810621,
+      "residence_time_s": 5064.517188000001,
+      "heater_w": 4186.1978970400005,
+      "reactor_w": 8119.89290032,
+      "pump_w": 2171.721,
+      "pump_inventory_j": 7819200.000000001,
+      "electricity_j": 52121126.870496005,
+      "cooler_w": -8213.3411596,
+      "separator_w": 401.87112808319995,
+      "components_kg_s": {
+        "CAT": 0.0010225847305555555,
+        "O_CRESOL": 0.0006508594583333334
+      }
+    },
+    "lca": {
+      "gwp_kg_co2e": 62.72289547616951,
+      "cf_kg_co2e_per_kg_target": 10.411477638876429,
+      "reference_target_kg": 6.024399,
+      "ci95_kg_co2e_per_kg_target": [
+        9.740788463045307,
+        11.254964391665466
+      ],
+      "mc_mean_cf": 10.413810867728792,
+      "iterations": 1000,
+      "method": "ReCiPe 2016 v1.03 midpoint (H)",
+      "time_horizon_years": 100,
+      "interval_type": "Monte Carlo 2.5th–97.5th percentiles",
+      "boundary": "cradle-to-gate",
+      "export_target_scale": 1
+    },
+    "quality": {
+      "status": "imported",
+      "note": "论文归档计算结果；HR 产物数据沿用配对 STD 反应出口。",
+      "component_scope": "target_monomers_only",
+      "mass_balance_error_fraction": 0.000001548534322992623
+    },
+    "provenance": {
+      "source_id": "inventory",
+      "source_row": 11,
+      "rows": {
+        "process": 11,
+        "energy": 11,
+        "inventory": 11,
+        "monte_carlo": 21
+      },
+      "pressure_source": "修订稿 2.1 节共同设定 25 MPa"
+    }
+  },
+  "sources": [
+    {
+      "id": "process",
+      "label": "all_20_cases.csv",
+      "file": "source/all_20_cases.csv",
+      "sha256": "c0446d905068d909dd2604a8f7985edb47e0c1ea3fca200d6302cc691675c09b"
+    },
+    {
+      "id": "energy",
+      "label": "energy-and-heat-recovery-v2.csv",
+      "file": "source/energy-and-heat-recovery-v2.csv",
+      "sha256": "d99dae13eae3899933e462214113e671556f33b402b6ce3f5eb8bf8657619467"
+    },
+    {
+      "id": "inventory",
+      "label": "paired-inventory-accounting-v2.csv",
+      "file": "source/paired-inventory-accounting-v2.csv",
+      "sha256": "d11d206ab3588bfe42b8a4ab9598d4439a9a4225481900236ebf432af7e2aec3"
+    },
+    {
+      "id": "monte_carlo",
+      "label": "lca-monte-carlo-gwp-summary-v2.csv",
+      "file": "source/lca-monte-carlo-gwp-summary-v2.csv",
+      "sha256": "f27828e6e4baacf51e0103e4ab2609149637922e22a829e13c614fc3a095045a"
+    }
+  ]
+}

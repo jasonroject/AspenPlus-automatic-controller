@@ -1,0 +1,11 @@
+const task=await taskSpace(2),page=task.page('p4');
+await page.click('button[aria-label="切换为中文"]');
+console.log(await page.snapshot());
+console.log('archive zh',await page.evaluate(()=>({url:location.href,lang:document.documentElement.lang,buttons:[...document.querySelectorAll('[data-equipment]')].map(b=>({id:b.dataset.equipment,pressed:b.getAttribute('aria-pressed')}))})));
+await page.click('[data-equipment="reactor"]');
+console.log('reactor',await page.evaluate(()=>({active:[...document.querySelectorAll('[data-equipment]')].filter(b=>b.getAttribute('aria-pressed')==='true').map(b=>b.dataset.equipment),labels:[...document.querySelectorAll('canvas')].map(c=>c.getAttribute('aria-label'))})));
+await page.click('button[aria-label="Switch to English"]');
+console.log(await page.snapshot());
+console.log('archive en',await page.evaluate(()=>({url:location.href,lang:document.documentElement.lang})));
+await page.screenshot({path:'C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/workspace-bilingual-20261117/archive-equipment-en.png'});
+const ai=task.page('p2');console.log(await ai.snapshot());

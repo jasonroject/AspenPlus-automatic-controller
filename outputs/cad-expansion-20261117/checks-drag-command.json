@@ -1,0 +1,36 @@
+[
+  {
+    "case": "CtrlK search+Enter runs measurement",
+    "passed": true
+  },
+  {
+    "case": "Drag tiny snapped move then nonzero; CtrlZ blocked during; release outside; one undo restores",
+    "moved": "10",
+    "released": "75",
+    "passed": true
+  },
+  {
+    "case": "Escape cancels geometry and preserves redo",
+    "before": [
+      {
+        "title": "撤销 Ctrl+Z · 8 步",
+        "disabled": false
+      },
+      {
+        "title": "重做 Ctrl+Y · 1 步",
+        "disabled": false
+      }
+    ],
+    "after": [
+      {
+        "title": "撤销 Ctrl+Z · 8 步",
+        "disabled": false
+      },
+      {
+        "title": "重做 Ctrl+Y · 1 步",
+        "disabled": false
+      }
+    ],
+    "passed": true
+  }
+]

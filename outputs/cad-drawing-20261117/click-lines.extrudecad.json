@@ -1,0 +1,66 @@
+{
+  "app": "ExtrudeCAD Studio",
+  "fileType": "extrudecad-project",
+  "version": 1,
+  "savedAt": "2026-11-17T06:46:12.747Z",
+  "shapes": [
+    {
+      "id": "cad-line-227293e1-c405-450f-864a-77c05bb2b2ac",
+      "name": "直线墙 #1",
+      "type": "line",
+      "points": [
+        {
+          "x": -68,
+          "y": 56
+        },
+        {
+          "x": -14,
+          "y": 56
+        },
+        {
+          "x": -14,
+          "y": 48
+        },
+        {
+          "x": -68,
+          "y": 48
+        }
+      ],
+      "zHeight": 30,
+      "zOffset": 0,
+      "bevel": 0.4,
+      "color": "#A5ADB8",
+      "materialPreset": "steel",
+      "visible": true
+    },
+    {
+      "id": "cad-line-15e279ac-4a30-4c06-8be0-f45efff368a1",
+      "name": "直线墙 #2",
+      "type": "line",
+      "points": [
+        {
+          "x": -10,
+          "y": 52
+        },
+        {
+          "x": -10,
+          "y": 20
+        },
+        {
+          "x": -18,
+          "y": 20
+        },
+        {
+          "x": -18,
+          "y": 52
+        }
+      ],
+      "zHeight": 30,
+      "zOffset": 0,
+      "bevel": 0.4,
+      "color": "#A5ADB8",
+      "materialPreset": "steel",
+      "visible": true
+    }
+  ]
+}

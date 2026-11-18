@@ -1,0 +1,17 @@
+const p=(await taskSpace(1)).page('p1');const fs=await import('node:fs/promises');const assert=(await import('node:assert/strict')).default;
+const base='C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/cad-zoom-20261117/';
+const dl=p.waitForEvent('download');await p.click('.header-actions button[title="下载可继续编辑的工程文件"]');await (await dl).saveAs(base+'resume-project-before.extrudecad.json');
+const layout=()=>p.evaluate(()=>({width:innerWidth,height:innerHeight,dpr:devicePixelRatio,scale:visualViewport.scale,header:document.querySelector('.app-header').getBoundingClientRect().height,left:document.querySelector('.model-sidebar').getBoundingClientRect().width,right:document.querySelector('.inspector').getBoundingClientRect().width,layout:document.querySelector('.cad-app').dataset.panelLayout}));
+const before=await layout();
+await p.mouse.move(600,350);await p.keyboard.down('Control');try{await p.mouse.wheel(0,-600);}finally{await p.keyboard.up('Control');}assert.deepEqual(await layout(),before);
+await p.mouse.move(90,350);await p.keyboard.down('Control');try{await p.mouse.wheel(0,600);}finally{await p.keyboard.up('Control');}assert.deepEqual(await layout(),before);
+await p.click('.view-switch button >> nth=1');
+await p.click('loc=role:button[name="重置二维缩放为100%"]');await p.click('loc=role:button[name="缩小二维视图"]');
+assert.equal(await p.evaluate(()=>document.querySelector('[aria-label="二维缩放百分比"]').value),'80');
+await p.fill('loc=role:textbox[name="二维缩放百分比"]','oops');await p.keyboard.press('Enter');assert.equal(await p.evaluate(()=>document.querySelector('[aria-label="二维缩放百分比"]').value),'80');
+await p.fill('loc=role:textbox[name="二维缩放百分比"]','100000');await p.keyboard.press('Enter');assert.equal(await p.evaluate(()=>document.querySelector('[aria-label="二维缩放百分比"]').value),'100000');
+assert.equal(await p.evaluate(()=>document.querySelector('[aria-label="放大二维视图"]').disabled),true);
+await p.click('loc=role:button[name="适合二维视图"]');
+await fs.writeFile(base+'checks-resume-native.json',JSON.stringify({nativeCtrlWheelCanvasAndSidebar:true,minusAndInvalidInput:true,maxZoomAndButtonLimit:true,before,after:await layout()},null,2));
+console.log({passed:'Native browser zoom prevention and zoom input',layout:before});
+console.log(await p.evaluate(()=>[...document.querySelectorAll('.model-sidebar *')].filter(e=>e.scrollHeight>e.clientHeight+10&&getComputedStyle(e).overflowY==='auto').map(e=>({class:e.className,top:e.scrollTop,height:e.clientHeight,scroll:e.scrollHeight}))));

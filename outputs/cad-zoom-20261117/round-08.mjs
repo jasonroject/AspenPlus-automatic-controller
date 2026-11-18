@@ -1,0 +1,14 @@
+const p=(await taskSpace(1)).page('p1');const fs=await import('node:fs/promises');const assert=(await import('node:assert/strict')).default;const base='C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/cad-zoom-20261117/';
+await p.reload();await p.waitForSelector('loc=role:button[name="打开工作区选项"]');
+assert.equal(await p.evaluate(()=>document.querySelector('.cad-app').dataset.panelLayout),'compact');
+await p.click('loc=role:button[name="打开工作区选项"]');await p.selectOption('loc=role:combobox[name="面板固定尺寸"]','standard');
+await p.focus('loc=role:button[name="关闭工作区选项"]');await p.keyboard.press('l');await p.keyboard.press('Delete');assert.equal(await p.evaluate(()=>document.querySelectorAll('.object-select').length),48);
+await p.keyboard.press('Escape');await p.waitForFunction(()=>!document.querySelector('.workspace-options').open,undefined,{timeout:5000});
+await p.click('.view-switch button >> nth=1');await p.click('loc=role:button[name="适合二维视图"]');await p.click('loc=role:button[name="二维点线显示设置"]');
+const popup=await p.evaluate(()=>({top:document.querySelector('[aria-label="二维显示设置"]').getBoundingClientRect().top,barBottom:document.querySelector('[aria-label="二维视图缩放"]').getBoundingClientRect().bottom}));assert.ok(popup.top>=popup.barBottom);await p.click('loc=role:button[name="关闭显示设置"]');
+await p.screenshot({path:base+'final-2d.png'});
+await p.cdp('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:false});
+const narrow=await p.evaluate(()=>{const r=document.querySelector('[aria-label="打开工作区选项"]').getBoundingClientRect();return {width:innerWidth,scroll:document.documentElement.scrollWidth,option:{x:r.x,right:r.right,y:r.y},header:document.querySelector('.app-header').getBoundingClientRect().height};});assert.ok(narrow.scroll<=390);assert.ok(narrow.option.x>=0&&narrow.option.right<=390);
+await p.click('loc=role:button[name="打开工作区选项"]');const dialog=await p.evaluate(()=>{const r=document.querySelector('.workspace-options').getBoundingClientRect();return {left:r.left,right:r.right,top:r.top,bottom:r.bottom};});assert.ok(dialog.left>=0&&dialog.right<=390&&dialog.top>=0&&dialog.bottom<=844);
+await p.screenshot({path:base+'options-narrow.png'});await p.click('loc=role:button[name="关闭工作区选项"]');
+await fs.writeFile(base+'checks-layout.json',JSON.stringify({persistedCompact:true,modalBlocksDelete:true,displayDoesNotCoverZoom:popup,narrow,dialog},null,2));console.log({passed:'Persistence, modal, display placement and narrow viewport',narrow,dialog});

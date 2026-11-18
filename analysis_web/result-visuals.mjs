@@ -53,8 +53,7 @@ function dataTable(headings, rows, caption) {
   return `<details class="rv-data"><summary>${t('View chart data','查看图表数据')}</summary><div class="rv-table-scroll" tabindex="0"><table><caption>${esc(caption)}</caption><thead><tr>${headings.map(h=>`<th scope="col">${esc(h)}</th>`).join('')}</tr></thead><tbody>${rows.map(row=>`<tr>${row.map((v,i)=>i===0?`<th scope="row">${esc(v)}</th>`:`<td>${esc(v)}</td>`).join('')}</tr>`).join('')}</tbody></table></div></details>`;
 }
 
-function bars(rows, unit, selectedId) {
-  const maximum = Math.max(0, ...rows.map(r=>r.value ?? 0));
+function bars(rows, unit, selectedId, maximum = Math.max(0, ...rows.map(r=>r.value ?? 0))) {
   return `<div class="rv-bars" role="list">${rows.map(row=>`<div class="rv-bar-row ${row.id===selectedId?'is-selected':''}" role="listitem"><div class="rv-bar-label"><span title="${esc(row.label)}">${esc(row.label)}</span><strong>${row.value === null ? t('Unavailable','不可用') : fmt(row.value)}</strong></div><div class="rv-track" aria-hidden="true">${row.value === null ? '<span class="rv-missing-track"></span>' : `<span style="width:${maximum ? Math.max(0,row.value/maximum*100) : 0}%"></span>`}</div></div>`).join('')}</div><p class="rv-axis-note">${t('Zero-based scale','从零起始的刻度')} · ${esc(unit)}</p>`;
 }
 
@@ -105,12 +104,13 @@ function energyPanel(data) {
     ${exportButtons('equipment')}${dataTable([t('Block','设备'),'Q / kW','W / kW',t('Mass residual / kg/h','质量残差 / kg/h'),t('Energy residual / kW','能量残差 / kW')],rows.map(row=>[row.id,fmt(row.heat,7),fmt(row.power,7),fmt(row.mass_residual_kg_h,7),fmt(row.energy_residual_kW,7)]),t('Normalized block duties and numerical residuals','单位统一后的设备负荷及数值残差'))}</div>`;
 }
 
-function casesPanel(data) {
+const CASES_PER_PAGE=8;
+function casesPanel(data,page) {
   if (data.cases.length<2) return `<p class="rv-empty">${t('This project has one case. Import another comparable case to show side-by-side metrics. For the reference HTL model, use Prediction & robustness to explore precomputed conditions.','当前项目只有一个工况。再导入一个可比工况即可并列展示指标。对于参考 HTL 模型，可前往“预测与鲁棒性”查看预计算工况。')}</p>`;
   if (!data.comparable) return `<p class="rv-empty">${t('Review and confirm comparable functions, boundaries and allocation in step 2 before comparing the cases visually.','请先在第 2 步检查并确认工况具有可比的功能、边界和分配规则，再进行图表对比。')}</p>`;
-  const rows=data.cases.slice(0,20);
+  const start=page*CASES_PER_PAGE,rows=data.cases.slice(start,start+CASES_PER_PAGE),pages=Math.ceil(data.cases.length/CASES_PER_PAGE);
   const metrics=[['energy',t('Purchased energy','购入能耗'),'kWh/kg'],['impact',data.category||t('Impact','环境影响'),`${data.impact?.unit||'—'}/kg`],['yield',t('Target / feed yield','目标产物 / 进料产率'),'%']];
-  return `<p class="rv-description">${t('Separate axes preserve each metric’s unit. Dark bars mark the selected case. Missing values remain unavailable; this view does not rank cases.','各指标分别使用自己的坐标轴与单位。深色条表示当前工况，缺失值保留为不可用，本图不进行排名。')}</p><div class="rv-comparison-grid">${metrics.map(([key,label,unit])=>`<div class="rv-chart-card"><h3>${esc(label)}</h3>${bars(rows.map(row=>({id:row.id,label:row.id,value:row[key]})),unit,data.caseId)}</div>`).join('')}</div>${data.cases.length>20?`<p class="rv-description">${t('Showing the first 20 cases. Export the audit for all cases.','显示前 20 个工况，导出审计文件可查看全部工况。')}</p>`:''}${dataTable([t('Case','工况'),'kWh/kg',`${data.impact?.unit||'—'}/kg`,t('Yield / %','产率 / %'),t('Balance check','衡算检查')],rows.map(row=>[row.id,fmt(row.energy),fmt(row.impact),fmt(row.yield),row.balanceWithinTolerance?t('Within tolerance','容差内'):t('Needs review','需检查')]),t('Nominal case metrics; complete category totals only','工况名义指标；仅显示完整影响类别的总量'))}`;
+  return `<p class="rv-description">${t('Each metric keeps the same zero-based scale across all pages. Dark bars mark the selected case. Missing values remain unavailable; this view does not rank cases. CSV includes every case.','同一指标在各页保持统一的零起点刻度。深色条表示当前工况，缺失值保留为不可用，本图不进行排名。CSV 包含全部工况。')}</p><nav class="rv-pagination" aria-label="${t('Case chart pages','工况图表分页')}"><button type="button" data-rv-page="previous" ${page===0?'disabled':''}>${t('Previous','上一页')}</button><span data-rv-page-status tabindex="-1" aria-live="polite">${t('Page','第')} ${page+1} / ${pages} ${t('','页')} · ${start+1}–${start+rows.length} / ${data.cases.length} ${t('cases','个工况')}</span><button type="button" data-rv-page="next" ${page===pages-1?'disabled':''}>${t('Next','下一页')}</button></nav><div class="rv-comparison-grid">${metrics.map(([key,label,unit])=>`<div class="rv-chart-card"><div class="rv-chart-heading"><h3>${esc(label)}</h3><span>${esc(unit)}</span></div>${bars(rows.map(row=>({id:row.id,label:row.id,value:row[key]})),unit,data.caseId,Math.max(0,...data.cases.map(row=>row[key]??0)))}</div>`).join('')}</div>${dataTable([t('Case','工况'),'kWh/kg',`${data.impact?.unit||'—'}/kg`,t('Yield / %','产率 / %'),t('Balance check','衡算检查')],rows.map(row=>[row.id,fmt(row.energy),fmt(row.impact),fmt(row.yield),row.balanceWithinTolerance?t('Within tolerance','容差内'):t('Needs review','需检查')]),t('Current page: nominal case metrics; complete category totals only','当前页工况名义指标；仅显示完整影响类别的总量'))}`;
 }
 
 const mounted = new Map();
@@ -121,14 +121,24 @@ export function renderResultVisuals(container, options) {
   const state={...options,view:previous?.view||'impact',selectedCategory:previous?.caseId===options.caseId&&!externalCategoryChanged?previous.selectedCategory:options.category};
   const data=resultVisualData(options.project,options.report,options.caseId,state.selectedCategory);
   if (!data) {clearResultVisuals(container);return;}
+  const sameResults=previous?.project===options.project&&previous?.report===options.report;
+  state.casePage=sameResults&&previous.resolvedCaseId===data.caseId?previous.casePage:Math.floor(Math.max(0,data.cases.findIndex(row=>row.id===data.caseId))/CASES_PER_PAGE);
+  state.casePage=Math.max(0,Math.min(state.casePage||0,Math.ceil(data.cases.length/CASES_PER_PAGE)-1));
+  state.resolvedCaseId=data.caseId;
   const diagnostics=inputUncertainty(options.project,options.report,data.caseId,data.category);
   state.selectedCategory=data.category;mounted.set(container,state);
   container.classList.add('result-visuals');
   container.innerHTML=`<div class="rv-header"><div><span class="rv-eyebrow">${t('CALCULATED FROM IMPORTED DATA','基于导入数据计算')}</span><h2>${t('See what the numbers mean.','让数据更直观。')}</h2><p>${t('Trace each visual back to your inputs and audited results.','每张图都可追溯至输入清单与衡算结果。')}</p></div><label class="rv-category">${t('Impact category','影响类别')}<select data-rv-category ${data.categories.length?'':'disabled'}>${data.categories.length?data.categories.map(c=>`<option value="${esc(c)}" ${c===data.category?'selected':''}>${esc(c)}</option>`).join(''):`<option>${t('No factors imported','尚未导入因子')}</option>`}</select></label></div>
     <div class="rv-tabs" role="group" aria-label="${t('Chart views','图表视图')}">${[['impact',t('Impact & supports','影响与支持区间')],['energy',t('Equipment energy','设备能量')],['cases',t('Across cases','工况对比')]].map(([key,label])=>`<button type="button" data-rv-view="${key}" aria-pressed="${state.view===key}">${label}</button>`).join('')}</div>
-    <div class="rv-body">${state.view==='impact'?`<div class="rv-impact-grid">${contributionPanel(data)}${supportPanel(data,diagnostics)}</div>`:state.view==='energy'?energyPanel(data):`${casesPanel(data)}${exportButtons('cases',false,data.cases.length>0)}`}</div><p class="rv-export-status" data-rv-export-status role="status" hidden></p>`;
+    <div class="rv-body">${state.view==='impact'?`<div class="rv-impact-grid">${contributionPanel(data)}${supportPanel(data,diagnostics)}</div>`:state.view==='energy'?energyPanel(data):`${casesPanel(data,state.casePage)}${exportButtons('cases',false,data.cases.length>0)}`}</div><p class="rv-export-status" data-rv-export-status role="status" hidden></p>`;
   container.querySelector('[data-rv-category]').addEventListener('change',e=>{state.selectedCategory=e.target.value;renderResultVisuals(container,state);container.dispatchEvent(new CustomEvent('resultcategorychange',{detail:{category:state.selectedCategory}}));});
   for(const button of container.querySelectorAll('[data-rv-view]'))button.addEventListener('click',()=>{state.view=button.dataset.rvView;renderResultVisuals(container,state);container.querySelector(`[data-rv-view="${state.view}"]`).focus({preventScroll:true});});
+  for(const button of container.querySelectorAll('[data-rv-page]'))button.addEventListener('click',()=>{
+    if(mounted.get(container)!==state||button.disabled)return;
+    state.casePage+=button.dataset.rvPage==='next'?1:-1;
+    renderResultVisuals(container,state);
+    container.querySelector('[data-rv-page-status]')?.focus({preventScroll:true});
+  });
   for(const button of container.querySelectorAll('[data-rv-export]'))button.addEventListener('click',()=>{
     // A detached or superseded result must never export the previous calculation.
     if(mounted.get(container)!==state||!container.isConnected||button.disabled)return;

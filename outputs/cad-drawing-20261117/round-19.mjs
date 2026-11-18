@@ -1,0 +1,5 @@
+const task=await taskSpace(10);const page=task.page('p1');const fs=await import('node:fs/promises');const assert=(await import('node:assert/strict')).default;
+const state=await page.evaluate(()=>({count:document.querySelectorAll('.object-select').length,command:document.querySelector('[data-testid="exact-size-input-bar"]')?.textContent}));console.log(state);assert.equal(state.count,10);assert.ok(state.command);await page.keyboard.press('Escape');
+await fs.writeFile('C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/cad-drawing-20261117/checks-ortho-navigation.json',JSON.stringify({f8AppliesWithoutMouseMove:true,zeroBevel:true,zoomAnchorNoExtraPoint:true,altPanNoExtraPoint:true},null,2));
+help('page.mouse.down');help('page.mouse.click');
+const ref=task.page('p2');await ref.goto('https://www.google.com/search?q=site%3Ahelp.autodesk.com%2Fview%2FACD+POINT+Command');console.log(await ref.evaluate(()=>[...document.querySelectorAll('a')].filter(a=>a.href.startsWith('https://help.autodesk.com/')&&a.innerText.length>10).map(a=>({text:a.innerText,url:a.href})).slice(0,6)));

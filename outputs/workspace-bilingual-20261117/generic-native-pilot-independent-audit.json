@@ -1,0 +1,143 @@
+{
+  "audit_passed": true,
+  "native_cases": 17,
+  "accepted_cases": 17,
+  "split_counts": {
+    "training": 12,
+    "holdout": 3,
+    "verification": 2
+  },
+  "validation_passed": false,
+  "prediction_enabled": false,
+  "validation_arithmetic": {
+    "holdout": {
+      "purchased_energy_kWh_kg": {
+        "mae": 0.020729694677890837,
+        "rmse": 0.024496511799018492,
+        "max_relative_error": 0.014442508853219179
+      },
+      "yield_fraction": {
+        "mae": 0.0002127549354315796,
+        "rmse": 0.00026833321135308135,
+        "max_relative_error": 0.007307674552029634
+      },
+      "impact:Climate change": {
+        "mae": 0.1182126056507169,
+        "rmse": 0.14311015275239722,
+        "max_relative_error": 0.013344505762944785
+      }
+    },
+    "verification": {
+      "purchased_energy_kWh_kg": {
+        "mae": 0.09365815240474729,
+        "rmse": 0.10444395996464181,
+        "max_relative_error": 0.057618388252806234
+      },
+      "yield_fraction": {
+        "mae": 0.0033682230816135146,
+        "rmse": 0.0042721563022593894,
+        "max_relative_error": 0.09771647537840042
+      },
+      "impact:Climate change": {
+        "mae": 0.5424901189580638,
+        "rmse": 0.6965307303011972,
+        "max_relative_error": 0.0953670306245879
+      }
+    }
+  },
+  "residual_checks": [
+    {
+      "id": "case-001",
+      "maximum_block_mass_residual_kg_h": 0.0002250000000003638,
+      "maximum_block_energy_residual_kW": 1.0260575955614581e-06
+    },
+    {
+      "id": "case-002",
+      "maximum_block_mass_residual_kg_h": 6.399999999473494e-05,
+      "maximum_block_energy_residual_kW": 4.011468490716652e-07
+    },
+    {
+      "id": "case-003",
+      "maximum_block_mass_residual_kg_h": 0.0005160000000046239,
+      "maximum_block_energy_residual_kW": 5.446756858873414e-07
+    },
+    {
+      "id": "case-004",
+      "maximum_block_mass_residual_kg_h": 9.099999999762076e-05,
+      "maximum_block_energy_residual_kW": 8.887253670764039e-07
+    },
+    {
+      "id": "case-005",
+      "maximum_block_mass_residual_kg_h": 0.00010199999999827014,
+      "maximum_block_energy_residual_kW": 1.9037444696223815e-06
+    },
+    {
+      "id": "case-006",
+      "maximum_block_mass_residual_kg_h": 0.00015500000000656655,
+      "maximum_block_energy_residual_kW": 9.257189628186779e-07
+    },
+    {
+      "id": "case-007",
+      "maximum_block_mass_residual_kg_h": 0.00011200000000144428,
+      "maximum_block_energy_residual_kW": 2.17705033203619e-06
+    },
+    {
+      "id": "case-008",
+      "maximum_block_mass_residual_kg_h": 0.00015700000000151704,
+      "maximum_block_energy_residual_kW": 1.8105205807916747e-06
+    },
+    {
+      "id": "case-009",
+      "maximum_block_mass_residual_kg_h": 0.0002190000000013015,
+      "maximum_block_energy_residual_kW": 6.433915469283846e-07
+    },
+    {
+      "id": "case-010",
+      "maximum_block_mass_residual_kg_h": 8.400000000108321e-05,
+      "maximum_block_energy_residual_kW": 5.316935265398115e-07
+    },
+    {
+      "id": "case-011",
+      "maximum_block_mass_residual_kg_h": 0.0002910000000042601,
+      "maximum_block_energy_residual_kW": 1.67646508586472e-06
+    },
+    {
+      "id": "case-012",
+      "maximum_block_mass_residual_kg_h": 0.00019500000000505224,
+      "maximum_block_energy_residual_kW": 1.0770952769689757e-06
+    },
+    {
+      "id": "case-013",
+      "maximum_block_mass_residual_kg_h": 0.00011000000000649379,
+      "maximum_block_energy_residual_kW": 9.117920303225446e-07
+    },
+    {
+      "id": "case-014",
+      "maximum_block_mass_residual_kg_h": 0.0004119999999971924,
+      "maximum_block_energy_residual_kW": 1.150056732512894e-06
+    },
+    {
+      "id": "case-015",
+      "maximum_block_mass_residual_kg_h": 0.00032099999999957163,
+      "maximum_block_energy_residual_kW": 1.5227187120103736e-06
+    },
+    {
+      "id": "verify-T335-L8p5",
+      "maximum_block_mass_residual_kg_h": 0.00010600000000238197,
+      "maximum_block_energy_residual_kW": 1.286114215126588e-06
+    },
+    {
+      "id": "verify-T345-L17p5",
+      "maximum_block_mass_residual_kg_h": 0.0005879999999933716,
+      "maximum_block_energy_residual_kW": 1.3690068954019807e-06
+    }
+  ],
+  "robustness": {
+    "queries": 81,
+    "complete": true,
+    "preferences": 3
+  },
+  "model_refitted": false,
+  "native_execution_performed": false,
+  "scope": "Independent scalar posterior mean, signed residual sums, native-unit conversions, fixed-inventory LCIA arithmetic, frozen split/error checks and scenario rank summaries. Local evidence consistency only; no thermophysical or external authenticity validation."
+}

@@ -1,0 +1,5 @@
+from pathlib import Path
+p=Path('outputs/cad-workspace-i18n-20261117');s=(p/'round-17.mjs').read_text(encoding='utf8')
+s=s.replace("console.log({panelAfterEscape:await p.evaluate(()=>!!document.querySelector('#cad-command-panel'))});", "await p.waitForFunction(()=>!document.querySelector('#cad-command-panel'));assert.equal(await p.evaluate(()=>document.querySelectorAll('.object-row.is-selected').length),1);")
+s=s.replace("await p.fill('#cad-command-input','REC');await p.keyboard.press('Control+a');assert.equal(await p.evaluate(()=>document.querySelectorAll('.object-row.is-selected').length),0);", "const selectedBefore=await p.evaluate(()=>[...document.querySelectorAll('.object-row.is-selected .object-select')].map(e=>e.title));await p.fill('#cad-command-input','REC');await p.keyboard.press('Control+a');assert.deepEqual(await p.evaluate(()=>[...document.querySelectorAll('.object-row.is-selected .object-select')].map(e=>e.title)),selectedBefore);")
+(p/'round-18.mjs').write_text(s,encoding='utf8')

@@ -1,0 +1,15 @@
+const task=await taskSpace(10);const page=task.page('p1');const dir='C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/cad-expansion-20261117/';
+await page.click('loc=role:button[name="添加基础几何体"]');
+for(const [label,value] of [['创建中心 X','123.45'],['创建中心 Y','-67.89'],['创建底面 Z','12.5'],['创建宽度 X','22.2'],['创建深度 Y','11.1'],['创建拉伸高度 Z','3.3']])await page.fill(`loc=css:input[aria-label="${label}"]`,value);
+await page.click('loc=css:[data-testid="precision-create-btn"]');await page.waitForFunction(()=>document.querySelectorAll('.object-row').length===7);
+await page.click('loc=role:button[name="添加基础几何体"]');
+const remembered=await page.evaluate(()=>Object.fromEntries([...document.querySelectorAll('form[aria-label="按尺寸创建几何体"] input')].map(x=>[x.name,x.value])));
+if(remembered.width!=='22.2'||remembered.centerX!=='123.45'||remembered.zHeight!=='3.3')throw Error(JSON.stringify(remembered));
+await page.selectOption('loc=css:select[aria-label="精确创建类型"]','cylinder');await page.waitForSelector('loc=css:input[aria-label="创建直径"]');
+const switched=await page.evaluate(()=>({x:document.querySelector('input[aria-label="创建中心 X"]').value,z:document.querySelector('input[aria-label="创建拉伸高度 Z"]').value}));if(switched.x!=='123.45'||switched.z!=='3.3')throw Error('Type switch lost shared fields');
+await page.click('loc=role:button[name="收起编辑面板"]');await page.click('loc=role:button[name="撤销上一步操作"]');await page.waitForFunction(()=>document.querySelectorAll('.object-row').length===6);
+await page.keyboard.press('Control+k');await page.waitForSelector('loc=role:dialog[name="搜索命令"]');await page.fill('loc=role:textbox[name="搜索命令"]','视图');await page.press('loc=role:textbox[name="搜索命令"]','ArrowDown');
+const highlighted=await page.evaluate(()=>document.querySelector('.command-result.is-active')?.textContent);await page.press('loc=role:textbox[name="搜索命令"]','Enter');await page.waitForFunction(()=>!document.querySelector('.command-dialog[open]'));
+await page.keyboard.press('Control+k');await page.waitForSelector('loc=role:dialog[name="搜索命令"]');await page.fill('loc=role:textbox[name="搜索命令"]','草图');
+await page.focus('loc=css:.command-result >> nth=2');await page.keyboard.press('ArrowDown');const focus=await page.evaluate(()=>({focused:document.activeElement?.textContent,active:document.querySelector('.command-result.is-active')?.textContent}));if(focus.focused!==focus.active)throw Error('Command focus and highlight mismatch');await page.keyboard.press('Escape');
+await(await import('node:fs/promises')).writeFile(dir+'checks-creation-palette.json',JSON.stringify({remembered,switched,highlighted,focus},null,2));console.log({remembered,switched,highlighted,focus});

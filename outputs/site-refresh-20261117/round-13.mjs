@@ -1,0 +1,11 @@
+const task=await taskSpace(2),page=task.page('p1');
+await page.cdp('Emulation.setDeviceMetricsOverride',{width:1440,height:1050,deviceScaleFactor:1,mobile:false});
+await page.goto('https://vercel-pi-ten-59.vercel.app/docs.html#quickstart');await page.waitForFunction(()=>document.querySelector('#main h1')?.textContent==='Quickstart'&&!document.querySelector('#doc-search').disabled);
+await page.click('#docs-run');await page.waitForFunction(()=>document.querySelector('#docs-output')?.textContent.includes('Climate 3.00'));
+console.log(await page.evaluate(()=>({url:location.href,ready:!document.querySelector('#main').hasAttribute('aria-busy'),result:document.querySelector('#docs-output').textContent})));
+await page.click('.site-nav a[href="index.html"]');await page.waitForSelector('#hero-code .code-line');await page.waitForFunction(()=>document.querySelector('.wordmark img').complete&&document.querySelector('.wordmark img').naturalWidth>0);
+await page.click('#motion-toggle');await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));
+console.log(await page.screenshot({path:'C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/site-refresh-20261117/home-live.png'}));
+await page.click('#motion-toggle');
+await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));
+console.log({finalURL:await page.url(),title:await page.title()});

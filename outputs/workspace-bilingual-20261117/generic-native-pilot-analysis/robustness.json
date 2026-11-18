@@ -1,0 +1,3410 @@
+{
+  "result_version": 1,
+  "kind": "process_robustness",
+  "model_sha256": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+  "bundle_sha256": "07841e5854062dc8dfe2bb671b2b4d5bde865df6abd2ea5686d4512c4119f717",
+  "dataset_sha256": "e45311b98697575d52765255c36ce88c8cfe425100f8a274b16db0a9b42d9515",
+  "profile_id": "htl-reference-hr",
+  "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+  "native_model_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+  "evidence_type": "native_simulation",
+  "config_sha256": "100a1aa36dad9e93ede02f86487aba198dd71f84da5a405228f675dbd6af60d4",
+  "config": {
+    "config_version": 1,
+    "candidates": [
+      {
+        "id": "HTL-T320-L8p5",
+        "inputs": {
+          "reactor_temperature_K": 593.15,
+          "tube_length_m": 8.5
+        }
+      },
+      {
+        "id": "HTL-T320-L12p5",
+        "inputs": {
+          "reactor_temperature_K": 593.15,
+          "tube_length_m": 12.5
+        }
+      },
+      {
+        "id": "HTL-T320-L17p5",
+        "inputs": {
+          "reactor_temperature_K": 593.15,
+          "tube_length_m": 17.5
+        }
+      },
+      {
+        "id": "HTL-T330-L8p5",
+        "inputs": {
+          "reactor_temperature_K": 603.15,
+          "tube_length_m": 8.5
+        }
+      },
+      {
+        "id": "HTL-T330-L12p5",
+        "inputs": {
+          "reactor_temperature_K": 603.15,
+          "tube_length_m": 12.5
+        }
+      },
+      {
+        "id": "HTL-T330-L17p5",
+        "inputs": {
+          "reactor_temperature_K": 603.15,
+          "tube_length_m": 17.5
+        }
+      },
+      {
+        "id": "HTL-T340-L8p5",
+        "inputs": {
+          "reactor_temperature_K": 613.15,
+          "tube_length_m": 8.5
+        }
+      },
+      {
+        "id": "HTL-T340-L12p5",
+        "inputs": {
+          "reactor_temperature_K": 613.15,
+          "tube_length_m": 12.5
+        }
+      },
+      {
+        "id": "HTL-T340-L17p5",
+        "inputs": {
+          "reactor_temperature_K": 613.15,
+          "tube_length_m": 17.5
+        }
+      }
+    ],
+    "perturbations": {
+      "reactor_temperature_K": {
+        "unit": "K",
+        "halfwidth": 2
+      },
+      "tube_length_m": {
+        "unit": "meter",
+        "halfwidth": 0.25
+      }
+    },
+    "scenarios": [
+      {
+        "id": "temperature-low-length-low",
+        "offsets": {
+          "reactor_temperature_K": -1,
+          "tube_length_m": -1
+        }
+      },
+      {
+        "id": "temperature-low-length-center",
+        "offsets": {
+          "reactor_temperature_K": -1,
+          "tube_length_m": 0
+        }
+      },
+      {
+        "id": "temperature-low-length-high",
+        "offsets": {
+          "reactor_temperature_K": -1,
+          "tube_length_m": 1
+        }
+      },
+      {
+        "id": "temperature-center-length-low",
+        "offsets": {
+          "reactor_temperature_K": 0,
+          "tube_length_m": -1
+        }
+      },
+      {
+        "id": "temperature-center-length-center",
+        "offsets": {
+          "reactor_temperature_K": 0,
+          "tube_length_m": 0
+        }
+      },
+      {
+        "id": "temperature-center-length-high",
+        "offsets": {
+          "reactor_temperature_K": 0,
+          "tube_length_m": 1
+        }
+      },
+      {
+        "id": "temperature-high-length-low",
+        "offsets": {
+          "reactor_temperature_K": 1,
+          "tube_length_m": -1
+        }
+      },
+      {
+        "id": "temperature-high-length-center",
+        "offsets": {
+          "reactor_temperature_K": 1,
+          "tube_length_m": 0
+        }
+      },
+      {
+        "id": "temperature-high-length-high",
+        "offsets": {
+          "reactor_temperature_K": 1,
+          "tube_length_m": 1
+        }
+      }
+    ],
+    "preferences": [
+      {
+        "id": "equal",
+        "weights": {
+          "purchased_energy_kWh_kg": 1,
+          "yield_fraction": 1,
+          "impact:Climate change": 1
+        }
+      },
+      {
+        "id": "energy-focused",
+        "weights": {
+          "purchased_energy_kWh_kg": 2,
+          "yield_fraction": 1,
+          "impact:Climate change": 1
+        }
+      },
+      {
+        "id": "climate-focused",
+        "weights": {
+          "purchased_energy_kWh_kg": 1,
+          "yield_fraction": 1,
+          "impact:Climate change": 2
+        }
+      }
+    ],
+    "max_total_queries": 1000
+  },
+  "inputs": [
+    {
+      "id": "reactor_temperature_K",
+      "unit": "K",
+      "min": 583.15,
+      "max": 623.15
+    },
+    {
+      "id": "tube_length_m",
+      "unit": "meter",
+      "min": 5,
+      "max": 20
+    }
+  ],
+  "responses": [
+    {
+      "id": "purchased_energy_kWh_kg",
+      "unit": "kWh/kg",
+      "direction": "min",
+      "value_domain": "nonnegative"
+    },
+    {
+      "id": "yield_fraction",
+      "unit": "1",
+      "direction": "max",
+      "value_domain": "nonnegative"
+    },
+    {
+      "id": "impact:Climate change",
+      "unit": "kg CO2-eq/kg",
+      "direction": "min",
+      "value_domain": "nonnegative"
+    }
+  ],
+  "exploratory": true,
+  "native_execution_performed": false,
+  "model_refitted": false,
+  "background_lca_recomputed": false,
+  "physical_validation": false,
+  "center_scenario_id": "temperature-center-length-center",
+  "query_count": 81,
+  "candidates": [
+    {
+      "id": "HTL-T320-L8p5",
+      "inputs": {
+        "reactor_temperature_K": 593.15,
+        "tube_length_m": 8.5
+      },
+      "coverage": {
+        "expected": 9,
+        "valid": 9,
+        "unsupported": 0,
+        "complete": true
+      },
+      "metrics": {
+        "purchased_energy_kWh_kg": {
+          "unit": "kWh/kg",
+          "direction": "min",
+          "complete": true,
+          "nominal": 2.437047307741593,
+          "min": 2.41399156976052,
+          "max": 2.457403279150645,
+          "relative_span_pct": 1.7813240330715914,
+          "relative_span_reason": null
+        },
+        "yield_fraction": {
+          "unit": "1",
+          "direction": "max",
+          "complete": true,
+          "nominal": 0.045188216915186014,
+          "min": 0.042835809355959584,
+          "max": 0.047485508086895195,
+          "relative_span_pct": 10.289626474225912,
+          "relative_span_reason": null
+        },
+        "impact:Climate change": {
+          "unit": "kg CO2-eq/kg",
+          "direction": "min",
+          "complete": true,
+          "nominal": 13.967336295534475,
+          "min": 13.293587645955851,
+          "max": 14.716306708266599,
+          "relative_span_pct": 10.186044297978333,
+          "relative_span_reason": null
+        }
+      }
+    },
+    {
+      "id": "HTL-T320-L12p5",
+      "inputs": {
+        "reactor_temperature_K": 593.15,
+        "tube_length_m": 12.5
+      },
+      "coverage": {
+        "expected": 9,
+        "valid": 9,
+        "unsupported": 0,
+        "complete": true
+      },
+      "metrics": {
+        "purchased_energy_kWh_kg": {
+          "unit": "kWh/kg",
+          "direction": "min",
+          "complete": true,
+          "nominal": 2.2572615410673116,
+          "min": 2.205404345160825,
+          "max": 2.3163306807739126,
+          "relative_span_pct": 4.914199510998526,
+          "relative_span_reason": null
+        },
+        "yield_fraction": {
+          "unit": "1",
+          "direction": "max",
+          "complete": true,
+          "nominal": 0.05765003806286247,
+          "min": 0.056038652572420175,
+          "max": 0.05902204999502657,
+          "relative_span_pct": 5.175013795052922,
+          "relative_span_reason": null
+        },
+        "impact:Climate change": {
+          "unit": "kg CO2-eq/kg",
+          "direction": "min",
+          "complete": true,
+          "nominal": 10.671223130778744,
+          "min": 10.463238394332746,
+          "max": 10.95488081941634,
+          "relative_span_pct": 4.607179693071563,
+          "relative_span_reason": null
+        }
+      }
+    },
+    {
+      "id": "HTL-T320-L17p5",
+      "inputs": {
+        "reactor_temperature_K": 593.15,
+        "tube_length_m": 17.5
+      },
+      "coverage": {
+        "expected": 9,
+        "valid": 9,
+        "unsupported": 0,
+        "complete": true
+      },
+      "metrics": {
+        "purchased_energy_kWh_kg": {
+          "unit": "kWh/kg",
+          "direction": "min",
+          "complete": true,
+          "nominal": 2.513623381624248,
+          "min": 2.4175630663089844,
+          "max": 2.612827397887403,
+          "relative_span_pct": 7.7682413764086995,
+          "relative_span_reason": null
+        },
+        "yield_fraction": {
+          "unit": "1",
+          "direction": "max",
+          "complete": true,
+          "nominal": 0.05952750437690647,
+          "min": 0.058826073736515376,
+          "max": 0.06019451094906064,
+          "relative_span_pct": 2.298831820465411,
+          "relative_span_reason": null
+        },
+        "impact:Climate change": {
+          "unit": "kg CO2-eq/kg",
+          "direction": "min",
+          "complete": true,
+          "nominal": 10.35244587812819,
+          "min": 10.29588475528633,
+          "max": 10.423453828316523,
+          "relative_span_pct": 1.2322602265394156,
+          "relative_span_reason": null
+        }
+      }
+    },
+    {
+      "id": "HTL-T330-L8p5",
+      "inputs": {
+        "reactor_temperature_K": 603.15,
+        "tube_length_m": 8.5
+      },
+      "coverage": {
+        "expected": 9,
+        "valid": 9,
+        "unsupported": 0,
+        "complete": true
+      },
+      "metrics": {
+        "purchased_energy_kWh_kg": {
+          "unit": "kWh/kg",
+          "direction": "min",
+          "complete": true,
+          "nominal": 2.501466266964579,
+          "min": 2.4775954785456236,
+          "max": 2.529560207598201,
+          "relative_span_pct": 2.0773707700497703,
+          "relative_span_reason": null
+        },
+        "yield_fraction": {
+          "unit": "1",
+          "direction": "max",
+          "complete": true,
+          "nominal": 0.052132514469765884,
+          "min": 0.0500619483797419,
+          "max": 0.054053586046518644,
+          "relative_span_pct": 7.656714254770282,
+          "relative_span_reason": null
+        },
+        "impact:Climate change": {
+          "unit": "kg CO2-eq/kg",
+          "direction": "min",
+          "complete": true,
+          "nominal": 11.958737197656436,
+          "min": 11.558697655879874,
+          "max": 12.435966633565892,
+          "relative_span_pct": 7.335799450948194,
+          "relative_span_reason": null
+        }
+      }
+    },
+    {
+      "id": "HTL-T330-L12p5",
+      "inputs": {
+        "reactor_temperature_K": 603.15,
+        "tube_length_m": 12.5
+      },
+      "coverage": {
+        "expected": 9,
+        "valid": 9,
+        "unsupported": 0,
+        "complete": true
+      },
+      "metrics": {
+        "purchased_energy_kWh_kg": {
+          "unit": "kWh/kg",
+          "direction": "min",
+          "complete": true,
+          "nominal": 2.5882373159221586,
+          "min": 2.5046967443801242,
+          "max": 2.67971005456841,
+          "relative_span_pct": 6.761872611589729,
+          "relative_span_reason": null
+        },
+        "yield_fraction": {
+          "unit": "1",
+          "direction": "max",
+          "complete": true,
+          "nominal": 0.06104327370863971,
+          "min": 0.060212414841304525,
+          "max": 0.061676430090363,
+          "relative_span_pct": 2.398323615548925,
+          "relative_span_reason": null
+        },
+        "impact:Climate change": {
+          "unit": "kg CO2-eq/kg",
+          "direction": "min",
+          "complete": true,
+          "nominal": 10.442876795095835,
+          "min": 10.373157244078332,
+          "max": 10.514889636012818,
+          "relative_span_pct": 1.3572159732943134,
+          "relative_span_reason": null
+        }
+      }
+    },
+    {
+      "id": "HTL-T330-L17p5",
+      "inputs": {
+        "reactor_temperature_K": 603.15,
+        "tube_length_m": 17.5
+      },
+      "coverage": {
+        "expected": 9,
+        "valid": 9,
+        "unsupported": 0,
+        "complete": true
+      },
+      "metrics": {
+        "purchased_energy_kWh_kg": {
+          "unit": "kWh/kg",
+          "direction": "min",
+          "complete": true,
+          "nominal": 2.9239690647588223,
+          "min": 2.81911207324774,
+          "max": 3.028571854409318,
+          "relative_span_pct": 7.1635429966101505,
+          "relative_span_reason": null
+        },
+        "yield_fraction": {
+          "unit": "1",
+          "direction": "max",
+          "complete": true,
+          "nominal": 0.0615302681448979,
+          "min": 0.06106328099014007,
+          "max": 0.06193100113352846,
+          "relative_span_pct": 1.4102329951577472,
+          "relative_span_reason": null
+        },
+        "impact:Climate change": {
+          "unit": "kg CO2-eq/kg",
+          "direction": "min",
+          "complete": true,
+          "nominal": 10.517500877817668,
+          "min": 10.412032301185993,
+          "max": 10.628806582801172,
+          "relative_span_pct": 2.061081659354784,
+          "relative_span_reason": null
+        }
+      }
+    },
+    {
+      "id": "HTL-T340-L8p5",
+      "inputs": {
+        "reactor_temperature_K": 613.15,
+        "tube_length_m": 8.5
+      },
+      "coverage": {
+        "expected": 9,
+        "valid": 9,
+        "unsupported": 0,
+        "complete": true
+      },
+      "metrics": {
+        "purchased_energy_kWh_kg": {
+          "unit": "kWh/kg",
+          "direction": "min",
+          "complete": true,
+          "nominal": 2.6521359037956063,
+          "min": 2.602538845447202,
+          "max": 2.710616264085272,
+          "relative_span_pct": 4.0751086127748835,
+          "relative_span_reason": null
+        },
+        "yield_fraction": {
+          "unit": "1",
+          "direction": "max",
+          "complete": true,
+          "nominal": 0.05841426853054774,
+          "min": 0.05682151068358551,
+          "max": 0.059826601308810026,
+          "relative_span_pct": 5.14444621291971,
+          "relative_span_reason": null
+        },
+        "impact:Climate change": {
+          "unit": "kg CO2-eq/kg",
+          "direction": "min",
+          "complete": true,
+          "nominal": 10.721500895435524,
+          "min": 10.54877614429063,
+          "max": 10.951140643274313,
+          "relative_span_pct": 3.7528747412126062,
+          "relative_span_reason": null
+        }
+      }
+    },
+    {
+      "id": "HTL-T340-L12p5",
+      "inputs": {
+        "reactor_temperature_K": 613.15,
+        "tube_length_m": 12.5
+      },
+      "coverage": {
+        "expected": 9,
+        "valid": 9,
+        "unsupported": 0,
+        "complete": true
+      },
+      "metrics": {
+        "purchased_energy_kWh_kg": {
+          "unit": "kWh/kg",
+          "direction": "min",
+          "complete": true,
+          "nominal": 2.9863124034338395,
+          "min": 2.886641728252142,
+          "max": 3.088228442463114,
+          "relative_span_pct": 6.750355856245166,
+          "relative_span_reason": null
+        },
+        "yield_fraction": {
+          "unit": "1",
+          "direction": "max",
+          "complete": true,
+          "nominal": 0.06230661743308543,
+          "min": 0.06192726579652003,
+          "max": 0.06259539606436368,
+          "relative_span_pct": 1.0723263360608342,
+          "relative_span_reason": null
+        },
+        "impact:Climate change": {
+          "unit": "kg CO2-eq/kg",
+          "direction": "min",
+          "complete": true,
+          "nominal": 10.636261814780578,
+          "min": 10.57691062469318,
+          "max": 10.695440416657075,
+          "relative_span_pct": 1.1143933275427684,
+          "relative_span_reason": null
+        }
+      }
+    },
+    {
+      "id": "HTL-T340-L17p5",
+      "inputs": {
+        "reactor_temperature_K": 613.15,
+        "tube_length_m": 17.5
+      },
+      "coverage": {
+        "expected": 9,
+        "valid": 9,
+        "unsupported": 0,
+        "complete": true
+      },
+      "metrics": {
+        "purchased_energy_kWh_kg": {
+          "unit": "kWh/kg",
+          "direction": "min",
+          "complete": true,
+          "nominal": 3.3648674559563068,
+          "min": 3.2584488502854083,
+          "max": 3.4704668846720157,
+          "relative_span_pct": 6.3009327161254,
+          "relative_span_reason": null
+        },
+        "yield_fraction": {
+          "unit": "1",
+          "direction": "max",
+          "complete": true,
+          "nominal": 0.062291938974422215,
+          "min": 0.0620724012454137,
+          "max": 0.062454718365554135,
+          "relative_span_pct": 0.6137505533379145,
+          "relative_span_reason": null
+        },
+        "impact:Climate change": {
+          "unit": "kg CO2-eq/kg",
+          "direction": "min",
+          "complete": true,
+          "nominal": 10.906510946569611,
+          "min": 10.778431906777332,
+          "max": 11.036266446934464,
+          "relative_span_pct": 2.3640423726730693,
+          "relative_span_reason": null
+        }
+      }
+    }
+  ],
+  "records": [
+    {
+      "id": "HTL-T320-L8p5::temperature-low-length-low",
+      "candidate_id": "HTL-T320-L8p5",
+      "scenario_id": "temperature-low-length-low",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 591.15,
+        "tube_length_m": 8.25
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.45732653130745,
+        "yield_fraction": 0.042835809355959584,
+        "impact:Climate change": 14.716306708266599
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T320-L8p5::temperature-low-length-center",
+      "candidate_id": "HTL-T320-L8p5",
+      "scenario_id": "temperature-low-length-center",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 591.15,
+        "tube_length_m": 8.5
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.4354586332146475,
+        "yield_fraction": 0.04374633755832895,
+        "impact:Climate change": 14.45349368174756
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T320-L8p5::temperature-low-length-high",
+      "candidate_id": "HTL-T320-L8p5",
+      "scenario_id": "temperature-low-length-high",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 591.15,
+        "tube_length_m": 8.75
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.41399156976052,
+        "yield_fraction": 0.04466462983656462,
+        "impact:Climate change": 14.189414537864348
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T320-L8p5::temperature-center-length-low",
+      "candidate_id": "HTL-T320-L8p5",
+      "scenario_id": "temperature-center-length-low",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 593.15,
+        "tube_length_m": 8.25
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.4556056214122752,
+        "yield_fraction": 0.044298036221732395,
+        "impact:Climate change": 14.204652792629348
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T320-L8p5::temperature-center-length-center",
+      "candidate_id": "HTL-T320-L8p5",
+      "scenario_id": "temperature-center-length-center",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 593.15,
+        "tube_length_m": 8.5
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.437047307741593,
+        "yield_fraction": 0.045188216915186014,
+        "impact:Climate change": 13.967336295534475
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T320-L8p5::temperature-center-length-high",
+      "candidate_id": "HTL-T320-L8p5",
+      "scenario_id": "temperature-center-length-high",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 593.15,
+        "tube_length_m": 8.75
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.418913826159046,
+        "yield_fraction": 0.04608539629847914,
+        "impact:Climate change": 13.72887602608937
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T320-L8p5::temperature-high-length-low",
+      "candidate_id": "HTL-T320-L8p5",
+      "scenario_id": "temperature-high-length-low",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 595.15,
+        "tube_length_m": 8.25
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.457403279150645,
+        "yield_fraction": 0.045756271990027485,
+        "impact:Climate change": 13.7179531070001
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T320-L8p5::temperature-high-length-center",
+      "candidate_id": "HTL-T320-L8p5",
+      "scenario_id": "temperature-high-length-center",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 595.15,
+        "tube_length_m": 8.5
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.442325259946707,
+        "yield_fraction": 0.046617867359873943,
+        "impact:Climate change": 13.506252105407553
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T320-L8p5::temperature-high-length-high",
+      "candidate_id": "HTL-T320-L8p5",
+      "scenario_id": "temperature-high-length-high",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 595.15,
+        "tube_length_m": 8.75
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.4276992479089046,
+        "yield_fraction": 0.047485508086895195,
+        "impact:Climate change": 13.293587645955851
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T320-L12p5::temperature-low-length-low",
+      "candidate_id": "HTL-T320-L12p5",
+      "scenario_id": "temperature-low-length-low",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 591.15,
+        "tube_length_m": 12.25
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.2106718818164355,
+        "yield_fraction": 0.056038652572420175,
+        "impact:Climate change": 10.95488081941634
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T320-L12p5::temperature-low-length-center",
+      "candidate_id": "HTL-T320-L12p5",
+      "scenario_id": "temperature-low-length-center",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 591.15,
+        "tube_length_m": 12.5
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.2071065013818894,
+        "yield_fraction": 0.05658386039529014,
+        "impact:Climate change": 10.801951527447379
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T320-L12p5::temperature-low-length-high",
+      "candidate_id": "HTL-T320-L12p5",
+      "scenario_id": "temperature-low-length-high",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 591.15,
+        "tube_length_m": 12.75
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.205404345160825,
+        "yield_fraction": 0.05707685788093232,
+        "impact:Climate change": 10.66431999992849
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T320-L12p5::temperature-center-length-low",
+      "candidate_id": "HTL-T320-L12p5",
+      "scenario_id": "temperature-center-length-low",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 593.15,
+        "tube_length_m": 12.25
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.25838468770126,
+        "yield_fraction": 0.057131055953067764,
+        "impact:Climate change": 10.808100323787652
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T320-L12p5::temperature-center-length-center",
+      "candidate_id": "HTL-T320-L12p5",
+      "scenario_id": "temperature-center-length-center",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 593.15,
+        "tube_length_m": 12.5
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.2572615410673116,
+        "yield_fraction": 0.05765003806286247,
+        "impact:Climate change": 10.671223130778744
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T320-L12p5::temperature-center-length-high",
+      "candidate_id": "HTL-T320-L12p5",
+      "scenario_id": "temperature-center-length-high",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 593.15,
+        "tube_length_m": 12.75
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.2578977960347646,
+        "yield_fraction": 0.058115952950206,
+        "impact:Climate change": 10.54859142180123
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T320-L12p5::temperature-high-length-low",
+      "candidate_id": "HTL-T320-L12p5",
+      "scenario_id": "temperature-high-length-low",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 595.15,
+        "tube_length_m": 12.25
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.312051796345123,
+        "yield_fraction": 0.05809448080886269,
+        "impact:Climate change": 10.692159045845575
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T320-L12p5::temperature-high-length-center",
+      "candidate_id": "HTL-T320-L12p5",
+      "scenario_id": "temperature-high-length-center",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 595.15,
+        "tube_length_m": 12.5
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.3133838487111293,
+        "yield_fraction": 0.05858446012781958,
+        "impact:Climate change": 10.571219011512023
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T320-L12p5::temperature-high-length-high",
+      "candidate_id": "HTL-T320-L12p5",
+      "scenario_id": "temperature-high-length-high",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 595.15,
+        "tube_length_m": 12.75
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.3163306807739126,
+        "yield_fraction": 0.05902204999502657,
+        "impact:Climate change": 10.463238394332746
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T320-L17p5::temperature-low-length-low",
+      "candidate_id": "HTL-T320-L17p5",
+      "scenario_id": "temperature-low-length-low",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 591.15,
+        "tube_length_m": 17.25
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.4175630663089844,
+        "yield_fraction": 0.05907505655859296,
+        "impact:Climate change": 10.297443160412707
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T320-L17p5::temperature-low-length-center",
+      "candidate_id": "HTL-T320-L17p5",
+      "scenario_id": "temperature-low-length-center",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 591.15,
+        "tube_length_m": 17.5
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.4373142143381563,
+        "yield_fraction": 0.058955567504894724,
+        "impact:Climate change": 10.353185055381047
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T320-L17p5::temperature-low-length-high",
+      "candidate_id": "HTL-T320-L17p5",
+      "scenario_id": "temperature-low-length-high",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 591.15,
+        "tube_length_m": 17.75
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.4573289994797225,
+        "yield_fraction": 0.058826073736515376,
+        "impact:Climate change": 10.412710191297391
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T320-L17p5::temperature-center-length-low",
+      "candidate_id": "HTL-T320-L17p5",
+      "scenario_id": "temperature-center-length-low",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 593.15,
+        "tube_length_m": 17.25
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.4934173435161657,
+        "yield_fraction": 0.05966554572960521,
+        "impact:Climate change": 10.29588475528633
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T320-L17p5::temperature-center-length-center",
+      "candidate_id": "HTL-T320-L17p5",
+      "scenario_id": "temperature-center-length-center",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 593.15,
+        "tube_length_m": 17.5
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.513623381624248,
+        "yield_fraction": 0.05952750437690647,
+        "impact:Climate change": 10.35244587812819
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T320-L17p5::temperature-center-length-high",
+      "candidate_id": "HTL-T320-L17p5",
+      "scenario_id": "temperature-center-length-high",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 593.15,
+        "tube_length_m": 17.75
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.5340326113950615,
+        "yield_fraction": 0.05938005977546271,
+        "impact:Climate change": 10.41255221718581
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T320-L17p5::temperature-high-length-low",
+      "candidate_id": "HTL-T320-L17p5",
+      "scenario_id": "temperature-high-length-low",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 595.15,
+        "tube_length_m": 17.25
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.5718073034796065,
+        "yield_fraction": 0.06019451094906064,
+        "impact:Climate change": 10.307117447893456
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T320-L17p5::temperature-high-length-center",
+      "candidate_id": "HTL-T320-L17p5",
+      "scenario_id": "temperature-high-length-center",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 595.15,
+        "tube_length_m": 17.5
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.592243987613411,
+        "yield_fraction": 0.060042187101363,
+        "impact:Climate change": 10.363618065641981
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T320-L17p5::temperature-high-length-high",
+      "candidate_id": "HTL-T320-L17p5",
+      "scenario_id": "temperature-high-length-high",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 595.15,
+        "tube_length_m": 17.75
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.612827397887403,
+        "yield_fraction": 0.059880911983479675,
+        "impact:Climate change": 10.423453828316523
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T330-L8p5::temperature-low-length-low",
+      "candidate_id": "HTL-T330-L8p5",
+      "scenario_id": "temperature-low-length-low",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 601.15,
+        "tube_length_m": 8.25
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.4850240640035897,
+        "yield_fraction": 0.0500619483797419,
+        "impact:Climate change": 12.435966633565892
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T330-L8p5::temperature-low-length-center",
+      "candidate_id": "HTL-T330-L8p5",
+      "scenario_id": "temperature-low-length-center",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 601.15,
+        "tube_length_m": 8.5
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.4810342842368196,
+        "yield_fraction": 0.05079014443925485,
+        "impact:Climate change": 12.298252949044043
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T330-L8p5::temperature-low-length-high",
+      "candidate_id": "HTL-T330-L8p5",
+      "scenario_id": "temperature-low-length-high",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 601.15,
+        "tube_length_m": 8.75
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.4775954785456236,
+        "yield_fraction": 0.051520603496807905,
+        "impact:Climate change": 12.160574788129264
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T330-L8p5::temperature-center-length-low",
+      "candidate_id": "HTL-T330-L8p5",
+      "scenario_id": "temperature-center-length-low",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 603.15,
+        "tube_length_m": 8.25
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.501694353495436,
+        "yield_fraction": 0.05146260752092168,
+        "impact:Climate change": 12.073761836876542
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T330-L8p5::temperature-center-length-center",
+      "candidate_id": "HTL-T330-L8p5",
+      "scenario_id": "temperature-center-length-center",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 603.15,
+        "tube_length_m": 8.5
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.501466266964579,
+        "yield_fraction": 0.052132514469765884,
+        "impact:Climate change": 11.958737197656436
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T330-L8p5::temperature-center-length-high",
+      "candidate_id": "HTL-T330-L8p5",
+      "scenario_id": "temperature-center-length-high",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 603.15,
+        "tube_length_m": 8.75
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.5018251631470676,
+        "yield_fraction": 0.05280326394904297,
+        "impact:Climate change": 11.84423219661585
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T330-L8p5::temperature-high-length-low",
+      "candidate_id": "HTL-T330-L8p5",
+      "scenario_id": "temperature-high-length-low",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 605.15,
+        "tube_length_m": 8.25
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.5219669952480483,
+        "yield_fraction": 0.052841376134272915,
+        "impact:Climate change": 11.745035860814594
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T330-L8p5::temperature-high-length-center",
+      "candidate_id": "HTL-T330-L8p5",
+      "scenario_id": "temperature-high-length-center",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 605.15,
+        "tube_length_m": 8.5
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.525452403630661,
+        "yield_fraction": 0.053447764808397656,
+        "impact:Climate change": 11.651338154910773
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T330-L8p5::temperature-high-length-high",
+      "candidate_id": "HTL-T330-L8p5",
+      "scenario_id": "temperature-high-length-high",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 605.15,
+        "tube_length_m": 8.75
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.529560207598201,
+        "yield_fraction": 0.054053586046518644,
+        "impact:Climate change": 11.558697655879874
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T330-L12p5::temperature-low-length-low",
+      "candidate_id": "HTL-T330-L12p5",
+      "scenario_id": "temperature-low-length-low",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 601.15,
+        "tube_length_m": 12.25
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.5046967443801242,
+        "yield_fraction": 0.060212414841304525,
+        "impact:Climate change": 10.514889636012818
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T330-L12p5::temperature-low-length-center",
+      "candidate_id": "HTL-T330-L12p5",
+      "scenario_id": "temperature-low-length-center",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 601.15,
+        "tube_length_m": 12.5
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.513320962524631,
+        "yield_fraction": 0.060601043322253155,
+        "impact:Climate change": 10.439938550203182
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T330-L12p5::temperature-low-length-high",
+      "candidate_id": "HTL-T330-L12p5",
+      "scenario_id": "temperature-low-length-high",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 601.15,
+        "tube_length_m": 12.75
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.522947198867535,
+        "yield_fraction": 0.06094679293032772,
+        "impact:Climate change": 10.373157244078332
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T330-L12p5::temperature-center-length-low",
+      "candidate_id": "HTL-T330-L12p5",
+      "scenario_id": "temperature-center-length-low",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 603.15,
+        "tube_length_m": 12.25
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.5772546824356817,
+        "yield_fraction": 0.06069219132566124,
+        "impact:Climate change": 10.503449986266867
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T330-L12p5::temperature-center-length-center",
+      "candidate_id": "HTL-T330-L12p5",
+      "scenario_id": "temperature-center-length-center",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 603.15,
+        "tube_length_m": 12.5
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.5882373159221586,
+        "yield_fraction": 0.06104327370863971,
+        "impact:Climate change": 10.442876795095835
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T330-L12p5::temperature-center-length-high",
+      "candidate_id": "HTL-T330-L12p5",
+      "scenario_id": "temperature-center-length-high",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 603.15,
+        "tube_length_m": 12.75
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.5999863744808738,
+        "yield_fraction": 0.06135632281620922,
+        "impact:Climate change": 10.388757209307476
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T330-L12p5::temperature-high-length-low",
+      "candidate_id": "HTL-T330-L12p5",
+      "scenario_id": "temperature-high-length-low",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 605.15,
+        "tube_length_m": 12.25
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.652612501105636,
+        "yield_fraction": 0.0610847489560739,
+        "impact:Climate change": 10.50981257489523
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T330-L12p5::temperature-high-length-center",
+      "candidate_id": "HTL-T330-L12p5",
+      "scenario_id": "temperature-high-length-center",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 605.15,
+        "tube_length_m": 12.5
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.6658966467965217,
+        "yield_fraction": 0.06139696535198012,
+        "impact:Climate change": 10.462999772761489
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T330-L12p5::temperature-high-length-high",
+      "candidate_id": "HTL-T330-L12p5",
+      "scenario_id": "temperature-high-length-high",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 605.15,
+        "tube_length_m": 12.75
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.67971005456841,
+        "yield_fraction": 0.061676430090363,
+        "impact:Climate change": 10.420956066668651
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T330-L17p5::temperature-low-length-low",
+      "candidate_id": "HTL-T330-L17p5",
+      "scenario_id": "temperature-low-length-low",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 601.15,
+        "tube_length_m": 17.25
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.81911207324774,
+        "yield_fraction": 0.061410407860522626,
+        "impact:Climate change": 10.412032301185993
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T330-L17p5::temperature-low-length-center",
+      "candidate_id": "HTL-T330-L17p5",
+      "scenario_id": "temperature-low-length-center",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 601.15,
+        "tube_length_m": 17.5
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.838921380624073,
+        "yield_fraction": 0.061241044372656164,
+        "impact:Climate change": 10.46381896128635
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T330-L17p5::temperature-low-length-high",
+      "candidate_id": "HTL-T330-L17p5",
+      "scenario_id": "temperature-low-length-high",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 601.15,
+        "tube_length_m": 17.75
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.8587088084137573,
+        "yield_fraction": 0.06106328099014007,
+        "impact:Climate change": 10.518421759877636
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T330-L17p5::temperature-center-length-low",
+      "candidate_id": "HTL-T330-L17p5",
+      "scenario_id": "temperature-center-length-low",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 603.15,
+        "tube_length_m": 17.25
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.904733297129736,
+        "yield_fraction": 0.061697584693621556,
+        "impact:Climate change": 10.468410429428936
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T330-L17p5::temperature-center-length-center",
+      "candidate_id": "HTL-T330-L17p5",
+      "scenario_id": "temperature-center-length-center",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 603.15,
+        "tube_length_m": 17.5
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.9239690647588223,
+        "yield_fraction": 0.0615302681448979,
+        "impact:Climate change": 10.517500877817668
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T330-L17p5::temperature-center-length-high",
+      "candidate_id": "HTL-T330-L17p5",
+      "scenario_id": "temperature-center-length-high",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 603.15,
+        "tube_length_m": 17.75
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.943119188631064,
+        "yield_fraction": 0.061354560936980475,
+        "impact:Climate change": 10.569249463299503
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T330-L17p5::temperature-high-length-low",
+      "candidate_id": "HTL-T330-L17p5",
+      "scenario_id": "temperature-high-length-low",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 605.15,
+        "tube_length_m": 17.25
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.9916211944527817,
+        "yield_fraction": 0.06193100113352846,
+        "impact:Climate change": 10.53414618163347
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T330-L17p5::temperature-high-length-center",
+      "candidate_id": "HTL-T330-L17p5",
+      "scenario_id": "temperature-high-length-center",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 605.15,
+        "tube_length_m": 17.5
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 3.010173958828789,
+        "yield_fraction": 0.06176872781739802,
+        "impact:Climate change": 10.580226981968229
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T330-L17p5::temperature-high-length-high",
+      "candidate_id": "HTL-T330-L17p5",
+      "scenario_id": "temperature-high-length-high",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 605.15,
+        "tube_length_m": 17.75
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 3.028571854409318,
+        "yield_fraction": 0.061598047447824336,
+        "impact:Climate change": 10.628806582801172
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T340-L8p5::temperature-low-length-low",
+      "candidate_id": "HTL-T340-L8p5",
+      "scenario_id": "temperature-low-length-low",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 611.15,
+        "tube_length_m": 8.25
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.602538845447202,
+        "yield_fraction": 0.05682151068358551,
+        "impact:Climate change": 10.951140643274313
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T340-L8p5::temperature-low-length-center",
+      "candidate_id": "HTL-T340-L8p5",
+      "scenario_id": "temperature-low-length-center",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 611.15,
+        "tube_length_m": 8.5
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.6164236587159877,
+        "yield_fraction": 0.057219324324832975,
+        "impact:Climate change": 10.912278557215826
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T340-L8p5::temperature-low-length-high",
+      "candidate_id": "HTL-T340-L8p5",
+      "scenario_id": "temperature-low-length-high",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 611.15,
+        "tube_length_m": 8.75
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.6310206580623796,
+        "yield_fraction": 0.0576128369151629,
+        "impact:Climate change": 10.876148285559449
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T340-L8p5::temperature-center-length-low",
+      "candidate_id": "HTL-T340-L8p5",
+      "scenario_id": "temperature-center-length-low",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 613.15,
+        "tube_length_m": 8.25
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.635153759981475,
+        "yield_fraction": 0.05808738401864225,
+        "impact:Climate change": 10.745172597565714
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T340-L8p5::temperature-center-length-center",
+      "candidate_id": "HTL-T340-L8p5",
+      "scenario_id": "temperature-center-length-center",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 613.15,
+        "tube_length_m": 8.5
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.6521359037956063,
+        "yield_fraction": 0.05841426853054774,
+        "impact:Climate change": 10.721500895435524
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T340-L8p5::temperature-center-length-high",
+      "candidate_id": "HTL-T340-L8p5",
+      "scenario_id": "temperature-center-length-high",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 613.15,
+        "tube_length_m": 8.75
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.6698514053291715,
+        "yield_fraction": 0.05873585601436236,
+        "impact:Climate change": 10.701047625552212
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T340-L8p5::temperature-high-length-low",
+      "candidate_id": "HTL-T340-L8p5",
+      "scenario_id": "temperature-high-length-low",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 615.15,
+        "tube_length_m": 8.25
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.670159592249518,
+        "yield_fraction": 0.05931801856600815,
+        "impact:Climate change": 10.565027071360724
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T340-L8p5::temperature-high-length-center",
+      "candidate_id": "HTL-T340-L8p5",
+      "scenario_id": "temperature-high-length-center",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 615.15,
+        "tube_length_m": 8.5
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.6900133170363105,
+        "yield_fraction": 0.05957538929368565,
+        "impact:Climate change": 10.555085689950767
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T340-L8p5::temperature-high-length-high",
+      "candidate_id": "HTL-T340-L8p5",
+      "scenario_id": "temperature-high-length-high",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 615.15,
+        "tube_length_m": 8.75
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.710616264085272,
+        "yield_fraction": 0.059826601308810026,
+        "impact:Climate change": 10.54877614429063
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T340-L12p5::temperature-low-length-low",
+      "candidate_id": "HTL-T340-L12p5",
+      "scenario_id": "temperature-low-length-low",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 611.15,
+        "tube_length_m": 12.25
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.886641728252142,
+        "yield_fraction": 0.06192726579652003,
+        "impact:Climate change": 10.596155526858462
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T340-L12p5::temperature-low-length-center",
+      "candidate_id": "HTL-T340-L12p5",
+      "scenario_id": "temperature-low-length-center",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 611.15,
+        "tube_length_m": 12.5
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.9063886070136435,
+        "yield_fraction": 0.06211865184444797,
+        "impact:Climate change": 10.586319260430379
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T340-L12p5::temperature-low-length-high",
+      "candidate_id": "HTL-T340-L12p5",
+      "scenario_id": "temperature-low-length-high",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 611.15,
+        "tube_length_m": 12.75
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.9260273253447346,
+        "yield_fraction": 0.06229336531323063,
+        "impact:Climate change": 10.57691062469318
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T340-L12p5::temperature-center-length-low",
+      "candidate_id": "HTL-T340-L12p5",
+      "scenario_id": "temperature-center-length-low",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 613.15,
+        "tube_length_m": 12.25
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.9645871189177675,
+        "yield_fraction": 0.06215564340702906,
+        "impact:Climate change": 10.635349754137719
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T340-L12p5::temperature-center-length-center",
+      "candidate_id": "HTL-T340-L12p5",
+      "scenario_id": "temperature-center-length-center",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 613.15,
+        "tube_length_m": 12.5
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.9863124034338395,
+        "yield_fraction": 0.06230661743308543,
+        "impact:Climate change": 10.636261814780578
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T340-L12p5::temperature-center-length-high",
+      "candidate_id": "HTL-T340-L12p5",
+      "scenario_id": "temperature-center-length-high",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 613.15,
+        "tube_length_m": 12.75
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 3.007769089363694,
+        "yield_fraction": 0.06244556266722726,
+        "impact:Climate change": 10.636561037605508
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T340-L12p5::temperature-high-length-low",
+      "candidate_id": "HTL-T340-L12p5",
+      "scenario_id": "temperature-high-length-low",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 615.15,
+        "tube_length_m": 12.25
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 3.041411462794954,
+        "yield_fraction": 0.06238125817175545,
+        "impact:Climate change": 10.675156084597472
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T340-L12p5::temperature-high-length-center",
+      "candidate_id": "HTL-T340-L12p5",
+      "scenario_id": "temperature-high-length-center",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 615.15,
+        "tube_length_m": 12.5
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 3.0650161726389973,
+        "yield_fraction": 0.062492363239722445,
+        "impact:Climate change": 10.6859920672396
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T340-L12p5::temperature-high-length-high",
+      "candidate_id": "HTL-T340-L12p5",
+      "scenario_id": "temperature-high-length-high",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 615.15,
+        "tube_length_m": 12.75
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 3.088228442463114,
+        "yield_fraction": 0.06259539606436368,
+        "impact:Climate change": 10.695440416657075
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T340-L17p5::temperature-low-length-low",
+      "candidate_id": "HTL-T340-L17p5",
+      "scenario_id": "temperature-low-length-low",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 611.15,
+        "tube_length_m": 17.25
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 3.2584488502854083,
+        "yield_fraction": 0.062353752542027095,
+        "impact:Climate change": 10.778431906777332
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T340-L17p5::temperature-low-length-center",
+      "candidate_id": "HTL-T340-L17p5",
+      "scenario_id": "temperature-low-length-center",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 611.15,
+        "tube_length_m": 17.5
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 3.274914758201158,
+        "yield_fraction": 0.062217225012839855,
+        "impact:Climate change": 10.815267796257144
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T340-L17p5::temperature-low-length-high",
+      "candidate_id": "HTL-T340-L17p5",
+      "scenario_id": "temperature-low-length-high",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 611.15,
+        "tube_length_m": 17.75
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 3.2910055929803637,
+        "yield_fraction": 0.0620724012454137,
+        "impact:Climate change": 10.854102922101903
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T340-L17p5::temperature-center-length-low",
+      "candidate_id": "HTL-T340-L17p5",
+      "scenario_id": "temperature-center-length-low",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 613.15,
+        "tube_length_m": 17.25
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 3.3489123266995717,
+        "yield_fraction": 0.06241886221157716,
+        "impact:Climate change": 10.872327842753467
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T340-L17p5::temperature-center-length-center",
+      "candidate_id": "HTL-T340-L17p5",
+      "scenario_id": "temperature-center-length-center",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 613.15,
+        "tube_length_m": 17.5
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 3.3648674559563068,
+        "yield_fraction": 0.062291938974422215,
+        "impact:Climate change": 10.906510946569611
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T340-L17p5::temperature-center-length-high",
+      "candidate_id": "HTL-T340-L17p5",
+      "scenario_id": "temperature-center-length-high",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 613.15,
+        "tube_length_m": 17.75
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 3.3803800769323784,
+        "yield_fraction": 0.06215688357916212,
+        "impact:Climate change": 10.942521255327613
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T340-L17p5::temperature-high-length-low",
+      "candidate_id": "HTL-T340-L17p5",
+      "scenario_id": "temperature-high-length-low",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 615.15,
+        "tube_length_m": 17.25
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 3.4397580463822544,
+        "yield_fraction": 0.062454718365554135,
+        "impact:Climate change": 10.970751217537718
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T340-L17p5::temperature-high-length-center",
+      "candidate_id": "HTL-T340-L17p5",
+      "scenario_id": "temperature-high-length-center",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 615.15,
+        "tube_length_m": 17.5
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 3.4553643615800618,
+        "yield_fraction": 0.06233681348959105,
+        "impact:Climate change": 11.002682602258698
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    },
+    {
+      "id": "HTL-T340-L17p5::temperature-high-length-high",
+      "candidate_id": "HTL-T340-L17p5",
+      "scenario_id": "temperature-high-length-high",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "reactor_temperature_K": 615.15,
+        "tube_length_m": 17.75
+      },
+      "outputs": {
+        "purchased_energy_kWh_kg": 3.4704668846720157,
+        "yield_fraction": 0.062211029568909934,
+        "impact:Climate change": 11.036266446934464
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+      "exploratory": true
+    }
+  ],
+  "rank_complete": true,
+  "rank_incomplete_reason": null,
+  "nominal_anchors": {
+    "purchased_energy_kWh_kg": {
+      "unit": "kWh/kg",
+      "direction": "min",
+      "min": 2.2572615410673116,
+      "max": 3.3648674559563068,
+      "constant": false
+    },
+    "yield_fraction": {
+      "unit": "1",
+      "direction": "max",
+      "min": 0.045188216915186014,
+      "max": 0.06230661743308543,
+      "constant": false
+    },
+    "impact:Climate change": {
+      "unit": "kg CO2-eq/kg",
+      "direction": "min",
+      "min": 10.35244587812819,
+      "max": 13.967336295534475,
+      "constant": false
+    }
+  },
+  "preferences": [
+    {
+      "id": "equal",
+      "weights": {
+        "purchased_energy_kWh_kg": 0.3333333333333333,
+        "yield_fraction": 0.3333333333333333,
+        "impact:Climate change": 0.3333333333333333
+      },
+      "candidates": [
+        {
+          "id": "HTL-T320-L8p5",
+          "nominal_score": 0.27922691507947883,
+          "nominal_rank": 9.0,
+          "rank_min": 9.0,
+          "rank_max": 9.0,
+          "top_share_pct": 0.0
+        },
+        {
+          "id": "HTL-T320-L12p5",
+          "nominal_score": 0.8799312137639171,
+          "nominal_rank": 1.0,
+          "rank_min": 1.0,
+          "rank_max": 3.0,
+          "top_share_pct": 55.55555555555556
+        },
+        {
+          "id": "HTL-T320-L17p5",
+          "nominal_score": 0.8687325458193529,
+          "nominal_rank": 2.0,
+          "rank_min": 1.0,
+          "rank_max": 3.0,
+          "top_share_pct": 22.22222222222222
+        },
+        {
+          "id": "HTL-T330-L8p5",
+          "nominal_score": 0.5802762925725823,
+          "nominal_rank": 8.0,
+          "rank_min": 7.0,
+          "rank_max": 8.0,
+          "top_share_pct": 0.0
+        },
+        {
+          "id": "HTL-T330-L12p5",
+          "nominal_score": 0.8674541853940131,
+          "nominal_rank": 3.0,
+          "rank_min": 1.0,
+          "rank_max": 3.0,
+          "top_share_pct": 22.22222222222222
+        },
+        {
+          "id": "HTL-T330-L17p5",
+          "nominal_score": 0.7690176073593998,
+          "nominal_rank": 5.0,
+          "rank_min": 4.0,
+          "rank_max": 5.0,
+          "top_share_pct": 0.0
+        },
+        {
+          "id": "HTL-T340-L8p5",
+          "nominal_score": 0.771339106717609,
+          "nominal_rank": 4.0,
+          "rank_min": 4.0,
+          "rank_max": 6.0,
+          "top_share_pct": 0.0
+        },
+        {
+          "id": "HTL-T340-L12p5",
+          "nominal_score": 0.7544215776639922,
+          "nominal_rank": 6.0,
+          "rank_min": 5.0,
+          "rank_max": 6.0,
+          "top_share_pct": 0.0
+        },
+        {
+          "id": "HTL-T340-L17p5",
+          "nominal_score": 0.6152898472412005,
+          "nominal_rank": 7.0,
+          "rank_min": 7.0,
+          "rank_max": 8.0,
+          "top_share_pct": 0.0
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "temperature-low-length-low",
+          "scores": {
+            "HTL-T320-L8p5": 0.27312389495494616,
+            "HTL-T320-L12p5": 0.8223975422330267,
+            "HTL-T320-L17p5": 0.8888316745171416,
+            "HTL-T330-L8p5": 0.5009001440994653,
+            "HTL-T330-L12p5": 0.8697766104605866,
+            "HTL-T330-L17p5": 0.8079656920565834,
+            "HTL-T340-L8p5": 0.7340754200876873,
+            "HTL-T340-L12p5": 0.7807288356144935,
+            "HTL-T340-L17p5": 0.6594126049800427
+          },
+          "ranks": {
+            "HTL-T320-L8p5": 9.0,
+            "HTL-T320-L12p5": 3.0,
+            "HTL-T320-L17p5": 1.0,
+            "HTL-T330-L8p5": 8.0,
+            "HTL-T330-L12p5": 2.0,
+            "HTL-T330-L17p5": 4.0,
+            "HTL-T340-L8p5": 6.0,
+            "HTL-T340-L12p5": 5.0,
+            "HTL-T340-L17p5": 7.0
+          },
+          "top_ids": [
+            "HTL-T320-L17p5"
+          ],
+          "spearman_vs_nominal": {
+            "value": 0.9,
+            "reason": null
+          }
+        },
+        {
+          "id": "temperature-low-length-center",
+          "scores": {
+            "HTL-T320-L8p5": 0.2797050257220187,
+            "HTL-T320-L12p5": 0.8471157426271239,
+            "HTL-T320-L17p5": 0.8804927003496237,
+            "HTL-T330-L8p5": 0.5289792050765859,
+            "HTL-T330-L12p5": 0.8816599466532196,
+            "HTL-T330-L17p5": 0.7939308997577637,
+            "HTL-T340-L8p5": 0.7412266293699056,
+            "HTL-T340-L12p5": 0.7794197501730129,
+            "HTL-T340-L17p5": 0.6493198495901816
+          },
+          "ranks": {
+            "HTL-T320-L8p5": 9.0,
+            "HTL-T320-L12p5": 3.0,
+            "HTL-T320-L17p5": 2.0,
+            "HTL-T330-L8p5": 8.0,
+            "HTL-T330-L12p5": 1.0,
+            "HTL-T330-L17p5": 4.0,
+            "HTL-T340-L8p5": 6.0,
+            "HTL-T340-L12p5": 5.0,
+            "HTL-T340-L17p5": 7.0
+          },
+          "top_ids": [
+            "HTL-T330-L12p5"
+          ],
+          "spearman_vs_nominal": {
+            "value": 0.8833333333333333,
+            "reason": null
+          }
+        },
+        {
+          "id": "temperature-low-length-high",
+          "scores": {
+            "HTL-T320-L8p5": 0.286165525545875,
+            "HTL-T320-L12p5": 0.8694066666216429,
+            "HTL-T320-L17p5": 0.8664588477245772,
+            "HTL-T330-L8p5": 0.5569332406686582,
+            "HTL-T330-L12p5": 0.8916534339692885,
+            "HTL-T330-L17p5": 0.7794794480045323,
+            "HTL-T340-L8p5": 0.7478278518064313,
+            "HTL-T340-L12p5": 0.7777791310150977,
+            "HTL-T340-L17p5": 0.6380762486566558
+          },
+          "ranks": {
+            "HTL-T320-L8p5": 9.0,
+            "HTL-T320-L12p5": 2.0,
+            "HTL-T320-L17p5": 3.0,
+            "HTL-T330-L8p5": 8.0,
+            "HTL-T330-L12p5": 1.0,
+            "HTL-T330-L17p5": 4.0,
+            "HTL-T340-L8p5": 6.0,
+            "HTL-T340-L12p5": 5.0,
+            "HTL-T340-L17p5": 7.0
+          },
+          "top_ids": [
+            "HTL-T330-L12p5"
+          ],
+          "spearman_vs_nominal": {
+            "value": 0.9,
+            "reason": null
+          }
+        },
+        {
+          "id": "temperature-center-length-low",
+          "scores": {
+            "HTL-T320-L8p5": 0.273641801751952,
+            "HTL-T320-L12p5": 0.8568658591179529,
+            "HTL-T320-L17p5": 0.8775015129971049,
+            "HTL-T330-L8p5": 0.5565565133242102,
+            "HTL-T330-L12p5": 0.8583375216369802,
+            "HTL-T330-L17p5": 0.7825913138784237,
+            "HTL-T340-L8p5": 0.7679019084301354,
+            "HTL-T340-L12p5": 0.7581040910665664,
+            "HTL-T340-L17p5": 0.6235294205753558
+          },
+          "ranks": {
+            "HTL-T320-L8p5": 9.0,
+            "HTL-T320-L12p5": 3.0,
+            "HTL-T320-L17p5": 1.0,
+            "HTL-T330-L8p5": 8.0,
+            "HTL-T330-L12p5": 2.0,
+            "HTL-T330-L17p5": 4.0,
+            "HTL-T340-L8p5": 5.0,
+            "HTL-T340-L12p5": 6.0,
+            "HTL-T340-L17p5": 7.0
+          },
+          "top_ids": [
+            "HTL-T320-L17p5"
+          ],
+          "spearman_vs_nominal": {
+            "value": 0.9333333333333333,
+            "reason": null
+          }
+        },
+        {
+          "id": "temperature-center-length-center",
+          "scores": {
+            "HTL-T320-L8p5": 0.27922691507947883,
+            "HTL-T320-L12p5": 0.8799312137639171,
+            "HTL-T320-L17p5": 0.8687325458193529,
+            "HTL-T330-L8p5": 0.5802762925725823,
+            "HTL-T330-L12p5": 0.8674541853940131,
+            "HTL-T330-L17p5": 0.7690176073593998,
+            "HTL-T340-L8p5": 0.771339106717609,
+            "HTL-T340-L12p5": 0.7544215776639922,
+            "HTL-T340-L17p5": 0.6152898472412005
+          },
+          "ranks": {
+            "HTL-T320-L8p5": 9.0,
+            "HTL-T320-L12p5": 1.0,
+            "HTL-T320-L17p5": 2.0,
+            "HTL-T330-L8p5": 8.0,
+            "HTL-T330-L12p5": 3.0,
+            "HTL-T330-L17p5": 5.0,
+            "HTL-T340-L8p5": 4.0,
+            "HTL-T340-L12p5": 6.0,
+            "HTL-T340-L17p5": 7.0
+          },
+          "top_ids": [
+            "HTL-T320-L12p5"
+          ],
+          "spearman_vs_nominal": {
+            "value": 1.0,
+            "reason": null
+          }
+        },
+        {
+          "id": "temperature-center-length-high",
+          "scores": {
+            "HTL-T320-L8p5": 0.32414295787585595,
+            "HTL-T320-L12p5": 0.9001201477218812,
+            "HTL-T320-L17p5": 0.8541768492429717,
+            "HTL-T330-L8p5": 0.6037879092153091,
+            "HTL-T330-L12p5": 0.8750045069124494,
+            "HTL-T330-L17p5": 0.7550611805057804,
+            "HTL-T340-L8p5": 0.7741556810669935,
+            "HTL-T340-L12p5": 0.7479366092581972,
+            "HTL-T340-L17p5": 0.6093394650156868
+          },
+          "ranks": {
+            "HTL-T320-L8p5": 9.0,
+            "HTL-T320-L12p5": 1.0,
+            "HTL-T320-L17p5": 3.0,
+            "HTL-T330-L8p5": 8.0,
+            "HTL-T330-L12p5": 2.0,
+            "HTL-T330-L17p5": 5.0,
+            "HTL-T340-L8p5": 4.0,
+            "HTL-T340-L12p5": 6.0,
+            "HTL-T340-L17p5": 7.0
+          },
+          "top_ids": [
+            "HTL-T320-L12p5"
+          ],
+          "spearman_vs_nominal": {
+            "value": 0.9833333333333333,
+            "reason": null
+          }
+        },
+        {
+          "id": "temperature-high-length-low",
+          "scores": {
+            "HTL-T320-L8p5": 0.30715801316012475,
+            "HTL-T320-L12p5": 0.8701658826654739,
+            "HTL-T320-L17p5": 0.8642102310977989,
+            "HTL-T330-L8p5": 0.6076153777759596,
+            "HTL-T330-L12p5": 0.8427158998295825,
+            "HTL-T330-L17p5": 0.7549260190543797,
+            "HTL-T340-L8p5": 0.7979415487905689,
+            "HTL-T340-L12p5": 0.7342530621618107,
+            "HTL-T340-L17p5": 0.6096519978925421
+          },
+          "ranks": {
+            "HTL-T320-L8p5": 9.0,
+            "HTL-T320-L12p5": 1.0,
+            "HTL-T320-L17p5": 2.0,
+            "HTL-T330-L8p5": 8.0,
+            "HTL-T330-L12p5": 3.0,
+            "HTL-T330-L17p5": 5.0,
+            "HTL-T340-L8p5": 4.0,
+            "HTL-T340-L12p5": 6.0,
+            "HTL-T340-L17p5": 7.0
+          },
+          "top_ids": [
+            "HTL-T320-L12p5"
+          ],
+          "spearman_vs_nominal": {
+            "value": 1.0,
+            "reason": null
+          }
+        },
+        {
+          "id": "temperature-high-length-center",
+          "scores": {
+            "HTL-T320-L8p5": 0.34799411267391844,
+            "HTL-T320-L12p5": 0.8904580134979592,
+            "HTL-T320-L17p5": 0.8540635385292995,
+            "HTL-T330-L8p5": 0.6270141590586821,
+            "HTL-T330-L12p5": 0.8491142558634314,
+            "HTL-T330-L17p5": 0.7419335881261836,
+            "HTL-T340-L8p5": 0.7978948693590495,
+            "HTL-T340-L12p5": 0.7261500401307645,
+            "HTL-T340-L17p5": 0.606707567030754
+          },
+          "ranks": {
+            "HTL-T320-L8p5": 9.0,
+            "HTL-T320-L12p5": 1.0,
+            "HTL-T320-L17p5": 2.0,
+            "HTL-T330-L8p5": 7.0,
+            "HTL-T330-L12p5": 3.0,
+            "HTL-T330-L17p5": 5.0,
+            "HTL-T340-L8p5": 4.0,
+            "HTL-T340-L12p5": 6.0,
+            "HTL-T340-L17p5": 8.0
+          },
+          "top_ids": [
+            "HTL-T320-L12p5"
+          ],
+          "spearman_vs_nominal": {
+            "value": 0.9833333333333333,
+            "reason": null
+          }
+        },
+        {
+          "id": "temperature-high-length-high",
+          "scores": {
+            "HTL-T320-L8p5": 0.38890073904565176,
+            "HTL-T320-L12p5": 0.9080490349729113,
+            "HTL-T320-L17p5": 0.8392110616872582,
+            "HTL-T330-L8p5": 0.6461170952238875,
+            "HTL-T330-L12p5": 0.854275819170444,
+            "HTL-T330-L17p5": 0.7285936434810157,
+            "HTL-T340-L8p5": 0.7971678922244101,
+            "HTL-T340-L12p5": 0.7182930779931166,
+            "HTL-T340-L17p5": 0.6017494525515693
+          },
+          "ranks": {
+            "HTL-T320-L8p5": 9.0,
+            "HTL-T320-L12p5": 1.0,
+            "HTL-T320-L17p5": 3.0,
+            "HTL-T330-L8p5": 7.0,
+            "HTL-T330-L12p5": 2.0,
+            "HTL-T330-L17p5": 5.0,
+            "HTL-T340-L8p5": 4.0,
+            "HTL-T340-L12p5": 6.0,
+            "HTL-T340-L17p5": 8.0
+          },
+          "top_ids": [
+            "HTL-T320-L12p5"
+          ],
+          "spearman_vs_nominal": {
+            "value": 0.9666666666666667,
+            "reason": null
+          }
+        }
+      ],
+      "total_top_share_pct": 100.0
+    },
+    {
+      "id": "energy-focused",
+      "weights": {
+        "purchased_energy_kWh_kg": 0.5,
+        "yield_fraction": 0.25,
+        "impact:Climate change": 0.25
+      },
+      "candidates": [
+        {
+          "id": "HTL-T320-L8p5",
+          "nominal_score": 0.4188403726192183,
+          "nominal_rank": 9.0,
+          "rank_min": 8.0,
+          "rank_max": 9.0,
+          "top_share_pct": 0.0
+        },
+        {
+          "id": "HTL-T320-L12p5",
+          "nominal_score": 0.9099484103229379,
+          "nominal_rank": 1.0,
+          "rank_min": 1.0,
+          "rank_max": 2.0,
+          "top_share_pct": 88.88888888888889
+        },
+        {
+          "id": "HTL-T320-L17p5",
+          "nominal_score": 0.8436854531706213,
+          "nominal_rank": 2.0,
+          "rank_min": 1.0,
+          "rank_max": 3.0,
+          "top_share_pct": 11.11111111111111
+        },
+        {
+          "id": "HTL-T330-L8p5",
+          "nominal_score": 0.6300872704894427,
+          "nominal_rank": 7.0,
+          "rank_min": 5.0,
+          "rank_max": 7.0,
+          "top_share_pct": 0.0
+        },
+        {
+          "id": "HTL-T330-L12p5",
+          "nominal_score": 0.8258854188932643,
+          "nominal_rank": 3.0,
+          "rank_min": 2.0,
+          "rank_max": 3.0,
+          "top_share_pct": 0.0
+        },
+        {
+          "id": "HTL-T330-L17p5",
+          "nominal_score": 0.6762792845849257,
+          "nominal_rank": 5.0,
+          "rank_min": 4.0,
+          "rank_max": 6.0,
+          "top_share_pct": 0.0
+        },
+        {
+          "id": "HTL-T340-L8p5",
+          "nominal_score": 0.7393764287196523,
+          "nominal_rank": 4.0,
+          "rank_min": 4.0,
+          "rank_max": 5.0,
+          "top_share_pct": 0.0
+        },
+        {
+          "id": "HTL-T340-L12p5",
+          "nominal_score": 0.6512606196295944,
+          "nominal_rank": 6.0,
+          "rank_min": 6.0,
+          "rank_max": 7.0,
+          "top_share_pct": 0.0
+        },
+        {
+          "id": "HTL-T340-L17p5",
+          "nominal_score": 0.4614673854309004,
+          "nominal_rank": 8.0,
+          "rank_min": 8.0,
+          "rank_max": 9.0,
+          "top_share_pct": 0.0
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "temperature-low-length-low",
+          "scores": {
+            "HTL-T320-L8p5": 0.40968584243241923,
+            "HTL-T320-L12p5": 0.8667981566747701,
+            "HTL-T320-L17p5": 0.8804417702450344,
+            "HTL-T330-L8p5": 0.5742663624470749,
+            "HTL-T330-L12p5": 0.8464833512302928,
+            "HTL-T330-L17p5": 0.7291578344631907,
+            "HTL-T340-L8p5": 0.722623317387485,
+            "HTL-T340-L12p5": 0.6934879353648811,
+            "HTL-T340-L17p5": 0.5185794152214159
+          },
+          "ranks": {
+            "HTL-T320-L8p5": 9.0,
+            "HTL-T320-L12p5": 2.0,
+            "HTL-T320-L17p5": 1.0,
+            "HTL-T330-L8p5": 7.0,
+            "HTL-T330-L12p5": 3.0,
+            "HTL-T330-L17p5": 4.0,
+            "HTL-T340-L8p5": 5.0,
+            "HTL-T340-L12p5": 6.0,
+            "HTL-T340-L17p5": 8.0
+          },
+          "top_ids": [
+            "HTL-T320-L17p5"
+          ],
+          "spearman_vs_nominal": {
+            "value": 0.9666666666666667,
+            "reason": null
+          }
+        },
+        {
+          "id": "temperature-low-length-center",
+          "scores": {
+            "HTL-T320-L8p5": 0.41955753858302813,
+            "HTL-T320-L12p5": 0.8853368069703429,
+            "HTL-T320-L17p5": 0.8697294675371537,
+            "HTL-T330-L8p5": 0.5962261995442079,
+            "HTL-T330-L12p5": 0.8534492634305068,
+            "HTL-T330-L17p5": 0.7141605408914455,
+            "HTL-T340-L8p5": 0.7248527547029642,
+            "HTL-T340-L12p5": 0.6880490128266801,
+            "HTL-T340-L17p5": 0.5072932948726512
+          },
+          "ranks": {
+            "HTL-T320-L8p5": 9.0,
+            "HTL-T320-L12p5": 1.0,
+            "HTL-T320-L17p5": 2.0,
+            "HTL-T330-L8p5": 7.0,
+            "HTL-T330-L12p5": 3.0,
+            "HTL-T330-L17p5": 5.0,
+            "HTL-T340-L8p5": 4.0,
+            "HTL-T340-L12p5": 6.0,
+            "HTL-T340-L17p5": 8.0
+          },
+          "top_ids": [
+            "HTL-T320-L12p5"
+          ],
+          "spearman_vs_nominal": {
+            "value": 1.0,
+            "reason": null
+          }
+        },
+        {
+          "id": "temperature-low-length-high",
+          "scores": {
+            "HTL-T320-L8p5": 0.4292482883188125,
+            "HTL-T320-L12p5": 0.9020549999662322,
+            "HTL-T320-L17p5": 0.8546864999134228,
+            "HTL-T330-L8p5": 0.6179679061152765,
+            "HTL-T330-L12p5": 0.8587716213930854,
+            "HTL-T330-L17p5": 0.6988556912152148,
+            "HTL-T340-L8p5": 0.7265089529056719,
+            "HTL-T340-L12p5": 0.6823858531134694,
+            "HTL-T340-L17p5": 0.4952286988921313
+          },
+          "ranks": {
+            "HTL-T320-L8p5": 9.0,
+            "HTL-T320-L12p5": 1.0,
+            "HTL-T320-L17p5": 3.0,
+            "HTL-T330-L8p5": 7.0,
+            "HTL-T330-L12p5": 2.0,
+            "HTL-T330-L17p5": 5.0,
+            "HTL-T340-L8p5": 4.0,
+            "HTL-T340-L12p5": 6.0,
+            "HTL-T340-L17p5": 8.0
+          },
+          "top_ids": [
+            "HTL-T320-L12p5"
+          ],
+          "spearman_vs_nominal": {
+            "value": 0.9833333333333333,
+            "reason": null
+          }
+        },
+        {
+          "id": "temperature-center-length-low",
+          "scores": {
+            "HTL-T320-L8p5": 0.41046270262792806,
+            "HTL-T320-L12p5": 0.8923958866109304,
+            "HTL-T320-L17p5": 0.8548229248077387,
+            "HTL-T330-L8p5": 0.6122459541750446,
+            "HTL-T330-L12p5": 0.8215268337778423,
+            "HTL-T330-L17p5": 0.6908013089905665,
+            "HTL-T340-L8p5": 0.740631604472558,
+            "HTL-T340-L12p5": 0.6589261631542791,
+            "HTL-T340-L17p5": 0.47124833034042046
+          },
+          "ranks": {
+            "HTL-T320-L8p5": 9.0,
+            "HTL-T320-L12p5": 1.0,
+            "HTL-T320-L17p5": 2.0,
+            "HTL-T330-L8p5": 7.0,
+            "HTL-T330-L12p5": 3.0,
+            "HTL-T330-L17p5": 5.0,
+            "HTL-T340-L8p5": 4.0,
+            "HTL-T340-L12p5": 6.0,
+            "HTL-T340-L17p5": 8.0
+          },
+          "top_ids": [
+            "HTL-T320-L12p5"
+          ],
+          "spearman_vs_nominal": {
+            "value": 1.0,
+            "reason": null
+          }
+        },
+        {
+          "id": "temperature-center-length-center",
+          "scores": {
+            "HTL-T320-L8p5": 0.4188403726192183,
+            "HTL-T320-L12p5": 0.9099484103229379,
+            "HTL-T320-L17p5": 0.8436854531706213,
+            "HTL-T330-L8p5": 0.6300872704894427,
+            "HTL-T330-L12p5": 0.8258854188932643,
+            "HTL-T330-L17p5": 0.6762792845849257,
+            "HTL-T340-L8p5": 0.7393764287196523,
+            "HTL-T340-L12p5": 0.6512606196295944,
+            "HTL-T340-L17p5": 0.4614673854309004
+          },
+          "ranks": {
+            "HTL-T320-L8p5": 9.0,
+            "HTL-T320-L12p5": 1.0,
+            "HTL-T320-L17p5": 2.0,
+            "HTL-T330-L8p5": 7.0,
+            "HTL-T330-L12p5": 3.0,
+            "HTL-T330-L17p5": 5.0,
+            "HTL-T340-L8p5": 4.0,
+            "HTL-T340-L12p5": 6.0,
+            "HTL-T340-L17p5": 8.0
+          },
+          "top_ids": [
+            "HTL-T320-L12p5"
+          ],
+          "spearman_vs_nominal": {
+            "value": 1.0,
+            "reason": null
+          }
+        },
+        {
+          "id": "temperature-center-length-high",
+          "scores": {
+            "HTL-T320-L8p5": 0.4566203499912572,
+            "HTL-T320-L12p5": 0.9249465003793276,
+            "HTL-T320-L17p5": 0.8281620716780951,
+            "HTL-T330-L8p5": 0.6476399757789331,
+            "HTL-T330-L12p5": 0.8288962559566486,
+            "HTL-T330-L17p5": 0.6614895507561382,
+            "HTL-T340-L8p5": 0.7374902573400298,
+            "HTL-T340-L12p5": 0.6415538607896181,
+            "HTL-T340-L17p5": 0.45700459876176514
+          },
+          "ranks": {
+            "HTL-T320-L8p5": 9.0,
+            "HTL-T320-L12p5": 1.0,
+            "HTL-T320-L17p5": 3.0,
+            "HTL-T330-L8p5": 6.0,
+            "HTL-T330-L12p5": 2.0,
+            "HTL-T330-L17p5": 5.0,
+            "HTL-T340-L8p5": 4.0,
+            "HTL-T340-L12p5": 7.0,
+            "HTL-T340-L17p5": 8.0
+          },
+          "top_ids": [
+            "HTL-T320-L12p5"
+          ],
+          "spearman_vs_nominal": {
+            "value": 0.9666666666666667,
+            "reason": null
+          }
+        },
+        {
+          "id": "temperature-high-length-low",
+          "scores": {
+            "HTL-T320-L8p5": 0.4351941081733964,
+            "HTL-T320-L12p5": 0.8902575912415388,
+            "HTL-T320-L17p5": 0.8271609049366847,
+            "HTL-T330-L8p5": 0.6459643230150076,
+            "HTL-T330-L12p5": 0.7928014497984676,
+            "HTL-T330-L17p5": 0.6504406925763467,
+            "HTL-T340-L8p5": 0.7552600966315937,
+            "HTL-T340-L12p5": 0.6236977114431587,
+            "HTL-T340-L17p5": 0.45723899841940663
+          },
+          "ranks": {
+            "HTL-T320-L8p5": 9.0,
+            "HTL-T320-L12p5": 1.0,
+            "HTL-T320-L17p5": 2.0,
+            "HTL-T330-L8p5": 6.0,
+            "HTL-T330-L12p5": 3.0,
+            "HTL-T330-L17p5": 5.0,
+            "HTL-T340-L8p5": 4.0,
+            "HTL-T340-L12p5": 7.0,
+            "HTL-T340-L17p5": 8.0
+          },
+          "top_ids": [
+            "HTL-T320-L12p5"
+          ],
+          "spearman_vs_nominal": {
+            "value": 0.9833333333333333,
+            "reason": null
+          }
+        },
+        {
+          "id": "temperature-high-length-center",
+          "scores": {
+            "HTL-T320-L8p5": 0.4692244734108528,
+            "HTL-T320-L12p5": 0.9051760290976385,
+            "HTL-T320-L17p5": 0.8149380796695583,
+            "HTL-T330-L8p5": 0.6597267103110888,
+            "HTL-T330-L12p5": 0.7946018250871558,
+            "HTL-T330-L17p5": 0.6365087869272236,
+            "HTL-T340-L8p5": 0.7507438621656191,
+            "HTL-T340-L12p5": 0.6122925775063072,
+            "HTL-T340-L17p5": 0.4550306752730655
+          },
+          "ranks": {
+            "HTL-T320-L8p5": 8.0,
+            "HTL-T320-L12p5": 1.0,
+            "HTL-T320-L17p5": 2.0,
+            "HTL-T330-L8p5": 5.0,
+            "HTL-T330-L12p5": 3.0,
+            "HTL-T330-L17p5": 6.0,
+            "HTL-T340-L8p5": 4.0,
+            "HTL-T340-L12p5": 7.0,
+            "HTL-T340-L17p5": 9.0
+          },
+          "top_ids": [
+            "HTL-T320-L12p5"
+          ],
+          "spearman_vs_nominal": {
+            "value": 0.9333333333333333,
+            "reason": null
+          }
+        },
+        {
+          "id": "temperature-high-length-high",
+          "scores": {
+            "HTL-T320-L8p5": 0.5032057103283508,
+            "HTL-T320-L12p5": 0.917704159702324,
+            "HTL-T320-L17p5": 0.799152798339603,
+            "HTL-T330-L8p5": 0.67312673158657,
+            "HTL-T330-L12p5": 0.795355145002211,
+            "HTL-T330-L17p5": 0.6223512017434503,
+            "HTL-T340-L8p5": 0.7455482959307151,
+            "HTL-T340-L12p5": 0.6011605669303225,
+            "HTL-T340-L17p5": 0.45131208941367706
+          },
+          "ranks": {
+            "HTL-T320-L8p5": 8.0,
+            "HTL-T320-L12p5": 1.0,
+            "HTL-T320-L17p5": 2.0,
+            "HTL-T330-L8p5": 5.0,
+            "HTL-T330-L12p5": 3.0,
+            "HTL-T330-L17p5": 6.0,
+            "HTL-T340-L8p5": 4.0,
+            "HTL-T340-L12p5": 7.0,
+            "HTL-T340-L17p5": 9.0
+          },
+          "top_ids": [
+            "HTL-T320-L12p5"
+          ],
+          "spearman_vs_nominal": {
+            "value": 0.9333333333333333,
+            "reason": null
+          }
+        }
+      ],
+      "total_top_share_pct": 100.0
+    },
+    {
+      "id": "climate-focused",
+      "weights": {
+        "purchased_energy_kWh_kg": 0.25,
+        "yield_fraction": 0.25,
+        "impact:Climate change": 0.5
+      },
+      "candidates": [
+        {
+          "id": "HTL-T320-L8p5",
+          "nominal_score": 0.20942018630960915,
+          "nominal_rank": 9.0,
+          "rank_min": 9.0,
+          "rank_max": 9.0,
+          "top_share_pct": 0.0
+        },
+        {
+          "id": "HTL-T320-L12p5",
+          "nominal_score": 0.8879022888751348,
+          "nominal_rank": 3.0,
+          "rank_min": 1.0,
+          "rank_max": 4.0,
+          "top_share_pct": 33.333333333333336
+        },
+        {
+          "id": "HTL-T320-L17p5",
+          "nominal_score": 0.9015494093645148,
+          "nominal_rank": 1.0,
+          "rank_min": 1.0,
+          "rank_max": 3.0,
+          "top_share_pct": 55.55555555555556
+        },
+        {
+          "id": "HTL-T330-L8p5",
+          "nominal_score": 0.5741186984749915,
+          "nominal_rank": 8.0,
+          "rank_min": 8.0,
+          "rank_max": 8.0,
+          "top_share_pct": 0.0
+        },
+        {
+          "id": "HTL-T330-L12p5",
+          "nominal_score": 0.894336582454181,
+          "nominal_rank": 2.0,
+          "rank_min": 1.0,
+          "rank_max": 3.0,
+          "top_share_pct": 11.11111111111111
+        },
+        {
+          "id": "HTL-T330-L17p5",
+          "nominal_score": 0.8153482675386702,
+          "nominal_rank": 4.0,
+          "rank_min": 3.0,
+          "rank_max": 5.0,
+          "top_share_pct": 0.0
+        },
+        {
+          "id": "HTL-T340-L8p5",
+          "nominal_score": 0.802981079351943,
+          "nominal_rank": 5.0,
+          "rank_min": 4.0,
+          "rank_max": 6.0,
+          "top_share_pct": 0.0
+        },
+        {
+          "id": "HTL-T340-L12p5",
+          "nominal_score": 0.7961879301143882,
+          "nominal_rank": 6.0,
+          "rank_min": 5.0,
+          "rank_max": 6.0,
+          "top_share_pct": 0.0
+        },
+        {
+          "id": "HTL-T340-L17p5",
+          "nominal_score": 0.6731491375406249,
+          "nominal_rank": 7.0,
+          "rank_min": 7.0,
+          "rank_max": 7.0,
+          "top_share_pct": 0.0
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "temperature-low-length-low",
+          "scores": {
+            "HTL-T320-L8p5": 0.20484292121620962,
+            "HTL-T320-L12p5": 0.8251347262712281,
+            "HTL-T320-L17p5": 0.9166237558878563,
+            "HTL-T330-L8p5": 0.48158216784291097,
+            "HTL-T330-L12p5": 0.8910981091427495,
+            "HTL-T330-L17p5": 0.8518533679792348,
+            "HTL-T340-L8p5": 0.7591517992211835,
+            "HTL-T340-L12p5": 0.8186920598644749,
+            "HTL-T340-L17p5": 0.7150989459836802
+          },
+          "ranks": {
+            "HTL-T320-L8p5": 9.0,
+            "HTL-T320-L12p5": 4.0,
+            "HTL-T320-L17p5": 1.0,
+            "HTL-T330-L8p5": 8.0,
+            "HTL-T330-L12p5": 2.0,
+            "HTL-T330-L17p5": 3.0,
+            "HTL-T340-L8p5": 6.0,
+            "HTL-T340-L12p5": 5.0,
+            "HTL-T340-L17p5": 7.0
+          },
+          "top_ids": [
+            "HTL-T320-L17p5"
+          ],
+          "spearman_vs_nominal": {
+            "value": 0.9666666666666667,
+            "reason": null
+          }
+        },
+        {
+          "id": "temperature-low-length-center",
+          "scores": {
+            "HTL-T320-L8p5": 0.20977876929151407,
+            "HTL-T320-L12p5": 0.8542497201284607,
+            "HTL-T320-L17p5": 0.9103184049537503,
+            "HTL-T330-L8p5": 0.5121655202289446,
+            "HTL-T330-L12p5": 0.9051941076837353,
+            "HTL-T330-L17p5": 0.8377457917376434,
+            "HTL-T340-L8p5": 0.7672028454727796,
+            "HTL-T340-L12p5": 0.8183905061296199,
+            "HTL-T340-L17p5": 0.7049818686438311
+          },
+          "ranks": {
+            "HTL-T320-L8p5": 9.0,
+            "HTL-T320-L12p5": 3.0,
+            "HTL-T320-L17p5": 1.0,
+            "HTL-T330-L8p5": 8.0,
+            "HTL-T330-L12p5": 2.0,
+            "HTL-T330-L17p5": 4.0,
+            "HTL-T340-L8p5": 6.0,
+            "HTL-T340-L12p5": 5.0,
+            "HTL-T340-L17p5": 7.0
+          },
+          "top_ids": [
+            "HTL-T320-L17p5"
+          ],
+          "spearman_vs_nominal": {
+            "value": 0.9833333333333333,
+            "reason": null
+          }
+        },
+        {
+          "id": "temperature-low-length-high",
+          "scores": {
+            "HTL-T320-L8p5": 0.21462414415940625,
+            "HTL-T320-L12p5": 0.8804862879315205,
+            "HTL-T320-L17p5": 0.8956763529417717,
+            "HTL-T330-L8p5": 0.5426526468207327,
+            "HTL-T330-L12p5": 0.9173077107605692,
+            "HTL-T330-L17p5": 0.8231309613022019,
+            "HTL-T340-L8p5": 0.7746524737052558,
+            "HTL-T340-L12p5": 0.817810727857496,
+            "HTL-T340-L17p5": 0.6938633931787199
+          },
+          "ranks": {
+            "HTL-T320-L8p5": 9.0,
+            "HTL-T320-L12p5": 3.0,
+            "HTL-T320-L17p5": 2.0,
+            "HTL-T330-L8p5": 8.0,
+            "HTL-T330-L12p5": 1.0,
+            "HTL-T330-L17p5": 4.0,
+            "HTL-T340-L8p5": 6.0,
+            "HTL-T340-L12p5": 5.0,
+            "HTL-T340-L17p5": 7.0
+          },
+          "top_ids": [
+            "HTL-T330-L12p5"
+          ],
+          "spearman_vs_nominal": {
+            "value": 0.9666666666666667,
+            "reason": null
+          }
+        },
+        {
+          "id": "temperature-center-length-low",
+          "scores": {
+            "HTL-T320-L8p5": 0.20523135131396403,
+            "HTL-T320-L12p5": 0.8611370666434527,
+            "HTL-T320-L17p5": 0.9081261347478287,
+            "HTL-T330-L8p5": 0.5483739452211014,
+            "HTL-T330-L12p5": 0.8833099402795427,
+            "HTL-T330-L17p5": 0.8289235637853047,
+            "HTL-T340-L8p5": 0.7987660838369295,
+            "HTL-T340-L12p5": 0.7990128918116348,
+            "HTL-T340-L17p5": 0.6816928659541301
+          },
+          "ranks": {
+            "HTL-T320-L8p5": 9.0,
+            "HTL-T320-L12p5": 3.0,
+            "HTL-T320-L17p5": 1.0,
+            "HTL-T330-L8p5": 8.0,
+            "HTL-T330-L12p5": 2.0,
+            "HTL-T330-L17p5": 4.0,
+            "HTL-T340-L8p5": 6.0,
+            "HTL-T340-L12p5": 5.0,
+            "HTL-T340-L17p5": 7.0
+          },
+          "top_ids": [
+            "HTL-T320-L17p5"
+          ],
+          "spearman_vs_nominal": {
+            "value": 0.9833333333333333,
+            "reason": null
+          }
+        },
+        {
+          "id": "temperature-center-length-center",
+          "scores": {
+            "HTL-T320-L8p5": 0.20942018630960915,
+            "HTL-T320-L12p5": 0.8879022888751348,
+            "HTL-T320-L17p5": 0.9015494093645148,
+            "HTL-T330-L8p5": 0.5741186984749915,
+            "HTL-T330-L12p5": 0.894336582454181,
+            "HTL-T330-L17p5": 0.8153482675386702,
+            "HTL-T340-L8p5": 0.802981079351943,
+            "HTL-T340-L12p5": 0.7961879301143882,
+            "HTL-T340-L17p5": 0.6731491375406249
+          },
+          "ranks": {
+            "HTL-T320-L8p5": 9.0,
+            "HTL-T320-L12p5": 3.0,
+            "HTL-T320-L17p5": 1.0,
+            "HTL-T330-L8p5": 8.0,
+            "HTL-T330-L12p5": 2.0,
+            "HTL-T330-L17p5": 4.0,
+            "HTL-T340-L8p5": 5.0,
+            "HTL-T340-L12p5": 6.0,
+            "HTL-T340-L17p5": 7.0
+          },
+          "top_ids": [
+            "HTL-T320-L17p5"
+          ],
+          "spearman_vs_nominal": {
+            "value": 1.0,
+            "reason": null
+          }
+        },
+        {
+          "id": "temperature-center-length-high",
+          "scores": {
+            "HTL-T320-L8p5": 0.2595987466353052,
+            "HTL-T320-L12p5": 0.9115250008555352,
+            "HTL-T320-L17p5": 0.8864757793157296,
+            "HTL-T330-L8p5": 0.5996713924349553,
+            "HTL-T330-L12p5": 0.9037421469942214,
+            "HTL-T330-L17p5": 0.8013020985602821,
+            "HTL-T340-L8p5": 0.8065080253220238,
+            "HTL-T340-L12p5": 0.7913035100413257,
+            "HTL-T340-L17p5": 0.6661959359072762
+          },
+          "ranks": {
+            "HTL-T320-L8p5": 9.0,
+            "HTL-T320-L12p5": 1.0,
+            "HTL-T320-L17p5": 3.0,
+            "HTL-T330-L8p5": 8.0,
+            "HTL-T330-L12p5": 2.0,
+            "HTL-T330-L17p5": 5.0,
+            "HTL-T340-L8p5": 4.0,
+            "HTL-T340-L12p5": 6.0,
+            "HTL-T340-L17p5": 7.0
+          },
+          "top_ids": [
+            "HTL-T320-L12p5"
+          ],
+          "spearman_vs_nominal": {
+            "value": 0.9166666666666666,
+            "reason": null
+          }
+        },
+        {
+          "id": "temperature-high-length-low",
+          "scores": {
+            "HTL-T320-L8p5": 0.24761544959291015,
+            "HTL-T320-L12p5": 0.8791303963795993,
+            "HTL-T320-L17p5": 0.8981576733233492,
+            "HTL-T330-L8p5": 0.609402252697842,
+            "HTL-T330-L12p5": 0.8711536975405025,
+            "HTL-T330-L17p5": 0.8036284139029027,
+            "HTL-T340-L8p5": 0.8337543886007966,
+            "HTL-T340-L12p5": 0.7783716784209156,
+            "HTL-T340-L17p5": 0.6644779968388133
+          },
+          "ranks": {
+            "HTL-T320-L8p5": 9.0,
+            "HTL-T320-L12p5": 2.0,
+            "HTL-T320-L17p5": 1.0,
+            "HTL-T330-L8p5": 8.0,
+            "HTL-T330-L12p5": 3.0,
+            "HTL-T330-L17p5": 5.0,
+            "HTL-T340-L8p5": 4.0,
+            "HTL-T340-L12p5": 6.0,
+            "HTL-T340-L17p5": 7.0
+          },
+          "top_ids": [
+            "HTL-T320-L17p5"
+          ],
+          "spearman_vs_nominal": {
+            "value": 0.9666666666666667,
+            "reason": null
+          }
+        },
+        {
+          "id": "temperature-high-length-center",
+          "scores": {
+            "HTL-T320-L8p5": 0.29288342458398775,
+            "HTL-T320-L12p5": 0.902713512521716,
+            "HTL-T320-L17p5": 0.8897750033997428,
+            "HTL-T330-L8p5": 0.6304313211133388,
+            "HTL-T330-L12p5": 0.8791899625760868,
+            "HTL-T330-L17p5": 0.7906972167621906,
+            "HTL-T340-L8p5": 0.8344069089562862,
+            "HTL-T340-L12p5": 0.771545012787913,
+            "HTL-T340-L17p5": 0.660061350546131
+          },
+          "ranks": {
+            "HTL-T320-L8p5": 9.0,
+            "HTL-T320-L12p5": 1.0,
+            "HTL-T320-L17p5": 2.0,
+            "HTL-T330-L8p5": 8.0,
+            "HTL-T330-L12p5": 3.0,
+            "HTL-T330-L17p5": 5.0,
+            "HTL-T340-L8p5": 4.0,
+            "HTL-T340-L12p5": 6.0,
+            "HTL-T340-L17p5": 7.0
+          },
+          "top_ids": [
+            "HTL-T320-L12p5"
+          ],
+          "spearman_vs_nominal": {
+            "value": 0.9333333333333333,
+            "reason": null
+          }
+        },
+        {
+          "id": "temperature-high-length-high",
+          "scores": {
+            "HTL-T320-L8p5": 0.33827092591254704,
+            "HTL-T320-L12p5": 0.9233745442245946,
+            "HTL-T320-L17p5": 0.8744975007786415,
+            "HTL-T330-L8p5": 0.6511653909658481,
+            "HTL-T330-L12p5": 0.885968810064307,
+            "HTL-T330-L17p5": 0.7773325713152589,
+            "HTL-T340-L8p5": 0.8342980341225343,
+            "HTL-T340-L12p5": 0.7649988585541898,
+            "HTL-T340-L17p5": 0.6540201600709806
+          },
+          "ranks": {
+            "HTL-T320-L8p5": 9.0,
+            "HTL-T320-L12p5": 1.0,
+            "HTL-T320-L17p5": 3.0,
+            "HTL-T330-L8p5": 8.0,
+            "HTL-T330-L12p5": 2.0,
+            "HTL-T330-L17p5": 5.0,
+            "HTL-T340-L8p5": 4.0,
+            "HTL-T340-L12p5": 6.0,
+            "HTL-T340-L17p5": 7.0
+          },
+          "top_ids": [
+            "HTL-T320-L12p5"
+          ],
+          "spearman_vs_nominal": {
+            "value": 0.9166666666666666,
+            "reason": null
+          }
+        }
+      ],
+      "total_top_share_pct": 100.0
+    }
+  ],
+  "methods": {
+    "scenarios": "User-supplied finite deterministic offsets; no probability model or random sampling",
+    "relative_span": "100*(maximum-minimum)/abs(nominal); zero denominator is null; incomplete coverage is null",
+    "score": "Weighted utility clamped to [0,1] using fixed nominal candidate min/max; numerically constant nominal response utility=0.5",
+    "constant_metric": "Nominal span <= 16*machine epsilon*max(abs(min),abs(max)); no unit-sized absolute floor",
+    "ties": "Absolute score tolerance 1e-12; descending groups anchored to each group highest score; average ranks",
+    "spearman": "Pearson correlation of tie-aware average ranks; constant rank vector returns null",
+    "top_share": "Equal credit among tied leaders in each supplied scenario; averaged per preference; selected-scenario shares, not probabilities",
+    "unsupported": "All records retained; any unsupported candidate/scenario suppresses every complete global ranking"
+  },
+  "scope": "Finite scenario sensitivity of frozen surrogate means. Not model uncertainty, a robustness guarantee, physical validation, or recalculated background LCA.",
+  "result_sha256": "11a2c3f603850eda1de8eb03575a02165ccaefa30e788b04452a5dab1c6247ef"
+}

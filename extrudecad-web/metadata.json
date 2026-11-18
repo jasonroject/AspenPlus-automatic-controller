@@ -1,0 +1,6 @@
+{
+  "name": "ExtrudeCAD Studio — 2D XY 绘图与 3D 拉伸建模工具",
+  "description": "轻量级 CAD 二维 XY 平面草图绘制、Z 轴高度拉伸建模、基础几何体生成与全视图工程图/STL/OBJ 导出工具。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

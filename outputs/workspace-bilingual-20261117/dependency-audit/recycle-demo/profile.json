@@ -1,0 +1,309 @@
+{
+  "profile_version": 1,
+  "id": "external-membrane-recycle",
+  "name": "Offline membrane recycle contract",
+  "model": {
+    "path": "offline-membrane-fixture.bkp",
+    "sha256": "2cda467018889c0e4f99d8478dec17c3e5d44b6486b3fd883738893a63211363"
+  },
+  "variables": [
+    {
+      "id": "pressure",
+      "path": "\\Data\\Blocks\\FILTER\\Input\\PRES",
+      "native_unit": "bar",
+      "min": 1,
+      "max": 4
+    }
+  ],
+  "readouts": [
+    {
+      "id": "FEED-mass",
+      "path": "\\Data\\Streams\\FEED\\Output\\MASSFLMX",
+      "native_unit": "kg/hr"
+    },
+    {
+      "id": "FEED-enthalpy",
+      "path": "\\Data\\Streams\\FEED\\Output\\H_FLOW",
+      "native_unit": "MJ/h"
+    },
+    {
+      "id": "MIXED-mass",
+      "path": "\\Data\\Streams\\MIXED\\Output\\MASSFLMX",
+      "native_unit": "kg/hr"
+    },
+    {
+      "id": "MIXED-enthalpy",
+      "path": "\\Data\\Streams\\MIXED\\Output\\H_FLOW",
+      "native_unit": "MJ/h"
+    },
+    {
+      "id": "CARRIER-mass",
+      "path": "\\Data\\Streams\\CARRIER\\Output\\MASSFLMX",
+      "native_unit": "kg/hr"
+    },
+    {
+      "id": "CARRIER-enthalpy",
+      "path": "\\Data\\Streams\\CARRIER\\Output\\H_FLOW",
+      "native_unit": "MJ/h"
+    },
+    {
+      "id": "RETENTATE-mass",
+      "path": "\\Data\\Streams\\RETENTATE\\Output\\MASSFLMX",
+      "native_unit": "kg/hr"
+    },
+    {
+      "id": "RETENTATE-enthalpy",
+      "path": "\\Data\\Streams\\RETENTATE\\Output\\H_FLOW",
+      "native_unit": "MJ/h"
+    },
+    {
+      "id": "RECYCLE-mass",
+      "path": "\\Data\\Streams\\RECYCLE\\Output\\MASSFLMX",
+      "native_unit": "kg/s"
+    },
+    {
+      "id": "RECYCLE-enthalpy",
+      "path": "\\Data\\Streams\\RECYCLE\\Output\\H_FLOW",
+      "native_unit": "MJ/h"
+    },
+    {
+      "id": "filter-heat",
+      "path": "\\Data\\Blocks\\FILTER\\Output\\QCALC",
+      "native_unit": "cal/sec"
+    },
+    {
+      "id": "filter-work",
+      "path": "\\Data\\Blocks\\FILTER\\Output\\WNET",
+      "native_unit": "kW"
+    },
+    {
+      "id": "cooler-heat",
+      "path": "\\Data\\Blocks\\COOLER\\Output\\QCALC",
+      "native_unit": "MJ/h"
+    },
+    {
+      "id": "target-mass",
+      "path": "\\Data\\Streams\\CARRIER\\Output\\MASSFLOW\\MIXED\\TARGET",
+      "native_unit": "kg/hr"
+    }
+  ],
+  "solver_checks": [
+    {
+      "path": "\\Data\\Results Summary\\Run-Status\\Output\\CVSTAT",
+      "accepted_values": [
+        0
+      ],
+      "label": "Offline fixture status only"
+    }
+  ],
+  "mapping": {
+    "meta": {
+      "name": "Independent membrane recycle",
+      "steady_state": true,
+      "enthalpy_basis": "Shared signed enthalpy reference; all material flows; Q/W inward positive",
+      "boundary": "Declared feed supply, purchased heating and motor electricity; cooling-service upstream burden excluded",
+      "functional_unit": "1 kg declared target product",
+      "allocation_method": "No co-product allocation; share 1",
+      "calorie_J": 4.184,
+      "inventory_complete": true,
+      "comparable_cases": true
+    },
+    "product": {
+      "quantity": {
+        "readout": "target-mass"
+      },
+      "feed": {
+        "readout": "FEED-mass"
+      },
+      "allocation": 1,
+      "source": "Offline membrane-recycle arithmetic fixture; not Aspen simulation or measured data"
+    },
+    "streams": [
+      {
+        "id": "FEED",
+        "from": "BOUNDARY",
+        "to": "MIXER",
+        "mass": {
+          "readout": "FEED-mass"
+        },
+        "enthalpy": {
+          "readout": "FEED-enthalpy"
+        }
+      },
+      {
+        "id": "MIXED",
+        "from": "MIXER",
+        "to": "FILTER",
+        "mass": {
+          "readout": "MIXED-mass"
+        },
+        "enthalpy": {
+          "readout": "MIXED-enthalpy"
+        }
+      },
+      {
+        "id": "CARRIER",
+        "from": "FILTER",
+        "to": "BOUNDARY",
+        "mass": {
+          "readout": "CARRIER-mass"
+        },
+        "enthalpy": {
+          "readout": "CARRIER-enthalpy"
+        }
+      },
+      {
+        "id": "RETENTATE",
+        "from": "FILTER",
+        "to": "COOLER",
+        "mass": {
+          "readout": "RETENTATE-mass"
+        },
+        "enthalpy": {
+          "readout": "RETENTATE-enthalpy"
+        }
+      },
+      {
+        "id": "RECYCLE",
+        "from": "COOLER",
+        "to": "MIXER",
+        "mass": {
+          "readout": "RECYCLE-mass"
+        },
+        "enthalpy": {
+          "readout": "RECYCLE-enthalpy"
+        }
+      }
+    ],
+    "blocks": [
+      {
+        "id": "MIXER",
+        "heat": {
+          "constant": 0,
+          "unit": "kW",
+          "source": "Explicitly unpowered/adiabatic fixture equipment"
+        },
+        "power": {
+          "constant": 0,
+          "unit": "kW",
+          "source": "Explicitly unpowered/adiabatic fixture equipment"
+        },
+        "source": "Offline membrane-recycle arithmetic fixture; not Aspen simulation or measured data"
+      },
+      {
+        "id": "FILTER",
+        "heat": {
+          "readout": "filter-heat"
+        },
+        "power": {
+          "readout": "filter-work"
+        },
+        "source": "Offline membrane-recycle arithmetic fixture; not Aspen simulation or measured data"
+      },
+      {
+        "id": "COOLER",
+        "heat": {
+          "readout": "cooler-heat"
+        },
+        "power": {
+          "constant": 0,
+          "unit": "kW",
+          "source": "Explicitly unpowered/adiabatic fixture equipment"
+        },
+        "source": "Offline membrane-recycle arithmetic fixture; not Aspen simulation or measured data"
+      }
+    ],
+    "inventory": [
+      {
+        "id": "purchased-heat",
+        "name": "External heating",
+        "kind": "energy",
+        "quantity": {
+          "readout": "filter-heat"
+        },
+        "factor_id": "heat",
+        "source": "Offline membrane-recycle arithmetic fixture; not Aspen simulation or measured data"
+      },
+      {
+        "id": "motor-electricity",
+        "name": "Motor electricity",
+        "kind": "energy",
+        "quantity": {
+          "readout": "filter-work"
+        },
+        "factor_id": "electricity",
+        "source": "Offline membrane-recycle arithmetic fixture; not Aspen simulation or measured data"
+      },
+      {
+        "id": "external-feed",
+        "name": "External feed",
+        "kind": "material",
+        "quantity": {
+          "readout": "FEED-mass"
+        },
+        "factor_id": "feed",
+        "source": "Offline membrane-recycle arithmetic fixture; not Aspen simulation or measured data"
+      }
+    ],
+    "factors": [
+      {
+        "id": "heat",
+        "category": "Fixture climate",
+        "value": 0.1,
+        "denominator_unit": "MJ",
+        "impact_unit": "kg CO2-eq",
+        "method": "Independent fixture arithmetic v1",
+        "source": "Offline membrane-recycle arithmetic fixture; not Aspen simulation or measured data"
+      },
+      {
+        "id": "electricity",
+        "category": "Fixture climate",
+        "value": 0.6,
+        "denominator_unit": "kWh",
+        "impact_unit": "kg CO2-eq",
+        "method": "Independent fixture arithmetic v1",
+        "source": "Offline membrane-recycle arithmetic fixture; not Aspen simulation or measured data"
+      },
+      {
+        "id": "feed",
+        "category": "Fixture climate",
+        "value": 0.2,
+        "denominator_unit": "kg",
+        "impact_unit": "kg CO2-eq",
+        "method": "Independent fixture arithmetic v1",
+        "source": "Offline membrane-recycle arithmetic fixture; not Aspen simulation or measured data"
+      },
+      {
+        "id": "heat",
+        "category": "Fixture acidification",
+        "value": 0.002,
+        "denominator_unit": "MJ",
+        "impact_unit": "mol H+-eq",
+        "method": "Independent fixture arithmetic v1",
+        "source": "Offline membrane-recycle arithmetic fixture; not Aspen simulation or measured data"
+      },
+      {
+        "id": "electricity",
+        "category": "Fixture acidification",
+        "value": 0.02,
+        "denominator_unit": "kWh",
+        "impact_unit": "mol H+-eq",
+        "method": "Independent fixture arithmetic v1",
+        "source": "Offline membrane-recycle arithmetic fixture; not Aspen simulation or measured data"
+      },
+      {
+        "id": "feed",
+        "category": "Fixture acidification",
+        "value": 0.004,
+        "denominator_unit": "kg",
+        "impact_unit": "mol H+-eq",
+        "method": "Independent fixture arithmetic v1",
+        "source": "Offline membrane-recycle arithmetic fixture; not Aspen simulation or measured data"
+      }
+    ]
+  },
+  "limits": {
+    "max_cases": 12,
+    "timeout_seconds": 5
+  }
+}

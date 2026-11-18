@@ -1,0 +1,8 @@
+const task=await taskSpace(2),page=task.page('p3');await page.goto('http://127.0.0.1:8766/index.html');await page.snapshot();
+await page.click('button[aria-label="切换为中文"]');await page.click('#motion-toggle');await page.click('#run-example');
+await page.snapshot();console.log('home zh',await page.evaluate(()=>({lang:document.documentElement.lang,title:document.title,paused:document.body.classList.contains('paused'),output:document.querySelector('#demo-output').textContent,leftover:[...document.querySelectorAll('h1,h2,h3,p,button,a')].filter(e=>e.getClientRects().length&&!e.closest('pre,code,[data-no-i18n]')&&e.children.length===0&&/[a-z]{4}/i.test(e.textContent)&&!/[\u3400-\u9fff]/.test(e.textContent)).map(e=>e.textContent.trim())})));
+await page.cdp('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
+console.log('home mobile',await page.evaluate(()=>({width:innerWidth,client:document.documentElement.clientWidth,scroll:document.documentElement.scrollWidth,fonts:document.fonts.status})));
+await page.screenshot({path:'C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/workspace-bilingual-20261117/home-mobile-zh.png'});
+await page.click('button[aria-label="Switch to English"]');await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
+console.log('home en',await page.evaluate(()=>({lang:document.documentElement.lang,output:document.querySelector('#demo-output').textContent,paused:document.body.classList.contains('paused')})));

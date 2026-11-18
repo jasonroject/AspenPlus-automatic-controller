@@ -1,0 +1,13 @@
+const p=(await taskSpace(1)).page('p1');const fs=await import('node:fs/promises');const assert=(await import('node:assert/strict')).default;const base='C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/cad-zoom-20261117/';
+const zoomWait=async v=>p.waitForFunction(v=>document.querySelector('[aria-label="三维缩放百分比"]').value===v,v,{timeout:5000});
+await p.click('.view-switch button >> nth=0');await p.click('loc=role:button[name="适合三维视图"]');await zoomWait('100');
+await p.fill('loc=role:textbox[name="三维缩放百分比"]','200');await p.keyboard.press('Enter');await zoomWait('200');
+await p.mouse.move(800,400);await p.mouse.wheel(0,500);await p.keyboard.down('Control');try{await p.mouse.wheel(0,-500);}finally{await p.keyboard.up('Control');}await zoomWait('200');
+await p.screenshot({path:base+'perspective-200.png'});
+await p.click('loc=role:button[name="俯视 XY"]');await zoomWait('100');await p.click('loc=role:button[name="缩小三维视图"]');await zoomWait('80');await p.click('loc=role:button[name="放大三维视图"]');await zoomWait('100');
+await p.fill('loc=role:textbox[name="三维缩放百分比"]','150');await p.keyboard.press('Enter');await zoomWait('150');await p.screenshot({path:base+'orthographic-150.png'});
+await p.click('loc=role:button[name="重置三维缩放为100%"]');await zoomWait('100');await p.click('loc=role:button[name="透视 3D"]');await p.click('loc=role:button[name="适合三维视图"]');
+const dl=p.waitForEvent('download');await p.click('.header-actions button[title="下载可继续编辑的工程文件"]');await (await dl).saveAs(base+'resume-project-after.extrudecad.json');
+const original=JSON.parse(await fs.readFile(base+'resume-project-before.extrudecad.json','utf8'));const final=JSON.parse(await fs.readFile(base+'resume-project-after.extrudecad.json','utf8'));assert.deepEqual(final.shapes,original.shapes);
+const served=await p.fetch('/ExtrudeCAD_Studio.html');assert.equal(served.body,await fs.readFile('C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/extrudecad-web/deliverables/ExtrudeCAD_Studio.html','utf8'));
+await fs.writeFile(base+'checks-final.json',JSON.stringify({perspectiveZoomAndWheel:true,orthographicZoom:true,reset100:true,shapesPreserved:final.shapes.length,servedArtifactMatches:true},null,2));console.log({passed:'3D perspective and orthographic zoom; all shape fields preserved; served artifact exact',shapes:final.shapes.length});

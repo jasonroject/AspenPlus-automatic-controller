@@ -1,0 +1,11 @@
+const task=await taskSpace(2),page=task.page('p1');
+await page.click('loc=href:/universal.html');await page.waitForSelector('[data-language="en"]');
+console.log('return restored',await page.evaluate(()=>({selected:document.querySelector('#result-case').value,summary:document.querySelector('#results-summary').textContent})));
+await page.click('loc=href:/models.html');await page.waitForSelector('#example-profile');
+await page.click('#example-profile');
+await page.waitForFunction(()=>!document.querySelector('.model-steps [data-step="2"]').disabled,undefined,{timeout:10000});
+await page.click('.model-steps [data-step="2"]');
+console.log('planning inputs',await page.evaluate(()=>[...document.querySelectorAll('[data-variable]')].map(el=>({variable:el.dataset.variable,fields:[...el.querySelectorAll('input')].map(i=>({setting:i.dataset.setting,value:i.value}))})));
+await page.selectOption('#split-mode','frozen');await page.click('#generate-plan');
+console.log('plan result',await page.evaluate(()=>document.querySelector('#plan-preview').textContent));
+console.log(await page.snapshot());

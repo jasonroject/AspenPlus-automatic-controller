@@ -1,0 +1,12 @@
+const task=await taskSpace(2),page=task.page('p1');
+await page.goto('http://127.0.0.1:8766/models.html');await page.snapshot();
+await page.click('#model-artifacts > summary');
+await page.click('[data-artifact-example="data/generic-htl-pilot/model.bundle.json"]');
+await page.waitForSelector('[data-artifact-validation]');
+await page.click('[data-artifact-validation] > summary');
+console.log('relative error table',await page.evaluate(()=>document.querySelector('[data-artifact-validation]').textContent));
+await page.click('[data-language="en"]');
+console.log('English relative error table',await page.evaluate(()=>document.querySelector('[data-artifact-validation]').textContent));
+await page.cdp('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false});
+await page.screenshot({path:'C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/workspace-bilingual-20261117/model-validation-errors-en.png'});
+console.log(await page.snapshot());

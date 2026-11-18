@@ -1,0 +1,8 @@
+{
+  "id": "HTL-T325-L8p5-verification",
+  "parameters": {
+    "reactor_temperature_K": 598.15,
+    "tube_length_m": 8.5
+  },
+  "split": "verification"
+}

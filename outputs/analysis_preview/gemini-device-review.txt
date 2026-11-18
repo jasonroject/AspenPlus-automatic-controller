@@ -1,0 +1,425 @@
+Gemini 说
+1. 截图最影响观感的五个具体问题（按优先级排序）
+
+原始几何体拼装与比例失真（“积木感”根源）   
+reference-workspace-v3.jpg
+
+表现：热回收换热器、冷却器仅为“基础圆柱体+两个半球”，缺乏管箱、管板法兰、鞍座和接管嘴；进料罐与相分离器几乎是同比例的圆柱桶；管式反应器外围框架粗大且内部盘管过粗。对比参考图，参考图塔器拥有丰富的外置爬梯、操作平台、环状色带、裙座及密集的管口连接，即便远看也具有明确的工程体量与结构层级。   
+reference-workspace-v3.jpg
++ 1
+
+塑料感材质与缺乏环境反射（MeshPhongMaterial 的局限）   
+reference-workspace-v3.jpg
+
+表现：当前设备表面呈现均质的灰白色漫反射与生硬的高光条，缺乏金属材质应有的明暗对比、环境光遮蔽（AO）以及表面拉丝/哑光金属质感。在工业数字孪生中，不锈钢设备应呈现冷峻的灰银色与丰富的明暗过渡，而非类似石膏或哑光塑料的质感。   
+reference-workspace-v3.jpg
+
+管线缺乏空间组织与管件细节（“电线感”）   
+reference-workspace-v3.jpg
+
+表现：连接管线为单一粗细的青色/橙色圆管，直接插入设备筒体表面，转角生硬或圆角过度，缺乏管廊（Pipe Rack）支撑、法兰连接件、截止阀/调节阀以及变径管。参考图中的管线严格遵循正交（90°）空间走线，依托桁架管廊集中排布，且配有密集的阀门组与色码区分。   
+reference-workspace-v3.jpg
++ 1
+
+地台孤立与缺乏工程边界（“悬浮沙盘感”）   
+reference-workspace-v3.jpg
+
+表现：当前所有设备直接“粘”在一块悬空的白灰色矩形薄板上，设备底部既无混凝土设备基础（Plinth），也无钢结构撬装底座（Skid）。参考图通过浅米色厂区地坪、围堰边界、外围桁架管廊及辅助建筑围合出完整的工业空间语境。   
+reference-workspace-v3.jpg
++ 1
+
+UI 浮标与交互视觉层级过重   
+reference-workspace-v3.jpg
+
+表现：当前设备正上方的白色圆角矩形标签面积过大、投影较重，遮挡了设备顶部的管口与安全阀细节；选中态的亮绿色高亮框与实心绿胶囊在视觉上过于突兀。参考图采用紧凑的半透明磨砂标签配合细指引线（Leader Line），且标签错落分布不遮挡主体结构。   
+reference-workspace-v3.jpg
++ 1
+
+2. 七个核心节点的辨识结构与视觉比例规范
+
+在不增加外部设备的前提下，通过精细化子部件构建单台设备的工程可信度（设定基准网格单元 
+1
+ unit
+=
+1
+ m
+1 unit=1 m）：
+
+设备节点	核心辨识结构（由下至上 / 由左至右）	建议视觉比例（宽/径 : 长/高）
+1. 进料（原料缓冲罐 + 搅拌）	3~4 根槽钢支腿 + 椭圆下封头 + 立式圆筒体（带两条浅灰/深蓝工艺色带） + 顶部法兰封头 + 偏心/中心立式电机与减速机 + 液位计（侧面双接管玻璃管）+ 顶部进料口与放空口。	直径 
+D=1.1，总高 
+H=2.4（筒体高约 
+1.5，支腿高 
+0.45，电机高 
+0.45）。
+2. 高压泵（柱塞计量泵）	公共铸铁/型钢底座 + 卧式散热翅片异步电机 + 联轴器护罩 + 曲轴箱（箱体带加强筋） + 不锈钢高压泵头（带进出口单向阀阀组） + 出口脉动阻尼器（小型立式蓄能器）+ 压力表。	长 
+L=1.6，宽 
+W=0.65，高 
+H=0.85（电机占长度 
+45%，箱体占 
+35%，泵头占 
+20%）。
+3. 热回收换热器（卧式管壳式）	双混凝土/钢制鞍座（Saddle，带筋板） + 壳程圆筒 + 双侧管箱法兰（成对螺栓法兰盘） + 前端管箱（带进出口大接管） + 后端封头 + 顶部排气口与底部排净口。	壳径 
+D=0.65，总长 
+L=2.8（两鞍座中心距约为总长的 
+0.6 倍）。
+4. 电加热器（立式法兰电加热器）	钢结构框架支架（4立柱+横撑） + 下封头（带进料接管） + 筒体（带外包保温层护板与金属捆扎带） + 顶部大口径主法兰 + 防爆接线盒（Ex-d 圆柱/方盒） + 表面热电偶测温套管。	直径 
+D=0.6，总高 
+H=2.2（支架高 
+0.5，筒体 
+1.2，接线盒 
+0.5）。
+5. 管式反应器（盘管/多管反应炉）	重型 H 型钢主框架（带斜撑与检修爬梯） + 隔热炉膛箱体（可做半剖或百叶散热格栅） + 多层螺旋盘管 / 蛇形管束（带管夹固定架） + 顶部集箱与高压安全阀（PSV） + 外部保温管道。	框架宽 
+W=1.8，深 
+D=1.8，总高 
+H=3.2（盘管管径 
+0.06，螺距 
+0.16）。
+6. 冷却器（列管式水冷器）	与热回收换热器区分造型：采用立式/倾斜式安装或带冷却水上下进出接管的双程管壳式结构，增加冷却水调节阀与温度传感器。	若卧式：壳径 
+D=0.55，总长 
+L=2.2（比热回收换热器更紧凑）。
+7. 相分离器（立式气液/液液分离器）	圆筒形裙座（带人孔与地脚螺栓孔） + 较粗的立式筒体（带两条深色色带与侧面磁翻板液位计） + 椭圆封头 + 顶部气相出口（带背压阀） + 底部重相出口 + 中部轻相溢流口 + 外置爬梯与顶部环形检修平台。	直径 
+D=1.3，总高 
+H=3.4（裙座高 
+0.6，筒体高 
+2.2，封头及顶部管件 
+0.6）。
+3. 管线、管件、支架与撬装框架组织原则
+
+正交走线与管廊汇集（Orthogonal Routing）
+
+所有工艺管线严格沿 
+𝑋
+,
+𝑌
+,
+𝑍
+X,Y,Z 三轴正交排布，禁止斜向拉线。在设备群一侧或上方设置一条贯通的H型钢小型管廊（Pipe Rack），热回收回路（橙色）与主工艺物流（青/蓝灰色）在管廊不同标高分层并行，通过 
+90
+∘
+90
+∘
+ 弯头向下垂直接入各设备管口。
+
+管件“三件套”标准化
+
+弯头（Elbow）：使用 TubeGeometry 沿 CurvePath（直线段 + 
+𝑅
+=
+1.5
+𝐷
+R=1.5D 的 QuadraticBezierCurve3 圆弧段）生成，避免折线或过大半径的“软管感”。
+
+法兰（Flange）：在设备管口、阀门两侧及长管分段处，成对放置两个扁圆柱（半径为管径的 
+1.8
+1.8 倍，厚度为管径的 
+0.35
+0.35 倍，中间留 
+2
+ mm
+2 mm 黑色垫片缝隙）。
+
+阀门与仪表：在泵出口、加热器前、分离器气液出口配置截止阀/调节阀（两个对顶圆锥体 + 阀杆 + 红色/黄色手轮）；在反应器、泵出口及分离器顶部配置就地压力表（细短接管 + 白色表盘圆饼）。
+
+撬装底座与设备基础（Skid & Plinth）
+
+将 7 个设备整合在两个模块化撬装钢结构底座（Skid Frame）上（例如：进料+高压泵+热回收为一撬；电加热+反应器+冷却器+分离器为一撬），底座采用工字钢边框与深灰色防滑花纹钢板，彻底消除设备“悬浮”在白板上的玩具感。
+
+4. 无外部资产下的 Three.js 高质量灰银金属方案
+
+在不加载 .hdr 或 .gltf 的前提下，通过代码生成程序化环境贴图与拉丝法线贴图，配合 MeshStandardMaterial 实现工业级金属质感：
+
+程序化生成工业 Studio 环境贴图（PMREMGenerator + DataTexture）
+
+利用 THREE.PMREMGenerator 将一个代码构建的虚拟包围盒场景（顶部亮白柔光灯带 + 两侧冷灰过渡墙 + 底部深灰地面反射）烘焙为 scene.environment。没有环境贴图，高金属度（metalness > 0.7）材质会变黑。
+
+程序化生成各向异性拉丝纹理（CanvasTexture）
+
+在离屏 <canvas> 上绘制高频水平细微灰度噪点线条，同时作为 roughnessMap（粗糙度在 
+0.25
+∼
+0.42
+0.25∼0.42 间微调）和 bumpMap（bumpScale: 0.003），模拟不锈钢压力容器的机加工表面。
+
+材质分级配色规范（避免单一灰白）
+
+不锈钢设备主体（316L）：color: 0xd0d5dd, metalness: 0.82, roughness: 0.32
+
+法兰、螺栓与机加工面：color: 0xe2e8f0, metalness: 0.90, roughness: 0.22
+
+碳钢支架、撬装底座与电机壳：color: 0x475569（深板岩灰）, metalness: 0.55, roughness: 0.55
+
+设备工艺色带 / 保温层护板：color: 0x94a3b8（哑光铝皮）搭配局部工艺色环（如深青色 #0f766e 或工业琥珀色 #d97706）。
+
+5. 相机、阴影、环境、色彩与标签参数建议
+
+相机参数（消除透视畸变）
+
+采用等轴测感低畸变透视相机：PerspectiveCamera(fov: 28, aspect, 0.1, 1000)（将 fov 从默认的 45~50 降至 26~30 并拉远相机距离，可显著增强工程 CAD 图纸的精密感）。
+
+初始机位：position.set(14, 11, 14)，target.set(0, 1.2, 0)。
+
+光照与阴影参数（增强体积感与接触阴影）
+
+主平行光（DirectionalLight）：color: 0xffffff, intensity: 1.8, position: (12, 20, 10)；开启 castShadow = true，shadow.mapSize.set(2048, 2048)，shadow.bias = -0.0005，shadow.normalBias = 0.02（消除圆柱表面阴影条纹）。
+
+冷色补光（HemisphereLight）：天空色 0xf1f5f9，地面色 0x64748b，intensity: 0.6。
+
+接触阴影（Contact Shadow）：在每个设备底座与撬装框架正下方放置一张径向渐变半透明黑色 PlaneGeometry（opacity: 0.35），强化设备“落地”的重量感。
+
+环境与地面
+
+背景色与雾效：scene.background = new THREE.Color(0xeef2f6)，scene.fog = new THREE.FogExp2(0xeef2f6, 0.012)。
+
+厂区地坪：使用双层网格（主网格 2m 间距 #cbd5e1，次网格 0.5m 间距 #e2e8f0）配合浅暖灰地坪台（0xf8fafc），外围增加低矮混凝土围堰边框。
+
+标签与高亮交互
+
+标签样式：改用 CSS2DRenderer 渲染紧凑型工程位号牌（如 E-101 热回收换热器），尺寸控制在 110px × 28px 以内，背景 rgba(255, 255, 255, 0.88) + backdrop-filter: blur(4px) + 1px solid #cbd5e1，底部配一条 24px 垂直细线指向设备顶部。
+
+选中高亮：取消包围盒线框，改用 EffectComposer + OutlinePass（边缘光描边，颜色 #0d9488，厚度 2.0）配合轻微的自发光增量（emissiveIntensity: 0.12）。
+
+6. 核心代码：不依赖外部资产的卧式管壳式换热器与程序化金属材质
+
+以下代码完全基于 Three.js r150+ 内置几何体与材质 API，可直接运行，包含程序化拉丝不锈钢材质以及具备双鞍座、壳程筒体、双侧成对螺栓法兰、管箱封头、接管嘴的卧式管壳式换热器构建函数：
+
+JavaScript
+import * as THREE from 'three';
+
+/**
+ * 1. 创建程序化拉丝金属材质库（无需外部贴图）
+ */
+function createIndustrialMaterials() {
+  // 生成离屏拉丝纹理
+  const canvas = document.createElement('canvas');
+  canvas.width = 256;
+  canvas.height = 256;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#808080';
+  ctx.fillRect(0, 0, 256, 256);
+
+  for (let i = 0; i < 4000; i++) {
+    const x = Math.random() * 256;
+    const y = Math.random() * 256;
+    const len = 10 + Math.random() * 40;
+    const shade = 115 + Math.floor(Math.random() * 35);
+    ctx.strokeStyle = `rgb(${shade},${shade},${shade})`;
+    ctx.lineWidth = 0.8;
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x + len, y);
+    ctx.stroke();
+  }
+
+  const brushedTex = new THREE.CanvasTexture(canvas);
+  brushedTex.wrapS = THREE.RepeatWrapping;
+  brushedTex.wrapT = THREE.RepeatWrapping;
+  brushedTex.repeat.set(3, 3);
+
+  return {
+    // 316L拉丝不锈钢（主体）
+    stainlessSteel: new THREE.MeshStandardMaterial({
+      color: 0xd2d8e0,
+      metalness: 0.82,
+      roughness: 0.32,
+      roughnessMap: brushedTex,
+      bumpMap: brushedTex,
+      bumpScale: 0.002,
+    }),
+    // 机加工亮银钢（法兰、螺栓）
+    machinedSteel: new THREE.MeshStandardMaterial({
+      color: 0xe2e8f0,
+      metalness: 0.90,
+      roughness: 0.20,
+    }),
+    // 深灰碳钢（鞍座、支架）
+    carbonSteel: new THREE.MeshStandardMaterial({
+      color: 0x475569,
+      metalness: 0.55,
+      roughness: 0.55,
+    }),
+    // 工业标识色环
+    accentBand: new THREE.MeshStandardMaterial({
+      color: 0xd97706, // 热回收系统琥珀色标识
+      metalness: 0.35,
+      roughness: 0.45,
+    })
+  };
+}
+
+/**
+ * 2. 辅助组件：生成带螺栓细节的成对法兰
+ */
+function createFlangePair(radius, thickness, boltCount, mats) {
+  const group = new THREE.Group();
+  const flangeGeo = new THREE.CylinderGeometry(radius, radius, thickness, 32);
+  flangeGeo.rotateZ(Math.PI / 2);
+
+  // 左右两片法兰盘（中间留2mm垫片缝隙）
+  const leftFlange = new THREE.Mesh(flangeGeo, mats.machinedSteel);
+  leftFlange.position.x = -(thickness * 0.5 + 0.002);
+  const rightFlange = new THREE.Mesh(flangeGeo, mats.machinedSteel);
+  rightFlange.position.x = thickness * 0.5 + 0.002;
+  group.add(leftFlange, rightFlange);
+
+  // 环形分布六角螺栓
+  const boltRadius = radius * 0.055;
+  const boltLength = thickness * 2.6;
+  const pitchRadius = radius * 0.84;
+  const boltGeo = new THREE.CylinderGeometry(boltRadius, boltRadius, boltLength, 6);
+  boltGeo.rotateZ(Math.PI / 2);
+
+  for (let i = 0; i < boltCount; i++) {
+    const angle = (i / boltCount) * Math.PI * 2;
+    const bolt = new THREE.Mesh(boltGeo, mats.carbonSteel);
+    bolt.position.set(0, Math.cos(angle) * pitchRadius, Math.sin(angle) * pitchRadius);
+    group.add(bolt);
+  }
+  return group;
+}
+
+/**
+ * 3. 辅助组件：带加强筋板的设备鞍座 (Saddle Support)
+ */
+function createSaddleSupport(shellRadius, mats) {
+  const saddle = new THREE.Group();
+  const width = shellRadius * 1.7;
+  const baseHeight = shellRadius * 0.55;
+  const depth = 0.16;
+
+  // 底板
+  const basePlate = new THREE.Mesh(
+    new THREE.BoxGeometry(depth * 1.4, 0.03, width),
+    mats.carbonSteel
+  );
+  basePlate.position.y = 0.015;
+  saddle.add(basePlate);
+
+  // 弧形托架腹板（用拉伸几何体挖出圆弧缺口）
+  const shape = new THREE.Shape();
+  shape.moveTo(-width * 0.45, 0.03);
+  shape.lineTo(width * 0.45, 0.03);
+  shape.lineTo(width * 0.45, baseHeight + shellRadius * 0.35);
+  shape.absarc(0, baseHeight + shellRadius, shellRadius, -0.25, Math.PI + 0.25, true);
+  shape.closePath();
+
+  const extrudeGeo = new THREE.ExtrudeGeometry(shape, { depth: depth, bevelEnabled: false });
+  extrudeGeo.rotateY(Math.PI / 2);
+  extrudeGeo.translate(-depth / 2, 0, 0);
+
+  const webMesh = new THREE.Mesh(extrudeGeo, mats.carbonSteel);
+  saddle.add(webMesh);
+
+  return saddle;
+}
+
+/**
+ * 4. 辅助组件：带末端法兰的工艺接管嘴 (Nozzle)
+ */
+function createNozzle(pipeRadius, length, mats) {
+  const nozzle = new THREE.Group();
+  const pipe = new THREE.Mesh(
+    new THREE.CylinderGeometry(pipeRadius, pipeRadius, length, 20),
+    mats.stainlessSteel
+  );
+  pipe.position.y = length / 2;
+
+  const flange = new THREE.Mesh(
+    new THREE.CylinderGeometry(pipeRadius * 1.75, pipeRadius * 1.75, 0.025, 24),
+    mats.machinedSteel
+  );
+  flange.position.y = length;
+
+  nozzle.add(pipe, flange);
+  return nozzle;
+}
+
+/**
+ * 5. 主装配函数：卧式管壳式热回收换热器 (Horizontal Shell & Tube Heat Exchanger)
+ */
+export function buildShellAndTubeHX() {
+  const mats = createIndustrialMaterials();
+  const hxGroup = new THREE.Group();
+
+  const shellRadius = 0.32;
+  const shellLength = 1.9;
+  const centerY = shellRadius + 0.35; // 筒体中心离地高度
+
+  // A. 壳程主筒体
+  const shellGeo = new THREE.CylinderGeometry(shellRadius, shellRadius, shellLength, 40);
+  shellGeo.rotateZ(Math.PI / 2);
+  const shellMesh = new THREE.Mesh(shellGeo, mats.stainlessSteel);
+  shellMesh.position.y = centerY;
+  hxGroup.add(shellMesh);
+
+  // B. 工艺识别色带
+  const bandGeo = new THREE.CylinderGeometry(shellRadius + 0.003, shellRadius + 0.003, 0.12, 40);
+  bandGeo.rotateZ(Math.PI / 2);
+  const bandMesh = new THREE.Mesh(bandGeo, mats.accentBand);
+  bandMesh.position.set(0, centerY, 0);
+  hxGroup.add(bandMesh);
+
+  // C. 双侧管板大法兰
+  const flangeRadius = shellRadius * 1.24;
+  const leftFlange = createFlangePair(flangeRadius, 0.035, 16, mats);
+  leftFlange.position.set(-shellLength / 2, centerY, 0);
+
+  const rightFlange = createFlangePair(flangeRadius, 0.035, 16, mats);
+  rightFlange.position.set(shellLength / 2, centerY, 0);
+  hxGroup.add(leftFlange, rightFlange);
+
+  // D. 左侧前端管箱（短圆筒 + 平盖法兰）
+  const channelLen = 0.32;
+  const channelGeo = new THREE.CylinderGeometry(shellRadius, shellRadius, channelLen, 40);
+  channelGeo.rotateZ(Math.PI / 2);
+  const channelMesh = new THREE.Mesh(channelGeo, mats.stainlessSteel);
+  channelMesh.position.set(-shellLength / 2 - channelLen / 2 - 0.035, centerY, 0);
+  hxGroup.add(channelMesh);
+
+  const frontCover = createFlangePair(flangeRadius, 0.03, 16, mats);
+  frontCover.position.set(-shellLength / 2 - channelLen - 0.05, centerY, 0);
+  hxGroup.add(frontCover);
+
+  // E. 右侧后端椭圆封头（缩放球体模拟标准2:1椭圆封头）
+  const headGeo = new THREE.SphereGeometry(shellRadius, 36, 20, 0, Math.PI * 2, 0, Math.PI / 2);
+  headGeo.rotateZ(-Math.PI / 2);
+  headGeo.scale(0.55, 1, 1);
+  const headMesh = new THREE.Mesh(headGeo, mats.stainlessSteel);
+  headMesh.position.set(shellLength / 2 + 0.035, centerY, 0);
+  hxGroup.add(headMesh);
+
+  // F. 双鞍座支撑
+  const saddleOffset = shellLength * 0.32;
+  const leftSaddle = createSaddleSupport(shellRadius, mats);
+  leftSaddle.position.x = -saddleOffset;
+  const rightSaddle = createSaddleSupport(shellRadius, mats);
+  rightSaddle.position.x = saddleOffset;
+  hxGroup.add(leftSaddle, rightSaddle);
+
+  // G. 壳程与管程进出口接管嘴
+  const shellInlet = createNozzle(0.065, 0.22, mats);
+  shellInlet.position.set(-shellLength * 0.32, centerY + shellRadius - 0.02, 0);
+
+  const shellOutlet = createNozzle(0.065, 0.22, mats);
+  shellOutlet.rotation.z = Math.PI;
+  shellOutlet.position.set(shellLength * 0.32, centerY - shellRadius + 0.02, 0);
+
+  const tubeInlet = createNozzle(0.055, 0.20, mats);
+  tubeInlet.position.set(-shellLength / 2 - channelLen * 0.5 - 0.035, centerY + shellRadius - 0.02, 0);
+
+  const tubeOutlet = createNozzle(0.055, 0.20, mats);
+  tubeOutlet.rotation.z = Math.PI;
+  tubeOutlet.position.set(-shellLength / 2 - channelLen * 0.5 - 0.035, centerY - shellRadius + 0.02, 0);
+
+  hxGroup.add(shellInlet, shellOutlet, tubeInlet, tubeOutlet);
+
+  // 开启全组件阴影投射与接收
+  hxGroup.traverse((child) => {
+    if (child.isMesh) {
+      child.castShadow = true;
+      child.receiveShadow = true;
+    }
+  });
+
+  return hxGroup;
+}

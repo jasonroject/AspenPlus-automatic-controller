@@ -1,0 +1,13 @@
+const task=await taskSpace(2),page=task.page('p1');
+const native=JSON.parse(await (await import('node:fs/promises')).readFile('C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/analysis_web/data/universal-htl.json','utf8'));
+for(const [id,key] of [['project-name','name'],['boundary','boundary'],['functional-unit','functional_unit'],['allocation-method','allocation_method'],['enthalpy-basis','enthalpy_basis']])await page.fill('#'+id,native.meta[key]);
+await page.selectOption('#calorie','4.1868');
+await page.click('#inventory-complete');
+await page.focus('#calculate');await page.press('#calculate','Enter');
+console.log(await page.evaluate(()=>({summary:document.querySelector('#results-summary').innerText,message:document.querySelector('#message').innerText,issues:document.querySelector('#result-error-list').innerText})));
+await page.cdp('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false});
+await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));
+await page.screenshot({path:'C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/workspace-bilingual-20261117/native-excel-results-en.png'});
+const downloading=page.waitForEvent('download',{timeout:30000});
+await page.focus('#export-results');await page.press('#export-results','Enter');
+await (await downloading).saveAs('C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/workspace-bilingual-20261117/native-excel-audit.json');

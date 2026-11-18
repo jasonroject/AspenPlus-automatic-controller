@@ -1,0 +1,37 @@
+{
+  "id": "v2-verify-T348-L6p75",
+  "split": "verification",
+  "inputs": {
+    "reactor_temperature_K": 621.15,
+    "tube_length_m": 6.75
+  },
+  "gates": {
+    "control_succeeded": true,
+    "solver_accepted": true,
+    "numerical_closure": true,
+    "lcia_complete": true,
+    "metric_inputs_complete": true
+  },
+  "accepted": true,
+  "source": "runs/v2-verify-T348-L6p75/raw.json",
+  "evidence_type": "native_simulation",
+  "warnings": [
+    "* Calculations were completed with warnings                                *",
+    "* completed with warnings:                                                 *",
+    "*   COOLER    REACTOR   VALVE                                              *"
+  ],
+  "error": null,
+  "metrics": {
+    "purchased_energy_kWh_kg": 2.719626189774287,
+    "yield_fraction": 0.06427910797922881,
+    "impacts": {
+      "Climate change": {
+        "value": 10.135894490559352,
+        "unit": "kg CO2-eq/kg",
+        "complete": true
+      }
+    }
+  },
+  "normalization_complete": true,
+  "physical_validation": false
+}

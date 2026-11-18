@@ -1,0 +1,194 @@
+[
+  {
+    "url": "http://127.0.0.1:8766/index.html",
+    "width": 1440,
+    "client": 1425,
+    "scroll": 1425,
+    "unlabeled": [],
+    "small": [],
+    "headings": [
+      "从过程数据到研究洞见。"
+    ],
+    "activeLanguage": "zh-CN"
+  },
+  {
+    "url": "http://127.0.0.1:8766/index.html",
+    "width": 390,
+    "client": 390,
+    "scroll": 390,
+    "unlabeled": [],
+    "small": [],
+    "headings": [
+      "从过程数据到研究洞见。"
+    ],
+    "activeLanguage": "zh-CN"
+  },
+  {
+    "url": "http://127.0.0.1:8766/universal.html",
+    "width": 1440,
+    "client": 1425,
+    "scroll": 1425,
+    "unlabeled": [],
+    "small": [],
+    "headings": [
+      "过程分析"
+    ],
+    "activeLanguage": "zh-CN"
+  },
+  {
+    "url": "http://127.0.0.1:8766/universal.html",
+    "width": 390,
+    "client": 390,
+    "scroll": 390,
+    "unlabeled": [],
+    "small": [],
+    "headings": [
+      "过程分析"
+    ],
+    "activeLanguage": "zh-CN"
+  },
+  {
+    "url": "http://127.0.0.1:8766/models.html",
+    "width": 1440,
+    "client": 1425,
+    "scroll": 1425,
+    "unlabeled": [],
+    "small": [
+      {
+        "name": "已有运行结果？直接导入 →",
+        "height": 26.697917938232422
+      },
+      {
+        "name": "复制命令",
+        "height": 26.697917938232422
+      },
+      {
+        "name": "复制命令",
+        "height": 26.697917938232422
+      }
+    ],
+    "headings": [
+      "接入 Aspen 模型。"
+    ],
+    "activeLanguage": "zh-CN"
+  },
+  {
+    "url": "http://127.0.0.1:8766/models.html",
+    "width": 390,
+    "client": 390,
+    "scroll": 390,
+    "unlabeled": [],
+    "small": [
+      {
+        "name": "复制命令",
+        "height": 26.697917938232422
+      },
+      {
+        "name": "复制命令",
+        "height": 26.697917938232422
+      }
+    ],
+    "headings": [
+      "接入 Aspen 模型。"
+    ],
+    "activeLanguage": "zh-CN"
+  },
+  {
+    "url": "http://127.0.0.1:8766/pipeline.html?temperature=330&length=10&scenario=HR#predict",
+    "width": 1440,
+    "client": 1425,
+    "scroll": 1425,
+    "unlabeled": [],
+    "small": [],
+    "headings": [
+      "看见工况变化的影响。"
+    ],
+    "activeLanguage": "zh-CN"
+  },
+  {
+    "url": "http://127.0.0.1:8766/pipeline.html?temperature=330&length=10&scenario=HR#predict",
+    "width": 390,
+    "client": 390,
+    "scroll": 390,
+    "unlabeled": [],
+    "small": [],
+    "headings": [
+      "看见工况变化的影响。"
+    ],
+    "activeLanguage": "zh-CN"
+  },
+  {
+    "url": "http://127.0.0.1:8766/docs.html#models/pilot",
+    "width": 1440,
+    "client": 1425,
+    "scroll": 1425,
+    "unlabeled": [],
+    "small": [
+      {
+        "name": "Copy PowerShell example",
+        "height": 27.479167938232422
+      },
+      {
+        "name": "Copy PowerShell example",
+        "height": 27.479167938232422
+      },
+      {
+        "name": "Copy PowerShell example",
+        "height": 27.479167938232422
+      },
+      {
+        "name": "Copy PowerShell example",
+        "height": 27.479167938232422
+      },
+      {
+        "name": "Copy PowerShell example",
+        "height": 27.479167938232422
+      },
+      {
+        "name": "Copy JSON example",
+        "height": 27.479167938232422
+      }
+    ],
+    "headings": [
+      "本地 Aspen 模型"
+    ],
+    "activeLanguage": "zh-CN"
+  },
+  {
+    "url": "http://127.0.0.1:8766/docs.html#models/pilot",
+    "width": 390,
+    "client": 390,
+    "scroll": 390,
+    "unlabeled": [],
+    "small": [
+      {
+        "name": "Copy PowerShell example",
+        "height": 27.479167938232422
+      },
+      {
+        "name": "Copy PowerShell example",
+        "height": 27.479167938232422
+      },
+      {
+        "name": "Copy PowerShell example",
+        "height": 27.479167938232422
+      },
+      {
+        "name": "Copy PowerShell example",
+        "height": 27.479167938232422
+      },
+      {
+        "name": "Copy PowerShell example",
+        "height": 27.479167938232422
+      },
+      {
+        "name": "Copy JSON example",
+        "height": 27.479167938232422
+      }
+    ],
+    "headings": [
+      "本地 Aspen 模型"
+    ],
+    "activeLanguage": "zh-CN"
+  }
+]

@@ -1,0 +1,11 @@
+const task=await taskSpace(2);const page=task.page("p1");
+await page.fill("#predict-temperature","335");await page.fill("#predict-length","12.5");await page.click("#predict-button");
+console.log({HR:await page.evaluate(()=>document.querySelector("#prediction-result").innerText)});
+await page.selectOption("#predict-scenario","STD");
+console.log({STD:await page.evaluate(()=>document.querySelector("#prediction-result").innerText)});
+const waiting=page.waitForEvent("download",{timeout:30000});await page.click("#download-plan");const artifact=await waiting;await artifact.saveAs("C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/htl_pipeline/browser-scan-plan.json");
+await page.fill("#predict-temperature","400");await page.click("#predict-button");
+console.log({outOfBoundsBlocked:await page.evaluate(()=>!document.querySelector("#predict-temperature").validity.valid)});
+await page.fill("#predict-temperature","335");
+await page.click('[data-section="robust"]');
+console.log(await page.snapshot({scope:"full_page"}));

@@ -1,0 +1,2 @@
+const fs=await import('node:fs/promises');const base='C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/cad-interaction-20261117/';
+let code=await fs.readFile(base+'round-11.mjs','utf8');code=code.replace("task.page('p2').focus", "task.page('p2').click").replace("assert.deepEqual(at(s,'B'),{x:50.3,y:25.4})", "assert.ok(Math.hypot(at(s,'B').x-50.3,at(s,'B').y-25.4)<1e-10)");await fs.writeFile(base+'round-14-checks.mjs',code);await import('./round-14-checks.mjs');

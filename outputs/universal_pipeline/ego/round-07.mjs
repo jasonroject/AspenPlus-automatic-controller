@@ -1,0 +1,5 @@
+const task=await taskSpace(2);const page=task.page("p1");
+const sheets=await page.evaluate(()=>[...document.querySelector("#sheet").options].map(o=>({value:o.value,text:o.text})));console.log({sheets});
+for(const sheet of sheets){await page.selectOption("#sheet",sheet.value);await page.click("#apply-table");const msg=await page.evaluate(()=>document.querySelector("#message").textContent);console.log(msg);if(!msg.startsWith("Applied"))throw new Error(msg);}
+await page.click('[data-tab="context"]');await page.click("#inventory-complete");await page.click("#comparable");await page.click("#calculate");await page.waitForSelector("#tab-results:not([hidden])");console.log({excelResult:await page.evaluate(()=>document.querySelector("#impact-results").innerText)});
+const download=page.waitForEvent("download",{timeout:30000});await page.click("#export-results");await(await download).saveAs("C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/universal_pipeline/excel-result.json");

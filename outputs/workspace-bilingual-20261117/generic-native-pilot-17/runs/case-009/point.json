@@ -1,0 +1,8 @@
+{
+  "id": "case-009",
+  "parameters": {
+    "reactor_temperature_K": 603.15,
+    "tube_length_m": 20
+  },
+  "split": "training"
+}

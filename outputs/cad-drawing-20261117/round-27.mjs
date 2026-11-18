@@ -1,0 +1,10 @@
+const task=await taskSpace(13);const page=task.page('p1');const assert=(await import('node:assert/strict')).default;const fs=await import('node:fs/promises');const base='C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/cad-drawing-20261117/';
+await page.cdp('Emulation.setDeviceMetricsOverride',{width:1130,height:750,deviceScaleFactor:1,mobile:false});
+await page.click('loc=css:.header-actions button >> nth=4');
+assert.equal(await page.evaluate(()=>[...document.querySelectorAll('[role="dialog"] button')].find(b=>b.textContent.trim()==='导出 STL')?.disabled),true);assert.equal(await page.evaluate(()=>[...document.querySelectorAll('[role="dialog"] button')].find(b=>b.textContent.trim()==='导出 OBJ')?.disabled),true);
+const dp=page.waitForEvent('download',{timeout:30000});await page.click('loc=role:button[name="导出 DXF"]');await(await dp).saveAs(base+'browser-reference.dxf');
+await page.click('loc=role:button[name="关闭导出窗口"]');await page.reload();await page.waitForSelector('loc=role:button[name="创建定位点"]');
+const sp=page.waitForEvent('download',{timeout:30000});await page.click('loc=css:.header-actions button[title="下载可继续编辑的工程文件"]');await(await sp).saveAs(base+'reopened-points.extrudecad.json');
+assert.deepEqual(JSON.parse(await fs.readFile(base+'reopened-points.extrudecad.json','utf8')).shapes,JSON.parse(await fs.readFile(base+'edited-points.extrudecad.json','utf8')).shapes);
+await fs.writeFile(base+'checks-reference-persistence.json',JSON.stringify({threeDimensionalPointSelection:true,threeDimensionalLineSelection:true,stlDisabledForReferences:true,objDisabledForReferences:true,saveReloadExact:true,dxfDownloaded:true},null,2));
+await page.click('loc=role:button[name="打开文件菜单"]');console.log(await page.snapshot());

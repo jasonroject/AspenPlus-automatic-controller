@@ -1,0 +1,690 @@
+{
+  "project": {
+    "schema_version": 1,
+    "meta": {
+      "name": "Synthetic two-case arithmetic example",
+      "steady_state": true,
+      "enthalpy_basis": "Complete material-stream enthalpy rates on one common reference; Q and W positive inward; no KE/PE or accumulation",
+      "boundary": "Illustrative feed supply + electricity; not a real environmental inventory",
+      "functional_unit": "1 kg declared target product",
+      "allocation_method": "Single target; no co-product allocation; share 1",
+      "calorie_J": 4.1868,
+      "inventory_complete": true,
+      "comparable_cases": true
+    },
+    "streams": [
+      {
+        "case_id": "A",
+        "id": "FEED",
+        "from": "BOUNDARY",
+        "to": "HEATER",
+        "mass_flow": 10,
+        "mass_unit": "kg/h",
+        "enthalpy_flow": 0,
+        "energy_unit": "kW",
+        "specific_enthalpy": "",
+        "enthalpy_unit": "",
+        "source": "Synthetic engineering check; not Aspen measurements or database factors"
+      },
+      {
+        "case_id": "A",
+        "id": "OUT",
+        "from": "HEATER",
+        "to": "BOUNDARY",
+        "mass_flow": 10,
+        "mass_unit": "kg/h",
+        "enthalpy_flow": 10,
+        "energy_unit": "kW",
+        "specific_enthalpy": "",
+        "enthalpy_unit": "",
+        "source": "Synthetic engineering check; not Aspen measurements or database factors"
+      },
+      {
+        "case_id": "B",
+        "id": "FEED",
+        "from": "BOUNDARY",
+        "to": "HEATER",
+        "mass_flow": 10,
+        "mass_unit": "kg/h",
+        "enthalpy_flow": 0,
+        "energy_unit": "kW",
+        "specific_enthalpy": "",
+        "enthalpy_unit": "",
+        "source": "Synthetic engineering check; not Aspen measurements or database factors"
+      },
+      {
+        "case_id": "B",
+        "id": "OUT",
+        "from": "HEATER",
+        "to": "BOUNDARY",
+        "mass_flow": 10,
+        "mass_unit": "kg/h",
+        "enthalpy_flow": 8,
+        "energy_unit": "kW",
+        "specific_enthalpy": "",
+        "enthalpy_unit": "",
+        "source": "Synthetic engineering check; not Aspen measurements or database factors"
+      }
+    ],
+    "blocks": [
+      {
+        "case_id": "A",
+        "id": "HEATER",
+        "heat": 10,
+        "power": 0,
+        "energy_unit": "kW",
+        "heat_unit": "",
+        "power_unit": "",
+        "source": "Synthetic engineering check; not Aspen measurements or database factors"
+      },
+      {
+        "case_id": "B",
+        "id": "HEATER",
+        "heat": 8,
+        "power": 0,
+        "energy_unit": "kW",
+        "heat_unit": "",
+        "power_unit": "",
+        "source": "Synthetic engineering check; not Aspen measurements or database factors"
+      }
+    ],
+    "cases": [
+      {
+        "id": "A",
+        "product_rate": 2,
+        "product_low": 1.8,
+        "product_high": 2.2,
+        "feed_rate": 10,
+        "mass_unit": "kg/h",
+        "allocation": 1,
+        "source": "Synthetic engineering check; not Aspen measurements or database factors"
+      },
+      {
+        "id": "B",
+        "product_rate": 2.1,
+        "product_low": 2,
+        "product_high": 2.2,
+        "feed_rate": 10,
+        "mass_unit": "kg/h",
+        "allocation": 1,
+        "source": "Synthetic engineering check; not Aspen measurements or database factors"
+      }
+    ],
+    "inventory": [
+      {
+        "case_id": "A",
+        "id": "electricity",
+        "name": "Purchased electricity",
+        "kind": "energy",
+        "amount": 10,
+        "amount_low": 9,
+        "amount_high": 11,
+        "unit": "kWh/h",
+        "factor_id": "grid",
+        "source": "Synthetic engineering check; not Aspen measurements or database factors"
+      },
+      {
+        "case_id": "A",
+        "id": "feed",
+        "name": "External feed",
+        "kind": "material",
+        "amount": 10,
+        "amount_low": "",
+        "amount_high": "",
+        "unit": "kg/h",
+        "factor_id": "feed",
+        "source": "Synthetic engineering check; not Aspen measurements or database factors"
+      },
+      {
+        "case_id": "B",
+        "id": "electricity",
+        "name": "Purchased electricity",
+        "kind": "energy",
+        "amount": 8,
+        "amount_low": 7,
+        "amount_high": 9,
+        "unit": "kWh/h",
+        "factor_id": "grid",
+        "source": "Synthetic engineering check; not Aspen measurements or database factors"
+      },
+      {
+        "case_id": "B",
+        "id": "feed",
+        "name": "External feed",
+        "kind": "material",
+        "amount": 10,
+        "amount_low": "",
+        "amount_high": "",
+        "unit": "kg/h",
+        "factor_id": "feed",
+        "source": "Synthetic engineering check; not Aspen measurements or database factors"
+      }
+    ],
+    "factors": [
+      {
+        "id": "grid",
+        "category": "Illustrative climate",
+        "value": 0.5,
+        "low": 0.4,
+        "high": 0.6,
+        "denominator_unit": "kWh",
+        "impact_unit": "kg CO2-eq",
+        "method": "Synthetic arithmetic v1",
+        "source": "Synthetic engineering check; not Aspen measurements or database factors"
+      },
+      {
+        "id": "feed",
+        "category": "Illustrative climate",
+        "value": 0.1,
+        "low": "",
+        "high": "",
+        "denominator_unit": "kg",
+        "impact_unit": "kg CO2-eq",
+        "method": "Synthetic arithmetic v1",
+        "source": "Synthetic engineering check; not Aspen measurements or database factors"
+      },
+      {
+        "id": "grid",
+        "category": "Illustrative acidification",
+        "value": 0.02,
+        "low": 0.016,
+        "high": 0.024,
+        "denominator_unit": "kWh",
+        "impact_unit": "mol H+-eq",
+        "method": "Synthetic arithmetic v1",
+        "source": "Synthetic engineering check; not Aspen measurements or database factors"
+      },
+      {
+        "id": "feed",
+        "category": "Illustrative acidification",
+        "value": 0.003,
+        "low": "",
+        "high": "",
+        "denominator_unit": "kg",
+        "impact_unit": "mol H+-eq",
+        "method": "Synthetic arithmetic v1",
+        "source": "Synthetic engineering check; not Aspen measurements or database factors"
+      }
+    ]
+  },
+  "report": {
+    "schema_version": 1,
+    "assumptions": {
+      "basis": "Steady state; 1 kg declared target product; Q and W positive into each block; no accumulation/KE/PE terms",
+      "uncertainty": "Nonnegative triangular fuzzy inputs, Cartesian alpha-cut outer bounds. Possibility levels, not probabilities or confidence intervals. Shared dependencies can widen the bounds.",
+      "boundary": "Illustrative feed supply + electricity; not a real environmental inventory"
+    },
+    "categories": [
+      "Illustrative climate",
+      "Illustrative acidification"
+    ],
+    "results": [
+      {
+        "id": "A",
+        "balance": {
+          "complete": true,
+          "within_tolerance": true,
+          "tolerance": "Per block: max(0.01 kg/h, 0.1% mass throughput); max(0.01 kW, 0.1% absolute enthalpy/duty scale). Numerical consistency only.",
+          "errors": [],
+          "streams": [
+            {
+              "case_id": "A",
+              "id": "FEED",
+              "from": "BOUNDARY",
+              "to": "HEATER",
+              "mass_flow": 10,
+              "mass_unit": "kg/h",
+              "enthalpy_flow": 0,
+              "energy_unit": "kW",
+              "specific_enthalpy": "",
+              "enthalpy_unit": "",
+              "source": "Synthetic engineering check; not Aspen measurements or database factors",
+              "mass": 10,
+              "enthalpy": 0
+            },
+            {
+              "case_id": "A",
+              "id": "OUT",
+              "from": "HEATER",
+              "to": "BOUNDARY",
+              "mass_flow": 10,
+              "mass_unit": "kg/h",
+              "enthalpy_flow": 10,
+              "energy_unit": "kW",
+              "specific_enthalpy": "",
+              "enthalpy_unit": "",
+              "source": "Synthetic engineering check; not Aspen measurements or database factors",
+              "mass": 10,
+              "enthalpy": 10
+            }
+          ],
+          "blocks": [
+            {
+              "id": "HEATER",
+              "heat": 10,
+              "power": 0,
+              "mass_residual_kg_h": 0,
+              "energy_residual_kW": 0,
+              "mass_relative": 0,
+              "energy_relative": 0,
+              "within_tolerance": true
+            }
+          ],
+          "total": {
+            "mass_residual_kg_h": 0,
+            "energy_residual_kW": 0,
+            "external_heat_in_kW": 10,
+            "external_heat_out_kW": 0,
+            "work_in_kW": 0,
+            "work_out_kW": 0
+          }
+        },
+        "impacts": [
+          {
+            "category": "Illustrative climate",
+            "unit": "kg CO2-eq",
+            "method": "Synthetic arithmetic v1",
+            "complete": true,
+            "errors": [],
+            "covered": 2,
+            "total": 2,
+            "cuts": [
+              {
+                "alpha": 0,
+                "range": [
+                  2.0909090909090904,
+                  4.222222222222222
+                ]
+              },
+              {
+                "alpha": 0.25,
+                "range": [
+                  2.2936046511627906,
+                  3.881756756756756
+                ]
+              },
+              {
+                "alpha": 0.5,
+                "range": [
+                  2.511904761904762,
+                  3.565789473684211
+                ]
+              },
+              {
+                "alpha": 0.75,
+                "range": [
+                  2.7469512195121952,
+                  3.272435897435898
+                ]
+              },
+              {
+                "alpha": 1,
+                "range": [
+                  3,
+                  3
+                ]
+              }
+            ],
+            "contributions": [
+              {
+                "id": "electricity",
+                "name": "Purchased electricity",
+                "nominal": 2.5,
+                "factor_id": "grid",
+                "source": "Synthetic engineering check; not Aspen measurements or database factors"
+              },
+              {
+                "id": "feed",
+                "name": "External feed",
+                "nominal": 0.5,
+                "factor_id": "feed",
+                "source": "Synthetic engineering check; not Aspen measurements or database factors"
+              }
+            ],
+            "nominal_subtotal": 3
+          },
+          {
+            "category": "Illustrative acidification",
+            "unit": "mol H+-eq",
+            "method": "Synthetic arithmetic v1",
+            "complete": true,
+            "errors": [],
+            "covered": 2,
+            "total": 2,
+            "cuts": [
+              {
+                "alpha": 0,
+                "range": [
+                  0.07909090909090909,
+                  0.16333333333333336
+                ]
+              },
+              {
+                "alpha": 0.25,
+                "range": [
+                  0.08709302325581394,
+                  0.14986486486486486
+                ]
+              },
+              {
+                "alpha": 0.5,
+                "range": [
+                  0.09571428571428571,
+                  0.13736842105263158
+                ]
+              },
+              {
+                "alpha": 0.75,
+                "range": [
+                  0.10500000000000001,
+                  0.12576923076923077
+                ]
+              },
+              {
+                "alpha": 1,
+                "range": [
+                  0.115,
+                  0.115
+                ]
+              }
+            ],
+            "contributions": [
+              {
+                "id": "electricity",
+                "name": "Purchased electricity",
+                "nominal": 0.1,
+                "factor_id": "grid",
+                "source": "Synthetic engineering check; not Aspen measurements or database factors"
+              },
+              {
+                "id": "feed",
+                "name": "External feed",
+                "nominal": 0.015,
+                "factor_id": "feed",
+                "source": "Synthetic engineering check; not Aspen measurements or database factors"
+              }
+            ],
+            "nominal_subtotal": 0.115
+          }
+        ],
+        "issues": [],
+        "energy": [
+          {
+            "alpha": 0,
+            "range": [
+              4.090909090909091,
+              6.111111111111111
+            ]
+          },
+          {
+            "alpha": 0.25,
+            "range": [
+              4.3023255813953485,
+              5.8108108108108105
+            ]
+          },
+          {
+            "alpha": 0.5,
+            "range": [
+              4.523809523809524,
+              5.526315789473684
+            ]
+          },
+          {
+            "alpha": 0.75,
+            "range": [
+              4.75609756097561,
+              5.256410256410256
+            ]
+          },
+          {
+            "alpha": 1,
+            "range": [
+              5,
+              5
+            ]
+          }
+        ],
+        "yield": [
+          0.18,
+          0.2,
+          0.22000000000000003
+        ]
+      },
+      {
+        "id": "B",
+        "balance": {
+          "complete": true,
+          "within_tolerance": true,
+          "tolerance": "Per block: max(0.01 kg/h, 0.1% mass throughput); max(0.01 kW, 0.1% absolute enthalpy/duty scale). Numerical consistency only.",
+          "errors": [],
+          "streams": [
+            {
+              "case_id": "B",
+              "id": "FEED",
+              "from": "BOUNDARY",
+              "to": "HEATER",
+              "mass_flow": 10,
+              "mass_unit": "kg/h",
+              "enthalpy_flow": 0,
+              "energy_unit": "kW",
+              "specific_enthalpy": "",
+              "enthalpy_unit": "",
+              "source": "Synthetic engineering check; not Aspen measurements or database factors",
+              "mass": 10,
+              "enthalpy": 0
+            },
+            {
+              "case_id": "B",
+              "id": "OUT",
+              "from": "HEATER",
+              "to": "BOUNDARY",
+              "mass_flow": 10,
+              "mass_unit": "kg/h",
+              "enthalpy_flow": 8,
+              "energy_unit": "kW",
+              "specific_enthalpy": "",
+              "enthalpy_unit": "",
+              "source": "Synthetic engineering check; not Aspen measurements or database factors",
+              "mass": 10,
+              "enthalpy": 8
+            }
+          ],
+          "blocks": [
+            {
+              "id": "HEATER",
+              "heat": 8,
+              "power": 0,
+              "mass_residual_kg_h": 0,
+              "energy_residual_kW": 0,
+              "mass_relative": 0,
+              "energy_relative": 0,
+              "within_tolerance": true
+            }
+          ],
+          "total": {
+            "mass_residual_kg_h": 0,
+            "energy_residual_kW": 0,
+            "external_heat_in_kW": 8,
+            "external_heat_out_kW": 0,
+            "work_in_kW": 0,
+            "work_out_kW": 0
+          }
+        },
+        "impacts": [
+          {
+            "category": "Illustrative climate",
+            "unit": "kg CO2-eq",
+            "method": "Synthetic arithmetic v1",
+            "complete": true,
+            "errors": [],
+            "covered": 2,
+            "total": 2,
+            "cuts": [
+              {
+                "alpha": 0,
+                "range": [
+                  1.7272727272727273,
+                  3.1999999999999997
+                ]
+              },
+              {
+                "alpha": 0.25,
+                "range": [
+                  1.8764367816091956,
+                  2.978395061728395
+                ]
+              },
+              {
+                "alpha": 0.5,
+                "range": [
+                  2.034883720930232,
+                  2.76829268292683
+                ]
+              },
+              {
+                "alpha": 0.75,
+                "range": [
+                  2.2029411764705884,
+                  2.5692771084337345
+                ]
+              },
+              {
+                "alpha": 1,
+                "range": [
+                  2.380952380952381,
+                  2.380952380952381
+                ]
+              }
+            ],
+            "contributions": [
+              {
+                "id": "electricity",
+                "name": "Purchased electricity",
+                "nominal": 1.9047619047619047,
+                "factor_id": "grid",
+                "source": "Synthetic engineering check; not Aspen measurements or database factors"
+              },
+              {
+                "id": "feed",
+                "name": "External feed",
+                "nominal": 0.47619047619047616,
+                "factor_id": "feed",
+                "source": "Synthetic engineering check; not Aspen measurements or database factors"
+              }
+            ],
+            "nominal_subtotal": 2.380952380952381
+          },
+          {
+            "category": "Illustrative acidification",
+            "unit": "mol H+-eq",
+            "method": "Synthetic arithmetic v1",
+            "complete": true,
+            "errors": [],
+            "covered": 2,
+            "total": 2,
+            "cuts": [
+              {
+                "alpha": 0,
+                "range": [
+                  0.06454545454545454,
+                  0.123
+                ]
+              },
+              {
+                "alpha": 0.25,
+                "range": [
+                  0.07045977011494252,
+                  0.11419753086419752
+                ]
+              },
+              {
+                "alpha": 0.5,
+                "range": [
+                  0.07674418604651162,
+                  0.10585365853658538
+                ]
+              },
+              {
+                "alpha": 0.75,
+                "range": [
+                  0.08341176470588235,
+                  0.09795180722891567
+                ]
+              },
+              {
+                "alpha": 1,
+                "range": [
+                  0.09047619047619047,
+                  0.09047619047619047
+                ]
+              }
+            ],
+            "contributions": [
+              {
+                "id": "electricity",
+                "name": "Purchased electricity",
+                "nominal": 0.07619047619047618,
+                "factor_id": "grid",
+                "source": "Synthetic engineering check; not Aspen measurements or database factors"
+              },
+              {
+                "id": "feed",
+                "name": "External feed",
+                "nominal": 0.014285714285714285,
+                "factor_id": "feed",
+                "source": "Synthetic engineering check; not Aspen measurements or database factors"
+              }
+            ],
+            "nominal_subtotal": 0.09047619047619047
+          }
+        ],
+        "issues": [],
+        "energy": [
+          {
+            "alpha": 0,
+            "range": [
+              3.1818181818181817,
+              4.5
+            ]
+          },
+          {
+            "alpha": 0.25,
+            "range": [
+              3.333333333333333,
+              4.320987654320988
+            ]
+          },
+          {
+            "alpha": 0.5,
+            "range": [
+              3.4883720930232553,
+              4.146341463414634
+            ]
+          },
+          {
+            "alpha": 0.75,
+            "range": [
+              3.6470588235294117,
+              3.975903614457831
+            ]
+          },
+          {
+            "alpha": 1,
+            "range": [
+              3.8095238095238093,
+              3.8095238095238093
+            ]
+          }
+        ],
+        "yield": [
+          0.2,
+          0.21000000000000002,
+          0.22000000000000003
+        ]
+      }
+    ]
+  },
+  "ranking": null,
+  "created_at": "2026-11-17T12:37:53.490Z"
+}

@@ -1,0 +1,11 @@
+const task=await taskSpace(2),page=task.page('p1');
+await page.cdp('Emulation.setDeviceMetricsOverride',{width:1440,height:1050,deviceScaleFactor:1,mobile:false});
+await page.click('#motion-toggle');
+await page.click('#run-example');
+await page.waitForFunction(()=>document.querySelector('#demo-output').textContent.includes('Climate 3.00'));
+console.log(await page.evaluate(()=>({output:document.querySelector('#demo-output').textContent,paused:document.querySelector('#motion-toggle').getAttribute('aria-pressed'),overflow:document.documentElement.scrollWidth>innerWidth,images:[...document.images].filter(i=>!i.complete||!i.naturalWidth).map(i=>i.src)})));
+await page.evaluate(()=>window.scrollTo(0,0));
+console.log(await page.screenshot({path:'C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/site-refresh-20261117/home-desktop.png'}));
+await page.click('loc=href:/brand.html >> nth=0');
+await page.waitForSelector('.logo-card');
+console.log(await page.snapshot());

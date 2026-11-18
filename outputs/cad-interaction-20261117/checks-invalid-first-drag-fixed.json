@@ -1,0 +1,6 @@
+{
+  "zeroLengthRefused": true,
+  "errorClearsAfterValidPosition": true,
+  "undoRestores": true,
+  "redoRestores": true
+}

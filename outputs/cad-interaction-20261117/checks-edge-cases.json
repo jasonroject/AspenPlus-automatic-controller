@@ -1,0 +1,6 @@
+{
+  "overlapKeepsSelectedNodeAndNoMerge": true,
+  "returnToStartPreservesRedo": true,
+  "pixelThresholdAtHighZoom": true,
+  "smallWindowSelectAtHighZoom": true
+}

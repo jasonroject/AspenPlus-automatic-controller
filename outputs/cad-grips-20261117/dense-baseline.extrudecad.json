@@ -1,0 +1,2666 @@
+{
+  "app": "ExtrudeCAD Studio",
+  "fileType": "extrudecad-project",
+  "version": 1,
+  "savedAt": "2026-11-17T12:41:50.746Z",
+  "shapes": [
+    {
+      "id": "O",
+      "name": "共享中心",
+      "type": "point",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P0",
+      "name": "节点0",
+      "type": "point",
+      "points": [
+        {
+          "x": 0.7,
+          "y": 0
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R0",
+      "endpointIds": [
+        "O",
+        "P0"
+      ],
+      "name": "射线0",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0.7,
+          "y": 0
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P1",
+      "name": "节点1",
+      "type": "point",
+      "points": [
+        {
+          "x": 0.6961653267577913,
+          "y": 0.07316992428735741
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R1",
+      "endpointIds": [
+        "O",
+        "P1"
+      ],
+      "name": "射线1",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0.6961653267577913,
+          "y": 0.07316992428735741
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P2",
+      "name": "节点2",
+      "type": "point",
+      "points": [
+        {
+          "x": 0.6847033205136639,
+          "y": 0.1455381835724315
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R2",
+      "endpointIds": [
+        "O",
+        "P2"
+      ],
+      "name": "射线2",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0.6847033205136639,
+          "y": 0.1455381835724315
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P3",
+      "name": "节点3",
+      "type": "point",
+      "points": [
+        {
+          "x": 0.6657395614066074,
+          "y": 0.21631189606246318
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R3",
+      "endpointIds": [
+        "O",
+        "P3"
+      ],
+      "name": "射线3",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0.6657395614066074,
+          "y": 0.21631189606246318
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P4",
+      "name": "节点4",
+      "type": "point",
+      "points": [
+        {
+          "x": 0.6394818203498206,
+          "y": 0.2847156501530601
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R4",
+      "endpointIds": [
+        "O",
+        "P4"
+      ],
+      "name": "射线4",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0.6394818203498206,
+          "y": 0.2847156501530601
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P5",
+      "name": "节点5",
+      "type": "point",
+      "points": [
+        {
+          "x": 0.6062177826491071,
+          "y": 0.3499999999999999
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R5",
+      "endpointIds": [
+        "O",
+        "P5"
+      ],
+      "name": "射线5",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0.6062177826491071,
+          "y": 0.3499999999999999
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P6",
+      "name": "节点6",
+      "type": "point",
+      "points": [
+        {
+          "x": 0.5663118960624631,
+          "y": 0.4114496766047312
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R6",
+      "endpointIds": [
+        "O",
+        "P6"
+      ],
+      "name": "射线6",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0.5663118960624631,
+          "y": 0.4114496766047312
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P7",
+      "name": "节点7",
+      "type": "point",
+      "points": [
+        {
+          "x": 0.520201377834176,
+          "y": 0.46839142445120074
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R7",
+      "endpointIds": [
+        "O",
+        "P7"
+      ],
+      "name": "射线7",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0.520201377834176,
+          "y": 0.46839142445120074
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P8",
+      "name": "节点8",
+      "type": "point",
+      "points": [
+        {
+          "x": 0.46839142445120074,
+          "y": 0.5202013778341759
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R8",
+      "endpointIds": [
+        "O",
+        "P8"
+      ],
+      "name": "射线8",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0.46839142445120074,
+          "y": 0.5202013778341759
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P9",
+      "name": "节点9",
+      "type": "point",
+      "points": [
+        {
+          "x": 0.4114496766047312,
+          "y": 0.5663118960624631
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R9",
+      "endpointIds": [
+        "O",
+        "P9"
+      ],
+      "name": "射线9",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0.4114496766047312,
+          "y": 0.5663118960624631
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P10",
+      "name": "节点10",
+      "type": "point",
+      "points": [
+        {
+          "x": 0.35000000000000003,
+          "y": 0.606217782649107
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R10",
+      "endpointIds": [
+        "O",
+        "P10"
+      ],
+      "name": "射线10",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0.35000000000000003,
+          "y": 0.606217782649107
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P11",
+      "name": "节点11",
+      "type": "point",
+      "points": [
+        {
+          "x": 0.2847156501530602,
+          "y": 0.6394818203498206
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R11",
+      "endpointIds": [
+        "O",
+        "P11"
+      ],
+      "name": "射线11",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0.2847156501530602,
+          "y": 0.6394818203498206
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P12",
+      "name": "节点12",
+      "type": "point",
+      "points": [
+        {
+          "x": 0.2163118960624632,
+          "y": 0.6657395614066074
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R12",
+      "endpointIds": [
+        "O",
+        "P12"
+      ],
+      "name": "射线12",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0.2163118960624632,
+          "y": 0.6657395614066074
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P13",
+      "name": "节点13",
+      "type": "point",
+      "points": [
+        {
+          "x": 0.14553818357243145,
+          "y": 0.6847033205136639
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R13",
+      "endpointIds": [
+        "O",
+        "P13"
+      ],
+      "name": "射线13",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0.14553818357243145,
+          "y": 0.6847033205136639
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P14",
+      "name": "节点14",
+      "type": "point",
+      "points": [
+        {
+          "x": 0.07316992428735741,
+          "y": 0.6961653267577913
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R14",
+      "endpointIds": [
+        "O",
+        "P14"
+      ],
+      "name": "射线14",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0.07316992428735741,
+          "y": 0.6961653267577913
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P15",
+      "name": "节点15",
+      "type": "point",
+      "points": [
+        {
+          "x": 1.9829386141767927e-16,
+          "y": 0.7
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R15",
+      "endpointIds": [
+        "O",
+        "P15"
+      ],
+      "name": "射线15",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 1.9829386141767927e-16,
+          "y": 0.7
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P16",
+      "name": "节点16",
+      "type": "point",
+      "points": [
+        {
+          "x": -0.07316992428735733,
+          "y": 0.6961653267577913
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R16",
+      "endpointIds": [
+        "O",
+        "P16"
+      ],
+      "name": "射线16",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": -0.07316992428735733,
+          "y": 0.6961653267577913
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P17",
+      "name": "节点17",
+      "type": "point",
+      "points": [
+        {
+          "x": -0.14553818357243153,
+          "y": 0.6847033205136639
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R17",
+      "endpointIds": [
+        "O",
+        "P17"
+      ],
+      "name": "射线17",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": -0.14553818357243153,
+          "y": 0.6847033205136639
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P18",
+      "name": "节点18",
+      "type": "point",
+      "points": [
+        {
+          "x": -0.21631189606246312,
+          "y": 0.6657395614066075
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R18",
+      "endpointIds": [
+        "O",
+        "P18"
+      ],
+      "name": "射线18",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": -0.21631189606246312,
+          "y": 0.6657395614066075
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P19",
+      "name": "节点19",
+      "type": "point",
+      "points": [
+        {
+          "x": -0.28471565015306,
+          "y": 0.6394818203498206
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R19",
+      "endpointIds": [
+        "O",
+        "P19"
+      ],
+      "name": "射线19",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": -0.28471565015306,
+          "y": 0.6394818203498206
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P20",
+      "name": "节点20",
+      "type": "point",
+      "points": [
+        {
+          "x": -0.3499999999999998,
+          "y": 0.6062177826491071
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R20",
+      "endpointIds": [
+        "O",
+        "P20"
+      ],
+      "name": "射线20",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": -0.3499999999999998,
+          "y": 0.6062177826491071
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P21",
+      "name": "节点21",
+      "type": "point",
+      "points": [
+        {
+          "x": -0.4114496766047311,
+          "y": 0.5663118960624631
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R21",
+      "endpointIds": [
+        "O",
+        "P21"
+      ],
+      "name": "射线21",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": -0.4114496766047311,
+          "y": 0.5663118960624631
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P22",
+      "name": "节点22",
+      "type": "point",
+      "points": [
+        {
+          "x": -0.4683914244512005,
+          "y": 0.5202013778341761
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R22",
+      "endpointIds": [
+        "O",
+        "P22"
+      ],
+      "name": "射线22",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": -0.4683914244512005,
+          "y": 0.5202013778341761
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P23",
+      "name": "节点23",
+      "type": "point",
+      "points": [
+        {
+          "x": -0.5202013778341757,
+          "y": 0.4683914244512008
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R23",
+      "endpointIds": [
+        "O",
+        "P23"
+      ],
+      "name": "射线23",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": -0.5202013778341757,
+          "y": 0.4683914244512008
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P24",
+      "name": "节点24",
+      "type": "point",
+      "points": [
+        {
+          "x": -0.5663118960624631,
+          "y": 0.41144967660473125
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R24",
+      "endpointIds": [
+        "O",
+        "P24"
+      ],
+      "name": "射线24",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": -0.5663118960624631,
+          "y": 0.41144967660473125
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P25",
+      "name": "节点25",
+      "type": "point",
+      "points": [
+        {
+          "x": -0.6062177826491071,
+          "y": 0.3499999999999999
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R25",
+      "endpointIds": [
+        "O",
+        "P25"
+      ],
+      "name": "射线25",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": -0.6062177826491071,
+          "y": 0.3499999999999999
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P26",
+      "name": "节点26",
+      "type": "point",
+      "points": [
+        {
+          "x": -0.6394818203498206,
+          "y": 0.28471565015306
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R26",
+      "endpointIds": [
+        "O",
+        "P26"
+      ],
+      "name": "射线26",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": -0.6394818203498206,
+          "y": 0.28471565015306
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P27",
+      "name": "节点27",
+      "type": "point",
+      "points": [
+        {
+          "x": -0.6657395614066074,
+          "y": 0.21631189606246323
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R27",
+      "endpointIds": [
+        "O",
+        "P27"
+      ],
+      "name": "射线27",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": -0.6657395614066074,
+          "y": 0.21631189606246323
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P28",
+      "name": "节点28",
+      "type": "point",
+      "points": [
+        {
+          "x": -0.6847033205136639,
+          "y": 0.1455381835724315
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R28",
+      "endpointIds": [
+        "O",
+        "P28"
+      ],
+      "name": "射线28",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": -0.6847033205136639,
+          "y": 0.1455381835724315
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P29",
+      "name": "节点29",
+      "type": "point",
+      "points": [
+        {
+          "x": -0.6961653267577913,
+          "y": 0.0731699242873573
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R29",
+      "endpointIds": [
+        "O",
+        "P29"
+      ],
+      "name": "射线29",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": -0.6961653267577913,
+          "y": 0.0731699242873573
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P30",
+      "name": "节点30",
+      "type": "point",
+      "points": [
+        {
+          "x": -0.7,
+          "y": 3.9658772283535854e-16
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R30",
+      "endpointIds": [
+        "O",
+        "P30"
+      ],
+      "name": "射线30",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": -0.7,
+          "y": 3.9658772283535854e-16
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P31",
+      "name": "节点31",
+      "type": "point",
+      "points": [
+        {
+          "x": -0.6961653267577913,
+          "y": -0.07316992428735714
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R31",
+      "endpointIds": [
+        "O",
+        "P31"
+      ],
+      "name": "射线31",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": -0.6961653267577913,
+          "y": -0.07316992428735714
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P32",
+      "name": "节点32",
+      "type": "point",
+      "points": [
+        {
+          "x": -0.6847033205136639,
+          "y": -0.14553818357243134
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R32",
+      "endpointIds": [
+        "O",
+        "P32"
+      ],
+      "name": "射线32",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": -0.6847033205136639,
+          "y": -0.14553818357243134
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P33",
+      "name": "节点33",
+      "type": "point",
+      "points": [
+        {
+          "x": -0.6657395614066075,
+          "y": -0.2163118960624631
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R33",
+      "endpointIds": [
+        "O",
+        "P33"
+      ],
+      "name": "射线33",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": -0.6657395614066075,
+          "y": -0.2163118960624631
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P34",
+      "name": "节点34",
+      "type": "point",
+      "points": [
+        {
+          "x": -0.6394818203498206,
+          "y": -0.2847156501530601
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R34",
+      "endpointIds": [
+        "O",
+        "P34"
+      ],
+      "name": "射线34",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": -0.6394818203498206,
+          "y": -0.2847156501530601
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P35",
+      "name": "节点35",
+      "type": "point",
+      "points": [
+        {
+          "x": -0.6062177826491071,
+          "y": -0.3499999999999998
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R35",
+      "endpointIds": [
+        "O",
+        "P35"
+      ],
+      "name": "射线35",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": -0.6062177826491071,
+          "y": -0.3499999999999998
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P36",
+      "name": "节点36",
+      "type": "point",
+      "points": [
+        {
+          "x": -0.5663118960624632,
+          "y": -0.4114496766047311
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R36",
+      "endpointIds": [
+        "O",
+        "P36"
+      ],
+      "name": "射线36",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": -0.5663118960624632,
+          "y": -0.4114496766047311
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P37",
+      "name": "节点37",
+      "type": "point",
+      "points": [
+        {
+          "x": -0.520201377834176,
+          "y": -0.46839142445120074
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R37",
+      "endpointIds": [
+        "O",
+        "P37"
+      ],
+      "name": "射线37",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": -0.520201377834176,
+          "y": -0.46839142445120074
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P38",
+      "name": "节点38",
+      "type": "point",
+      "points": [
+        {
+          "x": -0.4683914244512009,
+          "y": -0.5202013778341757
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R38",
+      "endpointIds": [
+        "O",
+        "P38"
+      ],
+      "name": "射线38",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": -0.4683914244512009,
+          "y": -0.5202013778341757
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P39",
+      "name": "节点39",
+      "type": "point",
+      "points": [
+        {
+          "x": -0.41144967660473125,
+          "y": -0.5663118960624631
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R39",
+      "endpointIds": [
+        "O",
+        "P39"
+      ],
+      "name": "射线39",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": -0.41144967660473125,
+          "y": -0.5663118960624631
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P40",
+      "name": "节点40",
+      "type": "point",
+      "points": [
+        {
+          "x": -0.3500000000000003,
+          "y": -0.6062177826491069
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R40",
+      "endpointIds": [
+        "O",
+        "P40"
+      ],
+      "name": "射线40",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": -0.3500000000000003,
+          "y": -0.6062177826491069
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P41",
+      "name": "节点41",
+      "type": "point",
+      "points": [
+        {
+          "x": -0.2847156501530606,
+          "y": -0.6394818203498204
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R41",
+      "endpointIds": [
+        "O",
+        "P41"
+      ],
+      "name": "射线41",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": -0.2847156501530606,
+          "y": -0.6394818203498204
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P42",
+      "name": "节点42",
+      "type": "point",
+      "points": [
+        {
+          "x": -0.2163118960624633,
+          "y": -0.6657395614066074
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R42",
+      "endpointIds": [
+        "O",
+        "P42"
+      ],
+      "name": "射线42",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": -0.2163118960624633,
+          "y": -0.6657395614066074
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P43",
+      "name": "节点43",
+      "type": "point",
+      "points": [
+        {
+          "x": -0.14553818357243184,
+          "y": -0.6847033205136639
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R43",
+      "endpointIds": [
+        "O",
+        "P43"
+      ],
+      "name": "射线43",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": -0.14553818357243184,
+          "y": -0.6847033205136639
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P44",
+      "name": "节点44",
+      "type": "point",
+      "points": [
+        {
+          "x": -0.07316992428735795,
+          "y": -0.6961653267577913
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R44",
+      "endpointIds": [
+        "O",
+        "P44"
+      ],
+      "name": "射线44",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": -0.07316992428735795,
+          "y": -0.6961653267577913
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P45",
+      "name": "节点45",
+      "type": "point",
+      "points": [
+        {
+          "x": -1.2858791391047207e-16,
+          "y": -0.7
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R45",
+      "endpointIds": [
+        "O",
+        "P45"
+      ],
+      "name": "射线45",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": -1.2858791391047207e-16,
+          "y": -0.7
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P46",
+      "name": "节点46",
+      "type": "point",
+      "points": [
+        {
+          "x": 0.07316992428735708,
+          "y": -0.6961653267577913
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R46",
+      "endpointIds": [
+        "O",
+        "P46"
+      ],
+      "name": "射线46",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0.07316992428735708,
+          "y": -0.6961653267577913
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P47",
+      "name": "节点47",
+      "type": "point",
+      "points": [
+        {
+          "x": 0.1455381835724316,
+          "y": -0.6847033205136639
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R47",
+      "endpointIds": [
+        "O",
+        "P47"
+      ],
+      "name": "射线47",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0.1455381835724316,
+          "y": -0.6847033205136639
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P48",
+      "name": "节点48",
+      "type": "point",
+      "points": [
+        {
+          "x": 0.21631189606246304,
+          "y": -0.6657395614066075
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R48",
+      "endpointIds": [
+        "O",
+        "P48"
+      ],
+      "name": "射线48",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0.21631189606246304,
+          "y": -0.6657395614066075
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P49",
+      "name": "节点49",
+      "type": "point",
+      "points": [
+        {
+          "x": 0.28471565015305983,
+          "y": -0.6394818203498207
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R49",
+      "endpointIds": [
+        "O",
+        "P49"
+      ],
+      "name": "射线49",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0.28471565015305983,
+          "y": -0.6394818203498207
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P50",
+      "name": "节点50",
+      "type": "point",
+      "points": [
+        {
+          "x": 0.35000000000000003,
+          "y": -0.606217782649107
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R50",
+      "endpointIds": [
+        "O",
+        "P50"
+      ],
+      "name": "射线50",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0.35000000000000003,
+          "y": -0.606217782649107
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P51",
+      "name": "节点51",
+      "type": "point",
+      "points": [
+        {
+          "x": 0.41144967660473103,
+          "y": -0.5663118960624632
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R51",
+      "endpointIds": [
+        "O",
+        "P51"
+      ],
+      "name": "射线51",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0.41144967660473103,
+          "y": -0.5663118960624632
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P52",
+      "name": "节点52",
+      "type": "point",
+      "points": [
+        {
+          "x": 0.4683914244512009,
+          "y": -0.5202013778341757
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R52",
+      "endpointIds": [
+        "O",
+        "P52"
+      ],
+      "name": "射线52",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0.4683914244512009,
+          "y": -0.5202013778341757
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P53",
+      "name": "节点53",
+      "type": "point",
+      "points": [
+        {
+          "x": 0.520201377834176,
+          "y": -0.46839142445120063
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R53",
+      "endpointIds": [
+        "O",
+        "P53"
+      ],
+      "name": "射线53",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0.520201377834176,
+          "y": -0.46839142445120063
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P54",
+      "name": "节点54",
+      "type": "point",
+      "points": [
+        {
+          "x": 0.5663118960624631,
+          "y": -0.4114496766047313
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R54",
+      "endpointIds": [
+        "O",
+        "P54"
+      ],
+      "name": "射线54",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0.5663118960624631,
+          "y": -0.4114496766047313
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P55",
+      "name": "节点55",
+      "type": "point",
+      "points": [
+        {
+          "x": 0.6062177826491071,
+          "y": -0.34999999999999976
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R55",
+      "endpointIds": [
+        "O",
+        "P55"
+      ],
+      "name": "射线55",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0.6062177826491071,
+          "y": -0.34999999999999976
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P56",
+      "name": "节点56",
+      "type": "point",
+      "points": [
+        {
+          "x": 0.6394818203498206,
+          "y": -0.2847156501530601
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R56",
+      "endpointIds": [
+        "O",
+        "P56"
+      ],
+      "name": "射线56",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0.6394818203498206,
+          "y": -0.2847156501530601
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P57",
+      "name": "节点57",
+      "type": "point",
+      "points": [
+        {
+          "x": 0.6657395614066074,
+          "y": -0.21631189606246332
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R57",
+      "endpointIds": [
+        "O",
+        "P57"
+      ],
+      "name": "射线57",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0.6657395614066074,
+          "y": -0.21631189606246332
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P58",
+      "name": "节点58",
+      "type": "point",
+      "points": [
+        {
+          "x": 0.6847033205136639,
+          "y": -0.14553818357243128
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R58",
+      "endpointIds": [
+        "O",
+        "P58"
+      ],
+      "name": "射线58",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0.6847033205136639,
+          "y": -0.14553818357243128
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "P59",
+      "name": "节点59",
+      "type": "point",
+      "points": [
+        {
+          "x": 0.6961653267577913,
+          "y": -0.07316992428735739
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "R59",
+      "endpointIds": [
+        "O",
+        "P59"
+      ],
+      "name": "射线59",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0.6961653267577913,
+          "y": -0.07316992428735739
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    }
+  ]
+}

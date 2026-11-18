@@ -1,0 +1,17 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "universal_pipeline/*.test.mjs"
+  ],
+  "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-16\\project1jason\\automatic\\outputs\\workspace-bilingual-20261117\\release-v2-snapshot",
+  "exit_code": 1,
+  "seconds": 1.359231699956581,
+  "log": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-16\\project1jason\\automatic\\outputs\\workspace-bilingual-20261117\\release-v2-snapshot-logs\\node.log",
+  "tests": {
+    "total": 153,
+    "passed": 151,
+    "failed": 2,
+    "skipped": 0
+  }
+}

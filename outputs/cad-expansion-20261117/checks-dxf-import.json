@@ -1,0 +1,22 @@
+{
+  "inchImport": {
+    "宽度 X": "50.8",
+    "深度 Y": "25.4",
+    "底面标高 Z": "6.35",
+    "拉伸高度 Z": "12.7"
+  },
+  "importUndo": true,
+  "noUnits": {
+    "error": "DXF 未声明可识别的单位（$INSUNITS 缺失、无单位或暂不支持），请手动选择导入单位。",
+    "disabled": true
+  },
+  "partial": {
+    "text": "导入 DXF 轮廓\n\nfixture-unitless-partial.dxf\n\n文件单位\n自动识别文件单位\n毫米 (mm)\n厘米 (cm)\n米 (m)\n英寸 (in)\n英尺 (ft)\n默认拉伸高度 (mm)\n可导入轮廓\n1\n将跳过实体\n2\n源文件单位\ncm\n1 单位 = 10 mm\n已手动按 cm 导入并覆盖文件单位声明（缺失）。\n已跳过 1 个 ARC：不支持的实体类型，未转换或展开。\n已跳过 1 个 INSERT：不支持的实体类型，未转换或展开。\n\n跳过的实体\n\nARC × 1\nINSERT × 1\n仅导入支持的轮廓（其余实体将跳过）\n\n支持 ASCII DXF 中的闭合直线多段线（LWPOLYLINE）和圆（CIRCLE）。外部文件的闭合轮廓分别导入为独立拉伸体，孔洞可用布尔差集处理；ExtrudeCAD 导出的轮廓可恢复其单个内孔。此入口不支持 DWG、STEP。\n\n追加到当前工程 · 可撤销\n取消\n导入 1 个轮廓",
+    "disabled": true
+  },
+  "broken": {
+    "error": "DXF 组码和值必须成对，文件为空或已损坏。",
+    "disabled": true,
+    "count": 3
+  }
+}

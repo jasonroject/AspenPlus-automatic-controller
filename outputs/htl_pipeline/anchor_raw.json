@@ -1,0 +1,6092 @@
+{
+  "model_path": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-16\\project1jason\\automatic\\outputs\\htl_pipeline\\heatrecovery.bkp",
+  "captured_at": "2026-11-17T19:51:27",
+  "unit_conversion": "node-unit-aware-v1",
+  "component_export": "all-stream-components-v1",
+  "component_ids": [
+    "GUAIA-01",
+    "CAT",
+    "ANISOLE",
+    "PPE",
+    "PEA",
+    "STYRENE",
+    "ETHYLBEN",
+    "DPE",
+    "PHENO-01",
+    "BENZENE",
+    "O-CRE-01",
+    "CH4O",
+    "ACETI-01",
+    "CH2O",
+    "H2O",
+    "CH4",
+    "CO2",
+    "H2",
+    "C2H2",
+    "C",
+    "CO"
+  ],
+  "aspen_run_status": {
+    "RSTAT": 0,
+    "UOSSTAT": 1,
+    "UOSSTAT2": 10,
+    "PER_ERROR": 1,
+    "CVSTAT": 0,
+    "ITSTAT": 4
+  },
+  "blocks": {
+    "B6": {
+      "heat_kW": 0.40187112808319997,
+      "power_kW": null,
+      "source_quantities": {
+        "\\Data\\Blocks\\B6\\Output\\QCALC": {
+          "value": 96.0495048,
+          "unit": "cal/sec"
+        }
+      }
+    },
+    "COOLER": {
+      "heat_kW": -8.2133411596,
+      "power_kW": null,
+      "source_quantities": {
+        "\\Data\\Blocks\\COOLER\\Output\\QCALC": {
+          "value": -1963.03565,
+          "unit": "cal/sec"
+        }
+      }
+    },
+    "HEATCHAG": {
+      "heat_kW": null,
+      "power_kW": null,
+      "source_quantities": {}
+    },
+    "HEATER": {
+      "heat_kW": 4.1861978970400004,
+      "power_kW": null,
+      "source_quantities": {
+        "\\Data\\Blocks\\HEATER\\Output\\QCALC": {
+          "value": 1000.52531,
+          "unit": "cal/sec"
+        }
+      }
+    },
+    "PUMP": {
+      "heat_kW": null,
+      "power_kW": 2.1717208,
+      "source_quantities": {
+        "\\Data\\Blocks\\PUMP\\Output\\BRAKE_POWER": {
+          "value": 2.1717208,
+          "unit": "kW"
+        }
+      }
+    },
+    "REACTOR": {
+      "heat_kW": 8.11989290032,
+      "power_kW": null,
+      "source_quantities": {
+        "\\Data\\Blocks\\REACTOR\\Output\\QCALC": {
+          "value": 1940.70098,
+          "unit": "cal/sec"
+        }
+      }
+    },
+    "VALVE": {
+      "heat_kW": null,
+      "power_kW": null,
+      "source_quantities": {}
+    }
+  },
+  "streams": {
+    "FEED": {
+      "temperature_C": 25.0,
+      "pressure_MPa": 0.101325,
+      "mass_flow_kg_h": 100.0,
+      "mole_flow_kmol_h": 4.8156026,
+      "composition_kg_h": {
+        "GUAIA-01": 4.5,
+        "CAT": 0.0,
+        "ANISOLE": 1.5,
+        "PPE": 6.75,
+        "PEA": 0.0,
+        "STYRENE": 0.0,
+        "ETHYLBEN": 0.0,
+        "DPE": 2.25,
+        "PHENO-01": 0.0,
+        "BENZENE": 0.0,
+        "O-CRE-01": 0.0,
+        "CH4O": 0.0,
+        "ACETI-01": 0.0,
+        "CH2O": 0.0,
+        "H2O": 85.0,
+        "CH4": 0.0,
+        "CO2": 0.0,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.0,
+        "CO": 0.0
+      },
+      "composition_kmol_h": {
+        "GUAIA-01": 0.0362495944,
+        "CAT": 0.0,
+        "ANISOLE": 0.0138709183,
+        "PPE": 0.034046202,
+        "PEA": 0.0,
+        "STYRENE": 0.0,
+        "ETHYLBEN": 0.0,
+        "DPE": 0.0132189027,
+        "PHENO-01": 0.0,
+        "BENZENE": 0.0,
+        "O-CRE-01": 0.0,
+        "CH4O": 0.0,
+        "ACETI-01": 0.0,
+        "CH2O": 0.0,
+        "H2O": 4.71821698,
+        "CH4": 0.0,
+        "CO2": 0.0,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.0,
+        "CO": 0.0
+      },
+      "mass_fraction": {
+        "GUAIA-01": 0.045,
+        "CAT": 0.0,
+        "ANISOLE": 0.015,
+        "PPE": 0.0675,
+        "PEA": 0.0,
+        "STYRENE": 0.0,
+        "ETHYLBEN": 0.0,
+        "DPE": 0.0225,
+        "PHENO-01": 0.0,
+        "BENZENE": 0.0,
+        "O-CRE-01": 0.0,
+        "CH4O": 0.0,
+        "ACETI-01": 0.0,
+        "CH2O": 0.0,
+        "H2O": 0.85,
+        "CH4": 0.0,
+        "CO2": 0.0,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.0,
+        "CO": 0.0
+      },
+      "mole_fraction": {
+        "GUAIA-01": 0.00752753029,
+        "CAT": 0.0,
+        "ANISOLE": 0.00288041176,
+        "PPE": 0.00706997749,
+        "PEA": 0.0,
+        "STYRENE": 0.0,
+        "ETHYLBEN": 0.0,
+        "DPE": 0.00274501527,
+        "PHENO-01": 0.0,
+        "BENZENE": 0.0,
+        "O-CRE-01": 0.0,
+        "CH4O": 0.0,
+        "ACETI-01": 0.0,
+        "CH2O": 0.0,
+        "H2O": 0.979777065,
+        "CH4": 0.0,
+        "CO2": 0.0,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.0,
+        "CO": 0.0
+      },
+      "component_ids": [
+        "GUAIA-01",
+        "CAT",
+        "ANISOLE",
+        "PPE",
+        "PEA",
+        "STYRENE",
+        "ETHYLBEN",
+        "DPE",
+        "PHENO-01",
+        "BENZENE",
+        "O-CRE-01",
+        "CH4O",
+        "ACETI-01",
+        "CH2O",
+        "H2O",
+        "CH4",
+        "CO2",
+        "H2",
+        "C2H2",
+        "C",
+        "CO"
+      ],
+      "substreams": {
+        "MIXED": {
+          "component_ids": [
+            "GUAIA-01",
+            "CAT",
+            "ANISOLE",
+            "PPE",
+            "PEA",
+            "STYRENE",
+            "ETHYLBEN",
+            "DPE",
+            "PHENO-01",
+            "BENZENE",
+            "O-CRE-01",
+            "CH4O",
+            "ACETI-01",
+            "CH2O",
+            "H2O",
+            "CH4",
+            "CO2",
+            "H2",
+            "C2H2",
+            "C",
+            "CO"
+          ],
+          "composition_kg_h": {
+            "GUAIA-01": 4.5,
+            "CAT": 0.0,
+            "ANISOLE": 1.5,
+            "PPE": 6.75,
+            "PEA": 0.0,
+            "STYRENE": 0.0,
+            "ETHYLBEN": 0.0,
+            "DPE": 2.25,
+            "PHENO-01": 0.0,
+            "BENZENE": 0.0,
+            "O-CRE-01": 0.0,
+            "CH4O": 0.0,
+            "ACETI-01": 0.0,
+            "CH2O": 0.0,
+            "H2O": 85.0,
+            "CH4": 0.0,
+            "CO2": 0.0,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.0,
+            "CO": 0.0
+          },
+          "composition_kmol_h": {
+            "GUAIA-01": 0.0362495944,
+            "CAT": 0.0,
+            "ANISOLE": 0.0138709183,
+            "PPE": 0.034046202,
+            "PEA": 0.0,
+            "STYRENE": 0.0,
+            "ETHYLBEN": 0.0,
+            "DPE": 0.0132189027,
+            "PHENO-01": 0.0,
+            "BENZENE": 0.0,
+            "O-CRE-01": 0.0,
+            "CH4O": 0.0,
+            "ACETI-01": 0.0,
+            "CH2O": 0.0,
+            "H2O": 4.71821698,
+            "CH4": 0.0,
+            "CO2": 0.0,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.0,
+            "CO": 0.0
+          },
+          "mass_fraction": {
+            "GUAIA-01": 0.045,
+            "CAT": 0.0,
+            "ANISOLE": 0.015,
+            "PPE": 0.0675,
+            "PEA": 0.0,
+            "STYRENE": 0.0,
+            "ETHYLBEN": 0.0,
+            "DPE": 0.0225,
+            "PHENO-01": 0.0,
+            "BENZENE": 0.0,
+            "O-CRE-01": 0.0,
+            "CH4O": 0.0,
+            "ACETI-01": 0.0,
+            "CH2O": 0.0,
+            "H2O": 0.85,
+            "CH4": 0.0,
+            "CO2": 0.0,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.0,
+            "CO": 0.0
+          },
+          "mole_fraction": {
+            "GUAIA-01": 0.00752753029,
+            "CAT": 0.0,
+            "ANISOLE": 0.00288041176,
+            "PPE": 0.00706997749,
+            "PEA": 0.0,
+            "STYRENE": 0.0,
+            "ETHYLBEN": 0.0,
+            "DPE": 0.00274501527,
+            "PHENO-01": 0.0,
+            "BENZENE": 0.0,
+            "O-CRE-01": 0.0,
+            "CH4O": 0.0,
+            "ACETI-01": 0.0,
+            "CH2O": 0.0,
+            "H2O": 0.979777065,
+            "CH4": 0.0,
+            "CO2": 0.0,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.0,
+            "CO": 0.0
+          },
+          "mass_flow_kg_h": 100.0,
+          "mole_flow_kmol_h": 4.8156026
+        }
+      },
+      "component_data_status": "complete",
+      "missing_mass_components": [],
+      "extraction_warnings": [],
+      "source_quantities": {
+        "\\Data\\Streams\\FEED\\Output\\TEMP_OUT\\MIXED": {
+          "value": 298.15,
+          "unit": "K"
+        },
+        "\\Data\\Streams\\FEED\\Output\\PRES_OUT\\MIXED": {
+          "value": 1.0,
+          "unit": "atm"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFLOW\\MIXED\\GUAIA-01": {
+          "value": 4.5,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFLOW\\MIXED\\CAT": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFLOW\\MIXED\\ANISOLE": {
+          "value": 1.5,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFLOW\\MIXED\\PPE": {
+          "value": 6.75,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFLOW\\MIXED\\PEA": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFLOW\\MIXED\\STYRENE": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFLOW\\MIXED\\ETHYLBEN": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFLOW\\MIXED\\DPE": {
+          "value": 2.25,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFLOW\\MIXED\\PHENO-01": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFLOW\\MIXED\\BENZENE": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFLOW\\MIXED\\O-CRE-01": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFLOW\\MIXED\\CH4O": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFLOW\\MIXED\\ACETI-01": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFLOW\\MIXED\\CH2O": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFLOW\\MIXED\\H2O": {
+          "value": 85.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFLOW\\MIXED\\CH4": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFLOW\\MIXED\\CO2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFLOW\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFLOW\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFLOW\\MIXED\\C": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFLOW\\MIXED\\CO": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFLOW\\MIXED\\GUAIA-01": {
+          "value": 0.0362495944,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFLOW\\MIXED\\CAT": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFLOW\\MIXED\\ANISOLE": {
+          "value": 0.0138709183,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFLOW\\MIXED\\PPE": {
+          "value": 0.034046202,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFLOW\\MIXED\\PEA": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFLOW\\MIXED\\STYRENE": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFLOW\\MIXED\\ETHYLBEN": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFLOW\\MIXED\\DPE": {
+          "value": 0.0132189027,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFLOW\\MIXED\\PHENO-01": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFLOW\\MIXED\\BENZENE": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFLOW\\MIXED\\O-CRE-01": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFLOW\\MIXED\\CH4O": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFLOW\\MIXED\\ACETI-01": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFLOW\\MIXED\\CH2O": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFLOW\\MIXED\\H2O": {
+          "value": 4.71821698,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFLOW\\MIXED\\CH4": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFLOW\\MIXED\\CO2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFLOW\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFLOW\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFLOW\\MIXED\\C": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFLOW\\MIXED\\CO": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFRAC\\MIXED\\GUAIA-01": {
+          "value": 0.045,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFRAC\\MIXED\\CAT": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFRAC\\MIXED\\ANISOLE": {
+          "value": 0.015,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFRAC\\MIXED\\PPE": {
+          "value": 0.0675,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFRAC\\MIXED\\PEA": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFRAC\\MIXED\\STYRENE": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFRAC\\MIXED\\ETHYLBEN": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFRAC\\MIXED\\DPE": {
+          "value": 0.0225,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFRAC\\MIXED\\PHENO-01": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFRAC\\MIXED\\BENZENE": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFRAC\\MIXED\\O-CRE-01": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFRAC\\MIXED\\CH4O": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFRAC\\MIXED\\ACETI-01": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFRAC\\MIXED\\CH2O": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFRAC\\MIXED\\H2O": {
+          "value": 0.85,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFRAC\\MIXED\\CH4": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFRAC\\MIXED\\CO2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFRAC\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFRAC\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFRAC\\MIXED\\C": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFRAC\\MIXED\\CO": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFRAC\\MIXED\\GUAIA-01": {
+          "value": 0.00752753029,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFRAC\\MIXED\\CAT": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFRAC\\MIXED\\ANISOLE": {
+          "value": 0.00288041176,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFRAC\\MIXED\\PPE": {
+          "value": 0.00706997749,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFRAC\\MIXED\\PEA": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFRAC\\MIXED\\STYRENE": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFRAC\\MIXED\\ETHYLBEN": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFRAC\\MIXED\\DPE": {
+          "value": 0.00274501527,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFRAC\\MIXED\\PHENO-01": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFRAC\\MIXED\\BENZENE": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFRAC\\MIXED\\O-CRE-01": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFRAC\\MIXED\\CH4O": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFRAC\\MIXED\\ACETI-01": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFRAC\\MIXED\\CH2O": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFRAC\\MIXED\\H2O": {
+          "value": 0.979777065,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFRAC\\MIXED\\CH4": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFRAC\\MIXED\\CO2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFRAC\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFRAC\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFRAC\\MIXED\\C": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFRAC\\MIXED\\CO": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\FEED\\Output\\MASSFLMX\\MIXED": {
+          "value": 100.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\FEED\\Output\\MOLEFLMX\\MIXED": {
+          "value": 4.8156026,
+          "unit": "kmol/hr"
+        }
+      }
+    },
+    "S2": {
+      "temperature_C": 45.82961500000005,
+      "pressure_MPa": 25.000000032525,
+      "mass_flow_kg_h": 100.0,
+      "mole_flow_kmol_h": 4.8156026,
+      "composition_kg_h": {
+        "GUAIA-01": 4.5,
+        "CAT": 0.0,
+        "ANISOLE": 1.5,
+        "PPE": 6.75,
+        "PEA": 0.0,
+        "STYRENE": 0.0,
+        "ETHYLBEN": 0.0,
+        "DPE": 2.25,
+        "PHENO-01": 0.0,
+        "BENZENE": 0.0,
+        "O-CRE-01": 0.0,
+        "CH4O": 0.0,
+        "ACETI-01": 0.0,
+        "CH2O": 0.0,
+        "H2O": 85.0,
+        "CH4": 0.0,
+        "CO2": 0.0,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.0,
+        "CO": 0.0
+      },
+      "composition_kmol_h": {
+        "GUAIA-01": 0.0362495944,
+        "CAT": 0.0,
+        "ANISOLE": 0.0138709183,
+        "PPE": 0.034046202,
+        "PEA": 0.0,
+        "STYRENE": 0.0,
+        "ETHYLBEN": 0.0,
+        "DPE": 0.0132189027,
+        "PHENO-01": 0.0,
+        "BENZENE": 0.0,
+        "O-CRE-01": 0.0,
+        "CH4O": 0.0,
+        "ACETI-01": 0.0,
+        "CH2O": 0.0,
+        "H2O": 4.71821698,
+        "CH4": 0.0,
+        "CO2": 0.0,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.0,
+        "CO": 0.0
+      },
+      "mass_fraction": {
+        "GUAIA-01": 0.045,
+        "CAT": 0.0,
+        "ANISOLE": 0.015,
+        "PPE": 0.0675,
+        "PEA": 0.0,
+        "STYRENE": 0.0,
+        "ETHYLBEN": 0.0,
+        "DPE": 0.0225,
+        "PHENO-01": 0.0,
+        "BENZENE": 0.0,
+        "O-CRE-01": 0.0,
+        "CH4O": 0.0,
+        "ACETI-01": 0.0,
+        "CH2O": 0.0,
+        "H2O": 0.85,
+        "CH4": 0.0,
+        "CO2": 0.0,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.0,
+        "CO": 0.0
+      },
+      "mole_fraction": {
+        "GUAIA-01": 0.00752753029,
+        "CAT": 0.0,
+        "ANISOLE": 0.00288041176,
+        "PPE": 0.00706997749,
+        "PEA": 0.0,
+        "STYRENE": 0.0,
+        "ETHYLBEN": 0.0,
+        "DPE": 0.00274501527,
+        "PHENO-01": 0.0,
+        "BENZENE": 0.0,
+        "O-CRE-01": 0.0,
+        "CH4O": 0.0,
+        "ACETI-01": 0.0,
+        "CH2O": 0.0,
+        "H2O": 0.979777065,
+        "CH4": 0.0,
+        "CO2": 0.0,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.0,
+        "CO": 0.0
+      },
+      "component_ids": [
+        "GUAIA-01",
+        "CAT",
+        "ANISOLE",
+        "PPE",
+        "PEA",
+        "STYRENE",
+        "ETHYLBEN",
+        "DPE",
+        "PHENO-01",
+        "BENZENE",
+        "O-CRE-01",
+        "CH4O",
+        "ACETI-01",
+        "CH2O",
+        "H2O",
+        "CH4",
+        "CO2",
+        "H2",
+        "C2H2",
+        "C",
+        "CO"
+      ],
+      "substreams": {
+        "MIXED": {
+          "component_ids": [
+            "GUAIA-01",
+            "CAT",
+            "ANISOLE",
+            "PPE",
+            "PEA",
+            "STYRENE",
+            "ETHYLBEN",
+            "DPE",
+            "PHENO-01",
+            "BENZENE",
+            "O-CRE-01",
+            "CH4O",
+            "ACETI-01",
+            "CH2O",
+            "H2O",
+            "CH4",
+            "CO2",
+            "H2",
+            "C2H2",
+            "C",
+            "CO"
+          ],
+          "composition_kg_h": {
+            "GUAIA-01": 4.5,
+            "CAT": 0.0,
+            "ANISOLE": 1.5,
+            "PPE": 6.75,
+            "PEA": 0.0,
+            "STYRENE": 0.0,
+            "ETHYLBEN": 0.0,
+            "DPE": 2.25,
+            "PHENO-01": 0.0,
+            "BENZENE": 0.0,
+            "O-CRE-01": 0.0,
+            "CH4O": 0.0,
+            "ACETI-01": 0.0,
+            "CH2O": 0.0,
+            "H2O": 85.0,
+            "CH4": 0.0,
+            "CO2": 0.0,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.0,
+            "CO": 0.0
+          },
+          "composition_kmol_h": {
+            "GUAIA-01": 0.0362495944,
+            "CAT": 0.0,
+            "ANISOLE": 0.0138709183,
+            "PPE": 0.034046202,
+            "PEA": 0.0,
+            "STYRENE": 0.0,
+            "ETHYLBEN": 0.0,
+            "DPE": 0.0132189027,
+            "PHENO-01": 0.0,
+            "BENZENE": 0.0,
+            "O-CRE-01": 0.0,
+            "CH4O": 0.0,
+            "ACETI-01": 0.0,
+            "CH2O": 0.0,
+            "H2O": 4.71821698,
+            "CH4": 0.0,
+            "CO2": 0.0,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.0,
+            "CO": 0.0
+          },
+          "mass_fraction": {
+            "GUAIA-01": 0.045,
+            "CAT": 0.0,
+            "ANISOLE": 0.015,
+            "PPE": 0.0675,
+            "PEA": 0.0,
+            "STYRENE": 0.0,
+            "ETHYLBEN": 0.0,
+            "DPE": 0.0225,
+            "PHENO-01": 0.0,
+            "BENZENE": 0.0,
+            "O-CRE-01": 0.0,
+            "CH4O": 0.0,
+            "ACETI-01": 0.0,
+            "CH2O": 0.0,
+            "H2O": 0.85,
+            "CH4": 0.0,
+            "CO2": 0.0,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.0,
+            "CO": 0.0
+          },
+          "mole_fraction": {
+            "GUAIA-01": 0.00752753029,
+            "CAT": 0.0,
+            "ANISOLE": 0.00288041176,
+            "PPE": 0.00706997749,
+            "PEA": 0.0,
+            "STYRENE": 0.0,
+            "ETHYLBEN": 0.0,
+            "DPE": 0.00274501527,
+            "PHENO-01": 0.0,
+            "BENZENE": 0.0,
+            "O-CRE-01": 0.0,
+            "CH4O": 0.0,
+            "ACETI-01": 0.0,
+            "CH2O": 0.0,
+            "H2O": 0.979777065,
+            "CH4": 0.0,
+            "CO2": 0.0,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.0,
+            "CO": 0.0
+          },
+          "mass_flow_kg_h": 100.0,
+          "mole_flow_kmol_h": 4.8156026
+        }
+      },
+      "component_data_status": "complete",
+      "missing_mass_components": [],
+      "extraction_warnings": [],
+      "source_quantities": {
+        "\\Data\\Streams\\S2\\Output\\TEMP_OUT\\MIXED": {
+          "value": 318.979615,
+          "unit": "K"
+        },
+        "\\Data\\Streams\\S2\\Output\\PRES_OUT\\MIXED": {
+          "value": 246.730817,
+          "unit": "atm"
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFLOW\\MIXED\\GUAIA-01": {
+          "value": 4.5,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFLOW\\MIXED\\CAT": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFLOW\\MIXED\\ANISOLE": {
+          "value": 1.5,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFLOW\\MIXED\\PPE": {
+          "value": 6.75,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFLOW\\MIXED\\PEA": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFLOW\\MIXED\\STYRENE": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFLOW\\MIXED\\ETHYLBEN": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFLOW\\MIXED\\DPE": {
+          "value": 2.25,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFLOW\\MIXED\\PHENO-01": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFLOW\\MIXED\\BENZENE": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFLOW\\MIXED\\O-CRE-01": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFLOW\\MIXED\\CH4O": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFLOW\\MIXED\\ACETI-01": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFLOW\\MIXED\\CH2O": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFLOW\\MIXED\\H2O": {
+          "value": 85.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFLOW\\MIXED\\CH4": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFLOW\\MIXED\\CO2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFLOW\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFLOW\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFLOW\\MIXED\\C": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFLOW\\MIXED\\CO": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFLOW\\MIXED\\GUAIA-01": {
+          "value": 0.0362495944,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFLOW\\MIXED\\CAT": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFLOW\\MIXED\\ANISOLE": {
+          "value": 0.0138709183,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFLOW\\MIXED\\PPE": {
+          "value": 0.034046202,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFLOW\\MIXED\\PEA": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFLOW\\MIXED\\STYRENE": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFLOW\\MIXED\\ETHYLBEN": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFLOW\\MIXED\\DPE": {
+          "value": 0.0132189027,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFLOW\\MIXED\\PHENO-01": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFLOW\\MIXED\\BENZENE": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFLOW\\MIXED\\O-CRE-01": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFLOW\\MIXED\\CH4O": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFLOW\\MIXED\\ACETI-01": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFLOW\\MIXED\\CH2O": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFLOW\\MIXED\\H2O": {
+          "value": 4.71821698,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFLOW\\MIXED\\CH4": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFLOW\\MIXED\\CO2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFLOW\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFLOW\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFLOW\\MIXED\\C": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFLOW\\MIXED\\CO": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFRAC\\MIXED\\GUAIA-01": {
+          "value": 0.045,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFRAC\\MIXED\\CAT": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFRAC\\MIXED\\ANISOLE": {
+          "value": 0.015,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFRAC\\MIXED\\PPE": {
+          "value": 0.0675,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFRAC\\MIXED\\PEA": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFRAC\\MIXED\\STYRENE": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFRAC\\MIXED\\ETHYLBEN": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFRAC\\MIXED\\DPE": {
+          "value": 0.0225,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFRAC\\MIXED\\PHENO-01": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFRAC\\MIXED\\BENZENE": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFRAC\\MIXED\\O-CRE-01": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFRAC\\MIXED\\CH4O": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFRAC\\MIXED\\ACETI-01": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFRAC\\MIXED\\CH2O": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFRAC\\MIXED\\H2O": {
+          "value": 0.85,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFRAC\\MIXED\\CH4": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFRAC\\MIXED\\CO2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFRAC\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFRAC\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFRAC\\MIXED\\C": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFRAC\\MIXED\\CO": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFRAC\\MIXED\\GUAIA-01": {
+          "value": 0.00752753029,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFRAC\\MIXED\\CAT": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFRAC\\MIXED\\ANISOLE": {
+          "value": 0.00288041176,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFRAC\\MIXED\\PPE": {
+          "value": 0.00706997749,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFRAC\\MIXED\\PEA": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFRAC\\MIXED\\STYRENE": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFRAC\\MIXED\\ETHYLBEN": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFRAC\\MIXED\\DPE": {
+          "value": 0.00274501527,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFRAC\\MIXED\\PHENO-01": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFRAC\\MIXED\\BENZENE": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFRAC\\MIXED\\O-CRE-01": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFRAC\\MIXED\\CH4O": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFRAC\\MIXED\\ACETI-01": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFRAC\\MIXED\\CH2O": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFRAC\\MIXED\\H2O": {
+          "value": 0.979777065,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFRAC\\MIXED\\CH4": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFRAC\\MIXED\\CO2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFRAC\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFRAC\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFRAC\\MIXED\\C": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFRAC\\MIXED\\CO": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S2\\Output\\MASSFLMX\\MIXED": {
+          "value": 100.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S2\\Output\\MOLEFLMX\\MIXED": {
+          "value": 4.8156026,
+          "unit": "kmol/hr"
+        }
+      }
+    },
+    "S3": {
+      "temperature_C": 329.85,
+      "pressure_MPa": 25.000000032525,
+      "mass_flow_kg_h": 100.0,
+      "mole_flow_kmol_h": 4.8156026,
+      "composition_kg_h": {
+        "GUAIA-01": 4.5,
+        "CAT": 0.0,
+        "ANISOLE": 1.5,
+        "PPE": 6.75,
+        "PEA": 0.0,
+        "STYRENE": 0.0,
+        "ETHYLBEN": 0.0,
+        "DPE": 2.25,
+        "PHENO-01": 0.0,
+        "BENZENE": 0.0,
+        "O-CRE-01": 0.0,
+        "CH4O": 0.0,
+        "ACETI-01": 0.0,
+        "CH2O": 0.0,
+        "H2O": 85.0,
+        "CH4": 0.0,
+        "CO2": 0.0,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.0,
+        "CO": 0.0
+      },
+      "composition_kmol_h": {
+        "GUAIA-01": 0.0362495944,
+        "CAT": 0.0,
+        "ANISOLE": 0.0138709183,
+        "PPE": 0.034046202,
+        "PEA": 0.0,
+        "STYRENE": 0.0,
+        "ETHYLBEN": 0.0,
+        "DPE": 0.0132189027,
+        "PHENO-01": 0.0,
+        "BENZENE": 0.0,
+        "O-CRE-01": 0.0,
+        "CH4O": 0.0,
+        "ACETI-01": 0.0,
+        "CH2O": 0.0,
+        "H2O": 4.71821698,
+        "CH4": 0.0,
+        "CO2": 0.0,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.0,
+        "CO": 0.0
+      },
+      "mass_fraction": {
+        "GUAIA-01": 0.045,
+        "CAT": 0.0,
+        "ANISOLE": 0.015,
+        "PPE": 0.0675,
+        "PEA": 0.0,
+        "STYRENE": 0.0,
+        "ETHYLBEN": 0.0,
+        "DPE": 0.0225,
+        "PHENO-01": 0.0,
+        "BENZENE": 0.0,
+        "O-CRE-01": 0.0,
+        "CH4O": 0.0,
+        "ACETI-01": 0.0,
+        "CH2O": 0.0,
+        "H2O": 0.85,
+        "CH4": 0.0,
+        "CO2": 0.0,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.0,
+        "CO": 0.0
+      },
+      "mole_fraction": {
+        "GUAIA-01": 0.00752753029,
+        "CAT": 0.0,
+        "ANISOLE": 0.00288041176,
+        "PPE": 0.00706997749,
+        "PEA": 0.0,
+        "STYRENE": 0.0,
+        "ETHYLBEN": 0.0,
+        "DPE": 0.00274501527,
+        "PHENO-01": 0.0,
+        "BENZENE": 0.0,
+        "O-CRE-01": 0.0,
+        "CH4O": 0.0,
+        "ACETI-01": 0.0,
+        "CH2O": 0.0,
+        "H2O": 0.979777065,
+        "CH4": 0.0,
+        "CO2": 0.0,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.0,
+        "CO": 0.0
+      },
+      "component_ids": [
+        "GUAIA-01",
+        "CAT",
+        "ANISOLE",
+        "PPE",
+        "PEA",
+        "STYRENE",
+        "ETHYLBEN",
+        "DPE",
+        "PHENO-01",
+        "BENZENE",
+        "O-CRE-01",
+        "CH4O",
+        "ACETI-01",
+        "CH2O",
+        "H2O",
+        "CH4",
+        "CO2",
+        "H2",
+        "C2H2",
+        "C",
+        "CO"
+      ],
+      "substreams": {
+        "MIXED": {
+          "component_ids": [
+            "GUAIA-01",
+            "CAT",
+            "ANISOLE",
+            "PPE",
+            "PEA",
+            "STYRENE",
+            "ETHYLBEN",
+            "DPE",
+            "PHENO-01",
+            "BENZENE",
+            "O-CRE-01",
+            "CH4O",
+            "ACETI-01",
+            "CH2O",
+            "H2O",
+            "CH4",
+            "CO2",
+            "H2",
+            "C2H2",
+            "C",
+            "CO"
+          ],
+          "composition_kg_h": {
+            "GUAIA-01": 4.5,
+            "CAT": 0.0,
+            "ANISOLE": 1.5,
+            "PPE": 6.75,
+            "PEA": 0.0,
+            "STYRENE": 0.0,
+            "ETHYLBEN": 0.0,
+            "DPE": 2.25,
+            "PHENO-01": 0.0,
+            "BENZENE": 0.0,
+            "O-CRE-01": 0.0,
+            "CH4O": 0.0,
+            "ACETI-01": 0.0,
+            "CH2O": 0.0,
+            "H2O": 85.0,
+            "CH4": 0.0,
+            "CO2": 0.0,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.0,
+            "CO": 0.0
+          },
+          "composition_kmol_h": {
+            "GUAIA-01": 0.0362495944,
+            "CAT": 0.0,
+            "ANISOLE": 0.0138709183,
+            "PPE": 0.034046202,
+            "PEA": 0.0,
+            "STYRENE": 0.0,
+            "ETHYLBEN": 0.0,
+            "DPE": 0.0132189027,
+            "PHENO-01": 0.0,
+            "BENZENE": 0.0,
+            "O-CRE-01": 0.0,
+            "CH4O": 0.0,
+            "ACETI-01": 0.0,
+            "CH2O": 0.0,
+            "H2O": 4.71821698,
+            "CH4": 0.0,
+            "CO2": 0.0,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.0,
+            "CO": 0.0
+          },
+          "mass_fraction": {
+            "GUAIA-01": 0.045,
+            "CAT": 0.0,
+            "ANISOLE": 0.015,
+            "PPE": 0.0675,
+            "PEA": 0.0,
+            "STYRENE": 0.0,
+            "ETHYLBEN": 0.0,
+            "DPE": 0.0225,
+            "PHENO-01": 0.0,
+            "BENZENE": 0.0,
+            "O-CRE-01": 0.0,
+            "CH4O": 0.0,
+            "ACETI-01": 0.0,
+            "CH2O": 0.0,
+            "H2O": 0.85,
+            "CH4": 0.0,
+            "CO2": 0.0,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.0,
+            "CO": 0.0
+          },
+          "mole_fraction": {
+            "GUAIA-01": 0.00752753029,
+            "CAT": 0.0,
+            "ANISOLE": 0.00288041176,
+            "PPE": 0.00706997749,
+            "PEA": 0.0,
+            "STYRENE": 0.0,
+            "ETHYLBEN": 0.0,
+            "DPE": 0.00274501527,
+            "PHENO-01": 0.0,
+            "BENZENE": 0.0,
+            "O-CRE-01": 0.0,
+            "CH4O": 0.0,
+            "ACETI-01": 0.0,
+            "CH2O": 0.0,
+            "H2O": 0.979777065,
+            "CH4": 0.0,
+            "CO2": 0.0,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.0,
+            "CO": 0.0
+          },
+          "mass_flow_kg_h": 100.0,
+          "mole_flow_kmol_h": 4.8156026
+        }
+      },
+      "component_data_status": "complete",
+      "missing_mass_components": [],
+      "extraction_warnings": [],
+      "source_quantities": {
+        "\\Data\\Streams\\S3\\Output\\TEMP_OUT\\MIXED": {
+          "value": 603.0,
+          "unit": "K"
+        },
+        "\\Data\\Streams\\S3\\Output\\PRES_OUT\\MIXED": {
+          "value": 246.730817,
+          "unit": "atm"
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFLOW\\MIXED\\GUAIA-01": {
+          "value": 4.5,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFLOW\\MIXED\\CAT": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFLOW\\MIXED\\ANISOLE": {
+          "value": 1.5,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFLOW\\MIXED\\PPE": {
+          "value": 6.75,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFLOW\\MIXED\\PEA": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFLOW\\MIXED\\STYRENE": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFLOW\\MIXED\\ETHYLBEN": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFLOW\\MIXED\\DPE": {
+          "value": 2.25,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFLOW\\MIXED\\PHENO-01": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFLOW\\MIXED\\BENZENE": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFLOW\\MIXED\\O-CRE-01": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFLOW\\MIXED\\CH4O": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFLOW\\MIXED\\ACETI-01": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFLOW\\MIXED\\CH2O": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFLOW\\MIXED\\H2O": {
+          "value": 85.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFLOW\\MIXED\\CH4": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFLOW\\MIXED\\CO2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFLOW\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFLOW\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFLOW\\MIXED\\C": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFLOW\\MIXED\\CO": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFLOW\\MIXED\\GUAIA-01": {
+          "value": 0.0362495944,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFLOW\\MIXED\\CAT": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFLOW\\MIXED\\ANISOLE": {
+          "value": 0.0138709183,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFLOW\\MIXED\\PPE": {
+          "value": 0.034046202,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFLOW\\MIXED\\PEA": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFLOW\\MIXED\\STYRENE": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFLOW\\MIXED\\ETHYLBEN": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFLOW\\MIXED\\DPE": {
+          "value": 0.0132189027,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFLOW\\MIXED\\PHENO-01": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFLOW\\MIXED\\BENZENE": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFLOW\\MIXED\\O-CRE-01": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFLOW\\MIXED\\CH4O": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFLOW\\MIXED\\ACETI-01": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFLOW\\MIXED\\CH2O": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFLOW\\MIXED\\H2O": {
+          "value": 4.71821698,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFLOW\\MIXED\\CH4": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFLOW\\MIXED\\CO2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFLOW\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFLOW\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFLOW\\MIXED\\C": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFLOW\\MIXED\\CO": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFRAC\\MIXED\\GUAIA-01": {
+          "value": 0.045,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFRAC\\MIXED\\CAT": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFRAC\\MIXED\\ANISOLE": {
+          "value": 0.015,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFRAC\\MIXED\\PPE": {
+          "value": 0.0675,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFRAC\\MIXED\\PEA": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFRAC\\MIXED\\STYRENE": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFRAC\\MIXED\\ETHYLBEN": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFRAC\\MIXED\\DPE": {
+          "value": 0.0225,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFRAC\\MIXED\\PHENO-01": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFRAC\\MIXED\\BENZENE": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFRAC\\MIXED\\O-CRE-01": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFRAC\\MIXED\\CH4O": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFRAC\\MIXED\\ACETI-01": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFRAC\\MIXED\\CH2O": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFRAC\\MIXED\\H2O": {
+          "value": 0.85,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFRAC\\MIXED\\CH4": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFRAC\\MIXED\\CO2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFRAC\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFRAC\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFRAC\\MIXED\\C": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFRAC\\MIXED\\CO": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFRAC\\MIXED\\GUAIA-01": {
+          "value": 0.00752753029,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFRAC\\MIXED\\CAT": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFRAC\\MIXED\\ANISOLE": {
+          "value": 0.00288041176,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFRAC\\MIXED\\PPE": {
+          "value": 0.00706997749,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFRAC\\MIXED\\PEA": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFRAC\\MIXED\\STYRENE": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFRAC\\MIXED\\ETHYLBEN": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFRAC\\MIXED\\DPE": {
+          "value": 0.00274501527,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFRAC\\MIXED\\PHENO-01": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFRAC\\MIXED\\BENZENE": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFRAC\\MIXED\\O-CRE-01": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFRAC\\MIXED\\CH4O": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFRAC\\MIXED\\ACETI-01": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFRAC\\MIXED\\CH2O": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFRAC\\MIXED\\H2O": {
+          "value": 0.979777065,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFRAC\\MIXED\\CH4": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFRAC\\MIXED\\CO2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFRAC\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFRAC\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFRAC\\MIXED\\C": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFRAC\\MIXED\\CO": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S3\\Output\\MASSFLMX\\MIXED": {
+          "value": 100.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S3\\Output\\MOLEFLMX\\MIXED": {
+          "value": 4.8156026,
+          "unit": "kmol/hr"
+        }
+      }
+    },
+    "S4": {
+      "temperature_C": 329.85,
+      "pressure_MPa": 25.000000032525,
+      "mass_flow_kg_h": 100.000155,
+      "mole_flow_kmol_h": 4.8340432,
+      "composition_kg_h": {
+        "GUAIA-01": 0.079772223,
+        "CAT": 3.68130503,
+        "ANISOLE": 1.34738917,
+        "PPE": 2.5380531,
+        "PEA": 1.54400672,
+        "STYRENE": 0.484456195,
+        "ETHYLBEN": 0.37269112,
+        "DPE": 2.24518949,
+        "PHENO-01": 0.192825206,
+        "BENZENE": 0.0202016302,
+        "O-CRE-01": 2.34309405,
+        "CH4O": 0.421328176,
+        "ACETI-01": 4.64377623e-05,
+        "CH2O": 0.00782949417,
+        "H2O": 84.534243,
+        "CH4": 0.0241370257,
+        "CO2": 0.0553729127,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.0912810621,
+        "CO": 0.0169328108
+      },
+      "composition_kmol_h": {
+        "GUAIA-01": 0.000642602384,
+        "CAT": 0.0334322355,
+        "ANISOLE": 0.0124596835,
+        "PPE": 0.0128016398,
+        "PEA": 0.0126385132,
+        "STYRENE": 0.00465145583,
+        "ETHYLBEN": 0.00351041017,
+        "DPE": 0.0131906406,
+        "PHENO-01": 0.0020488681,
+        "BENZENE": 0.000258618471,
+        "O-CRE-01": 0.0216672442,
+        "CH4O": 0.0131491815,
+        "ACETI-01": 7.73285307e-07,
+        "CH2O": 0.000260754718,
+        "H2O": 4.69236354,
+        "CH4": 0.00150454322,
+        "CO2": 0.00125819505,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.0075997887,
+        "CO": 0.000604518706
+      },
+      "mass_fraction": {
+        "GUAIA-01": 0.000797720995,
+        "CAT": 0.0368129933,
+        "ANISOLE": 0.0134738709,
+        "PPE": 0.0253804917,
+        "PEA": 0.0154400433,
+        "STYRENE": 0.00484455445,
+        "ETHYLBEN": 0.00372690543,
+        "DPE": 0.0224518602,
+        "PHENO-01": 0.00192824907,
+        "BENZENE": 0.000202015989,
+        "O-CRE-01": 0.0234309042,
+        "CH4O": 0.00421327524,
+        "ACETI-01": 4.64376904e-07,
+        "CH2O": 7.82948205e-05,
+        "H2O": 0.845341121,
+        "CH4": 0.000241369884,
+        "CO2": 0.00055372827,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.000912809208,
+        "CO": 0.000169327845
+      },
+      "mole_fraction": {
+        "GUAIA-01": 0.000132932694,
+        "CAT": 0.0069159985,
+        "ANISOLE": 0.00257748699,
+        "PPE": 0.00264822618,
+        "PEA": 0.00261448081,
+        "STYRENE": 0.000962228851,
+        "ETHYLBEN": 0.000726185104,
+        "DPE": 0.0027286973,
+        "PHENO-01": 0.000423841496,
+        "BENZENE": 5.34994125e-05,
+        "O-CRE-01": 0.0044822198,
+        "CH4O": 0.0027201208,
+        "ACETI-01": 1.59966569e-07,
+        "CH2O": 5.39413297e-05,
+        "H2O": 0.97069127,
+        "CH4": 0.000311239092,
+        "CO2": 0.000260277991,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.00157213918,
+        "CO": 0.000125054469
+      },
+      "component_ids": [
+        "GUAIA-01",
+        "CAT",
+        "ANISOLE",
+        "PPE",
+        "PEA",
+        "STYRENE",
+        "ETHYLBEN",
+        "DPE",
+        "PHENO-01",
+        "BENZENE",
+        "O-CRE-01",
+        "CH4O",
+        "ACETI-01",
+        "CH2O",
+        "H2O",
+        "CH4",
+        "CO2",
+        "H2",
+        "C2H2",
+        "C",
+        "CO"
+      ],
+      "substreams": {
+        "MIXED": {
+          "component_ids": [
+            "GUAIA-01",
+            "CAT",
+            "ANISOLE",
+            "PPE",
+            "PEA",
+            "STYRENE",
+            "ETHYLBEN",
+            "DPE",
+            "PHENO-01",
+            "BENZENE",
+            "O-CRE-01",
+            "CH4O",
+            "ACETI-01",
+            "CH2O",
+            "H2O",
+            "CH4",
+            "CO2",
+            "H2",
+            "C2H2",
+            "C",
+            "CO"
+          ],
+          "composition_kg_h": {
+            "GUAIA-01": 0.079772223,
+            "CAT": 3.68130503,
+            "ANISOLE": 1.34738917,
+            "PPE": 2.5380531,
+            "PEA": 1.54400672,
+            "STYRENE": 0.484456195,
+            "ETHYLBEN": 0.37269112,
+            "DPE": 2.24518949,
+            "PHENO-01": 0.192825206,
+            "BENZENE": 0.0202016302,
+            "O-CRE-01": 2.34309405,
+            "CH4O": 0.421328176,
+            "ACETI-01": 4.64377623e-05,
+            "CH2O": 0.00782949417,
+            "H2O": 84.534243,
+            "CH4": 0.0241370257,
+            "CO2": 0.0553729127,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.0912810621,
+            "CO": 0.0169328108
+          },
+          "composition_kmol_h": {
+            "GUAIA-01": 0.000642602384,
+            "CAT": 0.0334322355,
+            "ANISOLE": 0.0124596835,
+            "PPE": 0.0128016398,
+            "PEA": 0.0126385132,
+            "STYRENE": 0.00465145583,
+            "ETHYLBEN": 0.00351041017,
+            "DPE": 0.0131906406,
+            "PHENO-01": 0.0020488681,
+            "BENZENE": 0.000258618471,
+            "O-CRE-01": 0.0216672442,
+            "CH4O": 0.0131491815,
+            "ACETI-01": 7.73285307e-07,
+            "CH2O": 0.000260754718,
+            "H2O": 4.69236354,
+            "CH4": 0.00150454322,
+            "CO2": 0.00125819505,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.0075997887,
+            "CO": 0.000604518706
+          },
+          "mass_fraction": {
+            "GUAIA-01": 0.000797720995,
+            "CAT": 0.0368129933,
+            "ANISOLE": 0.0134738709,
+            "PPE": 0.0253804917,
+            "PEA": 0.0154400433,
+            "STYRENE": 0.00484455445,
+            "ETHYLBEN": 0.00372690543,
+            "DPE": 0.0224518602,
+            "PHENO-01": 0.00192824907,
+            "BENZENE": 0.000202015989,
+            "O-CRE-01": 0.0234309042,
+            "CH4O": 0.00421327524,
+            "ACETI-01": 4.64376904e-07,
+            "CH2O": 7.82948205e-05,
+            "H2O": 0.845341121,
+            "CH4": 0.000241369884,
+            "CO2": 0.00055372827,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.000912809208,
+            "CO": 0.000169327845
+          },
+          "mole_fraction": {
+            "GUAIA-01": 0.000132932694,
+            "CAT": 0.0069159985,
+            "ANISOLE": 0.00257748699,
+            "PPE": 0.00264822618,
+            "PEA": 0.00261448081,
+            "STYRENE": 0.000962228851,
+            "ETHYLBEN": 0.000726185104,
+            "DPE": 0.0027286973,
+            "PHENO-01": 0.000423841496,
+            "BENZENE": 5.34994125e-05,
+            "O-CRE-01": 0.0044822198,
+            "CH4O": 0.0027201208,
+            "ACETI-01": 1.59966569e-07,
+            "CH2O": 5.39413297e-05,
+            "H2O": 0.97069127,
+            "CH4": 0.000311239092,
+            "CO2": 0.000260277991,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.00157213918,
+            "CO": 0.000125054469
+          },
+          "mass_flow_kg_h": 100.000155,
+          "mole_flow_kmol_h": 4.8340432
+        }
+      },
+      "component_data_status": "complete",
+      "missing_mass_components": [],
+      "extraction_warnings": [],
+      "source_quantities": {
+        "\\Data\\Streams\\S4\\Output\\TEMP_OUT\\MIXED": {
+          "value": 603.0,
+          "unit": "K"
+        },
+        "\\Data\\Streams\\S4\\Output\\PRES_OUT\\MIXED": {
+          "value": 246.730817,
+          "unit": "atm"
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFLOW\\MIXED\\GUAIA-01": {
+          "value": 0.079772223,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFLOW\\MIXED\\CAT": {
+          "value": 3.68130503,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFLOW\\MIXED\\ANISOLE": {
+          "value": 1.34738917,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFLOW\\MIXED\\PPE": {
+          "value": 2.5380531,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFLOW\\MIXED\\PEA": {
+          "value": 1.54400672,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFLOW\\MIXED\\STYRENE": {
+          "value": 0.484456195,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFLOW\\MIXED\\ETHYLBEN": {
+          "value": 0.37269112,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFLOW\\MIXED\\DPE": {
+          "value": 2.24518949,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFLOW\\MIXED\\PHENO-01": {
+          "value": 0.192825206,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFLOW\\MIXED\\BENZENE": {
+          "value": 0.0202016302,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFLOW\\MIXED\\O-CRE-01": {
+          "value": 2.34309405,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFLOW\\MIXED\\CH4O": {
+          "value": 0.421328176,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFLOW\\MIXED\\ACETI-01": {
+          "value": 4.64377623e-05,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFLOW\\MIXED\\CH2O": {
+          "value": 0.00782949417,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFLOW\\MIXED\\H2O": {
+          "value": 84.534243,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFLOW\\MIXED\\CH4": {
+          "value": 0.0241370257,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFLOW\\MIXED\\CO2": {
+          "value": 0.0553729127,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFLOW\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFLOW\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFLOW\\MIXED\\C": {
+          "value": 0.0912810621,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFLOW\\MIXED\\CO": {
+          "value": 0.0169328108,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFLOW\\MIXED\\GUAIA-01": {
+          "value": 0.000642602384,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFLOW\\MIXED\\CAT": {
+          "value": 0.0334322355,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFLOW\\MIXED\\ANISOLE": {
+          "value": 0.0124596835,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFLOW\\MIXED\\PPE": {
+          "value": 0.0128016398,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFLOW\\MIXED\\PEA": {
+          "value": 0.0126385132,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFLOW\\MIXED\\STYRENE": {
+          "value": 0.00465145583,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFLOW\\MIXED\\ETHYLBEN": {
+          "value": 0.00351041017,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFLOW\\MIXED\\DPE": {
+          "value": 0.0131906406,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFLOW\\MIXED\\PHENO-01": {
+          "value": 0.0020488681,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFLOW\\MIXED\\BENZENE": {
+          "value": 0.000258618471,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFLOW\\MIXED\\O-CRE-01": {
+          "value": 0.0216672442,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFLOW\\MIXED\\CH4O": {
+          "value": 0.0131491815,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFLOW\\MIXED\\ACETI-01": {
+          "value": 7.73285307e-07,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFLOW\\MIXED\\CH2O": {
+          "value": 0.000260754718,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFLOW\\MIXED\\H2O": {
+          "value": 4.69236354,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFLOW\\MIXED\\CH4": {
+          "value": 0.00150454322,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFLOW\\MIXED\\CO2": {
+          "value": 0.00125819505,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFLOW\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFLOW\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFLOW\\MIXED\\C": {
+          "value": 0.0075997887,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFLOW\\MIXED\\CO": {
+          "value": 0.000604518706,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFRAC\\MIXED\\GUAIA-01": {
+          "value": 0.000797720995,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFRAC\\MIXED\\CAT": {
+          "value": 0.0368129933,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFRAC\\MIXED\\ANISOLE": {
+          "value": 0.0134738709,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFRAC\\MIXED\\PPE": {
+          "value": 0.0253804917,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFRAC\\MIXED\\PEA": {
+          "value": 0.0154400433,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFRAC\\MIXED\\STYRENE": {
+          "value": 0.00484455445,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFRAC\\MIXED\\ETHYLBEN": {
+          "value": 0.00372690543,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFRAC\\MIXED\\DPE": {
+          "value": 0.0224518602,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFRAC\\MIXED\\PHENO-01": {
+          "value": 0.00192824907,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFRAC\\MIXED\\BENZENE": {
+          "value": 0.000202015989,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFRAC\\MIXED\\O-CRE-01": {
+          "value": 0.0234309042,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFRAC\\MIXED\\CH4O": {
+          "value": 0.00421327524,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFRAC\\MIXED\\ACETI-01": {
+          "value": 4.64376904e-07,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFRAC\\MIXED\\CH2O": {
+          "value": 7.82948205e-05,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFRAC\\MIXED\\H2O": {
+          "value": 0.845341121,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFRAC\\MIXED\\CH4": {
+          "value": 0.000241369884,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFRAC\\MIXED\\CO2": {
+          "value": 0.00055372827,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFRAC\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFRAC\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFRAC\\MIXED\\C": {
+          "value": 0.000912809208,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFRAC\\MIXED\\CO": {
+          "value": 0.000169327845,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFRAC\\MIXED\\GUAIA-01": {
+          "value": 0.000132932694,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFRAC\\MIXED\\CAT": {
+          "value": 0.0069159985,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFRAC\\MIXED\\ANISOLE": {
+          "value": 0.00257748699,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFRAC\\MIXED\\PPE": {
+          "value": 0.00264822618,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFRAC\\MIXED\\PEA": {
+          "value": 0.00261448081,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFRAC\\MIXED\\STYRENE": {
+          "value": 0.000962228851,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFRAC\\MIXED\\ETHYLBEN": {
+          "value": 0.000726185104,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFRAC\\MIXED\\DPE": {
+          "value": 0.0027286973,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFRAC\\MIXED\\PHENO-01": {
+          "value": 0.000423841496,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFRAC\\MIXED\\BENZENE": {
+          "value": 5.34994125e-05,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFRAC\\MIXED\\O-CRE-01": {
+          "value": 0.0044822198,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFRAC\\MIXED\\CH4O": {
+          "value": 0.0027201208,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFRAC\\MIXED\\ACETI-01": {
+          "value": 1.59966569e-07,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFRAC\\MIXED\\CH2O": {
+          "value": 5.39413297e-05,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFRAC\\MIXED\\H2O": {
+          "value": 0.97069127,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFRAC\\MIXED\\CH4": {
+          "value": 0.000311239092,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFRAC\\MIXED\\CO2": {
+          "value": 0.000260277991,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFRAC\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFRAC\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFRAC\\MIXED\\C": {
+          "value": 0.00157213918,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFRAC\\MIXED\\CO": {
+          "value": 0.000125054469,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S4\\Output\\MASSFLMX\\MIXED": {
+          "value": 100.000155,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S4\\Output\\MOLEFLMX\\MIXED": {
+          "value": 4.8340432,
+          "unit": "kmol/hr"
+        }
+      }
+    },
+    "S5": {
+      "temperature_C": 39.85000000000002,
+      "pressure_MPa": 25.000000032525,
+      "mass_flow_kg_h": 100.000155,
+      "mole_flow_kmol_h": 4.8340432,
+      "composition_kg_h": {
+        "GUAIA-01": 0.079772223,
+        "CAT": 3.68130503,
+        "ANISOLE": 1.34738917,
+        "PPE": 2.5380531,
+        "PEA": 1.54400672,
+        "STYRENE": 0.484456195,
+        "ETHYLBEN": 0.37269112,
+        "DPE": 2.24518949,
+        "PHENO-01": 0.192825206,
+        "BENZENE": 0.0202016302,
+        "O-CRE-01": 2.34309405,
+        "CH4O": 0.421328176,
+        "ACETI-01": 4.64377623e-05,
+        "CH2O": 0.00782949417,
+        "H2O": 84.534243,
+        "CH4": 0.0241370257,
+        "CO2": 0.0553729127,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.0912810621,
+        "CO": 0.0169328108
+      },
+      "composition_kmol_h": {
+        "GUAIA-01": 0.000642602384,
+        "CAT": 0.0334322355,
+        "ANISOLE": 0.0124596835,
+        "PPE": 0.0128016398,
+        "PEA": 0.0126385132,
+        "STYRENE": 0.00465145583,
+        "ETHYLBEN": 0.00351041017,
+        "DPE": 0.0131906406,
+        "PHENO-01": 0.0020488681,
+        "BENZENE": 0.000258618471,
+        "O-CRE-01": 0.0216672442,
+        "CH4O": 0.0131491815,
+        "ACETI-01": 7.73285307e-07,
+        "CH2O": 0.000260754718,
+        "H2O": 4.69236354,
+        "CH4": 0.00150454322,
+        "CO2": 0.00125819505,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.0075997887,
+        "CO": 0.000604518706
+      },
+      "mass_fraction": {
+        "GUAIA-01": 0.000797720995,
+        "CAT": 0.0368129933,
+        "ANISOLE": 0.0134738709,
+        "PPE": 0.0253804917,
+        "PEA": 0.0154400433,
+        "STYRENE": 0.00484455445,
+        "ETHYLBEN": 0.00372690543,
+        "DPE": 0.0224518602,
+        "PHENO-01": 0.00192824907,
+        "BENZENE": 0.000202015989,
+        "O-CRE-01": 0.0234309042,
+        "CH4O": 0.00421327524,
+        "ACETI-01": 4.64376904e-07,
+        "CH2O": 7.82948205e-05,
+        "H2O": 0.845341121,
+        "CH4": 0.000241369884,
+        "CO2": 0.00055372827,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.000912809208,
+        "CO": 0.000169327845
+      },
+      "mole_fraction": {
+        "GUAIA-01": 0.000132932694,
+        "CAT": 0.0069159985,
+        "ANISOLE": 0.00257748699,
+        "PPE": 0.00264822618,
+        "PEA": 0.00261448081,
+        "STYRENE": 0.000962228851,
+        "ETHYLBEN": 0.000726185104,
+        "DPE": 0.0027286973,
+        "PHENO-01": 0.000423841496,
+        "BENZENE": 5.34994125e-05,
+        "O-CRE-01": 0.0044822198,
+        "CH4O": 0.0027201208,
+        "ACETI-01": 1.59966569e-07,
+        "CH2O": 5.39413297e-05,
+        "H2O": 0.97069127,
+        "CH4": 0.000311239092,
+        "CO2": 0.000260277991,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.00157213918,
+        "CO": 0.000125054469
+      },
+      "component_ids": [
+        "GUAIA-01",
+        "CAT",
+        "ANISOLE",
+        "PPE",
+        "PEA",
+        "STYRENE",
+        "ETHYLBEN",
+        "DPE",
+        "PHENO-01",
+        "BENZENE",
+        "O-CRE-01",
+        "CH4O",
+        "ACETI-01",
+        "CH2O",
+        "H2O",
+        "CH4",
+        "CO2",
+        "H2",
+        "C2H2",
+        "C",
+        "CO"
+      ],
+      "substreams": {
+        "MIXED": {
+          "component_ids": [
+            "GUAIA-01",
+            "CAT",
+            "ANISOLE",
+            "PPE",
+            "PEA",
+            "STYRENE",
+            "ETHYLBEN",
+            "DPE",
+            "PHENO-01",
+            "BENZENE",
+            "O-CRE-01",
+            "CH4O",
+            "ACETI-01",
+            "CH2O",
+            "H2O",
+            "CH4",
+            "CO2",
+            "H2",
+            "C2H2",
+            "C",
+            "CO"
+          ],
+          "composition_kg_h": {
+            "GUAIA-01": 0.079772223,
+            "CAT": 3.68130503,
+            "ANISOLE": 1.34738917,
+            "PPE": 2.5380531,
+            "PEA": 1.54400672,
+            "STYRENE": 0.484456195,
+            "ETHYLBEN": 0.37269112,
+            "DPE": 2.24518949,
+            "PHENO-01": 0.192825206,
+            "BENZENE": 0.0202016302,
+            "O-CRE-01": 2.34309405,
+            "CH4O": 0.421328176,
+            "ACETI-01": 4.64377623e-05,
+            "CH2O": 0.00782949417,
+            "H2O": 84.534243,
+            "CH4": 0.0241370257,
+            "CO2": 0.0553729127,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.0912810621,
+            "CO": 0.0169328108
+          },
+          "composition_kmol_h": {
+            "GUAIA-01": 0.000642602384,
+            "CAT": 0.0334322355,
+            "ANISOLE": 0.0124596835,
+            "PPE": 0.0128016398,
+            "PEA": 0.0126385132,
+            "STYRENE": 0.00465145583,
+            "ETHYLBEN": 0.00351041017,
+            "DPE": 0.0131906406,
+            "PHENO-01": 0.0020488681,
+            "BENZENE": 0.000258618471,
+            "O-CRE-01": 0.0216672442,
+            "CH4O": 0.0131491815,
+            "ACETI-01": 7.73285307e-07,
+            "CH2O": 0.000260754718,
+            "H2O": 4.69236354,
+            "CH4": 0.00150454322,
+            "CO2": 0.00125819505,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.0075997887,
+            "CO": 0.000604518706
+          },
+          "mass_fraction": {
+            "GUAIA-01": 0.000797720995,
+            "CAT": 0.0368129933,
+            "ANISOLE": 0.0134738709,
+            "PPE": 0.0253804917,
+            "PEA": 0.0154400433,
+            "STYRENE": 0.00484455445,
+            "ETHYLBEN": 0.00372690543,
+            "DPE": 0.0224518602,
+            "PHENO-01": 0.00192824907,
+            "BENZENE": 0.000202015989,
+            "O-CRE-01": 0.0234309042,
+            "CH4O": 0.00421327524,
+            "ACETI-01": 4.64376904e-07,
+            "CH2O": 7.82948205e-05,
+            "H2O": 0.845341121,
+            "CH4": 0.000241369884,
+            "CO2": 0.00055372827,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.000912809208,
+            "CO": 0.000169327845
+          },
+          "mole_fraction": {
+            "GUAIA-01": 0.000132932694,
+            "CAT": 0.0069159985,
+            "ANISOLE": 0.00257748699,
+            "PPE": 0.00264822618,
+            "PEA": 0.00261448081,
+            "STYRENE": 0.000962228851,
+            "ETHYLBEN": 0.000726185104,
+            "DPE": 0.0027286973,
+            "PHENO-01": 0.000423841496,
+            "BENZENE": 5.34994125e-05,
+            "O-CRE-01": 0.0044822198,
+            "CH4O": 0.0027201208,
+            "ACETI-01": 1.59966569e-07,
+            "CH2O": 5.39413297e-05,
+            "H2O": 0.97069127,
+            "CH4": 0.000311239092,
+            "CO2": 0.000260277991,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.00157213918,
+            "CO": 0.000125054469
+          },
+          "mass_flow_kg_h": 100.000155,
+          "mole_flow_kmol_h": 4.8340432
+        }
+      },
+      "component_data_status": "complete",
+      "missing_mass_components": [],
+      "extraction_warnings": [],
+      "source_quantities": {
+        "\\Data\\Streams\\S5\\Output\\TEMP_OUT\\MIXED": {
+          "value": 313.0,
+          "unit": "K"
+        },
+        "\\Data\\Streams\\S5\\Output\\PRES_OUT\\MIXED": {
+          "value": 246.730817,
+          "unit": "atm"
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFLOW\\MIXED\\GUAIA-01": {
+          "value": 0.079772223,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFLOW\\MIXED\\CAT": {
+          "value": 3.68130503,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFLOW\\MIXED\\ANISOLE": {
+          "value": 1.34738917,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFLOW\\MIXED\\PPE": {
+          "value": 2.5380531,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFLOW\\MIXED\\PEA": {
+          "value": 1.54400672,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFLOW\\MIXED\\STYRENE": {
+          "value": 0.484456195,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFLOW\\MIXED\\ETHYLBEN": {
+          "value": 0.37269112,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFLOW\\MIXED\\DPE": {
+          "value": 2.24518949,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFLOW\\MIXED\\PHENO-01": {
+          "value": 0.192825206,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFLOW\\MIXED\\BENZENE": {
+          "value": 0.0202016302,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFLOW\\MIXED\\O-CRE-01": {
+          "value": 2.34309405,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFLOW\\MIXED\\CH4O": {
+          "value": 0.421328176,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFLOW\\MIXED\\ACETI-01": {
+          "value": 4.64377623e-05,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFLOW\\MIXED\\CH2O": {
+          "value": 0.00782949417,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFLOW\\MIXED\\H2O": {
+          "value": 84.534243,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFLOW\\MIXED\\CH4": {
+          "value": 0.0241370257,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFLOW\\MIXED\\CO2": {
+          "value": 0.0553729127,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFLOW\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFLOW\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFLOW\\MIXED\\C": {
+          "value": 0.0912810621,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFLOW\\MIXED\\CO": {
+          "value": 0.0169328108,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFLOW\\MIXED\\GUAIA-01": {
+          "value": 0.000642602384,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFLOW\\MIXED\\CAT": {
+          "value": 0.0334322355,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFLOW\\MIXED\\ANISOLE": {
+          "value": 0.0124596835,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFLOW\\MIXED\\PPE": {
+          "value": 0.0128016398,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFLOW\\MIXED\\PEA": {
+          "value": 0.0126385132,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFLOW\\MIXED\\STYRENE": {
+          "value": 0.00465145583,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFLOW\\MIXED\\ETHYLBEN": {
+          "value": 0.00351041017,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFLOW\\MIXED\\DPE": {
+          "value": 0.0131906406,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFLOW\\MIXED\\PHENO-01": {
+          "value": 0.0020488681,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFLOW\\MIXED\\BENZENE": {
+          "value": 0.000258618471,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFLOW\\MIXED\\O-CRE-01": {
+          "value": 0.0216672442,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFLOW\\MIXED\\CH4O": {
+          "value": 0.0131491815,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFLOW\\MIXED\\ACETI-01": {
+          "value": 7.73285307e-07,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFLOW\\MIXED\\CH2O": {
+          "value": 0.000260754718,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFLOW\\MIXED\\H2O": {
+          "value": 4.69236354,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFLOW\\MIXED\\CH4": {
+          "value": 0.00150454322,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFLOW\\MIXED\\CO2": {
+          "value": 0.00125819505,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFLOW\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFLOW\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFLOW\\MIXED\\C": {
+          "value": 0.0075997887,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFLOW\\MIXED\\CO": {
+          "value": 0.000604518706,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFRAC\\MIXED\\GUAIA-01": {
+          "value": 0.000797720995,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFRAC\\MIXED\\CAT": {
+          "value": 0.0368129933,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFRAC\\MIXED\\ANISOLE": {
+          "value": 0.0134738709,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFRAC\\MIXED\\PPE": {
+          "value": 0.0253804917,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFRAC\\MIXED\\PEA": {
+          "value": 0.0154400433,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFRAC\\MIXED\\STYRENE": {
+          "value": 0.00484455445,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFRAC\\MIXED\\ETHYLBEN": {
+          "value": 0.00372690543,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFRAC\\MIXED\\DPE": {
+          "value": 0.0224518602,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFRAC\\MIXED\\PHENO-01": {
+          "value": 0.00192824907,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFRAC\\MIXED\\BENZENE": {
+          "value": 0.000202015989,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFRAC\\MIXED\\O-CRE-01": {
+          "value": 0.0234309042,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFRAC\\MIXED\\CH4O": {
+          "value": 0.00421327524,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFRAC\\MIXED\\ACETI-01": {
+          "value": 4.64376904e-07,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFRAC\\MIXED\\CH2O": {
+          "value": 7.82948205e-05,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFRAC\\MIXED\\H2O": {
+          "value": 0.845341121,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFRAC\\MIXED\\CH4": {
+          "value": 0.000241369884,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFRAC\\MIXED\\CO2": {
+          "value": 0.00055372827,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFRAC\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFRAC\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFRAC\\MIXED\\C": {
+          "value": 0.000912809208,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFRAC\\MIXED\\CO": {
+          "value": 0.000169327845,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFRAC\\MIXED\\GUAIA-01": {
+          "value": 0.000132932694,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFRAC\\MIXED\\CAT": {
+          "value": 0.0069159985,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFRAC\\MIXED\\ANISOLE": {
+          "value": 0.00257748699,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFRAC\\MIXED\\PPE": {
+          "value": 0.00264822618,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFRAC\\MIXED\\PEA": {
+          "value": 0.00261448081,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFRAC\\MIXED\\STYRENE": {
+          "value": 0.000962228851,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFRAC\\MIXED\\ETHYLBEN": {
+          "value": 0.000726185104,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFRAC\\MIXED\\DPE": {
+          "value": 0.0027286973,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFRAC\\MIXED\\PHENO-01": {
+          "value": 0.000423841496,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFRAC\\MIXED\\BENZENE": {
+          "value": 5.34994125e-05,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFRAC\\MIXED\\O-CRE-01": {
+          "value": 0.0044822198,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFRAC\\MIXED\\CH4O": {
+          "value": 0.0027201208,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFRAC\\MIXED\\ACETI-01": {
+          "value": 1.59966569e-07,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFRAC\\MIXED\\CH2O": {
+          "value": 5.39413297e-05,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFRAC\\MIXED\\H2O": {
+          "value": 0.97069127,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFRAC\\MIXED\\CH4": {
+          "value": 0.000311239092,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFRAC\\MIXED\\CO2": {
+          "value": 0.000260277991,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFRAC\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFRAC\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFRAC\\MIXED\\C": {
+          "value": 0.00157213918,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFRAC\\MIXED\\CO": {
+          "value": 0.000125054469,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S5\\Output\\MASSFLMX\\MIXED": {
+          "value": 100.000155,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S5\\Output\\MOLEFLMX\\MIXED": {
+          "value": 4.8340432,
+          "unit": "kmol/hr"
+        }
+      }
+    },
+    "S6": {
+      "temperature_C": 39.85000100000002,
+      "pressure_MPa": 0.100000000028775,
+      "mass_flow_kg_h": 100.000155,
+      "mole_flow_kmol_h": 4.8340432,
+      "composition_kg_h": {
+        "GUAIA-01": 0.079772223,
+        "CAT": 3.68130503,
+        "ANISOLE": 1.34738917,
+        "PPE": 2.5380531,
+        "PEA": 1.54400672,
+        "STYRENE": 0.484456195,
+        "ETHYLBEN": 0.37269112,
+        "DPE": 2.24518949,
+        "PHENO-01": 0.192825206,
+        "BENZENE": 0.0202016302,
+        "O-CRE-01": 2.34309405,
+        "CH4O": 0.421328176,
+        "ACETI-01": 4.64377623e-05,
+        "CH2O": 0.00782949417,
+        "H2O": 84.534243,
+        "CH4": 0.0241370257,
+        "CO2": 0.0553729127,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.0912810621,
+        "CO": 0.0169328108
+      },
+      "composition_kmol_h": {
+        "GUAIA-01": 0.000642602384,
+        "CAT": 0.0334322355,
+        "ANISOLE": 0.0124596835,
+        "PPE": 0.0128016398,
+        "PEA": 0.0126385132,
+        "STYRENE": 0.00465145583,
+        "ETHYLBEN": 0.00351041017,
+        "DPE": 0.0131906406,
+        "PHENO-01": 0.0020488681,
+        "BENZENE": 0.000258618471,
+        "O-CRE-01": 0.0216672442,
+        "CH4O": 0.0131491815,
+        "ACETI-01": 7.73285307e-07,
+        "CH2O": 0.000260754718,
+        "H2O": 4.69236354,
+        "CH4": 0.00150454322,
+        "CO2": 0.00125819505,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.0075997887,
+        "CO": 0.000604518706
+      },
+      "mass_fraction": {
+        "GUAIA-01": 0.000797720995,
+        "CAT": 0.0368129933,
+        "ANISOLE": 0.0134738709,
+        "PPE": 0.0253804917,
+        "PEA": 0.0154400433,
+        "STYRENE": 0.00484455445,
+        "ETHYLBEN": 0.00372690543,
+        "DPE": 0.0224518602,
+        "PHENO-01": 0.00192824907,
+        "BENZENE": 0.000202015989,
+        "O-CRE-01": 0.0234309042,
+        "CH4O": 0.00421327524,
+        "ACETI-01": 4.64376904e-07,
+        "CH2O": 7.82948205e-05,
+        "H2O": 0.845341121,
+        "CH4": 0.000241369884,
+        "CO2": 0.00055372827,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.000912809208,
+        "CO": 0.000169327845
+      },
+      "mole_fraction": {
+        "GUAIA-01": 0.000132932694,
+        "CAT": 0.0069159985,
+        "ANISOLE": 0.00257748699,
+        "PPE": 0.00264822618,
+        "PEA": 0.00261448081,
+        "STYRENE": 0.000962228851,
+        "ETHYLBEN": 0.000726185104,
+        "DPE": 0.0027286973,
+        "PHENO-01": 0.000423841496,
+        "BENZENE": 5.34994125e-05,
+        "O-CRE-01": 0.0044822198,
+        "CH4O": 0.0027201208,
+        "ACETI-01": 1.59966569e-07,
+        "CH2O": 5.39413297e-05,
+        "H2O": 0.97069127,
+        "CH4": 0.000311239092,
+        "CO2": 0.000260277991,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.00157213918,
+        "CO": 0.000125054469
+      },
+      "component_ids": [
+        "GUAIA-01",
+        "CAT",
+        "ANISOLE",
+        "PPE",
+        "PEA",
+        "STYRENE",
+        "ETHYLBEN",
+        "DPE",
+        "PHENO-01",
+        "BENZENE",
+        "O-CRE-01",
+        "CH4O",
+        "ACETI-01",
+        "CH2O",
+        "H2O",
+        "CH4",
+        "CO2",
+        "H2",
+        "C2H2",
+        "C",
+        "CO"
+      ],
+      "substreams": {
+        "MIXED": {
+          "component_ids": [
+            "GUAIA-01",
+            "CAT",
+            "ANISOLE",
+            "PPE",
+            "PEA",
+            "STYRENE",
+            "ETHYLBEN",
+            "DPE",
+            "PHENO-01",
+            "BENZENE",
+            "O-CRE-01",
+            "CH4O",
+            "ACETI-01",
+            "CH2O",
+            "H2O",
+            "CH4",
+            "CO2",
+            "H2",
+            "C2H2",
+            "C",
+            "CO"
+          ],
+          "composition_kg_h": {
+            "GUAIA-01": 0.079772223,
+            "CAT": 3.68130503,
+            "ANISOLE": 1.34738917,
+            "PPE": 2.5380531,
+            "PEA": 1.54400672,
+            "STYRENE": 0.484456195,
+            "ETHYLBEN": 0.37269112,
+            "DPE": 2.24518949,
+            "PHENO-01": 0.192825206,
+            "BENZENE": 0.0202016302,
+            "O-CRE-01": 2.34309405,
+            "CH4O": 0.421328176,
+            "ACETI-01": 4.64377623e-05,
+            "CH2O": 0.00782949417,
+            "H2O": 84.534243,
+            "CH4": 0.0241370257,
+            "CO2": 0.0553729127,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.0912810621,
+            "CO": 0.0169328108
+          },
+          "composition_kmol_h": {
+            "GUAIA-01": 0.000642602384,
+            "CAT": 0.0334322355,
+            "ANISOLE": 0.0124596835,
+            "PPE": 0.0128016398,
+            "PEA": 0.0126385132,
+            "STYRENE": 0.00465145583,
+            "ETHYLBEN": 0.00351041017,
+            "DPE": 0.0131906406,
+            "PHENO-01": 0.0020488681,
+            "BENZENE": 0.000258618471,
+            "O-CRE-01": 0.0216672442,
+            "CH4O": 0.0131491815,
+            "ACETI-01": 7.73285307e-07,
+            "CH2O": 0.000260754718,
+            "H2O": 4.69236354,
+            "CH4": 0.00150454322,
+            "CO2": 0.00125819505,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.0075997887,
+            "CO": 0.000604518706
+          },
+          "mass_fraction": {
+            "GUAIA-01": 0.000797720995,
+            "CAT": 0.0368129933,
+            "ANISOLE": 0.0134738709,
+            "PPE": 0.0253804917,
+            "PEA": 0.0154400433,
+            "STYRENE": 0.00484455445,
+            "ETHYLBEN": 0.00372690543,
+            "DPE": 0.0224518602,
+            "PHENO-01": 0.00192824907,
+            "BENZENE": 0.000202015989,
+            "O-CRE-01": 0.0234309042,
+            "CH4O": 0.00421327524,
+            "ACETI-01": 4.64376904e-07,
+            "CH2O": 7.82948205e-05,
+            "H2O": 0.845341121,
+            "CH4": 0.000241369884,
+            "CO2": 0.00055372827,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.000912809208,
+            "CO": 0.000169327845
+          },
+          "mole_fraction": {
+            "GUAIA-01": 0.000132932694,
+            "CAT": 0.0069159985,
+            "ANISOLE": 0.00257748699,
+            "PPE": 0.00264822618,
+            "PEA": 0.00261448081,
+            "STYRENE": 0.000962228851,
+            "ETHYLBEN": 0.000726185104,
+            "DPE": 0.0027286973,
+            "PHENO-01": 0.000423841496,
+            "BENZENE": 5.34994125e-05,
+            "O-CRE-01": 0.0044822198,
+            "CH4O": 0.0027201208,
+            "ACETI-01": 1.59966569e-07,
+            "CH2O": 5.39413297e-05,
+            "H2O": 0.97069127,
+            "CH4": 0.000311239092,
+            "CO2": 0.000260277991,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.00157213918,
+            "CO": 0.000125054469
+          },
+          "mass_flow_kg_h": 100.000155,
+          "mole_flow_kmol_h": 4.8340432
+        }
+      },
+      "component_data_status": "complete",
+      "missing_mass_components": [],
+      "extraction_warnings": [],
+      "source_quantities": {
+        "\\Data\\Streams\\S6\\Output\\TEMP_OUT\\MIXED": {
+          "value": 313.000001,
+          "unit": "K"
+        },
+        "\\Data\\Streams\\S6\\Output\\PRES_OUT\\MIXED": {
+          "value": 0.986923267,
+          "unit": "atm"
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFLOW\\MIXED\\GUAIA-01": {
+          "value": 0.079772223,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFLOW\\MIXED\\CAT": {
+          "value": 3.68130503,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFLOW\\MIXED\\ANISOLE": {
+          "value": 1.34738917,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFLOW\\MIXED\\PPE": {
+          "value": 2.5380531,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFLOW\\MIXED\\PEA": {
+          "value": 1.54400672,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFLOW\\MIXED\\STYRENE": {
+          "value": 0.484456195,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFLOW\\MIXED\\ETHYLBEN": {
+          "value": 0.37269112,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFLOW\\MIXED\\DPE": {
+          "value": 2.24518949,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFLOW\\MIXED\\PHENO-01": {
+          "value": 0.192825206,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFLOW\\MIXED\\BENZENE": {
+          "value": 0.0202016302,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFLOW\\MIXED\\O-CRE-01": {
+          "value": 2.34309405,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFLOW\\MIXED\\CH4O": {
+          "value": 0.421328176,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFLOW\\MIXED\\ACETI-01": {
+          "value": 4.64377623e-05,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFLOW\\MIXED\\CH2O": {
+          "value": 0.00782949417,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFLOW\\MIXED\\H2O": {
+          "value": 84.534243,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFLOW\\MIXED\\CH4": {
+          "value": 0.0241370257,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFLOW\\MIXED\\CO2": {
+          "value": 0.0553729127,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFLOW\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFLOW\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFLOW\\MIXED\\C": {
+          "value": 0.0912810621,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFLOW\\MIXED\\CO": {
+          "value": 0.0169328108,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFLOW\\MIXED\\GUAIA-01": {
+          "value": 0.000642602384,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFLOW\\MIXED\\CAT": {
+          "value": 0.0334322355,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFLOW\\MIXED\\ANISOLE": {
+          "value": 0.0124596835,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFLOW\\MIXED\\PPE": {
+          "value": 0.0128016398,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFLOW\\MIXED\\PEA": {
+          "value": 0.0126385132,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFLOW\\MIXED\\STYRENE": {
+          "value": 0.00465145583,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFLOW\\MIXED\\ETHYLBEN": {
+          "value": 0.00351041017,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFLOW\\MIXED\\DPE": {
+          "value": 0.0131906406,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFLOW\\MIXED\\PHENO-01": {
+          "value": 0.0020488681,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFLOW\\MIXED\\BENZENE": {
+          "value": 0.000258618471,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFLOW\\MIXED\\O-CRE-01": {
+          "value": 0.0216672442,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFLOW\\MIXED\\CH4O": {
+          "value": 0.0131491815,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFLOW\\MIXED\\ACETI-01": {
+          "value": 7.73285307e-07,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFLOW\\MIXED\\CH2O": {
+          "value": 0.000260754718,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFLOW\\MIXED\\H2O": {
+          "value": 4.69236354,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFLOW\\MIXED\\CH4": {
+          "value": 0.00150454322,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFLOW\\MIXED\\CO2": {
+          "value": 0.00125819505,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFLOW\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFLOW\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFLOW\\MIXED\\C": {
+          "value": 0.0075997887,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFLOW\\MIXED\\CO": {
+          "value": 0.000604518706,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFRAC\\MIXED\\GUAIA-01": {
+          "value": 0.000797720995,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFRAC\\MIXED\\CAT": {
+          "value": 0.0368129933,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFRAC\\MIXED\\ANISOLE": {
+          "value": 0.0134738709,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFRAC\\MIXED\\PPE": {
+          "value": 0.0253804917,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFRAC\\MIXED\\PEA": {
+          "value": 0.0154400433,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFRAC\\MIXED\\STYRENE": {
+          "value": 0.00484455445,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFRAC\\MIXED\\ETHYLBEN": {
+          "value": 0.00372690543,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFRAC\\MIXED\\DPE": {
+          "value": 0.0224518602,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFRAC\\MIXED\\PHENO-01": {
+          "value": 0.00192824907,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFRAC\\MIXED\\BENZENE": {
+          "value": 0.000202015989,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFRAC\\MIXED\\O-CRE-01": {
+          "value": 0.0234309042,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFRAC\\MIXED\\CH4O": {
+          "value": 0.00421327524,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFRAC\\MIXED\\ACETI-01": {
+          "value": 4.64376904e-07,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFRAC\\MIXED\\CH2O": {
+          "value": 7.82948205e-05,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFRAC\\MIXED\\H2O": {
+          "value": 0.845341121,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFRAC\\MIXED\\CH4": {
+          "value": 0.000241369884,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFRAC\\MIXED\\CO2": {
+          "value": 0.00055372827,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFRAC\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFRAC\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFRAC\\MIXED\\C": {
+          "value": 0.000912809208,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFRAC\\MIXED\\CO": {
+          "value": 0.000169327845,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFRAC\\MIXED\\GUAIA-01": {
+          "value": 0.000132932694,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFRAC\\MIXED\\CAT": {
+          "value": 0.0069159985,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFRAC\\MIXED\\ANISOLE": {
+          "value": 0.00257748699,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFRAC\\MIXED\\PPE": {
+          "value": 0.00264822618,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFRAC\\MIXED\\PEA": {
+          "value": 0.00261448081,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFRAC\\MIXED\\STYRENE": {
+          "value": 0.000962228851,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFRAC\\MIXED\\ETHYLBEN": {
+          "value": 0.000726185104,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFRAC\\MIXED\\DPE": {
+          "value": 0.0027286973,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFRAC\\MIXED\\PHENO-01": {
+          "value": 0.000423841496,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFRAC\\MIXED\\BENZENE": {
+          "value": 5.34994125e-05,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFRAC\\MIXED\\O-CRE-01": {
+          "value": 0.0044822198,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFRAC\\MIXED\\CH4O": {
+          "value": 0.0027201208,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFRAC\\MIXED\\ACETI-01": {
+          "value": 1.59966569e-07,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFRAC\\MIXED\\CH2O": {
+          "value": 5.39413297e-05,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFRAC\\MIXED\\H2O": {
+          "value": 0.97069127,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFRAC\\MIXED\\CH4": {
+          "value": 0.000311239092,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFRAC\\MIXED\\CO2": {
+          "value": 0.000260277991,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFRAC\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFRAC\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFRAC\\MIXED\\C": {
+          "value": 0.00157213918,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFRAC\\MIXED\\CO": {
+          "value": 0.000125054469,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S6\\Output\\MASSFLMX\\MIXED": {
+          "value": 100.000155,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S6\\Output\\MOLEFLMX\\MIXED": {
+          "value": 4.8340432,
+          "unit": "kmol/hr"
+        }
+      }
+    },
+    "S7": {
+      "temperature_C": 39.85000000000002,
+      "pressure_MPa": 0.010132500000000001,
+      "mass_flow_kg_h": 98.6362315,
+      "mole_flow_kmol_h": 4.79619017,
+      "composition_kg_h": {
+        "GUAIA-01": 0.0797698478,
+        "CAT": 3.68128024,
+        "ANISOLE": 1.34634357,
+        "PPE": 2.5380531,
+        "PEA": 1.54398633,
+        "STYRENE": 0.0702652452,
+        "ETHYLBEN": 0.0260918391,
+        "DPE": 2.24517702,
+        "PHENO-01": 0.192518138,
+        "BENZENE": 0.00105261402,
+        "O-CRE-01": 2.34309345,
+        "CH4O": 0.411129721,
+        "ACETI-01": 4.63165627e-05,
+        "CH2O": 0.00565121597,
+        "H2O": 84.0501728,
+        "CH4": 0.000931985063,
+        "CO2": 0.00910438964,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.0912810621,
+        "CO": 0.000282542552
+      },
+      "composition_kmol_h": {
+        "GUAIA-01": 0.000642583251,
+        "CAT": 0.0334320104,
+        "ANISOLE": 0.0124500145,
+        "PPE": 0.0128016398,
+        "PEA": 0.0126383463,
+        "STYRENE": 0.000674644453,
+        "ETHYLBEN": 0.000245761308,
+        "DPE": 0.0131905673,
+        "PHENO-01": 0.00204560535,
+        "BENZENE": 1.34754188e-05,
+        "O-CRE-01": 0.0216672386,
+        "CH4O": 0.0128308991,
+        "ACETI-01": 7.71267082e-07,
+        "CH2O": 0.000188208995,
+        "H2O": 4.66549356,
+        "CH4": 5.80938107e-05,
+        "CO2": 0.00020687187,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.0075997887,
+        "CO": 1.00870588e-05
+      },
+      "mass_fraction": {
+        "GUAIA-01": 0.000808727651,
+        "CAT": 0.0373217852,
+        "ANISOLE": 0.0136495845,
+        "PPE": 0.0257314484,
+        "PEA": 0.0156533386,
+        "STYRENE": 0.000712367496,
+        "ETHYLBEN": 0.000264525912,
+        "DPE": 0.0227621938,
+        "PHENO-01": 0.00195179941,
+        "BENZENE": 1.06716771e-05,
+        "O-CRE-01": 0.0237548963,
+        "CH4O": 0.004168141,
+        "ACETI-01": 4.69569468e-07,
+        "CH2O": 5.72935106e-05,
+        "H2O": 0.85212271,
+        "CH4": 9.44870915e-06,
+        "CO2": 9.23026915e-05,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.000925431362,
+        "CO": 2.86449054e-06
+      },
+      "mole_fraction": {
+        "GUAIA-01": 0.000133977851,
+        "CAT": 0.00697053479,
+        "ANISOLE": 0.00259581336,
+        "PPE": 0.00266912681,
+        "PEA": 0.00263508032,
+        "STYRENE": 0.000140662574,
+        "ETHYLBEN": 5.12409431e-05,
+        "DPE": 0.00275021775,
+        "PHENO-01": 0.000426506305,
+        "BENZENE": 2.80960895e-06,
+        "O-CRE-01": 0.00451759373,
+        "CH4O": 0.00267522734,
+        "ACETI-01": 1.60808278e-07,
+        "CH2O": 3.92413536e-05,
+        "H2O": 0.972749911,
+        "CH4": 1.21124911e-05,
+        "CO2": 4.31325413e-05,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.00158454699,
+        "CO": 2.10313987e-06
+      },
+      "component_ids": [
+        "GUAIA-01",
+        "CAT",
+        "ANISOLE",
+        "PPE",
+        "PEA",
+        "STYRENE",
+        "ETHYLBEN",
+        "DPE",
+        "PHENO-01",
+        "BENZENE",
+        "O-CRE-01",
+        "CH4O",
+        "ACETI-01",
+        "CH2O",
+        "H2O",
+        "CH4",
+        "CO2",
+        "H2",
+        "C2H2",
+        "C",
+        "CO"
+      ],
+      "substreams": {
+        "MIXED": {
+          "component_ids": [
+            "GUAIA-01",
+            "CAT",
+            "ANISOLE",
+            "PPE",
+            "PEA",
+            "STYRENE",
+            "ETHYLBEN",
+            "DPE",
+            "PHENO-01",
+            "BENZENE",
+            "O-CRE-01",
+            "CH4O",
+            "ACETI-01",
+            "CH2O",
+            "H2O",
+            "CH4",
+            "CO2",
+            "H2",
+            "C2H2",
+            "C",
+            "CO"
+          ],
+          "composition_kg_h": {
+            "GUAIA-01": 0.0797698478,
+            "CAT": 3.68128024,
+            "ANISOLE": 1.34634357,
+            "PPE": 2.5380531,
+            "PEA": 1.54398633,
+            "STYRENE": 0.0702652452,
+            "ETHYLBEN": 0.0260918391,
+            "DPE": 2.24517702,
+            "PHENO-01": 0.192518138,
+            "BENZENE": 0.00105261402,
+            "O-CRE-01": 2.34309345,
+            "CH4O": 0.411129721,
+            "ACETI-01": 4.63165627e-05,
+            "CH2O": 0.00565121597,
+            "H2O": 84.0501728,
+            "CH4": 0.000931985063,
+            "CO2": 0.00910438964,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.0912810621,
+            "CO": 0.000282542552
+          },
+          "composition_kmol_h": {
+            "GUAIA-01": 0.000642583251,
+            "CAT": 0.0334320104,
+            "ANISOLE": 0.0124500145,
+            "PPE": 0.0128016398,
+            "PEA": 0.0126383463,
+            "STYRENE": 0.000674644453,
+            "ETHYLBEN": 0.000245761308,
+            "DPE": 0.0131905673,
+            "PHENO-01": 0.00204560535,
+            "BENZENE": 1.34754188e-05,
+            "O-CRE-01": 0.0216672386,
+            "CH4O": 0.0128308991,
+            "ACETI-01": 7.71267082e-07,
+            "CH2O": 0.000188208995,
+            "H2O": 4.66549356,
+            "CH4": 5.80938107e-05,
+            "CO2": 0.00020687187,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.0075997887,
+            "CO": 1.00870588e-05
+          },
+          "mass_fraction": {
+            "GUAIA-01": 0.000808727651,
+            "CAT": 0.0373217852,
+            "ANISOLE": 0.0136495845,
+            "PPE": 0.0257314484,
+            "PEA": 0.0156533386,
+            "STYRENE": 0.000712367496,
+            "ETHYLBEN": 0.000264525912,
+            "DPE": 0.0227621938,
+            "PHENO-01": 0.00195179941,
+            "BENZENE": 1.06716771e-05,
+            "O-CRE-01": 0.0237548963,
+            "CH4O": 0.004168141,
+            "ACETI-01": 4.69569468e-07,
+            "CH2O": 5.72935106e-05,
+            "H2O": 0.85212271,
+            "CH4": 9.44870915e-06,
+            "CO2": 9.23026915e-05,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.000925431362,
+            "CO": 2.86449054e-06
+          },
+          "mole_fraction": {
+            "GUAIA-01": 0.000133977851,
+            "CAT": 0.00697053479,
+            "ANISOLE": 0.00259581336,
+            "PPE": 0.00266912681,
+            "PEA": 0.00263508032,
+            "STYRENE": 0.000140662574,
+            "ETHYLBEN": 5.12409431e-05,
+            "DPE": 0.00275021775,
+            "PHENO-01": 0.000426506305,
+            "BENZENE": 2.80960895e-06,
+            "O-CRE-01": 0.00451759373,
+            "CH4O": 0.00267522734,
+            "ACETI-01": 1.60808278e-07,
+            "CH2O": 3.92413536e-05,
+            "H2O": 0.972749911,
+            "CH4": 1.21124911e-05,
+            "CO2": 4.31325413e-05,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.00158454699,
+            "CO": 2.10313987e-06
+          },
+          "mass_flow_kg_h": 98.6362315,
+          "mole_flow_kmol_h": 4.79619017
+        }
+      },
+      "component_data_status": "complete",
+      "missing_mass_components": [],
+      "extraction_warnings": [],
+      "source_quantities": {
+        "\\Data\\Streams\\S7\\Output\\TEMP_OUT\\MIXED": {
+          "value": 313.0,
+          "unit": "K"
+        },
+        "\\Data\\Streams\\S7\\Output\\PRES_OUT\\MIXED": {
+          "value": 0.1,
+          "unit": "atm"
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\GUAIA-01": {
+          "value": 0.0797698478,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CAT": {
+          "value": 3.68128024,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\ANISOLE": {
+          "value": 1.34634357,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\PPE": {
+          "value": 2.5380531,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\PEA": {
+          "value": 1.54398633,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\STYRENE": {
+          "value": 0.0702652452,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\ETHYLBEN": {
+          "value": 0.0260918391,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\DPE": {
+          "value": 2.24517702,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\PHENO-01": {
+          "value": 0.192518138,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\BENZENE": {
+          "value": 0.00105261402,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\O-CRE-01": {
+          "value": 2.34309345,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CH4O": {
+          "value": 0.411129721,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\ACETI-01": {
+          "value": 4.63165627e-05,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CH2O": {
+          "value": 0.00565121597,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\H2O": {
+          "value": 84.0501728,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CH4": {
+          "value": 0.000931985063,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CO2": {
+          "value": 0.00910438964,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\C": {
+          "value": 0.0912810621,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CO": {
+          "value": 0.000282542552,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFLOW\\MIXED\\GUAIA-01": {
+          "value": 0.000642583251,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFLOW\\MIXED\\CAT": {
+          "value": 0.0334320104,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFLOW\\MIXED\\ANISOLE": {
+          "value": 0.0124500145,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFLOW\\MIXED\\PPE": {
+          "value": 0.0128016398,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFLOW\\MIXED\\PEA": {
+          "value": 0.0126383463,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFLOW\\MIXED\\STYRENE": {
+          "value": 0.000674644453,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFLOW\\MIXED\\ETHYLBEN": {
+          "value": 0.000245761308,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFLOW\\MIXED\\DPE": {
+          "value": 0.0131905673,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFLOW\\MIXED\\PHENO-01": {
+          "value": 0.00204560535,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFLOW\\MIXED\\BENZENE": {
+          "value": 1.34754188e-05,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFLOW\\MIXED\\O-CRE-01": {
+          "value": 0.0216672386,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFLOW\\MIXED\\CH4O": {
+          "value": 0.0128308991,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFLOW\\MIXED\\ACETI-01": {
+          "value": 7.71267082e-07,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFLOW\\MIXED\\CH2O": {
+          "value": 0.000188208995,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFLOW\\MIXED\\H2O": {
+          "value": 4.66549356,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFLOW\\MIXED\\CH4": {
+          "value": 5.80938107e-05,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFLOW\\MIXED\\CO2": {
+          "value": 0.00020687187,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFLOW\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFLOW\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFLOW\\MIXED\\C": {
+          "value": 0.0075997887,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFLOW\\MIXED\\CO": {
+          "value": 1.00870588e-05,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFRAC\\MIXED\\GUAIA-01": {
+          "value": 0.000808727651,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFRAC\\MIXED\\CAT": {
+          "value": 0.0373217852,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFRAC\\MIXED\\ANISOLE": {
+          "value": 0.0136495845,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFRAC\\MIXED\\PPE": {
+          "value": 0.0257314484,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFRAC\\MIXED\\PEA": {
+          "value": 0.0156533386,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFRAC\\MIXED\\STYRENE": {
+          "value": 0.000712367496,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFRAC\\MIXED\\ETHYLBEN": {
+          "value": 0.000264525912,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFRAC\\MIXED\\DPE": {
+          "value": 0.0227621938,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFRAC\\MIXED\\PHENO-01": {
+          "value": 0.00195179941,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFRAC\\MIXED\\BENZENE": {
+          "value": 1.06716771e-05,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFRAC\\MIXED\\O-CRE-01": {
+          "value": 0.0237548963,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFRAC\\MIXED\\CH4O": {
+          "value": 0.004168141,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFRAC\\MIXED\\ACETI-01": {
+          "value": 4.69569468e-07,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFRAC\\MIXED\\CH2O": {
+          "value": 5.72935106e-05,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFRAC\\MIXED\\H2O": {
+          "value": 0.85212271,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFRAC\\MIXED\\CH4": {
+          "value": 9.44870915e-06,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFRAC\\MIXED\\CO2": {
+          "value": 9.23026915e-05,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFRAC\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFRAC\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFRAC\\MIXED\\C": {
+          "value": 0.000925431362,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFRAC\\MIXED\\CO": {
+          "value": 2.86449054e-06,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFRAC\\MIXED\\GUAIA-01": {
+          "value": 0.000133977851,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFRAC\\MIXED\\CAT": {
+          "value": 0.00697053479,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFRAC\\MIXED\\ANISOLE": {
+          "value": 0.00259581336,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFRAC\\MIXED\\PPE": {
+          "value": 0.00266912681,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFRAC\\MIXED\\PEA": {
+          "value": 0.00263508032,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFRAC\\MIXED\\STYRENE": {
+          "value": 0.000140662574,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFRAC\\MIXED\\ETHYLBEN": {
+          "value": 5.12409431e-05,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFRAC\\MIXED\\DPE": {
+          "value": 0.00275021775,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFRAC\\MIXED\\PHENO-01": {
+          "value": 0.000426506305,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFRAC\\MIXED\\BENZENE": {
+          "value": 2.80960895e-06,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFRAC\\MIXED\\O-CRE-01": {
+          "value": 0.00451759373,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFRAC\\MIXED\\CH4O": {
+          "value": 0.00267522734,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFRAC\\MIXED\\ACETI-01": {
+          "value": 1.60808278e-07,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFRAC\\MIXED\\CH2O": {
+          "value": 3.92413536e-05,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFRAC\\MIXED\\H2O": {
+          "value": 0.972749911,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFRAC\\MIXED\\CH4": {
+          "value": 1.21124911e-05,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFRAC\\MIXED\\CO2": {
+          "value": 4.31325413e-05,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFRAC\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFRAC\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFRAC\\MIXED\\C": {
+          "value": 0.00158454699,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFRAC\\MIXED\\CO": {
+          "value": 2.10313987e-06,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S7\\Output\\MASSFLMX\\MIXED": {
+          "value": 98.6362315,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S7\\Output\\MOLEFLMX\\MIXED": {
+          "value": 4.79619017,
+          "unit": "kmol/hr"
+        }
+      }
+    },
+    "S8": {
+      "temperature_C": 39.85000000000002,
+      "pressure_MPa": 0.010132500000000001,
+      "mass_flow_kg_h": 1.36392332,
+      "mole_flow_kmol_h": 0.0378530334,
+      "composition_kg_h": {
+        "GUAIA-01": 2.37523275e-06,
+        "CAT": 2.47840034e-05,
+        "ANISOLE": 0.00104560002,
+        "PPE": 3.58260417e-18,
+        "PEA": 2.03846618e-05,
+        "STYRENE": 0.41419095,
+        "ETHYLBEN": 0.346599281,
+        "DPE": 1.24715128e-05,
+        "PHENO-01": 0.000307067829,
+        "BENZENE": 0.0191490162,
+        "O-CRE-01": 5.96838976e-07,
+        "CH4O": 0.010198455,
+        "ACETI-01": 1.21199561e-07,
+        "CH2O": 0.0021782782,
+        "H2O": 0.484070108,
+        "CH4": 0.0232050407,
+        "CO2": 0.0462685231,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 5.55474666e-65,
+        "CO": 0.0166502682
+      },
+      "composition_kmol_h": {
+        "GUAIA-01": 1.91336053e-08,
+        "CAT": 2.2507905e-07,
+        "ANISOLE": 9.66895502e-06,
+        "PPE": 1.80702319e-20,
+        "PEA": 1.6685926e-07,
+        "STYRENE": 0.00397681138,
+        "ETHYLBEN": 0.00326464886,
+        "DPE": 7.32709843e-08,
+        "PHENO-01": 3.26275539e-06,
+        "BENZENE": 0.000245143053,
+        "O-CRE-01": 5.51913647e-09,
+        "CH4O": 0.000318282381,
+        "ACETI-01": 2.01822471e-09,
+        "CH2O": 7.25457234e-05,
+        "H2O": 0.0268699742,
+        "CH4": 0.00144644941,
+        "CO2": 0.00105132318,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 4.62471623e-66,
+        "CO": 0.000594431647
+      },
+      "mass_fraction": {
+        "GUAIA-01": 1.74147088e-06,
+        "CAT": 1.8171112e-05,
+        "ANISOLE": 0.000766612027,
+        "PPE": 2.62669031e-18,
+        "PEA": 1.49456069e-05,
+        "STYRENE": 0.303676126,
+        "ETHYLBEN": 0.25411933,
+        "DPE": 9.14385189e-06,
+        "PHENO-01": 0.000225135698,
+        "BENZENE": 0.0140396574,
+        "O-CRE-01": 4.37589831e-07,
+        "CH4O": 0.0074772935,
+        "ACETI-01": 8.88609782e-08,
+        "CH2O": 0.00159706794,
+        "H2O": 0.35491006,
+        "CH4": 0.0170134496,
+        "CO2": 0.0339231116,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 4.07262386e-65,
+        "CO": 0.0122076278
+      },
+      "mole_fraction": {
+        "GUAIA-01": 5.05470859e-07,
+        "CAT": 5.94612982e-06,
+        "ANISOLE": 0.000255434087,
+        "PPE": 4.773787e-19,
+        "PEA": 4.4080816e-06,
+        "STYRENE": 0.105059252,
+        "ETHYLBEN": 0.0862453697,
+        "DPE": 1.93567008e-06,
+        "PHENO-01": 8.61953482e-05,
+        "BENZENE": 0.00647617986,
+        "O-CRE-01": 1.45804338e-07,
+        "CH4O": 0.00840837188,
+        "ACETI-01": 5.33173839e-08,
+        "CH2O": 0.00191651017,
+        "H2O": 0.709849958,
+        "CH4": 0.0382122455,
+        "CO2": 0.027773816,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 1.22175578e-64,
+        "CO": 0.0157036727
+      },
+      "component_ids": [
+        "GUAIA-01",
+        "CAT",
+        "ANISOLE",
+        "PPE",
+        "PEA",
+        "STYRENE",
+        "ETHYLBEN",
+        "DPE",
+        "PHENO-01",
+        "BENZENE",
+        "O-CRE-01",
+        "CH4O",
+        "ACETI-01",
+        "CH2O",
+        "H2O",
+        "CH4",
+        "CO2",
+        "H2",
+        "C2H2",
+        "C",
+        "CO"
+      ],
+      "substreams": {
+        "MIXED": {
+          "component_ids": [
+            "GUAIA-01",
+            "CAT",
+            "ANISOLE",
+            "PPE",
+            "PEA",
+            "STYRENE",
+            "ETHYLBEN",
+            "DPE",
+            "PHENO-01",
+            "BENZENE",
+            "O-CRE-01",
+            "CH4O",
+            "ACETI-01",
+            "CH2O",
+            "H2O",
+            "CH4",
+            "CO2",
+            "H2",
+            "C2H2",
+            "C",
+            "CO"
+          ],
+          "composition_kg_h": {
+            "GUAIA-01": 2.37523275e-06,
+            "CAT": 2.47840034e-05,
+            "ANISOLE": 0.00104560002,
+            "PPE": 3.58260417e-18,
+            "PEA": 2.03846618e-05,
+            "STYRENE": 0.41419095,
+            "ETHYLBEN": 0.346599281,
+            "DPE": 1.24715128e-05,
+            "PHENO-01": 0.000307067829,
+            "BENZENE": 0.0191490162,
+            "O-CRE-01": 5.96838976e-07,
+            "CH4O": 0.010198455,
+            "ACETI-01": 1.21199561e-07,
+            "CH2O": 0.0021782782,
+            "H2O": 0.484070108,
+            "CH4": 0.0232050407,
+            "CO2": 0.0462685231,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 5.55474666e-65,
+            "CO": 0.0166502682
+          },
+          "composition_kmol_h": {
+            "GUAIA-01": 1.91336053e-08,
+            "CAT": 2.2507905e-07,
+            "ANISOLE": 9.66895502e-06,
+            "PPE": 1.80702319e-20,
+            "PEA": 1.6685926e-07,
+            "STYRENE": 0.00397681138,
+            "ETHYLBEN": 0.00326464886,
+            "DPE": 7.32709843e-08,
+            "PHENO-01": 3.26275539e-06,
+            "BENZENE": 0.000245143053,
+            "O-CRE-01": 5.51913647e-09,
+            "CH4O": 0.000318282381,
+            "ACETI-01": 2.01822471e-09,
+            "CH2O": 7.25457234e-05,
+            "H2O": 0.0268699742,
+            "CH4": 0.00144644941,
+            "CO2": 0.00105132318,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 4.62471623e-66,
+            "CO": 0.000594431647
+          },
+          "mass_fraction": {
+            "GUAIA-01": 1.74147088e-06,
+            "CAT": 1.8171112e-05,
+            "ANISOLE": 0.000766612027,
+            "PPE": 2.62669031e-18,
+            "PEA": 1.49456069e-05,
+            "STYRENE": 0.303676126,
+            "ETHYLBEN": 0.25411933,
+            "DPE": 9.14385189e-06,
+            "PHENO-01": 0.000225135698,
+            "BENZENE": 0.0140396574,
+            "O-CRE-01": 4.37589831e-07,
+            "CH4O": 0.0074772935,
+            "ACETI-01": 8.88609782e-08,
+            "CH2O": 0.00159706794,
+            "H2O": 0.35491006,
+            "CH4": 0.0170134496,
+            "CO2": 0.0339231116,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 4.07262386e-65,
+            "CO": 0.0122076278
+          },
+          "mole_fraction": {
+            "GUAIA-01": 5.05470859e-07,
+            "CAT": 5.94612982e-06,
+            "ANISOLE": 0.000255434087,
+            "PPE": 4.773787e-19,
+            "PEA": 4.4080816e-06,
+            "STYRENE": 0.105059252,
+            "ETHYLBEN": 0.0862453697,
+            "DPE": 1.93567008e-06,
+            "PHENO-01": 8.61953482e-05,
+            "BENZENE": 0.00647617986,
+            "O-CRE-01": 1.45804338e-07,
+            "CH4O": 0.00840837188,
+            "ACETI-01": 5.33173839e-08,
+            "CH2O": 0.00191651017,
+            "H2O": 0.709849958,
+            "CH4": 0.0382122455,
+            "CO2": 0.027773816,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 1.22175578e-64,
+            "CO": 0.0157036727
+          },
+          "mass_flow_kg_h": 1.36392332,
+          "mole_flow_kmol_h": 0.0378530334
+        }
+      },
+      "component_data_status": "complete",
+      "missing_mass_components": [],
+      "extraction_warnings": [],
+      "source_quantities": {
+        "\\Data\\Streams\\S8\\Output\\TEMP_OUT\\MIXED": {
+          "value": 313.0,
+          "unit": "K"
+        },
+        "\\Data\\Streams\\S8\\Output\\PRES_OUT\\MIXED": {
+          "value": 0.1,
+          "unit": "atm"
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\GUAIA-01": {
+          "value": 2.37523275e-06,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CAT": {
+          "value": 2.47840034e-05,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\ANISOLE": {
+          "value": 0.00104560002,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\PPE": {
+          "value": 3.58260417e-18,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\PEA": {
+          "value": 2.03846618e-05,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\STYRENE": {
+          "value": 0.41419095,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\ETHYLBEN": {
+          "value": 0.346599281,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\DPE": {
+          "value": 1.24715128e-05,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\PHENO-01": {
+          "value": 0.000307067829,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\BENZENE": {
+          "value": 0.0191490162,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\O-CRE-01": {
+          "value": 5.96838976e-07,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CH4O": {
+          "value": 0.010198455,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\ACETI-01": {
+          "value": 1.21199561e-07,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CH2O": {
+          "value": 0.0021782782,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\H2O": {
+          "value": 0.484070108,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CH4": {
+          "value": 0.0232050407,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CO2": {
+          "value": 0.0462685231,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\C": {
+          "value": 5.55474666e-65,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CO": {
+          "value": 0.0166502682,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFLOW\\MIXED\\GUAIA-01": {
+          "value": 1.91336053e-08,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFLOW\\MIXED\\CAT": {
+          "value": 2.2507905e-07,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFLOW\\MIXED\\ANISOLE": {
+          "value": 9.66895502e-06,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFLOW\\MIXED\\PPE": {
+          "value": 1.80702319e-20,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFLOW\\MIXED\\PEA": {
+          "value": 1.6685926e-07,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFLOW\\MIXED\\STYRENE": {
+          "value": 0.00397681138,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFLOW\\MIXED\\ETHYLBEN": {
+          "value": 0.00326464886,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFLOW\\MIXED\\DPE": {
+          "value": 7.32709843e-08,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFLOW\\MIXED\\PHENO-01": {
+          "value": 3.26275539e-06,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFLOW\\MIXED\\BENZENE": {
+          "value": 0.000245143053,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFLOW\\MIXED\\O-CRE-01": {
+          "value": 5.51913647e-09,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFLOW\\MIXED\\CH4O": {
+          "value": 0.000318282381,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFLOW\\MIXED\\ACETI-01": {
+          "value": 2.01822471e-09,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFLOW\\MIXED\\CH2O": {
+          "value": 7.25457234e-05,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFLOW\\MIXED\\H2O": {
+          "value": 0.0268699742,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFLOW\\MIXED\\CH4": {
+          "value": 0.00144644941,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFLOW\\MIXED\\CO2": {
+          "value": 0.00105132318,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFLOW\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFLOW\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFLOW\\MIXED\\C": {
+          "value": 4.62471623e-66,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFLOW\\MIXED\\CO": {
+          "value": 0.000594431647,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFRAC\\MIXED\\GUAIA-01": {
+          "value": 1.74147088e-06,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFRAC\\MIXED\\CAT": {
+          "value": 1.8171112e-05,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFRAC\\MIXED\\ANISOLE": {
+          "value": 0.000766612027,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFRAC\\MIXED\\PPE": {
+          "value": 2.62669031e-18,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFRAC\\MIXED\\PEA": {
+          "value": 1.49456069e-05,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFRAC\\MIXED\\STYRENE": {
+          "value": 0.303676126,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFRAC\\MIXED\\ETHYLBEN": {
+          "value": 0.25411933,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFRAC\\MIXED\\DPE": {
+          "value": 9.14385189e-06,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFRAC\\MIXED\\PHENO-01": {
+          "value": 0.000225135698,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFRAC\\MIXED\\BENZENE": {
+          "value": 0.0140396574,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFRAC\\MIXED\\O-CRE-01": {
+          "value": 4.37589831e-07,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFRAC\\MIXED\\CH4O": {
+          "value": 0.0074772935,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFRAC\\MIXED\\ACETI-01": {
+          "value": 8.88609782e-08,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFRAC\\MIXED\\CH2O": {
+          "value": 0.00159706794,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFRAC\\MIXED\\H2O": {
+          "value": 0.35491006,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFRAC\\MIXED\\CH4": {
+          "value": 0.0170134496,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFRAC\\MIXED\\CO2": {
+          "value": 0.0339231116,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFRAC\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFRAC\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFRAC\\MIXED\\C": {
+          "value": 4.07262386e-65,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFRAC\\MIXED\\CO": {
+          "value": 0.0122076278,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFRAC\\MIXED\\GUAIA-01": {
+          "value": 5.05470859e-07,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFRAC\\MIXED\\CAT": {
+          "value": 5.94612982e-06,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFRAC\\MIXED\\ANISOLE": {
+          "value": 0.000255434087,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFRAC\\MIXED\\PPE": {
+          "value": 4.773787e-19,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFRAC\\MIXED\\PEA": {
+          "value": 4.4080816e-06,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFRAC\\MIXED\\STYRENE": {
+          "value": 0.105059252,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFRAC\\MIXED\\ETHYLBEN": {
+          "value": 0.0862453697,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFRAC\\MIXED\\DPE": {
+          "value": 1.93567008e-06,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFRAC\\MIXED\\PHENO-01": {
+          "value": 8.61953482e-05,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFRAC\\MIXED\\BENZENE": {
+          "value": 0.00647617986,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFRAC\\MIXED\\O-CRE-01": {
+          "value": 1.45804338e-07,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFRAC\\MIXED\\CH4O": {
+          "value": 0.00840837188,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFRAC\\MIXED\\ACETI-01": {
+          "value": 5.33173839e-08,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFRAC\\MIXED\\CH2O": {
+          "value": 0.00191651017,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFRAC\\MIXED\\H2O": {
+          "value": 0.709849958,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFRAC\\MIXED\\CH4": {
+          "value": 0.0382122455,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFRAC\\MIXED\\CO2": {
+          "value": 0.027773816,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFRAC\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFRAC\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFRAC\\MIXED\\C": {
+          "value": 1.22175578e-64,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFRAC\\MIXED\\CO": {
+          "value": 0.0157036727,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S8\\Output\\MASSFLMX\\MIXED": {
+          "value": 1.36392332,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S8\\Output\\MOLEFLMX\\MIXED": {
+          "value": 0.0378530334,
+          "unit": "kmol/hr"
+        }
+      }
+    },
+    "S9": {
+      "temperature_C": 314.85,
+      "pressure_MPa": 25.000000032525,
+      "mass_flow_kg_h": 100.0,
+      "mole_flow_kmol_h": 4.8156026,
+      "composition_kg_h": {
+        "GUAIA-01": 4.5,
+        "CAT": 0.0,
+        "ANISOLE": 1.5,
+        "PPE": 6.75,
+        "PEA": 0.0,
+        "STYRENE": 0.0,
+        "ETHYLBEN": 0.0,
+        "DPE": 2.25,
+        "PHENO-01": 0.0,
+        "BENZENE": 0.0,
+        "O-CRE-01": 0.0,
+        "CH4O": 0.0,
+        "ACETI-01": 0.0,
+        "CH2O": 0.0,
+        "H2O": 85.0,
+        "CH4": 0.0,
+        "CO2": 0.0,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.0,
+        "CO": 0.0
+      },
+      "composition_kmol_h": {
+        "GUAIA-01": 0.0362495944,
+        "CAT": 0.0,
+        "ANISOLE": 0.0138709183,
+        "PPE": 0.034046202,
+        "PEA": 0.0,
+        "STYRENE": 0.0,
+        "ETHYLBEN": 0.0,
+        "DPE": 0.0132189027,
+        "PHENO-01": 0.0,
+        "BENZENE": 0.0,
+        "O-CRE-01": 0.0,
+        "CH4O": 0.0,
+        "ACETI-01": 0.0,
+        "CH2O": 0.0,
+        "H2O": 4.71821698,
+        "CH4": 0.0,
+        "CO2": 0.0,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.0,
+        "CO": 0.0
+      },
+      "mass_fraction": {
+        "GUAIA-01": 0.045,
+        "CAT": 0.0,
+        "ANISOLE": 0.015,
+        "PPE": 0.0675,
+        "PEA": 0.0,
+        "STYRENE": 0.0,
+        "ETHYLBEN": 0.0,
+        "DPE": 0.0225,
+        "PHENO-01": 0.0,
+        "BENZENE": 0.0,
+        "O-CRE-01": 0.0,
+        "CH4O": 0.0,
+        "ACETI-01": 0.0,
+        "CH2O": 0.0,
+        "H2O": 0.85,
+        "CH4": 0.0,
+        "CO2": 0.0,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.0,
+        "CO": 0.0
+      },
+      "mole_fraction": {
+        "GUAIA-01": 0.00752753029,
+        "CAT": 0.0,
+        "ANISOLE": 0.00288041176,
+        "PPE": 0.00706997749,
+        "PEA": 0.0,
+        "STYRENE": 0.0,
+        "ETHYLBEN": 0.0,
+        "DPE": 0.00274501527,
+        "PHENO-01": 0.0,
+        "BENZENE": 0.0,
+        "O-CRE-01": 0.0,
+        "CH4O": 0.0,
+        "ACETI-01": 0.0,
+        "CH2O": 0.0,
+        "H2O": 0.979777065,
+        "CH4": 0.0,
+        "CO2": 0.0,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.0,
+        "CO": 0.0
+      },
+      "component_ids": [
+        "GUAIA-01",
+        "CAT",
+        "ANISOLE",
+        "PPE",
+        "PEA",
+        "STYRENE",
+        "ETHYLBEN",
+        "DPE",
+        "PHENO-01",
+        "BENZENE",
+        "O-CRE-01",
+        "CH4O",
+        "ACETI-01",
+        "CH2O",
+        "H2O",
+        "CH4",
+        "CO2",
+        "H2",
+        "C2H2",
+        "C",
+        "CO"
+      ],
+      "substreams": {
+        "MIXED": {
+          "component_ids": [
+            "GUAIA-01",
+            "CAT",
+            "ANISOLE",
+            "PPE",
+            "PEA",
+            "STYRENE",
+            "ETHYLBEN",
+            "DPE",
+            "PHENO-01",
+            "BENZENE",
+            "O-CRE-01",
+            "CH4O",
+            "ACETI-01",
+            "CH2O",
+            "H2O",
+            "CH4",
+            "CO2",
+            "H2",
+            "C2H2",
+            "C",
+            "CO"
+          ],
+          "composition_kg_h": {
+            "GUAIA-01": 4.5,
+            "CAT": 0.0,
+            "ANISOLE": 1.5,
+            "PPE": 6.75,
+            "PEA": 0.0,
+            "STYRENE": 0.0,
+            "ETHYLBEN": 0.0,
+            "DPE": 2.25,
+            "PHENO-01": 0.0,
+            "BENZENE": 0.0,
+            "O-CRE-01": 0.0,
+            "CH4O": 0.0,
+            "ACETI-01": 0.0,
+            "CH2O": 0.0,
+            "H2O": 85.0,
+            "CH4": 0.0,
+            "CO2": 0.0,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.0,
+            "CO": 0.0
+          },
+          "composition_kmol_h": {
+            "GUAIA-01": 0.0362495944,
+            "CAT": 0.0,
+            "ANISOLE": 0.0138709183,
+            "PPE": 0.034046202,
+            "PEA": 0.0,
+            "STYRENE": 0.0,
+            "ETHYLBEN": 0.0,
+            "DPE": 0.0132189027,
+            "PHENO-01": 0.0,
+            "BENZENE": 0.0,
+            "O-CRE-01": 0.0,
+            "CH4O": 0.0,
+            "ACETI-01": 0.0,
+            "CH2O": 0.0,
+            "H2O": 4.71821698,
+            "CH4": 0.0,
+            "CO2": 0.0,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.0,
+            "CO": 0.0
+          },
+          "mass_fraction": {
+            "GUAIA-01": 0.045,
+            "CAT": 0.0,
+            "ANISOLE": 0.015,
+            "PPE": 0.0675,
+            "PEA": 0.0,
+            "STYRENE": 0.0,
+            "ETHYLBEN": 0.0,
+            "DPE": 0.0225,
+            "PHENO-01": 0.0,
+            "BENZENE": 0.0,
+            "O-CRE-01": 0.0,
+            "CH4O": 0.0,
+            "ACETI-01": 0.0,
+            "CH2O": 0.0,
+            "H2O": 0.85,
+            "CH4": 0.0,
+            "CO2": 0.0,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.0,
+            "CO": 0.0
+          },
+          "mole_fraction": {
+            "GUAIA-01": 0.00752753029,
+            "CAT": 0.0,
+            "ANISOLE": 0.00288041176,
+            "PPE": 0.00706997749,
+            "PEA": 0.0,
+            "STYRENE": 0.0,
+            "ETHYLBEN": 0.0,
+            "DPE": 0.00274501527,
+            "PHENO-01": 0.0,
+            "BENZENE": 0.0,
+            "O-CRE-01": 0.0,
+            "CH4O": 0.0,
+            "ACETI-01": 0.0,
+            "CH2O": 0.0,
+            "H2O": 0.979777065,
+            "CH4": 0.0,
+            "CO2": 0.0,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.0,
+            "CO": 0.0
+          },
+          "mass_flow_kg_h": 100.0,
+          "mole_flow_kmol_h": 4.8156026
+        }
+      },
+      "component_data_status": "complete",
+      "missing_mass_components": [],
+      "extraction_warnings": [],
+      "source_quantities": {
+        "\\Data\\Streams\\S9\\Output\\TEMP_OUT\\MIXED": {
+          "value": 588.0,
+          "unit": "K"
+        },
+        "\\Data\\Streams\\S9\\Output\\PRES_OUT\\MIXED": {
+          "value": 246.730817,
+          "unit": "atm"
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFLOW\\MIXED\\GUAIA-01": {
+          "value": 4.5,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFLOW\\MIXED\\CAT": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFLOW\\MIXED\\ANISOLE": {
+          "value": 1.5,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFLOW\\MIXED\\PPE": {
+          "value": 6.75,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFLOW\\MIXED\\PEA": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFLOW\\MIXED\\STYRENE": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFLOW\\MIXED\\ETHYLBEN": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFLOW\\MIXED\\DPE": {
+          "value": 2.25,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFLOW\\MIXED\\PHENO-01": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFLOW\\MIXED\\BENZENE": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFLOW\\MIXED\\O-CRE-01": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFLOW\\MIXED\\CH4O": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFLOW\\MIXED\\ACETI-01": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFLOW\\MIXED\\CH2O": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFLOW\\MIXED\\H2O": {
+          "value": 85.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFLOW\\MIXED\\CH4": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFLOW\\MIXED\\CO2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFLOW\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFLOW\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFLOW\\MIXED\\C": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFLOW\\MIXED\\CO": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFLOW\\MIXED\\GUAIA-01": {
+          "value": 0.0362495944,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFLOW\\MIXED\\CAT": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFLOW\\MIXED\\ANISOLE": {
+          "value": 0.0138709183,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFLOW\\MIXED\\PPE": {
+          "value": 0.034046202,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFLOW\\MIXED\\PEA": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFLOW\\MIXED\\STYRENE": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFLOW\\MIXED\\ETHYLBEN": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFLOW\\MIXED\\DPE": {
+          "value": 0.0132189027,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFLOW\\MIXED\\PHENO-01": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFLOW\\MIXED\\BENZENE": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFLOW\\MIXED\\O-CRE-01": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFLOW\\MIXED\\CH4O": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFLOW\\MIXED\\ACETI-01": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFLOW\\MIXED\\CH2O": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFLOW\\MIXED\\H2O": {
+          "value": 4.71821698,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFLOW\\MIXED\\CH4": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFLOW\\MIXED\\CO2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFLOW\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFLOW\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFLOW\\MIXED\\C": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFLOW\\MIXED\\CO": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFRAC\\MIXED\\GUAIA-01": {
+          "value": 0.045,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFRAC\\MIXED\\CAT": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFRAC\\MIXED\\ANISOLE": {
+          "value": 0.015,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFRAC\\MIXED\\PPE": {
+          "value": 0.0675,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFRAC\\MIXED\\PEA": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFRAC\\MIXED\\STYRENE": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFRAC\\MIXED\\ETHYLBEN": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFRAC\\MIXED\\DPE": {
+          "value": 0.0225,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFRAC\\MIXED\\PHENO-01": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFRAC\\MIXED\\BENZENE": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFRAC\\MIXED\\O-CRE-01": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFRAC\\MIXED\\CH4O": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFRAC\\MIXED\\ACETI-01": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFRAC\\MIXED\\CH2O": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFRAC\\MIXED\\H2O": {
+          "value": 0.85,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFRAC\\MIXED\\CH4": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFRAC\\MIXED\\CO2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFRAC\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFRAC\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFRAC\\MIXED\\C": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFRAC\\MIXED\\CO": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFRAC\\MIXED\\GUAIA-01": {
+          "value": 0.00752753029,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFRAC\\MIXED\\CAT": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFRAC\\MIXED\\ANISOLE": {
+          "value": 0.00288041176,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFRAC\\MIXED\\PPE": {
+          "value": 0.00706997749,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFRAC\\MIXED\\PEA": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFRAC\\MIXED\\STYRENE": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFRAC\\MIXED\\ETHYLBEN": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFRAC\\MIXED\\DPE": {
+          "value": 0.00274501527,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFRAC\\MIXED\\PHENO-01": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFRAC\\MIXED\\BENZENE": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFRAC\\MIXED\\O-CRE-01": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFRAC\\MIXED\\CH4O": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFRAC\\MIXED\\ACETI-01": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFRAC\\MIXED\\CH2O": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFRAC\\MIXED\\H2O": {
+          "value": 0.979777065,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFRAC\\MIXED\\CH4": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFRAC\\MIXED\\CO2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFRAC\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFRAC\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFRAC\\MIXED\\C": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFRAC\\MIXED\\CO": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S9\\Output\\MASSFLMX\\MIXED": {
+          "value": 100.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S9\\Output\\MOLEFLMX\\MIXED": {
+          "value": 4.8156026,
+          "unit": "kmol/hr"
+        }
+      }
+    },
+    "S10": {
+      "temperature_C": 94.404808,
+      "pressure_MPa": 25.000000032525,
+      "mass_flow_kg_h": 100.000155,
+      "mole_flow_kmol_h": 4.8340432,
+      "composition_kg_h": {
+        "GUAIA-01": 0.079772223,
+        "CAT": 3.68130503,
+        "ANISOLE": 1.34738917,
+        "PPE": 2.5380531,
+        "PEA": 1.54400672,
+        "STYRENE": 0.484456195,
+        "ETHYLBEN": 0.37269112,
+        "DPE": 2.24518949,
+        "PHENO-01": 0.192825206,
+        "BENZENE": 0.0202016302,
+        "O-CRE-01": 2.34309405,
+        "CH4O": 0.421328176,
+        "ACETI-01": 4.64377623e-05,
+        "CH2O": 0.00782949417,
+        "H2O": 84.534243,
+        "CH4": 0.0241370257,
+        "CO2": 0.0553729127,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.0912810621,
+        "CO": 0.0169328108
+      },
+      "composition_kmol_h": {
+        "GUAIA-01": 0.000642602384,
+        "CAT": 0.0334322355,
+        "ANISOLE": 0.0124596835,
+        "PPE": 0.0128016398,
+        "PEA": 0.0126385132,
+        "STYRENE": 0.00465145583,
+        "ETHYLBEN": 0.00351041017,
+        "DPE": 0.0131906406,
+        "PHENO-01": 0.0020488681,
+        "BENZENE": 0.000258618471,
+        "O-CRE-01": 0.0216672442,
+        "CH4O": 0.0131491815,
+        "ACETI-01": 7.73285307e-07,
+        "CH2O": 0.000260754718,
+        "H2O": 4.69236354,
+        "CH4": 0.00150454322,
+        "CO2": 0.00125819505,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.0075997887,
+        "CO": 0.000604518706
+      },
+      "mass_fraction": {
+        "GUAIA-01": 0.000797720995,
+        "CAT": 0.0368129933,
+        "ANISOLE": 0.0134738709,
+        "PPE": 0.0253804917,
+        "PEA": 0.0154400433,
+        "STYRENE": 0.00484455445,
+        "ETHYLBEN": 0.00372690543,
+        "DPE": 0.0224518602,
+        "PHENO-01": 0.00192824907,
+        "BENZENE": 0.000202015989,
+        "O-CRE-01": 0.0234309042,
+        "CH4O": 0.00421327524,
+        "ACETI-01": 4.64376904e-07,
+        "CH2O": 7.82948205e-05,
+        "H2O": 0.845341121,
+        "CH4": 0.000241369884,
+        "CO2": 0.00055372827,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.000912809208,
+        "CO": 0.000169327845
+      },
+      "mole_fraction": {
+        "GUAIA-01": 0.000132932694,
+        "CAT": 0.0069159985,
+        "ANISOLE": 0.00257748699,
+        "PPE": 0.00264822618,
+        "PEA": 0.00261448081,
+        "STYRENE": 0.000962228851,
+        "ETHYLBEN": 0.000726185104,
+        "DPE": 0.0027286973,
+        "PHENO-01": 0.000423841496,
+        "BENZENE": 5.34994125e-05,
+        "O-CRE-01": 0.0044822198,
+        "CH4O": 0.0027201208,
+        "ACETI-01": 1.59966569e-07,
+        "CH2O": 5.39413297e-05,
+        "H2O": 0.97069127,
+        "CH4": 0.000311239092,
+        "CO2": 0.000260277991,
+        "H2": 0.0,
+        "C2H2": 0.0,
+        "C": 0.00157213918,
+        "CO": 0.000125054469
+      },
+      "component_ids": [
+        "GUAIA-01",
+        "CAT",
+        "ANISOLE",
+        "PPE",
+        "PEA",
+        "STYRENE",
+        "ETHYLBEN",
+        "DPE",
+        "PHENO-01",
+        "BENZENE",
+        "O-CRE-01",
+        "CH4O",
+        "ACETI-01",
+        "CH2O",
+        "H2O",
+        "CH4",
+        "CO2",
+        "H2",
+        "C2H2",
+        "C",
+        "CO"
+      ],
+      "substreams": {
+        "MIXED": {
+          "component_ids": [
+            "GUAIA-01",
+            "CAT",
+            "ANISOLE",
+            "PPE",
+            "PEA",
+            "STYRENE",
+            "ETHYLBEN",
+            "DPE",
+            "PHENO-01",
+            "BENZENE",
+            "O-CRE-01",
+            "CH4O",
+            "ACETI-01",
+            "CH2O",
+            "H2O",
+            "CH4",
+            "CO2",
+            "H2",
+            "C2H2",
+            "C",
+            "CO"
+          ],
+          "composition_kg_h": {
+            "GUAIA-01": 0.079772223,
+            "CAT": 3.68130503,
+            "ANISOLE": 1.34738917,
+            "PPE": 2.5380531,
+            "PEA": 1.54400672,
+            "STYRENE": 0.484456195,
+            "ETHYLBEN": 0.37269112,
+            "DPE": 2.24518949,
+            "PHENO-01": 0.192825206,
+            "BENZENE": 0.0202016302,
+            "O-CRE-01": 2.34309405,
+            "CH4O": 0.421328176,
+            "ACETI-01": 4.64377623e-05,
+            "CH2O": 0.00782949417,
+            "H2O": 84.534243,
+            "CH4": 0.0241370257,
+            "CO2": 0.0553729127,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.0912810621,
+            "CO": 0.0169328108
+          },
+          "composition_kmol_h": {
+            "GUAIA-01": 0.000642602384,
+            "CAT": 0.0334322355,
+            "ANISOLE": 0.0124596835,
+            "PPE": 0.0128016398,
+            "PEA": 0.0126385132,
+            "STYRENE": 0.00465145583,
+            "ETHYLBEN": 0.00351041017,
+            "DPE": 0.0131906406,
+            "PHENO-01": 0.0020488681,
+            "BENZENE": 0.000258618471,
+            "O-CRE-01": 0.0216672442,
+            "CH4O": 0.0131491815,
+            "ACETI-01": 7.73285307e-07,
+            "CH2O": 0.000260754718,
+            "H2O": 4.69236354,
+            "CH4": 0.00150454322,
+            "CO2": 0.00125819505,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.0075997887,
+            "CO": 0.000604518706
+          },
+          "mass_fraction": {
+            "GUAIA-01": 0.000797720995,
+            "CAT": 0.0368129933,
+            "ANISOLE": 0.0134738709,
+            "PPE": 0.0253804917,
+            "PEA": 0.0154400433,
+            "STYRENE": 0.00484455445,
+            "ETHYLBEN": 0.00372690543,
+            "DPE": 0.0224518602,
+            "PHENO-01": 0.00192824907,
+            "BENZENE": 0.000202015989,
+            "O-CRE-01": 0.0234309042,
+            "CH4O": 0.00421327524,
+            "ACETI-01": 4.64376904e-07,
+            "CH2O": 7.82948205e-05,
+            "H2O": 0.845341121,
+            "CH4": 0.000241369884,
+            "CO2": 0.00055372827,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.000912809208,
+            "CO": 0.000169327845
+          },
+          "mole_fraction": {
+            "GUAIA-01": 0.000132932694,
+            "CAT": 0.0069159985,
+            "ANISOLE": 0.00257748699,
+            "PPE": 0.00264822618,
+            "PEA": 0.00261448081,
+            "STYRENE": 0.000962228851,
+            "ETHYLBEN": 0.000726185104,
+            "DPE": 0.0027286973,
+            "PHENO-01": 0.000423841496,
+            "BENZENE": 5.34994125e-05,
+            "O-CRE-01": 0.0044822198,
+            "CH4O": 0.0027201208,
+            "ACETI-01": 1.59966569e-07,
+            "CH2O": 5.39413297e-05,
+            "H2O": 0.97069127,
+            "CH4": 0.000311239092,
+            "CO2": 0.000260277991,
+            "H2": 0.0,
+            "C2H2": 0.0,
+            "C": 0.00157213918,
+            "CO": 0.000125054469
+          },
+          "mass_flow_kg_h": 100.000155,
+          "mole_flow_kmol_h": 4.8340432
+        }
+      },
+      "component_data_status": "complete",
+      "missing_mass_components": [],
+      "extraction_warnings": [],
+      "source_quantities": {
+        "\\Data\\Streams\\S10\\Output\\TEMP_OUT\\MIXED": {
+          "value": 367.554808,
+          "unit": "K"
+        },
+        "\\Data\\Streams\\S10\\Output\\PRES_OUT\\MIXED": {
+          "value": 246.730817,
+          "unit": "atm"
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFLOW\\MIXED\\GUAIA-01": {
+          "value": 0.079772223,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFLOW\\MIXED\\CAT": {
+          "value": 3.68130503,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFLOW\\MIXED\\ANISOLE": {
+          "value": 1.34738917,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFLOW\\MIXED\\PPE": {
+          "value": 2.5380531,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFLOW\\MIXED\\PEA": {
+          "value": 1.54400672,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFLOW\\MIXED\\STYRENE": {
+          "value": 0.484456195,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFLOW\\MIXED\\ETHYLBEN": {
+          "value": 0.37269112,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFLOW\\MIXED\\DPE": {
+          "value": 2.24518949,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFLOW\\MIXED\\PHENO-01": {
+          "value": 0.192825206,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFLOW\\MIXED\\BENZENE": {
+          "value": 0.0202016302,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFLOW\\MIXED\\O-CRE-01": {
+          "value": 2.34309405,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFLOW\\MIXED\\CH4O": {
+          "value": 0.421328176,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFLOW\\MIXED\\ACETI-01": {
+          "value": 4.64377623e-05,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFLOW\\MIXED\\CH2O": {
+          "value": 0.00782949417,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFLOW\\MIXED\\H2O": {
+          "value": 84.534243,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFLOW\\MIXED\\CH4": {
+          "value": 0.0241370257,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFLOW\\MIXED\\CO2": {
+          "value": 0.0553729127,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFLOW\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFLOW\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFLOW\\MIXED\\C": {
+          "value": 0.0912810621,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFLOW\\MIXED\\CO": {
+          "value": 0.0169328108,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFLOW\\MIXED\\GUAIA-01": {
+          "value": 0.000642602384,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFLOW\\MIXED\\CAT": {
+          "value": 0.0334322355,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFLOW\\MIXED\\ANISOLE": {
+          "value": 0.0124596835,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFLOW\\MIXED\\PPE": {
+          "value": 0.0128016398,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFLOW\\MIXED\\PEA": {
+          "value": 0.0126385132,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFLOW\\MIXED\\STYRENE": {
+          "value": 0.00465145583,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFLOW\\MIXED\\ETHYLBEN": {
+          "value": 0.00351041017,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFLOW\\MIXED\\DPE": {
+          "value": 0.0131906406,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFLOW\\MIXED\\PHENO-01": {
+          "value": 0.0020488681,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFLOW\\MIXED\\BENZENE": {
+          "value": 0.000258618471,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFLOW\\MIXED\\O-CRE-01": {
+          "value": 0.0216672442,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFLOW\\MIXED\\CH4O": {
+          "value": 0.0131491815,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFLOW\\MIXED\\ACETI-01": {
+          "value": 7.73285307e-07,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFLOW\\MIXED\\CH2O": {
+          "value": 0.000260754718,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFLOW\\MIXED\\H2O": {
+          "value": 4.69236354,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFLOW\\MIXED\\CH4": {
+          "value": 0.00150454322,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFLOW\\MIXED\\CO2": {
+          "value": 0.00125819505,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFLOW\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFLOW\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFLOW\\MIXED\\C": {
+          "value": 0.0075997887,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFLOW\\MIXED\\CO": {
+          "value": 0.000604518706,
+          "unit": "kmol/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFRAC\\MIXED\\GUAIA-01": {
+          "value": 0.000797720995,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFRAC\\MIXED\\CAT": {
+          "value": 0.0368129933,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFRAC\\MIXED\\ANISOLE": {
+          "value": 0.0134738709,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFRAC\\MIXED\\PPE": {
+          "value": 0.0253804917,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFRAC\\MIXED\\PEA": {
+          "value": 0.0154400433,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFRAC\\MIXED\\STYRENE": {
+          "value": 0.00484455445,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFRAC\\MIXED\\ETHYLBEN": {
+          "value": 0.00372690543,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFRAC\\MIXED\\DPE": {
+          "value": 0.0224518602,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFRAC\\MIXED\\PHENO-01": {
+          "value": 0.00192824907,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFRAC\\MIXED\\BENZENE": {
+          "value": 0.000202015989,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFRAC\\MIXED\\O-CRE-01": {
+          "value": 0.0234309042,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFRAC\\MIXED\\CH4O": {
+          "value": 0.00421327524,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFRAC\\MIXED\\ACETI-01": {
+          "value": 4.64376904e-07,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFRAC\\MIXED\\CH2O": {
+          "value": 7.82948205e-05,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFRAC\\MIXED\\H2O": {
+          "value": 0.845341121,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFRAC\\MIXED\\CH4": {
+          "value": 0.000241369884,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFRAC\\MIXED\\CO2": {
+          "value": 0.00055372827,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFRAC\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFRAC\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFRAC\\MIXED\\C": {
+          "value": 0.000912809208,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFRAC\\MIXED\\CO": {
+          "value": 0.000169327845,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFRAC\\MIXED\\GUAIA-01": {
+          "value": 0.000132932694,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFRAC\\MIXED\\CAT": {
+          "value": 0.0069159985,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFRAC\\MIXED\\ANISOLE": {
+          "value": 0.00257748699,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFRAC\\MIXED\\PPE": {
+          "value": 0.00264822618,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFRAC\\MIXED\\PEA": {
+          "value": 0.00261448081,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFRAC\\MIXED\\STYRENE": {
+          "value": 0.000962228851,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFRAC\\MIXED\\ETHYLBEN": {
+          "value": 0.000726185104,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFRAC\\MIXED\\DPE": {
+          "value": 0.0027286973,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFRAC\\MIXED\\PHENO-01": {
+          "value": 0.000423841496,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFRAC\\MIXED\\BENZENE": {
+          "value": 5.34994125e-05,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFRAC\\MIXED\\O-CRE-01": {
+          "value": 0.0044822198,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFRAC\\MIXED\\CH4O": {
+          "value": 0.0027201208,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFRAC\\MIXED\\ACETI-01": {
+          "value": 1.59966569e-07,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFRAC\\MIXED\\CH2O": {
+          "value": 5.39413297e-05,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFRAC\\MIXED\\H2O": {
+          "value": 0.97069127,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFRAC\\MIXED\\CH4": {
+          "value": 0.000311239092,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFRAC\\MIXED\\CO2": {
+          "value": 0.000260277991,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFRAC\\MIXED\\H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFRAC\\MIXED\\C2H2": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFRAC\\MIXED\\C": {
+          "value": 0.00157213918,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFRAC\\MIXED\\CO": {
+          "value": 0.000125054469,
+          "unit": ""
+        },
+        "\\Data\\Streams\\S10\\Output\\MASSFLMX\\MIXED": {
+          "value": 100.000155,
+          "unit": "kg/hr"
+        },
+        "\\Data\\Streams\\S10\\Output\\MOLEFLMX\\MIXED": {
+          "value": 4.8340432,
+          "unit": "kmol/hr"
+        }
+      }
+    }
+  },
+  "source_sha256": "91965a901c1074cc6e0d47a9b614d9cd54df18e4841bf0de248e143a66edac0f"
+}

@@ -1,0 +1,1890 @@
+{
+  "REACTOR.Unit Set": {
+    "value": "MET",
+    "unit": ""
+  },
+  "REACTOR.User Table": {
+    "value": 0,
+    "unit": ""
+  },
+  "REACTOR.User Tree": {
+    "value": 0,
+    "unit": ""
+  },
+  "REACTOR.ALWAYS_INST": {
+    "value": "NO",
+    "unit": ""
+  },
+  "REACTOR.ANGLE": {
+    "value": 0.0,
+    "unit": "deg"
+  },
+  "REACTOR.AUTO_COMPS_T": {
+    "value": 0.0,
+    "unit": ""
+  },
+  "REACTOR.AUTO_PHASE": {
+    "value": "YES",
+    "unit": ""
+  },
+  "REACTOR.AUTO_PHASE_T": {
+    "value": 0.1,
+    "unit": ""
+  },
+  "REACTOR.BLKOPFREWAT": {
+    "value": "NO",
+    "unit": ""
+  },
+  "REACTOR.BYPASS": {
+    "value": 0.0,
+    "unit": ""
+  },
+  "REACTOR.CAT_PRESENT": {
+    "value": "NO",
+    "unit": ""
+  },
+  "REACTOR.CFRWATEROPSE": {
+    "value": "STEAM-TA",
+    "unit": ""
+  },
+  "REACTOR.CHEM_METHOD": {
+    "value": "YES",
+    "unit": ""
+  },
+  "REACTOR.CHK_NTUBE": {
+    "value": "YES",
+    "unit": ""
+  },
+  "REACTOR.CHK_PDROP": {
+    "value": "NO",
+    "unit": ""
+  },
+  "REACTOR.CHK_QTRANS": {
+    "value": "NO",
+    "unit": ""
+  },
+  "REACTOR.CNPHASE": {
+    "value": "2",
+    "unit": ""
+  },
+  "REACTOR.COMPBAL": {
+    "value": "NOCOMPBAL",
+    "unit": ""
+  },
+  "REACTOR.COMPS": {
+    "value": "COMPS",
+    "unit": ""
+  },
+  "REACTOR.COMP_ATTR": {
+    "value": "NO",
+    "unit": ""
+  },
+  "REACTOR.CONST_METHOD": {
+    "value": "EQUI-MASS",
+    "unit": ""
+  },
+  "REACTOR.COPSETNAME": {
+    "value": "NRTL",
+    "unit": ""
+  },
+  "REACTOR.CORR_METHOD": {
+    "value": "NEWTON",
+    "unit": ""
+  },
+  "REACTOR.CORR_TOL_RAT": {
+    "value": 0.1,
+    "unit": ""
+  },
+  "REACTOR.CPEQP": {
+    "value": 0.1194229483,
+    "unit": "cal/gm-K"
+  },
+  "REACTOR.CSOLU_WATER": {
+    "value": "3",
+    "unit": ""
+  },
+  "REACTOR.CTRUE_COMPS": {
+    "value": "YES",
+    "unit": ""
+  },
+  "REACTOR.CUTOFF": {
+    "value": 1e-10,
+    "unit": ""
+  },
+  "REACTOR.DIAM": {
+    "value": 10.0,
+    "unit": "cm"
+  },
+  "REACTOR.DIA_PART": {
+    "value": 0.1,
+    "unit": "meter"
+  },
+  "REACTOR.DISCR_METH": {
+    "value": "BFD1",
+    "unit": ""
+  },
+  "REACTOR.DP_FCOR": {
+    "value": "BEGGS-BRILL",
+    "unit": ""
+  },
+  "REACTOR.DP_HCOR": {
+    "value": "BEGGS-BRILL",
+    "unit": ""
+  },
+  "REACTOR.DP_MULT": {
+    "value": 1.0,
+    "unit": ""
+  },
+  "REACTOR.EB_TOL_RATIO": {
+    "value": 1.0,
+    "unit": ""
+  },
+  "REACTOR.ELEVATION": {
+    "value": 0.0,
+    "unit": "meter"
+  },
+  "REACTOR.EMBEDDED": {
+    "value": 0,
+    "unit": ""
+  },
+  "REACTOR.ENERGY_BAL": {
+    "value": "YES",
+    "unit": ""
+  },
+  "REACTOR.EO_TEMP_TOL": {
+    "value": 0.001,
+    "unit": "K"
+  },
+  "REACTOR.EQPHCP": {
+    "value": "NO",
+    "unit": ""
+  },
+  "REACTOR.FLASH": {
+    "value": "NO",
+    "unit": ""
+  },
+  "REACTOR.FLU_SOL_TEMP": {
+    "value": "SAME",
+    "unit": ""
+  },
+  "REACTOR.FRWATEROPSET": {
+    "value": "IAPWS-95",
+    "unit": ""
+  },
+  "REACTOR.HEATOPT_CAT": {
+    "value": "NO",
+    "unit": ""
+  },
+  "REACTOR.HEATOPT_EQP": {
+    "value": "SAMET",
+    "unit": ""
+  },
+  "REACTOR.HINIT": {
+    "value": 0.01,
+    "unit": ""
+  },
+  "REACTOR.HT2ENV": {
+    "value": "NO",
+    "unit": ""
+  },
+  "REACTOR.HTCEQP": {
+    "value": 1.19422948e-05,
+    "unit": "cal/sec-sqcm-K"
+  },
+  "REACTOR.IDETAILS": {
+    "value": "NO",
+    "unit": ""
+  },
+  "REACTOR.IGN_CAT_VOL": {
+    "value": "NO",
+    "unit": ""
+  },
+  "REACTOR.INDEP_VAR": {
+    "value": "LENGTH",
+    "unit": ""
+  },
+  "REACTOR.INITEO": {
+    "value": "YES",
+    "unit": ""
+  },
+  "REACTOR.INPUT": {
+    "value": "INPUT",
+    "unit": ""
+  },
+  "REACTOR.INTERPOLATE": {
+    "value": "LINEAR",
+    "unit": ""
+  },
+  "REACTOR.INT_TOL": {
+    "value": 0.001,
+    "unit": ""
+  },
+  "REACTOR.L2_CUTOFF": {
+    "value": 0.5,
+    "unit": ""
+  },
+  "REACTOR.LENGTH": {
+    "value": 20.0,
+    "unit": "meter"
+  },
+  "REACTOR.MAXIT": {
+    "value": 30,
+    "unit": ""
+  },
+  "REACTOR.MAX_NSTEP": {
+    "value": 30000,
+    "unit": ""
+  },
+  "REACTOR.MIX": {
+    "value": "YES",
+    "unit": ""
+  },
+  "REACTOR.NEG_COMP_CHK": {
+    "value": -1e-08,
+    "unit": ""
+  },
+  "REACTOR.NEG_FLOW_CHK": {
+    "value": -1e-15,
+    "unit": ""
+  },
+  "REACTOR.NEWPAGE": {
+    "value": "NONEWPAGE",
+    "unit": ""
+  },
+  "REACTOR.NINT": {
+    "value": 1,
+    "unit": ""
+  },
+  "REACTOR.NINTH": {
+    "value": 1,
+    "unit": ""
+  },
+  "REACTOR.NINTP": {
+    "value": 1,
+    "unit": ""
+  },
+  "REACTOR.NINTQ": {
+    "value": 1,
+    "unit": ""
+  },
+  "REACTOR.NIWORK": {
+    "value": 1,
+    "unit": ""
+  },
+  "REACTOR.NIWORKH": {
+    "value": 1,
+    "unit": ""
+  },
+  "REACTOR.NIWORKP": {
+    "value": 1,
+    "unit": ""
+  },
+  "REACTOR.NIWORKQ": {
+    "value": 1,
+    "unit": ""
+  },
+  "REACTOR.NONNEG": {
+    "value": "NO",
+    "unit": ""
+  },
+  "REACTOR.NPHASE": {
+    "value": "2",
+    "unit": ""
+  },
+  "REACTOR.NPOINT": {
+    "value": 100,
+    "unit": ""
+  },
+  "REACTOR.NREAL": {
+    "value": 1,
+    "unit": ""
+  },
+  "REACTOR.NREALH": {
+    "value": 1,
+    "unit": ""
+  },
+  "REACTOR.NREALP": {
+    "value": 1,
+    "unit": ""
+  },
+  "REACTOR.NREALQ": {
+    "value": 1,
+    "unit": ""
+  },
+  "REACTOR.NTUBE": {
+    "value": 3,
+    "unit": ""
+  },
+  "REACTOR.NWORK": {
+    "value": 1,
+    "unit": ""
+  },
+  "REACTOR.NWORKH": {
+    "value": 1,
+    "unit": ""
+  },
+  "REACTOR.NWORKP": {
+    "value": 1,
+    "unit": ""
+  },
+  "REACTOR.NWORKQ": {
+    "value": 1,
+    "unit": ""
+  },
+  "REACTOR.OPSETNAME": {
+    "value": "NRTL",
+    "unit": ""
+  },
+  "REACTOR.OPT_DIA": {
+    "value": "CONSTANT",
+    "unit": ""
+  },
+  "REACTOR.OPT_ELEV": {
+    "value": "RISE",
+    "unit": ""
+  },
+  "REACTOR.OPT_HOLDUP": {
+    "value": "NO-SLIP",
+    "unit": ""
+  },
+  "REACTOR.OPT_OVERALL": {
+    "value": "DISTFUN",
+    "unit": ""
+  },
+  "REACTOR.OPT_PDROP": {
+    "value": "SPECIFIED",
+    "unit": ""
+  },
+  "REACTOR.OPT_PSD": {
+    "value": "COPY",
+    "unit": ""
+  },
+  "REACTOR.OPT_SUBPSD": {
+    "value": "OVERALL",
+    "unit": ""
+  },
+  "REACTOR.OPT_TSPEC": {
+    "value": "CONST-TEMP",
+    "unit": ""
+  },
+  "REACTOR.OV_MESHOPT": {
+    "value": "PREDEF",
+    "unit": ""
+  },
+  "REACTOR.PDROP": {
+    "value": 0.0,
+    "unit": "atm"
+  },
+  "REACTOR.PDROP_OPTION": {
+    "value": "PRES",
+    "unit": ""
+  },
+  "REACTOR.PRES": {
+    "value": 25.0,
+    "unit": "MPa"
+  },
+  "REACTOR.PROFILE": {
+    "value": "PROFILE",
+    "unit": ""
+  },
+  "REACTOR.PROP_LEVEL": {
+    "value": 4,
+    "unit": ""
+  },
+  "REACTOR.REACSYS": {
+    "value": "YES",
+    "unit": ""
+  },
+  "REACTOR.REAC_TEMP": {
+    "value": 603.0,
+    "unit": "K"
+  },
+  "REACTOR.REPORT": {
+    "value": "REPORT",
+    "unit": ""
+  },
+  "REACTOR.RESTART": {
+    "value": "NO",
+    "unit": ""
+  },
+  "REACTOR.RESULTS": {
+    "value": "RESULTS",
+    "unit": ""
+  },
+  "REACTOR.ROUGHNESS": {
+    "value": 4.572e-05,
+    "unit": "meter"
+  },
+  "REACTOR.RPT_KINETICS": {
+    "value": "KINETICS",
+    "unit": ""
+  },
+  "REACTOR.SECT_SPEC": {
+    "value": "FRACTION",
+    "unit": ""
+  },
+  "REACTOR.SFRAC_TOL": {
+    "value": 0.0001,
+    "unit": ""
+  },
+  "REACTOR.SHOWASICON": {
+    "value": 0,
+    "unit": ""
+  },
+  "REACTOR.SIM_LEVEL": {
+    "value": 4,
+    "unit": ""
+  },
+  "REACTOR.SOLU_WATER": {
+    "value": "3",
+    "unit": ""
+  },
+  "REACTOR.SPHERICITY": {
+    "value": 1.0,
+    "unit": ""
+  },
+  "REACTOR.SSXML": {
+    "value": "<tffString><GroupName>\u6748\u572d\u666b</GroupName><TemplateName>Full</TemplateName><IsTemplateGroupDefaulted>false</IsTemplateGroupDefaulted><IsTemplateGlobalDefaulted>true</IsTemplateGlobalDefaulted><IncludesChildHierarchyStreams>false</IncludesChildHierarchyStreams><CommonShellSettings>&lt;srcSettings StreamIds=\"S3,S4\" TemplateName=\"Full\"&gt;&lt;TFFTable&gt;&lt;GeneralOptions&gt;Description,SourceAndDestination,StreamClass,MaximumErrorTolerance,CostFlow,PhaseLabel,ComponentAttributes,ParticleSizeDistributions,Temperature,Pressure,MolarVaporFraction,MolarLiquidFraction,MolarSolidFraction,MolarEnthalpy,MolarEntropy,MolarDensity,MassVaporFraction,MassLiquidFraction,MassSolidFraction,MassEnthalpy,MassEntropy,MassDensity,EnthalpyFlow,AverageMolecularWeight,BatchProperties&lt;/GeneralOptions&gt;&lt;ScopeOptions&gt;PhasesForMixedSubstream,TotalStream,Substreams,MoleFlows,MassFlows,MoleFractions,MassFractions,VolumeFlows&lt;/ScopeOptions&gt;&lt;Properties&gt;&lt;Property Type=\"StateConditionProperty\" EngineName=\"TEMP\" /&gt;&lt;Property Type=\"StateConditionProperty\" EngineName=\"PRES\" /&gt;&lt;Property Type=\"StateConditionProperty\" EngineName=\"VFRAC\" /&gt;&lt;Property Type=\"StateConditionProperty\" EngineName=\"LFRAC\" /&gt;&lt;Property Type=\"StateConditionProperty\" EngineName=\"SFRAC\" /&gt;&lt;Property Type=\"StateConditionProperty\" EngineName=\"MASSVFRA\" /&gt;&lt;Property Type=\"StateConditionProperty\" EngineName=\"MASSLFRA\" /&gt;&lt;Property Type=\"StateConditionProperty\" EngineName=\"MASSSFRA\" /&gt;&lt;Property Type=\"StateConditionProperty\" EngineName=\"HMX\" /&gt;&lt;Property Type=\"StateConditionProperty\" EngineName=\"MASSHMX\" /&gt;&lt;Property Type=\"StateConditionProperty\" EngineName=\"SMX\" /&gt;&lt;Property Type=\"StateConditionProperty\" EngineName=\"MASSSMX\" /&gt;&lt;Property Type=\"StateConditionProperty\" EngineName=\"RHOMX\" /&gt;&lt;Property Type=\"StateConditionProperty\" EngineName=\"MASSRHOM\" /&gt;&lt;Property Type=\"StateConditionProperty\" EngineName=\"HFLMX\" /&gt;&lt;Property Type=\"StateConditionProperty\" EngineName=\"MWMX\" /&gt;&lt;Property Type=\"StateConditionProperty\" EngineName=\"MOLEFLOW\" /&gt;&lt;Property Type=\"StateConditionProperty\" EngineName=\"MOLEFRAC\" /&gt;&lt;Property Type=\"StateConditionProperty\" EngineName=\"MASSFLOW\" /&gt;&lt;Property Type=\"StateConditionProperty\" EngineName=\"MASSFRAC\" /&gt;&lt;Property Type=\"StateConditionProperty\" EngineName=\"VOLFLMX\" /&gt;&lt;Property Type=\"BatchProperty\" EngineName=\"cmole_cycle\" /&gt;&lt;Property Type=\"BatchProperty\" EngineName=\"cmole_time\" /&gt;&lt;Property Type=\"BatchProperty\" EngineName=\"cmass_cycle\" /&gt;&lt;Property Type=\"BatchProperty\" EngineName=\"cmass_time\" /&gt;&lt;Property Type=\"BatchProperty\" EngineName=\"vol_cycle\" /&gt;&lt;Property Type=\"BatchProperty\" EngineName=\"vol_time\" /&gt;&lt;Property Type=\"BatchProperty\" EngineName=\"enth_cycle\" /&gt;&lt;Property Type=\"BatchProperty\" EngineName=\"enth_time\" /&gt;&lt;Property Type=\"BatchProperty\" EngineName=\"cycle_time\" /&gt;&lt;Property Type=\"BatchProperty\" EngineName=\"oper_time\" /&gt;&lt;Property Type=\"BatchProperty\" EngineName=\"ntrain\" /&gt;&lt;/Properties&gt;&lt;/TFFTable&gt;&lt;/srcSettings&gt;</CommonShellSettings></tffString>",
+    "unit": ""
+  },
+  "REACTOR.STREAM_LEVEL": {
+    "value": 4,
+    "unit": ""
+  },
+  "REACTOR.SUBS_ATTR": {
+    "value": "NO",
+    "unit": ""
+  },
+  "REACTOR.TERM_LEVEL": {
+    "value": 4,
+    "unit": ""
+  },
+  "REACTOR.TOL": {
+    "value": 0.0001,
+    "unit": ""
+  },
+  "REACTOR.TOTBAL": {
+    "value": "TOTBAL",
+    "unit": ""
+  },
+  "REACTOR.TRUE_COMPS": {
+    "value": "YES",
+    "unit": ""
+  },
+  "REACTOR.TYPE": {
+    "value": "T-SPEC",
+    "unit": ""
+  },
+  "REACTOR.USERVECS": {
+    "value": "NOUSERVECS",
+    "unit": ""
+  },
+  "REACTOR.USER_FLASH": {
+    "value": "NO",
+    "unit": ""
+  },
+  "REACTOR.USE_SECTIONS": {
+    "value": "NO",
+    "unit": ""
+  },
+  "REACTOR.U_ENV": {
+    "value": 1.19422948e-05,
+    "unit": "cal/sec-sqcm-K"
+  },
+  "HEATER.Unit Set": {
+    "value": "MET",
+    "unit": ""
+  },
+  "HEATER.User Table": {
+    "value": 0,
+    "unit": ""
+  },
+  "HEATER.User Tree": {
+    "value": 0,
+    "unit": ""
+  },
+  "HEATER.ALWAYS_INST": {
+    "value": "NO",
+    "unit": ""
+  },
+  "HEATER.AUTO_COMPS_T": {
+    "value": 0.0,
+    "unit": ""
+  },
+  "HEATER.AUTO_PHASE": {
+    "value": "YES",
+    "unit": ""
+  },
+  "HEATER.AUTO_PHASE_T": {
+    "value": 0.1,
+    "unit": ""
+  },
+  "HEATER.BLKOPFREWAT": {
+    "value": "NO",
+    "unit": ""
+  },
+  "HEATER.CHECK_FREE_W": {
+    "value": "YES",
+    "unit": ""
+  },
+  "HEATER.CHEM_METHOD": {
+    "value": "YES",
+    "unit": ""
+  },
+  "HEATER.COMPBAL": {
+    "value": "NOCOMPBAL",
+    "unit": ""
+  },
+  "HEATER.CPEQP": {
+    "value": 0.1194229483,
+    "unit": "cal/gm-K"
+  },
+  "HEATER.CPMED": {
+    "value": 1.003152766,
+    "unit": "cal/gm-K"
+  },
+  "HEATER.DPPARMOPT": {
+    "value": "NO",
+    "unit": ""
+  },
+  "HEATER.EMBEDDED": {
+    "value": 0,
+    "unit": ""
+  },
+  "HEATER.ENERGY_BAL": {
+    "value": "YES",
+    "unit": ""
+  },
+  "HEATER.EO_COMP_TOL": {
+    "value": 1e-15,
+    "unit": ""
+  },
+  "HEATER.EO_TEMP_TOL": {
+    "value": 0.001,
+    "unit": "K"
+  },
+  "HEATER.EQPHCP": {
+    "value": "NO",
+    "unit": ""
+  },
+  "HEATER.FLASH_FORM": {
+    "value": "PML",
+    "unit": ""
+  },
+  "HEATER.FLOW_TOL": {
+    "value": 0.36,
+    "unit": "kmol/hr"
+  },
+  "HEATER.FRWATEROPSET": {
+    "value": "STEAM-TA",
+    "unit": ""
+  },
+  "HEATER.HEATOPT": {
+    "value": "CONST-DUTY",
+    "unit": ""
+  },
+  "HEATER.HTRTYPE": {
+    "value": "INSTANTANEOUS",
+    "unit": ""
+  },
+  "HEATER.IDETAILS": {
+    "value": "NO",
+    "unit": ""
+  },
+  "HEATER.INPUT": {
+    "value": "INPUT",
+    "unit": ""
+  },
+  "HEATER.L2_COMP_MODE": {
+    "value": "AUTO",
+    "unit": ""
+  },
+  "HEATER.LAMBDA": {
+    "value": 542.1801853,
+    "unit": "cal/gm"
+  },
+  "HEATER.LMTDFLOWDIR": {
+    "value": "COUNTERCURRENT",
+    "unit": ""
+  },
+  "HEATER.MAXIT": {
+    "value": 30,
+    "unit": ""
+  },
+  "HEATER.MIN_PRES": {
+    "value": "YES",
+    "unit": ""
+  },
+  "HEATER.NEG_COMP_CHK": {
+    "value": -1e-08,
+    "unit": ""
+  },
+  "HEATER.NEG_FLOW_CHK": {
+    "value": -1e-15,
+    "unit": ""
+  },
+  "HEATER.NEWPAGE": {
+    "value": "NONEWPAGE",
+    "unit": ""
+  },
+  "HEATER.NPHASE": {
+    "value": "2",
+    "unit": ""
+  },
+  "HEATER.OPSETNAME": {
+    "value": "NRTL",
+    "unit": ""
+  },
+  "HEATER.PRES": {
+    "value": 25.0,
+    "unit": "MPa"
+  },
+  "HEATER.PRES_TOL": {
+    "value": 1.0,
+    "unit": ""
+  },
+  "HEATER.PROP_LEVEL": {
+    "value": 4,
+    "unit": ""
+  },
+  "HEATER.REPORT": {
+    "value": "REPORT",
+    "unit": ""
+  },
+  "HEATER.RESTART": {
+    "value": "NO",
+    "unit": ""
+  },
+  "HEATER.RESULTS": {
+    "value": "RESULTS",
+    "unit": ""
+  },
+  "HEATER.SFRAC_TOL": {
+    "value": 0.0001,
+    "unit": ""
+  },
+  "HEATER.SHOWASICON": {
+    "value": 0,
+    "unit": ""
+  },
+  "HEATER.SIM_LEVEL": {
+    "value": 4,
+    "unit": ""
+  },
+  "HEATER.SOLU_WATER": {
+    "value": "3",
+    "unit": ""
+  },
+  "HEATER.SPC_DPI": {
+    "value": "YES",
+    "unit": ""
+  },
+  "HEATER.SPC_HDUTY": {
+    "value": "YES",
+    "unit": ""
+  },
+  "HEATER.SPC_PML": {
+    "value": "NO",
+    "unit": ""
+  },
+  "HEATER.SPC_PRES": {
+    "value": "YES",
+    "unit": ""
+  },
+  "HEATER.SPC_TEMP": {
+    "value": "YES",
+    "unit": ""
+  },
+  "HEATER.SPC_VFRAC": {
+    "value": "YES",
+    "unit": ""
+  },
+  "HEATER.SPEC_OPT": {
+    "value": "TP",
+    "unit": ""
+  },
+  "HEATER.STREAM_LEVEL": {
+    "value": 4,
+    "unit": ""
+  },
+  "HEATER.TAPPR": {
+    "value": 10.0,
+    "unit": "K"
+  },
+  "HEATER.TEMP": {
+    "value": 603.0,
+    "unit": "K"
+  },
+  "HEATER.TERM_LEVEL": {
+    "value": 4,
+    "unit": ""
+  },
+  "HEATER.TOL": {
+    "value": 0.0001,
+    "unit": ""
+  },
+  "HEATER.TOTBAL": {
+    "value": "TOTBAL",
+    "unit": ""
+  },
+  "HEATER.TRUE_COMPS": {
+    "value": "YES",
+    "unit": ""
+  },
+  "HEATER.VFRACX_TOL": {
+    "value": 1e-05,
+    "unit": ""
+  },
+  "HEATER.VFRAC_TOL": {
+    "value": 0.001,
+    "unit": ""
+  },
+  "PUMP.Unit Set": {
+    "value": "MET",
+    "unit": ""
+  },
+  "PUMP.User Table": {
+    "value": 0,
+    "unit": ""
+  },
+  "PUMP.User Tree": {
+    "value": 0,
+    "unit": ""
+  },
+  "PUMP.AFFEXPE": {
+    "value": 1.0,
+    "unit": ""
+  },
+  "PUMP.AFFEXPH": {
+    "value": 2.0,
+    "unit": ""
+  },
+  "PUMP.AFFEXPP": {
+    "value": 3.0,
+    "unit": ""
+  },
+  "PUMP.ALWAYS_INST": {
+    "value": "NO",
+    "unit": ""
+  },
+  "PUMP.AUTO_COMPS_T": {
+    "value": 0.0,
+    "unit": ""
+  },
+  "PUMP.AUTO_PHASE": {
+    "value": "YES",
+    "unit": ""
+  },
+  "PUMP.AUTO_PHASE_T": {
+    "value": 0.1,
+    "unit": ""
+  },
+  "PUMP.BLKOPFREWAT": {
+    "value": "NO",
+    "unit": ""
+  },
+  "PUMP.CALC_SPEED": {
+    "value": "NO",
+    "unit": ""
+  },
+  "PUMP.CHECK_FREE_W": {
+    "value": "YES",
+    "unit": ""
+  },
+  "PUMP.CHEM_METHOD": {
+    "value": "YES",
+    "unit": ""
+  },
+  "PUMP.COMPBAL": {
+    "value": "NOCOMPBAL",
+    "unit": ""
+  },
+  "PUMP.DEP_VAR": {
+    "value": "HEAD",
+    "unit": ""
+  },
+  "PUMP.EMBEDDED": {
+    "value": 0,
+    "unit": ""
+  },
+  "PUMP.ENERGY_BAL": {
+    "value": "YES",
+    "unit": ""
+  },
+  "PUMP.EO_COMP_TOL": {
+    "value": 1e-15,
+    "unit": ""
+  },
+  "PUMP.EO_TEMP_TOL": {
+    "value": 0.001,
+    "unit": "K"
+  },
+  "PUMP.FLASH_FORM": {
+    "value": "PML",
+    "unit": ""
+  },
+  "PUMP.FRWATEROPSET": {
+    "value": "STEAM-TA",
+    "unit": ""
+  },
+  "PUMP.GEAR_RATIO": {
+    "value": 1.0,
+    "unit": ""
+  },
+  "PUMP.IDETAILS": {
+    "value": "NO",
+    "unit": ""
+  },
+  "PUMP.IMODE": {
+    "value": "INSTANTANEOUS",
+    "unit": ""
+  },
+  "PUMP.INPUT": {
+    "value": "INPUT",
+    "unit": ""
+  },
+  "PUMP.L2_COMP_MODE": {
+    "value": "AUTO",
+    "unit": ""
+  },
+  "PUMP.MAXIT": {
+    "value": 30,
+    "unit": ""
+  },
+  "PUMP.MIN_PRES": {
+    "value": "YES",
+    "unit": ""
+  },
+  "PUMP.NEG_COMP_CHK": {
+    "value": -1e-08,
+    "unit": ""
+  },
+  "PUMP.NEG_FLOW_CHK": {
+    "value": -1e-15,
+    "unit": ""
+  },
+  "PUMP.NEWPAGE": {
+    "value": "NONEWPAGE",
+    "unit": ""
+  },
+  "PUMP.NINT": {
+    "value": 1,
+    "unit": ""
+  },
+  "PUMP.NIWORK": {
+    "value": 1,
+    "unit": ""
+  },
+  "PUMP.NPHASE": {
+    "value": "1",
+    "unit": ""
+  },
+  "PUMP.NREAL": {
+    "value": 1,
+    "unit": ""
+  },
+  "PUMP.NWORK": {
+    "value": 1,
+    "unit": ""
+  },
+  "PUMP.OPSETNAME": {
+    "value": "NRTL",
+    "unit": ""
+  },
+  "PUMP.OPT_CFORMAT": {
+    "value": "TABLE",
+    "unit": ""
+  },
+  "PUMP.OPT_SPEC": {
+    "value": "PRES",
+    "unit": ""
+  },
+  "PUMP.PRES": {
+    "value": 25.0,
+    "unit": "MPa"
+  },
+  "PUMP.PRES_TOL": {
+    "value": 1.0,
+    "unit": ""
+  },
+  "PUMP.PROP_LEVEL": {
+    "value": 4,
+    "unit": ""
+  },
+  "PUMP.PUMP_TYPE": {
+    "value": "PUMP",
+    "unit": ""
+  },
+  "PUMP.REPORT": {
+    "value": "REPORT",
+    "unit": ""
+  },
+  "PUMP.RESTART": {
+    "value": "NO",
+    "unit": ""
+  },
+  "PUMP.RESULTS": {
+    "value": "RESULTS",
+    "unit": ""
+  },
+  "PUMP.SFRAC_TOL": {
+    "value": 0.0001,
+    "unit": ""
+  },
+  "PUMP.SHOWASICON": {
+    "value": 0,
+    "unit": ""
+  },
+  "PUMP.SIM_LEVEL": {
+    "value": 4,
+    "unit": ""
+  },
+  "PUMP.SOLU_WATER": {
+    "value": "3",
+    "unit": ""
+  },
+  "PUMP.SPEED_UNITS": {
+    "value": "US",
+    "unit": ""
+  },
+  "PUMP.SPLINE_FIT": {
+    "value": "HERMITE",
+    "unit": ""
+  },
+  "PUMP.STREAM_LEVEL": {
+    "value": 4,
+    "unit": ""
+  },
+  "PUMP.TERM_LEVEL": {
+    "value": 4,
+    "unit": ""
+  },
+  "PUMP.TOL": {
+    "value": 0.0001,
+    "unit": ""
+  },
+  "PUMP.TOLVF": {
+    "value": 0.001,
+    "unit": ""
+  },
+  "PUMP.TOTBAL": {
+    "value": "TOTBAL",
+    "unit": ""
+  },
+  "PUMP.TRUE_COMPS": {
+    "value": "YES",
+    "unit": ""
+  },
+  "PUMP.VFRACX_TOL": {
+    "value": 1e-05,
+    "unit": ""
+  },
+  "PUMP.VFRAC_CHK": {
+    "value": "ERROR",
+    "unit": ""
+  },
+  "PUMP.VFRAC_TOL": {
+    "value": 0.001,
+    "unit": ""
+  },
+  "HEATCHAG.Unit Set": {
+    "value": "MET",
+    "unit": ""
+  },
+  "HEATCHAG.User Table": {
+    "value": 0,
+    "unit": ""
+  },
+  "HEATCHAG.User Tree": {
+    "value": 0,
+    "unit": ""
+  },
+  "HEATCHAG.1FMAXIT": {
+    "value": 30,
+    "unit": ""
+  },
+  "HEATCHAG.1FREEWAT": {
+    "value": "NO",
+    "unit": ""
+  },
+  "HEATCHAG.1FTOL": {
+    "value": 0.0001,
+    "unit": ""
+  },
+  "HEATCHAG.1NPHASE": {
+    "value": "2",
+    "unit": ""
+  },
+  "HEATCHAG.1PHASE": {
+    "value": "V",
+    "unit": ""
+  },
+  "HEATCHAG.2FMAXIT": {
+    "value": 30,
+    "unit": ""
+  },
+  "HEATCHAG.2FREEWAT": {
+    "value": "NO",
+    "unit": ""
+  },
+  "HEATCHAG.2FTOL": {
+    "value": 0.0001,
+    "unit": ""
+  },
+  "HEATCHAG.2NPHASE": {
+    "value": "2",
+    "unit": ""
+  },
+  "HEATCHAG.2PHASE": {
+    "value": "V",
+    "unit": ""
+  },
+  "HEATCHAG.ALGORITHM": {
+    "value": "BROYDEN",
+    "unit": ""
+  },
+  "HEATCHAG.ALLOW_TCROSS": {
+    "value": "NO",
+    "unit": ""
+  },
+  "HEATCHAG.ALWAYS_INST": {
+    "value": "NO",
+    "unit": ""
+  },
+  "HEATCHAG.AREA_TOL": {
+    "value": 0.01,
+    "unit": "sqm"
+  },
+  "HEATCHAG.AUTO_COMPS_T": {
+    "value": 0.0,
+    "unit": ""
+  },
+  "HEATCHAG.AUTO_PHASE": {
+    "value": "YES",
+    "unit": ""
+  },
+  "HEATCHAG.AUTO_PHASE_T": {
+    "value": 0.1,
+    "unit": ""
+  },
+  "HEATCHAG.BAFFLE_TYPE": {
+    "value": "SEGMENTAL",
+    "unit": ""
+  },
+  "HEATCHAG.BLKOPFREWAT": {
+    "value": "NO",
+    "unit": ""
+  },
+  "HEATCHAG.BYPASS": {
+    "value": "NO",
+    "unit": ""
+  },
+  "HEATCHAG.B_B": {
+    "value": 0.0203019012,
+    "unit": "cal/sec-sqcm-K"
+  },
+  "HEATCHAG.B_L": {
+    "value": 0.0203019012,
+    "unit": "cal/sec-sqcm-K"
+  },
+  "HEATCHAG.B_V": {
+    "value": 0.0203019012,
+    "unit": "cal/sec-sqcm-K"
+  },
+  "HEATCHAG.CALC_NSHELLS": {
+    "value": "NO",
+    "unit": ""
+  },
+  "HEATCHAG.CCTYPE": {
+    "value": "ISOBARIC",
+    "unit": ""
+  },
+  "HEATCHAG.CC_DIS_TYPE": {
+    "value": "EQ-DIST-2PH",
+    "unit": ""
+  },
+  "HEATCHAG.CDPPARMOP": {
+    "value": "NO",
+    "unit": ""
+  },
+  "HEATCHAG.CDP_OPTION": {
+    "value": "CONSTANT",
+    "unit": ""
+  },
+  "HEATCHAG.CDP_SCALE": {
+    "value": 1.0,
+    "unit": ""
+  },
+  "HEATCHAG.CFOUL_FACTOR": {
+    "value": 0.0,
+    "unit": "sec-sqcm-K/cal"
+  },
+  "HEATCHAG.CFREE_WATER": {
+    "value": "STEAM-TA",
+    "unit": ""
+  },
+  "HEATCHAG.CGENERATE": {
+    "value": "YES",
+    "unit": ""
+  },
+  "HEATCHAG.CH": {
+    "value": 0.0406038024,
+    "unit": "cal/sec-sqcm-K"
+  },
+  "HEATCHAG.CHECK_FREE_W": {
+    "value": "YES",
+    "unit": ""
+  },
+  "HEATCHAG.CHEM_METHOD": {
+    "value": "YES",
+    "unit": ""
+  },
+  "HEATCHAG.CHFLOW_BASIS": {
+    "value": "MASS",
+    "unit": ""
+  },
+  "HEATCHAG.CH_B": {
+    "value": 0.0406038024,
+    "unit": "cal/sec-sqcm-K"
+  },
+  "HEATCHAG.CH_EXPONENT": {
+    "value": 1.0,
+    "unit": ""
+  },
+  "HEATCHAG.CH_L": {
+    "value": 0.0406038024,
+    "unit": "cal/sec-sqcm-K"
+  },
+  "HEATCHAG.CH_OPTION": {
+    "value": "CONSTANT",
+    "unit": ""
+  },
+  "HEATCHAG.CH_REF_VALUE": {
+    "value": 0.0406038024,
+    "unit": "cal/sec-sqcm-K"
+  },
+  "HEATCHAG.CH_SCALE": {
+    "value": 1.0,
+    "unit": ""
+  },
+  "HEATCHAG.CH_V": {
+    "value": 0.0406038024,
+    "unit": "cal/sec-sqcm-K"
+  },
+  "HEATCHAG.CINDP_DEV": {
+    "value": 0.1,
+    "unit": ""
+  },
+  "HEATCHAG.CIRC_TYPE": {
+    "value": "FIXED-FLOW",
+    "unit": ""
+  },
+  "HEATCHAG.CMAX_DP": {
+    "value": 0.4,
+    "unit": ""
+  },
+  "HEATCHAG.COLD_U_EXP": {
+    "value": 0.8,
+    "unit": ""
+  },
+  "HEATCHAG.COMPBAL": {
+    "value": "NOCOMPBAL",
+    "unit": ""
+  },
+  "HEATCHAG.CONV_METHOD": {
+    "value": "SIZE",
+    "unit": ""
+  },
+  "HEATCHAG.COPSET": {
+    "value": "NRTL",
+    "unit": ""
+  },
+  "HEATCHAG.CPEQP": {
+    "value": 0.1194229483,
+    "unit": "cal/gm-K"
+  },
+  "HEATCHAG.CSAVE_CURVE": {
+    "value": "NO",
+    "unit": ""
+  },
+  "HEATCHAG.CSOLIDS": {
+    "value": "IN-LIQUID",
+    "unit": ""
+  },
+  "HEATCHAG.CSOLU_WATER": {
+    "value": "3",
+    "unit": ""
+  },
+  "HEATCHAG.CTRUE_COMPS": {
+    "value": "YES",
+    "unit": ""
+  },
+  "HEATCHAG.CUFLOW_BASIS": {
+    "value": "MASS",
+    "unit": ""
+  },
+  "HEATCHAG.CUPDATE": {
+    "value": "ALWAYS",
+    "unit": ""
+  },
+  "HEATCHAG.CURVE": {
+    "value": "YES",
+    "unit": ""
+  },
+  "HEATCHAG.DUTY_FACTOR": {
+    "value": 1.0,
+    "unit": ""
+  },
+  "HEATCHAG.DUTY_Q_TOL": {
+    "value": 0.0001,
+    "unit": ""
+  },
+  "HEATCHAG.DUTY_TOL": {
+    "value": 23.88458966,
+    "unit": "cal/sec"
+  },
+  "HEATCHAG.EMBEDDED": {
+    "value": 0,
+    "unit": ""
+  },
+  "HEATCHAG.ENERGY_BAL": {
+    "value": "YES",
+    "unit": ""
+  },
+  "HEATCHAG.EO_COMP_TOL": {
+    "value": 1e-15,
+    "unit": ""
+  },
+  "HEATCHAG.EO_TEMP_TOL": {
+    "value": 0.001,
+    "unit": "K"
+  },
+  "HEATCHAG.EQPHCP": {
+    "value": "NO",
+    "unit": ""
+  },
+  "HEATCHAG.EXCH_TYPE": {
+    "value": "EXCHANGER",
+    "unit": ""
+  },
+  "HEATCHAG.FCOLD": {
+    "value": "S2",
+    "unit": ""
+  },
+  "HEATCHAG.FC_USE_AVTD": {
+    "value": "NO",
+    "unit": ""
+  },
+  "HEATCHAG.FHOT": {
+    "value": "S4",
+    "unit": ""
+  },
+  "HEATCHAG.FLASH_FORM": {
+    "value": "PML",
+    "unit": ""
+  },
+  "HEATCHAG.FLOW_TOL": {
+    "value": 0.36,
+    "unit": "kmol/hr"
+  },
+  "HEATCHAG.FOUL_OPTION": {
+    "value": "PROGRAM",
+    "unit": ""
+  },
+  "HEATCHAG.FT_MIN": {
+    "value": 0.8,
+    "unit": ""
+  },
+  "HEATCHAG.F_OPTION": {
+    "value": "CONSTANT",
+    "unit": ""
+  },
+  "HEATCHAG.GEOMETRY": {
+    "value": "NO",
+    "unit": ""
+  },
+  "HEATCHAG.GEO_AREA": {
+    "value": "NO",
+    "unit": ""
+  },
+  "HEATCHAG.GEO_PRES": {
+    "value": "NO",
+    "unit": ""
+  },
+  "HEATCHAG.GEO_U": {
+    "value": "NO",
+    "unit": ""
+  },
+  "HEATCHAG.HCTYPE": {
+    "value": "ISOBARIC",
+    "unit": ""
+  },
+  "HEATCHAG.HC_DIS_TYPE": {
+    "value": "EQ-DIST-2PH",
+    "unit": ""
+  },
+  "HEATCHAG.HDPPARMOP": {
+    "value": "NO",
+    "unit": ""
+  },
+  "HEATCHAG.HDP_OPTION": {
+    "value": "CONSTANT",
+    "unit": ""
+  },
+  "HEATCHAG.HDP_SCALE": {
+    "value": 1.0,
+    "unit": ""
+  },
+  "HEATCHAG.HFOUL_FACTOR": {
+    "value": 0.0,
+    "unit": "sec-sqcm-K/cal"
+  },
+  "HEATCHAG.HFREE_WATER": {
+    "value": "STEAM-TA",
+    "unit": ""
+  },
+  "HEATCHAG.HGENERATE": {
+    "value": "YES",
+    "unit": ""
+  },
+  "HEATCHAG.HH": {
+    "value": 0.0406038024,
+    "unit": "cal/sec-sqcm-K"
+  },
+  "HEATCHAG.HHFLOW_BASIS": {
+    "value": "MASS",
+    "unit": ""
+  },
+  "HEATCHAG.HH_B": {
+    "value": 0.0406038024,
+    "unit": "cal/sec-sqcm-K"
+  },
+  "HEATCHAG.HH_EXPONENT": {
+    "value": 1.0,
+    "unit": ""
+  },
+  "HEATCHAG.HH_L": {
+    "value": 0.0406038024,
+    "unit": "cal/sec-sqcm-K"
+  },
+  "HEATCHAG.HH_OPTION": {
+    "value": "CONSTANT",
+    "unit": ""
+  },
+  "HEATCHAG.HH_REF_VALUE": {
+    "value": 0.0406038024,
+    "unit": "cal/sec-sqcm-K"
+  },
+  "HEATCHAG.HH_SCALE": {
+    "value": 1.0,
+    "unit": ""
+  },
+  "HEATCHAG.HH_V": {
+    "value": 0.0406038024,
+    "unit": "cal/sec-sqcm-K"
+  },
+  "HEATCHAG.HINDP_DEV": {
+    "value": 0.1,
+    "unit": ""
+  },
+  "HEATCHAG.HMAX_DP": {
+    "value": 0.4,
+    "unit": ""
+  },
+  "HEATCHAG.HOPSET": {
+    "value": "NRTL",
+    "unit": ""
+  },
+  "HEATCHAG.HOT_U_EXP": {
+    "value": 0.6,
+    "unit": ""
+  },
+  "HEATCHAG.HSAVE_CURVE": {
+    "value": "NO",
+    "unit": ""
+  },
+  "HEATCHAG.HSOLIDS": {
+    "value": "IN-LIQUID",
+    "unit": ""
+  },
+  "HEATCHAG.HSOLU_WATER": {
+    "value": "3",
+    "unit": ""
+  },
+  "HEATCHAG.HT2ENV": {
+    "value": "NO",
+    "unit": ""
+  },
+  "HEATCHAG.HTCEINC": {
+    "value": 1.19422948e-05,
+    "unit": "cal/sec-sqcm-K"
+  },
+  "HEATCHAG.HTCEINH": {
+    "value": 1.19422948e-05,
+    "unit": "cal/sec-sqcm-K"
+  },
+  "HEATCHAG.HTCEOUTC": {
+    "value": 1.19422948e-05,
+    "unit": "cal/sec-sqcm-K"
+  },
+  "HEATCHAG.HTCEOUTH": {
+    "value": 1.19422948e-05,
+    "unit": "cal/sec-sqcm-K"
+  },
+  "HEATCHAG.HTRUE_COMPS": {
+    "value": "YES",
+    "unit": ""
+  },
+  "HEATCHAG.HUFLOW_BASIS": {
+    "value": "MASS",
+    "unit": ""
+  },
+  "HEATCHAG.HUPDATE": {
+    "value": "ALWAYS",
+    "unit": ""
+  },
+  "HEATCHAG.HXTYPE": {
+    "value": "INSTANTANEOUS",
+    "unit": ""
+  },
+  "HEATCHAG.IDETAILS": {
+    "value": "NO",
+    "unit": ""
+  },
+  "HEATCHAG.INPUT": {
+    "value": "INPUT",
+    "unit": ""
+  },
+  "HEATCHAG.INP_CHANGE": {
+    "value": 0,
+    "unit": ""
+  },
+  "HEATCHAG.L2_COMP_MODE": {
+    "value": "AUTO",
+    "unit": ""
+  },
+  "HEATCHAG.L_B": {
+    "value": 0.0203019012,
+    "unit": "cal/sec-sqcm-K"
+  },
+  "HEATCHAG.L_L": {
+    "value": 0.0203019012,
+    "unit": "cal/sec-sqcm-K"
+  },
+  "HEATCHAG.L_V": {
+    "value": 0.0203019012,
+    "unit": "cal/sec-sqcm-K"
+  },
+  "HEATCHAG.MATERIAL": {
+    "value": "CARBON-STEEL",
+    "unit": ""
+  },
+  "HEATCHAG.MAX_CONV_IT": {
+    "value": 100,
+    "unit": ""
+  },
+  "HEATCHAG.MAX_NSHELLS": {
+    "value": 10.0,
+    "unit": ""
+  },
+  "HEATCHAG.MIN_FLS_PTS": {
+    "value": 10,
+    "unit": ""
+  },
+  "HEATCHAG.MIN_HRC_PTS": {
+    "value": 10,
+    "unit": ""
+  },
+  "HEATCHAG.MIN_TAPP": {
+    "value": 10.0,
+    "unit": "K"
+  },
+  "HEATCHAG.MODE": {
+    "value": "SHORTCUT",
+    "unit": ""
+  },
+  "HEATCHAG.MODE0": {
+    "value": "SHORTCUT",
+    "unit": ""
+  },
+  "HEATCHAG.MULTI_OUTS": {
+    "value": "NO",
+    "unit": ""
+  },
+  "HEATCHAG.NEG_COMP_CHK": {
+    "value": -1e-08,
+    "unit": ""
+  },
+  "HEATCHAG.NEG_FLOW_CHK": {
+    "value": -1e-15,
+    "unit": ""
+  },
+  "HEATCHAG.NEWPAGE": {
+    "value": "NONEWPAGE",
+    "unit": ""
+  },
+  "HEATCHAG.NINTF": {
+    "value": 1,
+    "unit": ""
+  },
+  "HEATCHAG.NINTH": {
+    "value": 1,
+    "unit": ""
+  },
+  "HEATCHAG.NINTT": {
+    "value": 1,
+    "unit": ""
+  },
+  "HEATCHAG.NINTU": {
+    "value": 1,
+    "unit": ""
+  },
+  "HEATCHAG.NIWRKF": {
+    "value": 1,
+    "unit": ""
+  },
+  "HEATCHAG.NIWRKH": {
+    "value": 1,
+    "unit": ""
+  },
+  "HEATCHAG.NIWRKT": {
+    "value": 1,
+    "unit": ""
+  },
+  "HEATCHAG.NIWRKU": {
+    "value": 1,
+    "unit": ""
+  },
+  "HEATCHAG.NPOINT": {
+    "value": 20,
+    "unit": ""
+  },
+  "HEATCHAG.NPOINTS": {
+    "value": 1,
+    "unit": ""
+  },
+  "HEATCHAG.NREALF": {
+    "value": 1,
+    "unit": ""
+  },
+  "HEATCHAG.NREALH": {
+    "value": 1,
+    "unit": ""
+  },
+  "HEATCHAG.NREALT": {
+    "value": 1,
+    "unit": ""
+  },
+  "HEATCHAG.NREALU": {
+    "value": 1,
+    "unit": ""
+  },
+  "HEATCHAG.NUMFREE": {
+    "value": 0,
+    "unit": ""
+  },
+  "HEATCHAG.NUM_SHELLS": {
+    "value": 1.0,
+    "unit": ""
+  },
+  "HEATCHAG.NWRKF": {
+    "value": 1,
+    "unit": ""
+  },
+  "HEATCHAG.NWRKH": {
+    "value": 1,
+    "unit": ""
+  },
+  "HEATCHAG.NWRKT": {
+    "value": 1,
+    "unit": ""
+  },
+  "HEATCHAG.NWRKU": {
+    "value": 1,
+    "unit": ""
+  },
+  "HEATCHAG.N_PRES_PTS": {
+    "value": 5,
+    "unit": ""
+  },
+  "HEATCHAG.N_TEMP_PTS": {
+    "value": 5,
+    "unit": ""
+  },
+  "HEATCHAG.ON_SMEO_DIFF": {
+    "value": "USE-CLOSED",
+    "unit": ""
+  },
+  "HEATCHAG.OPT_FHEIGHT": {
+    "value": "HEIGHT",
+    "unit": ""
+  },
+  "HEATCHAG.OPT_FSPACING": {
+    "value": "NPER-LENGTH",
+    "unit": ""
+  },
+  "HEATCHAG.OPT_TUSIZE": {
+    "value": "ACTUAL",
+    "unit": ""
+  },
+  "HEATCHAG.ORIENTATION": {
+    "value": "HORIZONTAL",
+    "unit": ""
+  },
+  "HEATCHAG.OUTLET_P_TOL": {
+    "value": 0.0001,
+    "unit": ""
+  },
+  "HEATCHAG.PATTERN": {
+    "value": "TRIANGLE",
+    "unit": ""
+  },
+  "HEATCHAG.PMAXIT": {
+    "value": 20,
+    "unit": ""
+  },
+  "HEATCHAG.PRESEST_COLD": {
+    "value": 0.0,
+    "unit": "atm"
+  },
+  "HEATCHAG.PRESEST_HOT": {
+    "value": 0.0,
+    "unit": "atm"
+  },
+  "HEATCHAG.PRESSURE_TOL": {
+    "value": 0.000986923267,
+    "unit": "atm"
+  },
+  "HEATCHAG.PRES_COLD": {
+    "value": 0.0,
+    "unit": "atm"
+  },
+  "HEATCHAG.PRES_HOT": {
+    "value": 0.0,
+    "unit": "atm"
+  },
+  "HEATCHAG.PRES_PROF": {
+    "value": "INLET",
+    "unit": ""
+  },
+  "HEATCHAG.PROFILE": {
+    "value": "NOPROFILE",
+    "unit": ""
+  },
+  "HEATCHAG.PROGRAM_MODE": {
+    "value": "DESIGN",
+    "unit": ""
+  },
+  "HEATCHAG.PROP_LEVEL": {
+    "value": 4,
+    "unit": ""
+  },
+  "HEATCHAG.P_T_TABLE": {
+    "value": "YES",
+    "unit": ""
+  },
+  "HEATCHAG.P_UPDATE": {
+    "value": "YES",
+    "unit": ""
+  },
+  "HEATCHAG.Q_RELAX_PARM": {
+    "value": 0.5,
+    "unit": ""
+  },
+  "HEATCHAG.REPORT": {
+    "value": "REPORT",
+    "unit": ""
+  },
+  "HEATCHAG.RESTART": {
+    "value": "NO",
+    "unit": ""
+  },
+  "HEATCHAG.RESULTS": {
+    "value": "RESULTS",
+    "unit": ""
+  },
+  "HEATCHAG.SAV_ANA_PARM": {
+    "value": "NO",
+    "unit": ""
+  },
+  "HEATCHAG.SAV_CLD_STRM": {
+    "value": "YES",
+    "unit": ""
+  },
+  "HEATCHAG.SAV_DSG_PARM": {
+    "value": "YES",
+    "unit": ""
+  },
+  "HEATCHAG.SAV_HOT_STRM": {
+    "value": "YES",
+    "unit": ""
+  },
+  "HEATCHAG.SAV_INPUT": {
+    "value": "YES",
+    "unit": ""
+  },
+  "HEATCHAG.SCUT_INTVLS": {
+    "value": "NO",
+    "unit": ""
+  },
+  "HEATCHAG.SFRAC_TOL": {
+    "value": 0.0001,
+    "unit": ""
+  },
+  "HEATCHAG.SHELL": {
+    "value": "NOSHELL",
+    "unit": ""
+  },
+  "HEATCHAG.SHELL_NPASS": {
+    "value": "1",
+    "unit": ""
+  },
+  "HEATCHAG.SHOWASICON": {
+    "value": 0,
+    "unit": ""
+  },
+  "HEATCHAG.SIDE_VAR": {
+    "value": "HOT",
+    "unit": ""
+  },
+  "HEATCHAG.SILVER_GHALY": {
+    "value": "YES",
+    "unit": ""
+  },
+  "HEATCHAG.SIM_LEVEL": {
+    "value": 4,
+    "unit": ""
+  },
+  "HEATCHAG.SIZE_MOD": {
+    "value": "TASCPLUS-RIG",
+    "unit": ""
+  },
+  "HEATCHAG.SIZE_TEMPL": {
+    "value": "NO",
+    "unit": ""
+  },
+  "HEATCHAG.SPEC": {
+    "value": "DELT-COLD",
+    "unit": ""
+  },
+  "HEATCHAG.SPECUN": {
+    "value": "K",
+    "unit": ""
+  },
+  "HEATCHAG.STREAM_LEVEL": {
+    "value": 4,
+    "unit": ""
+  },
+  "HEATCHAG.TASC_METHOD": {
+    "value": "EDR-DEFAULT",
+    "unit": ""
+  },
+  "HEATCHAG.TEMA_TYPE": {
+    "value": "E",
+    "unit": ""
+  },
+  "HEATCHAG.TEMP_SPEC": {
+    "value": "MIN-TAPP",
+    "unit": ""
+  },
+  "HEATCHAG.TEMP_TOL": {
+    "value": 0.01,
+    "unit": "K"
+  },
+  "HEATCHAG.TERM_LEVEL": {
+    "value": 4,
+    "unit": ""
+  },
+  "HEATCHAG.TOTBAL": {
+    "value": "TOTBAL",
+    "unit": ""
+  },
+  "HEATCHAG.TUBES_IN_WIN": {
+    "value": "YES",
+    "unit": ""
+  },
+  "HEATCHAG.TUBE_DP_FCOR": {
+    "value": "BEGGS-BRILL",
+    "unit": ""
+  },
+  "HEATCHAG.TUBE_DP_HCOR": {
+    "value": "BEGGS-BRILL",
+    "unit": ""
+  },
+  "HEATCHAG.TUBE_DP_PROF": {
+    "value": "DEFAULT",
+    "unit": ""
+  },
+  "HEATCHAG.TUBE_FLOW": {
+    "value": "UP",
+    "unit": ""
+  },
+  "HEATCHAG.TUBE_NPASS": {
+    "value": "1",
+    "unit": ""
+  },
+  "HEATCHAG.TUBE_TYPE": {
+    "value": "BARE",
+    "unit": ""
+  },
+  "HEATCHAG.TYPE": {
+    "value": "COUNTERCURRENT",
+    "unit": ""
+  },
+  "HEATCHAG.U": {
+    "value": 0.0203019012,
+    "unit": "cal/sec-sqcm-K"
+  },
+  "HEATCHAG.UFLOW_BASIS": {
+    "value": "MASS",
+    "unit": ""
+  },
+  "HEATCHAG.USER_SUB_OPT": {
+    "value": "SINGLE",
+    "unit": ""
+  },
+  "HEATCHAG.U_EXPONENT": {
+    "value": 1.0,
+    "unit": ""
+  },
+  "HEATCHAG.U_OPTION": {
+    "value": "PHASE",
+    "unit": ""
+  },
+  "HEATCHAG.U_REF_SIDE": {
+    "value": "HOT",
+    "unit": ""
+  },
+  "HEATCHAG.U_REF_VALUE": {
+    "value": 0.0203019012,
+    "unit": "cal/sec-sqcm-K"
+  },
+  "HEATCHAG.U_SCALE": {
+    "value": 1.0,
+    "unit": ""
+  },
+  "HEATCHAG.VALUE": {
+    "value": 15.0,
+    "unit": ""
+  },
+  "HEATCHAG.VFRACX_TOL": {
+    "value": 1e-05,
+    "unit": ""
+  },
+  "HEATCHAG.VFRAC_TOL": {
+    "value": 0.001,
+    "unit": ""
+  },
+  "HEATCHAG.V_B": {
+    "value": 0.0203019012,
+    "unit": "cal/sec-sqcm-K"
+  },
+  "HEATCHAG.V_L": {
+    "value": 0.0203019012,
+    "unit": "cal/sec-sqcm-K"
+  },
+  "HEATCHAG.V_V": {
+    "value": 0.0203019012,
+    "unit": "cal/sec-sqcm-K"
+  }
+}

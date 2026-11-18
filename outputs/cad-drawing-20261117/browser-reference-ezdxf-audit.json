@@ -1,0 +1,12 @@
+{
+  "reader": "ezdxf 1.4.5",
+  "entities": [
+    "POINT",
+    "POINT",
+    "LINE"
+  ],
+  "errors": 0,
+  "fixes": 0,
+  "coordinatesExact": true,
+  "units": 4
+}

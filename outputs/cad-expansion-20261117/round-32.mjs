@@ -1,0 +1,3 @@
+const task=await taskSpace(10);const page=task.page('p1');await page.cdp('Emulation.setDeviceMetricsOverride',{width:1130,height:650,deviceScaleFactor:1,mobile:false});await page.keyboard.press('f');
+console.log(await page.evaluate(()=>({inputs:[...document.querySelectorAll('.inspector input')].map(x=>({label:x.getAttribute('aria-label'),value:x.value})),canvas:document.querySelector('canvas[aria-label="二维草图画布"]')?.getBoundingClientRect().toJSON(),tool:document.querySelector('[aria-label="选择或框选图形"]')?.getAttribute('aria-pressed')})));
+await page.screenshot({path:'C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/cad-expansion-20261117/drag-before-final.png'});

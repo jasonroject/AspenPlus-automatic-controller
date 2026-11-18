@@ -1,0 +1,19 @@
+[
+  {
+    "label": "Changed operand invalidates preview",
+    "commitVisible": false,
+    "message": "源对象已改变，请重新预览布尔结果。",
+    "width": "120"
+  },
+  {
+    "label": "Apply preview",
+    "count": 7,
+    "hidden": 2,
+    "preview": false
+  },
+  {
+    "label": "Single undo restores operands",
+    "count": 6,
+    "hidden": 0
+  }
+]

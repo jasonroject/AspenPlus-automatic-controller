@@ -1,0 +1,51 @@
+{
+  "absolute": true,
+  "relative": true,
+  "polar": true,
+  "close": true,
+  "repeatWithSpace": true,
+  "localUndoPreservesPriorObjects": true,
+  "submillimeterLength": 0.5,
+  "actualEndpoints": [
+    [
+      {
+        "x": 0,
+        "y": 0
+      },
+      {
+        "x": 40,
+        "y": 0
+      }
+    ],
+    [
+      {
+        "x": 40,
+        "y": 0
+      },
+      {
+        "x": 40,
+        "y": 20
+      }
+    ],
+    [
+      {
+        "x": 40,
+        "y": 20
+      },
+      {
+        "x": 0,
+        "y": 0
+      }
+    ],
+    [
+      {
+        "x": 60,
+        "y": 0
+      },
+      {
+        "x": 60.5,
+        "y": 0
+      }
+    ]
+  ]
+}

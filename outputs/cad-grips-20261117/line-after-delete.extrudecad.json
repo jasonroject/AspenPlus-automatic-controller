@@ -1,0 +1,176 @@
+{
+  "app": "ExtrudeCAD Studio",
+  "fileType": "extrudecad-project",
+  "version": 1,
+  "savedAt": "2026-11-17T12:46:19.573Z",
+  "shapes": [
+    {
+      "id": "cad-point-680183ca-be7c-430a-9a31-91ef91c262f0",
+      "name": "定位点 #1",
+      "type": "point",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-point-6a51455a-49be-4476-8042-15fd0f0dcd0f",
+      "name": "定位点 #2",
+      "type": "point",
+      "points": [
+        {
+          "x": 40,
+          "y": 0
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-segment-ec5fb840-4f5d-4bd7-a157-9c5b7bcb441e",
+      "name": "两点直线 #1",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 40,
+          "y": 0
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false,
+      "endpointIds": [
+        "cad-point-680183ca-be7c-430a-9a31-91ef91c262f0",
+        "cad-point-6a51455a-49be-4476-8042-15fd0f0dcd0f"
+      ]
+    },
+    {
+      "id": "cad-point-c8040d70-965c-4b48-9195-3ea584318852",
+      "name": "定位点 #3",
+      "type": "point",
+      "points": [
+        {
+          "x": 40,
+          "y": 30
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-segment-7e7def45-a2de-4a59-a986-a2dc0b2a685d",
+      "name": "两点直线 #2",
+      "type": "segment",
+      "points": [
+        {
+          "x": 40,
+          "y": 0
+        },
+        {
+          "x": 40,
+          "y": 30
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false,
+      "endpointIds": [
+        "cad-point-6a51455a-49be-4476-8042-15fd0f0dcd0f",
+        "cad-point-c8040d70-965c-4b48-9195-3ea584318852"
+      ]
+    },
+    {
+      "id": "cad-point-9ba9ba87-22d9-48a4-b4f5-6b920f429127",
+      "name": "定位点 #4",
+      "type": "point",
+      "points": [
+        {
+          "x": 50,
+          "y": 40
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-point-f6e509c5-d66e-45bb-abbe-231685c9ed8f",
+      "name": "定位点 #5",
+      "type": "point",
+      "points": [
+        {
+          "x": 20,
+          "y": 40
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-segment-9cc6eff9-eda2-4d61-8c7d-cb00f5c30cfd",
+      "name": "两点直线 #3",
+      "type": "segment",
+      "points": [
+        {
+          "x": 40,
+          "y": 30
+        },
+        {
+          "x": 20,
+          "y": 40
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false,
+      "endpointIds": [
+        "cad-point-c8040d70-965c-4b48-9195-3ea584318852",
+        "cad-point-f6e509c5-d66e-45bb-abbe-231685c9ed8f"
+      ]
+    }
+  ]
+}

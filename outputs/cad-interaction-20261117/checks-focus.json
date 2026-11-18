@@ -1,0 +1,18 @@
+{
+  "events": [
+    "hidden",
+    "visible",
+    "hidden",
+    "visible",
+    "hidden",
+    "visible",
+    "hidden",
+    "visible",
+    "hidden",
+    "visible"
+  ],
+  "point": {
+    "x": 0,
+    "y": 0
+  }
+}

@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>水热液化 · 全流程分析</title>
+    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="plant-workspace.css?v=4" />
+    <link rel="stylesheet" href="usability.css?v=5.3" />
+    <link rel="stylesheet" href="studio.css?v=6" />
+    <link rel="preload" href="vendor/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="monochrome.css?v=8" />
+  <link rel="stylesheet" href="workspace-refresh.css"></head>
+  <body data-theme="monochrome">
+    <aside class="sidebar">
+      <a class="brand" href="workspace.zh.html" aria-label="分析工作台首页"
+        ><span class="brand-mark">H</span><span>HTL Studio<small>水热液化研究</small></span></a
+      >
+      <div class="sidebar-label">研究工作台</div>
+      <nav aria-label="主要导航">
+        <button class="nav-item" data-view="overview">
+          <span class="nav-icon">▦</span>项目概览
+        </button>
+        <button class="nav-item" data-view="cases">
+          <span class="nav-icon">▤</span>工况数据<span
+            id="case-count"
+            class="nav-count"
+            >—</span
+          >
+        </button>
+        <button class="nav-item active" data-view="process" aria-current="page">
+          <span class="nav-icon">⇄</span>工况与流程
+        </button>
+        <button class="nav-item" data-view="lca">
+          <span class="nav-icon">◉</span>生命周期评价
+        </button>
+        <button class="nav-item" data-view="screening">
+          <span class="nav-icon">↗</span>工况筛选
+        </button>
+        <button class="nav-item" data-view="sources">
+          <span class="nav-icon">▥</span>数据来源
+        </button>
+        <a class="nav-item" href="universal.html" style="text-decoration:none">通用 Aspen 导入 ↗</a>
+      </nav>
+      <div class="studio-sidebar-note"><span class="studio-live-dot"></span>归档研究工作台<small>20 工况 · STD / HR 配对<br />过程分析与生命周期评价</small></div>
+      <div hidden>
+        <select id="case-select"></select
+        ><span id="selection-note"></span>
+      </div>
+    </aside>
+
+    <div class="workspace">
+      <section class="case-toolbar" aria-label="当前分析工况">
+        <div class="case-fields">
+          <label for="inspector-temperature"
+            >名义温度<select id="inspector-temperature" disabled></select
+          ></label>
+          <label for="inspector-length"
+            >管长<select id="inspector-length" disabled></select
+          ></label>
+        </div>
+        <div class="scenario-switch" role="group" aria-label="加热方案">
+          <button data-scenario="STD" aria-pressed="true">STD 标准加热</button>
+          <button data-scenario="HR" aria-pressed="false">HR 热回收</button>
+        </div>
+        <span id="current-context" aria-live="polite"></span>
+        <div class="case-toolbar-actions">
+          <button class="button secondary" data-detail="condition">
+            工况详情
+          </button>
+          <button id="download" class="button secondary" disabled>
+            导出工况 ↓
+          </button>
+        </div>
+        <div hidden>
+          <span id="breadcrumb-view"></span><span id="inspector-actual"></span
+          ><span id="inspector-pressure"></span>
+        </div>
+      </section>
+      <main id="main">
+        <div id="load-error" role="alert" hidden></div>
+        <section class="page-heading">
+          <div>
+            <h1 id="page-title">从工况到过程表现</h1>
+            <p id="page-description">
+              查看配对工况的物料、能量与环境表现，沿研究路径追溯分析结果。
+            </p>
+          </div>
+          <div class="basis-card">
+            <span>统一核算基准</span><strong id="basis-value">—</strong
+            ><small id="basis-duration">—</small>
+          </div>
+        </section>
+
+        <section class="workflow" aria-label="分析流程">
+          <div>
+            <span class="flow-name">STD / HR</span><span>能量集成方案</span>
+          </div>
+          <span class="flow-arrow">→</span>
+          <div>
+            <span class="flow-name">前景清单</span><span>物料与能耗</span>
+          </div>
+          <span class="flow-arrow">→</span>
+          <div>
+            <span class="flow-name">生命周期评价</span><span>GWP 与碳足迹</span>
+          </div>
+          <span class="flow-arrow">→</span>
+          <div>
+            <span class="flow-name">多准则筛选</span
+            ><span>Pareto 与偏好权重</span>
+          </div>
+        </section>
+
+        <section id="view-overview" class="view premium-overview" hidden>
+          <header class="overview-heading">
+            <div>
+              <p class="overview-eyebrow">HTL STUDIO / RESEARCH OVERVIEW</p>
+              <h1>木质素水热液化 · 全流程分析</h1>
+              <div class="overview-meta">
+                <span><strong id="home-conditions">—</strong> 个工况</span
+                ><span><strong id="home-scenarios">—</strong> 套方案</span>
+                <span id="home-basis">100 kg 湿进料 / 1 h</span>
+                <span class="overview-status">归档数据</span>
+              </div>
+            </div>
+            <button class="button primary" data-view="process">
+              继续分析 <span aria-hidden="true">→</span>
+            </button>
+          </header>
+
+          <div id="home-kpis" class="premium-kpis" aria-live="polite"></div>
+
+          <div class="overview-grid">
+            <article class="panel overview-matrix">
+              <div class="panel-heading">
+                <div>
+                  <p class="overview-eyebrow">OPERATING SPACE</p>
+                  <h2>工况碳足迹矩阵</h2>
+                </div>
+                <div class="overview-scenario" aria-label="矩阵方案">
+                  <button type="button" data-scenario="STD" aria-pressed="false">STD</button>
+                  <button type="button" data-scenario="HR" aria-pressed="false">HR</button>
+                </div>
+              </div>
+              <p class="overview-chart-caption">CF / kg CO₂-eq·kg⁻¹ 出口所含目标单体 <span>点击色块选择工况</span></p>
+              <div class="overview-matrix-table">
+                <table class="overview-heatmap">
+                  <caption class="sr-only">温度与管长对应的碳足迹，按下按钮选择当前工况</caption>
+                  <thead id="home-matrix-head"></thead>
+                  <tbody id="home-matrix-body"></tbody>
+                </table>
+              </div>
+              <div class="overview-matrix-footer">
+                <span id="home-matrix-selection"></span>
+                <div class="overview-legend" aria-label="所有方案共用的碳足迹色阶">
+                  <span id="home-matrix-min"></span>
+                  <span class="overview-legend-gradient" aria-hidden="true"></span>
+                  <span id="home-matrix-max"></span>
+                </div>
+              </div>
+              <p class="overview-scale-note">STD / HR 共用色阶 · 每个色块对应一条归档记录</p>
+            </article>
+
+            <article class="panel overview-pair">
+              <div class="panel-heading">
+                <div>
+                  <p class="overview-eyebrow">PAIRED COMPARISON</p>
+                  <h2 id="home-current-condition">当前工况</h2>
+                </div>
+                <span class="overview-current-badge" id="home-current-scenario"></span>
+              </div>
+              <p class="overview-current-meta" id="home-current-meta"></p>
+              <div id="home-energy-bars" class="overview-pair-chart"></div>
+              <div id="home-cf-bars" class="overview-pair-chart"></div>
+              <p id="home-pair-summary" class="overview-pair-summary"></p>
+              <p class="overview-pair-note">HR 产物沿用配对 STD；碳足迹按出口所含目标单体归一化。</p>
+              <button class="overview-text-link" data-view="lca">展开生命周期评价 <span aria-hidden="true">↗</span></button>
+            </article>
+          </div>
+
+          <nav class="overview-path" aria-label="研究路径">
+            <button data-view="process"><span class="overview-step">01</span><span><strong>方案与流程</strong><small>STD / HR 能量集成</small></span><span aria-hidden="true">↗</span></button>
+            <button data-detail="inventory"><span class="overview-step">02</span><span><strong>能量清单</strong><small>过程负荷与等效电耗</small></span><span aria-hidden="true">↗</span></button>
+            <button data-view="lca"><span class="overview-step">03</span><span><strong>生命周期评价</strong><small>GWP、CF 与不确定区间</small></span><span aria-hidden="true">↗</span></button>
+            <button data-view="screening"><span class="overview-step">04</span><span><strong>工况筛选</strong><small>Pareto 候选与偏好权重</small></span><span aria-hidden="true">↗</span></button>
+          </nav>
+
+          <article class="panel home-table overview-recent">
+            <div class="panel-heading">
+              <h2 id="recent-title">快速打开</h2>
+              <button class="overview-text-link" data-view="cases">全部工况 <span aria-hidden="true">↗</span></button>
+            </div>
+            <div class="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>工况</th>
+                    <th>方案</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                  </tr>
+                </thead>
+                <tbody id="recent-cases"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+        <section id="view-process" class="view" hidden>
+          <header class="plant-stage-header analysis-toolbar">
+            <div>
+              <h2>工况与设备</h2>
+              <p>选择设备查看参数，或直接进入后续分析。</p>
+            </div>
+            <div class="workspace-actions">
+              <button class="button secondary" data-detail="inventory">
+                能耗清单
+              </button>
+              <button class="button secondary" data-detail="carbon">
+                碳足迹
+              </button>
+              <button class="button primary" data-view="lca">LCA 分析 →</button>
+              <button class="button secondary" data-view="screening">
+                工况筛选 →
+              </button>
+            </div>
+          </header>
+          <div class="equipment-nav" aria-label="选择设备">
+            <button data-equipment="feed">
+              <i>01</i>进料边界<span>→</span>
+            </button>
+            <button data-equipment="pump"><i>02</i>高压泵<span>→</span></button>
+            <button data-equipment="exchanger">
+              <i>03</i>热回收换热器<span>→</span>
+            </button>
+            <button data-equipment="heater">
+              <i>04</i>电加热器<span>→</span>
+            </button>
+            <button data-equipment="reactor">
+              <i>05</i>管式反应器<span>→</span>
+            </button>
+            <button data-equipment="cooler">
+              <i>06</i>冷却器<span>→</span>
+            </button>
+            <button data-equipment="separator">
+              <i>07</i>相分离器<span>→</span>
+            </button>
+          </div>
+          <div class="plant-workspace">
+            <article class="plant-stage">
+              <div class="scene-toolbar">
+                <div class="scene-tools" aria-label="三维视角">
+                  <button data-camera="iso">全景</button
+                  ><button data-camera="top">俯视</button
+                  ><button data-camera="focus">聚焦设备</button
+                  ><button data-camera="zoom-in" aria-label="放大场景">
+                    ＋</button
+                  ><button data-camera="zoom-out" aria-label="缩小场景">
+                    −
+                  </button>
+                </div>
+                <span>拖动旋转 · 双击聚焦 · Ctrl + 滚轮缩放</span>
+              </div>
+              <div class="plant-scene" id="plant-scene">
+                <div class="scene-legend">
+                  <span><i></i>过程物流</span
+                  ><span class="heat-legend"><i></i>热回收路径</span>
+                </div>
+                <div id="plant-fallback" hidden>
+                  三维视图暂不可用。可通过左侧设备导航查看全部参数。
+                </div>
+                <div id="plant-labels"></div>
+                <p class="scene-caption">设备布局示意 · 非按比例</p>
+                <p class="scene-help">单击查看参数 · 双击聚焦设备</p>
+              </div>
+              <div class="plant-readings" id="plant-readings"></div>
+            </article>
+            <aside class="plant-panel plant-results">
+              <div class="result-tabs" role="tablist" aria-label="结果面板">
+                <button
+                  id="tab-device"
+                  role="tab"
+                  data-result-tab="device"
+                  aria-controls="result-device"
+                  aria-selected="true"
+                >
+                  设备参数
+                </button>
+                <button
+                  id="tab-compare"
+                  role="tab"
+                  data-result-tab="compare"
+                  aria-controls="result-compare"
+                  tabindex="-1"
+                  aria-selected="false"
+                >
+                  STD / HR 对比
+                </button>
+              </div>
+              <div
+                id="result-device"
+                role="tabpanel"
+                aria-labelledby="tab-device"
+              >
+                <div class="plant-panel-title">
+                  当前设备 <span id="device-tag"></span>
+                </div>
+                <div class="device-card" aria-live="polite">
+                  <p id="device-kicker"></p>
+                  <h2 id="device-name"></h2>
+                  <dl id="device-values"></dl>
+                  <p id="device-note"></p>
+                </div>
+                <button class="button secondary" data-camera="focus">
+                  放大查看此设备 ↗
+                </button>
+              </div>
+              <div
+                id="result-compare"
+                role="tabpanel"
+                aria-labelledby="tab-compare"
+                hidden
+              >
+                <h2>同工况方案对比</h2>
+                <table class="paired-table">
+                  <thead>
+                    <tr>
+                      <th>方案</th>
+                      <th>电耗¹</th>
+                      <th>碳足迹²</th>
+                    </tr>
+                  </thead>
+                  <tbody id="paired-body"></tbody>
+                </table>
+                <p class="comparison-units">
+                  ¹ kWh / 100 kg 湿进料<br />² kg CO₂-eq / kg 所含目标单体
+                </p>
+                <div id="comparison-summary"></div>
+                <button class="button primary" data-view="lca">
+                  查看完整 LCA 对照 →
+                </button>
+              </div>
+            </aside>
+          </div>
+          <div class="plant-status">
+            <span><i class="status-dot"></i>归档结果已载入</span
+            ><span id="plant-case-id"></span><span>SI 存储 · 工程单位显示</span
+            ><span id="plant-status-source"></span>
+          </div>
+          <details class="process-details">
+            <summary>展开完整结果与热负荷</summary>
+            <div class="section-heading">
+              <h2 id="selected-heading">当前工况</h2>
+              <span class="pill" id="scenario-pill">STD</span>
+            </div>
+            <div class="metrics" id="process-metrics"></div>
+            <div class="two-columns">
+              <article class="panel">
+                <div class="panel-heading">
+                  <div>
+                    <h2>配对方案能耗</h2>
+                    <p>同一温度与管长下的总等效电耗</p>
+                  </div>
+                  <span class="unit-tag">kWh / 核算基准</span>
+                </div>
+                <div id="energy-bars" class="bar-chart"></div>
+                <div class="panel-foot" id="energy-note"></div>
+              </article>
+              <article class="panel">
+                <div class="panel-heading">
+                  <div>
+                    <h2>工况与热负荷</h2>
+                    <p>设备需求及边界条件</p>
+                  </div>
+                </div>
+                <dl class="detail-list" id="process-detail"></dl>
+              </article>
+            </div>
+            <article class="panel provenance-panel">
+              <div>
+                <h2>数据来源与状态</h2>
+                <p id="source-label">—</p>
+              </div>
+              <p id="quality-note">—</p>
+            </article>
+          </details>
+        </section>
+
+        <section id="view-cases" class="view" hidden>
+          <article class="panel">
+            <div class="panel-heading">
+              <div>
+                <h2>工况数据集</h2>
+                <p id="dataset-summary">—</p>
+              </div>
+              <div class="table-filters">
+                <label class="case-search"
+                  >搜索工况<input
+                    id="case-search"
+                    type="search"
+                    placeholder="例如 T330-L10"
+                /></label>
+                <label
+                  >温度
+                  <select id="temperature-filter">
+                    <option value="">全部</option>
+                  </select></label
+                ><label
+                  >方案
+                  <select id="scenario-filter">
+                    <option value="">全部</option>
+                    <option>STD</option>
+                    <option>HR</option>
+                  </select></label
+                >
+              </div>
+            </div>
+            <div class="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>工况</th>
+                    <th>方案</th>
+                    <th>温度 / °C</th>
+                    <th>管长 / m</th>
+                    <th>目标单体 / kg</th>
+                    <th>焦炭代理 / kg</th>
+                    <th>电耗 / kWh</th>
+                    <th>CF / kg CO₂-eq·kg⁻¹</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="cases-body"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+
+        <section id="view-lca" class="view" hidden>
+          <div class="metrics" id="lca-metrics"></div>
+          <div class="two-columns">
+            <article class="panel">
+              <div class="panel-heading">
+                <div>
+                  <h2>单位目标单体碳足迹</h2>
+                  <p>配对方案比较</p>
+                </div>
+                <span class="unit-tag">kg CO₂-eq / kg</span>
+              </div>
+              <div id="cf-bars" class="bar-chart"></div>
+              <div class="panel-foot">
+                条形：确定性 CF；细线：95% 分位区间；圆点：蒙特卡洛均值。共同坐标从零起算。
+              </div>
+            </article>
+            <article class="panel">
+              <div class="panel-heading">
+                <div>
+                  <h2>碳足迹核算路径</h2>
+                  <p>从过程核算基准到出口所含目标单体归一化</p>
+                </div>
+              </div>
+              <div class="calculation">
+                <div>
+                  <span>核算基准内的全球变暖潜势</span
+                  ><strong id="formula-gwp">—</strong>
+                </div>
+                <span class="divide">÷</span>
+                <div>
+                  <span>LCA 归一化目标单体质量</span
+                  ><strong id="formula-mass">—</strong>
+                </div>
+                <div class="formula-result">
+                  <span>单位目标单体碳足迹</span
+                  ><strong id="formula-cf">—</strong>
+                </div>
+              </div>
+            </article>
+          </div>
+          <article class="panel">
+            <div class="panel-heading">
+              <div><h2>生命周期清单与评价设置</h2></div>
+            </div>
+            <dl id="lca-detail" class="detail-list compact-detail"></dl>
+          </article>
+        </section>
+
+        <section id="view-screening" class="view" hidden>
+          <p class="screening-scope">
+            筛选范围：全部 20 个 STD
+            工况。上方工况用于查看单项结果，不限制此处候选范围。
+          </p>
+          <div class="screening-grid">
+            <article class="panel">
+              <div class="panel-heading">
+                <div>
+                  <h2>产率与碳足迹的权衡</h2>
+                  <p>STD 工况 · 三目标 Pareto 筛选</p>
+                </div>
+                <div class="legend">
+                  <span class="legend-dot pareto"></span>Pareto<span
+                    class="legend-dot other"
+                  ></span
+                  >其他工况
+                </div>
+              </div>
+              <div class="plot-wrap">
+                <canvas
+                  id="pareto-chart"
+                  aria-label="标准加热工况的目标单体质量与碳足迹散点图"
+                ></canvas>
+                <div id="chart-tooltip" class="chart-tooltip" hidden></div>
+              </div>
+              <p class="panel-foot" id="pareto-note"></p>
+            </article>
+            <article class="panel weights-panel">
+              <h2>偏好权重</h2>
+              <div
+                class="weight-presets"
+                role="group"
+                aria-label="筛选偏好预设"
+              >
+                <button data-weights="60,20,20">偏重产率</button
+                ><button data-weights="20,60,20">偏重低焦炭</button
+                ><button data-weights="20,20,60">偏重低碳</button
+                ><button data-weights="33,33,33">均衡</button>
+              </div>
+              <p>对候选工况的归一化效用加权</p>
+              <label for="weight-yield"
+                >目标单体产率
+                <output id="weight-yield-value">60%</output></label
+              ><input
+                id="weight-yield"
+                type="range"
+                min="0"
+                max="100"
+                value="60"
+              /><label for="weight-char"
+                >焦炭代理指标 <output id="weight-char-value">20%</output></label
+              ><input
+                id="weight-char"
+                type="range"
+                min="0"
+                max="100"
+                value="20"
+              /><label for="weight-cf"
+                >碳足迹 <output id="weight-cf-value">20%</output></label
+              ><input
+                id="weight-cf"
+                type="range"
+                min="0"
+                max="100"
+                value="20"
+              />
+              <p id="weight-note" class="weight-note">权重按总和归一化。</p>
+              <div id="winner" class="winner"></div>
+            </article>
+          </div>
+          <article class="panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Pareto 候选工况</h2>
+                <p>以 STD 碳足迹参与排序，HR 结果用于方案对照</p>
+              </div>
+            </div>
+            <div class="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>排序</th>
+                    <th>工况</th>
+                    <th>目标单体 / kg</th>
+                    <th>焦炭代理 / kg</th>
+                    <th>STD CF</th>
+                    <th>HR CF</th>
+                    <th>偏好得分</th>
+                  </tr>
+                </thead>
+                <tbody id="ranking-body"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+        <section id="view-sources" class="view" hidden>
+          <article class="panel">
+            <div class="panel-heading">
+              <div>
+                <h2>已导入数据与追溯信息</h2>
+                <p>同一工况通过 condition_id 和 STD / HR 方案关联</p>
+              </div>
+            </div>
+            <div id="source-cards" class="source-cards"></div>
+            <dl class="detail-list">
+              <div>
+                <dt>物理量存储</dt>
+                <dd>K · Pa · kg/s · W · J</dd>
+              </div>
+              <div>
+                <dt>界面显示</dt>
+                <dd>°C · MPa · kg/h · kW · kWh</dd>
+              </div>
+              <div>
+                <dt>指标基准</dt>
+                <dd>100 kg 湿进料；CF按所含目标单体质量归一化</dd>
+              </div>
+            </dl>
+          </article>
+        </section>
+        <footer>
+          <span id="dataset-note">正在读取数据来源…</span
+          ><span id="schema-label"></span>
+        </footer>
+      </main>
+    </div>
+    <dialog id="detail-dialog">
+      <div class="dialog-heading">
+        <h2 id="dialog-title"></h2>
+        <button
+          id="close-detail"
+          class="button secondary"
+          aria-label="关闭详情"
+        >
+          关闭 ×
+        </button>
+      </div>
+      <div id="dialog-content"></div>
+    </dialog>
+    <script src="vendor/three.min.js"></script>
+    <script src="plant-equipment.js?v=4"></script>
+    <script src="plant-view.js?v=7"></script>
+    <script src="app.js?v=5.3"></script>
+  <script type="module" src="workspace-links.mjs"></script></body>
+</html>

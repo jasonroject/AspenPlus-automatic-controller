@@ -1,0 +1,81 @@
+{
+  "dataset_version": 1,
+  "profile_id": "htl-reference-hr",
+  "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+  "model_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+  "basis": {
+    "functional_unit": "1 kg declared target product",
+    "boundary": "Inherited HTL fixed-background accounting: feed, heater/reactor electricity, fixed pump inventory, direct CO2/CH4 and wastewater; excludes separator heat duty and cooling-service burdens; not a full-plant utility inventory",
+    "allocation_method": "Single target; no co-product allocation; share 1",
+    "enthalpy_basis": "Complete material-stream enthalpy rates on one common reference; Q and W positive inward; no KE/PE or accumulation",
+    "calorie_J": 4.1868
+  },
+  "evidence_type": "native_simulation",
+  "inputs": [
+    {
+      "id": "reactor_temperature_K",
+      "unit": "K",
+      "min": 583.15,
+      "max": 623.15
+    },
+    {
+      "id": "tube_length_m",
+      "unit": "meter",
+      "min": 5,
+      "max": 20
+    }
+  ],
+  "responses": [
+    {
+      "id": "purchased_energy_kWh_kg",
+      "unit": "kWh/kg",
+      "direction": "min",
+      "value_domain": "nonnegative"
+    },
+    {
+      "id": "yield_fraction",
+      "unit": "1",
+      "direction": "max",
+      "value_domain": "nonnegative"
+    },
+    {
+      "id": "impact:Climate change",
+      "unit": "kg CO2-eq/kg",
+      "direction": "min",
+      "value_domain": "nonnegative"
+    }
+  ],
+  "rows": [
+    {
+      "id": "HTL-T325-L8p5-verification",
+      "split": "verification",
+      "inputs": {
+        "reactor_temperature_K": 598.15,
+        "tube_length_m": 8.5
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "runs/HTL-T325-L8p5-verification/raw.json",
+      "evidence_type": "native_simulation",
+      "error": null,
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "outputs": {
+        "purchased_energy_kWh_kg": 2.231054633694694,
+        "yield_fraction": 0.055008647120166614,
+        "impact:Climate change": 11.069477744607346
+      }
+    }
+  ],
+  "physical_validation": false,
+  "dataset_sha256": "dc282f425076ac5cebc07be299e458ab7aefe143d34fd4c7fa95cd64acde60bd"
+}

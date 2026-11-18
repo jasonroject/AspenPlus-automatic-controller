@@ -1,0 +1,2366 @@
+{
+  "schema_version": 1,
+  "meta": {
+    "name": "HTL native model profile · restricted inherited inventory",
+    "steady_state": true,
+    "enthalpy_basis": "Complete material-stream enthalpy rates on one common reference; Q and W positive inward; no KE/PE or accumulation",
+    "boundary": "Inherited HTL fixed-background accounting: feed, heater/reactor electricity, fixed pump inventory, direct CO2/CH4 and wastewater; excludes separator heat duty and cooling-service burdens; not a full-plant utility inventory",
+    "functional_unit": "1 kg declared target product",
+    "allocation_method": "Single target; no co-product allocation; share 1",
+    "calorie_J": 4.1868,
+    "inventory_complete": true,
+    "comparable_cases": true,
+    "model_profile_id": "htl-reference-hr",
+    "source_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+    "omitted_failed_case_ids": [],
+    "physical_validation": false,
+    "evidence_type": "native_simulation",
+    "scan_audit": {
+      "planned": 9,
+      "attempted": 9,
+      "solver_accepted": 9,
+      "numerically_closed": 9,
+      "lcia_complete": 9,
+      "accepted": 9,
+      "failed": 0,
+      "source_profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+      "model_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+      "ledger": "ledger.json",
+      "cases": [
+        {
+          "id": "local-01",
+          "split": "verification",
+          "gates": {
+            "control_succeeded": true,
+            "solver_accepted": true,
+            "numerical_closure": true,
+            "lcia_complete": true,
+            "metric_inputs_complete": true
+          },
+          "accepted": true,
+          "error": null,
+          "source": "runs/local-01/raw.json"
+        },
+        {
+          "id": "local-02",
+          "split": "verification",
+          "gates": {
+            "control_succeeded": true,
+            "solver_accepted": true,
+            "numerical_closure": true,
+            "lcia_complete": true,
+            "metric_inputs_complete": true
+          },
+          "accepted": true,
+          "error": null,
+          "source": "runs/local-02/raw.json"
+        },
+        {
+          "id": "local-03",
+          "split": "verification",
+          "gates": {
+            "control_succeeded": true,
+            "solver_accepted": true,
+            "numerical_closure": true,
+            "lcia_complete": true,
+            "metric_inputs_complete": true
+          },
+          "accepted": true,
+          "error": null,
+          "source": "runs/local-03/raw.json"
+        },
+        {
+          "id": "local-04",
+          "split": "verification",
+          "gates": {
+            "control_succeeded": true,
+            "solver_accepted": true,
+            "numerical_closure": true,
+            "lcia_complete": true,
+            "metric_inputs_complete": true
+          },
+          "accepted": true,
+          "error": null,
+          "source": "runs/local-04/raw.json"
+        },
+        {
+          "id": "local-05",
+          "split": "verification",
+          "gates": {
+            "control_succeeded": true,
+            "solver_accepted": true,
+            "numerical_closure": true,
+            "lcia_complete": true,
+            "metric_inputs_complete": true
+          },
+          "accepted": true,
+          "error": null,
+          "source": "runs/local-05/raw.json"
+        },
+        {
+          "id": "local-06",
+          "split": "verification",
+          "gates": {
+            "control_succeeded": true,
+            "solver_accepted": true,
+            "numerical_closure": true,
+            "lcia_complete": true,
+            "metric_inputs_complete": true
+          },
+          "accepted": true,
+          "error": null,
+          "source": "runs/local-06/raw.json"
+        },
+        {
+          "id": "local-07",
+          "split": "verification",
+          "gates": {
+            "control_succeeded": true,
+            "solver_accepted": true,
+            "numerical_closure": true,
+            "lcia_complete": true,
+            "metric_inputs_complete": true
+          },
+          "accepted": true,
+          "error": null,
+          "source": "runs/local-07/raw.json"
+        },
+        {
+          "id": "local-08",
+          "split": "verification",
+          "gates": {
+            "control_succeeded": true,
+            "solver_accepted": true,
+            "numerical_closure": true,
+            "lcia_complete": true,
+            "metric_inputs_complete": true
+          },
+          "accepted": true,
+          "error": null,
+          "source": "runs/local-08/raw.json"
+        },
+        {
+          "id": "local-09",
+          "split": "verification",
+          "gates": {
+            "control_succeeded": true,
+            "solver_accepted": true,
+            "numerical_closure": true,
+            "lcia_complete": true,
+            "metric_inputs_complete": true
+          },
+          "accepted": true,
+          "error": null,
+          "source": "runs/local-09/raw.json"
+        }
+      ]
+    }
+  },
+  "factors": [
+    {
+      "id": "feed",
+      "category": "Climate change",
+      "value": 0.5198121043815267,
+      "low": 0.5198121043815267,
+      "high": 0.5198121043815267,
+      "denominator_unit": "kg",
+      "impact_unit": "kg CO2-eq",
+      "method": "Inherited HTL fixed-background climate accounting",
+      "source": "Inherited HTL lca_coefficients.json; fixed original providers; not a fresh openLCA calculation"
+    },
+    {
+      "id": "electricity",
+      "category": "Climate change",
+      "value": 0.6750590250697887,
+      "low": 0.6075531225628098,
+      "high": 0.7425649275767676,
+      "denominator_unit": "kWh",
+      "impact_unit": "kg CO2-eq",
+      "method": "Inherited HTL fixed-background climate accounting",
+      "source": "Inherited HTL lca_coefficients.json; fixed original providers; not a fresh openLCA calculation; +/-10% electricity factor is an illustrative fuzzy support"
+    },
+    {
+      "id": "CO2",
+      "category": "Climate change",
+      "value": 1.0,
+      "low": 1.0,
+      "high": 1.0,
+      "denominator_unit": "kg",
+      "impact_unit": "kg CO2-eq",
+      "method": "Inherited HTL fixed-background climate accounting",
+      "source": "Inherited HTL lca_coefficients.json; fixed original providers; not a fresh openLCA calculation"
+    },
+    {
+      "id": "CH4",
+      "category": "Climate change",
+      "value": 36.0,
+      "low": 36.0,
+      "high": 36.0,
+      "denominator_unit": "kg",
+      "impact_unit": "kg CO2-eq",
+      "method": "Inherited HTL fixed-background climate accounting",
+      "source": "Inherited HTL lca_coefficients.json; fixed original providers; not a fresh openLCA calculation"
+    },
+    {
+      "id": "wastewater",
+      "category": "Climate change",
+      "value": 0.00017333571211124749,
+      "low": 0.00017333571211124749,
+      "high": 0.00017333571211124749,
+      "denominator_unit": "kg",
+      "impact_unit": "kg CO2-eq",
+      "method": "Inherited HTL fixed-background climate accounting",
+      "source": "Inherited HTL lca_coefficients.json; fixed original providers; not a fresh openLCA calculation"
+    }
+  ],
+  "cases": [
+    {
+      "id": "local-01",
+      "product_rate": 6.010690421330371,
+      "feed_rate": 100.0,
+      "mass_unit": "kg/hr",
+      "allocation": 1,
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-01; raw evidence runs/local-01/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Catechol + o-cresol outlet mass, not isolated recovery; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CAT; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CAT; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\O-CRE-01; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\O-CRE-01; \\Data\\Streams\\FEED\\Output\\MASSFLMX\\MIXED"
+    },
+    {
+      "id": "local-02",
+      "product_rate": 6.012406515210975,
+      "feed_rate": 100.0,
+      "mass_unit": "kg/hr",
+      "allocation": 1,
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-02; raw evidence runs/local-02/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Catechol + o-cresol outlet mass, not isolated recovery; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CAT; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CAT; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\O-CRE-01; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\O-CRE-01; \\Data\\Streams\\FEED\\Output\\MASSFLMX\\MIXED"
+    },
+    {
+      "id": "local-03",
+      "product_rate": 6.013626311462819,
+      "feed_rate": 100.0,
+      "mass_unit": "kg/hr",
+      "allocation": 1,
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-03; raw evidence runs/local-03/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Catechol + o-cresol outlet mass, not isolated recovery; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CAT; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CAT; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\O-CRE-01; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\O-CRE-01; \\Data\\Streams\\FEED\\Output\\MASSFLMX\\MIXED"
+    },
+    {
+      "id": "local-04",
+      "product_rate": 6.060001078667651,
+      "feed_rate": 100.0,
+      "mass_unit": "kg/hr",
+      "allocation": 1,
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-04; raw evidence runs/local-04/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Catechol + o-cresol outlet mass, not isolated recovery; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CAT; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CAT; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\O-CRE-01; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\O-CRE-01; \\Data\\Streams\\FEED\\Output\\MASSFLMX\\MIXED"
+    },
+    {
+      "id": "local-05",
+      "product_rate": 6.060042552121615,
+      "feed_rate": 100.0,
+      "mass_unit": "kg/hr",
+      "allocation": 1,
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-05; raw evidence runs/local-05/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Catechol + o-cresol outlet mass, not isolated recovery; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CAT; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CAT; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\O-CRE-01; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\O-CRE-01; \\Data\\Streams\\FEED\\Output\\MASSFLMX\\MIXED"
+    },
+    {
+      "id": "local-06",
+      "product_rate": 6.059317578592246,
+      "feed_rate": 100.0,
+      "mass_unit": "kg/hr",
+      "allocation": 1,
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-06; raw evidence runs/local-06/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Catechol + o-cresol outlet mass, not isolated recovery; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CAT; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CAT; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\O-CRE-01; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\O-CRE-01; \\Data\\Streams\\FEED\\Output\\MASSFLMX\\MIXED"
+    },
+    {
+      "id": "local-07",
+      "product_rate": 6.103535494626566,
+      "feed_rate": 100.0,
+      "mass_unit": "kg/hr",
+      "allocation": 1,
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-07; raw evidence runs/local-07/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Catechol + o-cresol outlet mass, not isolated recovery; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CAT; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CAT; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\O-CRE-01; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\O-CRE-01; \\Data\\Streams\\FEED\\Output\\MASSFLMX\\MIXED"
+    },
+    {
+      "id": "local-08",
+      "product_rate": 6.102311375859947,
+      "feed_rate": 100.0,
+      "mass_unit": "kg/hr",
+      "allocation": 1,
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-08; raw evidence runs/local-08/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Catechol + o-cresol outlet mass, not isolated recovery; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CAT; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CAT; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\O-CRE-01; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\O-CRE-01; \\Data\\Streams\\FEED\\Output\\MASSFLMX\\MIXED"
+    },
+    {
+      "id": "local-09",
+      "product_rate": 6.099464236457248,
+      "feed_rate": 100.0,
+      "mass_unit": "kg/hr",
+      "allocation": 1,
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-09; raw evidence runs/local-09/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Catechol + o-cresol outlet mass, not isolated recovery; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CAT; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CAT; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\O-CRE-01; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\O-CRE-01; \\Data\\Streams\\FEED\\Output\\MASSFLMX\\MIXED"
+    }
+  ],
+  "streams": [
+    {
+      "case_id": "local-01",
+      "id": "FEED",
+      "from": "BOUNDARY",
+      "to": "PUMP",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3341.02058,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-01; raw evidence runs/local-01/raw.json; \\Data\\Streams\\FEED\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\FEED\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-01",
+      "id": "S2",
+      "from": "PUMP",
+      "to": "HEATCHAG",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3322.34714,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-01; raw evidence runs/local-01/raw.json; \\Data\\Streams\\S2\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S2\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-01",
+      "id": "S3",
+      "from": "HEATER",
+      "to": "REACTOR",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -2942.82428,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-01; raw evidence runs/local-01/raw.json; \\Data\\Streams\\S3\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S3\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-01",
+      "id": "S4",
+      "from": "REACTOR",
+      "to": "HEATCHAG",
+      "mass_flow": 100.00015,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -2865.47692,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-01; raw evidence runs/local-01/raw.json; \\Data\\Streams\\S4\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S4\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-01",
+      "id": "S5",
+      "from": "COOLER",
+      "to": "VALVE",
+      "mass_flow": 100.00015,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3280.29398,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-01; raw evidence runs/local-01/raw.json; \\Data\\Streams\\S5\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S5\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-01",
+      "id": "S6",
+      "from": "VALVE",
+      "to": "B6",
+      "mass_flow": 100.00015,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3280.29398,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-01; raw evidence runs/local-01/raw.json; \\Data\\Streams\\S6\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S6\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-01",
+      "id": "S7",
+      "from": "B6",
+      "to": "BOUNDARY",
+      "mass_flow": 98.3774282,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3311.464,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-01; raw evidence runs/local-01/raw.json; \\Data\\Streams\\S7\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S7\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-01",
+      "id": "S8",
+      "from": "B6",
+      "to": "BOUNDARY",
+      "mass_flow": 1.62272179,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -1138.40462,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-01; raw evidence runs/local-01/raw.json; \\Data\\Streams\\S8\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S8\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-01",
+      "id": "S9",
+      "from": "HEATCHAG",
+      "to": "HEATER",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -2978.20318,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-01; raw evidence runs/local-01/raw.json; \\Data\\Streams\\S9\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S9\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-01",
+      "id": "S10",
+      "from": "HEATCHAG",
+      "to": "COOLER",
+      "mass_flow": 100.00015,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3209.62037,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-01; raw evidence runs/local-01/raw.json; \\Data\\Streams\\S10\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S10\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-02",
+      "id": "FEED",
+      "from": "BOUNDARY",
+      "to": "PUMP",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3341.02058,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-02; raw evidence runs/local-02/raw.json; \\Data\\Streams\\FEED\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\FEED\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-02",
+      "id": "S2",
+      "from": "PUMP",
+      "to": "HEATCHAG",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3322.34714,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-02; raw evidence runs/local-02/raw.json; \\Data\\Streams\\S2\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S2\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-02",
+      "id": "S3",
+      "from": "HEATER",
+      "to": "REACTOR",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -2942.82428,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-02; raw evidence runs/local-02/raw.json; \\Data\\Streams\\S3\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S3\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-02",
+      "id": "S4",
+      "from": "REACTOR",
+      "to": "HEATCHAG",
+      "mass_flow": 100.000187,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -2864.59157,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-02; raw evidence runs/local-02/raw.json; \\Data\\Streams\\S4\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S4\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-02",
+      "id": "S5",
+      "from": "COOLER",
+      "to": "VALVE",
+      "mass_flow": 100.000187,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3279.53343,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-02; raw evidence runs/local-02/raw.json; \\Data\\Streams\\S5\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S5\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-02",
+      "id": "S6",
+      "from": "VALVE",
+      "to": "B6",
+      "mass_flow": 100.000187,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3279.53343,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-02; raw evidence runs/local-02/raw.json; \\Data\\Streams\\S6\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S6\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-02",
+      "id": "S7",
+      "from": "B6",
+      "to": "BOUNDARY",
+      "mass_flow": 98.3418579,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3311.39715,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-02; raw evidence runs/local-02/raw.json; \\Data\\Streams\\S7\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S7\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-02",
+      "id": "S8",
+      "from": "B6",
+      "to": "BOUNDARY",
+      "mass_flow": 1.65832901,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -1137.92012,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-02; raw evidence runs/local-02/raw.json; \\Data\\Streams\\S8\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S8\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-02",
+      "id": "S9",
+      "from": "HEATCHAG",
+      "to": "HEATER",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -2978.20318,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-02; raw evidence runs/local-02/raw.json; \\Data\\Streams\\S9\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S9\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-02",
+      "id": "S10",
+      "from": "HEATCHAG",
+      "to": "COOLER",
+      "mass_flow": 100.000187,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3208.73489,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-02; raw evidence runs/local-02/raw.json; \\Data\\Streams\\S10\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S10\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-03",
+      "id": "FEED",
+      "from": "BOUNDARY",
+      "to": "PUMP",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3341.02058,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-03; raw evidence runs/local-03/raw.json; \\Data\\Streams\\FEED\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\FEED\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-03",
+      "id": "S2",
+      "from": "PUMP",
+      "to": "HEATCHAG",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3322.34714,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-03; raw evidence runs/local-03/raw.json; \\Data\\Streams\\S2\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S2\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-03",
+      "id": "S3",
+      "from": "HEATER",
+      "to": "REACTOR",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -2942.82428,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-03; raw evidence runs/local-03/raw.json; \\Data\\Streams\\S3\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S3\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-03",
+      "id": "S4",
+      "from": "REACTOR",
+      "to": "HEATCHAG",
+      "mass_flow": 100.000129,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -2863.74984,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-03; raw evidence runs/local-03/raw.json; \\Data\\Streams\\S4\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S4\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-03",
+      "id": "S5",
+      "from": "COOLER",
+      "to": "VALVE",
+      "mass_flow": 100.000129,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3278.80995,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-03; raw evidence runs/local-03/raw.json; \\Data\\Streams\\S5\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S5\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-03",
+      "id": "S6",
+      "from": "VALVE",
+      "to": "B6",
+      "mass_flow": 100.000129,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3278.80995,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-03; raw evidence runs/local-03/raw.json; \\Data\\Streams\\S6\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S6\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-03",
+      "id": "S7",
+      "from": "B6",
+      "to": "BOUNDARY",
+      "mass_flow": 98.3068573,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3311.35936,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-03; raw evidence runs/local-03/raw.json; \\Data\\Streams\\S7\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S7\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-03",
+      "id": "S8",
+      "from": "B6",
+      "to": "BOUNDARY",
+      "mass_flow": 1.69327146,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -1137.21089,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-03; raw evidence runs/local-03/raw.json; \\Data\\Streams\\S8\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S8\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-03",
+      "id": "S9",
+      "from": "HEATCHAG",
+      "to": "HEATER",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -2978.20318,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-03; raw evidence runs/local-03/raw.json; \\Data\\Streams\\S9\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S9\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-03",
+      "id": "S10",
+      "from": "HEATCHAG",
+      "to": "COOLER",
+      "mass_flow": 100.000129,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3207.89336,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-03; raw evidence runs/local-03/raw.json; \\Data\\Streams\\S10\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S10\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-04",
+      "id": "FEED",
+      "from": "BOUNDARY",
+      "to": "PUMP",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3341.02058,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-04; raw evidence runs/local-04/raw.json; \\Data\\Streams\\FEED\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\FEED\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-04",
+      "id": "S2",
+      "from": "PUMP",
+      "to": "HEATCHAG",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3322.34714,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-04; raw evidence runs/local-04/raw.json; \\Data\\Streams\\S2\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S2\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-04",
+      "id": "S3",
+      "from": "HEATER",
+      "to": "REACTOR",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -2937.6899,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-04; raw evidence runs/local-04/raw.json; \\Data\\Streams\\S3\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S3\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-04",
+      "id": "S4",
+      "from": "REACTOR",
+      "to": "HEATCHAG",
+      "mass_flow": 100.000138,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -2856.47664,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-04; raw evidence runs/local-04/raw.json; \\Data\\Streams\\S4\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S4\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-04",
+      "id": "S5",
+      "from": "COOLER",
+      "to": "VALVE",
+      "mass_flow": 100.000138,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3277.41063,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-04; raw evidence runs/local-04/raw.json; \\Data\\Streams\\S5\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S5\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-04",
+      "id": "S6",
+      "from": "VALVE",
+      "to": "B6",
+      "mass_flow": 100.000138,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3277.41063,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-04; raw evidence runs/local-04/raw.json; \\Data\\Streams\\S6\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S6\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-04",
+      "id": "S7",
+      "from": "B6",
+      "to": "BOUNDARY",
+      "mass_flow": 98.2464482,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3311.09964,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-04; raw evidence runs/local-04/raw.json; \\Data\\Streams\\S7\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S7\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-04",
+      "id": "S8",
+      "from": "B6",
+      "to": "BOUNDARY",
+      "mass_flow": 1.7536901,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -1137.97932,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-04; raw evidence runs/local-04/raw.json; \\Data\\Streams\\S8\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S8\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-04",
+      "id": "S9",
+      "from": "HEATCHAG",
+      "to": "HEATER",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -2973.76223,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-04; raw evidence runs/local-04/raw.json; \\Data\\Streams\\S9\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S9\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-04",
+      "id": "S10",
+      "from": "HEATCHAG",
+      "to": "COOLER",
+      "mass_flow": 100.000138,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3205.06107,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-04; raw evidence runs/local-04/raw.json; \\Data\\Streams\\S10\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S10\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-05",
+      "id": "FEED",
+      "from": "BOUNDARY",
+      "to": "PUMP",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3341.02058,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-05; raw evidence runs/local-05/raw.json; \\Data\\Streams\\FEED\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\FEED\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-05",
+      "id": "S2",
+      "from": "PUMP",
+      "to": "HEATCHAG",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3322.34714,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-05; raw evidence runs/local-05/raw.json; \\Data\\Streams\\S2\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S2\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-05",
+      "id": "S3",
+      "from": "HEATER",
+      "to": "REACTOR",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -2937.6899,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-05; raw evidence runs/local-05/raw.json; \\Data\\Streams\\S3\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S3\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-05",
+      "id": "S4",
+      "from": "REACTOR",
+      "to": "HEATCHAG",
+      "mass_flow": 100.000157,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -2855.59201,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-05; raw evidence runs/local-05/raw.json; \\Data\\Streams\\S4\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S4\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-05",
+      "id": "S5",
+      "from": "COOLER",
+      "to": "VALVE",
+      "mass_flow": 100.000157,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3276.64918,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-05; raw evidence runs/local-05/raw.json; \\Data\\Streams\\S5\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S5\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-05",
+      "id": "S6",
+      "from": "VALVE",
+      "to": "B6",
+      "mass_flow": 100.000157,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3276.64918,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-05; raw evidence runs/local-05/raw.json; \\Data\\Streams\\S6\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S6\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-05",
+      "id": "S7",
+      "from": "B6",
+      "to": "BOUNDARY",
+      "mass_flow": 98.2093549,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3311.06052,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-05; raw evidence runs/local-05/raw.json; \\Data\\Streams\\S7\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S7\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-05",
+      "id": "S8",
+      "from": "B6",
+      "to": "BOUNDARY",
+      "mass_flow": 1.79080167,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -1137.58516,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-05; raw evidence runs/local-05/raw.json; \\Data\\Streams\\S8\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S8\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-05",
+      "id": "S9",
+      "from": "HEATCHAG",
+      "to": "HEATER",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -2973.76223,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-05; raw evidence runs/local-05/raw.json; \\Data\\Streams\\S9\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S9\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-05",
+      "id": "S10",
+      "from": "HEATCHAG",
+      "to": "COOLER",
+      "mass_flow": 100.000157,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3204.17638,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-05; raw evidence runs/local-05/raw.json; \\Data\\Streams\\S10\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S10\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-06",
+      "id": "FEED",
+      "from": "BOUNDARY",
+      "to": "PUMP",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3341.02058,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-06; raw evidence runs/local-06/raw.json; \\Data\\Streams\\FEED\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\FEED\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-06",
+      "id": "S2",
+      "from": "PUMP",
+      "to": "HEATCHAG",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3322.34714,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-06; raw evidence runs/local-06/raw.json; \\Data\\Streams\\S2\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S2\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-06",
+      "id": "S3",
+      "from": "HEATER",
+      "to": "REACTOR",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -2937.6899,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-06; raw evidence runs/local-06/raw.json; \\Data\\Streams\\S3\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S3\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-06",
+      "id": "S4",
+      "from": "REACTOR",
+      "to": "HEATCHAG",
+      "mass_flow": 100.000117,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -2854.72667,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-06; raw evidence runs/local-06/raw.json; \\Data\\Streams\\S4\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S4\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-06",
+      "id": "S5",
+      "from": "COOLER",
+      "to": "VALVE",
+      "mass_flow": 100.000117,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3275.89851,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-06; raw evidence runs/local-06/raw.json; \\Data\\Streams\\S5\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S5\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-06",
+      "id": "S6",
+      "from": "VALVE",
+      "to": "B6",
+      "mass_flow": 100.000117,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3275.89851,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-06; raw evidence runs/local-06/raw.json; \\Data\\Streams\\S6\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S6\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-06",
+      "id": "S7",
+      "from": "B6",
+      "to": "BOUNDARY",
+      "mass_flow": 98.1724176,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3311.03079,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-06; raw evidence runs/local-06/raw.json; \\Data\\Streams\\S7\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S7\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-06",
+      "id": "S8",
+      "from": "B6",
+      "to": "BOUNDARY",
+      "mass_flow": 1.82769931,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -1137.06974,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-06; raw evidence runs/local-06/raw.json; \\Data\\Streams\\S8\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S8\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-06",
+      "id": "S9",
+      "from": "HEATCHAG",
+      "to": "HEATER",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -2973.76223,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-06; raw evidence runs/local-06/raw.json; \\Data\\Streams\\S9\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S9\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-06",
+      "id": "S10",
+      "from": "HEATCHAG",
+      "to": "COOLER",
+      "mass_flow": 100.000117,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3203.31118,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-06; raw evidence runs/local-06/raw.json; \\Data\\Streams\\S10\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S10\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-07",
+      "id": "FEED",
+      "from": "BOUNDARY",
+      "to": "PUMP",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3341.02058,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-07; raw evidence runs/local-07/raw.json; \\Data\\Streams\\FEED\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\FEED\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-07",
+      "id": "S2",
+      "from": "PUMP",
+      "to": "HEATCHAG",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3322.34714,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-07; raw evidence runs/local-07/raw.json; \\Data\\Streams\\S2\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S2\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-07",
+      "id": "S3",
+      "from": "HEATER",
+      "to": "REACTOR",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -2932.43658,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-07; raw evidence runs/local-07/raw.json; \\Data\\Streams\\S3\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S3\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-07",
+      "id": "S4",
+      "from": "REACTOR",
+      "to": "HEATCHAG",
+      "mass_flow": 100.000186,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -2847.3546,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-07; raw evidence runs/local-07/raw.json; \\Data\\Streams\\S4\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S4\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-07",
+      "id": "S5",
+      "from": "COOLER",
+      "to": "VALVE",
+      "mass_flow": 100.000186,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3274.51191,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-07; raw evidence runs/local-07/raw.json; \\Data\\Streams\\S5\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S5\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-07",
+      "id": "S6",
+      "from": "VALVE",
+      "to": "B6",
+      "mass_flow": 100.000186,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3274.51191,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-07; raw evidence runs/local-07/raw.json; \\Data\\Streams\\S6\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S6\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-07",
+      "id": "S7",
+      "from": "B6",
+      "to": "BOUNDARY",
+      "mass_flow": 98.1112965,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3310.78493,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-07; raw evidence runs/local-07/raw.json; \\Data\\Streams\\S7\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S7\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-07",
+      "id": "S8",
+      "from": "B6",
+      "to": "BOUNDARY",
+      "mass_flow": 1.88888928,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -1138.44983,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-07; raw evidence runs/local-07/raw.json; \\Data\\Streams\\S8\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S8\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-07",
+      "id": "S9",
+      "from": "HEATCHAG",
+      "to": "HEATER",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -2969.24447,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-07; raw evidence runs/local-07/raw.json; \\Data\\Streams\\S9\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S9\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-07",
+      "id": "S10",
+      "from": "HEATCHAG",
+      "to": "COOLER",
+      "mass_flow": 100.000186,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3200.45662,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-07; raw evidence runs/local-07/raw.json; \\Data\\Streams\\S10\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S10\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-08",
+      "id": "FEED",
+      "from": "BOUNDARY",
+      "to": "PUMP",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3341.02058,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-08; raw evidence runs/local-08/raw.json; \\Data\\Streams\\FEED\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\FEED\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-08",
+      "id": "S2",
+      "from": "PUMP",
+      "to": "HEATCHAG",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3322.34714,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-08; raw evidence runs/local-08/raw.json; \\Data\\Streams\\S2\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S2\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-08",
+      "id": "S3",
+      "from": "HEATER",
+      "to": "REACTOR",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -2932.43658,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-08; raw evidence runs/local-08/raw.json; \\Data\\Streams\\S3\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S3\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-08",
+      "id": "S4",
+      "from": "REACTOR",
+      "to": "HEATCHAG",
+      "mass_flow": 100.000133,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -2846.4791,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-08; raw evidence runs/local-08/raw.json; \\Data\\Streams\\S4\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S4\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-08",
+      "id": "S5",
+      "from": "COOLER",
+      "to": "VALVE",
+      "mass_flow": 100.000133,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3273.75591,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-08; raw evidence runs/local-08/raw.json; \\Data\\Streams\\S5\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S5\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-08",
+      "id": "S6",
+      "from": "VALVE",
+      "to": "B6",
+      "mass_flow": 100.000133,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3273.75591,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-08; raw evidence runs/local-08/raw.json; \\Data\\Streams\\S6\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S6\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-08",
+      "id": "S7",
+      "from": "B6",
+      "to": "BOUNDARY",
+      "mass_flow": 98.0727325,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3310.78017,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-08; raw evidence runs/local-08/raw.json; \\Data\\Streams\\S7\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S7\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-08",
+      "id": "S8",
+      "from": "B6",
+      "to": "BOUNDARY",
+      "mass_flow": 1.92740087,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -1138.00603,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-08; raw evidence runs/local-08/raw.json; \\Data\\Streams\\S8\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S8\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-08",
+      "id": "S9",
+      "from": "HEATCHAG",
+      "to": "HEATER",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -2969.24447,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-08; raw evidence runs/local-08/raw.json; \\Data\\Streams\\S9\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S9\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-08",
+      "id": "S10",
+      "from": "HEATCHAG",
+      "to": "COOLER",
+      "mass_flow": 100.000133,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3199.5813,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-08; raw evidence runs/local-08/raw.json; \\Data\\Streams\\S10\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S10\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-09",
+      "id": "FEED",
+      "from": "BOUNDARY",
+      "to": "PUMP",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3341.02058,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-09; raw evidence runs/local-09/raw.json; \\Data\\Streams\\FEED\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\FEED\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-09",
+      "id": "S2",
+      "from": "PUMP",
+      "to": "HEATCHAG",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3322.34714,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-09; raw evidence runs/local-09/raw.json; \\Data\\Streams\\S2\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S2\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-09",
+      "id": "S3",
+      "from": "HEATER",
+      "to": "REACTOR",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -2932.43658,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-09; raw evidence runs/local-09/raw.json; \\Data\\Streams\\S3\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S3\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-09",
+      "id": "S4",
+      "from": "REACTOR",
+      "to": "HEATCHAG",
+      "mass_flow": 100.000175,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -2845.58461,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-09; raw evidence runs/local-09/raw.json; \\Data\\Streams\\S4\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S4\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-09",
+      "id": "S5",
+      "from": "COOLER",
+      "to": "VALVE",
+      "mass_flow": 100.000175,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3272.98009,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-09; raw evidence runs/local-09/raw.json; \\Data\\Streams\\S5\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S5\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-09",
+      "id": "S6",
+      "from": "VALVE",
+      "to": "B6",
+      "mass_flow": 100.000175,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3272.98009,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-09; raw evidence runs/local-09/raw.json; \\Data\\Streams\\S6\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S6\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-09",
+      "id": "S7",
+      "from": "B6",
+      "to": "BOUNDARY",
+      "mass_flow": 98.0334459,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3310.76443,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-09; raw evidence runs/local-09/raw.json; \\Data\\Streams\\S7\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S7\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-09",
+      "id": "S8",
+      "from": "B6",
+      "to": "BOUNDARY",
+      "mass_flow": 1.96672942,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -1137.92566,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-09; raw evidence runs/local-09/raw.json; \\Data\\Streams\\S8\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S8\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-09",
+      "id": "S9",
+      "from": "HEATCHAG",
+      "to": "HEATER",
+      "mass_flow": 100.0,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -2969.24447,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-09; raw evidence runs/local-09/raw.json; \\Data\\Streams\\S9\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S9\\Output\\HMX_MASS\\MIXED"
+    },
+    {
+      "case_id": "local-09",
+      "id": "S10",
+      "from": "HEATCHAG",
+      "to": "COOLER",
+      "mass_flow": 100.000175,
+      "mass_unit": "kg/hr",
+      "specific_enthalpy": -3198.68666,
+      "enthalpy_unit": "cal/gm",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-09; raw evidence runs/local-09/raw.json; \\Data\\Streams\\S10\\Output\\MASSFLMX\\MIXED; \\Data\\Streams\\S10\\Output\\HMX_MASS\\MIXED"
+    }
+  ],
+  "blocks": [
+    {
+      "case_id": "local-01",
+      "id": "PUMP",
+      "heat": 0,
+      "power": 2.1717208,
+      "energy_unit": "kW",
+      "heat_unit": "kW",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-01; raw evidence runs/local-01/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology; \\Data\\Blocks\\PUMP\\Output\\WNET"
+    },
+    {
+      "case_id": "local-01",
+      "id": "HEATCHAG",
+      "heat": 0,
+      "power": 0,
+      "energy_unit": "kW",
+      "heat_unit": "kW",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-01; raw evidence runs/local-01/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-01",
+      "id": "HEATER",
+      "heat": 982.747369,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-01; raw evidence runs/local-01/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\HEATER\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-01",
+      "id": "REACTOR",
+      "heat": 2148.41829,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-01; raw evidence runs/local-01/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\REACTOR\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-01",
+      "id": "COOLER",
+      "heat": -1963.15896,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-01; raw evidence runs/local-01/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\COOLER\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-01",
+      "id": "VALVE",
+      "heat": 0,
+      "power": 0,
+      "energy_unit": "kW",
+      "heat_unit": "kW",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-01; raw evidence runs/local-01/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-01",
+      "id": "B6",
+      "heat": 113.684656,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-01; raw evidence runs/local-01/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\B6\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-02",
+      "id": "PUMP",
+      "heat": 0,
+      "power": 2.1717208,
+      "energy_unit": "kW",
+      "heat_unit": "kW",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-02; raw evidence runs/local-02/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology; \\Data\\Blocks\\PUMP\\Output\\WNET"
+    },
+    {
+      "case_id": "local-02",
+      "id": "HEATCHAG",
+      "heat": 0,
+      "power": 0,
+      "energy_unit": "kW",
+      "heat_unit": "kW",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-02; raw evidence runs/local-02/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-02",
+      "id": "HEATER",
+      "heat": 982.747369,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-02; raw evidence runs/local-02/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\HEATER\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-02",
+      "id": "REACTOR",
+      "heat": 2172.98205,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-02; raw evidence runs/local-02/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\REACTOR\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-02",
+      "id": "COOLER",
+      "heat": -1966.62994,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-02; raw evidence runs/local-02/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\COOLER\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-02",
+      "id": "VALVE",
+      "heat": 0,
+      "power": 0,
+      "energy_unit": "kW",
+      "heat_unit": "kW",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-02; raw evidence runs/local-02/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-02",
+      "id": "B6",
+      "heat": 116.100711,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-02; raw evidence runs/local-02/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\B6\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-03",
+      "id": "PUMP",
+      "heat": 0,
+      "power": 2.1717208,
+      "energy_unit": "kW",
+      "heat_unit": "kW",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-03; raw evidence runs/local-03/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology; \\Data\\Blocks\\PUMP\\Output\\WNET"
+    },
+    {
+      "case_id": "local-03",
+      "id": "HEATCHAG",
+      "heat": 0,
+      "power": 0,
+      "energy_unit": "kW",
+      "heat_unit": "kW",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-03; raw evidence runs/local-03/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-03",
+      "id": "HEATER",
+      "heat": 982.747369,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-03; raw evidence runs/local-03/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\HEATER\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-03",
+      "id": "REACTOR",
+      "heat": 2196.40966,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-03; raw evidence runs/local-03/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\REACTOR\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-03",
+      "id": "COOLER",
+      "heat": -1969.90791,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-03; raw evidence runs/local-03/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\COOLER\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-03",
+      "id": "VALVE",
+      "heat": 0,
+      "power": 0,
+      "energy_unit": "kW",
+      "heat_unit": "kW",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-03; raw evidence runs/local-03/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-03",
+      "id": "B6",
+      "heat": 118.466199,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-03; raw evidence runs/local-03/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\B6\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-04",
+      "id": "PUMP",
+      "heat": 0,
+      "power": 2.1717208,
+      "energy_unit": "kW",
+      "heat_unit": "kW",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-04; raw evidence runs/local-04/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology; \\Data\\Blocks\\PUMP\\Output\\WNET"
+    },
+    {
+      "case_id": "local-04",
+      "id": "HEATCHAG",
+      "heat": 0,
+      "power": 0,
+      "energy_unit": "kW",
+      "heat_unit": "kW",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-04; raw evidence runs/local-04/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-04",
+      "id": "HEATER",
+      "heat": 1002.00905,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-04; raw evidence runs/local-04/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\HEATER\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-04",
+      "id": "REACTOR",
+      "heat": 2255.81422,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-04; raw evidence runs/local-04/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\REACTOR\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-04",
+      "id": "COOLER",
+      "heat": -2009.71279,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-04; raw evidence runs/local-04/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\COOLER\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-04",
+      "id": "VALVE",
+      "heat": 0,
+      "power": 0,
+      "energy_unit": "kW",
+      "heat_unit": "kW",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-04; raw evidence runs/local-04/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-04",
+      "id": "B6",
+      "heat": 122.79843,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-04; raw evidence runs/local-04/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\B6\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-05",
+      "id": "PUMP",
+      "heat": 0,
+      "power": 2.1717208,
+      "energy_unit": "kW",
+      "heat_unit": "kW",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-05; raw evidence runs/local-05/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology; \\Data\\Blocks\\PUMP\\Output\\WNET"
+    },
+    {
+      "case_id": "local-05",
+      "id": "HEATCHAG",
+      "heat": 0,
+      "power": 0,
+      "energy_unit": "kW",
+      "heat_unit": "kW",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-05; raw evidence runs/local-05/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-05",
+      "id": "HEATER",
+      "heat": 1002.00905,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-05; raw evidence runs/local-05/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\HEATER\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-05",
+      "id": "REACTOR",
+      "heat": 2280.37275,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-05; raw evidence runs/local-05/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\REACTOR\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-05",
+      "id": "COOLER",
+      "heat": -2013.13655,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-05; raw evidence runs/local-05/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\COOLER\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-05",
+      "id": "VALVE",
+      "heat": 0,
+      "power": 0,
+      "energy_unit": "kW",
+      "heat_unit": "kW",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-05; raw evidence runs/local-05/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-05",
+      "id": "B6",
+      "heat": 125.312158,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-05; raw evidence runs/local-05/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\B6\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-06",
+      "id": "PUMP",
+      "heat": 0,
+      "power": 2.1717208,
+      "energy_unit": "kW",
+      "heat_unit": "kW",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-06; raw evidence runs/local-06/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology; \\Data\\Blocks\\PUMP\\Output\\WNET"
+    },
+    {
+      "case_id": "local-06",
+      "id": "HEATCHAG",
+      "heat": 0,
+      "power": 0,
+      "energy_unit": "kW",
+      "heat_unit": "kW",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-06; raw evidence runs/local-06/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-06",
+      "id": "HEATER",
+      "heat": 1002.00905,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-06; raw evidence runs/local-06/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\HEATER\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-06",
+      "id": "REACTOR",
+      "heat": 2304.44129,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-06; raw evidence runs/local-06/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\REACTOR\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-06",
+      "id": "COOLER",
+      "heat": -2016.3169,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-06; raw evidence runs/local-06/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\COOLER\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-06",
+      "id": "VALVE",
+      "heat": 0,
+      "power": 0,
+      "energy_unit": "kW",
+      "heat_unit": "kW",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-06; raw evidence runs/local-06/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-06",
+      "id": "B6",
+      "heat": 127.809634,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-06; raw evidence runs/local-06/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\B6\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-07",
+      "id": "PUMP",
+      "heat": 0,
+      "power": 2.1717208,
+      "energy_unit": "kW",
+      "heat_unit": "kW",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-07; raw evidence runs/local-07/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology; \\Data\\Blocks\\PUMP\\Output\\WNET"
+    },
+    {
+      "case_id": "local-07",
+      "id": "HEATCHAG",
+      "heat": 0,
+      "power": 0,
+      "energy_unit": "kW",
+      "heat_unit": "kW",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-07; raw evidence runs/local-07/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-07",
+      "id": "HEATER",
+      "heat": 1022.44147,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-07; raw evidence runs/local-07/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\HEATER\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-07",
+      "id": "REACTOR",
+      "heat": 2363.2413,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-07; raw evidence runs/local-07/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\REACTOR\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-07",
+      "id": "COOLER",
+      "heat": -2057.09534,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-07; raw evidence runs/local-07/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\COOLER\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-07",
+      "id": "VALVE",
+      "heat": 0,
+      "power": 0,
+      "energy_unit": "kW",
+      "heat_unit": "kW",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-07; raw evidence runs/local-07/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-07",
+      "id": "B6",
+      "heat": 132.220087,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-07; raw evidence runs/local-07/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\B6\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-08",
+      "id": "PUMP",
+      "heat": 0,
+      "power": 2.1717208,
+      "energy_unit": "kW",
+      "heat_unit": "kW",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-08; raw evidence runs/local-08/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology; \\Data\\Blocks\\PUMP\\Output\\WNET"
+    },
+    {
+      "case_id": "local-08",
+      "id": "HEATCHAG",
+      "heat": 0,
+      "power": 0,
+      "energy_unit": "kW",
+      "heat_unit": "kW",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-08; raw evidence runs/local-08/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-08",
+      "id": "HEATER",
+      "heat": 1022.44147,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-08; raw evidence runs/local-08/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\HEATER\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-08",
+      "id": "REACTOR",
+      "heat": 2387.60227,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-08; raw evidence runs/local-08/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\REACTOR\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-08",
+      "id": "COOLER",
+      "heat": -2060.40848,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-08; raw evidence runs/local-08/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\COOLER\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-08",
+      "id": "VALVE",
+      "heat": 0,
+      "power": 0,
+      "energy_unit": "kW",
+      "heat_unit": "kW",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-08; raw evidence runs/local-08/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-08",
+      "id": "B6",
+      "heat": 134.826384,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-08; raw evidence runs/local-08/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\B6\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-09",
+      "id": "PUMP",
+      "heat": 0,
+      "power": 2.1717208,
+      "energy_unit": "kW",
+      "heat_unit": "kW",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-09; raw evidence runs/local-09/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology; \\Data\\Blocks\\PUMP\\Output\\WNET"
+    },
+    {
+      "case_id": "local-09",
+      "id": "HEATCHAG",
+      "heat": 0,
+      "power": 0,
+      "energy_unit": "kW",
+      "heat_unit": "kW",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-09; raw evidence runs/local-09/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-09",
+      "id": "HEATER",
+      "heat": 1022.44147,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-09; raw evidence runs/local-09/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\HEATER\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-09",
+      "id": "REACTOR",
+      "heat": 2412.41609,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-09; raw evidence runs/local-09/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\REACTOR\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-09",
+      "id": "COOLER",
+      "heat": -2063.70993,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-09; raw evidence runs/local-09/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\COOLER\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-09",
+      "id": "VALVE",
+      "heat": 0,
+      "power": 0,
+      "energy_unit": "kW",
+      "heat_unit": "kW",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-09; raw evidence runs/local-09/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    },
+    {
+      "case_id": "local-09",
+      "id": "B6",
+      "heat": 137.484936,
+      "power": 0,
+      "energy_unit": "cal/sec",
+      "heat_unit": "cal/sec",
+      "power_unit": "kW",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-09; raw evidence runs/local-09/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; \\Data\\Blocks\\B6\\Output\\QCALC; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+    }
+  ],
+  "inventory": [
+    {
+      "case_id": "local-01",
+      "id": "feed",
+      "name": "feed",
+      "kind": "material",
+      "amount": 100.0,
+      "unit": "kg/hr",
+      "factor_id": "feed",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-01; raw evidence runs/local-01/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: feed; \\Data\\Streams\\FEED\\Output\\MASSFLMX\\MIXED"
+    },
+    {
+      "case_id": "local-01",
+      "id": "electricity",
+      "name": "electricity",
+      "kind": "energy",
+      "amount": 3649.938946474921,
+      "unit": "cal/sec",
+      "factor_id": "electricity",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-01; raw evidence runs/local-01/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: electricity; Inherited restricted HTL energy inventory: heater + reactor + fixed pump; excludes separator heat and cooling service; Inherited unity useful-heat to equivalent-electricity assumption; \\Data\\Blocks\\HEATER\\Output\\QCALC; Inherited unity useful-heat to equivalent-electricity assumption; \\Data\\Blocks\\REACTOR\\Output\\QCALC; Fixed pump inventory 2.172 kWh/h converted explicitly to cal/sec using 4.1868 J/cal; not pump native work"
+    },
+    {
+      "case_id": "local-01",
+      "id": "CO2",
+      "name": "CO2",
+      "kind": "emission",
+      "amount": 0.06999255857,
+      "unit": "kg/hr",
+      "factor_id": "CO2",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-01; raw evidence runs/local-01/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: CO2; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CO2; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CO2"
+    },
+    {
+      "case_id": "local-01",
+      "id": "CH4",
+      "name": "CH4",
+      "kind": "emission",
+      "amount": 0.027823790411000002,
+      "unit": "kg/hr",
+      "factor_id": "CH4",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-01; raw evidence runs/local-01/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: CH4; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CH4; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CH4"
+    },
+    {
+      "case_id": "local-01",
+      "id": "wastewater",
+      "name": "wastewater",
+      "kind": "waste",
+      "amount": 84.528992856,
+      "unit": "kg/hr",
+      "factor_id": "wastewater",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-01; raw evidence runs/local-01/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: wastewater; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\H2O; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\H2O"
+    },
+    {
+      "case_id": "local-02",
+      "id": "feed",
+      "name": "feed",
+      "kind": "material",
+      "amount": 100.0,
+      "unit": "kg/hr",
+      "factor_id": "feed",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-02; raw evidence runs/local-02/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: feed; \\Data\\Streams\\FEED\\Output\\MASSFLMX\\MIXED"
+    },
+    {
+      "case_id": "local-02",
+      "id": "electricity",
+      "name": "electricity",
+      "kind": "energy",
+      "amount": 3674.502706474921,
+      "unit": "cal/sec",
+      "factor_id": "electricity",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-02; raw evidence runs/local-02/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: electricity; Inherited restricted HTL energy inventory: heater + reactor + fixed pump; excludes separator heat and cooling service; Inherited unity useful-heat to equivalent-electricity assumption; \\Data\\Blocks\\HEATER\\Output\\QCALC; Inherited unity useful-heat to equivalent-electricity assumption; \\Data\\Blocks\\REACTOR\\Output\\QCALC; Fixed pump inventory 2.172 kWh/h converted explicitly to cal/sec using 4.1868 J/cal; not pump native work"
+    },
+    {
+      "case_id": "local-02",
+      "id": "CO2",
+      "name": "CO2",
+      "kind": "emission",
+      "amount": 0.0722479595,
+      "unit": "kg/hr",
+      "factor_id": "CO2",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-02; raw evidence runs/local-02/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: CO2; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CO2; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CO2"
+    },
+    {
+      "case_id": "local-02",
+      "id": "CH4",
+      "name": "CH4",
+      "kind": "emission",
+      "amount": 0.028285096548,
+      "unit": "kg/hr",
+      "factor_id": "CH4",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-02; raw evidence runs/local-02/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: CH4; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CH4; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CH4"
+    },
+    {
+      "case_id": "local-02",
+      "id": "wastewater",
+      "name": "wastewater",
+      "kind": "waste",
+      "amount": 84.52811580599999,
+      "unit": "kg/hr",
+      "factor_id": "wastewater",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-02; raw evidence runs/local-02/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: wastewater; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\H2O; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\H2O"
+    },
+    {
+      "case_id": "local-03",
+      "id": "feed",
+      "name": "feed",
+      "kind": "material",
+      "amount": 100.0,
+      "unit": "kg/hr",
+      "factor_id": "feed",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-03; raw evidence runs/local-03/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: feed; \\Data\\Streams\\FEED\\Output\\MASSFLMX\\MIXED"
+    },
+    {
+      "case_id": "local-03",
+      "id": "electricity",
+      "name": "electricity",
+      "kind": "energy",
+      "amount": 3697.930316474921,
+      "unit": "cal/sec",
+      "factor_id": "electricity",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-03; raw evidence runs/local-03/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: electricity; Inherited restricted HTL energy inventory: heater + reactor + fixed pump; excludes separator heat and cooling service; Inherited unity useful-heat to equivalent-electricity assumption; \\Data\\Blocks\\HEATER\\Output\\QCALC; Inherited unity useful-heat to equivalent-electricity assumption; \\Data\\Blocks\\REACTOR\\Output\\QCALC; Fixed pump inventory 2.172 kWh/h converted explicitly to cal/sec using 4.1868 J/cal; not pump native work"
+    },
+    {
+      "case_id": "local-03",
+      "id": "CO2",
+      "name": "CO2",
+      "kind": "emission",
+      "amount": 0.0744887953,
+      "unit": "kg/hr",
+      "factor_id": "CO2",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-03; raw evidence runs/local-03/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: CO2; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CO2; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CO2"
+    },
+    {
+      "case_id": "local-03",
+      "id": "CH4",
+      "name": "CH4",
+      "kind": "emission",
+      "amount": 0.028727430329,
+      "unit": "kg/hr",
+      "factor_id": "CH4",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-03; raw evidence runs/local-03/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: CH4; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CH4; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CH4"
+    },
+    {
+      "case_id": "local-03",
+      "id": "wastewater",
+      "name": "wastewater",
+      "kind": "waste",
+      "amount": 84.527235483,
+      "unit": "kg/hr",
+      "factor_id": "wastewater",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-03; raw evidence runs/local-03/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: wastewater; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\H2O; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\H2O"
+    },
+    {
+      "case_id": "local-04",
+      "id": "feed",
+      "name": "feed",
+      "kind": "material",
+      "amount": 100.0,
+      "unit": "kg/hr",
+      "factor_id": "feed",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-04; raw evidence runs/local-04/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: feed; \\Data\\Streams\\FEED\\Output\\MASSFLMX\\MIXED"
+    },
+    {
+      "case_id": "local-04",
+      "id": "electricity",
+      "name": "electricity",
+      "kind": "energy",
+      "amount": 3776.5965574749216,
+      "unit": "cal/sec",
+      "factor_id": "electricity",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-04; raw evidence runs/local-04/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: electricity; Inherited restricted HTL energy inventory: heater + reactor + fixed pump; excludes separator heat and cooling service; Inherited unity useful-heat to equivalent-electricity assumption; \\Data\\Blocks\\HEATER\\Output\\QCALC; Inherited unity useful-heat to equivalent-electricity assumption; \\Data\\Blocks\\REACTOR\\Output\\QCALC; Fixed pump inventory 2.172 kWh/h converted explicitly to cal/sec using 4.1868 J/cal; not pump native work"
+    },
+    {
+      "case_id": "local-04",
+      "id": "CO2",
+      "name": "CO2",
+      "kind": "emission",
+      "amount": 0.07758188029999999,
+      "unit": "kg/hr",
+      "factor_id": "CO2",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-04; raw evidence runs/local-04/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: CO2; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CO2; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CO2"
+    },
+    {
+      "case_id": "local-04",
+      "id": "CH4",
+      "name": "CH4",
+      "kind": "emission",
+      "amount": 0.030050369391,
+      "unit": "kg/hr",
+      "factor_id": "CH4",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-04; raw evidence runs/local-04/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: CH4; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CH4; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CH4"
+    },
+    {
+      "case_id": "local-04",
+      "id": "wastewater",
+      "name": "wastewater",
+      "kind": "waste",
+      "amount": 84.53207243000001,
+      "unit": "kg/hr",
+      "factor_id": "wastewater",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-04; raw evidence runs/local-04/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: wastewater; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\H2O; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\H2O"
+    },
+    {
+      "case_id": "local-05",
+      "id": "feed",
+      "name": "feed",
+      "kind": "material",
+      "amount": 100.0,
+      "unit": "kg/hr",
+      "factor_id": "feed",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-05; raw evidence runs/local-05/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: feed; \\Data\\Streams\\FEED\\Output\\MASSFLMX\\MIXED"
+    },
+    {
+      "case_id": "local-05",
+      "id": "electricity",
+      "name": "electricity",
+      "kind": "energy",
+      "amount": 3801.155087474921,
+      "unit": "cal/sec",
+      "factor_id": "electricity",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-05; raw evidence runs/local-05/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: electricity; Inherited restricted HTL energy inventory: heater + reactor + fixed pump; excludes separator heat and cooling service; Inherited unity useful-heat to equivalent-electricity assumption; \\Data\\Blocks\\HEATER\\Output\\QCALC; Inherited unity useful-heat to equivalent-electricity assumption; \\Data\\Blocks\\REACTOR\\Output\\QCALC; Fixed pump inventory 2.172 kWh/h converted explicitly to cal/sec using 4.1868 J/cal; not pump native work"
+    },
+    {
+      "case_id": "local-05",
+      "id": "CO2",
+      "name": "CO2",
+      "kind": "emission",
+      "amount": 0.0799349347,
+      "unit": "kg/hr",
+      "factor_id": "CO2",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-05; raw evidence runs/local-05/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: CO2; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CO2; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CO2"
+    },
+    {
+      "case_id": "local-05",
+      "id": "CH4",
+      "name": "CH4",
+      "kind": "emission",
+      "amount": 0.030532376037,
+      "unit": "kg/hr",
+      "factor_id": "CH4",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-05; raw evidence runs/local-05/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: CH4; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CH4; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CH4"
+    },
+    {
+      "case_id": "local-05",
+      "id": "wastewater",
+      "name": "wastewater",
+      "kind": "waste",
+      "amount": 84.531440305,
+      "unit": "kg/hr",
+      "factor_id": "wastewater",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-05; raw evidence runs/local-05/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: wastewater; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\H2O; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\H2O"
+    },
+    {
+      "case_id": "local-06",
+      "id": "feed",
+      "name": "feed",
+      "kind": "material",
+      "amount": 100.0,
+      "unit": "kg/hr",
+      "factor_id": "feed",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-06; raw evidence runs/local-06/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: feed; \\Data\\Streams\\FEED\\Output\\MASSFLMX\\MIXED"
+    },
+    {
+      "case_id": "local-06",
+      "id": "electricity",
+      "name": "electricity",
+      "kind": "energy",
+      "amount": 3825.223627474921,
+      "unit": "cal/sec",
+      "factor_id": "electricity",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-06; raw evidence runs/local-06/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: electricity; Inherited restricted HTL energy inventory: heater + reactor + fixed pump; excludes separator heat and cooling service; Inherited unity useful-heat to equivalent-electricity assumption; \\Data\\Blocks\\HEATER\\Output\\QCALC; Inherited unity useful-heat to equivalent-electricity assumption; \\Data\\Blocks\\REACTOR\\Output\\QCALC; Fixed pump inventory 2.172 kWh/h converted explicitly to cal/sec using 4.1868 J/cal; not pump native work"
+    },
+    {
+      "case_id": "local-06",
+      "id": "CO2",
+      "name": "CO2",
+      "kind": "emission",
+      "amount": 0.082329663,
+      "unit": "kg/hr",
+      "factor_id": "CO2",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-06; raw evidence runs/local-06/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: CO2; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CO2; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CO2"
+    },
+    {
+      "case_id": "local-06",
+      "id": "CH4",
+      "name": "CH4",
+      "kind": "emission",
+      "amount": 0.031004726238,
+      "unit": "kg/hr",
+      "factor_id": "CH4",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-06; raw evidence runs/local-06/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: CH4; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CH4; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CH4"
+    },
+    {
+      "case_id": "local-06",
+      "id": "wastewater",
+      "name": "wastewater",
+      "kind": "waste",
+      "amount": 84.530825393,
+      "unit": "kg/hr",
+      "factor_id": "wastewater",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-06; raw evidence runs/local-06/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: wastewater; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\H2O; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\H2O"
+    },
+    {
+      "case_id": "local-07",
+      "id": "feed",
+      "name": "feed",
+      "kind": "material",
+      "amount": 100.0,
+      "unit": "kg/hr",
+      "factor_id": "feed",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-07; raw evidence runs/local-07/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: feed; \\Data\\Streams\\FEED\\Output\\MASSFLMX\\MIXED"
+    },
+    {
+      "case_id": "local-07",
+      "id": "electricity",
+      "name": "electricity",
+      "kind": "energy",
+      "amount": 3904.456057474921,
+      "unit": "cal/sec",
+      "factor_id": "electricity",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-07; raw evidence runs/local-07/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: electricity; Inherited restricted HTL energy inventory: heater + reactor + fixed pump; excludes separator heat and cooling service; Inherited unity useful-heat to equivalent-electricity assumption; \\Data\\Blocks\\HEATER\\Output\\QCALC; Inherited unity useful-heat to equivalent-electricity assumption; \\Data\\Blocks\\REACTOR\\Output\\QCALC; Fixed pump inventory 2.172 kWh/h converted explicitly to cal/sec using 4.1868 J/cal; not pump native work"
+    },
+    {
+      "case_id": "local-07",
+      "id": "CO2",
+      "name": "CO2",
+      "kind": "emission",
+      "amount": 0.0856130076,
+      "unit": "kg/hr",
+      "factor_id": "CO2",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-07; raw evidence runs/local-07/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: CO2; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CO2; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CO2"
+    },
+    {
+      "case_id": "local-07",
+      "id": "CH4",
+      "name": "CH4",
+      "kind": "emission",
+      "amount": 0.03241509663,
+      "unit": "kg/hr",
+      "factor_id": "CH4",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-07; raw evidence runs/local-07/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: CH4; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CH4; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CH4"
+    },
+    {
+      "case_id": "local-07",
+      "id": "wastewater",
+      "name": "wastewater",
+      "kind": "waste",
+      "amount": 84.535927507,
+      "unit": "kg/hr",
+      "factor_id": "wastewater",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-07; raw evidence runs/local-07/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: wastewater; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\H2O; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\H2O"
+    },
+    {
+      "case_id": "local-08",
+      "id": "feed",
+      "name": "feed",
+      "kind": "material",
+      "amount": 100.0,
+      "unit": "kg/hr",
+      "factor_id": "feed",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-08; raw evidence runs/local-08/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: feed; \\Data\\Streams\\FEED\\Output\\MASSFLMX\\MIXED"
+    },
+    {
+      "case_id": "local-08",
+      "id": "electricity",
+      "name": "electricity",
+      "kind": "energy",
+      "amount": 3928.817027474921,
+      "unit": "cal/sec",
+      "factor_id": "electricity",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-08; raw evidence runs/local-08/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: electricity; Inherited restricted HTL energy inventory: heater + reactor + fixed pump; excludes separator heat and cooling service; Inherited unity useful-heat to equivalent-electricity assumption; \\Data\\Blocks\\HEATER\\Output\\QCALC; Inherited unity useful-heat to equivalent-electricity assumption; \\Data\\Blocks\\REACTOR\\Output\\QCALC; Fixed pump inventory 2.172 kWh/h converted explicitly to cal/sec using 4.1868 J/cal; not pump native work"
+    },
+    {
+      "case_id": "local-08",
+      "id": "CO2",
+      "name": "CO2",
+      "kind": "emission",
+      "amount": 0.0881264303,
+      "unit": "kg/hr",
+      "factor_id": "CO2",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-08; raw evidence runs/local-08/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: CO2; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CO2; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CO2"
+    },
+    {
+      "case_id": "local-08",
+      "id": "CH4",
+      "name": "CH4",
+      "kind": "emission",
+      "amount": 0.032915714166,
+      "unit": "kg/hr",
+      "factor_id": "CH4",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-08; raw evidence runs/local-08/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: CH4; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CH4; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CH4"
+    },
+    {
+      "case_id": "local-08",
+      "id": "wastewater",
+      "name": "wastewater",
+      "kind": "waste",
+      "amount": 84.535488239,
+      "unit": "kg/hr",
+      "factor_id": "wastewater",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-08; raw evidence runs/local-08/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: wastewater; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\H2O; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\H2O"
+    },
+    {
+      "case_id": "local-09",
+      "id": "feed",
+      "name": "feed",
+      "kind": "material",
+      "amount": 100.0,
+      "unit": "kg/hr",
+      "factor_id": "feed",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-09; raw evidence runs/local-09/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: feed; \\Data\\Streams\\FEED\\Output\\MASSFLMX\\MIXED"
+    },
+    {
+      "case_id": "local-09",
+      "id": "electricity",
+      "name": "electricity",
+      "kind": "energy",
+      "amount": 3953.630847474921,
+      "unit": "cal/sec",
+      "factor_id": "electricity",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-09; raw evidence runs/local-09/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: electricity; Inherited restricted HTL energy inventory: heater + reactor + fixed pump; excludes separator heat and cooling service; Inherited unity useful-heat to equivalent-electricity assumption; \\Data\\Blocks\\HEATER\\Output\\QCALC; Inherited unity useful-heat to equivalent-electricity assumption; \\Data\\Blocks\\REACTOR\\Output\\QCALC; Fixed pump inventory 2.172 kWh/h converted explicitly to cal/sec using 4.1868 J/cal; not pump native work"
+    },
+    {
+      "case_id": "local-09",
+      "id": "CO2",
+      "name": "CO2",
+      "kind": "emission",
+      "amount": 0.0906782844,
+      "unit": "kg/hr",
+      "factor_id": "CO2",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-09; raw evidence runs/local-09/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: CO2; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CO2; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CO2"
+    },
+    {
+      "case_id": "local-09",
+      "id": "CH4",
+      "name": "CH4",
+      "kind": "emission",
+      "amount": 0.033455318362000004,
+      "unit": "kg/hr",
+      "factor_id": "CH4",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-09; raw evidence runs/local-09/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: CH4; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CH4; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CH4"
+    },
+    {
+      "case_id": "local-09",
+      "id": "wastewater",
+      "name": "wastewater",
+      "kind": "waste",
+      "amount": 84.53528897,
+      "unit": "kg/hr",
+      "factor_id": "wastewater",
+      "source": "native_simulation; model SHA-256 4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed; case local-09; raw evidence runs/local-09/raw.json; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: wastewater; Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams; \\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\H2O; \\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\H2O"
+    }
+  ]
+}

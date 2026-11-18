@@ -1,0 +1,446 @@
+{
+  "cohort_version": 1,
+  "source_paths_relative_to": "outputs/workspace-bilingual-20261117",
+  "rows": [
+    {
+      "id": "case-001",
+      "split": "training",
+      "cohort": "original_training_12",
+      "batch": "generic-native-pilot-17",
+      "inputs": {
+        "reactor_temperature_K": 583.15,
+        "tube_length_m": 5
+      },
+      "source": "generic-native-pilot-17/runs/case-001/raw.json"
+    },
+    {
+      "id": "case-002",
+      "split": "training",
+      "cohort": "original_training_12",
+      "batch": "generic-native-pilot-17",
+      "inputs": {
+        "reactor_temperature_K": 583.15,
+        "tube_length_m": 12.5
+      },
+      "source": "generic-native-pilot-17/runs/case-002/raw.json"
+    },
+    {
+      "id": "case-003",
+      "split": "training",
+      "cohort": "original_training_12",
+      "batch": "generic-native-pilot-17",
+      "inputs": {
+        "reactor_temperature_K": 583.15,
+        "tube_length_m": 20
+      },
+      "source": "generic-native-pilot-17/runs/case-003/raw.json"
+    },
+    {
+      "id": "case-004",
+      "split": "holdout",
+      "cohort": "legacy_holdout_3",
+      "batch": "generic-native-pilot-17",
+      "inputs": {
+        "reactor_temperature_K": 593.15,
+        "tube_length_m": 5
+      },
+      "source": "generic-native-pilot-17/runs/case-004/raw.json"
+    },
+    {
+      "id": "case-005",
+      "split": "training",
+      "cohort": "original_training_12",
+      "batch": "generic-native-pilot-17",
+      "inputs": {
+        "reactor_temperature_K": 593.15,
+        "tube_length_m": 12.5
+      },
+      "source": "generic-native-pilot-17/runs/case-005/raw.json"
+    },
+    {
+      "id": "case-006",
+      "split": "holdout",
+      "cohort": "legacy_holdout_3",
+      "batch": "generic-native-pilot-17",
+      "inputs": {
+        "reactor_temperature_K": 593.15,
+        "tube_length_m": 20
+      },
+      "source": "generic-native-pilot-17/runs/case-006/raw.json"
+    },
+    {
+      "id": "case-007",
+      "split": "training",
+      "cohort": "original_training_12",
+      "batch": "generic-native-pilot-17",
+      "inputs": {
+        "reactor_temperature_K": 603.15,
+        "tube_length_m": 5
+      },
+      "source": "generic-native-pilot-17/runs/case-007/raw.json"
+    },
+    {
+      "id": "case-008",
+      "split": "holdout",
+      "cohort": "legacy_holdout_3",
+      "batch": "generic-native-pilot-17",
+      "inputs": {
+        "reactor_temperature_K": 603.15,
+        "tube_length_m": 12.5
+      },
+      "source": "generic-native-pilot-17/runs/case-008/raw.json"
+    },
+    {
+      "id": "case-009",
+      "split": "training",
+      "cohort": "original_training_12",
+      "batch": "generic-native-pilot-17",
+      "inputs": {
+        "reactor_temperature_K": 603.15,
+        "tube_length_m": 20
+      },
+      "source": "generic-native-pilot-17/runs/case-009/raw.json"
+    },
+    {
+      "id": "case-010",
+      "split": "training",
+      "cohort": "original_training_12",
+      "batch": "generic-native-pilot-17",
+      "inputs": {
+        "reactor_temperature_K": 613.15,
+        "tube_length_m": 5
+      },
+      "source": "generic-native-pilot-17/runs/case-010/raw.json"
+    },
+    {
+      "id": "case-011",
+      "split": "training",
+      "cohort": "original_training_12",
+      "batch": "generic-native-pilot-17",
+      "inputs": {
+        "reactor_temperature_K": 613.15,
+        "tube_length_m": 12.5
+      },
+      "source": "generic-native-pilot-17/runs/case-011/raw.json"
+    },
+    {
+      "id": "case-012",
+      "split": "training",
+      "cohort": "original_training_12",
+      "batch": "generic-native-pilot-17",
+      "inputs": {
+        "reactor_temperature_K": 613.15,
+        "tube_length_m": 20
+      },
+      "source": "generic-native-pilot-17/runs/case-012/raw.json"
+    },
+    {
+      "id": "case-013",
+      "split": "training",
+      "cohort": "original_training_12",
+      "batch": "generic-native-pilot-17",
+      "inputs": {
+        "reactor_temperature_K": 623.15,
+        "tube_length_m": 5
+      },
+      "source": "generic-native-pilot-17/runs/case-013/raw.json"
+    },
+    {
+      "id": "case-014",
+      "split": "training",
+      "cohort": "original_training_12",
+      "batch": "generic-native-pilot-17",
+      "inputs": {
+        "reactor_temperature_K": 623.15,
+        "tube_length_m": 12.5
+      },
+      "source": "generic-native-pilot-17/runs/case-014/raw.json"
+    },
+    {
+      "id": "case-015",
+      "split": "training",
+      "cohort": "original_training_12",
+      "batch": "generic-native-pilot-17",
+      "inputs": {
+        "reactor_temperature_K": 623.15,
+        "tube_length_m": 20
+      },
+      "source": "generic-native-pilot-17/runs/case-015/raw.json"
+    },
+    {
+      "id": "verify-T335-L8p5",
+      "split": "verification",
+      "cohort": "legacy_verification_2",
+      "batch": "generic-native-pilot-17",
+      "inputs": {
+        "reactor_temperature_K": 608.15,
+        "tube_length_m": 8.5
+      },
+      "source": "generic-native-pilot-17/runs/verify-T335-L8p5/raw.json"
+    },
+    {
+      "id": "verify-T345-L17p5",
+      "split": "verification",
+      "cohort": "legacy_verification_2",
+      "batch": "generic-native-pilot-17",
+      "inputs": {
+        "reactor_temperature_K": 618.15,
+        "tube_length_m": 17.5
+      },
+      "source": "generic-native-pilot-17/runs/verify-T345-L17p5/raw.json"
+    },
+    {
+      "id": "local-01",
+      "split": "verification",
+      "cohort": "local_verification_8",
+      "batch": "native-local-perturbation-9",
+      "inputs": {
+        "reactor_temperature_K": 601.15,
+        "tube_length_m": 12.25
+      },
+      "source": "native-local-perturbation-9/runs/local-01/raw.json"
+    },
+    {
+      "id": "local-02",
+      "split": "verification",
+      "cohort": "local_verification_8",
+      "batch": "native-local-perturbation-9",
+      "inputs": {
+        "reactor_temperature_K": 601.15,
+        "tube_length_m": 12.5
+      },
+      "source": "native-local-perturbation-9/runs/local-02/raw.json"
+    },
+    {
+      "id": "local-03",
+      "split": "verification",
+      "cohort": "local_verification_8",
+      "batch": "native-local-perturbation-9",
+      "inputs": {
+        "reactor_temperature_K": 601.15,
+        "tube_length_m": 12.75
+      },
+      "source": "native-local-perturbation-9/runs/local-03/raw.json"
+    },
+    {
+      "id": "local-04",
+      "split": "verification",
+      "cohort": "local_verification_8",
+      "batch": "native-local-perturbation-9",
+      "inputs": {
+        "reactor_temperature_K": 603.15,
+        "tube_length_m": 12.25
+      },
+      "source": "native-local-perturbation-9/runs/local-04/raw.json"
+    },
+    {
+      "id": "local-06",
+      "split": "verification",
+      "cohort": "local_verification_8",
+      "batch": "native-local-perturbation-9",
+      "inputs": {
+        "reactor_temperature_K": 603.15,
+        "tube_length_m": 12.75
+      },
+      "source": "native-local-perturbation-9/runs/local-06/raw.json"
+    },
+    {
+      "id": "local-07",
+      "split": "verification",
+      "cohort": "local_verification_8",
+      "batch": "native-local-perturbation-9",
+      "inputs": {
+        "reactor_temperature_K": 605.15,
+        "tube_length_m": 12.25
+      },
+      "source": "native-local-perturbation-9/runs/local-07/raw.json"
+    },
+    {
+      "id": "local-08",
+      "split": "verification",
+      "cohort": "local_verification_8",
+      "batch": "native-local-perturbation-9",
+      "inputs": {
+        "reactor_temperature_K": 605.15,
+        "tube_length_m": 12.5
+      },
+      "source": "native-local-perturbation-9/runs/local-08/raw.json"
+    },
+    {
+      "id": "local-09",
+      "split": "verification",
+      "cohort": "local_verification_8",
+      "batch": "native-local-perturbation-9",
+      "inputs": {
+        "reactor_temperature_K": 605.15,
+        "tube_length_m": 12.75
+      },
+      "source": "native-local-perturbation-9/runs/local-09/raw.json"
+    },
+    {
+      "id": "v2-train-T317-L8",
+      "split": "training",
+      "cohort": "extension_training_8",
+      "batch": "native-v2-extension-12",
+      "inputs": {
+        "reactor_temperature_K": 590.15,
+        "tube_length_m": 8
+      },
+      "source": "native-v2-extension-12/runs/v2-train-T317-L8/raw.json"
+    },
+    {
+      "id": "v2-train-T317-L16p5",
+      "split": "training",
+      "cohort": "extension_training_8",
+      "batch": "native-v2-extension-12",
+      "inputs": {
+        "reactor_temperature_K": 590.15,
+        "tube_length_m": 16.5
+      },
+      "source": "native-v2-extension-12/runs/v2-train-T317-L16p5/raw.json"
+    },
+    {
+      "id": "v2-train-T327-L8",
+      "split": "training",
+      "cohort": "extension_training_8",
+      "batch": "native-v2-extension-12",
+      "inputs": {
+        "reactor_temperature_K": 600.15,
+        "tube_length_m": 8
+      },
+      "source": "native-v2-extension-12/runs/v2-train-T327-L8/raw.json"
+    },
+    {
+      "id": "v2-train-T327-L16p5",
+      "split": "training",
+      "cohort": "extension_training_8",
+      "batch": "native-v2-extension-12",
+      "inputs": {
+        "reactor_temperature_K": 600.15,
+        "tube_length_m": 16.5
+      },
+      "source": "native-v2-extension-12/runs/v2-train-T327-L16p5/raw.json"
+    },
+    {
+      "id": "v2-train-T337-L8",
+      "split": "training",
+      "cohort": "extension_training_8",
+      "batch": "native-v2-extension-12",
+      "inputs": {
+        "reactor_temperature_K": 610.15,
+        "tube_length_m": 8
+      },
+      "source": "native-v2-extension-12/runs/v2-train-T337-L8/raw.json"
+    },
+    {
+      "id": "v2-train-T337-L16p5",
+      "split": "training",
+      "cohort": "extension_training_8",
+      "batch": "native-v2-extension-12",
+      "inputs": {
+        "reactor_temperature_K": 610.15,
+        "tube_length_m": 16.5
+      },
+      "source": "native-v2-extension-12/runs/v2-train-T337-L16p5/raw.json"
+    },
+    {
+      "id": "v2-train-T347-L8",
+      "split": "training",
+      "cohort": "extension_training_8",
+      "batch": "native-v2-extension-12",
+      "inputs": {
+        "reactor_temperature_K": 620.15,
+        "tube_length_m": 8
+      },
+      "source": "native-v2-extension-12/runs/v2-train-T347-L8/raw.json"
+    },
+    {
+      "id": "v2-train-T347-L16p5",
+      "split": "training",
+      "cohort": "extension_training_8",
+      "batch": "native-v2-extension-12",
+      "inputs": {
+        "reactor_temperature_K": 620.15,
+        "tube_length_m": 16.5
+      },
+      "source": "native-v2-extension-12/runs/v2-train-T347-L16p5/raw.json"
+    },
+    {
+      "id": "v2-verify-T322-L9p75",
+      "split": "verification",
+      "cohort": "prospective_verification_4",
+      "batch": "native-v2-extension-12",
+      "inputs": {
+        "reactor_temperature_K": 595.15,
+        "tube_length_m": 9.75
+      },
+      "source": "native-v2-extension-12/runs/v2-verify-T322-L9p75/raw.json"
+    },
+    {
+      "id": "v2-verify-T332-L14",
+      "split": "verification",
+      "cohort": "prospective_verification_4",
+      "batch": "native-v2-extension-12",
+      "inputs": {
+        "reactor_temperature_K": 605.15,
+        "tube_length_m": 14
+      },
+      "source": "native-v2-extension-12/runs/v2-verify-T332-L14/raw.json"
+    },
+    {
+      "id": "v2-verify-T342-L18p25",
+      "split": "verification",
+      "cohort": "prospective_verification_4",
+      "batch": "native-v2-extension-12",
+      "inputs": {
+        "reactor_temperature_K": 615.15,
+        "tube_length_m": 18.25
+      },
+      "source": "native-v2-extension-12/runs/v2-verify-T342-L18p25/raw.json"
+    },
+    {
+      "id": "v2-verify-T348-L6p75",
+      "split": "verification",
+      "cohort": "prospective_verification_4",
+      "batch": "native-v2-extension-12",
+      "inputs": {
+        "reactor_temperature_K": 621.15,
+        "tube_length_m": 6.75
+      },
+      "source": "native-v2-extension-12/runs/v2-verify-T348-L6p75/raw.json"
+    }
+  ],
+  "counts": {
+    "training": 20,
+    "holdout": 3,
+    "verification": 14
+  },
+  "cohort_counts": {
+    "original_training_12": 12,
+    "legacy_holdout_3": 3,
+    "legacy_verification_2": 2,
+    "local_verification_8": 8,
+    "extension_training_8": 8,
+    "prospective_verification_4": 4
+  },
+  "excluded_repeats": [
+    {
+      "id": "local-05",
+      "batch": "native-local-perturbation-9",
+      "original_point_id": "case-008",
+      "original_split": "holdout",
+      "inputs": {
+        "reactor_temperature_K": 603.15,
+        "tube_length_m": 12.5
+      },
+      "source": "native-local-perturbation-9/runs/local-05/raw.json",
+      "reason": "Repeated original holdout coordinate; retain separately, never duplicate in the fitting dataset or relabel as new verification"
+    }
+  ],
+  "fresh_independent_cohort": "prospective_verification_4",
+  "previously_known_verification_cohorts": [
+    "legacy_verification_2",
+    "local_verification_8"
+  ],
+  "reporting": "Report every cohort separately; all 14 verification rows also remain in the combined qualification gate. Legacy holdout and verification are development evidence for v2, not newly independent tests."
+}

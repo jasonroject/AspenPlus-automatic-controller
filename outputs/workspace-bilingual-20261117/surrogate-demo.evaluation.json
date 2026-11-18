@@ -1,0 +1,179 @@
+{
+  "result_version": 1,
+  "kind": "surrogate_evaluation",
+  "model_sha256": "d85bb4b67f087ecab535ad9cffb4d345f4290f4628257d5e3c7bde37734362f3",
+  "profile_id": "synthetic-arithmetic-fixture",
+  "profile_sha256": "778831283ce5268f801e2bb920e63dbb738e466b81c21dcc6c771e38d05d4dc1",
+  "native_model_sha256": "7748cc3427125b89d1a149f76d16c1df58fff412f13394cde5489a3e8adb2dc8",
+  "evidence_type": "offline_fixture",
+  "passed": true,
+  "criteria": {
+    "energy": {
+      "unit": "kWh/kg",
+      "max_mae": 0.1,
+      "max_rmse": 0.15
+    },
+    "signed_heat": {
+      "unit": "kW",
+      "max_mae": 0.1,
+      "max_rmse": 0.15,
+      "max_relative_error": 0.5,
+      "relative_floor": 0.1
+    },
+    "zero_impact": {
+      "unit": "kg CO2-eq/kg",
+      "max_mae": 0.0,
+      "max_rmse": 0.0
+    }
+  },
+  "criteria_sha256": "09ac9179d1b1028bacde5fbb1f18b33fbc473f60c136b6cb5e6c604ca1e53b3e",
+  "dataset_sha256": "042e9a1361a4bf0c94f571bb8bd6f7e8b8042eea4a931e51853cc57b017e9d97",
+  "splits": {
+    "holdout": {
+      "expected": 2,
+      "valid": 2,
+      "complete": true,
+      "metrics": {
+        "energy": {
+          "unit": "kWh/kg",
+          "expected": 2,
+          "valid_pairs": 2,
+          "complete": true,
+          "mae": 0.0001765806906544043,
+          "rmse": 0.0002497228075766666,
+          "max_relative_error": null,
+          "passed": true
+        },
+        "signed_heat": {
+          "unit": "kW",
+          "expected": 2,
+          "valid_pairs": 2,
+          "complete": true,
+          "mae": 6.819167222649453e-05,
+          "rmse": 9.643757967116991e-05,
+          "max_relative_error": 0.0001363833330934039,
+          "passed": true,
+          "relative_floor": 0.1
+        },
+        "zero_impact": {
+          "unit": "kg CO2-eq/kg",
+          "expected": 2,
+          "valid_pairs": 2,
+          "complete": true,
+          "mae": 0.0,
+          "rmse": 0.0,
+          "max_relative_error": null,
+          "passed": true
+        }
+      }
+    },
+    "verification": {
+      "expected": 1,
+      "valid": 1,
+      "complete": true,
+      "metrics": {
+        "energy": {
+          "unit": "kWh/kg",
+          "expected": 1,
+          "valid_pairs": 1,
+          "complete": true,
+          "mae": 5.979188699711813e-07,
+          "rmse": 5.979188699711813e-07,
+          "max_relative_error": null,
+          "passed": true
+        },
+        "signed_heat": {
+          "unit": "kW",
+          "expected": 1,
+          "valid_pairs": 1,
+          "complete": true,
+          "mae": 0.0003257652922219467,
+          "rmse": 0.0003257652922219467,
+          "max_relative_error": 0.00018615159555539812,
+          "passed": true,
+          "relative_floor": 0.1
+        },
+        "zero_impact": {
+          "unit": "kg CO2-eq/kg",
+          "expected": 1,
+          "valid_pairs": 1,
+          "complete": true,
+          "mae": 0.0,
+          "rmse": 0.0,
+          "max_relative_error": null,
+          "passed": true
+        }
+      }
+    }
+  },
+  "records": [
+    {
+      "id": "synthetic-8",
+      "split": "holdout",
+      "inputs": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "actual": {
+        "energy": 10.0,
+        "signed_heat": 0.0,
+        "zero_impact": 0.0
+      },
+      "source": "fixture/8.json",
+      "evidence_type": "offline_fixture",
+      "predicted": {
+        "energy": 10.0,
+        "signed_heat": -1.135958518425177e-11,
+        "zero_impact": 0.0
+      },
+      "constraints_passed": true,
+      "errors": []
+    },
+    {
+      "id": "synthetic-9",
+      "split": "holdout",
+      "inputs": {
+        "x": 0.25,
+        "y": 0.5
+      },
+      "actual": {
+        "energy": 12.0,
+        "signed_heat": -1.0,
+        "zero_impact": 0.0
+      },
+      "source": "fixture/9.json",
+      "evidence_type": "offline_fixture",
+      "predicted": {
+        "energy": 12.000353161381309,
+        "signed_heat": -1.0001363833330934,
+        "zero_impact": 0.0
+      },
+      "constraints_passed": true,
+      "errors": []
+    },
+    {
+      "id": "synthetic-10",
+      "split": "verification",
+      "inputs": {
+        "x": -0.5,
+        "y": 0.25
+      },
+      "actual": {
+        "energy": 9.75,
+        "signed_heat": -1.75,
+        "zero_impact": 0.0
+      },
+      "source": "fixture/10.json",
+      "evidence_type": "offline_fixture",
+      "predicted": {
+        "energy": 9.74999940208113,
+        "signed_heat": -1.750325765292222,
+        "zero_impact": 0.0
+      },
+      "constraints_passed": true,
+      "errors": []
+    }
+  ],
+  "reasons": [],
+  "scope": "Error checks against supplied simulator outputs, not physical validation."
+}

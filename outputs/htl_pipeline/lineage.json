@@ -1,0 +1,32 @@
+[
+  {
+    "name": "native_samples.csv",
+    "sha256": "f0998c0be91b02ce9e513c20e69b53e13fdfa9edd0fdd6584e3dd63ccbde52d7",
+    "source": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-16\\project1jason\\小论文\\outputs\\continuous_field_20261114\\native_samples.csv"
+  },
+  {
+    "name": "lca_coefficients.json",
+    "sha256": "99fdf0cbbfcf5b826ba7bfb52246eaf3c21dcd990cc8634abc61b9943e88851a",
+    "source": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-16\\project1jason\\小论文\\outputs\\continuous_field_20261114\\lca_coefficients.json"
+  },
+  {
+    "name": "component_element_bases.csv",
+    "sha256": "be59c4f2d5b1c017959d8b0bdc3c432a7593ebb8c01435f312da519f2253ffbd",
+    "source": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-16\\project1jason\\小论文\\outputs\\continuous_field_20261114\\component_element_bases.csv"
+  },
+  {
+    "name": "failed_samples.csv",
+    "sha256": "a379658cb373b7f59bf73075a5841546dc791eca0d4c12a31240e662ac25e967",
+    "source": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-16\\project1jason\\小论文\\outputs\\continuous_field_20261114\\failed_samples.csv"
+  },
+  {
+    "name": "protocol.json",
+    "sha256": "73fce173ae7f3f95e0dd91dedc2640b5ca2926bd90d325f2ede0bd852f7a69b9",
+    "source": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-16\\project1jason\\小论文\\outputs\\continuous_field_20261114\\protocol.json"
+  },
+  {
+    "name": "source_HR.bkp",
+    "sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+    "source": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-16\\project1jason\\小论文\\outputs\\continuous_field_20261114\\source_HR.bkp"
+  }
+]

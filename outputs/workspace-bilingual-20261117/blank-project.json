@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "meta": {
+    "name": "Imported process",
+    "steady_state": true,
+    "enthalpy_basis": "",
+    "boundary": "",
+    "functional_unit": "1 kg declared target product",
+    "allocation_method": "",
+    "calorie_J": null,
+    "inventory_complete": false,
+    "comparable_cases": false
+  },
+  "streams": [],
+  "blocks": [],
+  "cases": [],
+  "inventory": [],
+  "factors": []
+}

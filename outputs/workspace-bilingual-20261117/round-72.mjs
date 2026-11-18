@@ -1,0 +1,15 @@
+const task=await taskSpace(2),page=task.page('p1');await page.goto('http://127.0.0.1:8766/models.html');await page.snapshot();
+await page.click('#open-existing-results');await page.click('#load-pilot-project');await page.waitForSelector('.model-gates');
+console.log('native pilot loaded',await page.evaluate(()=>({status:document.querySelector('#model-status').textContent,gates:document.querySelector('.model-gates').innerText,counts:document.querySelector('.model-audit-counts').innerText})));
+await page.click('#open-scan-analysis');await page.snapshot();await page.focus('#calculate');await page.press('#calculate','Enter');await page.snapshot();
+console.log('native pilot calculated',await page.evaluate(()=>({caseCount:document.querySelector('#result-case').options.length,kpis:document.querySelector('#result-kpis')?.innerText||document.querySelector('.overview-grid')?.innerText,issues:document.querySelector('#message').innerText,charts:document.querySelector('#result-visuals').textContent.slice(0,180)})));
+await page.selectOption('#result-case','case-008');
+await page.cdp('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false});await page.evaluate(()=>window.scrollTo(0,0));await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
+await page.screenshot({path:'C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/workspace-bilingual-20261117/native17-analysis-zh.png'});
+await page.goto('http://127.0.0.1:8766/models.html');await page.snapshot();await page.click('#model-artifacts > summary');
+await page.click('[data-artifact-example="data/generic-htl-pilot/model.bundle.json"]');await page.waitForSelector('#artifact-response');
+console.log('native bundle',await page.evaluate(()=>({summary:document.querySelector('.model-artifact-summary').innerText,claim:document.querySelector('#artifact-view .model-help').innerText,validation:document.querySelector('[data-artifact-validation]').textContent.slice(0,850)})));
+await page.click('[data-artifact-validation] > summary');await page.cdp('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false});await page.evaluate(()=>document.querySelector('#artifact-view').scrollIntoView({block:'start'}));await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
+await page.screenshot({path:'C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/workspace-bilingual-20261117/native17-model-checks-zh.png'});
+await page.click('[data-artifact-example="data/generic-htl-pilot/robustness.json"]');await page.waitForSelector('#artifact-preference');
+console.log('native scenarios',await page.evaluate(()=>({summary:document.querySelector('.model-artifact-summary').innerText,claim:document.querySelector('#artifact-view .model-help').innerText,preferences:[...document.querySelector('#artifact-preference').options].map(o=>o.value)})));

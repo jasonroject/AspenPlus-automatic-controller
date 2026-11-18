@@ -1,0 +1,729 @@
+{
+  "result_version": 1,
+  "kind": "v2_cohort_evaluation",
+  "model_sha256": "0ae413ef6cb13ac09abccdb37d060103eb94b4488b65310e8eadef3d1d6903bf",
+  "baseline_model_sha256": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+  "dataset_sha256": "90fa8bfcc9b276640a291172e5bd2adb942f8877fd5756439f6cda58ebb420c1",
+  "cohort_design_sha256": "f44705085dfa007732a2c602edaf256eef911f5f5feb462b236861bb15705bdb",
+  "criteria": {
+    "purchased_energy_kWh_kg": {
+      "unit": "kWh/kg",
+      "max_relative_error": 0.05,
+      "relative_floor": 0.01
+    },
+    "yield_fraction": {
+      "unit": "1",
+      "max_relative_error": 0.05,
+      "relative_floor": 0.001
+    },
+    "impact:Climate change": {
+      "unit": "kg CO2-eq/kg",
+      "max_relative_error": 0.05,
+      "relative_floor": 0.01
+    }
+  },
+  "cohorts": {
+    "original_training_12": {
+      "expected": 12,
+      "ids": [
+        "case-001",
+        "case-002",
+        "case-003",
+        "case-005",
+        "case-007",
+        "case-009",
+        "case-010",
+        "case-011",
+        "case-012",
+        "case-013",
+        "case-014",
+        "case-015"
+      ],
+      "role": "training",
+      "out_of_sample": false,
+      "scope": "Fitting inputs only; no held-out error claim or validation pass is assigned."
+    },
+    "legacy_holdout_3": {
+      "expected": 3,
+      "valid_pairs": 3,
+      "complete": true,
+      "passed": true,
+      "metrics": {
+        "purchased_energy_kWh_kg": {
+          "unit": "kWh/kg",
+          "expected": 3,
+          "valid_pairs": 3,
+          "complete": true,
+          "mae": 0.023763161393353105,
+          "rmse": 0.027671394137089512,
+          "max_relative_error": 0.015437342146556385,
+          "relative_floor": 0.01,
+          "criterion": 0.05,
+          "passed": true
+        },
+        "yield_fraction": {
+          "unit": "1",
+          "expected": 3,
+          "valid_pairs": 3,
+          "complete": true,
+          "mae": 0.0003087639476128783,
+          "rmse": 0.00034576729520477157,
+          "max_relative_error": 0.008545865639752221,
+          "relative_floor": 0.001,
+          "criterion": 0.05,
+          "passed": true
+        },
+        "impact:Climate change": {
+          "unit": "kg CO2-eq/kg",
+          "expected": 3,
+          "valid_pairs": 3,
+          "complete": true,
+          "mae": 0.0745632801135514,
+          "rmse": 0.0854832458330785,
+          "max_relative_error": 0.008368428191174905,
+          "relative_floor": 0.01,
+          "criterion": 0.05,
+          "passed": true
+        }
+      },
+      "role": "holdout",
+      "out_of_sample": true,
+      "prospectively_reserved_for_v2": false,
+      "records": [
+        {
+          "id": "case-004",
+          "split": "holdout",
+          "inputs": {
+            "reactor_temperature_K": 593.15,
+            "tube_length_m": 5
+          },
+          "actual": {
+            "purchased_energy_kWh_kg": 2.6863470465998716,
+            "yield_fraction": 0.035080838813966106,
+            "impact:Climate change": 16.717968805736213
+          },
+          "source": "generic-native-pilot-17/runs/case-004/raw.json",
+          "evidence_type": "native_simulation",
+          "predicted": {
+            "purchased_energy_kWh_kg": 2.7112294304682263,
+            "yield_fraction": 0.03481720668919641,
+            "impact:Climate change": 16.835487650489924
+          },
+          "constraints_passed": true,
+          "errors": []
+        },
+        {
+          "id": "case-006",
+          "split": "holdout",
+          "inputs": {
+            "reactor_temperature_K": 593.15,
+            "tube_length_m": 20
+          },
+          "actual": {
+            "purchased_energy_kWh_kg": 2.706607985223567,
+            "yield_fraction": 0.05796269131322667,
+            "impact:Climate change": 11.001051510466587
+          },
+          "source": "generic-native-pilot-17/runs/case-006/raw.json",
+          "evidence_type": "native_simulation",
+          "predicted": {
+            "purchased_energy_kWh_kg": 2.7124740665066573,
+            "yield_fraction": 0.057817914689373855,
+            "impact:Climate change": 11.018956495683723
+          },
+          "constraints_passed": true,
+          "errors": []
+        },
+        {
+          "id": "case-008",
+          "split": "holdout",
+          "inputs": {
+            "reactor_temperature_K": 603.15,
+            "tube_length_m": 12.5
+          },
+          "actual": {
+            "purchased_energy_kWh_kg": 2.6261657378409473,
+            "yield_fraction": 0.06060042552121615,
+            "impact:Climate change": 10.547501675749563
+          },
+          "source": "generic-native-pilot-17/runs/case-008/raw.json",
+          "evidence_type": "native_simulation",
+          "predicted": {
+            "purchased_energy_kWh_kg": 2.585624718812333,
+            "yield_fraction": 0.06111830861543228,
+            "impact:Climate change": 10.459235665379756
+          },
+          "constraints_passed": true,
+          "errors": []
+        }
+      ],
+      "scope": "Legacy/development or separately selected local evidence; not a new independent v2 test"
+    },
+    "legacy_verification_2": {
+      "expected": 2,
+      "valid_pairs": 2,
+      "complete": true,
+      "passed": true,
+      "metrics": {
+        "purchased_energy_kWh_kg": {
+          "unit": "kWh/kg",
+          "expected": 2,
+          "valid_pairs": 2,
+          "complete": true,
+          "mae": 0.017120335791662056,
+          "rmse": 0.021472236741076057,
+          "max_relative_error": 0.012390090922659181,
+          "relative_floor": 0.01,
+          "criterion": 0.05,
+          "passed": true
+        },
+        "yield_fraction": {
+          "unit": "1",
+          "expected": 2,
+          "valid_pairs": 2,
+          "complete": true,
+          "mae": 0.0003780020605030597,
+          "rmse": 0.0004633150211722032,
+          "max_relative_error": 0.01052598232303656,
+          "relative_floor": 0.001,
+          "criterion": 0.05,
+          "passed": true
+        },
+        "impact:Climate change": {
+          "unit": "kg CO2-eq/kg",
+          "expected": 2,
+          "valid_pairs": 2,
+          "complete": true,
+          "mae": 0.06094526683059165,
+          "rmse": 0.07612183650130583,
+          "max_relative_error": 0.010375901138481919,
+          "relative_floor": 0.01,
+          "criterion": 0.05,
+          "passed": true
+        }
+      },
+      "role": "verification",
+      "out_of_sample": true,
+      "prospectively_reserved_for_v2": false,
+      "records": [
+        {
+          "id": "verify-T335-L8p5",
+          "split": "verification",
+          "inputs": {
+            "reactor_temperature_K": 608.15,
+            "tube_length_m": 8.5
+          },
+          "actual": {
+            "purchased_energy_kWh_kg": 2.427740770340649,
+            "yield_fraction": 0.0613634980376165,
+            "impact:Climate change": 10.269427933612839
+          },
+          "source": "generic-native-pilot-17/runs/verify-T335-L8p5/raw.json",
+          "evidence_type": "native_simulation",
+          "predicted": {
+            "purchased_energy_kWh_kg": 2.3976608414594818,
+            "yield_fraction": 0.06200940913324014,
+            "impact:Climate change": 10.162873364624907
+          },
+          "constraints_passed": true,
+          "errors": []
+        },
+        {
+          "id": "verify-T345-L17p5",
+          "split": "verification",
+          "inputs": {
+            "reactor_temperature_K": 618.15,
+            "tube_length_m": 17.5
+          },
+          "actual": {
+            "purchased_energy_kWh_kg": 3.5439860096625613,
+            "yield_fraction": 0.061618044047683,
+            "impact:Climate change": 11.25957895313683
+          },
+          "source": "generic-native-pilot-17/runs/verify-T345-L17p5/raw.json",
+          "evidence_type": "native_simulation",
+          "predicted": {
+            "purchased_energy_kWh_kg": 3.548146752364718,
+            "yield_fraction": 0.06172813707306548,
+            "impact:Climate change": 11.244242988463578
+          },
+          "constraints_passed": true,
+          "errors": []
+        }
+      ],
+      "scope": "Legacy/development or separately selected local evidence; not a new independent v2 test"
+    },
+    "local_verification_8": {
+      "expected": 8,
+      "valid_pairs": 8,
+      "complete": true,
+      "passed": true,
+      "metrics": {
+        "purchased_energy_kWh_kg": {
+          "unit": "kWh/kg",
+          "expected": 8,
+          "valid_pairs": 8,
+          "complete": true,
+          "mae": 0.04043282546606536,
+          "rmse": 0.04146580631863332,
+          "max_relative_error": 0.021747243427309774,
+          "relative_floor": 0.01,
+          "criterion": 0.05,
+          "passed": true
+        },
+        "yield_fraction": {
+          "unit": "1",
+          "expected": 8,
+          "valid_pairs": 8,
+          "complete": true,
+          "mae": 0.0005055164848906096,
+          "rmse": 0.000517527834762961,
+          "max_relative_error": 0.010868824420491927,
+          "relative_floor": 0.001,
+          "criterion": 0.05,
+          "passed": true
+        },
+        "impact:Climate change": {
+          "unit": "kg CO2-eq/kg",
+          "expected": 8,
+          "valid_pairs": 8,
+          "complete": true,
+          "mae": 0.08754551956625689,
+          "rmse": 0.09140536527202468,
+          "max_relative_error": 0.012117068315895527,
+          "relative_floor": 0.01,
+          "criterion": 0.05,
+          "passed": true
+        }
+      },
+      "role": "verification",
+      "out_of_sample": true,
+      "prospectively_reserved_for_v2": false,
+      "records": [
+        {
+          "id": "local-01",
+          "split": "verification",
+          "inputs": {
+            "reactor_temperature_K": 601.15,
+            "tube_length_m": 12.25
+          },
+          "actual": {
+            "purchased_energy_kWh_kg": 2.542397513415583,
+            "yield_fraction": 0.06010690421330371,
+            "impact:Climate change": 10.5451229150657
+          },
+          "source": "native-local-perturbation-9/runs/local-01/raw.json",
+          "evidence_type": "native_simulation",
+          "predicted": {
+            "purchased_energy_kWh_kg": 2.4871073758023474,
+            "yield_fraction": 0.060760195601657435,
+            "impact:Climate change": 10.417346940304334
+          },
+          "constraints_passed": true,
+          "errors": []
+        },
+        {
+          "id": "local-02",
+          "split": "verification",
+          "inputs": {
+            "reactor_temperature_K": 601.15,
+            "tube_length_m": 12.5
+          },
+          "actual": {
+            "purchased_energy_kWh_kg": 2.5587770708031314,
+            "yield_fraction": 0.060124065152109746,
+            "impact:Climate change": 10.556797327898847
+          },
+          "source": "native-local-perturbation-9/runs/local-02/raw.json",
+          "evidence_type": "native_simulation",
+          "predicted": {
+            "purchased_energy_kWh_kg": 2.5108771026068215,
+            "yield_fraction": 0.060678510447411384,
+            "impact:Climate change": 10.455811370895114
+          },
+          "constraints_passed": true,
+          "errors": []
+        },
+        {
+          "id": "local-03",
+          "split": "verification",
+          "inputs": {
+            "reactor_temperature_K": 601.15,
+            "tube_length_m": 12.75
+          },
+          "actual": {
+            "purchased_energy_kWh_kg": 2.574568795454647,
+            "yield_fraction": 0.060136263114628184,
+            "impact:Climate change": 10.568687305381571
+          },
+          "source": "native-local-perturbation-9/runs/local-03/raw.json",
+          "evidence_type": "native_simulation",
+          "predicted": {
+            "purchased_energy_kWh_kg": 2.534230149904275,
+            "yield_fraction": 0.06059239328713128,
+            "impact:Climate change": 10.493577146453594
+          },
+          "constraints_passed": true,
+          "errors": []
+        },
+        {
+          "id": "local-04",
+          "split": "verification",
+          "inputs": {
+            "reactor_temperature_K": 603.15,
+            "tube_length_m": 12.25
+          },
+          "actual": {
+            "purchased_energy_kWh_kg": 2.6092164442836023,
+            "yield_fraction": 0.06060001078667651,
+            "impact:Climate change": 10.532868274416336
+          },
+          "source": "native-local-perturbation-9/runs/local-04/raw.json",
+          "evidence_type": "native_simulation",
+          "predicted": {
+            "purchased_energy_kWh_kg": 2.5607712121041963,
+            "yield_fraction": 0.06123931161066455,
+            "impact:Climate change": 10.41620522046815
+          },
+          "constraints_passed": true,
+          "errors": []
+        },
+        {
+          "id": "local-06",
+          "split": "verification",
+          "inputs": {
+            "reactor_temperature_K": 603.15,
+            "tube_length_m": 12.75
+          },
+          "actual": {
+            "purchased_energy_kWh_kg": 2.643110560848479,
+            "yield_fraction": 0.060593175785922465,
+            "impact:Climate change": 10.563191841417078
+          },
+          "source": "native-local-perturbation-9/runs/local-06/raw.json",
+          "evidence_type": "native_simulation",
+          "predicted": {
+            "purchased_energy_kWh_kg": 2.6098233851936263,
+            "yield_fraction": 0.060998973905843065,
+            "impact:Climate change": 10.500767487083504
+          },
+          "constraints_passed": true,
+          "errors": []
+        },
+        {
+          "id": "local-07",
+          "split": "verification",
+          "inputs": {
+            "reactor_temperature_K": 605.15,
+            "tube_length_m": 12.25
+          },
+          "actual": {
+            "purchased_energy_kWh_kg": 2.6783126985708092,
+            "yield_fraction": 0.06103535494626566,
+            "impact:Climate change": 10.532211894062131
+          },
+          "source": "native-local-perturbation-9/runs/local-07/raw.json",
+          "evidence_type": "native_simulation",
+          "predicted": {
+            "purchased_energy_kWh_kg": 2.637962005207675,
+            "yield_fraction": 0.06161227840790082,
+            "impact:Climate change": 10.43232214986611
+          },
+          "constraints_passed": true,
+          "errors": []
+        },
+        {
+          "id": "local-08",
+          "split": "verification",
+          "inputs": {
+            "reactor_temperature_K": 605.15,
+            "tube_length_m": 12.5
+          },
+          "actual": {
+            "purchased_energy_kWh_kg": 2.695564044093695,
+            "yield_fraction": 0.06102311375859947,
+            "impact:Climate change": 10.548972849662272
+          },
+          "source": "native-local-perturbation-9/runs/local-08/raw.json",
+          "evidence_type": "native_simulation",
+          "predicted": {
+            "purchased_energy_kWh_kg": 2.6634620028440086,
+            "yield_fraction": 0.061460296450702084,
+            "impact:Climate change": 10.478315380486931
+          },
+          "constraints_passed": true,
+          "errors": []
+        },
+        {
+          "id": "local-09",
+          "split": "verification",
+          "inputs": {
+            "reactor_temperature_K": 605.15,
+            "tube_length_m": 12.75
+          },
+          "actual": {
+            "purchased_energy_kWh_kg": 2.7138550191455035,
+            "yield_fraction": 0.06099464236457248,
+            "impact:Climate change": 10.568998245803078
+          },
+          "source": "native-local-perturbation-9/runs/local-09/raw.json",
+          "evidence_type": "native_simulation",
+          "predicted": {
+            "purchased_energy_kWh_kg": 2.688106309223977,
+            "yield_fraction": 0.06131570228989249,
+            "impact:Climate change": 10.522140801619221
+          },
+          "constraints_passed": true,
+          "errors": []
+        }
+      ],
+      "scope": "Legacy/development or separately selected local evidence; not a new independent v2 test"
+    },
+    "extension_training_8": {
+      "expected": 8,
+      "ids": [
+        "v2-train-T317-L8",
+        "v2-train-T317-L16p5",
+        "v2-train-T327-L8",
+        "v2-train-T327-L16p5",
+        "v2-train-T337-L8",
+        "v2-train-T337-L16p5",
+        "v2-train-T347-L8",
+        "v2-train-T347-L16p5"
+      ],
+      "role": "training",
+      "out_of_sample": false,
+      "scope": "Fitting inputs only; no held-out error claim or validation pass is assigned."
+    },
+    "prospective_verification_4": {
+      "expected": 4,
+      "valid_pairs": 4,
+      "complete": true,
+      "passed": true,
+      "metrics": {
+        "purchased_energy_kWh_kg": {
+          "unit": "kWh/kg",
+          "expected": 4,
+          "valid_pairs": 4,
+          "complete": true,
+          "mae": 0.006876995256198781,
+          "rmse": 0.007009348044924911,
+          "max_relative_error": 0.003447298394845694,
+          "relative_floor": 0.01,
+          "criterion": 0.05,
+          "passed": true
+        },
+        "yield_fraction": {
+          "unit": "1",
+          "expected": 4,
+          "valid_pairs": 4,
+          "complete": true,
+          "mae": 0.0003079337859152025,
+          "rmse": 0.0004481197175962983,
+          "max_relative_error": 0.013526195023085578,
+          "relative_floor": 0.001,
+          "criterion": 0.05,
+          "passed": true
+        },
+        "impact:Climate change": {
+          "unit": "kg CO2-eq/kg",
+          "expected": 4,
+          "valid_pairs": 4,
+          "complete": true,
+          "mae": 0.062203329842851485,
+          "rmse": 0.07374323683101336,
+          "max_relative_error": 0.01108113023219526,
+          "relative_floor": 0.01,
+          "criterion": 0.05,
+          "passed": true
+        }
+      },
+      "role": "verification",
+      "out_of_sample": true,
+      "prospectively_reserved_for_v2": true,
+      "records": [
+        {
+          "id": "v2-verify-T322-L9p75",
+          "split": "verification",
+          "inputs": {
+            "reactor_temperature_K": 595.15,
+            "tube_length_m": 9.75
+          },
+          "actual": {
+            "purchased_energy_kWh_kg": 2.1868892358504577,
+            "yield_fraction": 0.05568797609716879,
+            "impact:Climate change": 10.922795778273489
+          },
+          "source": "native-v2-extension-12/runs/v2-verify-T322-L9p75/raw.json",
+          "evidence_type": "native_simulation",
+          "predicted": {
+            "purchased_energy_kWh_kg": 2.179350376098005,
+            "yield_fraction": 0.05583332457602163,
+            "impact:Climate change": 10.801758855754768
+          },
+          "constraints_passed": true,
+          "errors": []
+        },
+        {
+          "id": "v2-verify-T332-L14",
+          "split": "verification",
+          "inputs": {
+            "reactor_temperature_K": 605.15,
+            "tube_length_m": 14
+          },
+          "actual": {
+            "purchased_energy_kWh_kg": 2.801625489898055,
+            "yield_fraction": 0.06084713670448617,
+            "impact:Climate change": 10.666048995999322
+          },
+          "source": "native-v2-extension-12/runs/v2-verify-T332-L14/raw.json",
+          "evidence_type": "native_simulation",
+          "predicted": {
+            "purchased_energy_kWh_kg": 2.797093183735998,
+            "yield_fraction": 0.0607750163243148,
+            "impact:Climate change": 10.696003141617272
+          },
+          "constraints_passed": true,
+          "errors": []
+        },
+        {
+          "id": "v2-verify-T342-L18p25",
+          "split": "verification",
+          "inputs": {
+            "reactor_temperature_K": 615.15,
+            "tube_length_m": 18.25
+          },
+          "actual": {
+            "purchased_energy_kWh_kg": 3.4697509375377993,
+            "yield_fraction": 0.061238914358775993,
+            "impact:Climate change": 11.233637850583095
+          },
+          "source": "native-v2-extension-12/runs/v2-verify-T342-L18p25/raw.json",
+          "evidence_type": "native_simulation",
+          "predicted": {
+            "purchased_energy_kWh_kg": 3.4774707892593044,
+            "yield_fraction": 0.06138372889297557,
+            "impact:Climate change": 11.211377016169012
+          },
+          "constraints_passed": true,
+          "errors": []
+        },
+        {
+          "id": "v2-verify-T348-L6p75",
+          "split": "verification",
+          "inputs": {
+            "reactor_temperature_K": 621.15,
+            "tube_length_m": 6.75
+          },
+          "actual": {
+            "purchased_energy_kWh_kg": 2.719626189774287,
+            "yield_fraction": 0.06427910797922881,
+            "impact:Climate change": 10.135894490559352
+          },
+          "source": "native-v2-extension-12/runs/v2-verify-T348-L6p75/raw.json",
+          "evidence_type": "native_simulation",
+          "predicted": {
+            "purchased_energy_kWh_kg": 2.727343153163067,
+            "yield_fraction": 0.06340965622879179,
+            "impact:Climate change": 10.211455907380003
+          },
+          "constraints_passed": true,
+          "errors": []
+        }
+      ],
+      "scope": "New prospectively reserved v2 coordinates"
+    }
+  },
+  "original_failed_point": {
+    "expected": 1,
+    "valid_pairs": 1,
+    "complete": true,
+    "passed": true,
+    "metrics": {
+      "purchased_energy_kWh_kg": {
+        "unit": "kWh/kg",
+        "expected": 1,
+        "valid_pairs": 1,
+        "complete": true,
+        "mae": 0.030079928881167284,
+        "rmse": 0.030079928881167284,
+        "max_relative_error": 0.012390090922659181,
+        "relative_floor": 0.01,
+        "criterion": 0.05,
+        "passed": true
+      },
+      "yield_fraction": {
+        "unit": "1",
+        "expected": 1,
+        "valid_pairs": 1,
+        "complete": true,
+        "mae": 0.00064591109562364,
+        "rmse": 0.00064591109562364,
+        "max_relative_error": 0.01052598232303656,
+        "relative_floor": 0.001,
+        "criterion": 0.05,
+        "passed": true
+      },
+      "impact:Climate change": {
+        "unit": "kg CO2-eq/kg",
+        "expected": 1,
+        "valid_pairs": 1,
+        "complete": true,
+        "mae": 0.10655456898793148,
+        "rmse": 0.10655456898793148,
+        "max_relative_error": 0.010375901138481919,
+        "relative_floor": 0.01,
+        "criterion": 0.05,
+        "passed": true
+      }
+    },
+    "record": {
+      "id": "verify-T335-L8p5",
+      "split": "verification",
+      "inputs": {
+        "reactor_temperature_K": 608.15,
+        "tube_length_m": 8.5
+      },
+      "actual": {
+        "purchased_energy_kWh_kg": 2.427740770340649,
+        "yield_fraction": 0.0613634980376165,
+        "impact:Climate change": 10.269427933612839
+      },
+      "source": "generic-native-pilot-17/runs/verify-T335-L8p5/raw.json",
+      "evidence_type": "native_simulation",
+      "predicted": {
+        "purchased_energy_kWh_kg": 2.3976608414594818,
+        "yield_fraction": 0.06200940913324014,
+        "impact:Climate change": 10.162873364624907
+      },
+      "constraints_passed": true,
+      "errors": []
+    },
+    "v1_frozen_record": {
+      "id": "verify-T335-L8p5",
+      "split": "verification",
+      "inputs": {
+        "reactor_temperature_K": 608.15,
+        "tube_length_m": 8.5
+      },
+      "actual": {
+        "purchased_energy_kWh_kg": 2.427740770340649,
+        "yield_fraction": 0.0613634980376165,
+        "impact:Climate change": 10.269427933612839
+      },
+      "source": "runs/verify-T335-L8p5/raw.json",
+      "evidence_type": "native_simulation",
+      "predicted": {
+        "purchased_energy_kWh_kg": 2.5676232806233035,
+        "yield_fraction": 0.05536727329249123,
+        "impact:Climate change": 11.248792781854693
+      },
+      "constraints_passed": true,
+      "errors": []
+    },
+    "scope": "Previously known v1 failure, retained as development evidence; not a new independent test"
+  },
+  "overall_validation_passed": true,
+  "prediction_enabled": true,
+  "scope": "Separate fixed-cohort error reports; no criteria override, repartition, model search, or physical validation."
+}

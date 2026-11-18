@@ -1,0 +1,11 @@
+const task=await taskSpace(10);const page=task.page('p1');
+const downloadPromise=page.waitForEvent('download',{timeout:30000});
+await page.click('loc=css:.header-actions button[title="下载可继续编辑的工程文件"]');
+const download=await downloadPromise;
+const projectPath='C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/ego-cad-20261117/verified-project.extrudecad.json';await download.saveAs(projectPath);
+const fs=await import('node:fs/promises');const project=JSON.parse(await fs.readFile(projectPath,'utf8'));const base=project.shapes.find(x=>x.name==='圆角底板');const width=Math.max(...base.points.map(p=>p.x))-Math.min(...base.points.map(p=>p.x));if(project.shapes.length!==6||width!==112)throw Error('Saved model mismatch');
+console.log({downloadedShapes:project.shapes.length,width});
+await fs.writeFile('C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/ego-cad-20261117/checks-layout-export.json',JSON.stringify({narrow1000:{panelLeft:202,panelRight:748,viewportLeft:190,viewportRight:760,overflow:false},orbitPreservedSelection:true,downloadedShapes:project.shapes.length,width},null,2));
+await page.click('loc=role:button[name="关闭操作提示"]');
+await page.click('loc=css:.header-actions .primary-button');
+console.log(await page.snapshot());

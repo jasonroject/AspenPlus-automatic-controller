@@ -1,0 +1,182 @@
+[
+  {
+    "view": "overview",
+    "width": 1440,
+    "overflow": false,
+    "small": [
+      {
+        "text": "Carbon footprint by temperature and reactor length. Select a cell",
+        "size": "11px"
+      }
+    ],
+    "clipped": [],
+    "labelOverlaps": []
+  },
+  {
+    "view": "overview",
+    "width": 1130,
+    "overflow": false,
+    "small": [
+      {
+        "text": "Carbon footprint by temperature and reactor length. Select a cell",
+        "size": "11px"
+      }
+    ],
+    "clipped": [],
+    "labelOverlaps": []
+  },
+  {
+    "view": "overview",
+    "width": 390,
+    "overflow": false,
+    "small": [
+      {
+        "text": "Carbon footprint by temperature and reactor length. Select a cell",
+        "size": "11px"
+      }
+    ],
+    "clipped": [
+      {
+        "text": "Temperature / length",
+        "width": 74,
+        "scroll": 87
+      }
+    ],
+    "labelOverlaps": []
+  },
+  {
+    "view": "cases",
+    "width": 1440,
+    "overflow": false,
+    "small": [],
+    "clipped": [],
+    "labelOverlaps": []
+  },
+  {
+    "view": "cases",
+    "width": 1130,
+    "overflow": false,
+    "small": [],
+    "clipped": [],
+    "labelOverlaps": []
+  },
+  {
+    "view": "cases",
+    "width": 390,
+    "overflow": false,
+    "small": [],
+    "clipped": [],
+    "labelOverlaps": []
+  },
+  {
+    "view": "process",
+    "width": 1440,
+    "overflow": false,
+    "small": [
+      {
+        "text": "Selected equipment STD",
+        "size": "13px"
+      }
+    ],
+    "clipped": [],
+    "labelOverlaps": []
+  },
+  {
+    "view": "process",
+    "width": 1130,
+    "overflow": false,
+    "small": [
+      {
+        "text": "Selected equipment STD",
+        "size": "13px"
+      }
+    ],
+    "clipped": [],
+    "labelOverlaps": []
+  },
+  {
+    "view": "process",
+    "width": 390,
+    "overflow": false,
+    "small": [
+      {
+        "text": "Selected equipment STD",
+        "size": "13px"
+      }
+    ],
+    "clipped": [],
+    "labelOverlaps": []
+  },
+  {
+    "view": "lca",
+    "width": 1440,
+    "overflow": false,
+    "small": [],
+    "clipped": [],
+    "labelOverlaps": []
+  },
+  {
+    "view": "lca",
+    "width": 1130,
+    "overflow": false,
+    "small": [],
+    "clipped": [],
+    "labelOverlaps": []
+  },
+  {
+    "view": "lca",
+    "width": 390,
+    "overflow": false,
+    "small": [],
+    "clipped": [],
+    "labelOverlaps": []
+  },
+  {
+    "view": "screening",
+    "width": 1440,
+    "overflow": false,
+    "small": [],
+    "clipped": [],
+    "labelOverlaps": []
+  },
+  {
+    "view": "screening",
+    "width": 1130,
+    "overflow": false,
+    "small": [],
+    "clipped": [],
+    "labelOverlaps": []
+  },
+  {
+    "view": "screening",
+    "width": 390,
+    "overflow": false,
+    "small": [],
+    "clipped": [],
+    "labelOverlaps": []
+  },
+  {
+    "view": "sources",
+    "width": 1440,
+    "overflow": false,
+    "small": [],
+    "clipped": [],
+    "labelOverlaps": []
+  },
+  {
+    "view": "sources",
+    "width": 1130,
+    "overflow": false,
+    "small": [],
+    "clipped": [],
+    "labelOverlaps": []
+  },
+  {
+    "view": "sources",
+    "width": 390,
+    "overflow": false,
+    "small": [],
+    "clipped": [],
+    "labelOverlaps": []
+  }
+]

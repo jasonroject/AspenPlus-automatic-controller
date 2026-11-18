@@ -1,0 +1,2228 @@
+{
+  "app": "ExtrudeCAD Studio",
+  "fileType": "extrudecad-project",
+  "version": 1,
+  "savedAt": "2026-11-17T12:14:23.522Z",
+  "shapes": [
+    {
+      "id": "precision-base",
+      "name": "圆角底板",
+      "type": "polygon",
+      "points": [
+        {
+          "x": 48,
+          "y": -42
+        },
+        {
+          "x": 49.05,
+          "y": -41.93
+        },
+        {
+          "x": 50.07,
+          "y": -41.73
+        },
+        {
+          "x": 51.06,
+          "y": -41.39
+        },
+        {
+          "x": 52,
+          "y": -40.93
+        },
+        {
+          "x": 52.87,
+          "y": -40.35
+        },
+        {
+          "x": 53.66,
+          "y": -39.66
+        },
+        {
+          "x": 54.35,
+          "y": -38.87
+        },
+        {
+          "x": 54.93,
+          "y": -38
+        },
+        {
+          "x": 55.39,
+          "y": -37.06
+        },
+        {
+          "x": 55.73,
+          "y": -36.07
+        },
+        {
+          "x": 55.93,
+          "y": -35.04
+        },
+        {
+          "x": 56,
+          "y": -34
+        },
+        {
+          "x": 56,
+          "y": 34
+        },
+        {
+          "x": 55.93,
+          "y": 35.04
+        },
+        {
+          "x": 55.73,
+          "y": 36.07
+        },
+        {
+          "x": 55.39,
+          "y": 37.06
+        },
+        {
+          "x": 54.93,
+          "y": 38
+        },
+        {
+          "x": 54.35,
+          "y": 38.87
+        },
+        {
+          "x": 53.66,
+          "y": 39.66
+        },
+        {
+          "x": 52.87,
+          "y": 40.35
+        },
+        {
+          "x": 52,
+          "y": 40.93
+        },
+        {
+          "x": 51.06,
+          "y": 41.39
+        },
+        {
+          "x": 50.07,
+          "y": 41.73
+        },
+        {
+          "x": 49.05,
+          "y": 41.93
+        },
+        {
+          "x": 48,
+          "y": 42
+        },
+        {
+          "x": -48,
+          "y": 42
+        },
+        {
+          "x": -49.05,
+          "y": 41.93
+        },
+        {
+          "x": -50.07,
+          "y": 41.73
+        },
+        {
+          "x": -51.06,
+          "y": 41.39
+        },
+        {
+          "x": -52,
+          "y": 40.93
+        },
+        {
+          "x": -52.87,
+          "y": 40.35
+        },
+        {
+          "x": -53.66,
+          "y": 39.66
+        },
+        {
+          "x": -54.35,
+          "y": 38.87
+        },
+        {
+          "x": -54.93,
+          "y": 38
+        },
+        {
+          "x": -55.39,
+          "y": 37.06
+        },
+        {
+          "x": -55.73,
+          "y": 36.07
+        },
+        {
+          "x": -55.93,
+          "y": 35.04
+        },
+        {
+          "x": -56,
+          "y": 34
+        },
+        {
+          "x": -56,
+          "y": -34
+        },
+        {
+          "x": -55.93,
+          "y": -35.04
+        },
+        {
+          "x": -55.73,
+          "y": -36.07
+        },
+        {
+          "x": -55.39,
+          "y": -37.06
+        },
+        {
+          "x": -54.93,
+          "y": -38
+        },
+        {
+          "x": -54.35,
+          "y": -38.87
+        },
+        {
+          "x": -53.66,
+          "y": -39.66
+        },
+        {
+          "x": -52.87,
+          "y": -40.35
+        },
+        {
+          "x": -52,
+          "y": -40.93
+        },
+        {
+          "x": -51.06,
+          "y": -41.39
+        },
+        {
+          "x": -50.07,
+          "y": -41.73
+        },
+        {
+          "x": -49.05,
+          "y": -41.93
+        },
+        {
+          "x": -48,
+          "y": -42
+        }
+      ],
+      "holePoints": [
+        {
+          "x": 14,
+          "y": 0
+        },
+        {
+          "x": 13.95,
+          "y": 1.22
+        },
+        {
+          "x": 13.79,
+          "y": 2.43
+        },
+        {
+          "x": 13.52,
+          "y": 3.62
+        },
+        {
+          "x": 13.16,
+          "y": 4.79
+        },
+        {
+          "x": 12.69,
+          "y": 5.92
+        },
+        {
+          "x": 12.12,
+          "y": 7
+        },
+        {
+          "x": 11.47,
+          "y": 8.03
+        },
+        {
+          "x": 10.72,
+          "y": 9
+        },
+        {
+          "x": 9.9,
+          "y": 9.9
+        },
+        {
+          "x": 9,
+          "y": 10.72
+        },
+        {
+          "x": 8.03,
+          "y": 11.47
+        },
+        {
+          "x": 7,
+          "y": 12.12
+        },
+        {
+          "x": 5.92,
+          "y": 12.69
+        },
+        {
+          "x": 4.79,
+          "y": 13.16
+        },
+        {
+          "x": 3.62,
+          "y": 13.52
+        },
+        {
+          "x": 2.43,
+          "y": 13.79
+        },
+        {
+          "x": 1.22,
+          "y": 13.95
+        },
+        {
+          "x": 0,
+          "y": 14
+        },
+        {
+          "x": -1.22,
+          "y": 13.95
+        },
+        {
+          "x": -2.43,
+          "y": 13.79
+        },
+        {
+          "x": -3.62,
+          "y": 13.52
+        },
+        {
+          "x": -4.79,
+          "y": 13.16
+        },
+        {
+          "x": -5.92,
+          "y": 12.69
+        },
+        {
+          "x": -7,
+          "y": 12.12
+        },
+        {
+          "x": -8.03,
+          "y": 11.47
+        },
+        {
+          "x": -9,
+          "y": 10.72
+        },
+        {
+          "x": -9.9,
+          "y": 9.9
+        },
+        {
+          "x": -10.72,
+          "y": 9
+        },
+        {
+          "x": -11.47,
+          "y": 8.03
+        },
+        {
+          "x": -12.12,
+          "y": 7
+        },
+        {
+          "x": -12.69,
+          "y": 5.92
+        },
+        {
+          "x": -13.16,
+          "y": 4.79
+        },
+        {
+          "x": -13.52,
+          "y": 3.62
+        },
+        {
+          "x": -13.79,
+          "y": 2.43
+        },
+        {
+          "x": -13.95,
+          "y": 1.22
+        },
+        {
+          "x": -14,
+          "y": 0
+        },
+        {
+          "x": -13.95,
+          "y": -1.22
+        },
+        {
+          "x": -13.79,
+          "y": -2.43
+        },
+        {
+          "x": -13.52,
+          "y": -3.62
+        },
+        {
+          "x": -13.16,
+          "y": -4.79
+        },
+        {
+          "x": -12.69,
+          "y": -5.92
+        },
+        {
+          "x": -12.12,
+          "y": -7
+        },
+        {
+          "x": -11.47,
+          "y": -8.03
+        },
+        {
+          "x": -10.72,
+          "y": -9
+        },
+        {
+          "x": -9.9,
+          "y": -9.9
+        },
+        {
+          "x": -9,
+          "y": -10.72
+        },
+        {
+          "x": -8.03,
+          "y": -11.47
+        },
+        {
+          "x": -7,
+          "y": -12.12
+        },
+        {
+          "x": -5.92,
+          "y": -12.69
+        },
+        {
+          "x": -4.79,
+          "y": -13.16
+        },
+        {
+          "x": -3.62,
+          "y": -13.52
+        },
+        {
+          "x": -2.43,
+          "y": -13.79
+        },
+        {
+          "x": -1.22,
+          "y": -13.95
+        },
+        {
+          "x": 0,
+          "y": -14
+        },
+        {
+          "x": 1.22,
+          "y": -13.95
+        },
+        {
+          "x": 2.43,
+          "y": -13.79
+        },
+        {
+          "x": 3.62,
+          "y": -13.52
+        },
+        {
+          "x": 4.79,
+          "y": -13.16
+        },
+        {
+          "x": 5.92,
+          "y": -12.69
+        },
+        {
+          "x": 7,
+          "y": -12.12
+        },
+        {
+          "x": 8.03,
+          "y": -11.47
+        },
+        {
+          "x": 9,
+          "y": -10.72
+        },
+        {
+          "x": 9.9,
+          "y": -9.9
+        },
+        {
+          "x": 10.72,
+          "y": -9
+        },
+        {
+          "x": 11.47,
+          "y": -8.03
+        },
+        {
+          "x": 12.12,
+          "y": -7
+        },
+        {
+          "x": 12.69,
+          "y": -5.92
+        },
+        {
+          "x": 13.16,
+          "y": -4.79
+        },
+        {
+          "x": 13.52,
+          "y": -3.62
+        },
+        {
+          "x": 13.79,
+          "y": -2.43
+        },
+        {
+          "x": 13.95,
+          "y": -1.22
+        }
+      ],
+      "zHeight": 8,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#c4cdd6",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "precision-collar",
+      "name": "导向套筒",
+      "type": "circle",
+      "points": [
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 23.91,
+          "y": 2.09
+        },
+        {
+          "x": 23.64,
+          "y": 4.17
+        },
+        {
+          "x": 23.18,
+          "y": 6.21
+        },
+        {
+          "x": 22.55,
+          "y": 8.21
+        },
+        {
+          "x": 21.75,
+          "y": 10.14
+        },
+        {
+          "x": 20.78,
+          "y": 12
+        },
+        {
+          "x": 19.66,
+          "y": 13.77
+        },
+        {
+          "x": 18.39,
+          "y": 15.43
+        },
+        {
+          "x": 16.97,
+          "y": 16.97
+        },
+        {
+          "x": 15.43,
+          "y": 18.39
+        },
+        {
+          "x": 13.77,
+          "y": 19.66
+        },
+        {
+          "x": 12,
+          "y": 20.78
+        },
+        {
+          "x": 10.14,
+          "y": 21.75
+        },
+        {
+          "x": 8.21,
+          "y": 22.55
+        },
+        {
+          "x": 6.21,
+          "y": 23.18
+        },
+        {
+          "x": 4.17,
+          "y": 23.64
+        },
+        {
+          "x": 2.09,
+          "y": 23.91
+        },
+        {
+          "x": 0,
+          "y": 24
+        },
+        {
+          "x": -2.09,
+          "y": 23.91
+        },
+        {
+          "x": -4.17,
+          "y": 23.64
+        },
+        {
+          "x": -6.21,
+          "y": 23.18
+        },
+        {
+          "x": -8.21,
+          "y": 22.55
+        },
+        {
+          "x": -10.14,
+          "y": 21.75
+        },
+        {
+          "x": -12,
+          "y": 20.78
+        },
+        {
+          "x": -13.77,
+          "y": 19.66
+        },
+        {
+          "x": -15.43,
+          "y": 18.39
+        },
+        {
+          "x": -16.97,
+          "y": 16.97
+        },
+        {
+          "x": -18.39,
+          "y": 15.43
+        },
+        {
+          "x": -19.66,
+          "y": 13.77
+        },
+        {
+          "x": -20.78,
+          "y": 12
+        },
+        {
+          "x": -21.75,
+          "y": 10.14
+        },
+        {
+          "x": -22.55,
+          "y": 8.21
+        },
+        {
+          "x": -23.18,
+          "y": 6.21
+        },
+        {
+          "x": -23.64,
+          "y": 4.17
+        },
+        {
+          "x": -23.91,
+          "y": 2.09
+        },
+        {
+          "x": -24,
+          "y": 0
+        },
+        {
+          "x": -23.91,
+          "y": -2.09
+        },
+        {
+          "x": -23.64,
+          "y": -4.17
+        },
+        {
+          "x": -23.18,
+          "y": -6.21
+        },
+        {
+          "x": -22.55,
+          "y": -8.21
+        },
+        {
+          "x": -21.75,
+          "y": -10.14
+        },
+        {
+          "x": -20.78,
+          "y": -12
+        },
+        {
+          "x": -19.66,
+          "y": -13.77
+        },
+        {
+          "x": -18.39,
+          "y": -15.43
+        },
+        {
+          "x": -16.97,
+          "y": -16.97
+        },
+        {
+          "x": -15.43,
+          "y": -18.39
+        },
+        {
+          "x": -13.77,
+          "y": -19.66
+        },
+        {
+          "x": -12,
+          "y": -20.78
+        },
+        {
+          "x": -10.14,
+          "y": -21.75
+        },
+        {
+          "x": -8.21,
+          "y": -22.55
+        },
+        {
+          "x": -6.21,
+          "y": -23.18
+        },
+        {
+          "x": -4.17,
+          "y": -23.64
+        },
+        {
+          "x": -2.09,
+          "y": -23.91
+        },
+        {
+          "x": 0,
+          "y": -24
+        },
+        {
+          "x": 2.09,
+          "y": -23.91
+        },
+        {
+          "x": 4.17,
+          "y": -23.64
+        },
+        {
+          "x": 6.21,
+          "y": -23.18
+        },
+        {
+          "x": 8.21,
+          "y": -22.55
+        },
+        {
+          "x": 10.14,
+          "y": -21.75
+        },
+        {
+          "x": 12,
+          "y": -20.78
+        },
+        {
+          "x": 13.77,
+          "y": -19.66
+        },
+        {
+          "x": 15.43,
+          "y": -18.39
+        },
+        {
+          "x": 16.97,
+          "y": -16.97
+        },
+        {
+          "x": 18.39,
+          "y": -15.43
+        },
+        {
+          "x": 19.66,
+          "y": -13.77
+        },
+        {
+          "x": 20.78,
+          "y": -12
+        },
+        {
+          "x": 21.75,
+          "y": -10.14
+        },
+        {
+          "x": 22.55,
+          "y": -8.21
+        },
+        {
+          "x": 23.18,
+          "y": -6.21
+        },
+        {
+          "x": 23.64,
+          "y": -4.17
+        },
+        {
+          "x": 23.91,
+          "y": -2.09
+        }
+      ],
+      "holePoints": [
+        {
+          "x": 14,
+          "y": 0
+        },
+        {
+          "x": 13.95,
+          "y": 1.22
+        },
+        {
+          "x": 13.79,
+          "y": 2.43
+        },
+        {
+          "x": 13.52,
+          "y": 3.62
+        },
+        {
+          "x": 13.16,
+          "y": 4.79
+        },
+        {
+          "x": 12.69,
+          "y": 5.92
+        },
+        {
+          "x": 12.12,
+          "y": 7
+        },
+        {
+          "x": 11.47,
+          "y": 8.03
+        },
+        {
+          "x": 10.72,
+          "y": 9
+        },
+        {
+          "x": 9.9,
+          "y": 9.9
+        },
+        {
+          "x": 9,
+          "y": 10.72
+        },
+        {
+          "x": 8.03,
+          "y": 11.47
+        },
+        {
+          "x": 7,
+          "y": 12.12
+        },
+        {
+          "x": 5.92,
+          "y": 12.69
+        },
+        {
+          "x": 4.79,
+          "y": 13.16
+        },
+        {
+          "x": 3.62,
+          "y": 13.52
+        },
+        {
+          "x": 2.43,
+          "y": 13.79
+        },
+        {
+          "x": 1.22,
+          "y": 13.95
+        },
+        {
+          "x": 0,
+          "y": 14
+        },
+        {
+          "x": -1.22,
+          "y": 13.95
+        },
+        {
+          "x": -2.43,
+          "y": 13.79
+        },
+        {
+          "x": -3.62,
+          "y": 13.52
+        },
+        {
+          "x": -4.79,
+          "y": 13.16
+        },
+        {
+          "x": -5.92,
+          "y": 12.69
+        },
+        {
+          "x": -7,
+          "y": 12.12
+        },
+        {
+          "x": -8.03,
+          "y": 11.47
+        },
+        {
+          "x": -9,
+          "y": 10.72
+        },
+        {
+          "x": -9.9,
+          "y": 9.9
+        },
+        {
+          "x": -10.72,
+          "y": 9
+        },
+        {
+          "x": -11.47,
+          "y": 8.03
+        },
+        {
+          "x": -12.12,
+          "y": 7
+        },
+        {
+          "x": -12.69,
+          "y": 5.92
+        },
+        {
+          "x": -13.16,
+          "y": 4.79
+        },
+        {
+          "x": -13.52,
+          "y": 3.62
+        },
+        {
+          "x": -13.79,
+          "y": 2.43
+        },
+        {
+          "x": -13.95,
+          "y": 1.22
+        },
+        {
+          "x": -14,
+          "y": 0
+        },
+        {
+          "x": -13.95,
+          "y": -1.22
+        },
+        {
+          "x": -13.79,
+          "y": -2.43
+        },
+        {
+          "x": -13.52,
+          "y": -3.62
+        },
+        {
+          "x": -13.16,
+          "y": -4.79
+        },
+        {
+          "x": -12.69,
+          "y": -5.92
+        },
+        {
+          "x": -12.12,
+          "y": -7
+        },
+        {
+          "x": -11.47,
+          "y": -8.03
+        },
+        {
+          "x": -10.72,
+          "y": -9
+        },
+        {
+          "x": -9.9,
+          "y": -9.9
+        },
+        {
+          "x": -9,
+          "y": -10.72
+        },
+        {
+          "x": -8.03,
+          "y": -11.47
+        },
+        {
+          "x": -7,
+          "y": -12.12
+        },
+        {
+          "x": -5.92,
+          "y": -12.69
+        },
+        {
+          "x": -4.79,
+          "y": -13.16
+        },
+        {
+          "x": -3.62,
+          "y": -13.52
+        },
+        {
+          "x": -2.43,
+          "y": -13.79
+        },
+        {
+          "x": -1.22,
+          "y": -13.95
+        },
+        {
+          "x": 0,
+          "y": -14
+        },
+        {
+          "x": 1.22,
+          "y": -13.95
+        },
+        {
+          "x": 2.43,
+          "y": -13.79
+        },
+        {
+          "x": 3.62,
+          "y": -13.52
+        },
+        {
+          "x": 4.79,
+          "y": -13.16
+        },
+        {
+          "x": 5.92,
+          "y": -12.69
+        },
+        {
+          "x": 7,
+          "y": -12.12
+        },
+        {
+          "x": 8.03,
+          "y": -11.47
+        },
+        {
+          "x": 9,
+          "y": -10.72
+        },
+        {
+          "x": 9.9,
+          "y": -9.9
+        },
+        {
+          "x": 10.72,
+          "y": -9
+        },
+        {
+          "x": 11.47,
+          "y": -8.03
+        },
+        {
+          "x": 12.12,
+          "y": -7
+        },
+        {
+          "x": 12.69,
+          "y": -5.92
+        },
+        {
+          "x": 13.16,
+          "y": -4.79
+        },
+        {
+          "x": 13.52,
+          "y": -3.62
+        },
+        {
+          "x": 13.79,
+          "y": -2.43
+        },
+        {
+          "x": 13.95,
+          "y": -1.22
+        }
+      ],
+      "zHeight": 32,
+      "zOffset": 8,
+      "bevel": 0,
+      "color": "#d5dde4",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "precision-bolt-1",
+      "name": "六角帽 01",
+      "type": "polygon",
+      "points": [
+        {
+          "x": -36.8,
+          "y": -25
+        },
+        {
+          "x": -42,
+          "y": -22
+        },
+        {
+          "x": -47.2,
+          "y": -25
+        },
+        {
+          "x": -47.2,
+          "y": -31
+        },
+        {
+          "x": -42,
+          "y": -34
+        },
+        {
+          "x": -36.8,
+          "y": -31
+        }
+      ],
+      "zHeight": 5,
+      "zOffset": 8,
+      "bevel": 0,
+      "color": "#46515f",
+      "materialPreset": "steel",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "precision-bolt-2",
+      "name": "六角帽 02",
+      "type": "polygon",
+      "points": [
+        {
+          "x": 47.2,
+          "y": -25
+        },
+        {
+          "x": 42,
+          "y": -22
+        },
+        {
+          "x": 36.8,
+          "y": -25
+        },
+        {
+          "x": 36.8,
+          "y": -31
+        },
+        {
+          "x": 42,
+          "y": -34
+        },
+        {
+          "x": 47.2,
+          "y": -31
+        }
+      ],
+      "zHeight": 5,
+      "zOffset": 8,
+      "bevel": 0,
+      "color": "#46515f",
+      "materialPreset": "steel",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "precision-bolt-3",
+      "name": "六角帽 03",
+      "type": "polygon",
+      "points": [
+        {
+          "x": 47.2,
+          "y": 31
+        },
+        {
+          "x": 42,
+          "y": 34
+        },
+        {
+          "x": 36.8,
+          "y": 31
+        },
+        {
+          "x": 36.8,
+          "y": 25
+        },
+        {
+          "x": 42,
+          "y": 22
+        },
+        {
+          "x": 47.2,
+          "y": 25
+        }
+      ],
+      "zHeight": 5,
+      "zOffset": 8,
+      "bevel": 0,
+      "color": "#46515f",
+      "materialPreset": "steel",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "precision-bolt-4",
+      "name": "六角帽 04",
+      "type": "polygon",
+      "points": [
+        {
+          "x": -36.8,
+          "y": 31
+        },
+        {
+          "x": -42,
+          "y": 34
+        },
+        {
+          "x": -47.2,
+          "y": 31
+        },
+        {
+          "x": -47.2,
+          "y": 25
+        },
+        {
+          "x": -42,
+          "y": 22
+        },
+        {
+          "x": -36.8,
+          "y": 25
+        }
+      ],
+      "zHeight": 5,
+      "zOffset": 8,
+      "bevel": 0,
+      "color": "#46515f",
+      "materialPreset": "steel",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-point-a7ca4330-5e08-4229-99fe-1088c2e337ea",
+      "name": "定位点 #1",
+      "type": "point",
+      "points": [
+        {
+          "x": 102,
+          "y": -50
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-point-99a38913-917b-4b72-b56b-f4a6ffe8aa97",
+      "name": "定位点 #2",
+      "type": "point",
+      "points": [
+        {
+          "x": 98,
+          "y": -28
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-point-988a64bd-5a09-4a94-83c7-95bee6e7a071",
+      "name": "定位点 #3",
+      "type": "point",
+      "points": [
+        {
+          "x": 122,
+          "y": 4
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-point-e7668bf4-4b0a-4bdd-930b-8efe0a6ae67d",
+      "name": "定位点 #4",
+      "type": "point",
+      "points": [
+        {
+          "x": 164,
+          "y": -14
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-point-85962799-1338-4c82-bbd0-200d7351ff41",
+      "name": "定位点 #5",
+      "type": "point",
+      "points": [
+        {
+          "x": 170,
+          "y": -46
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-point-63a2c9fb-12a7-4187-9830-9f53c38ba2db",
+      "name": "定位点 #6",
+      "type": "point",
+      "points": [
+        {
+          "x": 130,
+          "y": -56
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-point-a07447d1-ed64-482d-aa0a-8bcd6187e9dc",
+      "name": "定位点 #7",
+      "type": "point",
+      "points": [
+        {
+          "x": 136,
+          "y": -30
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-point-a7503da8-e390-4d25-9da5-ed2e94b778a8",
+      "name": "定位点 #8",
+      "type": "point",
+      "points": [
+        {
+          "x": 162,
+          "y": -30
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-point-327698cf-d9dd-47d4-8110-dd44ba0e0c96",
+      "name": "定位点 #9",
+      "type": "point",
+      "points": [
+        {
+          "x": 86,
+          "y": 2
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-point-8f34fb6b-d179-4c6a-8f3e-c36a4f3731ad",
+      "name": "定位点 #10",
+      "type": "point",
+      "points": [
+        {
+          "x": 140,
+          "y": 46
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-segment-b3c5ff26-f91a-41f1-8c9a-d6fbe0e82e62",
+      "endpointIds": [
+        "cad-point-327698cf-d9dd-47d4-8110-dd44ba0e0c96",
+        "cad-point-8f34fb6b-d179-4c6a-8f3e-c36a4f3731ad"
+      ],
+      "name": "两点直线 #1",
+      "type": "segment",
+      "points": [
+        {
+          "x": 86,
+          "y": 2
+        },
+        {
+          "x": 140,
+          "y": 46
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-point-d56e8d82-3df4-4f26-be0f-c7b05832ddc6",
+      "name": "定位点 #11",
+      "type": "point",
+      "points": [
+        {
+          "x": 208,
+          "y": -28
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-segment-9870c95c-085c-4977-b31a-b1c7f76b7d6f",
+      "endpointIds": [
+        "cad-point-8f34fb6b-d179-4c6a-8f3e-c36a4f3731ad",
+        "cad-point-d56e8d82-3df4-4f26-be0f-c7b05832ddc6"
+      ],
+      "name": "两点直线 #2",
+      "type": "segment",
+      "points": [
+        {
+          "x": 140,
+          "y": 46
+        },
+        {
+          "x": 208,
+          "y": -28
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-segment-ed3b1922-84a8-4995-91e8-02f17870cb95",
+      "endpointIds": [
+        "cad-point-d56e8d82-3df4-4f26-be0f-c7b05832ddc6",
+        "cad-point-63a2c9fb-12a7-4187-9830-9f53c38ba2db"
+      ],
+      "name": "两点直线 #3",
+      "type": "segment",
+      "points": [
+        {
+          "x": 208,
+          "y": -28
+        },
+        {
+          "x": 130,
+          "y": -56
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-segment-d02a9501-ef5f-495b-a6c6-d5f1dc8b235d",
+      "endpointIds": [
+        "cad-point-63a2c9fb-12a7-4187-9830-9f53c38ba2db",
+        "cad-point-a7ca4330-5e08-4229-99fe-1088c2e337ea"
+      ],
+      "name": "两点直线 #4",
+      "type": "segment",
+      "points": [
+        {
+          "x": 130,
+          "y": -56
+        },
+        {
+          "x": 102,
+          "y": -50
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-segment-9340c876-b776-4421-93c5-4f9847929878",
+      "endpointIds": [
+        "cad-point-a7ca4330-5e08-4229-99fe-1088c2e337ea",
+        "cad-point-99a38913-917b-4b72-b56b-f4a6ffe8aa97"
+      ],
+      "name": "两点直线 #5",
+      "type": "segment",
+      "points": [
+        {
+          "x": 102,
+          "y": -50
+        },
+        {
+          "x": 98,
+          "y": -28
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-segment-82a4ae2b-bc20-47be-8bd3-6b19e1177aa5",
+      "endpointIds": [
+        "cad-point-99a38913-917b-4b72-b56b-f4a6ffe8aa97",
+        "cad-point-327698cf-d9dd-47d4-8110-dd44ba0e0c96"
+      ],
+      "name": "两点直线 #6",
+      "type": "segment",
+      "points": [
+        {
+          "x": 98,
+          "y": -28
+        },
+        {
+          "x": 86,
+          "y": 2
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-segment-8c50b455-f4e4-4d79-bca1-efee416f622c",
+      "endpointIds": [
+        "cad-point-327698cf-d9dd-47d4-8110-dd44ba0e0c96",
+        "cad-point-988a64bd-5a09-4a94-83c7-95bee6e7a071"
+      ],
+      "name": "两点直线 #7",
+      "type": "segment",
+      "points": [
+        {
+          "x": 86,
+          "y": 2
+        },
+        {
+          "x": 122,
+          "y": 4
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-segment-0d53ee8d-255f-456d-95b4-f7124ce42a9d",
+      "endpointIds": [
+        "cad-point-988a64bd-5a09-4a94-83c7-95bee6e7a071",
+        "cad-point-a07447d1-ed64-482d-aa0a-8bcd6187e9dc"
+      ],
+      "name": "两点直线 #8",
+      "type": "segment",
+      "points": [
+        {
+          "x": 122,
+          "y": 4
+        },
+        {
+          "x": 136,
+          "y": -30
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-segment-0fd62f76-616c-42ef-95cd-25e21d0469c9",
+      "endpointIds": [
+        "cad-point-a07447d1-ed64-482d-aa0a-8bcd6187e9dc",
+        "cad-point-a7503da8-e390-4d25-9da5-ed2e94b778a8"
+      ],
+      "name": "两点直线 #9",
+      "type": "segment",
+      "points": [
+        {
+          "x": 136,
+          "y": -30
+        },
+        {
+          "x": 162,
+          "y": -30
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-segment-36cbf7e3-303a-4aad-8c0f-f12ffd61b7b0",
+      "endpointIds": [
+        "cad-point-a7503da8-e390-4d25-9da5-ed2e94b778a8",
+        "cad-point-e7668bf4-4b0a-4bdd-930b-8efe0a6ae67d"
+      ],
+      "name": "两点直线 #10",
+      "type": "segment",
+      "points": [
+        {
+          "x": 162,
+          "y": -30
+        },
+        {
+          "x": 164,
+          "y": -14
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-segment-af81b5f5-1999-40b5-849c-36403e217a1d",
+      "endpointIds": [
+        "cad-point-e7668bf4-4b0a-4bdd-930b-8efe0a6ae67d",
+        "cad-point-988a64bd-5a09-4a94-83c7-95bee6e7a071"
+      ],
+      "name": "两点直线 #11",
+      "type": "segment",
+      "points": [
+        {
+          "x": 164,
+          "y": -14
+        },
+        {
+          "x": 122,
+          "y": 4
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-segment-04465c52-8ddd-492d-8ed3-70569c2246c5",
+      "endpointIds": [
+        "cad-point-988a64bd-5a09-4a94-83c7-95bee6e7a071",
+        "cad-point-8f34fb6b-d179-4c6a-8f3e-c36a4f3731ad"
+      ],
+      "name": "两点直线 #12",
+      "type": "segment",
+      "points": [
+        {
+          "x": 122,
+          "y": 4
+        },
+        {
+          "x": 140,
+          "y": 46
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-segment-9d2cc6e1-8b95-43ee-93fc-18a6f869e942",
+      "endpointIds": [
+        "cad-point-8f34fb6b-d179-4c6a-8f3e-c36a4f3731ad",
+        "cad-point-e7668bf4-4b0a-4bdd-930b-8efe0a6ae67d"
+      ],
+      "name": "两点直线 #13",
+      "type": "segment",
+      "points": [
+        {
+          "x": 140,
+          "y": 46
+        },
+        {
+          "x": 164,
+          "y": -14
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-segment-00579ac5-8cfc-45fb-b500-d4ae48414429",
+      "endpointIds": [
+        "cad-point-e7668bf4-4b0a-4bdd-930b-8efe0a6ae67d",
+        "cad-point-d56e8d82-3df4-4f26-be0f-c7b05832ddc6"
+      ],
+      "name": "两点直线 #14",
+      "type": "segment",
+      "points": [
+        {
+          "x": 164,
+          "y": -14
+        },
+        {
+          "x": 208,
+          "y": -28
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-segment-25e54ec2-cdad-4181-82fb-63c151677a38",
+      "endpointIds": [
+        "cad-point-d56e8d82-3df4-4f26-be0f-c7b05832ddc6",
+        "cad-point-a7503da8-e390-4d25-9da5-ed2e94b778a8"
+      ],
+      "name": "两点直线 #15",
+      "type": "segment",
+      "points": [
+        {
+          "x": 208,
+          "y": -28
+        },
+        {
+          "x": 162,
+          "y": -30
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-segment-f9668719-19a8-42a5-b7e1-187a2dcbd74c",
+      "endpointIds": [
+        "cad-point-a7503da8-e390-4d25-9da5-ed2e94b778a8",
+        "cad-point-85962799-1338-4c82-bbd0-200d7351ff41"
+      ],
+      "name": "两点直线 #16",
+      "type": "segment",
+      "points": [
+        {
+          "x": 162,
+          "y": -30
+        },
+        {
+          "x": 170,
+          "y": -46
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-segment-d6074d00-7730-4295-aed5-65aef4104363",
+      "endpointIds": [
+        "cad-point-85962799-1338-4c82-bbd0-200d7351ff41",
+        "cad-point-a07447d1-ed64-482d-aa0a-8bcd6187e9dc"
+      ],
+      "name": "两点直线 #17",
+      "type": "segment",
+      "points": [
+        {
+          "x": 170,
+          "y": -46
+        },
+        {
+          "x": 136,
+          "y": -30
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-segment-27d61ebd-d1f2-4524-9609-c389aff006b6",
+      "endpointIds": [
+        "cad-point-a07447d1-ed64-482d-aa0a-8bcd6187e9dc",
+        "cad-point-63a2c9fb-12a7-4187-9830-9f53c38ba2db"
+      ],
+      "name": "两点直线 #18",
+      "type": "segment",
+      "points": [
+        {
+          "x": 136,
+          "y": -30
+        },
+        {
+          "x": 130,
+          "y": -56
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-segment-0da6d4e4-18c7-4180-a0da-b053e395ab47",
+      "endpointIds": [
+        "cad-point-63a2c9fb-12a7-4187-9830-9f53c38ba2db",
+        "cad-point-99a38913-917b-4b72-b56b-f4a6ffe8aa97"
+      ],
+      "name": "两点直线 #19",
+      "type": "segment",
+      "points": [
+        {
+          "x": 130,
+          "y": -56
+        },
+        {
+          "x": 98,
+          "y": -28
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-segment-8e6756e1-e62e-47cd-90e0-43f661e08511",
+      "endpointIds": [
+        "cad-point-99a38913-917b-4b72-b56b-f4a6ffe8aa97",
+        "cad-point-a07447d1-ed64-482d-aa0a-8bcd6187e9dc"
+      ],
+      "name": "两点直线 #20",
+      "type": "segment",
+      "points": [
+        {
+          "x": 98,
+          "y": -28
+        },
+        {
+          "x": 136,
+          "y": -30
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-segment-33391a76-895a-47dc-be77-e74b3078c367",
+      "endpointIds": [
+        "cad-point-a07447d1-ed64-482d-aa0a-8bcd6187e9dc",
+        "cad-point-327698cf-d9dd-47d4-8110-dd44ba0e0c96"
+      ],
+      "name": "两点直线 #21",
+      "type": "segment",
+      "points": [
+        {
+          "x": 136,
+          "y": -30
+        },
+        {
+          "x": 86,
+          "y": 2
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-point-9e3055fc-d06a-4217-98be-5e21a61b1bf4",
+      "name": "定位点 #12",
+      "type": "point",
+      "points": [
+        {
+          "x": 20,
+          "y": -62
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-point-d57ac0ff-a879-4617-b805-b296558980b6",
+      "name": "定位点 #13",
+      "type": "point",
+      "points": [
+        {
+          "x": 43,
+          "y": -62
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-segment-8ca7e381-20ed-49c4-995e-7bd255f2c7da",
+      "endpointIds": [
+        "cad-point-9e3055fc-d06a-4217-98be-5e21a61b1bf4",
+        "cad-point-d57ac0ff-a879-4617-b805-b296558980b6"
+      ],
+      "name": "两点直线 #22",
+      "type": "segment",
+      "points": [
+        {
+          "x": 20,
+          "y": -62
+        },
+        {
+          "x": 43,
+          "y": -62
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-point-dc69f4c6-b1c8-4314-90c6-d11911fe5249",
+      "name": "定位点 #14",
+      "type": "point",
+      "points": [
+        {
+          "x": 48,
+          "y": -76
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-point-46a480f1-7477-4933-8286-63e5feba4892",
+      "name": "定位点 #15",
+      "type": "point",
+      "points": [
+        {
+          "x": 48,
+          "y": -76
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-point-244e551a-e8d2-4a5b-9b9b-c013a79d3573",
+      "name": "定位点 #16",
+      "type": "point",
+      "points": [
+        {
+          "x": 128,
+          "y": -74
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-segment-df24751e-e98a-46c2-a216-5e2b77b33cc4",
+      "endpointIds": [
+        "cad-point-dc69f4c6-b1c8-4314-90c6-d11911fe5249",
+        "cad-point-244e551a-e8d2-4a5b-9b9b-c013a79d3573"
+      ],
+      "name": "两点直线 #23",
+      "type": "segment",
+      "points": [
+        {
+          "x": 48,
+          "y": -76
+        },
+        {
+          "x": 128,
+          "y": -74
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-segment-97b993a5-417f-4642-84a3-37c0fba037a6",
+      "endpointIds": [
+        "cad-point-244e551a-e8d2-4a5b-9b9b-c013a79d3573",
+        "cad-point-63a2c9fb-12a7-4187-9830-9f53c38ba2db"
+      ],
+      "name": "两点直线 #24",
+      "type": "segment",
+      "points": [
+        {
+          "x": 128,
+          "y": -74
+        },
+        {
+          "x": 130,
+          "y": -56
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-segment-3f43f07a-cc64-4de1-8a0b-3de83d02193c",
+      "endpointIds": [
+        "cad-point-63a2c9fb-12a7-4187-9830-9f53c38ba2db",
+        "cad-point-dc69f4c6-b1c8-4314-90c6-d11911fe5249"
+      ],
+      "name": "两点直线 #25",
+      "type": "segment",
+      "points": [
+        {
+          "x": 130,
+          "y": -56
+        },
+        {
+          "x": 48,
+          "y": -76
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "cad-segment-b1349e50-a9cb-4296-afd2-59b1063e2d2c",
+      "endpointIds": [
+        "cad-point-dc69f4c6-b1c8-4314-90c6-d11911fe5249",
+        "cad-point-a7ca4330-5e08-4229-99fe-1088c2e337ea"
+      ],
+      "name": "两点直线 #26",
+      "type": "segment",
+      "points": [
+        {
+          "x": 48,
+          "y": -76
+        },
+        {
+          "x": 102,
+          "y": -50
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#D6DCE5",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    }
+  ]
+}

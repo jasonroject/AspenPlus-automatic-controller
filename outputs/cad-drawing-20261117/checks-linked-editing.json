@@ -1,0 +1,8 @@
+{
+  "sharedPointMovesTwoLines": true,
+  "endpointMovesPointAndNeighbor": true,
+  "oneUndoRestoresWholeGraph": true,
+  "deletePointCascadesAndUndoRestores": true,
+  "copyHasIndependentNodes": true,
+  "reloadPreservesRelationships": true
+}

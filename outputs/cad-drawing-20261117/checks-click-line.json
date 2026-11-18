@@ -1,0 +1,7 @@
+{
+  "firstClickCreatesNothing": true,
+  "previewPersistsAfterRelease": true,
+  "continuousTwoSegments": true,
+  "escapeKeepsCommitted": true,
+  "undoRedo": true
+}

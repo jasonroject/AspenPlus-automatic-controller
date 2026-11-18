@@ -1,0 +1,12 @@
+{
+  "byte_length": 66286,
+  "expected_bytes": 66286,
+  "raw_matches_manifest": true,
+  "normal_text_roundtrip_matches": true,
+  "lf_rewrite_matches": false,
+  "reserialized_matches": false,
+  "bom_added_raw_matches": false,
+  "bom_added_response_text_reencode_matches": true,
+  "bom_added_reencoded_byte_length": 66286,
+  "source_modified": false
+}

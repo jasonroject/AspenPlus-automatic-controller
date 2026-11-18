@@ -1,0 +1,12 @@
+const task=await taskSpace(2),page=task.page('p1');
+await page.reload();
+await page.focus('#calculate');
+await page.press('#calculate','Enter');
+await page.waitForSelector('#tab-results:not([hidden])');
+const fs=await import('node:fs/promises');
+const probe=await fs.readFile('C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/universal_pipeline/browser-language-check.js','utf8');
+console.log('language',await page.evaluate(probe));
+console.log('handoff',await page.evaluate(()=>({url:document.querySelector('#open-prediction').href,summary:document.querySelector('#results-summary').innerText})));
+await page.click('#open-prediction',{label:'Continue with native reference model'});
+await page.waitForSelector('#predict-button:not([disabled])');
+console.log(await page.snapshot());

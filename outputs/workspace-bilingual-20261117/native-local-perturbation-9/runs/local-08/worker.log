@@ -1,0 +1,111 @@
+{
+  "capture_version": 1,
+  "profile_id": "htl-reference-hr",
+  "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+  "model_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+  "case_id": "local-08",
+  "split": "verification",
+  "parameters": {
+    "reactor_temperature_K": 605.15,
+    "tube_length_m": 12.5
+  },
+  "evidence_type": "native_simulation",
+  "started_at": "2026-11-17T16:59:15.808911+00:00",
+  "control_succeeded": true,
+  "solver_accepted": true,
+  "warnings": [
+    "* Calculations were completed with warnings                                *",
+    "* completed with warnings:                                                 *",
+    "*   COOLER    REACTOR   VALVE                                              *"
+  ],
+  "physical_validation": false,
+  "source_model_path": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-16\\project1jason\\automatic\\outputs\\htl_pipeline\\live\\source_HR.bkp",
+  "model_copy_path": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-16\\project1jason\\automatic\\outputs\\workspace-bilingual-20261117\\native-local-perturbation-9\\runs\\local-08\\input.bkp",
+  "solver_checks": [
+    {
+      "path": "\\Data\\Blocks\\PUMP\\Output\\BLKSTAT",
+      "value": 0,
+      "unit": "",
+      "accepted": true,
+      "label": "PUMP native block status (0 normal, 2 retained warning); completion report also required",
+      "accepted_values": [
+        0,
+        2
+      ]
+    },
+    {
+      "path": "\\Data\\Blocks\\HEATCHAG\\Output\\BLKSTAT",
+      "value": 0,
+      "unit": "",
+      "accepted": true,
+      "label": "HEATCHAG native block status (0 normal, 2 retained warning); completion report also required",
+      "accepted_values": [
+        0,
+        2
+      ]
+    },
+    {
+      "path": "\\Data\\Blocks\\HEATER\\Output\\BLKSTAT",
+      "value": 0,
+      "unit": "",
+      "accepted": true,
+      "label": "HEATER native block status (0 normal, 2 retained warning); completion report also required",
+      "accepted_values": [
+        0,
+        2
+      ]
+    },
+    {
+      "path": "\\Data\\Blocks\\REACTOR\\Output\\BLKSTAT",
+      "value": 2,
+      "unit": "",
+      "accepted": true,
+      "label": "REACTOR native block status (0 normal, 2 retained warning); completion report also required",
+      "accepted_values": [
+        0,
+        2
+      ]
+    },
+    {
+      "path": "\\Data\\Blocks\\COOLER\\Output\\BLKSTAT",
+      "value": 2,
+      "unit": "",
+      "accepted": true,
+      "label": "COOLER native block status (0 normal, 2 retained warning); completion report also required",
+      "accepted_values": [
+        0,
+        2
+      ]
+    },
+    {
+      "path": "\\Data\\Blocks\\VALVE\\Output\\BLKSTAT",
+      "value": 2,
+      "unit": "",
+      "accepted": true,
+      "label": "VALVE native block status (0 normal, 2 retained warning); completion report also required",
+      "accepted_values": [
+        0,
+        2
+      ]
+    },
+    {
+      "path": "\\Data\\Blocks\\B6\\Output\\BLKSTAT",
+      "value": 0,
+      "unit": "",
+      "accepted": true,
+      "label": "B6 native block status (0 normal, 2 retained warning); completion report also required",
+      "accepted_values": [
+        0,
+        2
+      ]
+    }
+  ],
+  "elapsed_seconds": 166.77299129997846,
+  "report_sha256": "584fe6a8b4de156235e5d1b6a771c83c1b7094ab8d2ca498885bd6fce6f54a55",
+  "report_available": true,
+  "report_completion_accepted": true,
+  "private_document_closed": true,
+  "source_sha256_after": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+  "source_unchanged": true,
+  "finished_at": "2026-11-17T17:02:20.197864+00:00"
+}

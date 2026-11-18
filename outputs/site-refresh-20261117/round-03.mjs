@@ -1,0 +1,11 @@
+const task=await taskSpace(2),page=task.page('p1');
+await page.cdp('Emulation.setDeviceMetricsOverride',{width:1440,height:2550,deviceScaleFactor:1,mobile:false});
+await page.waitForFunction(()=>[...document.querySelectorAll('.logo-card img')].every(i=>i.complete&&i.naturalWidth>0));
+console.log(await page.screenshot({path:'C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/site-refresh-20261117/logos-24.png'}));
+await page.click('button[data-id="07"]');
+console.log(await page.evaluate(()=>({selected:document.querySelector('#preview-title').textContent,pressed:document.querySelectorAll('.logo-card[aria-pressed="true"]').length,download:document.querySelector('#logo-download').getAttribute('href')})));
+const downloadPromise=page.waitForEvent('download');await page.click('#logo-download');const download=await downloadPromise;await download.saveAs('C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/site-refresh-20261117/download-logo-07.png');
+await page.cdp('Emulation.setDeviceMetricsOverride',{width:1440,height:1050,deviceScaleFactor:1,mobile:false});
+await page.click('loc=href:/docs.html');await page.waitForSelector('#doc-search');
+console.log(await page.screenshot({path:'C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/site-refresh-20261117/docs-desktop.png'}));
+console.log(await page.snapshot());

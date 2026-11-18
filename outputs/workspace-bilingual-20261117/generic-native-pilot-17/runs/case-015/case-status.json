@@ -1,0 +1,37 @@
+{
+  "id": "case-015",
+  "split": "training",
+  "inputs": {
+    "reactor_temperature_K": 623.15,
+    "tube_length_m": 20
+  },
+  "gates": {
+    "control_succeeded": true,
+    "solver_accepted": true,
+    "numerical_closure": true,
+    "lcia_complete": true,
+    "metric_inputs_complete": true
+  },
+  "accepted": true,
+  "source": "runs/case-015/raw.json",
+  "evidence_type": "native_simulation",
+  "warnings": [
+    "* Calculations were completed with warnings                                *",
+    "* completed with warnings:                                                 *",
+    "*   COOLER    REACTOR   VALVE                                              *"
+  ],
+  "error": null,
+  "metrics": {
+    "purchased_energy_kWh_kg": 3.9343193686028597,
+    "yield_fraction": 0.061069091495752695,
+    "impacts": {
+      "Climate change": {
+        "value": 11.739262433661667,
+        "unit": "kg CO2-eq/kg",
+        "complete": true
+      }
+    }
+  },
+  "normalization_complete": true,
+  "physical_validation": false
+}

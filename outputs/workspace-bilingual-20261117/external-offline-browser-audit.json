@@ -1,0 +1,528 @@
+{
+  "project": {
+    "schema_version": 1,
+    "meta": {
+      "name": "Independent membrane recycle",
+      "steady_state": true,
+      "enthalpy_basis": "Shared signed enthalpy reference; all material flows; Q/W inward positive",
+      "boundary": "Declared feed supply, purchased heating and motor electricity; cooling-service upstream burden excluded",
+      "functional_unit": "1 kg declared target product",
+      "allocation_method": "No co-product allocation; share 1",
+      "calorie_J": 4.184,
+      "inventory_complete": true,
+      "comparable_cases": true,
+      "model_profile_id": "external-membrane-recycle",
+      "source_sha256": "2cda467018889c0e4f99d8478dec17c3e5d44b6486b3fd883738893a63211363",
+      "evidence_type": "offline_fixture",
+      "physical_validation": false,
+      "native_warnings": [
+        "Offline membrane-recycle arithmetic fixture; not Aspen simulation or measured data"
+      ]
+    },
+    "cases": [
+      {
+        "id": "EXT-001",
+        "product_rate": 3,
+        "feed_rate": 10,
+        "mass_unit": "kg/hr",
+        "allocation": 1,
+        "source": "offline_fixture; model SHA-256 2cda467018889c0e4f99d8478dec17c3e5d44b6486b3fd883738893a63211363; case EXT-001; raw evidence runs/EXT-001/raw.json; Offline membrane-recycle arithmetic fixture; not Aspen simulation or measured data; \\Data\\Streams\\CARRIER\\Output\\MASSFLOW\\MIXED\\TARGET; \\Data\\Streams\\FEED\\Output\\MASSFLMX"
+      }
+    ],
+    "streams": [
+      {
+        "case_id": "EXT-001",
+        "id": "FEED",
+        "from": "BOUNDARY",
+        "to": "MIXER",
+        "mass_flow": 10,
+        "mass_unit": "kg/hr",
+        "enthalpy_flow": 0,
+        "energy_unit": "MJ/h",
+        "source": "offline_fixture; model SHA-256 2cda467018889c0e4f99d8478dec17c3e5d44b6486b3fd883738893a63211363; case EXT-001; raw evidence runs/EXT-001/raw.json; \\Data\\Streams\\FEED\\Output\\MASSFLMX; \\Data\\Streams\\FEED\\Output\\H_FLOW"
+      },
+      {
+        "case_id": "EXT-001",
+        "id": "MIXED",
+        "from": "MIXER",
+        "to": "FILTER",
+        "mass_flow": 14,
+        "mass_unit": "kg/hr",
+        "enthalpy_flow": 10.8,
+        "energy_unit": "MJ/h",
+        "source": "offline_fixture; model SHA-256 2cda467018889c0e4f99d8478dec17c3e5d44b6486b3fd883738893a63211363; case EXT-001; raw evidence runs/EXT-001/raw.json; \\Data\\Streams\\MIXED\\Output\\MASSFLMX; \\Data\\Streams\\MIXED\\Output\\H_FLOW"
+      },
+      {
+        "case_id": "EXT-001",
+        "id": "CARRIER",
+        "from": "FILTER",
+        "to": "BOUNDARY",
+        "mass_flow": 10,
+        "mass_unit": "kg/hr",
+        "enthalpy_flow": 32.4,
+        "energy_unit": "MJ/h",
+        "source": "offline_fixture; model SHA-256 2cda467018889c0e4f99d8478dec17c3e5d44b6486b3fd883738893a63211363; case EXT-001; raw evidence runs/EXT-001/raw.json; \\Data\\Streams\\CARRIER\\Output\\MASSFLMX; \\Data\\Streams\\CARRIER\\Output\\H_FLOW"
+      },
+      {
+        "case_id": "EXT-001",
+        "id": "RETENTATE",
+        "from": "FILTER",
+        "to": "COOLER",
+        "mass_flow": 4,
+        "mass_unit": "kg/hr",
+        "enthalpy_flow": 21.6,
+        "energy_unit": "MJ/h",
+        "source": "offline_fixture; model SHA-256 2cda467018889c0e4f99d8478dec17c3e5d44b6486b3fd883738893a63211363; case EXT-001; raw evidence runs/EXT-001/raw.json; \\Data\\Streams\\RETENTATE\\Output\\MASSFLMX; \\Data\\Streams\\RETENTATE\\Output\\H_FLOW"
+      },
+      {
+        "case_id": "EXT-001",
+        "id": "RECYCLE",
+        "from": "COOLER",
+        "to": "MIXER",
+        "mass_flow": 0.0011111111111111111,
+        "mass_unit": "kg/s",
+        "enthalpy_flow": 10.8,
+        "energy_unit": "MJ/h",
+        "source": "offline_fixture; model SHA-256 2cda467018889c0e4f99d8478dec17c3e5d44b6486b3fd883738893a63211363; case EXT-001; raw evidence runs/EXT-001/raw.json; \\Data\\Streams\\RECYCLE\\Output\\MASSFLMX; \\Data\\Streams\\RECYCLE\\Output\\H_FLOW"
+      }
+    ],
+    "blocks": [
+      {
+        "case_id": "EXT-001",
+        "id": "MIXER",
+        "heat": 0,
+        "power": 0,
+        "energy_unit": "kW",
+        "heat_unit": "kW",
+        "power_unit": "kW",
+        "source": "offline_fixture; model SHA-256 2cda467018889c0e4f99d8478dec17c3e5d44b6486b3fd883738893a63211363; case EXT-001; raw evidence runs/EXT-001/raw.json; Offline membrane-recycle arithmetic fixture; not Aspen simulation or measured data; Explicitly unpowered/adiabatic fixture equipment; Explicitly unpowered/adiabatic fixture equipment"
+      },
+      {
+        "case_id": "EXT-001",
+        "id": "FILTER",
+        "heat": 2390.057361376673,
+        "power": 2,
+        "energy_unit": "cal/sec",
+        "heat_unit": "cal/sec",
+        "power_unit": "kW",
+        "source": "offline_fixture; model SHA-256 2cda467018889c0e4f99d8478dec17c3e5d44b6486b3fd883738893a63211363; case EXT-001; raw evidence runs/EXT-001/raw.json; Offline membrane-recycle arithmetic fixture; not Aspen simulation or measured data; \\Data\\Blocks\\FILTER\\Output\\QCALC; \\Data\\Blocks\\FILTER\\Output\\WNET"
+      },
+      {
+        "case_id": "EXT-001",
+        "id": "COOLER",
+        "heat": -10.8,
+        "power": 0,
+        "energy_unit": "MJ/h",
+        "heat_unit": "MJ/h",
+        "power_unit": "kW",
+        "source": "offline_fixture; model SHA-256 2cda467018889c0e4f99d8478dec17c3e5d44b6486b3fd883738893a63211363; case EXT-001; raw evidence runs/EXT-001/raw.json; Offline membrane-recycle arithmetic fixture; not Aspen simulation or measured data; \\Data\\Blocks\\COOLER\\Output\\QCALC; Explicitly unpowered/adiabatic fixture equipment"
+      }
+    ],
+    "inventory": [
+      {
+        "case_id": "EXT-001",
+        "id": "purchased-heat",
+        "name": "External heating",
+        "kind": "energy",
+        "amount": 2390.057361376673,
+        "unit": "cal/sec",
+        "factor_id": "heat",
+        "source": "offline_fixture; model SHA-256 2cda467018889c0e4f99d8478dec17c3e5d44b6486b3fd883738893a63211363; case EXT-001; raw evidence runs/EXT-001/raw.json; Offline membrane-recycle arithmetic fixture; not Aspen simulation or measured data; \\Data\\Blocks\\FILTER\\Output\\QCALC"
+      },
+      {
+        "case_id": "EXT-001",
+        "id": "motor-electricity",
+        "name": "Motor electricity",
+        "kind": "energy",
+        "amount": 2,
+        "unit": "kW",
+        "factor_id": "electricity",
+        "source": "offline_fixture; model SHA-256 2cda467018889c0e4f99d8478dec17c3e5d44b6486b3fd883738893a63211363; case EXT-001; raw evidence runs/EXT-001/raw.json; Offline membrane-recycle arithmetic fixture; not Aspen simulation or measured data; \\Data\\Blocks\\FILTER\\Output\\WNET"
+      },
+      {
+        "case_id": "EXT-001",
+        "id": "external-feed",
+        "name": "External feed",
+        "kind": "material",
+        "amount": 10,
+        "unit": "kg/hr",
+        "factor_id": "feed",
+        "source": "offline_fixture; model SHA-256 2cda467018889c0e4f99d8478dec17c3e5d44b6486b3fd883738893a63211363; case EXT-001; raw evidence runs/EXT-001/raw.json; Offline membrane-recycle arithmetic fixture; not Aspen simulation or measured data; \\Data\\Streams\\FEED\\Output\\MASSFLMX"
+      }
+    ],
+    "factors": [
+      {
+        "id": "heat",
+        "category": "Fixture climate",
+        "value": 0.1,
+        "denominator_unit": "MJ",
+        "impact_unit": "kg CO2-eq",
+        "method": "Independent fixture arithmetic v1",
+        "source": "Offline membrane-recycle arithmetic fixture; not Aspen simulation or measured data"
+      },
+      {
+        "id": "electricity",
+        "category": "Fixture climate",
+        "value": 0.6,
+        "denominator_unit": "kWh",
+        "impact_unit": "kg CO2-eq",
+        "method": "Independent fixture arithmetic v1",
+        "source": "Offline membrane-recycle arithmetic fixture; not Aspen simulation or measured data"
+      },
+      {
+        "id": "feed",
+        "category": "Fixture climate",
+        "value": 0.2,
+        "denominator_unit": "kg",
+        "impact_unit": "kg CO2-eq",
+        "method": "Independent fixture arithmetic v1",
+        "source": "Offline membrane-recycle arithmetic fixture; not Aspen simulation or measured data"
+      },
+      {
+        "id": "heat",
+        "category": "Fixture acidification",
+        "value": 0.002,
+        "denominator_unit": "MJ",
+        "impact_unit": "mol H+-eq",
+        "method": "Independent fixture arithmetic v1",
+        "source": "Offline membrane-recycle arithmetic fixture; not Aspen simulation or measured data"
+      },
+      {
+        "id": "electricity",
+        "category": "Fixture acidification",
+        "value": 0.02,
+        "denominator_unit": "kWh",
+        "impact_unit": "mol H+-eq",
+        "method": "Independent fixture arithmetic v1",
+        "source": "Offline membrane-recycle arithmetic fixture; not Aspen simulation or measured data"
+      },
+      {
+        "id": "feed",
+        "category": "Fixture acidification",
+        "value": 0.004,
+        "denominator_unit": "kg",
+        "impact_unit": "mol H+-eq",
+        "method": "Independent fixture arithmetic v1",
+        "source": "Offline membrane-recycle arithmetic fixture; not Aspen simulation or measured data"
+      }
+    ]
+  },
+  "report": {
+    "schema_version": 1,
+    "assumptions": {
+      "basis": "Steady state; 1 kg declared target product; Q and W positive into each block; no accumulation/KE/PE terms",
+      "uncertainty": "Nonnegative triangular fuzzy inputs, Cartesian alpha-cut outer bounds. Possibility levels, not probabilities or confidence intervals. Shared dependencies can widen the bounds.",
+      "boundary": "Declared feed supply, purchased heating and motor electricity; cooling-service upstream burden excluded"
+    },
+    "categories": [
+      "Fixture climate",
+      "Fixture acidification"
+    ],
+    "results": [
+      {
+        "id": "EXT-001",
+        "balance": {
+          "complete": true,
+          "within_tolerance": true,
+          "tolerance": "Per block: max(0.01 kg/h, 0.1% mass throughput); max(0.01 kW, 0.1% absolute enthalpy/duty scale). Numerical consistency only.",
+          "errors": [],
+          "streams": [
+            {
+              "case_id": "EXT-001",
+              "id": "FEED",
+              "from": "BOUNDARY",
+              "to": "MIXER",
+              "mass_flow": 10,
+              "mass_unit": "kg/hr",
+              "enthalpy_flow": 0,
+              "energy_unit": "MJ/h",
+              "source": "offline_fixture; model SHA-256 2cda467018889c0e4f99d8478dec17c3e5d44b6486b3fd883738893a63211363; case EXT-001; raw evidence runs/EXT-001/raw.json; \\Data\\Streams\\FEED\\Output\\MASSFLMX; \\Data\\Streams\\FEED\\Output\\H_FLOW",
+              "mass": 10,
+              "enthalpy": 0
+            },
+            {
+              "case_id": "EXT-001",
+              "id": "MIXED",
+              "from": "MIXER",
+              "to": "FILTER",
+              "mass_flow": 14,
+              "mass_unit": "kg/hr",
+              "enthalpy_flow": 10.8,
+              "energy_unit": "MJ/h",
+              "source": "offline_fixture; model SHA-256 2cda467018889c0e4f99d8478dec17c3e5d44b6486b3fd883738893a63211363; case EXT-001; raw evidence runs/EXT-001/raw.json; \\Data\\Streams\\MIXED\\Output\\MASSFLMX; \\Data\\Streams\\MIXED\\Output\\H_FLOW",
+              "mass": 14,
+              "enthalpy": 3.0000000000000004
+            },
+            {
+              "case_id": "EXT-001",
+              "id": "CARRIER",
+              "from": "FILTER",
+              "to": "BOUNDARY",
+              "mass_flow": 10,
+              "mass_unit": "kg/hr",
+              "enthalpy_flow": 32.4,
+              "energy_unit": "MJ/h",
+              "source": "offline_fixture; model SHA-256 2cda467018889c0e4f99d8478dec17c3e5d44b6486b3fd883738893a63211363; case EXT-001; raw evidence runs/EXT-001/raw.json; \\Data\\Streams\\CARRIER\\Output\\MASSFLMX; \\Data\\Streams\\CARRIER\\Output\\H_FLOW",
+              "mass": 10,
+              "enthalpy": 9
+            },
+            {
+              "case_id": "EXT-001",
+              "id": "RETENTATE",
+              "from": "FILTER",
+              "to": "COOLER",
+              "mass_flow": 4,
+              "mass_unit": "kg/hr",
+              "enthalpy_flow": 21.6,
+              "energy_unit": "MJ/h",
+              "source": "offline_fixture; model SHA-256 2cda467018889c0e4f99d8478dec17c3e5d44b6486b3fd883738893a63211363; case EXT-001; raw evidence runs/EXT-001/raw.json; \\Data\\Streams\\RETENTATE\\Output\\MASSFLMX; \\Data\\Streams\\RETENTATE\\Output\\H_FLOW",
+              "mass": 4,
+              "enthalpy": 6.000000000000001
+            },
+            {
+              "case_id": "EXT-001",
+              "id": "RECYCLE",
+              "from": "COOLER",
+              "to": "MIXER",
+              "mass_flow": 0.0011111111111111111,
+              "mass_unit": "kg/s",
+              "enthalpy_flow": 10.8,
+              "energy_unit": "MJ/h",
+              "source": "offline_fixture; model SHA-256 2cda467018889c0e4f99d8478dec17c3e5d44b6486b3fd883738893a63211363; case EXT-001; raw evidence runs/EXT-001/raw.json; \\Data\\Streams\\RECYCLE\\Output\\MASSFLMX; \\Data\\Streams\\RECYCLE\\Output\\H_FLOW",
+              "mass": 4,
+              "enthalpy": 3.0000000000000004
+            }
+          ],
+          "blocks": [
+            {
+              "id": "MIXER",
+              "heat": 0,
+              "power": 0,
+              "mass_residual_kg_h": 0,
+              "energy_residual_kW": 0,
+              "mass_relative": 0,
+              "energy_relative": 0,
+              "within_tolerance": true
+            },
+            {
+              "id": "FILTER",
+              "heat": 10,
+              "power": 2,
+              "mass_residual_kg_h": 0,
+              "energy_residual_kW": 0,
+              "mass_relative": 0,
+              "energy_relative": 0,
+              "within_tolerance": true
+            },
+            {
+              "id": "COOLER",
+              "heat": -3.0000000000000004,
+              "power": 0,
+              "mass_residual_kg_h": 0,
+              "energy_residual_kW": 0,
+              "mass_relative": 0,
+              "energy_relative": 0,
+              "within_tolerance": true
+            }
+          ],
+          "total": {
+            "mass_residual_kg_h": 0,
+            "energy_residual_kW": 0,
+            "external_heat_in_kW": 10,
+            "external_heat_out_kW": 3.0000000000000004,
+            "work_in_kW": 2,
+            "work_out_kW": 0
+          }
+        },
+        "impacts": [
+          {
+            "category": "Fixture climate",
+            "unit": "kg CO2-eq",
+            "method": "Independent fixture arithmetic v1",
+            "complete": true,
+            "errors": [],
+            "covered": 3,
+            "total": 3,
+            "cuts": [
+              {
+                "alpha": 0,
+                "range": [
+                  2.2666666666666666,
+                  2.2666666666666666
+                ]
+              },
+              {
+                "alpha": 0.25,
+                "range": [
+                  2.2666666666666666,
+                  2.2666666666666666
+                ]
+              },
+              {
+                "alpha": 0.5,
+                "range": [
+                  2.2666666666666666,
+                  2.2666666666666666
+                ]
+              },
+              {
+                "alpha": 0.75,
+                "range": [
+                  2.2666666666666666,
+                  2.2666666666666666
+                ]
+              },
+              {
+                "alpha": 1,
+                "range": [
+                  2.2666666666666666,
+                  2.2666666666666666
+                ]
+              }
+            ],
+            "contributions": [
+              {
+                "id": "purchased-heat",
+                "name": "External heating",
+                "nominal": 1.2,
+                "factor_id": "heat",
+                "source": "Offline membrane-recycle arithmetic fixture; not Aspen simulation or measured data"
+              },
+              {
+                "id": "motor-electricity",
+                "name": "Motor electricity",
+                "nominal": 0.39999999999999997,
+                "factor_id": "electricity",
+                "source": "Offline membrane-recycle arithmetic fixture; not Aspen simulation or measured data"
+              },
+              {
+                "id": "external-feed",
+                "name": "External feed",
+                "nominal": 0.6666666666666666,
+                "factor_id": "feed",
+                "source": "Offline membrane-recycle arithmetic fixture; not Aspen simulation or measured data"
+              }
+            ],
+            "nominal_subtotal": 2.2666666666666666
+          },
+          {
+            "category": "Fixture acidification",
+            "unit": "mol H+-eq",
+            "method": "Independent fixture arithmetic v1",
+            "complete": true,
+            "errors": [],
+            "covered": 3,
+            "total": 3,
+            "cuts": [
+              {
+                "alpha": 0,
+                "range": [
+                  0.05066666666666667,
+                  0.05066666666666667
+                ]
+              },
+              {
+                "alpha": 0.25,
+                "range": [
+                  0.05066666666666667,
+                  0.05066666666666667
+                ]
+              },
+              {
+                "alpha": 0.5,
+                "range": [
+                  0.05066666666666667,
+                  0.05066666666666667
+                ]
+              },
+              {
+                "alpha": 0.75,
+                "range": [
+                  0.05066666666666667,
+                  0.05066666666666667
+                ]
+              },
+              {
+                "alpha": 1,
+                "range": [
+                  0.05066666666666667,
+                  0.05066666666666667
+                ]
+              }
+            ],
+            "contributions": [
+              {
+                "id": "purchased-heat",
+                "name": "External heating",
+                "nominal": 0.024000000000000004,
+                "factor_id": "heat",
+                "source": "Offline membrane-recycle arithmetic fixture; not Aspen simulation or measured data"
+              },
+              {
+                "id": "motor-electricity",
+                "name": "Motor electricity",
+                "nominal": 0.013333333333333334,
+                "factor_id": "electricity",
+                "source": "Offline membrane-recycle arithmetic fixture; not Aspen simulation or measured data"
+              },
+              {
+                "id": "external-feed",
+                "name": "External feed",
+                "nominal": 0.013333333333333334,
+                "factor_id": "feed",
+                "source": "Offline membrane-recycle arithmetic fixture; not Aspen simulation or measured data"
+              }
+            ],
+            "nominal_subtotal": 0.05066666666666667
+          }
+        ],
+        "issues": [],
+        "energy": [
+          {
+            "alpha": 0,
+            "range": [
+              4,
+              4
+            ]
+          },
+          {
+            "alpha": 0.25,
+            "range": [
+              4,
+              4
+            ]
+          },
+          {
+            "alpha": 0.5,
+            "range": [
+              4,
+              4
+            ]
+          },
+          {
+            "alpha": 0.75,
+            "range": [
+              4,
+              4
+            ]
+          },
+          {
+            "alpha": 1,
+            "range": [
+              4,
+              4
+            ]
+          }
+        ],
+        "yield": [
+          0.3,
+          0.3,
+          0.3
+        ]
+      }
+    ]
+  },
+  "ranking": null,
+  "preference_scan": null,
+  "created_at": "2026-11-17T17:37:43.711Z"
+}

@@ -1,0 +1,12 @@
+const task=await taskSpace(10);const page=task.page('p1');const dir='C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/cad-expansion-20261117/';
+await page.click('loc=role:button[name="打开文件菜单"]');const cp=page.waitForFileChooser({timeout:10000});await page.click('loc=role:menuitem[name*="打开工程"]');await(await cp).setFiles(dir+'original-project.extrudecad.json');await page.waitForFunction(()=>document.querySelectorAll('.object-row').length===6);
+await page.click('loc=css:.header-actions .primary-button');await page.waitForSelector('loc=role:button[name="导出 DXF"]');const dp=page.waitForEvent('download',{timeout:30000});await page.click('loc=role:button[name="导出 DXF"]');await(await dp).saveAs(dir+'roundtrip-original.dxf');await page.click('loc=role:button[name="关闭导出窗口"]');
+await page.setInputFiles('loc=css:input[aria-label="选择 DXF 文件"]',[dir+'roundtrip-original.dxf']);await page.waitForSelector('loc=role:dialog[name="导入 DXF 轮廓"]');
+const summary=await page.evaluate(()=>document.querySelector('dialog[open]')?.innerText);console.log(summary);if(!summary.includes('恢复内孔'))throw Error('Own DXF holes missing');
+await page.click('loc=css:[data-testid="dxf-import-confirm"]');await page.waitForFunction(()=>document.querySelectorAll('.object-row').length===12);
+const sp=page.waitForEvent('download',{timeout:30000});await page.click('loc=css:.header-actions button[title="下载可继续编辑的工程文件"]');await(await sp).saveAs(dir+'roundtrip-imported.extrudecad.json');
+const fs=await import('node:fs/promises');const original=JSON.parse(await fs.readFile(dir+'original-project.extrudecad.json','utf8')).shapes;const all=JSON.parse(await fs.readFile(dir+'roundtrip-imported.extrudecad.json','utf8')).shapes;
+const differences=original.map((a,i)=>{const b=all[i+6];return{index:i,outer:JSON.stringify(a.points)===JSON.stringify(b.points),hole:JSON.stringify(a.holePoints??[])===JSON.stringify(b.holePoints??[]),height:a.zHeight===b.zHeight,elevation:a.zOffset===b.zOffset};});
+if(differences.some(x=>!x.outer||!x.hole||!x.height||!x.elevation))throw Error(JSON.stringify(differences));
+await page.click('loc=role:button[name="撤销上一步操作"]');await page.waitForFunction(()=>document.querySelectorAll('.object-row').length===6);
+await fs.writeFile(dir+'checks-dxf-roundtrip.json',JSON.stringify({summary,differences,appendUndo:true},null,2));console.log(differences);

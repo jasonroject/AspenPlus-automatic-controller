@@ -1,0 +1,1 @@
+const fs=await import('node:fs/promises');const base='C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/cad-interaction-20261117/';let code=await fs.readFile(base+'round-15.mjs','utf8');code=code.replaceAll('await enter(', 'await enter(p,');await fs.writeFile(base+'round-19-checks.mjs',code);await import('./round-19-checks.mjs');

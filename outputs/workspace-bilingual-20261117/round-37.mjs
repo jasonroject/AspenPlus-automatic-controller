@@ -1,0 +1,14 @@
+const task=await taskSpace(2),page=task.page('p1');
+await page.goto('http://127.0.0.1:8766/pipeline.html?temperature=325&length=8.5&scenario=HR');
+await page.waitForSelector('.inspection-slider');
+console.log('inspection',await page.evaluate(()=>({text:document.querySelector('.inspection-values').innerText,chosen:document.querySelector('#predict-temperature').value})));
+await page.focus('.inspection-slider');await page.press('.inspection-slider','Home');await page.press('.inspection-slider','ArrowRight');
+console.log('keyboardInspection',await page.evaluate(()=>({text:document.querySelector('.inspection-values').innerText,chosen:document.querySelector('#predict-temperature').value,slider:document.querySelector('.inspection-slider').value})));
+await page.selectOption('#trend-axis','length_m');
+await page.cdp('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
+await page.focus('.inspection-slider');
+console.log('mobile',await page.evaluate(()=>({width:innerWidth,scrollWidth:document.documentElement.scrollWidth,chart:document.querySelector('#response-chart').getBoundingClientRect().width,text:document.querySelector('.inspection-values').innerText})));
+await page.screenshot({path:'C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/workspace-bilingual-20261117/pipeline-crosshair-mobile-en.png'});
+await page.click('[data-section="robust"]');
+await page.click('#stability-diagnostics summary');
+console.log('diagnostics',await page.evaluate(()=>({variation:document.querySelector('#variability-data').innerText,sampling:document.querySelector('#sampling-diagnostics').innerText})));

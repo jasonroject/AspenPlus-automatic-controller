@@ -1,0 +1,15 @@
+const task=await taskSpace(2),page=task.page('p1');
+await page.cdp('Emulation.setDeviceMetricsOverride',{width:1440,height:1050,deviceScaleFactor:1,mobile:false});
+await page.reload();await page.waitForSelector('.workspace-site-links');
+console.log(await page.evaluate(()=>({brand:getComputedStyle(document.querySelector('.brand')).color,sidebar:getComputedStyle(document.querySelector('.sidebar')).backgroundColor,link:getComputedStyle(document.querySelector('.nav-item')).color})));
+await page.click('a[href="pipeline.html"]');await page.waitForFunction(()=>document.querySelector('#pipeline-status').textContent.includes('verified')||document.querySelector('#evidence-stats').children.length>0);
+console.log(await page.evaluate(()=>({title:document.title,error:document.querySelector('#pipeline-error').textContent,stats:document.querySelector('#evidence-stats').innerText.slice(0,180)})));
+await page.click('a[href="index.en.html#view=process"]');await page.waitForSelector('canvas');
+console.log(await page.evaluate(()=>({title:document.title,canvas:!!document.querySelector('canvas'),home:!!document.querySelector('.workspace-site-links'),body:document.body.dataset.view})));
+console.log(await page.screenshot({path:'C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/site-refresh-20261117/workspace-desktop.png'}));
+await page.goto('http://127.0.0.1:8766/#view=process');await page.waitForURL('**/workspace.zh.html**');console.log({legacyRedirect:await page.url()});
+await page.goto('http://127.0.0.1:8766/brand.html');await page.waitForSelector('.logo-card');
+await page.cdp('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
+await page.click('button[data-id="24"]');await page.waitForFunction(()=>document.querySelector('#preview-title').textContent==='Trace');
+console.log(await page.evaluate(()=>({brandMobile:document.querySelector('#preview-title').textContent,overflow:document.documentElement.scrollWidth>innerWidth,previewTop:document.querySelector('.brand-preview').getBoundingClientRect().top})));
+console.log(await page.screenshot({path:'C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/site-refresh-20261117/brand-mobile.png'}));

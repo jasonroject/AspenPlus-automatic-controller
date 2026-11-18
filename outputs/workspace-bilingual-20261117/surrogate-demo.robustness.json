@@ -1,0 +1,685 @@
+{
+  "result_version": 1,
+  "kind": "process_robustness",
+  "model_sha256": "d85bb4b67f087ecab535ad9cffb4d345f4290f4628257d5e3c7bde37734362f3",
+  "bundle_sha256": "0d4a3f42e977c1ef9c170bcc9b972d96911f6ae652a3ab5aea805bbc18c0e33d",
+  "dataset_sha256": "042e9a1361a4bf0c94f571bb8bd6f7e8b8042eea4a931e51853cc57b017e9d97",
+  "profile_id": "synthetic-arithmetic-fixture",
+  "profile_sha256": "778831283ce5268f801e2bb920e63dbb738e466b81c21dcc6c771e38d05d4dc1",
+  "native_model_sha256": "7748cc3427125b89d1a149f76d16c1df58fff412f13394cde5489a3e8adb2dc8",
+  "evidence_type": "offline_fixture",
+  "config_sha256": "5034a365a136ea561aa81b10d98456b3cba020a694769ca600bfa5c7b9be7278",
+  "config": {
+    "config_version": 1,
+    "candidates": [
+      {
+        "id": "A",
+        "inputs": {
+          "x": -0.5,
+          "y": 0.0
+        }
+      },
+      {
+        "id": "B",
+        "inputs": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "id": "C",
+        "inputs": {
+          "x": 0.5,
+          "y": 0.0
+        }
+      }
+    ],
+    "perturbations": {
+      "x": {
+        "unit": "1",
+        "halfwidth": 0.5
+      },
+      "y": {
+        "unit": "1",
+        "halfwidth": 0.0
+      }
+    },
+    "scenarios": [
+      {
+        "id": "left",
+        "offsets": {
+          "x": -1.0,
+          "y": 0.0
+        }
+      },
+      {
+        "id": "center",
+        "offsets": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "id": "right",
+        "offsets": {
+          "x": 1.0,
+          "y": 0.0
+        }
+      }
+    ],
+    "preferences": [
+      {
+        "id": "energy",
+        "weights": {
+          "energy": 1.0,
+          "signed_heat": 0.0,
+          "zero_impact": 0.0
+        }
+      },
+      {
+        "id": "equal",
+        "weights": {
+          "energy": 1.0,
+          "signed_heat": 1.0,
+          "zero_impact": 1.0
+        }
+      }
+    ],
+    "max_total_queries": 1000
+  },
+  "inputs": [
+    {
+      "id": "x",
+      "unit": "1",
+      "min": -1.0,
+      "max": 1.0
+    },
+    {
+      "id": "y",
+      "unit": "1",
+      "min": -1.0,
+      "max": 1.0
+    }
+  ],
+  "responses": [
+    {
+      "id": "energy",
+      "unit": "kWh/kg",
+      "direction": "min",
+      "value_domain": "nonnegative"
+    },
+    {
+      "id": "signed_heat",
+      "unit": "kW",
+      "direction": "min",
+      "value_domain": "signed"
+    },
+    {
+      "id": "zero_impact",
+      "unit": "kg CO2-eq/kg",
+      "direction": "min",
+      "value_domain": "nonnegative"
+    }
+  ],
+  "exploratory": true,
+  "native_execution_performed": false,
+  "model_refitted": false,
+  "background_lca_recomputed": false,
+  "physical_validation": false,
+  "center_scenario_id": "center",
+  "query_count": 9,
+  "candidates": [
+    {
+      "id": "A",
+      "inputs": {
+        "x": -0.5,
+        "y": 0.0
+      },
+      "coverage": {
+        "expected": 3,
+        "valid": 3,
+        "unsupported": 0,
+        "complete": true
+      },
+      "metrics": {
+        "energy": {
+          "unit": "kWh/kg",
+          "direction": "min",
+          "complete": true,
+          "nominal": 8.99984217989147,
+          "min": 7.999997294180854,
+          "max": 10.0,
+          "relative_span_pct": 22.222641973520293,
+          "relative_span_reason": null
+        },
+        "signed_heat": {
+          "unit": "kW",
+          "direction": "min",
+          "complete": true,
+          "nominal": -1.0001578200971712,
+          "min": -2.0000027058759438,
+          "max": -1.135958518425177e-11,
+          "relative_span_pct": 199.96871150497748,
+          "relative_span_reason": null
+        },
+        "zero_impact": {
+          "unit": "kg CO2-eq/kg",
+          "direction": "min",
+          "complete": true,
+          "nominal": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "relative_span_pct": null,
+          "relative_span_reason": "zero_nominal_denominator"
+        }
+      }
+    },
+    {
+      "id": "B",
+      "inputs": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "coverage": {
+        "expected": 3,
+        "valid": 3,
+        "unsupported": 0,
+        "complete": true
+      },
+      "metrics": {
+        "energy": {
+          "unit": "kWh/kg",
+          "direction": "min",
+          "complete": true,
+          "nominal": 10.0,
+          "min": 8.99984217989147,
+          "max": 11.00015782010853,
+          "relative_span_pct": 20.003156402170603,
+          "relative_span_reason": null
+        },
+        "signed_heat": {
+          "unit": "kW",
+          "direction": "min",
+          "complete": true,
+          "nominal": -1.135958518425177e-11,
+          "min": -1.0001578200971712,
+          "max": 1.0001578200858117,
+          "relative_span_pct": 17609055328499.996,
+          "relative_span_reason": null
+        },
+        "zero_impact": {
+          "unit": "kg CO2-eq/kg",
+          "direction": "min",
+          "complete": true,
+          "nominal": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "relative_span_pct": null,
+          "relative_span_reason": "zero_nominal_denominator"
+        }
+      }
+    },
+    {
+      "id": "C",
+      "inputs": {
+        "x": 0.5,
+        "y": 0.0
+      },
+      "coverage": {
+        "expected": 3,
+        "valid": 3,
+        "unsupported": 0,
+        "complete": true
+      },
+      "metrics": {
+        "energy": {
+          "unit": "kWh/kg",
+          "direction": "min",
+          "complete": true,
+          "nominal": 11.00015782010853,
+          "min": 10.0,
+          "max": 12.000002705864585,
+          "relative_span_pct": 18.181581924293265,
+          "relative_span_reason": null
+        },
+        "signed_heat": {
+          "unit": "kW",
+          "direction": "min",
+          "complete": true,
+          "nominal": 1.0001578200858117,
+          "min": -1.135958518425177e-11,
+          "max": 2.000002705841865,
+          "relative_span_pct": 199.9687115061129,
+          "relative_span_reason": null
+        },
+        "zero_impact": {
+          "unit": "kg CO2-eq/kg",
+          "direction": "min",
+          "complete": true,
+          "nominal": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "relative_span_pct": null,
+          "relative_span_reason": "zero_nominal_denominator"
+        }
+      }
+    }
+  ],
+  "records": [
+    {
+      "id": "A::left",
+      "candidate_id": "A",
+      "scenario_id": "left",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "x": -1.0,
+        "y": 0.0
+      },
+      "outputs": {
+        "energy": 7.999997294180854,
+        "signed_heat": -2.0000027058759438,
+        "zero_impact": 0.0
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "d85bb4b67f087ecab535ad9cffb4d345f4290f4628257d5e3c7bde37734362f3",
+      "exploratory": true
+    },
+    {
+      "id": "A::center",
+      "candidate_id": "A",
+      "scenario_id": "center",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "x": -0.5,
+        "y": 0.0
+      },
+      "outputs": {
+        "energy": 8.99984217989147,
+        "signed_heat": -1.0001578200971712,
+        "zero_impact": 0.0
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "d85bb4b67f087ecab535ad9cffb4d345f4290f4628257d5e3c7bde37734362f3",
+      "exploratory": true
+    },
+    {
+      "id": "A::right",
+      "candidate_id": "A",
+      "scenario_id": "right",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "outputs": {
+        "energy": 10.0,
+        "signed_heat": -1.135958518425177e-11,
+        "zero_impact": 0.0
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "d85bb4b67f087ecab535ad9cffb4d345f4290f4628257d5e3c7bde37734362f3",
+      "exploratory": true
+    },
+    {
+      "id": "B::left",
+      "candidate_id": "B",
+      "scenario_id": "left",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "x": -0.5,
+        "y": 0.0
+      },
+      "outputs": {
+        "energy": 8.99984217989147,
+        "signed_heat": -1.0001578200971712,
+        "zero_impact": 0.0
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "d85bb4b67f087ecab535ad9cffb4d345f4290f4628257d5e3c7bde37734362f3",
+      "exploratory": true
+    },
+    {
+      "id": "B::center",
+      "candidate_id": "B",
+      "scenario_id": "center",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "outputs": {
+        "energy": 10.0,
+        "signed_heat": -1.135958518425177e-11,
+        "zero_impact": 0.0
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "d85bb4b67f087ecab535ad9cffb4d345f4290f4628257d5e3c7bde37734362f3",
+      "exploratory": true
+    },
+    {
+      "id": "B::right",
+      "candidate_id": "B",
+      "scenario_id": "right",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "x": 0.5,
+        "y": 0.0
+      },
+      "outputs": {
+        "energy": 11.00015782010853,
+        "signed_heat": 1.0001578200858117,
+        "zero_impact": 0.0
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "d85bb4b67f087ecab535ad9cffb4d345f4290f4628257d5e3c7bde37734362f3",
+      "exploratory": true
+    },
+    {
+      "id": "C::left",
+      "candidate_id": "C",
+      "scenario_id": "left",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "outputs": {
+        "energy": 10.0,
+        "signed_heat": -1.135958518425177e-11,
+        "zero_impact": 0.0
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "d85bb4b67f087ecab535ad9cffb4d345f4290f4628257d5e3c7bde37734362f3",
+      "exploratory": true
+    },
+    {
+      "id": "C::center",
+      "candidate_id": "C",
+      "scenario_id": "center",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "x": 0.5,
+        "y": 0.0
+      },
+      "outputs": {
+        "energy": 11.00015782010853,
+        "signed_heat": 1.0001578200858117,
+        "zero_impact": 0.0
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "d85bb4b67f087ecab535ad9cffb4d345f4290f4628257d5e3c7bde37734362f3",
+      "exploratory": true
+    },
+    {
+      "id": "C::right",
+      "candidate_id": "C",
+      "scenario_id": "right",
+      "kind": "prediction",
+      "split": "prediction",
+      "inputs": {
+        "x": 1.0,
+        "y": 0.0
+      },
+      "outputs": {
+        "energy": 12.000002705864585,
+        "signed_heat": 2.000002705841865,
+        "zero_impact": 0.0
+      },
+      "constraints_passed": true,
+      "errors": [],
+      "source_id": "d85bb4b67f087ecab535ad9cffb4d345f4290f4628257d5e3c7bde37734362f3",
+      "exploratory": true
+    }
+  ],
+  "rank_complete": true,
+  "rank_incomplete_reason": null,
+  "nominal_anchors": {
+    "energy": {
+      "unit": "kWh/kg",
+      "direction": "min",
+      "min": 8.99984217989147,
+      "max": 11.00015782010853,
+      "constant": false
+    },
+    "signed_heat": {
+      "unit": "kW",
+      "direction": "min",
+      "min": -1.0001578200971712,
+      "max": 1.0001578200858117,
+      "constant": false
+    },
+    "zero_impact": {
+      "unit": "kg CO2-eq/kg",
+      "direction": "min",
+      "min": 0.0,
+      "max": 0.0,
+      "constant": true
+    }
+  },
+  "preferences": [
+    {
+      "id": "energy",
+      "weights": {
+        "energy": 1.0,
+        "signed_heat": 0.0,
+        "zero_impact": 0.0
+      },
+      "candidates": [
+        {
+          "id": "A",
+          "nominal_score": 1.0,
+          "nominal_rank": 1.0,
+          "rank_min": 1.0,
+          "rank_max": 1.5,
+          "top_share_pct": 83.33333333333333
+        },
+        {
+          "id": "B",
+          "nominal_score": 0.49999999999999967,
+          "nominal_rank": 2.0,
+          "rank_min": 1.5,
+          "rank_max": 2.5,
+          "top_share_pct": 16.666666666666668
+        },
+        {
+          "id": "C",
+          "nominal_score": 0.0,
+          "nominal_rank": 3.0,
+          "rank_min": 2.5,
+          "rank_max": 3.0,
+          "top_share_pct": 0.0
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "left",
+          "scores": {
+            "A": 1.0,
+            "B": 1.0,
+            "C": 0.49999999999999967
+          },
+          "ranks": {
+            "A": 1.5,
+            "B": 1.5,
+            "C": 3.0
+          },
+          "top_ids": [
+            "A",
+            "B"
+          ],
+          "spearman_vs_nominal": {
+            "value": 0.8660254037844387,
+            "reason": null
+          }
+        },
+        {
+          "id": "center",
+          "scores": {
+            "A": 1.0,
+            "B": 0.49999999999999967,
+            "C": 0.0
+          },
+          "ranks": {
+            "A": 1.0,
+            "B": 2.0,
+            "C": 3.0
+          },
+          "top_ids": [
+            "A"
+          ],
+          "spearman_vs_nominal": {
+            "value": 1.0,
+            "reason": null
+          }
+        },
+        {
+          "id": "right",
+          "scores": {
+            "A": 0.49999999999999967,
+            "B": 0.0,
+            "C": 0.0
+          },
+          "ranks": {
+            "A": 1.0,
+            "B": 2.5,
+            "C": 2.5
+          },
+          "top_ids": [
+            "A"
+          ],
+          "spearman_vs_nominal": {
+            "value": 0.8660254037844387,
+            "reason": null
+          }
+        }
+      ],
+      "total_top_share_pct": 100.0
+    },
+    {
+      "id": "equal",
+      "weights": {
+        "energy": 0.3333333333333333,
+        "signed_heat": 0.3333333333333333,
+        "zero_impact": 0.3333333333333333
+      },
+      "candidates": [
+        {
+          "id": "A",
+          "nominal_score": 0.8333333333333333,
+          "nominal_rank": 1.0,
+          "rank_min": 1.0,
+          "rank_max": 1.5,
+          "top_share_pct": 83.33333333333333
+        },
+        {
+          "id": "B",
+          "nominal_score": 0.5000000000009464,
+          "nominal_rank": 2.0,
+          "rank_min": 1.5,
+          "rank_max": 2.5,
+          "top_share_pct": 16.666666666666668
+        },
+        {
+          "id": "C",
+          "nominal_score": 0.16666666666666666,
+          "nominal_rank": 3.0,
+          "rank_min": 2.5,
+          "rank_max": 3.0,
+          "top_share_pct": 0.0
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "left",
+          "scores": {
+            "A": 0.8333333333333333,
+            "B": 0.8333333333333333,
+            "C": 0.5000000000009464
+          },
+          "ranks": {
+            "A": 1.5,
+            "B": 1.5,
+            "C": 3.0
+          },
+          "top_ids": [
+            "A",
+            "B"
+          ],
+          "spearman_vs_nominal": {
+            "value": 0.8660254037844387,
+            "reason": null
+          }
+        },
+        {
+          "id": "center",
+          "scores": {
+            "A": 0.8333333333333333,
+            "B": 0.5000000000009464,
+            "C": 0.16666666666666666
+          },
+          "ranks": {
+            "A": 1.0,
+            "B": 2.0,
+            "C": 3.0
+          },
+          "top_ids": [
+            "A"
+          ],
+          "spearman_vs_nominal": {
+            "value": 1.0,
+            "reason": null
+          }
+        },
+        {
+          "id": "right",
+          "scores": {
+            "A": 0.5000000000009464,
+            "B": 0.16666666666666666,
+            "C": 0.16666666666666666
+          },
+          "ranks": {
+            "A": 1.0,
+            "B": 2.5,
+            "C": 2.5
+          },
+          "top_ids": [
+            "A"
+          ],
+          "spearman_vs_nominal": {
+            "value": 0.8660254037844387,
+            "reason": null
+          }
+        }
+      ],
+      "total_top_share_pct": 100.0
+    }
+  ],
+  "methods": {
+    "scenarios": "User-supplied finite deterministic offsets; no probability model or random sampling",
+    "relative_span": "100*(maximum-minimum)/abs(nominal); zero denominator is null; incomplete coverage is null",
+    "score": "Weighted utility clamped to [0,1] using fixed nominal candidate min/max; numerically constant nominal response utility=0.5",
+    "constant_metric": "Nominal span <= 16*machine epsilon*max(abs(min),abs(max)); no unit-sized absolute floor",
+    "ties": "Absolute score tolerance 1e-12; descending groups anchored to each group highest score; average ranks",
+    "spearman": "Pearson correlation of tie-aware average ranks; constant rank vector returns null",
+    "top_share": "Equal credit among tied leaders in each supplied scenario; averaged per preference; selected-scenario shares, not probabilities",
+    "unsupported": "All records retained; any unsupported candidate/scenario suppresses every complete global ranking"
+  },
+  "scope": "Finite scenario sensitivity of frozen surrogate means. Not model uncertainty, a robustness guarantee, physical validation, or recalculated background LCA.",
+  "result_sha256": "241c835489dcab76701ac126edd7d6fd1df1707a14f73b5920c829d4641dc16d"
+}

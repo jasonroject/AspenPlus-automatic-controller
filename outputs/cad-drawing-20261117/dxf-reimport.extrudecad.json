@@ -1,0 +1,66 @@
+{
+  "app": "ExtrudeCAD Studio",
+  "fileType": "extrudecad-project",
+  "version": 1,
+  "savedAt": "2026-11-17T08:26:06.233Z",
+  "shapes": [
+    {
+      "id": "shape-dxf-2b51027d-961a-4438-98e3-5fbe0f9232a0",
+      "name": "EC_SKETCH_1 · 定位点",
+      "type": "point",
+      "points": [
+        {
+          "x": 1.23456789,
+          "y": 2.3456789
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "shape-dxf-3b8fdfdc-4d62-4abd-8077-7a8a1369e882",
+      "name": "EC_SKETCH_2 · 定位点",
+      "type": "point",
+      "points": [
+        {
+          "x": 40,
+          "y": 30
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "shape-dxf-088fdd53-b759-4453-aeb8-2ba86c55aecf",
+      "name": "EC_SKETCH_3 · 草图直线",
+      "type": "segment",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 40,
+          "y": 30
+        }
+      ],
+      "zHeight": 0,
+      "zOffset": 0,
+      "bevel": 0,
+      "color": "#4C9AFF",
+      "materialPreset": "aluminum",
+      "visible": true,
+      "locked": false
+    }
+  ]
+}

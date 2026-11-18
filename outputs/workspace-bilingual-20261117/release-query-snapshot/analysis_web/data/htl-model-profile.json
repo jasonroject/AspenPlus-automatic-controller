@@ -1,0 +1,706 @@
+{
+  "profile_version": 1,
+  "id": "htl-reference-hr",
+  "name": "Existing HTL HR reference model · reviewed mapping",
+  "model": {
+    "path": "source_HR.bkp",
+    "sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed"
+  },
+  "variables": [
+    {
+      "id": "reactor_temperature_K",
+      "path": "\\Data\\Blocks\\REACTOR\\Input\\REAC_TEMP",
+      "native_unit": "K",
+      "min": 583.15,
+      "max": 623.15
+    },
+    {
+      "id": "tube_length_m",
+      "path": "\\Data\\Blocks\\REACTOR\\Input\\LENGTH",
+      "native_unit": "meter",
+      "min": 5,
+      "max": 20
+    }
+  ],
+  "readouts": [
+    {
+      "id": "mass_FEED",
+      "path": "\\Data\\Streams\\FEED\\Output\\MASSFLMX\\MIXED",
+      "native_unit": "kg/hr"
+    },
+    {
+      "id": "h_FEED",
+      "path": "\\Data\\Streams\\FEED\\Output\\HMX_MASS\\MIXED",
+      "native_unit": "cal/gm"
+    },
+    {
+      "id": "mass_S2",
+      "path": "\\Data\\Streams\\S2\\Output\\MASSFLMX\\MIXED",
+      "native_unit": "kg/hr"
+    },
+    {
+      "id": "h_S2",
+      "path": "\\Data\\Streams\\S2\\Output\\HMX_MASS\\MIXED",
+      "native_unit": "cal/gm"
+    },
+    {
+      "id": "mass_S3",
+      "path": "\\Data\\Streams\\S3\\Output\\MASSFLMX\\MIXED",
+      "native_unit": "kg/hr"
+    },
+    {
+      "id": "h_S3",
+      "path": "\\Data\\Streams\\S3\\Output\\HMX_MASS\\MIXED",
+      "native_unit": "cal/gm"
+    },
+    {
+      "id": "mass_S4",
+      "path": "\\Data\\Streams\\S4\\Output\\MASSFLMX\\MIXED",
+      "native_unit": "kg/hr"
+    },
+    {
+      "id": "h_S4",
+      "path": "\\Data\\Streams\\S4\\Output\\HMX_MASS\\MIXED",
+      "native_unit": "cal/gm"
+    },
+    {
+      "id": "mass_S5",
+      "path": "\\Data\\Streams\\S5\\Output\\MASSFLMX\\MIXED",
+      "native_unit": "kg/hr"
+    },
+    {
+      "id": "h_S5",
+      "path": "\\Data\\Streams\\S5\\Output\\HMX_MASS\\MIXED",
+      "native_unit": "cal/gm"
+    },
+    {
+      "id": "mass_S6",
+      "path": "\\Data\\Streams\\S6\\Output\\MASSFLMX\\MIXED",
+      "native_unit": "kg/hr"
+    },
+    {
+      "id": "h_S6",
+      "path": "\\Data\\Streams\\S6\\Output\\HMX_MASS\\MIXED",
+      "native_unit": "cal/gm"
+    },
+    {
+      "id": "mass_S7",
+      "path": "\\Data\\Streams\\S7\\Output\\MASSFLMX\\MIXED",
+      "native_unit": "kg/hr"
+    },
+    {
+      "id": "h_S7",
+      "path": "\\Data\\Streams\\S7\\Output\\HMX_MASS\\MIXED",
+      "native_unit": "cal/gm"
+    },
+    {
+      "id": "mass_S8",
+      "path": "\\Data\\Streams\\S8\\Output\\MASSFLMX\\MIXED",
+      "native_unit": "kg/hr"
+    },
+    {
+      "id": "h_S8",
+      "path": "\\Data\\Streams\\S8\\Output\\HMX_MASS\\MIXED",
+      "native_unit": "cal/gm"
+    },
+    {
+      "id": "mass_S9",
+      "path": "\\Data\\Streams\\S9\\Output\\MASSFLMX\\MIXED",
+      "native_unit": "kg/hr"
+    },
+    {
+      "id": "h_S9",
+      "path": "\\Data\\Streams\\S9\\Output\\HMX_MASS\\MIXED",
+      "native_unit": "cal/gm"
+    },
+    {
+      "id": "mass_S10",
+      "path": "\\Data\\Streams\\S10\\Output\\MASSFLMX\\MIXED",
+      "native_unit": "kg/hr"
+    },
+    {
+      "id": "h_S10",
+      "path": "\\Data\\Streams\\S10\\Output\\HMX_MASS\\MIXED",
+      "native_unit": "cal/gm"
+    },
+    {
+      "id": "power_PUMP",
+      "path": "\\Data\\Blocks\\PUMP\\Output\\WNET",
+      "native_unit": "kW"
+    },
+    {
+      "id": "heat_HEATER",
+      "path": "\\Data\\Blocks\\HEATER\\Output\\QCALC",
+      "native_unit": "cal/sec"
+    },
+    {
+      "id": "heat_REACTOR",
+      "path": "\\Data\\Blocks\\REACTOR\\Output\\QCALC",
+      "native_unit": "cal/sec"
+    },
+    {
+      "id": "heat_COOLER",
+      "path": "\\Data\\Blocks\\COOLER\\Output\\QCALC",
+      "native_unit": "cal/sec"
+    },
+    {
+      "id": "heat_B6",
+      "path": "\\Data\\Blocks\\B6\\Output\\QCALC",
+      "native_unit": "cal/sec"
+    },
+    {
+      "id": "S7_CAT",
+      "path": "\\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CAT",
+      "native_unit": "kg/hr"
+    },
+    {
+      "id": "S8_CAT",
+      "path": "\\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CAT",
+      "native_unit": "kg/hr"
+    },
+    {
+      "id": "S7_O-CRE-01",
+      "path": "\\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\O-CRE-01",
+      "native_unit": "kg/hr"
+    },
+    {
+      "id": "S8_O-CRE-01",
+      "path": "\\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\O-CRE-01",
+      "native_unit": "kg/hr"
+    },
+    {
+      "id": "S7_CO2",
+      "path": "\\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CO2",
+      "native_unit": "kg/hr"
+    },
+    {
+      "id": "S8_CO2",
+      "path": "\\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CO2",
+      "native_unit": "kg/hr"
+    },
+    {
+      "id": "S7_CH4",
+      "path": "\\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\CH4",
+      "native_unit": "kg/hr"
+    },
+    {
+      "id": "S8_CH4",
+      "path": "\\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\CH4",
+      "native_unit": "kg/hr"
+    },
+    {
+      "id": "S7_H2O",
+      "path": "\\Data\\Streams\\S7\\Output\\MASSFLOW\\MIXED\\H2O",
+      "native_unit": "kg/hr"
+    },
+    {
+      "id": "S8_H2O",
+      "path": "\\Data\\Streams\\S8\\Output\\MASSFLOW\\MIXED\\H2O",
+      "native_unit": "kg/hr"
+    }
+  ],
+  "solver_checks": [
+    {
+      "path": "\\Data\\Blocks\\PUMP\\Output\\BLKSTAT",
+      "accepted_values": [
+        0,
+        2
+      ],
+      "label": "PUMP native block status (0 normal, 2 retained warning); completion report also required"
+    },
+    {
+      "path": "\\Data\\Blocks\\HEATCHAG\\Output\\BLKSTAT",
+      "accepted_values": [
+        0,
+        2
+      ],
+      "label": "HEATCHAG native block status (0 normal, 2 retained warning); completion report also required"
+    },
+    {
+      "path": "\\Data\\Blocks\\HEATER\\Output\\BLKSTAT",
+      "accepted_values": [
+        0,
+        2
+      ],
+      "label": "HEATER native block status (0 normal, 2 retained warning); completion report also required"
+    },
+    {
+      "path": "\\Data\\Blocks\\REACTOR\\Output\\BLKSTAT",
+      "accepted_values": [
+        0,
+        2
+      ],
+      "label": "REACTOR native block status (0 normal, 2 retained warning); completion report also required"
+    },
+    {
+      "path": "\\Data\\Blocks\\COOLER\\Output\\BLKSTAT",
+      "accepted_values": [
+        0,
+        2
+      ],
+      "label": "COOLER native block status (0 normal, 2 retained warning); completion report also required"
+    },
+    {
+      "path": "\\Data\\Blocks\\VALVE\\Output\\BLKSTAT",
+      "accepted_values": [
+        0,
+        2
+      ],
+      "label": "VALVE native block status (0 normal, 2 retained warning); completion report also required"
+    },
+    {
+      "path": "\\Data\\Blocks\\B6\\Output\\BLKSTAT",
+      "accepted_values": [
+        0,
+        2
+      ],
+      "label": "B6 native block status (0 normal, 2 retained warning); completion report also required"
+    }
+  ],
+  "mapping": {
+    "meta": {
+      "name": "HTL native model profile · restricted inherited inventory",
+      "steady_state": true,
+      "enthalpy_basis": "Complete material-stream enthalpy rates on one common reference; Q and W positive inward; no KE/PE or accumulation",
+      "boundary": "Inherited HTL fixed-background accounting: feed, heater/reactor electricity, fixed pump inventory, direct CO2/CH4 and wastewater; excludes separator heat duty and cooling-service burdens; not a full-plant utility inventory",
+      "functional_unit": "1 kg declared target product",
+      "allocation_method": "Single target; no co-product allocation; share 1",
+      "calorie_J": 4.1868,
+      "inventory_complete": true,
+      "comparable_cases": true
+    },
+    "product": {
+      "quantity": {
+        "sum": [
+          {
+            "sum": [
+              {
+                "readout": "S7_CAT"
+              },
+              {
+                "readout": "S8_CAT"
+              }
+            ],
+            "source": "Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams"
+          },
+          {
+            "sum": [
+              {
+                "readout": "S7_O-CRE-01"
+              },
+              {
+                "readout": "S8_O-CRE-01"
+              }
+            ],
+            "source": "Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams"
+          }
+        ],
+        "source": "Catechol + o-cresol outlet mass, not isolated recovery"
+      },
+      "feed": {
+        "readout": "mass_FEED"
+      },
+      "allocation": 1,
+      "source": "Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture"
+    },
+    "streams": [
+      {
+        "id": "FEED",
+        "from": "BOUNDARY",
+        "to": "PUMP",
+        "mass": {
+          "readout": "mass_FEED"
+        },
+        "specific_enthalpy": {
+          "readout": "h_FEED"
+        }
+      },
+      {
+        "id": "S2",
+        "from": "PUMP",
+        "to": "HEATCHAG",
+        "mass": {
+          "readout": "mass_S2"
+        },
+        "specific_enthalpy": {
+          "readout": "h_S2"
+        }
+      },
+      {
+        "id": "S3",
+        "from": "HEATER",
+        "to": "REACTOR",
+        "mass": {
+          "readout": "mass_S3"
+        },
+        "specific_enthalpy": {
+          "readout": "h_S3"
+        }
+      },
+      {
+        "id": "S4",
+        "from": "REACTOR",
+        "to": "HEATCHAG",
+        "mass": {
+          "readout": "mass_S4"
+        },
+        "specific_enthalpy": {
+          "readout": "h_S4"
+        }
+      },
+      {
+        "id": "S5",
+        "from": "COOLER",
+        "to": "VALVE",
+        "mass": {
+          "readout": "mass_S5"
+        },
+        "specific_enthalpy": {
+          "readout": "h_S5"
+        }
+      },
+      {
+        "id": "S6",
+        "from": "VALVE",
+        "to": "B6",
+        "mass": {
+          "readout": "mass_S6"
+        },
+        "specific_enthalpy": {
+          "readout": "h_S6"
+        }
+      },
+      {
+        "id": "S7",
+        "from": "B6",
+        "to": "BOUNDARY",
+        "mass": {
+          "readout": "mass_S7"
+        },
+        "specific_enthalpy": {
+          "readout": "h_S7"
+        }
+      },
+      {
+        "id": "S8",
+        "from": "B6",
+        "to": "BOUNDARY",
+        "mass": {
+          "readout": "mass_S8"
+        },
+        "specific_enthalpy": {
+          "readout": "h_S8"
+        }
+      },
+      {
+        "id": "S9",
+        "from": "HEATCHAG",
+        "to": "HEATER",
+        "mass": {
+          "readout": "mass_S9"
+        },
+        "specific_enthalpy": {
+          "readout": "h_S9"
+        }
+      },
+      {
+        "id": "S10",
+        "from": "HEATCHAG",
+        "to": "COOLER",
+        "mass": {
+          "readout": "mass_S10"
+        },
+        "specific_enthalpy": {
+          "readout": "h_S10"
+        }
+      }
+    ],
+    "blocks": [
+      {
+        "id": "PUMP",
+        "heat": {
+          "constant": 0,
+          "unit": "kW",
+          "source": "Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+        },
+        "power": {
+          "readout": "power_PUMP"
+        },
+        "source": "Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture"
+      },
+      {
+        "id": "HEATCHAG",
+        "heat": {
+          "constant": 0,
+          "unit": "kW",
+          "source": "Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+        },
+        "power": {
+          "constant": 0,
+          "unit": "kW",
+          "source": "Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+        },
+        "source": "Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture"
+      },
+      {
+        "id": "HEATER",
+        "heat": {
+          "readout": "heat_HEATER"
+        },
+        "power": {
+          "constant": 0,
+          "unit": "kW",
+          "source": "Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+        },
+        "source": "Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture"
+      },
+      {
+        "id": "REACTOR",
+        "heat": {
+          "readout": "heat_REACTOR"
+        },
+        "power": {
+          "constant": 0,
+          "unit": "kW",
+          "source": "Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+        },
+        "source": "Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture"
+      },
+      {
+        "id": "COOLER",
+        "heat": {
+          "readout": "heat_COOLER"
+        },
+        "power": {
+          "constant": 0,
+          "unit": "kW",
+          "source": "Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+        },
+        "source": "Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture"
+      },
+      {
+        "id": "VALVE",
+        "heat": {
+          "constant": 0,
+          "unit": "kW",
+          "source": "Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+        },
+        "power": {
+          "constant": 0,
+          "unit": "kW",
+          "source": "Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+        },
+        "source": "Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture"
+      },
+      {
+        "id": "B6",
+        "heat": {
+          "readout": "heat_B6"
+        },
+        "power": {
+          "constant": 0,
+          "unit": "kW",
+          "source": "Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; explicit zero external duty/work convention from audited topology"
+        },
+        "source": "Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture"
+      }
+    ],
+    "inventory": [
+      {
+        "id": "feed",
+        "name": "feed",
+        "kind": "material",
+        "factor_id": "feed",
+        "source": "Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: feed",
+        "quantity": {
+          "readout": "mass_FEED"
+        }
+      },
+      {
+        "id": "electricity",
+        "name": "electricity",
+        "kind": "energy",
+        "factor_id": "electricity",
+        "source": "Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: electricity",
+        "quantity": {
+          "sum": [
+            {
+              "positive": {
+                "readout": "heat_HEATER"
+              },
+              "source": "Inherited unity useful-heat to equivalent-electricity assumption"
+            },
+            {
+              "positive": {
+                "readout": "heat_REACTOR"
+              },
+              "source": "Inherited unity useful-heat to equivalent-electricity assumption"
+            },
+            {
+              "constant": 518.7732874749212,
+              "unit": "cal/sec",
+              "source": "Fixed pump inventory 2.172 kWh/h converted explicitly to cal/sec using 4.1868 J/cal; not pump native work"
+            }
+          ],
+          "source": "Inherited restricted HTL energy inventory: heater + reactor + fixed pump; excludes separator heat and cooling service"
+        }
+      },
+      {
+        "id": "CO2",
+        "name": "CO2",
+        "kind": "emission",
+        "factor_id": "CO2",
+        "source": "Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: CO2",
+        "quantity": {
+          "sum": [
+            {
+              "readout": "S7_CO2"
+            },
+            {
+              "readout": "S8_CO2"
+            }
+          ],
+          "source": "Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams"
+        }
+      },
+      {
+        "id": "CH4",
+        "name": "CH4",
+        "kind": "emission",
+        "factor_id": "CH4",
+        "source": "Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: CH4",
+        "quantity": {
+          "sum": [
+            {
+              "readout": "S7_CH4"
+            },
+            {
+              "readout": "S8_CH4"
+            }
+          ],
+          "source": "Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams"
+        }
+      },
+      {
+        "id": "wastewater",
+        "name": "wastewater",
+        "kind": "waste",
+        "factor_id": "wastewater",
+        "source": "Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; inherited inventory rule: wastewater",
+        "quantity": {
+          "sum": [
+            {
+              "readout": "S7_H2O"
+            },
+            {
+              "readout": "S8_H2O"
+            }
+          ],
+          "source": "Mapping rule reused from audited HTL T325p00_L8p50 export (2026-11-17); each case value comes from its current raw capture; component mass across both terminal streams"
+        }
+      }
+    ],
+    "factors": [
+      {
+        "id": "feed",
+        "category": "Climate change",
+        "value": 0.5198121043815267,
+        "low": 0.5198121043815267,
+        "high": 0.5198121043815267,
+        "denominator_unit": "kg",
+        "impact_unit": "kg CO2-eq",
+        "method": "Inherited HTL fixed-background climate accounting",
+        "source": "Inherited HTL lca_coefficients.json; fixed original providers; not a fresh openLCA calculation"
+      },
+      {
+        "id": "electricity",
+        "category": "Climate change",
+        "value": 0.6750590250697887,
+        "low": 0.6075531225628098,
+        "high": 0.7425649275767676,
+        "denominator_unit": "kWh",
+        "impact_unit": "kg CO2-eq",
+        "method": "Inherited HTL fixed-background climate accounting",
+        "source": "Inherited HTL lca_coefficients.json; fixed original providers; not a fresh openLCA calculation; +/-10% electricity factor is an illustrative fuzzy support"
+      },
+      {
+        "id": "CO2",
+        "category": "Climate change",
+        "value": 1.0,
+        "low": 1.0,
+        "high": 1.0,
+        "denominator_unit": "kg",
+        "impact_unit": "kg CO2-eq",
+        "method": "Inherited HTL fixed-background climate accounting",
+        "source": "Inherited HTL lca_coefficients.json; fixed original providers; not a fresh openLCA calculation"
+      },
+      {
+        "id": "CH4",
+        "category": "Climate change",
+        "value": 36.0,
+        "low": 36.0,
+        "high": 36.0,
+        "denominator_unit": "kg",
+        "impact_unit": "kg CO2-eq",
+        "method": "Inherited HTL fixed-background climate accounting",
+        "source": "Inherited HTL lca_coefficients.json; fixed original providers; not a fresh openLCA calculation"
+      },
+      {
+        "id": "wastewater",
+        "category": "Climate change",
+        "value": 0.00017333571211124749,
+        "low": 0.00017333571211124749,
+        "high": 0.00017333571211124749,
+        "denominator_unit": "kg",
+        "impact_unit": "kg CO2-eq",
+        "method": "Inherited HTL fixed-background climate accounting",
+        "source": "Inherited HTL lca_coefficients.json; fixed original providers; not a fresh openLCA calculation"
+      }
+    ]
+  },
+  "limits": {
+    "max_cases": 100,
+    "timeout_seconds": 300
+  },
+  "review": {
+    "state": "reviewed",
+    "discovery_source": "htl-discovery.json",
+    "discovery_sha256": "ecad46a098e7ff46298bf512733150fcf2011e4ddb6192677e2fa4ad67552550",
+    "reference_capture": "T325p00_L8p50, 2026-11-17",
+    "reference_capture_sha256": "8e4f7f816b42e4aab8e3958dade812c72cc7e2e73278667ed405d9b5d0d8795b",
+    "native_adapter_validation": "pending bounded single-point run; read-only discovery is not execution validation",
+    "notes": [
+      "All paths/native units verified against retained native export and copy-only discovery",
+      "Global Run-Status branch is unavailable before solving; use all declared block statuses plus required explicit report completion",
+      "Warning status 2 is retained, not represented as warning-free convergence",
+      "Heater temperature equals reactor temperature through one identity-linked control",
+      "INT_TOL=1e-4 and MAX_NSTEP=100000 are explicit fixed writes, with runtime readback required",
+      "Inherited restricted foreground climate inventory excludes separator heat and cooling service upstream burdens"
+    ]
+  },
+  "linked_inputs": [
+    {
+      "id": "heater_temperature_K",
+      "source_id": "reactor_temperature_K",
+      "path": "\\Data\\Blocks\\HEATER\\Input\\TEMP",
+      "native_unit": "K",
+      "source": "HTL operating domain requires equal heater/reactor temperature setpoints"
+    }
+  ],
+  "fixed_inputs": [
+    {
+      "id": "integration_tolerance",
+      "path": "\\Data\\Blocks\\REACTOR\\Input\\INT_TOL",
+      "native_unit": "",
+      "value": 0.0001,
+      "source": "Explicitly reuse audited HTL integration control; differs from unmodified archive setting"
+    },
+    {
+      "id": "maximum_integration_steps",
+      "path": "\\Data\\Blocks\\REACTOR\\Input\\MAX_NSTEP",
+      "native_unit": "",
+      "value": 100000,
+      "source": "Explicitly reuse audited HTL integration control; differs from unmodified archive setting"
+    }
+  ]
+}

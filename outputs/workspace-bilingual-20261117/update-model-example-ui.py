@@ -1,0 +1,13 @@
+from pathlib import Path
+p=Path('analysis_web/models.mjs')
+s=p.read_text(encoding='utf-8')
+s=s.replace("let profileRevision=0,resultRevision=0,restoringModels=true;", "let profileRevision=0,resultRevision=0,restoringModels=true,exampleVersion='v2';\nconst examplePaths={v1:'data/generic-htl-pilot',v2:'data/generic-htl-extension'};")
+s=s.replace('hasPlan:Boolean(plan),loadedProject}', 'hasPlan:Boolean(plan),loadedProject,exampleVersion}')
+start=s.index('<div class="model-button-row"><button id="load-pilot-project"')
+end=s.index('<div id="scan-result-summary">', start)
+s=s[:start]+'''<label class="model-example-version">${t('Worked HTL example','HTL 演示数据')}<select id="project-example-version"><option value="v2" ${exampleVersion==='v2'?'selected':''}>${t('v2 · 37 unique native cases','v2 · 37 个不同原生工况')}</option><option value="v1" ${exampleVersion==='v1'?'selected':''}>${t('v1 · original 17-case pilot','v1 · 原始 17 工况试运行')}</option></select></label><div class="model-button-row"><button id="load-pilot-project" class="button secondary">${t('Load selected example','加载所选演示数据')}</button><a id="example-evidence-link" class="text-button" href="docs.html#models/${exampleVersion==='v2'?'pilot-v2':'pilot'}">${t('Evidence & limits ↗','证据与适用范围 ↗')}</a></div><p class="panel-foot">${t('Each version retains its own inputs, run checks and model assessment. v2 adds training points and four new verification points; the original v1 remains available for comparison. Loading an example does not run Aspen.','各版本分别保留输入、运行检查与模型评估。v2 增加了训练点和四个新的复核点；原始 v1 仍可对照查看。加载示例不会启动 Aspen。')}</p>'''+s[end:]
+s=s.replace("fetch('data/generic-htl-pilot/project.json',{cache:'no-store'})", "fetch(examplePaths[exampleVersion]+'/project.json',{cache:'no-store'})")
+s=s.replace("  if(event.target.id==='profile-file')", "  if(event.target.id==='project-example-version'){exampleVersion=event.target.value==='v1'?'v1':'v2';$('#example-evidence-link').href='docs.html#models/'+(exampleVersion==='v2'?'pilot-v2':'pilot');persistModels();}\n  if(event.target.id==='profile-file')")
+s=s.replace("    splitMode=['verification','frozen']", "    exampleVersion=saved.exampleVersion==='v1'?'v1':'v2';\n    splitMode=['verification','frozen']")
+s=s.replace("$('#scan-result-summary').innerHTML=`<div", "$('#scan-result-summary').innerHTML=`<h3 data-no-i18n>${esc(loadedProject.meta.name||'Imported project')}</h3>${loadedProject.meta.locally_modified===true?`<p class=\"model-help\">${t('Locally modified inputs. Original native checks, if retained in the file, are historical only.','本地修改后的输入。文件中保留的原生检查仅作为历史来源。')}</p>`:''}<div")
+p.write_text(s,encoding='utf-8')

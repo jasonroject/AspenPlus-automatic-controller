@@ -1,0 +1,12 @@
+const task=await taskSpace(2),page=task.page('p3');
+await page.goto('http://127.0.0.1:8766/pipeline.html?temperature=325&length=8.5&scenario=HR');await page.snapshot();await page.waitForSelector('.inspection-slider');
+await page.click('button[aria-label="Switch to English"]');
+const csv=page.waitForEvent('download',{timeout:30000});await page.click('[data-chart-export="response"][data-export-format="csv"]');await(await csv).saveAs('C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/workspace-bilingual-20261117/response-slice.csv');
+const svg=page.waitForEvent('download',{timeout:30000});await page.click('[data-chart-export="response"][data-export-format="svg"]');await(await svg).saveAs('C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/workspace-bilingual-20261117/response-slice.svg');
+await page.fill('#predict-temperature','326');
+console.log('exports invalidate',await page.evaluate(()=>({disabled:[...document.querySelectorAll('[data-chart-export]')].map(b=>b.disabled),download:document.querySelector('#download-prediction').disabled})));
+await page.click('#predict-button');await page.snapshot();
+console.log('updated export',await page.evaluate(()=>({disabled:[...document.querySelectorAll('[data-chart-export]')].map(b=>b.disabled),temperature:document.querySelector('#predict-temperature').value})));
+await page.click('button[aria-label="切换为中文"]');
+const svgZh=page.waitForEvent('download',{timeout:30000});await page.click('[data-chart-export="energy"][data-export-format="svg"]');await(await svgZh).saveAs('C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/workspace-bilingual-20261117/paired-energy-zh.svg');
+console.log('Three chart artifacts downloaded.');

@@ -1,0 +1,13 @@
+const task=await taskSpace(2),page=task.page('p1');
+await page.cdp('Emulation.setDeviceMetricsOverride',{width:1440,height:1050,deviceScaleFactor:1,mobile:false});
+console.log(await page.evaluate(()=>({nextDisabled:document.querySelector('#import-next').disabled,resultsDisabled:document.querySelector('[data-tab="results"]').disabled})));
+await page.screenshot({path:'C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/workspace-refresh-20261117/import-desktop.png'});
+await page.click('#load-demo');await page.waitForFunction(()=>!document.querySelector('#tab-context').hidden&&!document.querySelector('#calculate').disabled);
+console.log(await page.evaluate(()=>({review:document.querySelector('#review-status').textContent,checks:document.querySelectorAll('#readiness-list .is-ready').length})));
+await page.screenshot({path:'C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/workspace-refresh-20261117/review-desktop.png'});
+await page.click('#calculate');await page.waitForFunction(()=>!document.querySelector('#tab-results').hidden);
+console.log(await page.evaluate(()=>({summary:document.querySelector('#results-summary').innerText,rankDisabled:document.querySelector('#rank').disabled,issues:document.querySelector('#result-error-list').innerText})));
+await page.screenshot({path:'C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/workspace-refresh-20261117/results-desktop.png'});
+await page.click('#go-compare');await page.click('#rank');await page.waitForSelector('#rank-results table');
+console.log(await page.evaluate(()=>document.querySelector('#rank-results').innerText));
+const waiting=page.waitForEvent('download');await page.click('#export-results');const download=await waiting;await download.saveAs('C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/workspace-refresh-20261117/analysis-export.json');

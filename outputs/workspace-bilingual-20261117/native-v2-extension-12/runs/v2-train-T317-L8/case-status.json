@@ -1,0 +1,37 @@
+{
+  "id": "v2-train-T317-L8",
+  "split": "training",
+  "inputs": {
+    "reactor_temperature_K": 590.15,
+    "tube_length_m": 8
+  },
+  "gates": {
+    "control_succeeded": true,
+    "solver_accepted": true,
+    "numerical_closure": true,
+    "lcia_complete": true,
+    "metric_inputs_complete": true
+  },
+  "accepted": true,
+  "source": "runs/v2-train-T317-L8/raw.json",
+  "evidence_type": "native_simulation",
+  "warnings": [
+    "* Calculations were completed with warnings                                *",
+    "* completed with warnings:                                                 *",
+    "*   COOLER    REACTOR   VALVE                                              *"
+  ],
+  "error": null,
+  "metrics": {
+    "purchased_energy_kWh_kg": 2.2856415324485826,
+    "yield_fraction": 0.04541491778838208,
+    "impacts": {
+      "Climate change": {
+        "value": 13.081259666468746,
+        "unit": "kg CO2-eq/kg",
+        "complete": true
+      }
+    }
+  },
+  "normalization_complete": true,
+  "physical_validation": false
+}

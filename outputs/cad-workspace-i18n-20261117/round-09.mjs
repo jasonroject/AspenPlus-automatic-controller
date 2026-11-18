@@ -1,0 +1,1 @@
+import {receive} from './translation-helper.mjs';const g=(await taskSpace(1)).page('p2');console.log({busy:await g.evaluate(()=>!!document.querySelector('button[aria-label*="停止"]'))});await receive(g,4);

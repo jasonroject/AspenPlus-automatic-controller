@@ -1,0 +1,1454 @@
+{
+  "ledger_version": 1,
+  "mode": "verified_three_batch_merge",
+  "profile_id": "htl-reference-hr",
+  "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+  "model_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+  "cohort_design_sha256": "f44705085dfa007732a2c602edaf256eef911f5f5feb462b236861bb15705bdb",
+  "planned_count": 37,
+  "accepted_count": 37,
+  "failed_count": 0,
+  "all_planned_cases_retained": true,
+  "cases": [
+    {
+      "id": "case-001",
+      "split": "training",
+      "inputs": {
+        "reactor_temperature_K": 583.15,
+        "tube_length_m": 5
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "generic-native-pilot-17/runs/case-001/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 2.895765884246538,
+        "yield_fraction": 0.027673645131258615,
+        "impacts": {
+          "Climate change": {
+            "value": 20.807561640868393,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "case-002",
+      "split": "training",
+      "inputs": {
+        "reactor_temperature_K": 583.15,
+        "tube_length_m": 12.5
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "generic-native-pilot-17/runs/case-002/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 2.065465292526096,
+        "yield_fraction": 0.05131097984657566,
+        "impacts": {
+          "Climate change": {
+            "value": 11.61593505824727,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "case-003",
+      "split": "training",
+      "inputs": {
+        "reactor_temperature_K": 583.15,
+        "tube_length_m": 20
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "generic-native-pilot-17/runs/case-003/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 2.341713680433808,
+        "yield_fraction": 0.055559172478569625,
+        "impacts": {
+          "Climate change": {
+            "value": 11.082964406145303,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "case-004",
+      "split": "holdout",
+      "inputs": {
+        "reactor_temperature_K": 593.15,
+        "tube_length_m": 5
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "generic-native-pilot-17/runs/case-004/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 2.6863470465998716,
+        "yield_fraction": 0.035080838813966106,
+        "impacts": {
+          "Climate change": {
+            "value": 16.717968805736213,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "case-005",
+      "split": "training",
+      "inputs": {
+        "reactor_temperature_K": 593.15,
+        "tube_length_m": 12.5
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "generic-native-pilot-17/runs/case-005/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 2.2572614758694542,
+        "yield_fraction": 0.05765003981134084,
+        "impacts": {
+          "Climate change": {
+            "value": 10.67122297587204,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "case-006",
+      "split": "holdout",
+      "inputs": {
+        "reactor_temperature_K": 593.15,
+        "tube_length_m": 20
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "generic-native-pilot-17/runs/case-006/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 2.706607985223567,
+        "yield_fraction": 0.05796269131322667,
+        "impacts": {
+          "Climate change": {
+            "value": 11.001051510466587,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "case-007",
+      "split": "training",
+      "inputs": {
+        "reactor_temperature_K": 603.15,
+        "tube_length_m": 5
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "generic-native-pilot-17/runs/case-007/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 2.5560993785572976,
+        "yield_fraction": 0.04400948179207828,
+        "impacts": {
+          "Climate change": {
+            "value": 13.644745630865824,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "case-008",
+      "split": "holdout",
+      "inputs": {
+        "reactor_temperature_K": 603.15,
+        "tube_length_m": 12.5
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "generic-native-pilot-17/runs/case-008/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 2.6261657378409473,
+        "yield_fraction": 0.06060042552121615,
+        "impacts": {
+          "Climate change": {
+            "value": 10.547501675749563,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "case-009",
+      "split": "training",
+      "inputs": {
+        "reactor_temperature_K": 603.15,
+        "tube_length_m": 20
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "generic-native-pilot-17/runs/case-009/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 3.1027846169210185,
+        "yield_fraction": 0.0596131692866609,
+        "impacts": {
+          "Climate change": {
+            "value": 11.104017541253086,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "case-010",
+      "split": "training",
+      "inputs": {
+        "reactor_temperature_K": 613.15,
+        "tube_length_m": 5
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "generic-native-pilot-17/runs/case-010/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 2.5012682329913387,
+        "yield_fraction": 0.05381846195780881,
+        "impacts": {
+          "Climate change": {
+            "value": 11.480289219401683,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "case-011",
+      "split": "training",
+      "inputs": {
+        "reactor_temperature_K": 613.15,
+        "tube_length_m": 12.5
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "generic-native-pilot-17/runs/case-011/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 2.9863124608541898,
+        "yield_fraction": 0.06230661649533429,
+        "impacts": {
+          "Climate change": {
+            "value": 10.636261970192013,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "case-012",
+      "split": "training",
+      "inputs": {
+        "reactor_temperature_K": 613.15,
+        "tube_length_m": 20
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "generic-native-pilot-17/runs/case-012/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 3.500809816987609,
+        "yield_fraction": 0.0607020408360424,
+        "impacts": {
+          "Climate change": {
+            "value": 11.332329567782349,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "case-013",
+      "split": "training",
+      "inputs": {
+        "reactor_temperature_K": 623.15,
+        "tube_length_m": 5
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "generic-native-pilot-17/runs/case-013/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 2.5515979702003797,
+        "yield_fraction": 0.06263008512588299,
+        "impacts": {
+          "Climate change": {
+            "value": 10.189807099713368,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "case-014",
+      "split": "training",
+      "inputs": {
+        "reactor_temperature_K": 623.15,
+        "tube_length_m": 12.5
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "generic-native-pilot-17/runs/case-014/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 3.3612242632982814,
+        "yield_fraction": 0.0633310369820657,
+        "impacts": {
+          "Climate change": {
+            "value": 10.86325893249218,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "case-015",
+      "split": "training",
+      "inputs": {
+        "reactor_temperature_K": 623.15,
+        "tube_length_m": 20
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "generic-native-pilot-17/runs/case-015/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 3.9343193686028597,
+        "yield_fraction": 0.061069091495752695,
+        "impacts": {
+          "Climate change": {
+            "value": 11.739262433661667,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "verify-T335-L8p5",
+      "split": "verification",
+      "inputs": {
+        "reactor_temperature_K": 608.15,
+        "tube_length_m": 8.5
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "generic-native-pilot-17/runs/verify-T335-L8p5/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 2.427740770340649,
+        "yield_fraction": 0.0613634980376165,
+        "impacts": {
+          "Climate change": {
+            "value": 10.269427933612839,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "verify-T345-L17p5",
+      "split": "verification",
+      "inputs": {
+        "reactor_temperature_K": 618.15,
+        "tube_length_m": 17.5
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "generic-native-pilot-17/runs/verify-T345-L17p5/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 3.5439860096625613,
+        "yield_fraction": 0.061618044047683,
+        "impacts": {
+          "Climate change": {
+            "value": 11.25957895313683,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "local-01",
+      "split": "verification",
+      "inputs": {
+        "reactor_temperature_K": 601.15,
+        "tube_length_m": 12.25
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "native-local-perturbation-9/runs/local-01/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 2.542397513415583,
+        "yield_fraction": 0.06010690421330371,
+        "impacts": {
+          "Climate change": {
+            "value": 10.5451229150657,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "local-02",
+      "split": "verification",
+      "inputs": {
+        "reactor_temperature_K": 601.15,
+        "tube_length_m": 12.5
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "native-local-perturbation-9/runs/local-02/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 2.5587770708031314,
+        "yield_fraction": 0.060124065152109746,
+        "impacts": {
+          "Climate change": {
+            "value": 10.556797327898847,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "local-03",
+      "split": "verification",
+      "inputs": {
+        "reactor_temperature_K": 601.15,
+        "tube_length_m": 12.75
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "native-local-perturbation-9/runs/local-03/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 2.574568795454647,
+        "yield_fraction": 0.060136263114628184,
+        "impacts": {
+          "Climate change": {
+            "value": 10.568687305381571,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "local-04",
+      "split": "verification",
+      "inputs": {
+        "reactor_temperature_K": 603.15,
+        "tube_length_m": 12.25
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "native-local-perturbation-9/runs/local-04/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 2.6092164442836023,
+        "yield_fraction": 0.06060001078667651,
+        "impacts": {
+          "Climate change": {
+            "value": 10.532868274416336,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "local-06",
+      "split": "verification",
+      "inputs": {
+        "reactor_temperature_K": 603.15,
+        "tube_length_m": 12.75
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "native-local-perturbation-9/runs/local-06/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 2.643110560848479,
+        "yield_fraction": 0.060593175785922465,
+        "impacts": {
+          "Climate change": {
+            "value": 10.563191841417078,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "local-07",
+      "split": "verification",
+      "inputs": {
+        "reactor_temperature_K": 605.15,
+        "tube_length_m": 12.25
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "native-local-perturbation-9/runs/local-07/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 2.6783126985708092,
+        "yield_fraction": 0.06103535494626566,
+        "impacts": {
+          "Climate change": {
+            "value": 10.532211894062131,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "local-08",
+      "split": "verification",
+      "inputs": {
+        "reactor_temperature_K": 605.15,
+        "tube_length_m": 12.5
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "native-local-perturbation-9/runs/local-08/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 2.695564044093695,
+        "yield_fraction": 0.06102311375859947,
+        "impacts": {
+          "Climate change": {
+            "value": 10.548972849662272,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "local-09",
+      "split": "verification",
+      "inputs": {
+        "reactor_temperature_K": 605.15,
+        "tube_length_m": 12.75
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "native-local-perturbation-9/runs/local-09/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 2.7138550191455035,
+        "yield_fraction": 0.06099464236457248,
+        "impacts": {
+          "Climate change": {
+            "value": 10.568998245803078,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "v2-train-T317-L8",
+      "split": "training",
+      "inputs": {
+        "reactor_temperature_K": 590.15,
+        "tube_length_m": 8
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "native-v2-extension-12/runs/v2-train-T317-L8/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 2.2856415324485826,
+        "yield_fraction": 0.04541491778838208,
+        "impacts": {
+          "Climate change": {
+            "value": 13.081259666468746,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "v2-train-T317-L16p5",
+      "split": "training",
+      "inputs": {
+        "reactor_temperature_K": 590.15,
+        "tube_length_m": 16.5
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "native-v2-extension-12/runs/v2-train-T317-L16p5/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 2.417777504050745,
+        "yield_fraction": 0.05740625258592484,
+        "impacts": {
+          "Climate change": {
+            "value": 10.844726546074522,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "v2-train-T327-L8",
+      "split": "training",
+      "inputs": {
+        "reactor_temperature_K": 600.15,
+        "tube_length_m": 8
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "native-v2-extension-12/runs/v2-train-T327-L8/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 2.257834669973307,
+        "yield_fraction": 0.055222530333287015,
+        "impacts": {
+          "Climate change": {
+            "value": 11.053685060791118,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "v2-train-T327-L16p5",
+      "split": "training",
+      "inputs": {
+        "reactor_temperature_K": 600.15,
+        "tube_length_m": 16.5
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "native-v2-extension-12/runs/v2-train-T327-L16p5/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 2.778158416033458,
+        "yield_fraction": 0.05964577805634839,
+        "impacts": {
+          "Climate change": {
+            "value": 10.814133369617974,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "v2-train-T337-L8",
+      "split": "training",
+      "inputs": {
+        "reactor_temperature_K": 610.15,
+        "tube_length_m": 8
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "native-v2-extension-12/runs/v2-train-T337-L8/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 2.442266544759971,
+        "yield_fraction": 0.061764126017254686,
+        "impacts": {
+          "Climate change": {
+            "value": 10.22658514456401,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "v2-train-T337-L16p5",
+      "split": "training",
+      "inputs": {
+        "reactor_temperature_K": 610.15,
+        "tube_length_m": 16.5
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "native-v2-extension-12/runs/v2-train-T337-L16p5/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 3.1600258653550126,
+        "yield_fraction": 0.0611204776193759,
+        "impacts": {
+          "Climate change": {
+            "value": 10.951982390853011,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "v2-train-T347-L8",
+      "split": "training",
+      "inputs": {
+        "reactor_temperature_K": 620.15,
+        "tube_length_m": 8
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "native-v2-extension-12/runs/v2-train-T347-L8/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 2.8415538384563037,
+        "yield_fraction": 0.06411831823739761,
+        "impacts": {
+          "Climate change": {
+            "value": 10.268135935703642,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "v2-train-T347-L16p5",
+      "split": "training",
+      "inputs": {
+        "reactor_temperature_K": 620.15,
+        "tube_length_m": 16.5
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "native-v2-extension-12/runs/v2-train-T347-L16p5/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 3.5504164351623304,
+        "yield_fraction": 0.0620059630369119,
+        "impacts": {
+          "Climate change": {
+            "value": 11.219040084673184,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "v2-verify-T322-L9p75",
+      "split": "verification",
+      "inputs": {
+        "reactor_temperature_K": 595.15,
+        "tube_length_m": 9.75
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "native-v2-extension-12/runs/v2-verify-T322-L9p75/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 2.1868892358504577,
+        "yield_fraction": 0.05568797609716879,
+        "impacts": {
+          "Climate change": {
+            "value": 10.922795778273489,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "v2-verify-T332-L14",
+      "split": "verification",
+      "inputs": {
+        "reactor_temperature_K": 605.15,
+        "tube_length_m": 14
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "native-v2-extension-12/runs/v2-verify-T332-L14/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 2.801625489898055,
+        "yield_fraction": 0.06084713670448617,
+        "impacts": {
+          "Climate change": {
+            "value": 10.666048995999322,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "v2-verify-T342-L18p25",
+      "split": "verification",
+      "inputs": {
+        "reactor_temperature_K": 615.15,
+        "tube_length_m": 18.25
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "native-v2-extension-12/runs/v2-verify-T342-L18p25/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 3.4697509375377993,
+        "yield_fraction": 0.061238914358775993,
+        "impacts": {
+          "Climate change": {
+            "value": 11.233637850583095,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    },
+    {
+      "id": "v2-verify-T348-L6p75",
+      "split": "verification",
+      "inputs": {
+        "reactor_temperature_K": 621.15,
+        "tube_length_m": 6.75
+      },
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "accepted": true,
+      "source": "native-v2-extension-12/runs/v2-verify-T348-L6p75/raw.json",
+      "evidence_type": "native_simulation",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "error": null,
+      "metrics": {
+        "purchased_energy_kWh_kg": 2.719626189774287,
+        "yield_fraction": 0.06427910797922881,
+        "impacts": {
+          "Climate change": {
+            "value": 10.135894490559352,
+            "unit": "kg CO2-eq/kg",
+            "complete": true
+          }
+        }
+      },
+      "normalization_complete": true,
+      "physical_validation": false,
+      "attempted": true
+    }
+  ],
+  "source_unchanged": true,
+  "physical_validation": false,
+  "retained_native_runs": 38,
+  "excluded_repeated_coordinates": [
+    {
+      "id": "local-05",
+      "batch": "native-local-perturbation-9",
+      "original_point_id": "case-008",
+      "original_split": "holdout",
+      "inputs": {
+        "reactor_temperature_K": 603.15,
+        "tube_length_m": 12.5
+      },
+      "source": "native-local-perturbation-9/runs/local-05/raw.json",
+      "reason": "Repeated original holdout coordinate; retain separately, never duplicate in the fitting dataset or relabel as new verification"
+    }
+  ],
+  "source_batches": {
+    "generic-native-pilot-17": {
+      "dataset_sha256": "e45311b98697575d52765255c36ce88c8cfe425100f8a274b16db0a9b42d9515",
+      "ledger_file_sha256": "a10573fc9a76170d3ff28219a9e586cc2640e014440e4289c6f26f2d10b1e48c",
+      "plan_sha256": "8c20c3a4c38b7c77adb1f24127511c76faa7edaf69f5cf9697c4f45c80f6ca6a"
+    },
+    "native-local-perturbation-9": {
+      "dataset_sha256": "ad38db8462138a2a0a84dc122c8d7010d364760f580b426e711b4a07d2d11550",
+      "ledger_file_sha256": "7dbea9908cc19c52b29fc5be07d8af9f739ec1b8490e24b23301358921ab8487",
+      "plan_sha256": "a7a14fc892ccf3f3a817018ab56f16aa48a2774ddfdbd78ba928177cf47c2b49"
+    },
+    "native-v2-extension-12": {
+      "dataset_sha256": "8a7ba761e616aa4f868aaf95fdcdfe0a63cb9097cd862e3e88a29ccf6e9203bc",
+      "ledger_file_sha256": "0aed7c5ea921c2d37a7d23f42fb4e609cdef7d970c3866945e428165aec5e40e",
+      "plan_sha256": "a721af57aa27c2e5f823220c7fcf8107cf31c87bd7a9f4c77aa904821a6b1ea4"
+    }
+  }
+}

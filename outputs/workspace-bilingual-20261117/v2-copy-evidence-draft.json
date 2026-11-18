@@ -1,0 +1,88 @@
+{
+  "draft_only": true,
+  "v2_final_results": null,
+  "planned_unique_points": 37,
+  "planned_counts": {
+    "training": 20,
+    "holdout": 3,
+    "verification": 14
+  },
+  "cohorts": {
+    "original_training_12": 12,
+    "legacy_holdout_3": 3,
+    "legacy_verification_2": 2,
+    "local_verification_8": 8,
+    "extension_training_8": 8,
+    "prospective_verification_4": 4
+  },
+  "prospective_verification_ids": [
+    "v2-verify-T322-L9p75",
+    "v2-verify-T332-L14",
+    "v2-verify-T342-L18p25",
+    "v2-verify-T348-L6p75"
+  ],
+  "source_sha256": {
+    "local-perturbation-comparison.json": "97ee937be1a7a1505bec7b2c1915069f6dae98c1b81f045f68fda7f9f0ec9b13",
+    "v2-extension-plan/cohorts.json": "41d1421060d04c322de31d01c5bf363876210fdb5093bd1815ed4111cf3ca955",
+    "v2-extension-plan/PREREGISTRATION.md": "18880224ddc0afc1a3b384cde08f6d1a478d31a2082568341f507bb607a2dd29"
+  },
+  "local_eight_vs_frozen_v1": {
+    "purchased_energy_kWh_kg": {
+      "max_relative_error": 0.020050579607058316,
+      "display_percent": "2.005058%",
+      "unit": "kWh/kg",
+      "relative_floor": 0.01
+    },
+    "yield_fraction": {
+      "max_relative_error": 0.013478220523189961,
+      "display_percent": "1.347822%",
+      "unit": "1",
+      "relative_floor": 0.001
+    },
+    "impact:Climate change": {
+      "max_relative_error": 0.018500884324931795,
+      "display_percent": "1.850088%",
+      "unit": "kg CO2-eq/kg",
+      "relative_floor": 0.01
+    }
+  },
+  "center_repeat": {
+    "id": "local-05",
+    "original_point_id": "case-008",
+    "original_split": "holdout",
+    "available": true,
+    "metrics": {
+      "purchased_energy_kWh_kg": {
+        "unit": "kWh/kg",
+        "original": 2.6261657378409473,
+        "repeated": 2.6261657378409473,
+        "signed_difference": 0.0,
+        "absolute_difference": 0.0,
+        "relative_difference": 0.0
+      },
+      "yield_fraction": {
+        "unit": "1",
+        "original": 0.06060042552121615,
+        "repeated": 0.06060042552121615,
+        "signed_difference": 0.0,
+        "absolute_difference": 0.0,
+        "relative_difference": 0.0
+      },
+      "impact:Climate change": {
+        "unit": "kg CO2-eq/kg",
+        "original": 10.547501675749563,
+        "repeated": 10.547501675749563,
+        "signed_difference": 0.0,
+        "absolute_difference": 0.0,
+        "relative_difference": 0.0
+      }
+    },
+    "scope": "Repeated execution at an already held-out coordinate, not a new independent validation location. Differences are descriptive; no repeatability acceptance limit was preregistered."
+  },
+  "local_evidence_flags": {
+    "model_refitted": false,
+    "model_qualification_changed": false,
+    "frozen_model_prediction_enabled": false,
+    "physical_validation": false
+  }
+}

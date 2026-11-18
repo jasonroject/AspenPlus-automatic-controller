@@ -1,0 +1,2 @@
+const task=await taskSpace(10);const page=task.page('p2');const fs=await import('node:fs/promises');const snap=await page.snapshot({scope:'full_page'});await fs.writeFile('C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/cad-drawing-20261117/autodesk-point.txt',snap,'utf8');console.log(snap.split('\n').filter(l=>/text /.test(l)).join('\n').slice(-9000));
+const cad=task.page('p1');await cad.keyboard.press('Escape');

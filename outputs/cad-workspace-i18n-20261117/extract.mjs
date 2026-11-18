@@ -1,0 +1,6 @@
+import {parse} from './tooling/node_modules/@babel/parser/lib/index.js';
+import fs from 'node:fs';import path from 'node:path';
+const root=path.resolve('extrudecad-web/src');const keys=new Set();let templates=new Set();
+function visit(node){if(!node||typeof node!=='object')return;if(node.type==='StringLiteral'&&/\p{Script=Han}/u.test(node.value))keys.add(node.value);if(node.type==='JSXText'&&/\p{Script=Han}/u.test(node.value))keys.add(node.value.replace(/\s+/g,' ').trim());if(node.type==='TemplateLiteral'){const key=node.quasis.map((q,i)=>q.value.cooked+(i<node.expressions.length?`{${i}}`:'' )).join('');if(/\p{Script=Han}/u.test(key))templates.add(key);}for(const[k,v]of Object.entries(node))if(!['loc','start','end','extra','comments'].includes(k)){if(Array.isArray(v))v.forEach(visit);else visit(v);}}
+for(const entry of fs.readdirSync(root,{recursive:true})){if(!/\.tsx?$/.test(entry)||/\.test\./.test(entry))continue;const file=path.join(root,entry);visit(parse(fs.readFileSync(file,'utf8'),{sourceType:'module',plugins:['typescript','jsx']}));}
+fs.writeFileSync('outputs/cad-workspace-i18n-20261117/strings.json',JSON.stringify([...keys].sort(),null,2));fs.writeFileSync('outputs/cad-workspace-i18n-20261117/templates.json',JSON.stringify([...templates].sort(),null,2));console.log({strings:keys.size,templates:templates.size});

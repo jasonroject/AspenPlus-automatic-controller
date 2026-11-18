@@ -1,0 +1,20 @@
+[
+  {
+    "case": "Mixed transform skips locked base",
+    "baseX": 0,
+    "cylinderX": -20
+  },
+  {
+    "case": "Delete mixed selection",
+    "remaining": "长方体 100×50×10"
+  },
+  {
+    "case": "Visibility/search/input/modal isolation",
+    "inputState": {
+      "measure": false,
+      "layout": "viewport-grid layout-2d-only",
+      "count": 3
+    },
+    "passed": true
+  }
+]

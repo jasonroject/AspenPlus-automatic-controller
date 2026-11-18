@@ -1,0 +1,8 @@
+{
+  "multiSelectNoDoubleMove": true,
+  "atomicUndoRedo": true,
+  "orthoShiftImmediateAndEscape": true,
+  "tabBlurCancels": true,
+  "snapOverridesOrtho": true,
+  "lineBodyEndpointSnapPreservesLength": true
+}

@@ -1,0 +1,8 @@
+{
+  "id": "local-02",
+  "parameters": {
+    "reactor_temperature_K": 601.15,
+    "tube_length_m": 12.5
+  },
+  "split": "verification"
+}

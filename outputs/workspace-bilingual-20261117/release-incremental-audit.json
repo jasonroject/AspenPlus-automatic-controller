@@ -1,0 +1,18 @@
+{
+  "checked_at": "2026-11-18T00:57:12+08:00",
+  "allowlist_count": 123,
+  "groups": {
+    "analysis_web": 64,
+    "process_pipeline": 26,
+    "htl_pipeline": 6,
+    "universal_pipeline": 24,
+    "root": 3
+  },
+  "local_dependency_references_checked": 156,
+  "dependency_issues": [],
+  "manifest_files_checked": 14,
+  "manifest_issues": [],
+  "staging_performed": false,
+  "checkout_byte_audit": "release-checkout-byte-audit.json",
+  "checkout_byte_audit_passed": true
+}

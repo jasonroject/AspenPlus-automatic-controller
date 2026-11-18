@@ -1,0 +1,51 @@
+{
+  "checked_at": "2026-11-17T18:26:35.092883+00:00",
+  "production_alias": "https://vercel-pi-ten-59.vercel.app/",
+  "release_commit": "9810180",
+  "local_head": "981018034946172740dcc972a9e4bb5877a05536",
+  "deployment_id": "dpl_CKPRMvitMD4X7aJbhV5BJKU2x8Jw",
+  "request_authentication": "Ordinary public HTTPS; no Authorization, Cookie, Vercel-bypass headers or browser session.",
+  "scope": "Only the three requested runtime files; no Markdown, full suite, browser or native execution.",
+  "passed": true,
+  "files": [
+    {
+      "path": "model-artifacts.mjs",
+      "local_bytes": 32426,
+      "local_sha256": "e053ed98901ff8f82bad635d1e925c2d8a9c5b1bfd7d9958f1f02dab4be71a69",
+      "status": 200,
+      "final_url": "https://vercel-pi-ten-59.vercel.app/model-artifacts.mjs",
+      "content_type": "application/javascript; charset=utf-8",
+      "bytes": 32426,
+      "sha256": "e053ed98901ff8f82bad635d1e925c2d8a9c5b1bfd7d9958f1f02dab4be71a69",
+      "mime_valid": true,
+      "local_bytes_match": true,
+      "passed": true
+    },
+    {
+      "path": "models.mjs",
+      "local_bytes": 28153,
+      "local_sha256": "c42f7d0ede018f84ee1bd04507169e1c3ab18451af10389f4d439d2fb01c265d",
+      "status": 200,
+      "final_url": "https://vercel-pi-ten-59.vercel.app/models.mjs",
+      "content_type": "application/javascript; charset=utf-8",
+      "bytes": 28153,
+      "sha256": "c42f7d0ede018f84ee1bd04507169e1c3ab18451af10389f4d439d2fb01c265d",
+      "mime_valid": true,
+      "local_bytes_match": true,
+      "passed": true
+    },
+    {
+      "path": "universal-guide.html",
+      "local_bytes": 8967,
+      "local_sha256": "da8f8564de55f8e435b863a100862a961e86bdd6119cf0df4947f0c8ef381186",
+      "status": 200,
+      "final_url": "https://vercel-pi-ten-59.vercel.app/universal-guide.html",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 8967,
+      "sha256": "da8f8564de55f8e435b863a100862a961e86bdd6119cf0df4947f0c8ef381186",
+      "mime_valid": true,
+      "local_bytes_match": true,
+      "passed": true
+    }
+  ]
+}

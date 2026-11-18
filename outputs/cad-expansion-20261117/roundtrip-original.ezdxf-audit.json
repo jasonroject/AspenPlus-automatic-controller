@@ -1,0 +1,255 @@
+{
+  "source_file": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-16\\project1jason\\automatic\\outputs\\cad-expansion-20261117\\roundtrip-original.dxf",
+  "source_sha256": "031cb6518bf364a82a25cf3107f06b0e5142d5cb4afd96f07e4e97a6e4bd3266",
+  "source_size_bytes": 5744,
+  "ezdxf_version": "1.4.5",
+  "read_mode": "ezdxf.readfile, no recover and no source save",
+  "raw_sections": [
+    "HEADER",
+    "ENTITIES"
+  ],
+  "raw_handle_tag_count": 0,
+  "raw_owner_tag_count": 0,
+  "raw_layer_references": [
+    "EC_PROFILE_1",
+    "EC_PROFILE_1_HOLE",
+    "EC_PROFILE_2",
+    "EC_PROFILE_2_HOLE",
+    "EC_PROFILE_3",
+    "EC_PROFILE_4",
+    "EC_PROFILE_5",
+    "EC_PROFILE_6"
+  ],
+  "docs": [
+    "https://ezdxf.readthedocs.io/en/stable/drawing/drawing.html",
+    "https://ezdxf.readthedocs.io/en/stable/dxfentities/lwpolyline.html",
+    "https://ezdxf.readthedocs.io/en/stable/tutorials/layers.html"
+  ],
+  "read_success": true,
+  "dxf_version": "AC1015",
+  "units_code": 4,
+  "modelspace_entity_types": {
+    "LWPOLYLINE": 8
+  },
+  "layer_definitions_before_audit": [
+    "0",
+    "Defpoints"
+  ],
+  "undefined_named_layers_before_audit": [
+    "EC_PROFILE_1",
+    "EC_PROFILE_1_HOLE",
+    "EC_PROFILE_2",
+    "EC_PROFILE_2_HOLE",
+    "EC_PROFILE_3",
+    "EC_PROFILE_4",
+    "EC_PROFILE_5",
+    "EC_PROFILE_6"
+  ],
+  "profiles": [
+    {
+      "layer": "EC_PROFILE_1",
+      "loaded_handle": "1",
+      "loaded_owner": "12",
+      "closed": true,
+      "vertex_count": 52,
+      "elevation_mm": 0.0,
+      "thickness_mm": 8.0,
+      "extrusion_normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "has_arc": false,
+      "has_width": false,
+      "all_finite": true,
+      "bounds_xy_mm": {
+        "min_x": -56.0,
+        "max_x": 56.0,
+        "min_y": -42.0,
+        "max_y": 42.0
+      }
+    },
+    {
+      "layer": "EC_PROFILE_1_HOLE",
+      "loaded_handle": "2",
+      "loaded_owner": "12",
+      "closed": true,
+      "vertex_count": 72,
+      "elevation_mm": 0.0,
+      "thickness_mm": 8.0,
+      "extrusion_normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "has_arc": false,
+      "has_width": false,
+      "all_finite": true,
+      "bounds_xy_mm": {
+        "min_x": -14.0,
+        "max_x": 14.0,
+        "min_y": -14.0,
+        "max_y": 14.0
+      }
+    },
+    {
+      "layer": "EC_PROFILE_2",
+      "loaded_handle": "3",
+      "loaded_owner": "12",
+      "closed": true,
+      "vertex_count": 72,
+      "elevation_mm": 8.0,
+      "thickness_mm": 32.0,
+      "extrusion_normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "has_arc": false,
+      "has_width": false,
+      "all_finite": true,
+      "bounds_xy_mm": {
+        "min_x": -24.0,
+        "max_x": 24.0,
+        "min_y": -24.0,
+        "max_y": 24.0
+      }
+    },
+    {
+      "layer": "EC_PROFILE_2_HOLE",
+      "loaded_handle": "4",
+      "loaded_owner": "12",
+      "closed": true,
+      "vertex_count": 72,
+      "elevation_mm": 8.0,
+      "thickness_mm": 32.0,
+      "extrusion_normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "has_arc": false,
+      "has_width": false,
+      "all_finite": true,
+      "bounds_xy_mm": {
+        "min_x": -14.0,
+        "max_x": 14.0,
+        "min_y": -14.0,
+        "max_y": 14.0
+      }
+    },
+    {
+      "layer": "EC_PROFILE_3",
+      "loaded_handle": "5",
+      "loaded_owner": "12",
+      "closed": true,
+      "vertex_count": 6,
+      "elevation_mm": 8.0,
+      "thickness_mm": 5.0,
+      "extrusion_normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "has_arc": false,
+      "has_width": false,
+      "all_finite": true,
+      "bounds_xy_mm": {
+        "min_x": -47.2,
+        "max_x": -36.8,
+        "min_y": -34.0,
+        "max_y": -22.0
+      }
+    },
+    {
+      "layer": "EC_PROFILE_4",
+      "loaded_handle": "6",
+      "loaded_owner": "12",
+      "closed": true,
+      "vertex_count": 6,
+      "elevation_mm": 8.0,
+      "thickness_mm": 5.0,
+      "extrusion_normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "has_arc": false,
+      "has_width": false,
+      "all_finite": true,
+      "bounds_xy_mm": {
+        "min_x": 36.8,
+        "max_x": 47.2,
+        "min_y": -34.0,
+        "max_y": -22.0
+      }
+    },
+    {
+      "layer": "EC_PROFILE_5",
+      "loaded_handle": "7",
+      "loaded_owner": "12",
+      "closed": true,
+      "vertex_count": 6,
+      "elevation_mm": 8.0,
+      "thickness_mm": 5.0,
+      "extrusion_normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "has_arc": false,
+      "has_width": false,
+      "all_finite": true,
+      "bounds_xy_mm": {
+        "min_x": 36.8,
+        "max_x": 47.2,
+        "min_y": 22.0,
+        "max_y": 34.0
+      }
+    },
+    {
+      "layer": "EC_PROFILE_6",
+      "loaded_handle": "8",
+      "loaded_owner": "12",
+      "closed": true,
+      "vertex_count": 6,
+      "elevation_mm": 8.0,
+      "thickness_mm": 5.0,
+      "extrusion_normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "has_arc": false,
+      "has_width": false,
+      "all_finite": true,
+      "bounds_xy_mm": {
+        "min_x": -47.2,
+        "max_x": -36.8,
+        "min_y": 22.0,
+        "max_y": 34.0
+      }
+    }
+  ],
+  "audit": {
+    "errors": [],
+    "fixes": [],
+    "has_errors": false,
+    "has_fixes": false
+  },
+  "modelspace_count_after_audit": 8,
+  "layer_definitions_after_audit": [
+    "0",
+    "Defpoints"
+  ],
+  "checks": {
+    "eight_closed_lwpolylines": true,
+    "millimeters": true,
+    "positive_thickness": true,
+    "positive_z_ocs": true,
+    "finite_vertices": true,
+    "audit_no_errors": true,
+    "audit_no_fixes": true
+  },
+  "source_unchanged": true
+}

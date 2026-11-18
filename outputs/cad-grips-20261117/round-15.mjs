@@ -1,0 +1,2 @@
+const task=await taskSpace(1);console.log(await task.tabs());console.log(await task.page('p1').evaluate(()=>({hidden:document.hidden,hot:document.querySelector('[data-testid="grip-edit-bar"]')?.textContent,active:document.activeElement?.tagName})));
+await task.page('p2').click('[contenteditable="true"]');await task.page('p2').waitForTimeout(160);console.log(await task.page('p1').evaluate(()=>({hot:!!document.querySelector('[data-testid="grip-edit-bar"]'),hidden:document.hidden})));

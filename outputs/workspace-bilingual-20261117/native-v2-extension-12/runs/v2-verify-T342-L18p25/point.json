@@ -1,0 +1,8 @@
+{
+  "id": "v2-verify-T342-L18p25",
+  "parameters": {
+    "reactor_temperature_K": 615.15,
+    "tube_length_m": 18.25
+  },
+  "split": "verification"
+}

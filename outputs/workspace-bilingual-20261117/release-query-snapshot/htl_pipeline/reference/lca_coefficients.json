@@ -1,0 +1,27 @@
+{
+  "fixed_feed_GWP": 51.981210438152665,
+  "electricity_beta": 0.6750590250697887,
+  "wastewater_gamma": 0.1733357121112475,
+  "CO2_factor": 1.0,
+  "CH4_factor": 36.0,
+  "pump_inventory_kWh": 2.172,
+  "archived_inventory_exception": [
+    {
+      "T": 330.0,
+      "L": 10.0,
+      "scenario": "STD",
+      "reconstructed": 90.01627589880276,
+      "archived": 90.04543629950105,
+      "difference": -0.029160400698287958
+    },
+    {
+      "T": 330.0,
+      "L": 10.0,
+      "scenario": "HR",
+      "reconstructed": 62.69373507547963,
+      "archived": 62.72289547616951,
+      "difference": -0.029160400689882238
+    }
+  ],
+  "scope": "Algebraic foreground update using original fixed background providers, not a new openLCA or Monte Carlo run. Native heat is converted at 4.1868 J/cal. Fixed pump inventory 2.172 kWh per 100 kg feed is retained."
+}

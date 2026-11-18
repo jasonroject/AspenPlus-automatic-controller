@@ -1,0 +1,110 @@
+{
+  "snapshot": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-16\\project1jason\\automatic\\outputs\\workspace-bilingual-20261117\\release-snapshot",
+  "base_commit": "d24e24a719ec6df7648aad0f62d03983f70ebbbb",
+  "overlay_count": 123,
+  "groups": {
+    "node": {
+      "group": "node",
+      "command": [
+        "node",
+        "--test",
+        "universal_pipeline/*.test.mjs"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-16\\project1jason\\automatic\\outputs\\workspace-bilingual-20261117\\release-snapshot",
+      "exit_code": 0,
+      "seconds": 1.266936199972406,
+      "log": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-16\\project1jason\\automatic\\outputs\\workspace-bilingual-20261117\\release-snapshot-logs\\node.log"
+    },
+    "process": {
+      "group": "process",
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "process_pipeline",
+        "-p",
+        "test_*.py"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-16\\project1jason\\automatic\\outputs\\workspace-bilingual-20261117\\release-snapshot",
+      "exit_code": 0,
+      "seconds": 10.812666099984199,
+      "log": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-16\\project1jason\\automatic\\outputs\\workspace-bilingual-20261117\\release-snapshot-logs\\process.log"
+    },
+    "htl": {
+      "group": "htl",
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "htl_pipeline",
+        "-p",
+        "test_*.py"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-16\\project1jason\\automatic\\outputs\\workspace-bilingual-20261117\\release-snapshot",
+      "exit_code": 0,
+      "seconds": 2.680817599990405,
+      "log": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-16\\project1jason\\automatic\\outputs\\workspace-bilingual-20261117\\release-snapshot-logs\\htl.log"
+    },
+    "server": {
+      "group": "server",
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "universal_pipeline.test_serve_web"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-16\\project1jason\\automatic\\outputs\\workspace-bilingual-20261117\\release-snapshot",
+      "exit_code": 0,
+      "seconds": 0.9557792999548838,
+      "log": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-16\\project1jason\\automatic\\outputs\\workspace-bilingual-20261117\\release-snapshot-logs\\server.log"
+    }
+  },
+  "tests": {
+    "node": {
+      "passed": 125,
+      "skipped": 0
+    },
+    "process": {
+      "passed": 62,
+      "skipped": 0
+    },
+    "htl": {
+      "passed": 15,
+      "skipped": 2
+    },
+    "server": {
+      "passed": 6,
+      "skipped": 0
+    }
+  },
+  "expected_skips": [
+    {
+      "test": "test_current_frozen_artifacts_pass_exact_training_checks",
+      "reason": "Frozen local estimator not distributed",
+      "missing_private_path": "outputs/htl_pipeline/models.joblib"
+    },
+    {
+      "test": "test_native_balance_failure_and_unit_mismatch",
+      "reason": "Private native outputs are local only",
+      "missing_private_path": "outputs/htl_pipeline/live/raw/T325p00_L8p50.json"
+    }
+  ],
+  "private_outputs_absent": true,
+  "worktree_candidate_changes_after_snapshot": [],
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "dependencies": {
+    "numpy": "2.5.1",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "scikit-learn": "1.9.1",
+    "joblib": "1.6.0",
+    "threadpoolctl": "3.7.0"
+  },
+  "native_execution_performed": false,
+  "note": "The Node test process exited 0; its log and result JSON were saved. Only the parent wrapper terminal echo encountered a GBK UnicodeEncodeError; no test was rerun.",
+  "all_requested_test_processes_passed": true
+}

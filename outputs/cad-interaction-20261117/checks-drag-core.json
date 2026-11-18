@@ -1,0 +1,7 @@
+{
+  "nodeSnapExactNoMerge": true,
+  "gripSnapSameAsNode": true,
+  "microJitterNoEdit": true,
+  "selfSnapExcluded": true,
+  "lockedFeedbackAndNoEdit": true
+}

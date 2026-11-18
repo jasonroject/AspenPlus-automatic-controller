@@ -1,0 +1,7 @@
+node_modules/
+dist/
+deliverables/
+.qa/
+.env*
+redesign.py
+*.log

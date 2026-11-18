@@ -1,0 +1,41 @@
+[
+  {
+    "case": "small subtraction large",
+    "feedback": "无法完成差集 (A - B)：结果为空，没有可保留的二维截面。",
+    "count": 8,
+    "hidden": 0,
+    "preview": false
+  },
+  {
+    "case": "plate subtraction strip",
+    "feedback": "无法完成差集 (A - B)：结果包含多个独立轮廓；当前模型仅支持单个外轮廓，未应用此运算。",
+    "count": 8,
+    "hidden": 0,
+    "preview": false
+  },
+  {
+    "case": "small union far",
+    "feedback": "无法完成并集 (A ∪ B)：结果包含多个独立轮廓；当前模型仅支持单个外轮廓，未应用此运算。",
+    "count": 8,
+    "hidden": 0,
+    "preview": false
+  },
+  {
+    "case": "Preview then commit inherits A Z and hides originals",
+    "name": "差集 (E 底板100×40 - F 左孔)",
+    "z": "3",
+    "h": "12",
+    "hidden": 2
+  },
+  {
+    "case": "Second hole rejected",
+    "text": "无法完成差集 (A - B)：结果包含多个孔；当前模型仅支持一个孔，未应用此运算。"
+  },
+  {
+    "case": "B inner hole participates in intersection",
+    "outerVertices": 72,
+    "holeVertices": 72,
+    "zOffset": 0,
+    "zHeight": 5
+  }
+]

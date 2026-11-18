@@ -1,0 +1,42 @@
+{
+  "temperature_C": [
+    100,
+    350,
+    2
+  ],
+  "length_m": [
+    1,
+    20,
+    0.1
+  ],
+  "grid_count": 24066,
+  "native_design": {
+    "training_new": 70,
+    "reserved_holdout": 28,
+    "holdout_regions": {
+      "whole_domain": 16,
+      "high_temperature": 12
+    },
+    "reuse_prior": "Only successful copies at INT_TOL=1e-4; use physical Celsius=T_K-273.15."
+  },
+  "temperature_conversion": "New native cases use T_K=T_C+273.15; archived 273-offset runs enter at actual Kelvin-derived Celsius, never silently relabelled.",
+  "solver": {
+    "INT_TOL": 0.0001,
+    "MAX_NSTEP": 100000,
+    "unchanged": "GEAR, NEWTON, reaction network, thermophysical model, feed, pressure, diameter, tube count"
+  },
+  "model": "New continuous two-input simulator surrogate; old six-Ea fixed-condition surrogates are not extrapolated.",
+  "scope": "Nominal kinetics and original surrogate thermophysical representation; 100-308 C extends beyond the old operating study, not experimental validation.",
+  "validation": "Reserved native points are not used in training or selection. Any adaptive additions remain training. Check finalists with direct Aspen.",
+  "source_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+  "screening_criteria": {
+    "native": "Completed report; finite positive target, nonnegative components within 1e-10 kg/h, total mass residual <=0.01 kg/h, chemical C/H/O relative residual <=0.001, max device energy residual <=0.01 kW.",
+    "surrogate": "Report heldout R2, RMSE, median/maximum relative error and log10 RMSE separately. Provisional field use targets: median relative error <=2%, 95th percentile <=5% for target mass and both CF fields. Char judged with absolute and relative errors separately because near-zero values span many orders of magnitude.",
+    "extrema": "Native rerun predicted target maximum and CF minima, independent of fitting; these are single-criterion grid extrema, not uncertainty-robust utility winners."
+  },
+  "batch_execution_revision": {
+    "reason": "Aspen IAPMON.3 history-size interruption in reused documents",
+    "resolution": "One fresh Aspen document and unique working directory per native point; retain failed attempts; same physics and integration tolerance",
+    "candidate_kernels": "RBF, Matern 5/2, Matern 3/2 with estimated noise, Matern 3/2 with fixed 1e-8 noise; selection uses training-only CV. The fixed-noise alternative tests smoothing bias before reserved validation is examined."
+  }
+}

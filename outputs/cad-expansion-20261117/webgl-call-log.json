@@ -1,0 +1,564 @@
+{
+  "calls": [
+    {
+      "method": "getProgramInfoLog",
+      "at": 96.5,
+      "valid": true,
+      "result": "",
+      "stack": "Error: getProgramInfoLog\n    at P.<computed> [as getProgramInfoLog] (<anonymous>:1:360)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4182:334)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)\n    at Cl._sceneToCubeUV (http://localhost:5180/ExtrudeCAD_Studio.html:3843:22960)"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 97.69999998807907,
+      "parameter": 35714,
+      "valid": true,
+      "result": true,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4182:463)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)\n    at Cl._sceneToCubeUV (http://localhost:5180/ExtrudeCAD_Studio.html:3843:22960)"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 97.80000001192093,
+      "parameter": 35718,
+      "valid": true,
+      "result": 4,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at new Ju (http://localhost:5180/ExtrudeCAD_Studio.html:4138:9055)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4189:228)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 98.30000001192093,
+      "parameter": 35721,
+      "valid": true,
+      "result": 1,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at ld (http://localhost:5180/ExtrudeCAD_Studio.html:4148:34)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4189:242)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)"
+    },
+    {
+      "method": "getProgramInfoLog",
+      "at": 107.89999997615814,
+      "valid": true,
+      "result": "",
+      "stack": "Error: getProgramInfoLog\n    at P.<computed> [as getProgramInfoLog] (<anonymous>:1:360)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4182:334)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)\n    at Cl._sceneToCubeUV (http://localhost:5180/ExtrudeCAD_Studio.html:3843:22974)"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 108.30000001192093,
+      "parameter": 35714,
+      "valid": true,
+      "result": true,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4182:463)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)\n    at Cl._sceneToCubeUV (http://localhost:5180/ExtrudeCAD_Studio.html:3843:22974)"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 108.39999997615814,
+      "parameter": 35718,
+      "valid": true,
+      "result": 15,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at new Ju (http://localhost:5180/ExtrudeCAD_Studio.html:4138:9055)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4189:228)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 108.60000002384186,
+      "parameter": 35721,
+      "valid": true,
+      "result": 2,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at ld (http://localhost:5180/ExtrudeCAD_Studio.html:4148:34)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4189:242)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)"
+    },
+    {
+      "method": "getProgramInfoLog",
+      "at": 118.10000002384186,
+      "valid": true,
+      "result": "",
+      "stack": "Error: getProgramInfoLog\n    at P.<computed> [as getProgramInfoLog] (<anonymous>:1:360)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4182:334)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)\n    at Cl._sceneToCubeUV (http://localhost:5180/ExtrudeCAD_Studio.html:3843:22974)"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 119.69999998807907,
+      "parameter": 35714,
+      "valid": true,
+      "result": true,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4182:463)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)\n    at Cl._sceneToCubeUV (http://localhost:5180/ExtrudeCAD_Studio.html:3843:22974)"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 119.80000001192093,
+      "parameter": 35718,
+      "valid": true,
+      "result": 15,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at new Ju (http://localhost:5180/ExtrudeCAD_Studio.html:4138:9055)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4189:228)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 120,
+      "parameter": 35721,
+      "valid": true,
+      "result": 3,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at ld (http://localhost:5180/ExtrudeCAD_Studio.html:4148:34)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4189:242)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)"
+    },
+    {
+      "method": "getProgramInfoLog",
+      "at": 124,
+      "valid": true,
+      "result": "",
+      "stack": "Error: getProgramInfoLog\n    at P.<computed> [as getProgramInfoLog] (<anonymous>:1:360)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4182:334)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)\n    at Cl._sceneToCubeUV (http://localhost:5180/ExtrudeCAD_Studio.html:3843:22974)"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 124.30000001192093,
+      "parameter": 35714,
+      "valid": true,
+      "result": true,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4182:463)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)\n    at Cl._sceneToCubeUV (http://localhost:5180/ExtrudeCAD_Studio.html:3843:22974)"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 124.39999997615814,
+      "parameter": 35718,
+      "valid": true,
+      "result": 12,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at new Ju (http://localhost:5180/ExtrudeCAD_Studio.html:4138:9055)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4189:228)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 124.60000002384186,
+      "parameter": 35721,
+      "valid": true,
+      "result": 2,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at ld (http://localhost:5180/ExtrudeCAD_Studio.html:4148:34)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4189:242)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)"
+    },
+    {
+      "method": "getProgramInfoLog",
+      "at": 135.80000001192093,
+      "valid": true,
+      "result": "",
+      "stack": "Error: getProgramInfoLog\n    at P.<computed> [as getProgramInfoLog] (<anonymous>:1:360)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4182:334)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)\n    at Cl._blurPass (http://localhost:5180/ExtrudeCAD_Studio.html:3843:24669)"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 136.39999997615814,
+      "parameter": 35714,
+      "valid": true,
+      "result": true,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4182:463)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)\n    at Cl._blurPass (http://localhost:5180/ExtrudeCAD_Studio.html:3843:24669)"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 136.60000002384186,
+      "parameter": 35718,
+      "valid": true,
+      "result": 3,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at new Ju (http://localhost:5180/ExtrudeCAD_Studio.html:4138:9055)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4189:228)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 136.69999998807907,
+      "parameter": 35721,
+      "valid": true,
+      "result": 2,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at ld (http://localhost:5180/ExtrudeCAD_Studio.html:4148:34)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4189:242)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)"
+    },
+    {
+      "method": "getProgramInfoLog",
+      "at": 150.10000002384186,
+      "valid": true,
+      "result": "",
+      "stack": "Error: getProgramInfoLog\n    at P.<computed> [as getProgramInfoLog] (<anonymous>:1:360)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4182:334)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)\n    at Cl._applyGGXFilter (http://localhost:5180/ExtrudeCAD_Studio.html:3843:24094)"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 150.60000002384186,
+      "parameter": 35714,
+      "valid": true,
+      "result": true,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4182:463)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)\n    at Cl._applyGGXFilter (http://localhost:5180/ExtrudeCAD_Studio.html:3843:24094)"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 150.80000001192093,
+      "parameter": 35718,
+      "valid": true,
+      "result": 3,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at new Ju (http://localhost:5180/ExtrudeCAD_Studio.html:4138:9055)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4189:228)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 150.89999997615814,
+      "parameter": 35721,
+      "valid": true,
+      "result": 2,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at ld (http://localhost:5180/ExtrudeCAD_Studio.html:4148:34)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4189:242)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)"
+    },
+    {
+      "method": "deleteProgram",
+      "at": 151.69999998807907,
+      "valid": false,
+      "stack": "Error: deleteProgram\n    at P.<computed> [as deleteProgram] (<anonymous>:1:360)\n    at Ad.destroy (http://localhost:5180/ExtrudeCAD_Studio.html:4189:570)\n    at Object.x [as releaseProgram] (http://localhost:5180/ExtrudeCAD_Studio.html:4189:12285)\n    at http://localhost:5180/ExtrudeCAD_Studio.html:4240:29234\n    at Map.forEach (<anonymous>)\n    at Ue (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29211)\n    at He (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29139)\n    at Ls.Ve (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29118)\n    at Ls.dispatchEvent (http://localhost:5180/ExtrudeCAD_Studio.html:21:65978)\n    at Ls.dispose (http://localhost:5180/ExtrudeCAD_Studio.html:21:188996)"
+    },
+    {
+      "method": "deleteProgram",
+      "at": 152.30000001192093,
+      "valid": true,
+      "stack": "Error: deleteProgram\n    at P.<computed> [as deleteProgram] (<anonymous>:1:360)\n    at Ad.destroy (http://localhost:5180/ExtrudeCAD_Studio.html:4189:570)\n    at Object.x [as releaseProgram] (http://localhost:5180/ExtrudeCAD_Studio.html:4189:12285)\n    at http://localhost:5180/ExtrudeCAD_Studio.html:4240:29234\n    at Map.forEach (<anonymous>)\n    at Ue (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29211)\n    at He (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29139)\n    at Ls.Ve (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29118)\n    at Ls.dispatchEvent (http://localhost:5180/ExtrudeCAD_Studio.html:21:65978)\n    at Ls.dispose (http://localhost:5180/ExtrudeCAD_Studio.html:21:188996)"
+    },
+    {
+      "method": "deleteProgram",
+      "at": 153.30000001192093,
+      "valid": false,
+      "stack": "Error: deleteProgram\n    at P.<computed> [as deleteProgram] (<anonymous>:1:360)\n    at Ad.destroy (http://localhost:5180/ExtrudeCAD_Studio.html:4189:570)\n    at Object.x [as releaseProgram] (http://localhost:5180/ExtrudeCAD_Studio.html:4189:12285)\n    at http://localhost:5180/ExtrudeCAD_Studio.html:4240:29234\n    at Map.forEach (<anonymous>)\n    at Ue (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29211)\n    at He (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29139)\n    at da.Ve (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29118)\n    at da.dispatchEvent (http://localhost:5180/ExtrudeCAD_Studio.html:21:65978)\n    at da.dispose (http://localhost:5180/ExtrudeCAD_Studio.html:21:188996)"
+    },
+    {
+      "method": "deleteProgram",
+      "at": 166.39999997615814,
+      "valid": false,
+      "stack": "Error: deleteProgram\n    at P.<computed> [as deleteProgram] (<anonymous>:1:360)\n    at Ad.destroy (http://localhost:5180/ExtrudeCAD_Studio.html:4189:570)\n    at Object.x [as releaseProgram] (http://localhost:5180/ExtrudeCAD_Studio.html:4189:12285)\n    at http://localhost:5180/ExtrudeCAD_Studio.html:4240:29234\n    at Map.forEach (<anonymous>)\n    at Ue (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29211)\n    at He (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29139)\n    at Bs.Ve (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29118)\n    at Bs.dispatchEvent (http://localhost:5180/ExtrudeCAD_Studio.html:21:65978)\n    at Bs.dispose (http://localhost:5180/ExtrudeCAD_Studio.html:21:188996)"
+    },
+    {
+      "method": "deleteProgram",
+      "at": 188.19999998807907,
+      "valid": false,
+      "stack": "Error: deleteProgram\n    at P.<computed> [as deleteProgram] (<anonymous>:1:360)\n    at Ad.destroy (http://localhost:5180/ExtrudeCAD_Studio.html:4189:570)\n    at Object.x [as releaseProgram] (http://localhost:5180/ExtrudeCAD_Studio.html:4189:12285)\n    at http://localhost:5180/ExtrudeCAD_Studio.html:4240:29234\n    at Map.forEach (<anonymous>)\n    at Ue (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29211)\n    at He (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29139)\n    at Ba.Ve (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29118)\n    at Ba.dispatchEvent (http://localhost:5180/ExtrudeCAD_Studio.html:21:65978)\n    at Ba.dispose (http://localhost:5180/ExtrudeCAD_Studio.html:21:188996)"
+    },
+    {
+      "method": "getProgramInfoLog",
+      "at": 196.89999997615814,
+      "valid": true,
+      "result": "",
+      "stack": "Error: getProgramInfoLog\n    at P.<computed> [as getProgramInfoLog] (<anonymous>:1:360)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4182:334)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at b (http://localhost:5180/ExtrudeCAD_Studio.html:4216:6437)\n    at b (http://localhost:5180/ExtrudeCAD_Studio.html:4216:6558)\n    at b (http://localhost:5180/ExtrudeCAD_Studio.html:4216:6558)\n    at b (http://localhost:5180/ExtrudeCAD_Studio.html:4216:6558)\n    at tf.render (http://localhost:5180/ExtrudeCAD_Studio.html:4216:3785)"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 197.69999998807907,
+      "parameter": 35714,
+      "valid": true,
+      "result": true,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4182:463)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at b (http://localhost:5180/ExtrudeCAD_Studio.html:4216:6437)\n    at b (http://localhost:5180/ExtrudeCAD_Studio.html:4216:6558)\n    at b (http://localhost:5180/ExtrudeCAD_Studio.html:4216:6558)\n    at b (http://localhost:5180/ExtrudeCAD_Studio.html:4216:6558)\n    at tf.render (http://localhost:5180/ExtrudeCAD_Studio.html:4216:3785)"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 198,
+      "parameter": 35718,
+      "valid": true,
+      "result": 3,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at new Ju (http://localhost:5180/ExtrudeCAD_Studio.html:4138:9055)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4189:228)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at b (http://localhost:5180/ExtrudeCAD_Studio.html:4216:6437)\n    at b (http://localhost:5180/ExtrudeCAD_Studio.html:4216:6558)\n    at b (http://localhost:5180/ExtrudeCAD_Studio.html:4216:6558)\n    at b (http://localhost:5180/ExtrudeCAD_Studio.html:4216:6558)"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 198.5,
+      "parameter": 35721,
+      "valid": true,
+      "result": 1,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at ld (http://localhost:5180/ExtrudeCAD_Studio.html:4148:34)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4189:242)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at b (http://localhost:5180/ExtrudeCAD_Studio.html:4216:6437)\n    at b (http://localhost:5180/ExtrudeCAD_Studio.html:4216:6558)\n    at b (http://localhost:5180/ExtrudeCAD_Studio.html:4216:6558)\n    at b (http://localhost:5180/ExtrudeCAD_Studio.html:4216:6558)"
+    },
+    {
+      "method": "getProgramInfoLog",
+      "at": 199.39999997615814,
+      "valid": true,
+      "result": "",
+      "stack": "Error: getProgramInfoLog\n    at P.<computed> [as getProgramInfoLog] (<anonymous>:1:360)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4182:334)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)\n    at http://localhost:5180/ExtrudeCAD_Studio.html:4263:76713"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 199.69999998807907,
+      "parameter": 35714,
+      "valid": true,
+      "result": true,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4182:463)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)\n    at http://localhost:5180/ExtrudeCAD_Studio.html:4263:76713"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 199.80000001192093,
+      "parameter": 35718,
+      "valid": true,
+      "result": 7,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at new Ju (http://localhost:5180/ExtrudeCAD_Studio.html:4138:9055)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4189:228)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 199.89999997615814,
+      "parameter": 35721,
+      "valid": true,
+      "result": 2,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at ld (http://localhost:5180/ExtrudeCAD_Studio.html:4148:34)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4189:242)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)"
+    },
+    {
+      "method": "getProgramInfoLog",
+      "at": 200.30000001192093,
+      "valid": true,
+      "result": "",
+      "stack": "Error: getProgramInfoLog\n    at P.<computed> [as getProgramInfoLog] (<anonymous>:1:360)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4182:334)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)\n    at http://localhost:5180/ExtrudeCAD_Studio.html:4263:76713"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 200.60000002384186,
+      "parameter": 35714,
+      "valid": true,
+      "result": true,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4182:463)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)\n    at http://localhost:5180/ExtrudeCAD_Studio.html:4263:76713"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 200.69999998807907,
+      "parameter": 35718,
+      "valid": true,
+      "result": 8,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at new Ju (http://localhost:5180/ExtrudeCAD_Studio.html:4138:9055)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4189:228)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 200.69999998807907,
+      "parameter": 35721,
+      "valid": true,
+      "result": 1,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at ld (http://localhost:5180/ExtrudeCAD_Studio.html:4148:34)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4189:242)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)"
+    },
+    {
+      "method": "getProgramInfoLog",
+      "at": 219.39999997615814,
+      "valid": true,
+      "result": "",
+      "stack": "Error: getProgramInfoLog\n    at P.<computed> [as getProgramInfoLog] (<anonymous>:1:360)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4182:334)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)\n    at http://localhost:5180/ExtrudeCAD_Studio.html:4263:76713"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 220,
+      "parameter": 35714,
+      "valid": true,
+      "result": true,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4182:463)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)\n    at http://localhost:5180/ExtrudeCAD_Studio.html:4263:76713"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 220.10000002384186,
+      "parameter": 35718,
+      "valid": true,
+      "result": 37,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at new Ju (http://localhost:5180/ExtrudeCAD_Studio.html:4138:9055)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4189:228)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 220.30000001192093,
+      "parameter": 35721,
+      "valid": true,
+      "result": 2,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at ld (http://localhost:5180/ExtrudeCAD_Studio.html:4148:34)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4189:242)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35830)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)"
+    },
+    {
+      "method": "getProgramInfoLog",
+      "at": 223.89999997615814,
+      "valid": true,
+      "result": "",
+      "stack": "Error: getProgramInfoLog\n    at P.<computed> [as getProgramInfoLog] (<anonymous>:1:360)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4182:334)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35874)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)\n    at http://localhost:5180/ExtrudeCAD_Studio.html:4263:76713"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 224.19999998807907,
+      "parameter": 35714,
+      "valid": true,
+      "result": true,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4182:463)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35874)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)\n    at http://localhost:5180/ExtrudeCAD_Studio.html:4263:76713"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 224.30000001192093,
+      "parameter": 35718,
+      "valid": true,
+      "result": 8,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at new Ju (http://localhost:5180/ExtrudeCAD_Studio.html:4138:9055)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4189:228)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35874)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 224.39999997615814,
+      "parameter": 35721,
+      "valid": true,
+      "result": 1,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at ld (http://localhost:5180/ExtrudeCAD_Studio.html:4148:34)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4189:242)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35874)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)"
+    },
+    {
+      "method": "getProgramInfoLog",
+      "at": 224.69999998807907,
+      "valid": true,
+      "result": "",
+      "stack": "Error: getProgramInfoLog\n    at P.<computed> [as getProgramInfoLog] (<anonymous>:1:360)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4182:334)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35874)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)\n    at http://localhost:5180/ExtrudeCAD_Studio.html:4263:76713"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 224.89999997615814,
+      "parameter": 35714,
+      "valid": true,
+      "result": true,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4182:463)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35874)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)\n    at http://localhost:5180/ExtrudeCAD_Studio.html:4263:76713"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 225.10000002384186,
+      "parameter": 35718,
+      "valid": true,
+      "result": 10,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at new Ju (http://localhost:5180/ExtrudeCAD_Studio.html:4138:9055)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4189:228)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35874)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)"
+    },
+    {
+      "method": "getProgramParameter",
+      "at": 225.19999998807907,
+      "parameter": 35721,
+      "valid": true,
+      "result": 2,
+      "stack": "Error: getProgramParameter\n    at P.<computed> [as getProgramParameter] (<anonymous>:1:360)\n    at ld (http://localhost:5180/ExtrudeCAD_Studio.html:4148:34)\n    at C (http://localhost:5180/ExtrudeCAD_Studio.html:4189:242)\n    at Ad.getUniforms (http://localhost:5180/ExtrudeCAD_Studio.html:4189:303)\n    at ht (http://localhost:5180/ExtrudeCAD_Studio.html:4240:43359)\n    at _f.renderBufferDirect (http://localhost:5180/ExtrudeCAD_Studio.html:4240:29417)\n    at st (http://localhost:5180/ExtrudeCAD_Studio.html:4240:38177)\n    at ot (http://localhost:5180/ExtrudeCAD_Studio.html:4240:37721)\n    at it (http://localhost:5180/ExtrudeCAD_Studio.html:4240:35874)\n    at _f.render (http://localhost:5180/ExtrudeCAD_Studio.html:4240:34190)"
+    }
+  ],
+  "events": [
+    {
+      "method": "Log.entryAdded",
+      "params": {
+        "entry": {
+          "source": "rendering",
+          "level": "warning",
+          "text": "[.WebGL-0x2f7c001d1a00] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+          "timestamp": 1794896454926.732,
+          "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+        }
+      },
+      "sessionId": "65D7DED854540B50F3CDBF23CA560F5A"
+    },
+    {
+      "method": "Log.entryAdded",
+      "params": {
+        "entry": {
+          "source": "rendering",
+          "level": "warning",
+          "text": "[.WebGL-0x2f7c001d1a00] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+          "timestamp": 1794896454926.759,
+          "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+        }
+      },
+      "sessionId": "65D7DED854540B50F3CDBF23CA560F5A"
+    },
+    {
+      "method": "Log.entryAdded",
+      "params": {
+        "entry": {
+          "source": "rendering",
+          "level": "warning",
+          "text": "[.WebGL-0x2f7c001d1a00] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+          "timestamp": 1794896454926.77,
+          "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+        }
+      },
+      "sessionId": "65D7DED854540B50F3CDBF23CA560F5A"
+    },
+    {
+      "method": "Log.entryAdded",
+      "params": {
+        "entry": {
+          "source": "rendering",
+          "level": "warning",
+          "text": "[.WebGL-0x2f7c001d1a00] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+          "timestamp": 1794896454926.781,
+          "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+        }
+      },
+      "sessionId": "65D7DED854540B50F3CDBF23CA560F5A"
+    },
+    {
+      "method": "Log.entryAdded",
+      "params": {
+        "entry": {
+          "source": "rendering",
+          "level": "warning",
+          "text": "[.WebGL-0x2f7c001d1a00] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+          "timestamp": 1794896454926.792,
+          "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+        }
+      },
+      "sessionId": "65D7DED854540B50F3CDBF23CA560F5A"
+    },
+    {
+      "method": "Log.entryAdded",
+      "params": {
+        "entry": {
+          "source": "rendering",
+          "level": "warning",
+          "text": "[.WebGL-0x2f7c001d1a00] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+          "timestamp": 1794896454926.799,
+          "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+        }
+      },
+      "sessionId": "65D7DED854540B50F3CDBF23CA560F5A"
+    },
+    {
+      "method": "Log.entryAdded",
+      "params": {
+        "entry": {
+          "source": "rendering",
+          "level": "warning",
+          "text": "[.WebGL-0x2f7c001d1a00] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+          "timestamp": 1794896454926.809,
+          "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+        }
+      },
+      "sessionId": "65D7DED854540B50F3CDBF23CA560F5A"
+    },
+    {
+      "method": "Log.entryAdded",
+      "params": {
+        "entry": {
+          "source": "rendering",
+          "level": "warning",
+          "text": "[.WebGL-0x2f7c001d1a00] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+          "timestamp": 1794896454926.817,
+          "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+        }
+      },
+      "sessionId": "65D7DED854540B50F3CDBF23CA560F5A"
+    },
+    {
+      "method": "Log.entryAdded",
+      "params": {
+        "entry": {
+          "source": "rendering",
+          "level": "warning",
+          "text": "[.WebGL-0x2f7c001d1a00] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+          "timestamp": 1794896454926.827,
+          "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+        }
+      },
+      "sessionId": "65D7DED854540B50F3CDBF23CA560F5A"
+    },
+    {
+      "method": "Log.entryAdded",
+      "params": {
+        "entry": {
+          "source": "rendering",
+          "level": "warning",
+          "text": "[.WebGL-0x2f7c001d1a00] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+          "timestamp": 1794896454926.838,
+          "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+        }
+      },
+      "sessionId": "65D7DED854540B50F3CDBF23CA560F5A"
+    },
+    {
+      "method": "Log.entryAdded",
+      "params": {
+        "entry": {
+          "source": "rendering",
+          "level": "warning",
+          "text": "[.WebGL-0x2f7c001d1a00] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+          "timestamp": 1794896454926.846,
+          "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+        }
+      },
+      "sessionId": "65D7DED854540B50F3CDBF23CA560F5A"
+    },
+    {
+      "method": "Log.entryAdded",
+      "params": {
+        "entry": {
+          "source": "rendering",
+          "level": "warning",
+          "text": "[.WebGL-0x2f7c001d1a00] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+          "timestamp": 1794896454926.855,
+          "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+        }
+      },
+      "sessionId": "65D7DED854540B50F3CDBF23CA560F5A"
+    }
+  ]
+}

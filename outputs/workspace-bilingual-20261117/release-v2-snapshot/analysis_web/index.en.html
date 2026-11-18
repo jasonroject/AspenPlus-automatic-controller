@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>Hydrothermal Liquefaction | Process Analysis</title>
+    <link rel="preload" href="vendor/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="plant-workspace.css?v=4" />
+    <link rel="stylesheet" href="usability.css?v=5.3" />
+    <link rel="stylesheet" href="studio.css?v=6" />
+    <link rel="stylesheet" href="monochrome.css?v=8" />
+  <link rel="stylesheet" href="workspace-refresh.css"></head>
+  <body data-theme="monochrome">
+    <aside class="sidebar">
+      <a class="brand" href="index.en.html" aria-label="Research workspace home"
+        ><span class="brand-mark">H</span><span>HTL Studio<small>Hydrothermal Liquefaction</small></span></a
+      >
+      <div class="sidebar-label">Research Workspace</div>
+      <nav aria-label="Main navigation">
+        <button class="nav-item" data-view="overview">
+          <span class="nav-icon">▦</span>Overview
+        </button>
+        <button class="nav-item" data-view="cases">
+          <span class="nav-icon">▤</span>Case Data<span
+            id="case-count"
+            class="nav-count"
+            >—</span
+          >
+        </button>
+        <button class="nav-item active" data-view="process" aria-current="page">
+          <span class="nav-icon">⇄</span>Process & Equipment
+        </button>
+        <button class="nav-item" data-view="lca">
+          <span class="nav-icon">◉</span>Life Cycle Assessment
+        </button>
+        <button class="nav-item" data-view="screening">
+          <span class="nav-icon">↗</span>Case Screening
+        </button>
+        <a class="nav-item" href="pipeline.html" style="text-decoration:none">Prediction &amp; Robustness ↗</a>
+        <a class="nav-item" href="universal.html" style="text-decoration:none">Universal Aspen Import ↗</a>
+        <button class="nav-item" data-view="sources">
+          <span class="nav-icon">▥</span>Data Sources
+        </button>
+      </nav>
+      <div class="studio-sidebar-note"><span class="studio-live-dot"></span>Archived Research Workspace<small>20 conditions · STD / HR pairs<br />Process analysis and life cycle assessment</small></div>
+      <div hidden>
+        <select id="case-select"></select
+        ><span id="selection-note"></span>
+      </div>
+    </aside>
+
+    <div class="workspace">
+      <section class="case-toolbar" aria-label="Current operating condition">
+        <div class="case-fields">
+          <label for="inspector-temperature"
+            >Temperature<select id="inspector-temperature" disabled></select
+          ></label>
+          <label for="inspector-length"
+            >Length<select id="inspector-length" disabled></select
+          ></label>
+        </div>
+        <div class="scenario-switch" role="group" aria-label="Heating scenario">
+          <button data-scenario="STD" aria-pressed="true">STD Standard</button>
+          <button data-scenario="HR" aria-pressed="false">HR Recovery</button>
+        </div>
+        <span id="current-context" aria-live="polite"></span>
+        <div class="case-toolbar-actions">
+          <button class="button secondary" data-detail="condition">
+            Case details
+          </button>
+          <button id="download" class="button secondary" disabled>
+            Export case ↓
+          </button>
+        </div>
+        <div hidden>
+          <span id="breadcrumb-view"></span><span id="inspector-actual"></span
+          ><span id="inspector-pressure"></span>
+        </div>
+      </section>
+      <main id="main">
+        <div id="load-error" role="alert" hidden></div>
+        <section class="page-heading">
+          <div>
+            <h1 id="page-title">From operating conditions to process performance</h1>
+            <p id="page-description">
+              Explore paired material, energy and environmental results along the research workflow.
+            </p>
+          </div>
+          <div class="basis-card">
+            <span>Accounting basis</span><strong id="basis-value">—</strong
+            ><small id="basis-duration">—</small>
+          </div>
+        </section>
+
+        <section class="workflow" aria-label="Analysis workflow">
+          <div>
+            <span class="flow-name">STD / HR</span><span>Energy integration scenarios</span>
+          </div>
+          <span class="flow-arrow">→</span>
+          <div>
+            <span class="flow-name">Foreground inventory</span><span>Materials and energy</span>
+          </div>
+          <span class="flow-arrow">→</span>
+          <div>
+            <span class="flow-name">Life Cycle Assessment</span><span>GWP and carbon footprint</span>
+          </div>
+          <span class="flow-arrow">→</span>
+          <div>
+            <span class="flow-name">Multi-criteria screening</span
+            ><span>Pareto analysis and preference weights</span>
+          </div>
+        </section>
+
+        <section id="view-overview" class="view premium-overview" hidden>
+          <header class="overview-heading">
+            <div>
+              <p class="overview-eyebrow">HTL STUDIO / RESEARCH OVERVIEW</p>
+              <h1>Lignin Hydrothermal Liquefaction</h1>
+              <div class="overview-meta">
+                <span><strong id="home-conditions">—</strong> conditions</span
+                ><span><strong id="home-scenarios">—</strong> scenarios</span>
+                <span id="home-basis">100 kg wet feed / 1 h</span>
+                <span class="overview-status">Archived data</span>
+              </div>
+            </div>
+            <button class="button primary" data-view="process">
+              Continue analysis <span aria-hidden="true">→</span>
+            </button>
+          </header>
+
+          <div id="home-kpis" class="premium-kpis" aria-live="polite"></div>
+
+          <div class="overview-grid">
+            <article class="panel overview-matrix">
+              <div class="panel-heading">
+                <div>
+                  <p class="overview-eyebrow">OPERATING SPACE</p>
+                  <h2>Carbon Footprint Matrix</h2>
+                </div>
+                <div class="overview-scenario" aria-label="Matrix scenario">
+                  <button type="button" data-scenario="STD" aria-pressed="false">STD</button>
+                  <button type="button" data-scenario="HR" aria-pressed="false">HR</button>
+                </div>
+              </div>
+              <p class="overview-chart-caption">CF / kg CO₂-eq·kg⁻¹ target monomers in the outlet <span>Select a cell to inspect a condition</span></p>
+              <div class="overview-matrix-table">
+                <table class="overview-heatmap">
+                  <caption class="sr-only">Carbon footprint by temperature and reactor length. Select a cell to choose the current condition.</caption>
+                  <thead id="home-matrix-head"></thead>
+                  <tbody id="home-matrix-body"></tbody>
+                </table>
+              </div>
+              <div class="overview-matrix-footer">
+                <span id="home-matrix-selection"></span>
+                <div class="overview-legend" aria-label="Common carbon footprint scale across all scenarios">
+                  <span id="home-matrix-min"></span>
+                  <span class="overview-legend-gradient" aria-hidden="true"></span>
+                  <span id="home-matrix-max"></span>
+                </div>
+              </div>
+              <p class="overview-scale-note">Common STD / HR scale · One archived record per cell</p>
+            </article>
+
+            <article class="panel overview-pair">
+              <div class="panel-heading">
+                <div>
+                  <p class="overview-eyebrow">PAIRED COMPARISON</p>
+                  <h2 id="home-current-condition">Current condition</h2>
+                </div>
+                <span class="overview-current-badge" id="home-current-scenario"></span>
+              </div>
+              <p class="overview-current-meta" id="home-current-meta"></p>
+              <div id="home-energy-bars" class="overview-pair-chart"></div>
+              <div id="home-cf-bars" class="overview-pair-chart"></div>
+              <p id="home-pair-summary" class="overview-pair-summary"></p>
+              <p class="overview-pair-note">HR uses the paired STD outlet composition; carbon footprint is normalized by the target monomers contained in the outlet.</p>
+              <button class="overview-text-link" data-view="lca">Explore life cycle assessment <span aria-hidden="true">↗</span></button>
+            </article>
+          </div>
+
+          <nav class="overview-path" aria-label="Research workflow">
+            <button data-view="process"><span class="overview-step">01</span><span><strong>Scenarios & Process</strong><small>STD / HR energy integration</small></span><span aria-hidden="true">↗</span></button>
+            <button data-detail="inventory"><span class="overview-step">02</span><span><strong>Energy Inventory</strong><small>Duties and equivalent electricity</small></span><span aria-hidden="true">↗</span></button>
+            <button data-view="lca"><span class="overview-step">03</span><span><strong>Life Cycle Assessment</strong><small>GWP, CF and uncertainty intervals</small></span><span aria-hidden="true">↗</span></button>
+            <button data-view="screening"><span class="overview-step">04</span><span><strong>Case Screening</strong><small>Pareto candidates and preferences</small></span><span aria-hidden="true">↗</span></button>
+          </nav>
+
+          <article class="panel home-table overview-recent">
+            <div class="panel-heading">
+              <h2 id="recent-title">Quick Access</h2>
+              <button class="overview-text-link" data-view="cases">All conditions <span aria-hidden="true">↗</span></button>
+            </div>
+            <div class="table-scroll" tabindex="0" role="region" aria-label="Recently viewed conditions">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Condition</th>
+                    <th>Scenario</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="recent-cases"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+        <section id="view-process" class="view" hidden>
+          <header class="plant-stage-header analysis-toolbar">
+            <div>
+              <h2>Process & Equipment</h2>
+              <p>Select equipment to highlight it in 3D and inspect its parameters.</p>
+            </div>
+            <div class="workspace-actions">
+              <button class="button secondary" data-detail="inventory">
+                Energy Inventory
+              </button>
+              <button class="button secondary" data-detail="carbon">
+                Carbon footprint
+              </button>
+              <button class="button primary" data-view="lca">LCA analysis →</button>
+              <button class="button secondary" data-view="screening">
+                Case Screening →
+              </button>
+            </div>
+          </header>
+          <div class="equipment-nav" aria-label="Select equipment">
+            <button data-equipment="feed">
+              <i>01</i>Feed Boundary<span>→</span>
+            </button>
+            <button data-equipment="pump"><i>02</i>High-pressure Pump<span>→</span></button>
+            <button data-equipment="exchanger">
+              <i>03</i>Heat Exchanger<span>→</span>
+            </button>
+            <button data-equipment="heater">
+              <i>04</i>Electric Heater<span>→</span>
+            </button>
+            <button data-equipment="reactor">
+              <i>05</i>Tubular Reactor<span>→</span>
+            </button>
+            <button data-equipment="cooler">
+              <i>06</i>Cooler<span>→</span>
+            </button>
+            <button data-equipment="separator">
+              <i>07</i>Phase Separator<span>→</span>
+            </button>
+          </div>
+          <div class="plant-workspace">
+            <article class="plant-stage">
+              <div class="scene-toolbar">
+                <div class="scene-tools" aria-label="3D view controls">
+                  <button data-camera="iso">Overview</button
+                  ><button data-camera="top">Top view</button
+                  ><button data-camera="focus">Focus selection</button
+                  ><button data-camera="zoom-in" aria-label="Zoom in">
+                    ＋</button
+                  ><button data-camera="zoom-out" aria-label="Zoom out">
+                    −
+                  </button>
+                </div>
+                <span>Drag to rotate · Double-click to focus · Ctrl + wheel to zoom</span>
+              </div>
+              <div class="plant-scene" id="plant-scene">
+                <div class="scene-legend">
+                  <span><i></i>Material flow</span
+                  ><span class="heat-legend"><i></i>Heat recovery path</span>
+                </div>
+                <div id="plant-fallback" hidden>
+                  The 3D view is unavailable. Use the equipment selector to inspect all parameters.
+                </div>
+                <div id="plant-labels"></div>
+                <p class="scene-caption">Illustrative equipment layout · Not to scale</p>
+                <p class="scene-help">Click for parameters · Double-click to focus</p>
+              </div>
+              <div class="plant-readings" id="plant-readings"></div>
+            </article>
+            <aside class="plant-panel plant-results">
+              <div class="result-tabs" role="tablist" aria-label="Results panel">
+                <button
+                  id="tab-device"
+                  role="tab"
+                  data-result-tab="device"
+                  aria-controls="result-device"
+                  aria-selected="true"
+                >
+                  Equipment Parameters
+                </button>
+                <button
+                  id="tab-compare"
+                  role="tab"
+                  data-result-tab="compare"
+                  aria-controls="result-compare"
+                  tabindex="-1"
+                  aria-selected="false"
+                >
+                  STD / HR Comparison
+                </button>
+              </div>
+              <div
+                id="result-device"
+                role="tabpanel"
+                aria-labelledby="tab-device"
+              >
+                <div class="plant-panel-title">
+                  Selected equipment <span id="device-tag"></span>
+                </div>
+                <div class="device-card" aria-live="polite">
+                  <p id="device-kicker"></p>
+                  <h2 id="device-name"></h2>
+                  <dl id="device-values"></dl>
+                  <p id="device-note"></p>
+                </div>
+                <button class="button secondary" data-camera="focus">
+                  Focus on this equipment ↗
+                </button>
+              </div>
+              <div
+                id="result-compare"
+                role="tabpanel"
+                aria-labelledby="tab-compare"
+                hidden
+              >
+                <h2>Paired Scenario Comparison</h2>
+                <table class="paired-table">
+                  <thead>
+                    <tr>
+                      <th>Scenario</th>
+                      <th>Electricity¹</th>
+                      <th>CF²</th>
+                    </tr>
+                  </thead>
+                  <tbody id="paired-body"></tbody>
+                </table>
+                <p class="comparison-units">
+                  ¹ kWh / 100 kg wet feed<br />² kg CO₂-eq / kg contained target monomers
+                </p>
+                <div id="comparison-summary"></div>
+                <button class="button primary" data-view="lca">
+                  Open LCA comparison →
+                </button>
+              </div>
+            </aside>
+          </div>
+          <div class="plant-status">
+            <span><i class="status-dot"></i>Archived results loaded</span
+            ><span id="plant-case-id"></span><span>SI storage · Engineering display units</span
+            ><span id="plant-status-source"></span>
+          </div>
+          <details class="process-details">
+            <summary>Show full results and equipment duties</summary>
+            <div class="section-heading">
+              <h2 id="selected-heading">Current condition</h2>
+              <span class="pill" id="scenario-pill">STD</span>
+            </div>
+            <div class="metrics" id="process-metrics"></div>
+            <div class="two-columns">
+              <article class="panel">
+                <div class="panel-heading">
+                  <div>
+                    <h2>Paired Electricity Demand</h2>
+                    <p>Equivalent electricity at the same temperature and reactor length</p>
+                  </div>
+                  <span class="unit-tag">kWh / accounting basis</span>
+                </div>
+                <div id="energy-bars" class="bar-chart"></div>
+                <div class="panel-foot" id="energy-note"></div>
+              </article>
+              <article class="panel">
+                <div class="panel-heading">
+                  <div>
+                    <h2>Conditions & Thermal Duties</h2>
+                    <p>Equipment duties and boundary conditions</p>
+                  </div>
+                </div>
+                <dl class="detail-list" id="process-detail"></dl>
+              </article>
+            </div>
+            <article class="panel provenance-panel">
+              <div>
+                <h2>Sources & Data Status</h2>
+                <p id="source-label">—</p>
+              </div>
+              <p id="quality-note">—</p>
+            </article>
+          </details>
+        </section>
+
+        <section id="view-cases" class="view" hidden>
+          <article class="panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Operating Dataset</h2>
+                <p id="dataset-summary">—</p>
+              </div>
+              <div class="table-filters">
+                <label class="case-search"
+                  >Search case<input
+                    id="case-search"
+                    type="search"
+                    placeholder="e.g. T330-L10"
+                /></label>
+                <label
+                  >Temperature
+                  <select id="temperature-filter">
+                    <option value="">All</option>
+                  </select></label
+                ><label
+                  >Scenario
+                  <select id="scenario-filter">
+                    <option value="">All</option>
+                    <option>STD</option>
+                    <option>HR</option>
+                  </select></label
+                >
+              </div>
+            </div>
+            <p class="table-scroll-note">Scroll horizontally to see all metrics →</p>
+            <div class="table-scroll" tabindex="0" role="region" aria-label="Operating dataset, scroll horizontally for more columns">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Condition</th>
+                    <th>Scenario</th>
+                    <th>Temperature / °C</th>
+                    <th>Length / m</th>
+                    <th>Target monomers / kg</th>
+                    <th>Char proxy / kg</th>
+                    <th>Electricity / kWh</th>
+                    <th>CF / kg CO₂-eq·kg⁻¹</th>
+                    <th>Open case</th>
+                  </tr>
+                </thead>
+                <tbody id="cases-body"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+
+        <section id="view-lca" class="view" hidden>
+          <div class="metrics" id="lca-metrics"></div>
+          <div class="two-columns">
+            <article class="panel">
+              <div class="panel-heading">
+                <div>
+                  <h2>Carbon Footprint per Unit Monomer</h2>
+                  <p>Paired scenario comparison</p>
+                </div>
+                <span class="unit-tag">kg CO₂-eq / kg</span>
+              </div>
+              <div id="cf-bars" class="bar-chart"></div>
+              <div class="panel-foot">
+                Bars: deterministic CF. Lines: 95% percentile intervals. Dots: Monte Carlo means. All use a shared zero-based axis.
+              </div>
+            </article>
+            <article class="panel">
+              <div class="panel-heading">
+                <div>
+                  <h2>Carbon Footprint Calculation</h2>
+                  <p>From the process accounting basis to outlet-monomer normalization</p>
+                </div>
+              </div>
+              <div class="calculation">
+                <div>
+                  <span>GWP within the accounting basis</span
+                  ><strong id="formula-gwp">—</strong>
+                </div>
+                <span class="divide">÷</span>
+                <div>
+                  <span>LCA reference monomer mass</span
+                  ><strong id="formula-mass">—</strong>
+                </div>
+                <div class="formula-result">
+                  <span>Carbon Footprint per Unit Monomer</span
+                  ><strong id="formula-cf">—</strong>
+                </div>
+              </div>
+            </article>
+          </div>
+          <article class="panel">
+            <div class="panel-heading">
+              <div><h2>Inventory & Assessment Settings</h2></div>
+            </div>
+            <dl id="lca-detail" class="detail-list compact-detail"></dl>
+          </article>
+        </section>
+
+        <section id="view-screening" class="view" hidden>
+          <p class="screening-scope">
+            Scope: all 20 STD conditions. The current condition in the toolbar does not restrict the screening candidates.
+          </p>
+          <div class="screening-grid">
+            <article class="panel">
+              <div class="panel-heading">
+                <div>
+                  <h2>Yield–Carbon Footprint Trade-off</h2>
+                  <p>STD conditions · Three-objective Pareto screening</p>
+                </div>
+                <div class="legend">
+                  <span><i class="legend-dot pareto"></i>Pareto</span>
+                  <span><i class="legend-dot other"></i>Other conditions</span>
+                </div>
+              </div>
+              <div class="plot-wrap">
+                <canvas
+                  id="pareto-chart"
+                  aria-label="Target monomer mass versus carbon footprint for standard-heating conditions"
+                ></canvas>
+                <div id="chart-tooltip" class="chart-tooltip" hidden></div>
+              </div>
+              <p class="panel-foot" id="pareto-note"></p>
+            </article>
+            <article class="panel weights-panel">
+              <h2>Preference Weights</h2>
+              <div
+                class="weight-presets"
+                role="group"
+                aria-label="Screening preference presets"
+              >
+                <button data-weights="60,20,20">Yield</button
+                ><button data-weights="20,60,20">Low char</button
+                ><button data-weights="20,20,60">Low carbon</button
+                ><button data-weights="33,33,33">Balanced</button>
+              </div>
+              <p>Weight the normalized utility of each candidate</p>
+              <label for="weight-yield"
+                >Target monomer yield
+                <output id="weight-yield-value">60%</output></label
+              ><input
+                id="weight-yield"
+                type="range"
+                min="0"
+                max="100"
+                value="60"
+              /><label for="weight-char"
+                >Char proxy <output id="weight-char-value">20%</output></label
+              ><input
+                id="weight-char"
+                type="range"
+                min="0"
+                max="100"
+                value="20"
+              /><label for="weight-cf"
+                >Carbon footprint <output id="weight-cf-value">20%</output></label
+              ><input
+                id="weight-cf"
+                type="range"
+                min="0"
+                max="100"
+                value="20"
+              />
+              <p id="weight-note" class="weight-note">Weights are normalized by their sum.</p>
+              <div id="winner" class="winner"></div>
+            </article>
+          </div>
+          <article class="panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Pareto Candidates</h2>
+                <p>Ranking uses STD carbon footprints; HR results provide a scenario comparison.</p>
+              </div>
+            </div>
+            <div class="table-scroll" tabindex="0" role="region" aria-label="Ranked candidates, scroll horizontally for more columns">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>Condition</th>
+                    <th>Target monomers / kg</th>
+                    <th>Char proxy / kg</th>
+                    <th>STD CF</th>
+                    <th>HR CF</th>
+                    <th>Preference score</th>
+                  </tr>
+                </thead>
+                <tbody id="ranking-body"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+        <section id="view-sources" class="view" hidden>
+          <article class="panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Imported Data & Provenance</h2>
+                <p>Records are paired by condition_id and STD / HR scenario.</p>
+              </div>
+            </div>
+            <div id="source-cards" class="source-cards"></div>
+            <dl class="detail-list">
+              <div>
+                <dt>Stored physical units</dt>
+                <dd>K · Pa · kg/s · W · J</dd>
+              </div>
+              <div>
+                <dt>Display units</dt>
+                <dd>°C · MPa · kg/h · kW · kWh</dd>
+              </div>
+              <div>
+                <dt>Metric basis</dt>
+                <dd>100 kg wet feed; CF normalized by contained target monomer mass</dd>
+              </div>
+            </dl>
+          </article>
+        </section>
+        <footer>
+          <span id="dataset-note">Loading archived data…</span
+          ><span id="schema-label"></span>
+        </footer>
+      </main>
+    </div>
+    <dialog id="detail-dialog">
+      <div class="dialog-heading">
+        <h2 id="dialog-title"></h2>
+        <button
+          id="close-detail"
+          class="button secondary"
+          aria-label="Close details"
+        >
+          Close ×
+        </button>
+      </div>
+      <div id="dialog-content"></div>
+    </dialog>
+    <script src="vendor/three.min.js"></script>
+    <script src="plant-equipment.js?v=4"></script>
+    <script src="plant-view.js?v=8"></script>
+    <script src="app.en.js?v=8"></script>
+  <script type="module" src="workspace-links.mjs"></script></body>
+</html>

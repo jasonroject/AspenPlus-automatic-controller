@@ -1,0 +1,245 @@
+{
+  "started": 1794896308253,
+  "events": [
+    {
+      "method": "Log.entryAdded",
+      "entry": {
+        "source": "rendering",
+        "level": "warning",
+        "text": "[.WebGL-0x2f7c02bc8200] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+        "timestamp": 1794896308468.726,
+        "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+      }
+    },
+    {
+      "method": "Log.entryAdded",
+      "entry": {
+        "source": "rendering",
+        "level": "warning",
+        "text": "[.WebGL-0x2f7c02bc8200] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+        "timestamp": 1794896308468.766,
+        "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+      }
+    },
+    {
+      "method": "Log.entryAdded",
+      "entry": {
+        "source": "rendering",
+        "level": "warning",
+        "text": "[.WebGL-0x2f7c02bc8200] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+        "timestamp": 1794896308468.778,
+        "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+      }
+    },
+    {
+      "method": "Log.entryAdded",
+      "entry": {
+        "source": "rendering",
+        "level": "warning",
+        "text": "[.WebGL-0x2f7c02bc8200] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+        "timestamp": 1794896308468.789,
+        "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+      }
+    },
+    {
+      "method": "Log.entryAdded",
+      "entry": {
+        "source": "rendering",
+        "level": "warning",
+        "text": "[.WebGL-0x2f7c02bc8200] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+        "timestamp": 1794896308468.799,
+        "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+      }
+    },
+    {
+      "method": "Log.entryAdded",
+      "entry": {
+        "source": "rendering",
+        "level": "warning",
+        "text": "[.WebGL-0x2f7c02bc8200] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+        "timestamp": 1794896308468.808,
+        "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+      }
+    },
+    {
+      "method": "Log.entryAdded",
+      "entry": {
+        "source": "rendering",
+        "level": "warning",
+        "text": "[.WebGL-0x2f7c02bc8200] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+        "timestamp": 1794896308468.819,
+        "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+      }
+    },
+    {
+      "method": "Log.entryAdded",
+      "entry": {
+        "source": "rendering",
+        "level": "warning",
+        "text": "[.WebGL-0x2f7c02bc8200] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+        "timestamp": 1794896308468.829,
+        "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+      }
+    },
+    {
+      "method": "Log.entryAdded",
+      "entry": {
+        "source": "rendering",
+        "level": "warning",
+        "text": "[.WebGL-0x2f7c02bc8200] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+        "timestamp": 1794896308468.84,
+        "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+      }
+    },
+    {
+      "method": "Log.entryAdded",
+      "entry": {
+        "source": "rendering",
+        "level": "warning",
+        "text": "[.WebGL-0x2f7c02bc8200] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+        "timestamp": 1794896308468.85,
+        "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+      }
+    },
+    {
+      "method": "Log.entryAdded",
+      "entry": {
+        "source": "rendering",
+        "level": "warning",
+        "text": "[.WebGL-0x2f7c02bc8200] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+        "timestamp": 1794896308468.86,
+        "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+      }
+    },
+    {
+      "method": "Log.entryAdded",
+      "entry": {
+        "source": "rendering",
+        "level": "warning",
+        "text": "[.WebGL-0x2f7c02bc8200] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+        "timestamp": 1794896308468.87,
+        "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+      }
+    },
+    {
+      "method": "Log.entryAdded",
+      "entry": {
+        "source": "rendering",
+        "level": "warning",
+        "text": "[.WebGL-0x2f7c02bc8200] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+        "timestamp": 1794896308468.881,
+        "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+      }
+    },
+    {
+      "method": "Log.entryAdded",
+      "entry": {
+        "source": "rendering",
+        "level": "warning",
+        "text": "[.WebGL-0x2f7c02bc8200] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+        "timestamp": 1794896308468.889,
+        "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+      }
+    },
+    {
+      "method": "Log.entryAdded",
+      "entry": {
+        "source": "rendering",
+        "level": "warning",
+        "text": "[.WebGL-0x2f7c02bc8200] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+        "timestamp": 1794896308468.897,
+        "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+      }
+    },
+    {
+      "method": "Log.entryAdded",
+      "entry": {
+        "source": "rendering",
+        "level": "warning",
+        "text": "[.WebGL-0x2f7c02bc8200] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+        "timestamp": 1794896308468.905,
+        "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+      }
+    },
+    {
+      "method": "Log.entryAdded",
+      "entry": {
+        "source": "rendering",
+        "level": "warning",
+        "text": "[.WebGL-0x2f7c02bc8200] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+        "timestamp": 1794896308468.913,
+        "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+      }
+    },
+    {
+      "method": "Log.entryAdded",
+      "entry": {
+        "source": "rendering",
+        "level": "warning",
+        "text": "[.WebGL-0x2f7c02bc8200] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+        "timestamp": 1794896308468.923,
+        "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+      }
+    },
+    {
+      "method": "Log.entryAdded",
+      "entry": {
+        "source": "rendering",
+        "level": "warning",
+        "text": "[.WebGL-0x2f7c02bc8200] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+        "timestamp": 1794896308468.936,
+        "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+      }
+    },
+    {
+      "method": "Log.entryAdded",
+      "entry": {
+        "source": "rendering",
+        "level": "warning",
+        "text": "[.WebGL-0x2f7c02bc8200] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+        "timestamp": 1794896308468.947,
+        "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+      }
+    },
+    {
+      "method": "Log.entryAdded",
+      "entry": {
+        "source": "rendering",
+        "level": "warning",
+        "text": "[.WebGL-0x2f7c02bc8200] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+        "timestamp": 1794896308468.958,
+        "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+      }
+    },
+    {
+      "method": "Log.entryAdded",
+      "entry": {
+        "source": "rendering",
+        "level": "warning",
+        "text": "[.WebGL-0x2f7c02bc8200] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+        "timestamp": 1794896308468.968,
+        "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+      }
+    },
+    {
+      "method": "Log.entryAdded",
+      "entry": {
+        "source": "rendering",
+        "level": "warning",
+        "text": "[.WebGL-0x2f7c02bc8200] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+        "timestamp": 1794896308468.976,
+        "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+      }
+    },
+    {
+      "method": "Log.entryAdded",
+      "entry": {
+        "source": "rendering",
+        "level": "warning",
+        "text": "[.WebGL-0x2f7c02bc8200] GL_INVALID_VALUE: glGetProgramiv: Program object expected.",
+        "timestamp": 1794896308468.987,
+        "url": "http://localhost:5180/ExtrudeCAD_Studio.html"
+      }
+    }
+  ]
+}

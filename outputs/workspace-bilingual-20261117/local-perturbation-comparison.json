@@ -1,0 +1,842 @@
+{
+  "comparison_version": 1,
+  "kind": "local_native_prediction_comparison",
+  "created_at": "2026-11-17T17:06:11.497504+00:00",
+  "candidate_id": "HTL-T330-L12p5",
+  "model_sha256": "79033d782d9212c5ec846c4d99b9de078daf3415fc3df96162534dbe88339283",
+  "bundle_sha256": "07841e5854062dc8dfe2bb671b2b4d5bde865df6abd2ea5686d4512c4119f717",
+  "robustness_result_sha256": "11a2c3f603850eda1de8eb03575a02165ccaefa30e788b04452a5dab1c6247ef",
+  "profile_sha256": "07f292a36262a52104a565b981a904cd0129e33b965c782824db466d170e02be",
+  "native_model_sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+  "local_plan_sha256": "a7a14fc892ccf3f3a817018ab56f16aa48a2774ddfdbd78ba928177cf47c2b49",
+  "local_dataset_sha256": "ad38db8462138a2a0a84dc122c8d7010d364760f580b426e711b4a07d2d11550",
+  "criteria": {
+    "purchased_energy_kWh_kg": {
+      "unit": "kWh/kg",
+      "max_relative_error": 0.05,
+      "relative_floor": 0.01
+    },
+    "yield_fraction": {
+      "unit": "1",
+      "max_relative_error": 0.05,
+      "relative_floor": 0.001
+    },
+    "impact:Climate change": {
+      "unit": "kg CO2-eq/kg",
+      "max_relative_error": 0.05,
+      "relative_floor": 0.01
+    }
+  },
+  "criteria_sha256": "4f813ab1ed7df2a85008dc75682ebb9d42fd73fb123b2699659666bf5d5ef8d9",
+  "source_files": {
+    "local-perturbation-plan\\manifest.json": "9aade3b4e98593b62dba260279a3afb822f633f93b19aa1d9bdc9d85578ed050",
+    "local-perturbation-plan\\plan.json": "e7d324aee672f794a495ea59e1a3109c55ae7ec7e4b11ed81fef545d8b888f64",
+    "local-perturbation-plan\\mapping.json": "02498d3dcdba9fea98d568c10828b61aca31b3a04e58c023053c779b3b200319",
+    "native-local-perturbation-9\\ledger.json": "7dbea9908cc19c52b29fc5be07d8af9f739ec1b8490e24b23301358921ab8487",
+    "native-local-perturbation-9\\dataset.json": "dc8ba3c0e5eed610b4c73ad440c342fa9e9540a8d8b3b1427c7ff33fb802b8dd"
+  },
+  "baseline_artifacts": {
+    "model.bundle.json": "a8e610e13ad59bd9fef4473aae4a01d596d78895ae2fe913589dfef16341e95e",
+    "robustness.json": "e3da206c68b78ec779f20d299d0d3c7bdef04dd86847ab9f18ecc7ba605d0266",
+    "evaluation.json": "ac11d71de7b5b160e6f44e8d91633279e1a87c192866ab6b8abd5e8d771709dc"
+  },
+  "records": [
+    {
+      "id": "local-01",
+      "split": "verification",
+      "inputs": {
+        "reactor_temperature_K": 601.15,
+        "tube_length_m": 12.25
+      },
+      "scenario_id": "temperature-low-length-low",
+      "prediction_record_id": "HTL-T330-L12p5::temperature-low-length-low",
+      "new_coordinate": true,
+      "original_point_id": null,
+      "original_split": null,
+      "native_accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "actual": {
+        "purchased_energy_kWh_kg": 2.542397513415583,
+        "yield_fraction": 0.06010690421330371,
+        "impact:Climate change": 10.5451229150657
+      },
+      "predicted": {
+        "purchased_energy_kWh_kg": 2.5046967443801242,
+        "yield_fraction": 0.060212414841304525,
+        "impact:Climate change": 10.514889636012818
+      },
+      "source": "runs/local-01/raw.json",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "native_error": null,
+      "comparison_available": true,
+      "errors": [],
+      "deviations": {
+        "purchased_energy_kWh_kg": {
+          "unit": "kWh/kg",
+          "signed_error": -0.037700769035458936,
+          "absolute_error": 0.037700769035458936,
+          "relative_error": 0.014828825483238398,
+          "relative_floor": 0.01,
+          "passed": true
+        },
+        "yield_fraction": {
+          "unit": "1",
+          "signed_error": 0.00010551062800081418,
+          "absolute_error": 0.00010551062800081418,
+          "relative_error": 0.0017553828363274957,
+          "relative_floor": 0.001,
+          "passed": true
+        },
+        "impact:Climate change": {
+          "unit": "kg CO2-eq/kg",
+          "signed_error": -0.030233279052882978,
+          "absolute_error": 0.030233279052882978,
+          "relative_error": 0.0028670390375145865,
+          "relative_floor": 0.01,
+          "passed": true
+        }
+      },
+      "raw_evidence_available": true,
+      "raw_file_sha256": "2455d167456b079c21ab9114d9b40d2457bb5bb25ce0b4cd0adcf096bde44332",
+      "report_sha256": "7a0596e9e3ce15ab68ad316984e9f118db60d6b0fb4781f9632460b3f37ead0d"
+    },
+    {
+      "id": "local-02",
+      "split": "verification",
+      "inputs": {
+        "reactor_temperature_K": 601.15,
+        "tube_length_m": 12.5
+      },
+      "scenario_id": "temperature-low-length-center",
+      "prediction_record_id": "HTL-T330-L12p5::temperature-low-length-center",
+      "new_coordinate": true,
+      "original_point_id": null,
+      "original_split": null,
+      "native_accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "actual": {
+        "purchased_energy_kWh_kg": 2.5587770708031314,
+        "yield_fraction": 0.060124065152109746,
+        "impact:Climate change": 10.556797327898847
+      },
+      "predicted": {
+        "purchased_energy_kWh_kg": 2.513320962524631,
+        "yield_fraction": 0.060601043322253155,
+        "impact:Climate change": 10.439938550203182
+      },
+      "source": "runs/local-02/raw.json",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "native_error": null,
+      "comparison_available": true,
+      "errors": [],
+      "deviations": {
+        "purchased_energy_kWh_kg": {
+          "unit": "kWh/kg",
+          "signed_error": -0.04545610827850055,
+          "absolute_error": 0.04545610827850055,
+          "relative_error": 0.017764778650385945,
+          "relative_floor": 0.01,
+          "passed": true
+        },
+        "yield_fraction": {
+          "unit": "1",
+          "signed_error": 0.0004769781701434092,
+          "absolute_error": 0.0004769781701434092,
+          "relative_error": 0.0079332322080466,
+          "relative_floor": 0.001,
+          "passed": true
+        },
+        "impact:Climate change": {
+          "unit": "kg CO2-eq/kg",
+          "signed_error": -0.11685877769566488,
+          "absolute_error": 0.11685877769566488,
+          "relative_error": 0.011069529334132217,
+          "relative_floor": 0.01,
+          "passed": true
+        }
+      },
+      "raw_evidence_available": true,
+      "raw_file_sha256": "34f7a23e269c6176324d68f19d2246ed2824da0585c86c3e0b916da9ea3bf2e8",
+      "report_sha256": "eff5d259510d073b1b80dfa8043c65c05344746aebfa96ebe90bbf34f136a257"
+    },
+    {
+      "id": "local-03",
+      "split": "verification",
+      "inputs": {
+        "reactor_temperature_K": 601.15,
+        "tube_length_m": 12.75
+      },
+      "scenario_id": "temperature-low-length-high",
+      "prediction_record_id": "HTL-T330-L12p5::temperature-low-length-high",
+      "new_coordinate": true,
+      "original_point_id": null,
+      "original_split": null,
+      "native_accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "actual": {
+        "purchased_energy_kWh_kg": 2.574568795454647,
+        "yield_fraction": 0.060136263114628184,
+        "impact:Climate change": 10.568687305381571
+      },
+      "predicted": {
+        "purchased_energy_kWh_kg": 2.522947198867535,
+        "yield_fraction": 0.06094679293032772,
+        "impact:Climate change": 10.373157244078332
+      },
+      "source": "runs/local-03/raw.json",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "native_error": null,
+      "comparison_available": true,
+      "errors": [],
+      "deviations": {
+        "purchased_energy_kWh_kg": {
+          "unit": "kWh/kg",
+          "signed_error": -0.05162159658711163,
+          "absolute_error": 0.05162159658711163,
+          "relative_error": 0.020050579607058316,
+          "relative_floor": 0.01,
+          "passed": true
+        },
+        "yield_fraction": {
+          "unit": "1",
+          "signed_error": 0.000810529815699533,
+          "absolute_error": 0.000810529815699533,
+          "relative_error": 0.013478220523189961,
+          "relative_floor": 0.001,
+          "passed": true
+        },
+        "impact:Climate change": {
+          "unit": "kg CO2-eq/kg",
+          "signed_error": -0.19553006130323958,
+          "absolute_error": 0.19553006130323958,
+          "relative_error": 0.018500884324931795,
+          "relative_floor": 0.01,
+          "passed": true
+        }
+      },
+      "raw_evidence_available": true,
+      "raw_file_sha256": "cf00a48ada734da20726d2747611b6906b4558fbe4bea2c3fd2cdb074a53ff7d",
+      "report_sha256": "bb6635a290644103bc050dec7cc087650134de6c52be32cda8a8036612af86ac"
+    },
+    {
+      "id": "local-04",
+      "split": "verification",
+      "inputs": {
+        "reactor_temperature_K": 603.15,
+        "tube_length_m": 12.25
+      },
+      "scenario_id": "temperature-center-length-low",
+      "prediction_record_id": "HTL-T330-L12p5::temperature-center-length-low",
+      "new_coordinate": true,
+      "original_point_id": null,
+      "original_split": null,
+      "native_accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "actual": {
+        "purchased_energy_kWh_kg": 2.6092164442836023,
+        "yield_fraction": 0.06060001078667651,
+        "impact:Climate change": 10.532868274416336
+      },
+      "predicted": {
+        "purchased_energy_kWh_kg": 2.5772546824356817,
+        "yield_fraction": 0.06069219132566124,
+        "impact:Climate change": 10.503449986266867
+      },
+      "source": "runs/local-04/raw.json",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "native_error": null,
+      "comparison_available": true,
+      "errors": [],
+      "deviations": {
+        "purchased_energy_kWh_kg": {
+          "unit": "kWh/kg",
+          "signed_error": -0.031961761847920656,
+          "absolute_error": 0.031961761847920656,
+          "relative_error": 0.012249563242614092,
+          "relative_floor": 0.01,
+          "passed": true
+        },
+        "yield_fraction": {
+          "unit": "1",
+          "signed_error": 9.218053898472911e-05,
+          "absolute_error": 9.218053898472911e-05,
+          "relative_error": 0.001521130735590494,
+          "relative_floor": 0.001,
+          "passed": true
+        },
+        "impact:Climate change": {
+          "unit": "kg CO2-eq/kg",
+          "signed_error": -0.029418288149468452,
+          "absolute_error": 0.029418288149468452,
+          "relative_error": 0.0027929987713720484,
+          "relative_floor": 0.01,
+          "passed": true
+        }
+      },
+      "raw_evidence_available": true,
+      "raw_file_sha256": "c767f6b1a821d8aaf0993cc2cde448aefb0bc4c5d2b85627dbd60af2cf771f40",
+      "report_sha256": "b143d3297fcd6d6940599431fae4631b3b31f7c1d571f7bf1faa6fa9d1c76e9b"
+    },
+    {
+      "id": "local-05",
+      "split": "verification",
+      "inputs": {
+        "reactor_temperature_K": 603.15,
+        "tube_length_m": 12.5
+      },
+      "scenario_id": "temperature-center-length-center",
+      "prediction_record_id": "HTL-T330-L12p5::temperature-center-length-center",
+      "new_coordinate": false,
+      "original_point_id": "case-008",
+      "original_split": "holdout",
+      "native_accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "actual": {
+        "purchased_energy_kWh_kg": 2.6261657378409473,
+        "yield_fraction": 0.06060042552121615,
+        "impact:Climate change": 10.547501675749563
+      },
+      "predicted": {
+        "purchased_energy_kWh_kg": 2.5882373159221586,
+        "yield_fraction": 0.06104327370863971,
+        "impact:Climate change": 10.442876795095835
+      },
+      "source": "runs/local-05/raw.json",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "native_error": null,
+      "comparison_available": true,
+      "errors": [],
+      "deviations": {
+        "purchased_energy_kWh_kg": {
+          "unit": "kWh/kg",
+          "signed_error": -0.03792842191878876,
+          "absolute_error": 0.03792842191878876,
+          "relative_error": 0.014442508853219179,
+          "relative_floor": 0.01,
+          "passed": true
+        },
+        "yield_fraction": {
+          "unit": "1",
+          "signed_error": 0.00044284818742355847,
+          "absolute_error": 0.00044284818742355847,
+          "relative_error": 0.007307674552029634,
+          "relative_floor": 0.001,
+          "passed": true
+        },
+        "impact:Climate change": {
+          "unit": "kg CO2-eq/kg",
+          "signed_error": -0.10462488065372888,
+          "absolute_error": 0.10462488065372888,
+          "relative_error": 0.009919399291898539,
+          "relative_floor": 0.01,
+          "passed": true
+        }
+      },
+      "raw_evidence_available": true,
+      "raw_file_sha256": "bc6d87271a477148cec42557ea60b89ea803c31323df1e226e15e186fcd7b18a",
+      "report_sha256": "5763cf9dbb796646faef37acbf26f3be71de20305aa02bbe5c2454269932fa1b"
+    },
+    {
+      "id": "local-06",
+      "split": "verification",
+      "inputs": {
+        "reactor_temperature_K": 603.15,
+        "tube_length_m": 12.75
+      },
+      "scenario_id": "temperature-center-length-high",
+      "prediction_record_id": "HTL-T330-L12p5::temperature-center-length-high",
+      "new_coordinate": true,
+      "original_point_id": null,
+      "original_split": null,
+      "native_accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "actual": {
+        "purchased_energy_kWh_kg": 2.643110560848479,
+        "yield_fraction": 0.060593175785922465,
+        "impact:Climate change": 10.563191841417078
+      },
+      "predicted": {
+        "purchased_energy_kWh_kg": 2.5999863744808738,
+        "yield_fraction": 0.06135632281620922,
+        "impact:Climate change": 10.388757209307476
+      },
+      "source": "runs/local-06/raw.json",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "native_error": null,
+      "comparison_available": true,
+      "errors": [],
+      "deviations": {
+        "purchased_energy_kWh_kg": {
+          "unit": "kWh/kg",
+          "signed_error": -0.043124186367605066,
+          "absolute_error": 0.043124186367605066,
+          "relative_error": 0.016315695229094596,
+          "relative_floor": 0.01,
+          "passed": true
+        },
+        "yield_fraction": {
+          "unit": "1",
+          "signed_error": 0.000763147030286758,
+          "absolute_error": 0.000763147030286758,
+          "relative_error": 0.012594603606567506,
+          "relative_floor": 0.001,
+          "passed": true
+        },
+        "impact:Climate change": {
+          "unit": "kg CO2-eq/kg",
+          "signed_error": -0.17443463210960175,
+          "absolute_error": 0.17443463210960175,
+          "relative_error": 0.016513439756500808,
+          "relative_floor": 0.01,
+          "passed": true
+        }
+      },
+      "raw_evidence_available": true,
+      "raw_file_sha256": "dfc518adebfab9b01769313747c4ff93f62c1df9e5d988bafa7af3022d3c4d5b",
+      "report_sha256": "e15a70399438920279766d53efa311cf4c6a327d44855046d43be1414324a22e"
+    },
+    {
+      "id": "local-07",
+      "split": "verification",
+      "inputs": {
+        "reactor_temperature_K": 605.15,
+        "tube_length_m": 12.25
+      },
+      "scenario_id": "temperature-high-length-low",
+      "prediction_record_id": "HTL-T330-L12p5::temperature-high-length-low",
+      "new_coordinate": true,
+      "original_point_id": null,
+      "original_split": null,
+      "native_accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "actual": {
+        "purchased_energy_kWh_kg": 2.6783126985708092,
+        "yield_fraction": 0.06103535494626566,
+        "impact:Climate change": 10.532211894062131
+      },
+      "predicted": {
+        "purchased_energy_kWh_kg": 2.652612501105636,
+        "yield_fraction": 0.0610847489560739,
+        "impact:Climate change": 10.50981257489523
+      },
+      "source": "runs/local-07/raw.json",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "native_error": null,
+      "comparison_available": true,
+      "errors": [],
+      "deviations": {
+        "purchased_energy_kWh_kg": {
+          "unit": "kWh/kg",
+          "signed_error": -0.025700197465173158,
+          "absolute_error": 0.025700197465173158,
+          "relative_error": 0.009595667256809557,
+          "relative_floor": 0.01,
+          "passed": true
+        },
+        "yield_fraction": {
+          "unit": "1",
+          "signed_error": 4.939400980823877e-05,
+          "absolute_error": 4.939400980823877e-05,
+          "relative_error": 0.0008092688221723999,
+          "relative_floor": 0.001,
+          "passed": true
+        },
+        "impact:Climate change": {
+          "unit": "kg CO2-eq/kg",
+          "signed_error": -0.022399319166900966,
+          "absolute_error": 0.022399319166900966,
+          "relative_error": 0.002126744067837193,
+          "relative_floor": 0.01,
+          "passed": true
+        }
+      },
+      "raw_evidence_available": true,
+      "raw_file_sha256": "747d8d7ce71fb63ea11840b0800d91284c9dadd91d8422f2dd77200099ffc406",
+      "report_sha256": "22a6c45164b10e1d181dea9135a7aff04600541fcef661eefa75b5ae9ad5f6f4"
+    },
+    {
+      "id": "local-08",
+      "split": "verification",
+      "inputs": {
+        "reactor_temperature_K": 605.15,
+        "tube_length_m": 12.5
+      },
+      "scenario_id": "temperature-high-length-center",
+      "prediction_record_id": "HTL-T330-L12p5::temperature-high-length-center",
+      "new_coordinate": true,
+      "original_point_id": null,
+      "original_split": null,
+      "native_accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "actual": {
+        "purchased_energy_kWh_kg": 2.695564044093695,
+        "yield_fraction": 0.06102311375859947,
+        "impact:Climate change": 10.548972849662272
+      },
+      "predicted": {
+        "purchased_energy_kWh_kg": 2.6658966467965217,
+        "yield_fraction": 0.06139696535198012,
+        "impact:Climate change": 10.462999772761489
+      },
+      "source": "runs/local-08/raw.json",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "native_error": null,
+      "comparison_available": true,
+      "errors": [],
+      "deviations": {
+        "purchased_energy_kWh_kg": {
+          "unit": "kWh/kg",
+          "signed_error": -0.02966739729717327,
+          "absolute_error": 0.02966739729717327,
+          "relative_error": 0.011006007207351688,
+          "relative_floor": 0.01,
+          "passed": true
+        },
+        "yield_fraction": {
+          "unit": "1",
+          "signed_error": 0.0003738515933806516,
+          "absolute_error": 0.0003738515933806516,
+          "relative_error": 0.0061263932689434066,
+          "relative_floor": 0.001,
+          "passed": true
+        },
+        "impact:Climate change": {
+          "unit": "kg CO2-eq/kg",
+          "signed_error": -0.0859730769007836,
+          "absolute_error": 0.0859730769007836,
+          "relative_error": 0.008149900291338417,
+          "relative_floor": 0.01,
+          "passed": true
+        }
+      },
+      "raw_evidence_available": true,
+      "raw_file_sha256": "9f7046160a18bac565e54b5da8f5481ea8647209c11c9f00660bbb5e6d514aab",
+      "report_sha256": "584fe6a8b4de156235e5d1b6a771c83c1b7094ab8d2ca498885bd6fce6f54a55"
+    },
+    {
+      "id": "local-09",
+      "split": "verification",
+      "inputs": {
+        "reactor_temperature_K": 605.15,
+        "tube_length_m": 12.75
+      },
+      "scenario_id": "temperature-high-length-high",
+      "prediction_record_id": "HTL-T330-L12p5::temperature-high-length-high",
+      "new_coordinate": true,
+      "original_point_id": null,
+      "original_split": null,
+      "native_accepted": true,
+      "gates": {
+        "control_succeeded": true,
+        "solver_accepted": true,
+        "numerical_closure": true,
+        "lcia_complete": true,
+        "metric_inputs_complete": true
+      },
+      "actual": {
+        "purchased_energy_kWh_kg": 2.7138550191455035,
+        "yield_fraction": 0.06099464236457248,
+        "impact:Climate change": 10.568998245803078
+      },
+      "predicted": {
+        "purchased_energy_kWh_kg": 2.67971005456841,
+        "yield_fraction": 0.061676430090363,
+        "impact:Climate change": 10.420956066668651
+      },
+      "source": "runs/local-09/raw.json",
+      "warnings": [
+        "* Calculations were completed with warnings                                *",
+        "* completed with warnings:                                                 *",
+        "*   COOLER    REACTOR   VALVE                                              *"
+      ],
+      "native_error": null,
+      "comparison_available": true,
+      "errors": [],
+      "deviations": {
+        "purchased_energy_kWh_kg": {
+          "unit": "kWh/kg",
+          "signed_error": -0.034144964577093706,
+          "absolute_error": 0.034144964577093706,
+          "relative_error": 0.01258172022315501,
+          "relative_floor": 0.01,
+          "passed": true
+        },
+        "yield_fraction": {
+          "unit": "1",
+          "signed_error": 0.0006817877257905211,
+          "absolute_error": 0.0006817877257905211,
+          "relative_error": 0.011177829713557332,
+          "relative_floor": 0.001,
+          "passed": true
+        },
+        "impact:Climate change": {
+          "unit": "kg CO2-eq/kg",
+          "signed_error": -0.14804217913442663,
+          "absolute_error": 0.14804217913442663,
+          "relative_error": 0.014007210115037515,
+          "relative_floor": 0.01,
+          "passed": true
+        }
+      },
+      "raw_evidence_available": true,
+      "raw_file_sha256": "ed6e5e4e9f8a712181e608b758a324cce936c420c4f41fcc8e4def3e43f2f811",
+      "report_sha256": "06d554688885f33ffa303b6b6d3fe86662e3a0bd251ecf2f0956ffb4445b8422"
+    }
+  ],
+  "new_eight": {
+    "expected": 8,
+    "valid_pairs": 8,
+    "complete": true,
+    "passed": true,
+    "metrics": {
+      "purchased_energy_kWh_kg": {
+        "unit": "kWh/kg",
+        "expected": 8,
+        "valid_pairs": 8,
+        "complete": true,
+        "mae": 0.03742212268200462,
+        "rmse": 0.03830825284500328,
+        "max_relative_error": 0.020050579607058316,
+        "relative_floor": 0.01,
+        "max_relative_error_criterion": 0.05,
+        "passed": true
+      },
+      "yield_fraction": {
+        "unit": "1",
+        "expected": 8,
+        "valid_pairs": 8,
+        "complete": true,
+        "mae": 0.00041917243901183187,
+        "rmse": 0.0005115575696185392,
+        "max_relative_error": 0.013478220523189961,
+        "relative_floor": 0.001,
+        "max_relative_error_criterion": 0.05,
+        "passed": true
+      },
+      "impact:Climate change": {
+        "unit": "kg CO2-eq/kg",
+        "expected": 8,
+        "valid_pairs": 8,
+        "complete": true,
+        "mae": 0.1003612016891211,
+        "rmse": 0.11932334891520531,
+        "max_relative_error": 0.018500884324931795,
+        "relative_floor": 0.01,
+        "max_relative_error_criterion": 0.05,
+        "passed": true
+      }
+    }
+  },
+  "all_nine_descriptive": {
+    "expected": 9,
+    "valid_pairs": 9,
+    "complete": true,
+    "passed": true,
+    "metrics": {
+      "purchased_energy_kWh_kg": {
+        "unit": "kWh/kg",
+        "expected": 9,
+        "valid_pairs": 9,
+        "complete": true,
+        "mae": 0.03747837815275842,
+        "rmse": 0.03826623559214698,
+        "max_relative_error": 0.020050579607058316,
+        "relative_floor": 0.01,
+        "max_relative_error_criterion": 0.05,
+        "passed": true
+      },
+      "yield_fraction": {
+        "unit": "1",
+        "expected": 9,
+        "valid_pairs": 9,
+        "complete": true,
+        "mae": 0.00042180307772424593,
+        "rmse": 0.0005043856211467729,
+        "max_relative_error": 0.013478220523189961,
+        "relative_floor": 0.001,
+        "max_relative_error_criterion": 0.05,
+        "passed": true
+      },
+      "impact:Climate change": {
+        "unit": "kg CO2-eq/kg",
+        "expected": 9,
+        "valid_pairs": 9,
+        "complete": true,
+        "mae": 0.10083494379629974,
+        "rmse": 0.11778080320027899,
+        "max_relative_error": 0.018500884324931795,
+        "relative_floor": 0.01,
+        "max_relative_error_criterion": 0.05,
+        "passed": true
+      }
+    }
+  },
+  "center_repeat": {
+    "id": "local-05",
+    "original_point_id": "case-008",
+    "original_split": "holdout",
+    "available": true,
+    "metrics": {
+      "purchased_energy_kWh_kg": {
+        "unit": "kWh/kg",
+        "original": 2.6261657378409473,
+        "repeated": 2.6261657378409473,
+        "signed_difference": 0.0,
+        "absolute_difference": 0.0,
+        "relative_difference": 0.0
+      },
+      "yield_fraction": {
+        "unit": "1",
+        "original": 0.06060042552121615,
+        "repeated": 0.06060042552121615,
+        "signed_difference": 0.0,
+        "absolute_difference": 0.0,
+        "relative_difference": 0.0
+      },
+      "impact:Climate change": {
+        "unit": "kg CO2-eq/kg",
+        "original": 10.547501675749563,
+        "repeated": 10.547501675749563,
+        "signed_difference": 0.0,
+        "absolute_difference": 0.0,
+        "relative_difference": 0.0
+      }
+    },
+    "scope": "Repeated execution at an already held-out coordinate, not a new independent validation location. Differences are descriptive; no repeatability acceptance limit was preregistered."
+  },
+  "native_residual_checks": [
+    {
+      "id": "local-01",
+      "maximum_block_mass_residual_kg_h": 0.00015000000000497948,
+      "maximum_block_energy_residual_kW": 7.617167891993404e-07
+    },
+    {
+      "id": "local-02",
+      "maximum_block_mass_residual_kg_h": 0.0001869999999968286,
+      "maximum_block_energy_residual_kW": 6.334547855146866e-07
+    },
+    {
+      "id": "local-03",
+      "maximum_block_mass_residual_kg_h": 0.00012900000000115597,
+      "maximum_block_energy_residual_kW": 9.693674733468605e-07
+    },
+    {
+      "id": "local-04",
+      "maximum_block_mass_residual_kg_h": 0.00013800000000685486,
+      "maximum_block_energy_residual_kW": 1.6271770918452333e-06
+    },
+    {
+      "id": "local-05",
+      "maximum_block_mass_residual_kg_h": 0.00015700000000151704,
+      "maximum_block_energy_residual_kW": 1.8105205807916747e-06
+    },
+    {
+      "id": "local-06",
+      "maximum_block_mass_residual_kg_h": 0.00011700000000303135,
+      "maximum_block_energy_residual_kW": 9.122429673880106e-07
+    },
+    {
+      "id": "local-07",
+      "maximum_block_mass_residual_kg_h": 0.00018599999999935335,
+      "maximum_block_energy_residual_kW": 7.873227332311217e-07
+    },
+    {
+      "id": "local-08",
+      "maximum_block_mass_residual_kg_h": 0.0001330000000052678,
+      "maximum_block_energy_residual_kW": 1.449423267629868e-06
+    },
+    {
+      "id": "local-09",
+      "maximum_block_mass_residual_kg_h": 0.00017499999999870397,
+      "maximum_block_energy_residual_kW": 1.7531393685654706e-06
+    }
+  ],
+  "all_planned_cases_retained": true,
+  "frozen_model_prediction_enabled": false,
+  "exploratory": true,
+  "model_refitted": false,
+  "model_qualification_changed": false,
+  "physical_validation": false,
+  "scope": "One local perturbation neighborhood. Does not validate nine-candidate rankings, continuous-region extrema, probabilities, GP predictive uncertainty, LCA backgrounds, or physical reliability. Local pass does not override the original independent-verification failure or enable ordinary prediction.",
+  "comparison_sha256": "ad8ea8ad70999a82a2f397548d4b7c147238452c275fcc47b235eb06003c6f81"
+}

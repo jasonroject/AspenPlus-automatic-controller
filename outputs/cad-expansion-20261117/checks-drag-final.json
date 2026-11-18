@@ -1,0 +1,36 @@
+[
+  {
+    "case": "Fast drag commits; returning to origin preserves undo and redo",
+    "before": [
+      {
+        "title": "撤销 Ctrl+Z · 0 步",
+        "disabled": true
+      },
+      {
+        "title": "重做 Ctrl+Y · 1 步",
+        "disabled": false
+      }
+    ],
+    "after": [
+      {
+        "title": "撤销 Ctrl+Z · 0 步",
+        "disabled": true
+      },
+      {
+        "title": "重做 Ctrl+Y · 1 步",
+        "disabled": false
+      }
+    ]
+  },
+  {
+    "case": "Hidden selected cylinder does not move with visible selection",
+    "hiddenCylinderX": -30,
+    "baseX": 10
+  },
+  {
+    "case": "Compact measurement retains distance",
+    "text": "XY 两点测量L 60.00 mmΔX 60.00 mmΔY 0.00 mm∠ 0.00°",
+    "height": 29.33333396911621,
+    "bottom": 125.33333396911621
+  }
+]

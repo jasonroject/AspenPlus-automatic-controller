@@ -1,0 +1,3 @@
+# Preserve original evidence bytes; do not rewrite line endings during checkout.
+analysis_web/data/generic-htl-*/*.json -text
+universal_pipeline/fixtures/surrogate-demo.*.json -text

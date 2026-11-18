@@ -1,0 +1,215 @@
+{
+  "text": "Send prompt (Ctrl + Enter)\nAppend to prompt (Alt + Enter)\nSkip to main content\nmenu_open\nEXPLORE\nchat_spark\nPlayground\nhistory\nHistory\nBUILD\nadd\nNew app\nwidgets\nMy apps\ngallery_thumbnail\nGallery\nMANAGE\nspeed\nDashboard\nchevron_right\ndeveloper_guide\nDocumentation\nchevron_right\nredeem\n领取免费 API 赠金\nGoogle 开发者计划每月提供 US$10的赠金。\nnotifications\nsettings\nsearch\nkey\nroiceja7373@gmail.com\nPRO\nProcess Studio 界面文案优化\nedit\n\n3,192 tokens\n\ndesign_services\nshare\ncompare_arrows\nadd\nmore_vert\nedit\nmore_vert\nedit\nmore_vert\nModel 22:40\n\n以下为针对 Process Studio 分析工作区及独立 HTL 预测模块的中英文 UX 文案改写方案。文案去除了口号化表达，采用克制、清晰的 OpenAI 风格，严格贴合软件的实际计算边界与数据流向。\n\n界面文案对照表\n序号\told_en (原英文)\tnew_en (新英文)\tzh (新中文)\n1\tYour analysis, connected.\tProcess analysis workspace\t流程分析工作区\n2\tStart with your data. Follow a clear path to energy and impact.\tImport Aspen exports to calculate steady-state balances and factor-based impacts locally in your browser.\t在浏览器本地导入 Aspen 导出数据，计算稳态质量与能量衡算，并评估基于给定因子的环境影响。\n3\tImport your data / Choose, map and review tables\t1. Import & map / Load files and match the five required tables\t1. 导入与映射 / 读取文件并匹配五张基础数据表\n4\tCheck your basis / Units, boundaries and factors\t2. Set calculation basis / Confirm units, system boundaries, 1 kg functional unit, and allocation\t2. 设定计算基准 / 确认单位、系统边界、1 kg 产品功能单位及分配规则\n5\tExplore the results / Energy, impacts and comparison\t3. View & export results / Check steady-state balances, matched impacts, and possibility intervals\t3. 查看与导出结果 / 检查稳态衡算、已匹配因子的影响及可能性区间\n6\tBring your export.\tImport data files\t导入数据文件\n7\tChoose CSV, Excel or a saved JSON project. English and Chinese headers are supported.\tSelect Aspen exports (CSV, Excel) or a saved JSON project. Files are processed locally and support English or Chinese headers.\t选择 Aspen 导出的 CSV、Excel 文件或已保存的 JSON 项目。数据仅在本地处理，支持中英文表头。\n8\tTry it with an example.\tOr start with a sample dataset\t或使用示例数据集体验\n9\tTry the worked example\tLoad sample project\t加载示例项目\n10\tLoad the verified HTL example\tLoad native HTL sample (Aspen reference)\t加载原生 HTL 示例（Aspen 基准数据）\n11\tReview the suggested mapping.\tMap your columns to the five required tables: streams, equipment, cases/products, inventory, and impact factors.\t请核对字段映射，确保物流、设备、工况/产品、环境清单及影响因子五张表匹配正确。\n12\tApply reviewed mapping\tConfirm column mapping\t确认字段映射\n13\tFive tables. One connected model.\tOverview of the five required tables. Missing values remain blank and are not treated as zero.\t五张基础数据表概览。缺失数据将保持为空，计算时不会默认视为 0。\n14\tA quick project check.\tCheck data completeness and table alignment before setting your calculation basis.\t在设定计算基准前，检查数据完整性与各表关联状态。\n15\tCalculation basis.\tConfirm units, system boundaries, and allocation rules based on a 1 kg product functional unit.\t基于 1 kg 产品功能单位，确认工程单位、系统边界与多产品分配规则。\n16\tInventory & factor coverage.\tFactor matching status. Only inventory items matched with provided factors are included in the impact calculation.\t因子匹配状态。仅计算已提供对应影响因子的环境清单项，未匹配项不计入结果。\n17\tCalculate balances & impacts\tRun balance & impact calculation\t运行衡算与影响计算\n18\tYour results, at a glance.\tSteady-state calculation summary\t稳态计算结果摘要\n19\tBalance check / Closed\tAccounting balance: Closed (numerical check only, not a physical validation)\t账面衡算：闭合（仅代表输入输出数值闭合，不代表工艺物理验证）\n20\tPurchased energy\tNet purchased energy (per 1 kg product)\t净外购能耗（每 1 kg 产品）\n21\tTarget / feed yield\tProduct-to-feed mass ratio (per 1 kg product)\t目标产品与进料质量比（基准：1 kg 产品）\n22\tSee what the numbers mean.\tDetailed breakdown of steady-state energy use and factor-based impacts.\t稳态能耗与已匹配环境影响的详细构成。\n23\tWhat drives the impact?\tImpact breakdown (based on matched factors only)\t环境影响构成（仅包含已匹配因子的清单项）\n24\tHow wide are the input supports?\tAlpha-cut possibility intervals (from triangular fuzzy inputs; indicates support range, not statistical confidence)\tAlpha 截集（\n𝛼\nα\n-cut）可能性支持区间（基于三角模糊输入生成，表征可能范围而非统计置信区间）\n25\tEquipment energy / Across cases\tEquipment energy comparison across cases\t不同工况下的设备能耗对比\n26\tExplore the trade-offs.\tCompare energy, yield, and calculated impacts across cases\t对比不同工况下的能耗、产率与已算环境影响\n27\tFrom this case to operating variation.\tUnmodified native HTL exports can carry their reference operating point into the pre-computed GP prediction grid.\t若当前为同源且未修改的原生 HTL 导出数据，可将该参考工况带入预计算的高斯过程（GP）网格中查看预测。\n28\tContinue to HTL prediction\tOpen HTL prediction module\t进入 HTL 预测模块\n29\tPrediction & Robustness\tPre-computed HTL Prediction & Perturbation Analysis\tHTL 预计算预测与扰动分析\n30\tShow prediction\tLoad pre-computed GP grid\t加载预计算 GP 预测网格\n31\tExplore operating variation\tView STD/HR comparisons, fixed-background climate impacts (GWP), and variations across 1,024 perturbation scenarios.\t查看标准（STD）与热回收（HR）配置对照、固定背景下的气候影响（碳足迹）贡献，以及 1,024 组给定扰动情景下的指标波动。\n32\tCandidate ranking stability\tRanking variation across 266 candidates under 1,024 perturbations (numerical sensitivity only, not plant reliability)\t266 个候选方案在 1,024 组扰动下的排名波动（仅反映数值敏感性，不设达标门槛，不代表真实工厂可靠性）\n33\tNative observations and prediction\tNative Aspen sample points and frozen GP model curves (no live simulation or retraining)\t原生 Aspen 样本点与冻结 GP 模型预测曲线（直接读取预计算网格，不实时调用 Aspen 或重新训练模型）\n34\tRetained in this tab. Download a copy to keep it.\tData stays in this browser tab; switching languages will not alter inputs. Download the project file (.json) to save a permanent copy.\t数据仅保留在当前浏览器标签页中（切换语言不会改变输入数据）。请下载项目文件（.json）以长期保存副本。\n5条科学软件 UX 文案原则（Process Studio 专属规范）\n\n严守方法学边界，杜绝过度承诺（State Methodological Boundaries Explicitly）\n科学计算软件的信任建立在严谨之上。当界面出现“闭合（Closed）”、“验证（Verified）”、“鲁棒性（Robustness）”或“环境影响（Impact）”时，必须在紧邻位置说明其数学本质。例如：明确指出衡算闭合仅为“账面数值闭合而非物理工艺验证”；明确区分三角模糊输入的“\n𝛼\nα\n-cut 可能性支持区间”与概率统计学上的“置信区间”；明确说明环境计算仅基于“用户已提供的匹配因子”或“固定背景的气候影响（碳足迹）”，绝不暗示软件可自动完成全生命周期、多类别的完整 LCA。\n\n用明确的动词引导操作流，替代空洞口号（Actionable Verbs Over Marketing Taglines）\n移除类似“Your analysis, connected”或“Bring your export”等带有营销色彩或过度拟人化的短语。首次使用的专业用户需要立即知道当前步骤的输入和输出是什么。按钮应使用精确的动宾结构（如 Confirm column mapping / 确认字段映射、Run balance & impact calculation / 运行衡算与影响计算），引导文案应直接点明核心校验项（如“确认 1 kg 功能单位与系统边界”）。\n\n透明化数据状态与处理机制（Make Data State and Model Behavior Transparent）\n用户需要对数据的去向和模型的黑箱边界有完全的掌控感。文案需清晰传达三点：\n\n本地与持久性：明确告知文件在浏览器本地解析，工作区状态仅存于当前标签页，下载 JSON 才是唯一长期保存方式。\n\n缺失值逻辑：明确提示“缺失数据保持为空，绝不默认按 0 处理”，防止用户误判计算结果。\n\n预测模块独立性：在 HTL 模块中，清晰说明这是读取“冻结 GP 模型的预计算网格”，不进行实时 Aspen 模拟，也不会用新导入的数据重新训练模型。\n\n保留核心专业缩写，并在首次出现时提供自然中文释义（Contextualize Technical Acronyms）\n工程与科研用户习惯使用标准英文缩写作为锚点。在中文界面中，切忌将专业缩写强行全部抹除或生硬直译，而应采用“中文自然表述 + 括号保留英文缩写/简短解释”的策略。例如保留 Aspen、LCA、GP（高斯过程）、STD（标准配置）、HR（热回收配置） 和 Alpha 截集（α-cut），既保证了英文界面的紧凑性，又消除了中文用户的阅读障碍。\n\n明确区分“基准核算”与“情景外推”（Separate Baseline Accounting from Scenario Extrapolation）\n在文案结构上，将前序工作区的“确定性稳态核算”与独立模块的“预计算网格探索”划清界限。在引导用户从工作区进入 HTL 预测模块时（如第 27、31、32 项），文案必须准确交代准入条件（同源、未修改的原生导出数据）和评估维度（266 个候选在 1,024 组给定扰动下的产率、能耗、碳足迹波动及排名稳定性），明确这是无门槛的“数值敏感性探索”，而非工程设计上的“工厂可靠性认证”。\n\nthumb_up\nthumb_down\ninfo\nGoogle AI models may make mistakes, so double-check outputs.\nUse Arrow Up and Arrow Down to select a turn, Enter to jump to it, and Escape to return to the chat.\nadd_circle\nkey_off\nwidgets\nTools\nmic\nRun\nCtrl\nkeyboard_return\nRun settings\ncode\nGet code\nreset_settings\nclose\nGemini 4 Argon\ngemini-4-argon\nA highly capable model, built to solve complex problems with depth and precision across real-world software engineering and knowledge work.\nSystem instructions\nOptional tone and style instructions for the model\nThinking level\nMedium\nexpand_more\n\nTools\n\nStructured outputs\n\nEdit\n\nCode execution\n\nFunction calling\n\nEdit\n\nGrounding with Google Search\n\nURL context\nexpand_more\n\nAdvanced settings\n\nResponse ready.",
+  "rows": [
+    [
+      "序号",
+      "old_en (原英文)",
+      "new_en (新英文)",
+      "zh (新中文)"
+    ],
+    [
+      "1",
+      "Your analysis, connected.",
+      "Process analysis workspace",
+      "流程分析工作区"
+    ],
+    [
+      "2",
+      "Start with your data. Follow a clear path to energy and impact.",
+      "Import Aspen exports to calculate steady-state balances and factor-based impacts locally in your browser.",
+      "在浏览器本地导入 Aspen 导出数据，计算稳态质量与能量衡算，并评估基于给定因子的环境影响。"
+    ],
+    [
+      "3",
+      "Import your data / Choose, map and review tables",
+      "1. Import & map / Load files and match the five required tables",
+      "1. 导入与映射 / 读取文件并匹配五张基础数据表"
+    ],
+    [
+      "4",
+      "Check your basis / Units, boundaries and factors",
+      "2. Set calculation basis / Confirm units, system boundaries, 1 kg functional unit, and allocation",
+      "2. 设定计算基准 / 确认单位、系统边界、1 kg 产品功能单位及分配规则"
+    ],
+    [
+      "5",
+      "Explore the results / Energy, impacts and comparison",
+      "3. View & export results / Check steady-state balances, matched impacts, and possibility intervals",
+      "3. 查看与导出结果 / 检查稳态衡算、已匹配因子的影响及可能性区间"
+    ],
+    [
+      "6",
+      "Bring your export.",
+      "Import data files",
+      "导入数据文件"
+    ],
+    [
+      "7",
+      "Choose CSV, Excel or a saved JSON project. English and Chinese headers are supported.",
+      "Select Aspen exports (CSV, Excel) or a saved JSON project. Files are processed locally and support English or Chinese headers.",
+      "选择 Aspen 导出的 CSV、Excel 文件或已保存的 JSON 项目。数据仅在本地处理，支持中英文表头。"
+    ],
+    [
+      "8",
+      "Try it with an example.",
+      "Or start with a sample dataset",
+      "或使用示例数据集体验"
+    ],
+    [
+      "9",
+      "Try the worked example",
+      "Load sample project",
+      "加载示例项目"
+    ],
+    [
+      "10",
+      "Load the verified HTL example",
+      "Load native HTL sample (Aspen reference)",
+      "加载原生 HTL 示例（Aspen 基准数据）"
+    ],
+    [
+      "11",
+      "Review the suggested mapping.",
+      "Map your columns to the five required tables: streams, equipment, cases/products, inventory, and impact factors.",
+      "请核对字段映射，确保物流、设备、工况/产品、环境清单及影响因子五张表匹配正确。"
+    ],
+    [
+      "12",
+      "Apply reviewed mapping",
+      "Confirm column mapping",
+      "确认字段映射"
+    ],
+    [
+      "13",
+      "Five tables. One connected model.",
+      "Overview of the five required tables. Missing values remain blank and are not treated as zero.",
+      "五张基础数据表概览。缺失数据将保持为空，计算时不会默认视为 0。"
+    ],
+    [
+      "14",
+      "A quick project check.",
+      "Check data completeness and table alignment before setting your calculation basis.",
+      "在设定计算基准前，检查数据完整性与各表关联状态。"
+    ],
+    [
+      "15",
+      "Calculation basis.",
+      "Confirm units, system boundaries, and allocation rules based on a 1 kg product functional unit.",
+      "基于 1 kg 产品功能单位，确认工程单位、系统边界与多产品分配规则。"
+    ],
+    [
+      "16",
+      "Inventory & factor coverage.",
+      "Factor matching status. Only inventory items matched with provided factors are included in the impact calculation.",
+      "因子匹配状态。仅计算已提供对应影响因子的环境清单项，未匹配项不计入结果。"
+    ],
+    [
+      "17",
+      "Calculate balances & impacts",
+      "Run balance & impact calculation",
+      "运行衡算与影响计算"
+    ],
+    [
+      "18",
+      "Your results, at a glance.",
+      "Steady-state calculation summary",
+      "稳态计算结果摘要"
+    ],
+    [
+      "19",
+      "Balance check / Closed",
+      "Accounting balance: Closed (numerical check only, not a physical validation)",
+      "账面衡算：闭合（仅代表输入输出数值闭合，不代表工艺物理验证）"
+    ],
+    [
+      "20",
+      "Purchased energy",
+      "Net purchased energy (per 1 kg product)",
+      "净外购能耗（每 1 kg 产品）"
+    ],
+    [
+      "21",
+      "Target / feed yield",
+      "Product-to-feed mass ratio (per 1 kg product)",
+      "目标产品与进料质量比（基准：1 kg 产品）"
+    ],
+    [
+      "22",
+      "See what the numbers mean.",
+      "Detailed breakdown of steady-state energy use and factor-based impacts.",
+      "稳态能耗与已匹配环境影响的详细构成。"
+    ],
+    [
+      "23",
+      "What drives the impact?",
+      "Impact breakdown (based on matched factors only)",
+      "环境影响构成（仅包含已匹配因子的清单项）"
+    ],
+    [
+      "24",
+      "How wide are the input supports?",
+      "Alpha-cut possibility intervals (from triangular fuzzy inputs; indicates support range, not statistical confidence)",
+      "Alpha 截集（\n𝛼\nα\n-cut）可能性支持区间（基于三角模糊输入生成，表征可能范围而非统计置信区间）"
+    ],
+    [
+      "25",
+      "Equipment energy / Across cases",
+      "Equipment energy comparison across cases",
+      "不同工况下的设备能耗对比"
+    ],
+    [
+      "26",
+      "Explore the trade-offs.",
+      "Compare energy, yield, and calculated impacts across cases",
+      "对比不同工况下的能耗、产率与已算环境影响"
+    ],
+    [
+      "27",
+      "From this case to operating variation.",
+      "Unmodified native HTL exports can carry their reference operating point into the pre-computed GP prediction grid.",
+      "若当前为同源且未修改的原生 HTL 导出数据，可将该参考工况带入预计算的高斯过程（GP）网格中查看预测。"
+    ],
+    [
+      "28",
+      "Continue to HTL prediction",
+      "Open HTL prediction module",
+      "进入 HTL 预测模块"
+    ],
+    [
+      "29",
+      "Prediction & Robustness",
+      "Pre-computed HTL Prediction & Perturbation Analysis",
+      "HTL 预计算预测与扰动分析"
+    ],
+    [
+      "30",
+      "Show prediction",
+      "Load pre-computed GP grid",
+      "加载预计算 GP 预测网格"
+    ],
+    [
+      "31",
+      "Explore operating variation",
+      "View STD/HR comparisons, fixed-background climate impacts (GWP), and variations across 1,024 perturbation scenarios.",
+      "查看标准（STD）与热回收（HR）配置对照、固定背景下的气候影响（碳足迹）贡献，以及 1,024 组给定扰动情景下的指标波动。"
+    ],
+    [
+      "32",
+      "Candidate ranking stability",
+      "Ranking variation across 266 candidates under 1,024 perturbations (numerical sensitivity only, not plant reliability)",
+      "266 个候选方案在 1,024 组扰动下的排名波动（仅反映数值敏感性，不设达标门槛，不代表真实工厂可靠性）"
+    ],
+    [
+      "33",
+      "Native observations and prediction",
+      "Native Aspen sample points and frozen GP model curves (no live simulation or retraining)",
+      "原生 Aspen 样本点与冻结 GP 模型预测曲线（直接读取预计算网格，不实时调用 Aspen 或重新训练模型）"
+    ],
+    [
+      "34",
+      "Retained in this tab. Download a copy to keep it.",
+      "Data stays in this browser tab; switching languages will not alter inputs. Download the project file (.json) to save a permanent copy.",
+      "数据仅保留在当前浏览器标签页中（切换语言不会改变输入数据）。请下载项目文件（.json）以长期保存副本。"
+    ]
+  ]
+}

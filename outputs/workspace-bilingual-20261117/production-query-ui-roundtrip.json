@@ -1,0 +1,29 @@
+{
+  "checkedAt": "2026-11-17T18:22:41.485Z",
+  "url": "https://vercel-pi-ten-59.vercel.app/models.html?lang=zh",
+  "release": "cb8ce67",
+  "restored": {
+    "query": false,
+    "summary": "模型配置htl-reference-hr可绘制记录1 / 1不可绘制记录0",
+    "basis": "核算基准功能单位1 kg declared target product系统边界Inherited HTL fixed-background accounting: feed, heater/reactor electricity, fixed pump inventory, direct CO2/CH4 and wastewater; excludes separator heat duty and cooling-service burdens; not a full-plant utility inventory分配方式Single target; no co-product allocation; share 1焓基准Complete material-stream enthalpy rates on one common reference; Q and W positive inward; no KE/PE or accumulation以上声明来自数据集，仅凭单位无法确定目标产品或系统边界。",
+    "source": "已导出的预测请求声明的证据类型: browser_surrogate_prediction. 这是导出文件中的声明，不是对原生 Aspen 运行或物理性能的独立验证。"
+  },
+  "cleared": {
+    "query": false,
+    "view": ""
+  },
+  "v1": {
+    "query": false,
+    "summary": "模型配置htl-reference-hr可绘制记录17 / 17不可绘制记录0",
+    "source": "探索模型 / 常规预测未启用声明的证据类型: native_simulation. 这是导出文件中的声明，不是对原生 Aspen 运行或物理性能的独立验证。"
+  },
+  "restoredPublic": {
+    "values": [
+      "604.95",
+      "12.4"
+    ],
+    "count": 0,
+    "disabled": true
+  },
+  "passed": true
+}

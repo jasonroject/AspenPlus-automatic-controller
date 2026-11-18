@@ -1,0 +1,8 @@
+{
+  "threeDimensionalPointSelection": true,
+  "threeDimensionalLineSelection": true,
+  "stlDisabledForReferences": true,
+  "objDisabledForReferences": true,
+  "saveReloadExact": true,
+  "dxfDownloaded": true
+}

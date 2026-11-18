@@ -1,0 +1,19 @@
+{
+  "article_count": 14,
+  "bilingual_article_order_match": true,
+  "links_checked": 53,
+  "issues": [],
+  "public_files_checked": 102,
+  "privateFiles": [],
+  "configFiles": [
+    ".vercel/project.json",
+    ".vercel/README.txt"
+  ],
+  "tokenPatternFiles": [],
+  "oss_license_notices": [
+    "vendor/LICENSE-SheetJS.txt",
+    "vendor/LICENSE-three.txt",
+    "vendor/fonts/LICENSE-Inter.txt"
+  ],
+  "scope": "Local public-directory inventory and common credential pattern checks; no production-deployment or comprehensive security claim"
+}

@@ -1,0 +1,11 @@
+{
+  "lEnterWaitsForPoint": true,
+  "firstPointPersistsOnEscape": true,
+  "reusesExistingPoint": true,
+  "pointAndLineAtomicUndo": true,
+  "undoReusedAnchorPreservesPoint": true,
+  "undoNewFirstPoint": true,
+  "closeReusesFirstNode": true,
+  "points": 3,
+  "segments": 3
+}

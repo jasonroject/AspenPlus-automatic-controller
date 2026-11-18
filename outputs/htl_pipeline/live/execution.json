@@ -1,0 +1,17 @@
+[
+  {
+    "temperature_C": 325.0,
+    "length_m": 8.5,
+    "exit_code": 0
+  },
+  {
+    "temperature_C": 335.0,
+    "length_m": 12.5,
+    "exit_code": 0
+  },
+  {
+    "temperature_C": 345.0,
+    "length_m": 7.5,
+    "exit_code": 0
+  }
+]
