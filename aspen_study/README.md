@@ -103,6 +103,19 @@ python -m aspen_study.cli classify --graph graph.json --override roles.yaml --ou
 python -m aspen_study.cli assess --graph graph.json --roles roles.json --study-id demo --out-dir study/ [--factors my-factors.json] [--calorie-J 4.1868]
 ```
 
+## 结果包与本机模式
+
+`probe-summary.json` + `graph.json` + `roles.json` 是本机模式和在线上传共用的输入（zip 或散文件）。读写与校验：`aspen_study/result_package.py`；本机入口：`python serve_web.py --local`（`POST /api/local/probe`）。详见 `docs/使用指南.md` 的“一个结果包”。
+
+```bash
+python -m aspen_study.result_package check <文件夹|包.zip|json>
+python -m aspen_study.result_package zip <probe 输出文件夹> -o 包.zip
+```
+
+## 节点路径验证（尚未在真机核对的块类型）
+
+`python -m aspen_study.verify_nodes {find,verify,check}`；真机步骤见 `docs/Aspen节点验证.md`，夹具放在 `aspen_study/tests/fixtures/live/nodes/`，`test_live_node_fixtures.py` 在夹具出现前全部跳过。
+
 ## 自动分类规则（摘要）
 
 - **块**：按 Aspen 块模型名映射（Heater/HeatX/Flash2/RadFrac/RStoic…/Pump/Compr/Mixer/Valve）。HeatX 有两股物料进口 → `internal_recovery`（外部 Q=W=0，交换热只进 `internal_loops`）。正负荷按出口温度 + 10 K 推荐 LP/MP/HP 蒸汽或加热炉，负负荷推荐冷却水或冷冻，置信度 0.55–0.6，**必须确认**。泵/压缩机 → 电力；负轴功 → 透平（默认不抵扣）。

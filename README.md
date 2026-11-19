@@ -67,7 +67,9 @@ v2 在未改变的 5% 误差标准下通过声明的仿真复现检查；全新 
 | `batch_gui.py` / `scan_dialog.py` / `column_picker.py` | 运行表、参数列选择与批量生成行 |
 | `parameter_catalog.py` | 输入扫描、参数写入和回读校验 |
 | `aspen_connection.py` | 识别本机 Aspen COM 接口并创建独立模型实例 |
-| `batch_runner.py` | 批量计算与汇总 |
+| `batch_runner.py` | 批量计算与汇总（经适配器 `run()` 轮询，`--timeout`；每行 ok/warning/error/timeout/stopped/skipped） |
+| `serve_web.py` | 公开网页静态服务；`--local` 在本机运行 Aspen 并返回与上传相同的结果包 |
+| `run_status.py` | 状态词汇（ok/warning/error/…）与逐块消息字段 |
 | `test_datacatch.py` / `result_units.py` | 结果提取与单位转换 |
 | `test_aspen_control.py` | 传统模型扫描与专用控制脚本生成入口 |
 | `generated/` | 控制脚本、扫描结果和配置 |
