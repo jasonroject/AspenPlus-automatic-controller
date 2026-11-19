@@ -4,12 +4,8 @@ import json
 import unittest
 from pathlib import Path
 
-try:
-    import jsonschema  # noqa: F401
-except ImportError:  # pragma: no cover
-    jsonschema = None
-
 from aspen_study import pipeline_to_study as P
+from aspen_study.schema_check import validate as repo_validate
 
 ROOT = Path(__file__).resolve().parents[2]
 STUDY = ROOT / "analysis_web/data/study"
@@ -21,9 +17,15 @@ SHA = "a" * 64
 def mini():
     grid = [{"temperature_C": t, "length_m": l, "target_kg_h": 5.0 + t / 1000, "HR_electricity_kWh": 10.0 + l, "STD_electricity_kWh": 40.0, "CF_STD": 15.0, "CF_HR": 11.0}
             for t in (310.0, 310.5) for l in (5.0, 5.25)]
+    metric = {"n": 3, "RMSE": 0.1, "median_APE_pct": 0.2, "p95_APE_pct": 0.3, "max_APE_pct": 0.4}
     pipeline = {"version": "mini-1", "status": "validated_simulator_pilot", "prediction_enabled": True,
                 "bounds": {"temperature_C": [310.0, 350.0], "length_m": [5.0, 20.0]}, "basis": {"wet_feed_kg": 100, "duration_h": 1, "pressure_MPa": 25},
                 "scope": "mini scope", "accounting": {"fixed_feed_GWP": 50.0, "electricity_beta": 0.7, "scope": "acct scope"},
+                "native_reference_count": 121,
+                "training": {"models": {"target_kg_h": {"training_count": 90, "kernel": "Matern52"}}, "reference_sha256": SHA,
+                             "selection": "Training-only four-fold CV."},
+                "validation_coverage": {"holdout": {"expected_in_domain": 10}, "fresh": {"expected_in_domain": 3}},
+                "holdout_metrics": {"target_kg_h": metric}, "fresh_metrics": {"target_kg_h": metric},
                 "fresh_runs": [{"temperature_C": 325.0, "length_m": 8.5, "completed": True, "accepted": True, "source_sha256": SHA,
                                 "warnings": ["Calculations were completed with warnings"], "mass_residual_kg_h": 1e-4}],
                 "grid": {"temperature_step_C": 0.5, "length_step_m": 0.25, "rows": grid},
@@ -37,59 +39,148 @@ def mini():
     return pipeline, obs
 
 
-@unittest.skipIf(jsonschema is None, "jsonschema not installed")
+def case(files, cid, scenario="HR"):
+    return next(c for c in files["manifest.json"]["cases"] if c["id"] == cid and c["scenario"] == scenario)
+
+
 class ConverterTests(unittest.TestCase):
-    def test_mini_package_is_schema_valid_and_lossless(self):
+    def test_mini_package_is_valid_and_lossless(self):
         pipeline, obs = mini()
         before = copy.deepcopy((pipeline, obs))
         files = P.convert(pipeline, obs)
         self.assertEqual((pipeline, obs), before, "inputs must not be mutated")
         self.assertEqual(P.reassemble(files), before)
-        ids = [c["id"] for c in files["manifest.json"]["cases"]]
-        self.assertEqual(ids, ["T310p00_L5p00", "T320p00_L6p00", "fresh_T325p00_L8p50"])
-        self.assertEqual(files["manifest.json"]["model"]["sha256"], SHA)
+        keys = [(c["id"], c["scenario"]) for c in files["manifest.json"]["cases"]]
+        self.assertEqual(keys, [(i, s) for i in ("T310p00_L5p00", "T320p00_L6p00", "fresh_T325p00_L8p50") for s in ("HR", "STD")])
+        model = files["manifest.json"]["model"]
+        self.assertEqual((model["sha256"], model["version"], model["simulator"]), (SHA, None, "Aspen Plus"))
+        self.assertEqual(model["source_sha256"], P.canonical_sha256(pipeline))
+        self.assertEqual(P.convert(pipeline, obs, source_sha256="c" * 64)["manifest.json"]["model"]["source_sha256"], "c" * 64)
+
+    def test_every_file_passes_the_repo_validator_with_cross_field_rules(self):
+        files = P.convert(*mini())
+        repo_validate(files["manifest.json"], "manifest")
+        repo_validate(files["factors.json"], "factors-snapshot")
+        repo_validate(files["surrogate/surrogate.json"], "surrogate")
+        for path, value in files.items():
+            if path.startswith("results/"):
+                repo_validate(value, "results")
+
+    def test_scenarios_are_separate_records_without_suffixed_fields(self):
+        files = P.convert(*mini())
+        m = files["manifest.json"]
+        self.assertEqual([s["id"] for s in m["scenarios"]], ["HR", "STD"])
+        self.assertEqual(m["default_scenario"], "HR")
+        for c in m["cases"]:
+            for section in (c["kpi"], c["case_params"], c["completeness"]):
+                self.assertFalse([k for k in section if k.upper().endswith(("_STD", "_HR"))])
+        kpi_hr, kpi_std = case(files, "T310p00_L5p00")["kpi"], case(files, "T310p00_L5p00", "STD")["kpi"]
+        self.assertEqual((kpi_hr["gwp_per_fu"], kpi_std["gwp_per_fu"]), (11.0, 15.0))
+        self.assertAlmostEqual(kpi_hr["energy_per_fu"], 10.0 / 5.0)     # kWh / (kg target per h) at the 1 h basis
+        self.assertAlmostEqual(kpi_std["energy_per_fu"], 40.0 / 5.0)
+        self.assertAlmostEqual(kpi_hr["efficiency"], 5.0 / 100)
+
+    def test_has_results_only_with_gate_evidence_and_scenario_file_names(self):
+        files = P.convert(*mini())
+        self.assertTrue(case(files, "fresh_T325p00_L8p50")["has_results"])
+        self.assertEqual(case(files, "fresh_T325p00_L8p50")["result"], "results/fresh_T325p00_L8p50.json")
+        self.assertEqual(case(files, "fresh_T325p00_L8p50", "STD")["result"], "results/fresh_T325p00_L8p50__STD.json")
+        for cid in ("T310p00_L5p00", "T320p00_L6p00"):
+            for scenario in ("HR", "STD"):
+                c = case(files, cid, scenario)
+                self.assertFalse(c["has_results"])
+                self.assertNotIn("result", c)
+                self.assertNotIn("file", c)
+        self.assertFalse([p for p in files if p.startswith("cases/")], "no stub five-table files")
+        self.assertEqual(len(files["results/summary.json"]["cases"]), 2)
+
+    def test_completeness_is_unknown_not_complete_for_total_only_gwp(self):
+        files = P.convert(*mini())
+        for c in files["manifest.json"]["cases"]:
+            comp = c["completeness"]["GWP"]
+            self.assertEqual((comp["status"], comp["complete"]), ("unknown", False))
+            self.assertIsNone(comp["contribution_coverage"])
+        rec = files["results/fresh_T325p00_L8p50.json"]["cases"][0]
+        self.assertEqual(rec["completeness"]["GWP"]["status"], "unknown")
+        self.assertEqual(rec["completeness"]["GWP"]["total"], 11.0)
 
     def test_missing_source_values_are_null_not_zero(self):
         files = P.convert(*mini())
-        case = files["manifest.json"]["cases"][1]
-        self.assertIsNone(case["kpi"]["energy_per_fu"])
-        self.assertIsNone(case["kpi"]["gwp_per_fu"])
-        self.assertFalse(case["completeness"]["GWP_HR"]["complete"])
-        self.assertTrue(case["completeness"]["GWP_STD"]["complete"])
-        result = files["results/T320p00_L6p00.json"]["cases"][0]
-        self.assertIsNone(result["completeness"]["GWP_HR"]["total"])
-        self.assertNotIn("electricity_HR", result["energy"]["by_utility"])
+        c = case(files, "T320p00_L6p00")
+        self.assertIsNone(c["kpi"]["energy_per_fu"])
+        self.assertIsNone(c["kpi"]["gwp_per_fu"])
+        self.assertEqual(case(files, "T320p00_L6p00", "STD")["kpi"]["gwp_per_fu"], 15.0)
+        self.assertIsNone(c["kpi"]["max_balance_ratio"])
+        rec = files["results/fresh_T325p00_L8p50.json"]["cases"][0]
         for key in ("energy_edges", "internal_loops", "balance"):
-            self.assertEqual(result[key], [])
-        self.assertIsNone(files["manifest.json"]["cases"][0]["kpi"]["max_balance_ratio"])
+            self.assertEqual(rec[key], [])
 
     def test_gates_only_pass_with_evidence(self):
         files = P.convert(*mini())
-        plain = {g["id"]: g["status"] for g in files["results/T310p00_L5p00.json"]["cases"][0]["gates"]}
-        self.assertEqual(set(plain.values()), {"not_run"})
-        fresh = files["results/fresh_T325p00_L8p50.json"]["cases"][0]
-        gates = {g["id"]: g for g in fresh["gates"]}
-        self.assertEqual(fresh["status"], "accepted_with_warnings")
+        rec = files["results/fresh_T325p00_L8p50.json"]["cases"][0]
+        gates = {g["id"]: g for g in rec["gates"]}
+        self.assertEqual(rec["status"], "accepted_with_warnings")
         self.assertEqual((gates["G0_identity"]["status"], gates["G1_converged"]["status"], gates["G1_warnings"]["status"]), ("pass", "pass", "warn"))
-        self.assertEqual(gates["G3_balance"]["status"], "not_run")
+        for gid in ("G2_completeness", "G3_balance", "G4_roles", "G5_factors"):
+            self.assertEqual(gates[gid]["status"], "not_run")
+        std = files["results/fresh_T325p00_L8p50__STD.json"]["cases"][0]
+        self.assertTrue(any("reconstructed" in w for w in std["warnings"]))
 
-    def test_kpi_derivation(self):
-        kpi = P.convert(*mini())["manifest.json"]["cases"][0]["kpi"]
-        self.assertAlmostEqual(kpi["energy_per_fu"], 10.0 / 5.0)         # HR kWh / (kg target per h) at 1 h basis
-        self.assertAlmostEqual(kpi["energy_per_fu_STD"], 40.0 / 5.0)
-        self.assertAlmostEqual(kpi["efficiency"], 5.0 / 100)
-        self.assertEqual(kpi["gwp_per_fu"], 11.0)
-
-    def test_schema_violations_are_reported(self):
+    def test_factor_values_live_in_the_snapshot_and_results_only_reference_ids(self):
         files = P.convert(*mini())
-        bad = copy.deepcopy(files)
-        bad["manifest.json"]["cases"][0]["file"] = "../escape.json"
+        snapshot = {f["id"]: f for f in files["factors.json"]["factors"]}
+        self.assertEqual(snapshot["fixed_feed_GWP"]["value"], 50.0)
+        self.assertEqual(snapshot["electricity_beta"]["value"], 0.7)
+        method = files["results/summary.json"]["method"]
+        self.assertEqual(method["factors_snapshot"], "factors.json")
+        self.assertTrue(all("value" not in f for f in method["factor_sources"]))
+        self.assertEqual({f["factor_id"] for f in method["factor_sources"]}, set(snapshot))
+        self.assertEqual(files["manifest.json"]["shards"]["factors"], "factors.json")
+
+    def test_surrogate_part_is_separate_and_described(self):
+        files = P.convert(*mini())
+        self.assertEqual(files["manifest.json"]["shards"]["surrogate"], "surrogate/surrogate.json")
+        d = files["surrogate/surrogate.json"]
+        self.assertEqual(d["grid_files"], ["surrogate/grid.json"])
+        self.assertEqual(d["extra_files"], {"details": "surrogate/details.json", "robustness_HR": "surrogate/robustness-HR.json",
+                                            "robustness_STD": "surrogate/robustness-STD.json"})
+        self.assertEqual([i["id"] for i in d["inputs"]], ["temperature_C", "length_m"])
+        self.assertEqual({t["id"] for t in d["targets"] if t.get("scenario") == "STD"}, {"STD_electricity_kWh", "CF_STD"})
+        self.assertEqual(d["data_source"]["reference_count"], 121)
+        self.assertEqual(d["split"], {"method": "Training-only four-fold CV.", "training": 90, "holdout": 10, "verification": 3})
+        self.assertEqual(d["model_type"], "GaussianProcessRegressor (Matern52)")
+        self.assertEqual(sorted(d["metrics"]), ["fresh", "holdout"])
+        self.assertTrue(d["prediction_enabled"])
+        self.assertFalse([k for k in files["manifest.json"]["shards"] if k == "grid"])
+
+    def test_rule_violations_are_rejected(self):
+        files = P.convert(*mini())
+        for mutate, text in [
+            (lambda f: f["manifest.json"]["cases"][0].update(file="cases/x.json"), "has_results=false must not reference"),
+            (lambda f: f["manifest.json"]["cases"][0]["kpi"].update(gwp_per_fu_STD=1.0), "scenario-suffixed"),
+            (lambda f: f["manifest.json"]["cases"][0]["completeness"]["GWP"].update(status="complete", complete=True), "must be 'unknown'"),
+            (lambda f: f["manifest.json"].update(default_scenario="X"), "default_scenario"),
+            (lambda f: [f["manifest.json"]["model"].pop(k) for k in ("sha256", "source_sha256")], "give sha256"),
+            (lambda f: f["manifest.json"]["cases"][0].update(has_results=True, result="../escape.json"), "result"),
+            (lambda f: f["results/fresh_T325p00_L8p50.json"]["cases"][0]["energy_edges"].append(
+                {"source": "a", "target": "b", "value": -1, "unit": "kW", "kind": "utility"}), "value"),
+        ]:
+            bad = copy.deepcopy(files)
+            mutate(bad)
+            with self.assertRaises(ValueError) as ctx:
+                P.check(bad)
+            self.assertIn(text, str(ctx.exception))
+
+    def test_unreferenced_or_missing_files_are_rejected(self):
+        files = P.convert(*mini())
+        extra = copy.deepcopy(files)
+        extra["surrogate/stray.json"] = {}
         with self.assertRaises(ValueError):
-            P.check(bad)
-        bad = copy.deepcopy(files)
-        bad["results/T310p00_L5p00.json"]["cases"][0]["energy_edges"] = [{"source": "a", "target": "b", "value": -1, "unit": "kW", "kind": "utility"}]
+            P.check(extra)
+        gone = copy.deepcopy(files)
+        del gone["factors.json"]
         with self.assertRaises(ValueError):
-            P.check(bad)
+            P.check(gone)
 
     def test_ambiguous_model_hash_is_rejected(self):
         pipeline, obs = mini()
@@ -104,45 +195,35 @@ class ConverterTests(unittest.TestCase):
             P.convert(pipeline, obs)
 
 
-@unittest.skipIf(jsonschema is None, "jsonschema not installed")
 class PublishedPackageTests(unittest.TestCase):
-    def test_published_package_validates_and_hashes_match(self):
+    def test_published_package_validates_with_the_repo_validator(self):
         files = P.read(STUDY)
         P.check(files)
-        for case in files["manifest.json"]["cases"]:
-            data = (STUDY / case["file"]).read_bytes()
-            self.assertEqual((case["bytes"], case["sha256"]), (len(data), hashlib.sha256(data).hexdigest()))
+        repo_validate(files["manifest.json"], "manifest")
+        n = 0
+        for path, value in files.items():
+            for prefix, name in P.SCHEMA_BY_PATH:
+                if path == prefix or (prefix.endswith("/") and path.startswith(prefix)):
+                    repo_validate(value, name)
+                    n += 1
+        self.assertEqual(n, 10)   # manifest, factors, surrogate descriptor, summary + 6 result shards
         self.assertFalse((ROOT / "analysis_web/data/pipeline.json").exists())
+        self.assertFalse((STUDY / "cases").exists(), "stub case files are gone")
 
     @unittest.skipUnless(SOURCE.exists() and OBS.exists(), "pipeline sources are local to the repo checkout")
     def test_published_package_is_current_and_lossless(self):
-        pipeline, obs = json.loads(SOURCE.read_text(encoding="utf-8")), json.loads(OBS.read_text(encoding="utf-8"))
+        raw = SOURCE.read_bytes()
+        pipeline, obs = json.loads(raw.decode("utf-8")), json.loads(OBS.read_text(encoding="utf-8"))
         published = P.read(STUDY)
         self.assertEqual(P.reassemble(published), (pipeline, obs))
-        fresh = P.convert(pipeline, obs)
+        fresh = P.convert(pipeline, obs, source_sha256=published["manifest.json"]["model"]["source_sha256"])
+        self.assertEqual(set(fresh), set(published))
         for path, value in fresh.items():
-            if path != "manifest.json":
-                self.assertEqual(published[path], json.loads(P.dumps(value)), f"{path} is stale: rerun python -m aspen_study.pipeline_to_study")
-        self.assertEqual({c["id"] for c in published["manifest.json"]["cases"]}, {c["id"] for c in fresh["manifest.json"]["cases"]})
+            self.assertEqual(published[path], json.loads(P.dumps(value)), f"{path} is stale: rerun python -m aspen_study.pipeline_to_study")
+        if b"\r" not in raw:   # CRLF checkouts change the byte hash, not the content
+            self.assertEqual(published["manifest.json"]["model"]["source_sha256"], hashlib.sha256(raw).hexdigest())
 
 
-class StdlibValidatorAgreement(unittest.TestCase):
-    """The repo's own stdlib validator must accept the same files (no jsonschema needed in CI)."""
-    def test_stdlib_validator_accepts_published_files(self):
-        from aspen_study.schema_check import validate
-        manifest = json.loads((STUDY / "manifest.json").read_text(encoding="utf-8"))
-        validate(manifest, "manifest")
-        for case in manifest["cases"]:
-            validate(json.loads((STUDY / case["result"]).read_text(encoding="utf-8")), "results")
-            validate(json.loads((STUDY / case["file"]).read_text(encoding="utf-8")), "case")
-        validate(json.loads((STUDY / "results/summary.json").read_text(encoding="utf-8")), "results")
-
-
-if __name__ == "__main__":
-    unittest.main()
-
-
-@unittest.skipIf(jsonschema is None, "jsonschema not installed")
 class DisabledPipelineTests(unittest.TestCase):
     """A failed validation gate must still publish a *disabled* artifact (as the old pipeline.json did)."""
     def disabled(self):
@@ -155,12 +236,18 @@ class DisabledPipelineTests(unittest.TestCase):
         pipeline, obs = self.disabled()
         files = P.convert(pipeline, obs)
         self.assertEqual(files["surrogate/grid.json"]["data"], [])
-        self.assertEqual(files["manifest.json"]["shards"]["surrogate"], ["surrogate/grid.json"])
+        self.assertEqual(files["surrogate/surrogate.json"]["grid_files"], ["surrogate/grid.json"])
+        self.assertFalse(files["surrogate/surrogate.json"]["prediction_enabled"])
+        self.assertEqual(files["surrogate/surrogate.json"]["extra_files"], {"details": "surrogate/details.json"})
         self.assertEqual(P.reassemble(files), (pipeline, obs))
-        self.assertFalse(files["meta.json"]["prediction_enabled"])
+        self.assertFalse(files["surrogate/details.json"]["prediction_enabled"])
 
     def test_without_a_source_model_hash_nothing_is_published(self):
         pipeline, obs = self.disabled()
         pipeline["fresh_runs"] = [{"accepted": True}] * 3
         with self.assertRaises(ValueError):
             P.convert(pipeline, obs)
+
+
+if __name__ == "__main__":
+    unittest.main()

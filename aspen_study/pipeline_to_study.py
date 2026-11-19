@@ -1,23 +1,30 @@
 """Convert the archived HTL ``pipeline.json`` (+ native observations) into an aspen-study/2 package.
 
-``pipeline.json`` is *not* a per-case Aspen result set: it is a frozen GP surrogate
-(4,941-cell prediction grid, robustness scenarios, validation evidence) plus a native
-reference ledger. The converter therefore produces
+``pipeline.json`` is *not* a per-case Aspen result set: it is a frozen GP surrogate (prediction grid,
+robustness scenarios, validation evidence) plus a native reference ledger. Output layout
+(schema versions of 2026-11-19, ``feat/generic-aspen-study`` @ 2e3d977):
 
-* ``manifest.json``            aspen-study/2 entry point (variables, gates, case index, shard paths)
-* ``cases/<id>.json``          one *stub* five-table project per native case (the source has no
-                               stream/block/inventory tables; only product/feed rate are known)
-* ``results/<id>.json``        aspen-results/1 shard per native case (missing data -> null/empty,
-                               unknown gates -> ``not_run``; nothing is invented)
-* ``results/summary.json``     all cases (same schema)
-* ``surrogate/grid.json``      prediction grid, columnar
+* ``manifest.json``                aspen-study/2 entry point: scenarios, case index (one record per
+                                   case *and scenario*), shard paths
+* ``results/<id>.json``            aspen-results/1 shard, default-scenario record; other scenarios in
+  ``results/<id>__<S>.json``       ``results/<id>__<scenario>.json``. Only cases with real gate evidence
+                                   (the three fresh verification runs) get shards: ``has_results=true``.
+                                   The other archived native values are ``has_results=false`` (summary only).
+* ``results/summary.json``         the same records, all in one file
+* ``factors.json``                 aspen-factors-snapshot/1: the accounting coefficients (values live only here
+                                   and in ``surrogate/details.json``; results reference ``factor_id``)
+* ``surrogate/surrogate.json``     aspen-surrogate/1 descriptor (inputs, targets, split, metrics, provenance)
+* ``surrogate/grid.json``          prediction grid, columnar
 * ``surrogate/robustness-<S>.json``  robustness candidates per scenario
-* ``meta.json``                everything else in pipeline.json (accounting, training, validation, ...)
-* ``observations.json``        the native observation ledger (pipeline-observations.json, verbatim)
+* ``surrogate/details.json``       every other pipeline.json field (training, validation integrity, ...)
+* ``observations.json``            the native observation ledger (pipeline-observations, verbatim)
 
-``reassemble()`` is the exact inverse for pipeline.json / observations, which the tests use to
-prove nothing was lost.  Every written JSON file is validated with ``jsonschema`` against the
-schemas in ``aspen_study/schemas`` where a schema exists.
+There are no five-table ``cases/*.json`` files: pipeline.json holds no stream/block/inventory data.
+Missing source data is ``null`` / ``[]`` / ``not_run`` / completeness ``unknown`` - never 0.
+``reassemble()`` is the exact inverse for pipeline.json and the observations.
+
+Validation: every written JSON file with a schema goes through ``schema_check.validate`` (schema plus
+the cross-field rules BRO maintains) and, when installed, ``jsonschema`` (draft 2020-12).
 """
 from __future__ import annotations
 
@@ -28,30 +35,56 @@ import json
 import re
 from pathlib import Path
 
-SCHEMA_DIR = Path(__file__).resolve().with_name("schemas")
-GRID_KEYS = {"temperature_step_C", "length_step_m", "rows"}
-PRIMARY = "HR"      # scenario shown by pipeline.js by default; STD is kept as *_STD extras
-SCENARIOS = ("STD", "HR")
+from .schema_check import SCHEMA_DIR, validate as repo_validate
+
+DEFAULT_SCENARIO = "HR"      # scenario the Process Studio page shows first
+SCENARIOS = [{"id": "HR", "label": "Heat recovery (HR)", "description": "HR flowsheet; heater duty from the native run"},
+             {"id": "STD", "label": "Standard heating (STD)", "description": "No heat recovery; preheat duty reconstructed from the HR run's boundary"}]
 GATE_IDS = ["G0_identity", "G1_converged", "G1_warnings", "G2_completeness", "G3_balance", "G4_roles", "G5_factors"]
 ALLOCATION_MISSING = "not stated in pipeline.json"
-FACTOR_SOURCE_MISSING = "not stated in pipeline.json (archived fixed-background accounting)"
+CATEGORY = "GWP"             # source says "GWP"/"climate"; no characterisation horizon is stated
+ENERGY_UNIT, GWP_UNIT = "kWh electricity / kg target", "kg CO2-eq / kg target"
+STD_NOTE = "STD electricity is reconstructed from the HR native run's no-heat-recovery preheat boundary, not an independent flowsheet run"
+# Units of the accounting coefficients are not stored in pipeline.json; they come from htl_pipeline/README.md
+# (formula) and analysis_web/data/universal-htl.json (factors table). id -> (denominator unit, impact unit, note)
+FACTOR_UNITS = {
+    "fixed_feed_GWP": ("100 kg wet feed (1 h basis)", "kg CO2-eq", "Fixed background term of the HTL climate formula"),
+    "electricity_beta": ("kWh", "kg CO2-eq", "Heat is counted as equivalent electricity (unity conversion)"),
+    "wastewater_gamma": ("m3 wastewater (water kg / 1000)", "kg CO2-eq", "Inherited volume approximation: water mass / 1000"),
+    "CO2_factor": ("kg CO2", "kg CO2-eq", "Direct emission"),
+    "CH4_factor": ("kg CH4", "kg CO2-eq", "Direct emission"),
+}
+FACTOR_SOURCE = "pipeline.json accounting: fixed original background providers (not a fresh openLCA calculation)"
 
 
-def _validator(name):
-    from jsonschema import Draft202012Validator  # imported lazily: reassemble()/read() need no jsonschema
+def _jsonschema_validator(name):
+    from jsonschema import Draft202012Validator  # lazy: reassemble()/read() need no jsonschema
     schema = json.loads((SCHEMA_DIR / f"{name}.schema.json").read_text(encoding="utf-8"))
     return Draft202012Validator(schema)
 
 
 def validate(instance, name, where=""):
-    errs = sorted(_validator(name).iter_errors(instance), key=lambda e: list(e.absolute_path))
+    """repo validator (schema + cross-field rules), then jsonschema if available."""
+    try:
+        repo_validate(instance, name)
+    except ValueError as exc:
+        raise ValueError(f"{where or name}: {exc}") from None
+    try:
+        validator = _jsonschema_validator(name)
+    except ImportError:
+        return
+    errs = sorted(validator.iter_errors(instance), key=lambda e: list(e.absolute_path))
     if errs:
         msg = "; ".join(f"{'/'.join(map(str, e.absolute_path)) or '<root>'}: {e.message[:200]}" for e in errs[:8])
-        raise ValueError(f"{where or name} violates {name} schema: {msg}")
+        raise ValueError(f"{where or name} violates {name} schema (jsonschema): {msg}")
 
 
 def dumps(value):
     return json.dumps(value, ensure_ascii=False, separators=(",", ":"), allow_nan=False)
+
+
+def canonical_sha256(value):
+    return hashlib.sha256(json.dumps(value, sort_keys=True, ensure_ascii=False, separators=(",", ":")).encode("utf-8")).hexdigest()
 
 
 def _num(value):
@@ -89,86 +122,140 @@ def _model_sha(pipeline):
 
 def _method(pipeline):
     acc = pipeline.get("accounting") or {}
-    factor_ids = [k for k in acc if k in ("fixed_feed_GWP", "electricity_beta", "wastewater_gamma", "CO2_factor", "CH4_factor")]
+    ids = [k for k in FACTOR_UNITS if k in acc]
     return {
         "functional_unit": "1 kg target (CAT + o-cresol at reactor outlet)",
         "system_boundary": f"{pipeline.get('scope', '')} {acc.get('scope', '')}".strip(),
         "allocation": ALLOCATION_MISSING,
-        "factor_sources": [{"factor_id": k, "source": FACTOR_SOURCE_MISSING, "year": None} for k in factor_ids],
+        "factor_sources": [{"factor_id": k, "source": FACTOR_SOURCE, "year": None} for k in ids],
+        "factors_snapshot": "factors.json",
         "notes": list(pipeline.get("limitations") or []) + [
             "Per-case contributions, energy_edges, balance tables and roles are not part of pipeline.json; they are left empty, not zero.",
-            f"Primary scenario is {PRIMARY}; STD values are carried as *_STD keys in the manifest kpi and by_utility."],
+            f"GWP is a total only (no breakdown): completeness is 'unknown'. Default scenario is {DEFAULT_SCENARIO}."],
     }
 
 
-def _case_result(row, cid, pipeline, fresh):
+def _factors_snapshot(pipeline, study_id):
+    acc = pipeline.get("accounting") or {}
+    factors = []
+    for fid, (unit, impact, note) in FACTOR_UNITS.items():
+        if _num(acc.get(fid)) is not None:
+            factors.append({"id": fid, "category": CATEGORY, "value": acc[fid], "unit": unit, "impact_unit": impact,
+                            "method": "Inherited HTL fixed-background climate accounting", "source": FACTOR_SOURCE,
+                            "year": None, "status": "archived", "note": note})
+    return {"schema": "aspen-factors-snapshot/1", "study_id": study_id, "factors": factors}
+
+
+def _surrogate_descriptor(pipeline, surrogate_files):
+    models = (pipeline.get("training") or {}).get("models") or {}
+    kernels = sorted({m.get("kernel") for m in models.values() if m.get("kernel")})
+    counts = sorted({m.get("training_count") for m in models.values() if m.get("training_count") is not None})
+    cov = pipeline.get("validation_coverage") or {}
+    bounds = pipeline.get("bounds") or {}
+    inputs = []
+    for ident, unit in (("temperature_C", "°C"), ("length_m", "m")):
+        item = {"id": ident, "unit": unit}
+        if len(bounds.get(ident) or []) == 2:
+            item["min"], item["max"] = bounds[ident]
+        inputs.append(item)
+    columns = list(pipeline["grid"]["rows"][0]) if pipeline["grid"]["rows"] else ["temperature_C", "length_m"]
+    units = {"target_kg_h": "kg/h", "STD_electricity_kWh": "kWh", "HR_electricity_kWh": "kWh", "water_kg_h": "kg/h",
+             "direct_kgCO2eq_h": "kg CO2-eq/h", "CF_STD": GWP_UNIT, "CF_HR": GWP_UNIT}
+    targets = []
+    for col in columns:
+        if col in ("temperature_C", "length_m"):
+            continue
+        item = {"id": col, "unit": units.get(col, "")}
+        if not item["unit"]:
+            del item["unit"]
+        if col.startswith(("STD_", "HR_")) or col in ("CF_STD", "CF_HR"):
+            item["scenario"] = "STD" if "STD" in col else "HR"
+        targets.append(item)
+    split = {"method": (pipeline.get("training") or {}).get("selection") or "not stated in pipeline.json"}
+    if len(counts) == 1:
+        split["training"] = counts[0]
+    for key, name in (("holdout", "holdout"), ("fresh", "verification")):
+        if isinstance(_num((cov.get(key) or {}).get("expected_in_domain")), (int, float)):
+            split[name] = cov[key]["expected_in_domain"]
+    data_source = {"description": pipeline.get("scope", "") or "archived native reference runs"}
+    sha = (pipeline.get("training") or {}).get("reference_sha256")
+    if sha:
+        data_source["sha256"] = sha
+    if isinstance(pipeline.get("native_reference_count"), int):
+        data_source["reference_count"] = pipeline["native_reference_count"]
+    descriptor = {"schema": "aspen-surrogate/1",
+                  "model_type": "GaussianProcessRegressor (" + ", ".join(kernels) + ")" if kernels else "GaussianProcessRegressor",
+                  "prediction_enabled": bool(pipeline.get("prediction_enabled")),
+                  "inputs": inputs, "targets": targets, "split": split,
+                  "metrics": {"holdout": pipeline.get("holdout_metrics") or {}, "fresh": pipeline.get("fresh_metrics") or {}},
+                  "data_source": data_source, "grid_files": ["surrogate/grid.json"],
+                  "extra_files": surrogate_extra(surrogate_files),
+                  "limitations": list(pipeline.get("limitations") or [])}
+    return descriptor
+
+
+def surrogate_extra(files):
+    extra = {"details": "surrogate/details.json"}
+    for path in files:
+        match = re.fullmatch(r"surrogate/robustness-([A-Za-z0-9_.-]+)\.json", path)
+        if match:
+            extra[f"robustness_{match.group(1)}"] = path
+    return extra
+
+
+def _case_records(row, cid, pipeline, fresh, scenario):
+    """(manifest entry without result paths, result record or None) for one case and scenario."""
     basis = pipeline.get("basis") or {}
     hours = _num(basis.get("duration_h"))
-    energy_unit, gwp_unit = "kWh electricity / kg target", "kg CO2-eq / kg target"
-    kwh = {s: _num(row.get(f"{s}_electricity_kWh")) for s in SCENARIOS}
-    cf = {s: _num(row.get(f"CF_{s}")) for s in SCENARIOS}
-    target = _num(row.get("target_kg_h"))
-    per_fu = {s: _div(kwh[s], target) for s in SCENARIOS}
-    kpi = {"energy_per_fu": per_fu[PRIMARY], "energy_unit": energy_unit, "gwp_per_fu": cf[PRIMARY], "gwp_unit": gwp_unit,
-           "efficiency": _div(target, basis.get("wet_feed_kg")), "max_balance_ratio": None,
-           "energy_per_fu_STD": per_fu["STD"], "gwp_per_fu_STD": cf["STD"], "target_kg_h": target}
+    kwh, cf, target = _num(row.get(f"{scenario}_electricity_kWh")), _num(row.get(f"CF_{scenario}")), _num(row.get("target_kg_h"))
+    per_fu = _div(kwh, target)
     params = {"temperature_C": _num(row.get("temperature_C")), "length_m": _num(row.get("length_m")), "split": row.get("split")}
     warnings = list(fresh.get("warnings") or []) if fresh else []
-    has_fresh = bool(fresh)
+    status = "accepted_with_warnings" if warnings else "accepted"
+    completeness = {"status": "unknown", "complete": False, "mass_coverage": None, "contribution_coverage": None,
+                    "missing_count": 0, "lower_bound": None}
+    entry = {"id": cid, "scenario": scenario, "has_results": bool(fresh), "source": "aspen" if fresh else "archived",
+             "status": status, "case_params": params,
+             "kpi": {"energy_per_fu": per_fu, "energy_unit": ENERGY_UNIT, "gwp_per_fu": cf, "gwp_unit": GWP_UNIT,
+                     "efficiency": _div(target, basis.get("wet_feed_kg")), "max_balance_ratio": None, "target_kg_h": target},
+             "completeness": {CATEGORY: dict(completeness)}}
+    if not fresh:
+        return entry, None
     gates = []
     for gid in GATE_IDS:
-        status, messages = "not_run", ["not available in pipeline.json"]
-        if has_fresh and gid == "G0_identity":
-            status, messages = "pass", [f"source model sha256 {fresh['source_sha256']}"]
-        elif has_fresh and gid == "G1_converged":
+        gstatus, messages = "not_run", ["not available in pipeline.json"]
+        if gid == "G0_identity":
+            gstatus, messages = "pass", [f"source model sha256 {fresh['source_sha256']}"]
+        elif gid == "G1_converged":
             ok = bool(fresh.get("completed")) and bool(fresh.get("accepted"))
-            status, messages = ("pass" if ok else "fail"), [f"completed={fresh.get('completed')}, accepted={fresh.get('accepted')}"]
-        elif has_fresh and gid == "G1_warnings":
-            status, messages = ("warn" if warnings else "pass"), warnings or ["no warnings recorded"]
-        elif has_fresh and gid == "G3_balance":
+            gstatus, messages = ("pass" if ok else "fail"), [f"completed={fresh.get('completed')}, accepted={fresh.get('accepted')}"]
+        elif gid == "G1_warnings":
+            gstatus, messages = ("warn" if warnings else "pass"), warnings or ["no warnings recorded"]
+        elif gid == "G3_balance":
             messages = [f"source reports mass_residual_kg_h={fresh.get('mass_residual_kg_h')}, "
                         f"chem_element_max_relative_residual={fresh.get('chem_element_max_relative_residual')}, "
                         f"max_block_energy_residual_kW={fresh.get('max_block_energy_residual_kW')} but no tolerances or per-block table"]
-        gates.append({"id": gid, "status": status, "messages": messages})
-    status = "accepted_with_warnings" if warnings else "accepted"
-    gwp = {}
-    for s in SCENARIOS:
-        gwp[f"GWP_{s}"] = {"complete": cf[s] is not None, "mass_coverage": None, "contribution_coverage": None,
-                           "missing": [], "lower_bound": None, "total": cf[s], "unit": gwp_unit}
-    by_utility = {f"electricity_{s}": kwh[s] / hours for s in SCENARIOS if kwh[s] is not None and hours}
-    result = {"case": cid, "status": status, "case_params": params, "gates": gates,
+        gates.append({"id": gid, "status": gstatus, "messages": messages})
+    record_completeness = {**completeness, "missing": [], "total": cf, "unit": GWP_UNIT}
+    record_completeness.pop("missing_count")
+    record = {"case": cid, "scenario": scenario, "status": status, "case_params": params, "gates": gates,
               "energy": {"hot_utility_kW": None, "cold_utility_kW": None,
-                         "electricity_kW": by_utility.get(f"electricity_{PRIMARY}"), "by_utility": by_utility,
-                         "intensity": per_fu[PRIMARY], "intensity_unit": energy_unit},
-              "energy_edges": [], "internal_loops": [], "balance": [], "completeness": gwp}
-    if warnings:
-        result["warnings"] = warnings
-    summary = {k: {"complete": v["complete"], "mass_coverage": None, "contribution_coverage": None,
-                   "missing_count": 0, "lower_bound": None} for k, v in gwp.items()}
-    return result, kpi, status, summary
+                         "electricity_kW": kwh / hours if kwh is not None and hours else None,
+                         "by_utility": {"electricity": kwh / hours} if kwh is not None and hours else {},
+                         "intensity": per_fu, "intensity_unit": ENERGY_UNIT},
+              "energy_edges": [], "internal_loops": [], "balance": [], "completeness": {CATEGORY: record_completeness}}
+    shown = warnings + ([STD_NOTE] if scenario == "STD" else [])
+    if shown:
+        record["warnings"] = shown
+    return entry, record
 
 
-def _case_stub(row, cid, pipeline):
-    basis = pipeline.get("basis") or {}
-    hours = _num(basis.get("duration_h"))
-    feed = _div(basis.get("wet_feed_kg"), hours)
-    entry = {"id": cid, "mass_unit": "kg/h", "source": "pipeline.json basis + native observation"}
-    if _num(row.get("target_kg_h")) is not None:
-        entry["product_rate"] = row["target_kg_h"]
-    if feed is not None:
-        entry["feed_rate"] = feed
-    return {"schema_version": 1,
-            "meta": {"name": cid, "steady_state": True, "functional_unit": "1 kg target (CAT + o-cresol)",
-                     "boundary": (pipeline.get("accounting") or {}).get("scope", ""),
-                     "calorie_J": 4.1868, "inventory_complete": False, "comparable_cases": False},
-            "cases": [entry], "streams": [], "blocks": [], "inventory": [], "factors": []}
-
-
-def convert(pipeline, observations, study_id=None):
+def convert(pipeline, observations, study_id=None, source_sha256=None, source_file="outputs/htl_pipeline/pipeline.json"):
     """Return {relative path: JSON-serialisable object}. Inputs are not modified."""
     pipeline, observations = copy.deepcopy(pipeline), copy.deepcopy(observations)
     study_id = study_id or str(pipeline.get("version") or "htl-study")
     model_sha = _model_sha(pipeline)  # fail early: a package without model identity is not published
+    source_sha256 = source_sha256 or canonical_sha256(pipeline)
     files, taken = {}, set()
     grid = pipeline["grid"]
     columns = list(grid["rows"][0]) if grid["rows"] else []
@@ -177,89 +264,96 @@ def convert(pipeline, observations, study_id=None):
     files["surrogate/grid.json"] = {"temperature_step_C": grid["temperature_step_C"], "length_step_m": grid["length_step_m"],
                                     "columns": columns, "data": [[r[c] for c in columns] for r in grid["rows"]]}
     robustness = pipeline.get("robustness")
-    surrogate = ["surrogate/grid.json"]
     meta_robustness = None
     if robustness is not None:
         meta_robustness = {k: v for k, v in robustness.items() if k != "scenarios"}
         for scenario, rows in robustness["scenarios"].items():
-            path = f"surrogate/robustness-{scenario}.json"
-            files[path] = {"scenario": scenario, "rows": rows}
-            surrogate.append(path)
-    meta = {k: v for k, v in pipeline.items() if k not in ("grid", "robustness")}
-    meta["robustness"] = meta_robustness
-    meta["grid"] = {k: v for k, v in grid.items() if k in ("temperature_step_C", "length_step_m")}
-    files["meta.json"] = meta
+            files[f"surrogate/robustness-{scenario}.json"] = {"scenario": scenario, "rows": rows}
+    details = {k: v for k, v in pipeline.items() if k not in ("grid", "robustness")}
+    details["robustness"] = meta_robustness
+    details["grid"] = {k: v for k, v in grid.items() if k in ("temperature_step_C", "length_step_m")}
+    files["surrogate/details.json"] = details
+    files["surrogate/surrogate.json"] = _surrogate_descriptor(pipeline, [p for p in files if p.startswith("surrogate/robustness-")])
     files["observations.json"] = observations
+    files["factors.json"] = _factors_snapshot(pipeline, study_id)
 
     fresh_by_key = {(r["temperature_C"], r["length_m"]): r for r in pipeline.get("fresh_runs") or [] if "temperature_C" in r and "length_m" in r}
     method = _method(pipeline)
-    cases, results, worst = [], [], {}
+    cases, records, worst = [], [], {}
     order = ["pass", "not_run", "warn", "fail"]
     for row in observations["rows"]:
         cid = _case_id(row, taken)
         fresh = fresh_by_key.get((row["temperature_C"], row["length_m"])) if row.get("source") == "fresh_comparison" else None
-        result, kpi, status, comp = _case_result(row, cid, pipeline, fresh)
-        shard = {"schema": "aspen-results/1", "study_id": study_id, "method": method, "cases": [result], "contributions": []}
-        files[f"results/{cid}.json"] = shard
-        files[f"cases/{cid}.json"] = _case_stub(row, cid, pipeline)
-        results.append(result)
-        for g in result["gates"]:
-            if order.index(g["status"]) > order.index(worst.get(g["id"], "pass")):
-                worst[g["id"]] = g["status"]
-            worst.setdefault(g["id"], g["status"])
-        cases.append({"id": cid, "file": f"cases/{cid}.json", "result": f"results/{cid}.json", "status": status,
-                      "case_params": result["case_params"], "kpi": kpi, "completeness": comp})
-    files["results/summary.json"] = {"schema": "aspen-results/1", "study_id": study_id, "method": method,
-                                     "cases": results, "contributions": []}
+        for scenario in (s["id"] for s in SCENARIOS):
+            entry, record = _case_records(row, cid, pipeline, fresh, scenario)
+            if record:
+                path = f"results/{cid}.json" if scenario == DEFAULT_SCENARIO else f"results/{cid}__{scenario}.json"
+                entry["result"] = path
+                files[path] = {"schema": "aspen-results/1", "study_id": study_id, "method": method, "cases": [record], "contributions": []}
+                records.append(record)
+                for g in record["gates"]:
+                    if order.index(g["status"]) > order.index(worst.get(g["id"], "pass")):
+                        worst[g["id"]] = g["status"]
+                    worst.setdefault(g["id"], g["status"])
+            cases.append(entry)
+    files["results/summary.json"] = {"schema": "aspen-results/1", "study_id": study_id, "method": method, "cases": records, "contributions": []}
     bounds = pipeline.get("bounds") or {}
     variables = [{"id": "temperature_C", "label": "Temperature", "unit": "°C"}, {"id": "length_m", "label": "Tube length", "unit": "m"}]
     for v in variables:
         if len(bounds.get(v["id"]) or []) == 2:
             v["min"], v["max"] = bounds[v["id"]]
-    manifest = {"schema": "aspen-study/2", "study_id": study_id,
-                "title": "HTL reference GP + native reference cases (converted from archived pipeline.json)",
-                "model": {"sha256": model_sha, "simulator": "Aspen Plus"},
-                "contract": {"project_schema": 1, "results_schema": "aspen-results/1"},
-                "functional_unit": method["functional_unit"], "variables": variables, "gates": worst, "cases": cases,
-                "shards": {"summary": "results/summary.json", "surrogate": surrogate,
-                           "extra": {"meta": "meta.json", "observations": "observations.json"}}}
-    files["manifest.json"] = manifest
+    files["manifest.json"] = {
+        "schema": "aspen-study/2", "study_id": study_id,
+        "title": "HTL reference GP + native reference cases (converted from archived pipeline.json)",
+        "model": {"simulator": "Aspen Plus", "version": None, "sha256": model_sha, "source_sha256": source_sha256, "source_file": source_file},
+        "contract": {"project_schema": 1, "results_schema": "aspen-results/1"},
+        "functional_unit": method["functional_unit"], "variables": variables, "gates": worst,
+        "scenarios": copy.deepcopy(SCENARIOS), "default_scenario": DEFAULT_SCENARIO, "cases": cases,
+        "shards": {"summary": "results/summary.json", "factors": "factors.json", "surrogate": "surrogate/surrogate.json",
+                   "extra": {"observations": "observations.json"}}}
     check(files)
     return files
 
 
+SCHEMA_BY_PATH = [("manifest.json", "manifest"), ("results/", "results"), ("factors.json", "factors-snapshot"),
+                  ("surrogate/surrogate.json", "surrogate")]
+
+
 def check(files):
     """Validate every file that has a schema, plus path hygiene and internal references."""
-    validate(files["manifest.json"], "manifest", "manifest.json")
     for path, value in files.items():
-        if path.startswith("results/"):
-            validate(value, "results", path)
-        elif path.startswith("cases/"):
-            validate(value, "case", path)
+        for prefix, name in SCHEMA_BY_PATH:
+            if path == prefix or (prefix.endswith("/") and path.startswith(prefix)):
+                validate(value, name, path)
     m = files["manifest.json"]
-    refs = [c[k] for c in m["cases"] for k in ("file", "result")] + [m["shards"]["summary"]] + m["shards"].get("surrogate", []) \
-        + list(m["shards"].get("extra", {}).values())
-    missing = [r for r in refs if r not in files]
+    descriptor = files[m["shards"]["surrogate"]]
+    refs = [c["result"] for c in m["cases"] if "result" in c] + [m["shards"][k] for k in ("summary", "factors", "surrogate")] \
+        + list(m["shards"].get("extra", {}).values()) + descriptor["grid_files"] + list(descriptor.get("extra_files", {}).values())
+    missing = sorted({r for r in refs if r not in files})
     if missing:
         raise ValueError(f"manifest references missing files: {missing}")
+    unreferenced = sorted(set(files) - set(refs) - {"manifest.json"})
+    if unreferenced:
+        raise ValueError(f"files not referenced by the manifest: {unreferenced}")
+    ids = {(c["id"], c["scenario"]) for c in m["cases"]}
+    for path, value in files.items():
+        if path.startswith("results/") and path != "results/summary.json":
+            for rec in value["cases"]:
+                if (rec["case"], rec["scenario"]) not in ids:
+                    raise ValueError(f"{path}: record {rec['case']}/{rec['scenario']} not in manifest")
 
 
 def write(out_dir, files):
-    """Write files compactly; fill case ``bytes``/``sha256`` (of cases/<id>.json) into the manifest."""
+    """Write all files compactly (and drop stale ones in generated folders)."""
     out = Path(out_dir)
+    for folder in ("results", "surrogate", "cases"):
+        for old in (out / folder).glob("*.json") if (out / folder).exists() else []:
+            old.unlink()
     for path, value in files.items():
-        if path == "manifest.json":
-            continue
         target = out / path
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(dumps(value) + "\n", encoding="utf-8", newline="\n")
-    manifest = copy.deepcopy(files["manifest.json"])
-    for case in manifest["cases"]:
-        data = (out / case["file"]).read_bytes()
-        case["bytes"], case["sha256"] = len(data), hashlib.sha256(data).hexdigest()
-    validate(manifest, "manifest", "manifest.json")
-    (out / "manifest.json").write_text(dumps(manifest) + "\n", encoding="utf-8", newline="\n")
-    return manifest
+    return files["manifest.json"]
 
 
 def read(out_dir):
@@ -270,18 +364,20 @@ def read(out_dir):
 def reassemble(files):
     """Inverse of convert(): (pipeline, observations) exactly as they were given."""
     m = files["manifest.json"]
-    meta = copy.deepcopy(files[m["shards"]["extra"]["meta"]])
-    grid_file = files["surrogate/grid.json"]
-    grid = dict(meta.pop("grid"))
+    descriptor = files[m["shards"]["surrogate"]]
+    extra = descriptor["extra_files"]
+    details = copy.deepcopy(files[extra["details"]])
+    grid_file = files[descriptor["grid_files"][0]]
+    grid = dict(details.pop("grid"))
     grid["rows"] = [dict(zip(grid_file["columns"], row)) for row in grid_file["data"]]
-    robustness = meta.pop("robustness")
-    pipeline = dict(meta)
+    robustness = details.pop("robustness")
+    pipeline = dict(details)
     pipeline["grid"] = grid
     if robustness is not None:
         robustness = dict(robustness)
         robustness["scenarios"] = {}
-        for path in m["shards"]["surrogate"]:
-            if path.startswith("surrogate/robustness-"):
+        for key, path in extra.items():
+            if key.startswith("robustness_"):
                 shard = files[path]
                 robustness["scenarios"][shard["scenario"]] = shard["rows"]
     pipeline["robustness"] = robustness
@@ -296,13 +392,18 @@ def main(argv=None):
     ap.add_argument("--out", default=str(root / "analysis_web/data/study"))
     ap.add_argument("--study-id")
     args = ap.parse_args(argv)
-    pipeline = json.loads(Path(args.pipeline).read_text(encoding="utf-8"))
+    source = Path(args.pipeline).read_bytes()
+    pipeline = json.loads(source.decode("utf-8"))
     observations = json.loads(Path(args.observations).read_text(encoding="utf-8"))
-    files = convert(pipeline, observations, args.study_id)
+    try:
+        source_file = str(Path(args.pipeline).resolve().relative_to(root)).replace("\\", "/")
+    except ValueError:
+        source_file = Path(args.pipeline).name
+    files = convert(pipeline, observations, args.study_id, hashlib.sha256(source).hexdigest(), source_file)
     manifest = write(args.out, files)
-    sizes = {p: (Path(args.out) / p).stat().st_size for p in files}
-    print(f"wrote {len(files)} files to {args.out}; manifest {sizes['manifest.json']} B, "
-          f"grid {sizes['surrogate/grid.json']} B, cases {len(manifest['cases'])}")
+    sizes = {p: len(dumps(v)) + 1 for p, v in files.items()}
+    print(f"wrote {len(files)} files to {args.out}; manifest {sizes['manifest.json']} B, grid {sizes['surrogate/grid.json']} B, "
+          f"{len(manifest['cases'])} case records ({sum(c['has_results'] for c in manifest['cases'])} with results)")
 
 
 if __name__ == "__main__":

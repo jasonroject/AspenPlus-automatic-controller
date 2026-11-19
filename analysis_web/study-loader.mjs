@@ -54,69 +54,97 @@ export function createStudyLoader({base = 'data/study/', fetchJson} = {}) {
     return value;
   }
 
-  async function caseEntry(id) {
-    const entry = (await manifest()).cases.find(c => c.id === id);
-    if (!entry) throw new Error(`Unknown case: ${id}`);
+  const manifestShards = async () => (await manifest()).shards || {};
+
+  // A case is identified by (id, scenario); scenario defaults to the manifest's default_scenario.
+  async function caseEntry(id, scenario) {
+    const m = await manifest();
+    const wanted = scenario ?? m.default_scenario;
+    const entry = m.cases.find(c => c.id === id && c.scenario === wanted);
+    if (!entry) throw new Error(`Unknown case: ${id}/${wanted}`);
     return entry;
   }
 
+  async function scenarios() { return (await manifest()).scenarios || []; }
+  async function defaultScenario() { return (await manifest()).default_scenario; }
+
   async function extra(name) {
-    const path = (await manifest()).shards?.extra?.[name];
+    const path = (await manifestShards()).extra?.[name];
     if (!path) throw new Error(`Study has no "${name}" shard`);
     return shard(path);
   }
 
-  // One case's aspen-results/1 record (lazy: fetches results/<id>.json once).
-  async function caseResult(id) {
-    const entry = await caseEntry(id);
+  // One case/scenario's aspen-results/1 record, or null when the manifest says has_results=false
+  // (summary-only case: use the manifest entry's case_params/kpi/completeness). Lazy: one request per shard.
+  async function caseResult(id, scenario) {
+    const entry = await caseEntry(id, scenario);
+    if (!entry.has_results) return null;
     const file = await shard(entry.result);
-    const record = file.cases.find(c => c.case === id);
-    if (!record) throw new Error(`Result shard ${entry.result} has no case ${id}`);
-    return {...record, contributions: file.contributions.filter(c => c.case === id), method: file.method};
+    const record = file.cases.find(c => c.case === id && c.scenario === entry.scenario);
+    if (!record) throw new Error(`Result shard ${entry.result} has no case ${id}/${entry.scenario}`);
+    return {...record, contributions: file.contributions.filter(c => c.case === id && c.scenario === entry.scenario), method: file.method};
   }
 
-  async function caseProject(id) { return shard((await caseEntry(id)).file); }
+  // Five-table project, only for cases that carry one (optional `file`); otherwise null.
+  async function caseProject(id, scenario) {
+    const entry = await caseEntry(id, scenario);
+    return entry.file ? shard(entry.file) : null;
+  }
 
   async function summary() {
-    const path = (await manifest()).shards?.summary;
+    const path = (await manifestShards()).summary;
     if (!path) throw new Error('Study has no summary shard');
     return shard(path);
   }
 
+  async function factors() {
+    const path = (await manifestShards()).factors;
+    if (!path) throw new Error('Study has no factors snapshot');
+    return shard(path);
+  }
+
+  // aspen-surrogate/1 descriptor (shards.surrogate is a path to it).
+  async function surrogate() {
+    const path = (await manifestShards()).surrogate;
+    if (typeof path !== 'string') throw new Error('Study has no surrogate descriptor');
+    return shard(path);
+  }
+
   async function surrogateGrid() {
-    const m = await manifest();
-    const path = (m.shards.surrogate || []).find(p => p.endsWith('/grid.json'));
-    if (!path) throw new Error('Study has no surrogate grid');
-    const {columns, data, ...rest} = await shard(path);
+    const descriptor = await surrogate();
+    if (!descriptor.grid_files?.length) throw new Error('Surrogate descriptor lists no grid file');
+    const {columns, data, ...rest} = await shard(descriptor.grid_files[0]);
     return {...rest, rows: data.map(values => Object.fromEntries(columns.map((column, i) => [column, values[i]])))};
   }
 
+  async function robustnessScenarios() {
+    const files = (await surrogate()).extra_files || {};
+    return Object.keys(files).filter(key => key.startsWith('robustness_')).map(key => key.slice('robustness_'.length));
+  }
+
   async function robustness(scenario) {
-    const m = await manifest();
-    const path = (m.shards.surrogate || []).find(p => p.endsWith(`/robustness-${scenario}.json`));
+    const path = (await surrogate()).extra_files?.[`robustness_${scenario}`];
     if (!path) throw new Error(`Study has no robustness shard for ${scenario}`);
     return (await shard(path)).rows;
   }
 
-  async function robustnessScenarios() {
-    const m = await manifest();
-    return (m.shards.surrogate || []).map(p => /\/robustness-([^/]+)\.json$/.exec(p)?.[1]).filter(Boolean);
-  }
-
   const observations = () => extra('observations');
 
-  // Rebuilds the legacy HTL `analysis` object (the former data/pipeline.json) from shards.
+  // Rebuilds the legacy HTL `analysis` object (the former data/pipeline.json) from the surrogate part.
   async function htlAnalysis() {
     await manifest();
-    const [meta, grid, scenarios] = await Promise.all([extra('meta'), surrogateGrid(), robustnessScenarios()]);
-    const rows = await Promise.all(scenarios.map(robustness));
-    const {robustness: robustnessMeta, grid: gridMeta, ...rest} = meta;
+    const descriptor = await surrogate();
+    const detailsPath = descriptor.extra_files?.details;
+    if (!detailsPath) throw new Error('Surrogate descriptor has no details file');
+    const [details, grid, scenarioIds] = await Promise.all([shard(detailsPath), surrogateGrid(), robustnessScenarios()]);
+    const rows = await Promise.all(scenarioIds.map(robustness));
+    const {robustness: robustnessMeta, grid: gridMeta, ...rest} = details;
     const analysis = {...rest, grid: {...gridMeta, rows: grid.rows}};
     analysis.robustness = robustnessMeta === null ? null
-      : {...robustnessMeta, scenarios: Object.fromEntries(scenarios.map((name, i) => [name, rows[i]]))};
+      : {...robustnessMeta, scenarios: Object.fromEntries(scenarioIds.map((name, i) => [name, rows[i]]))};
     return analysis;
   }
 
-  return {manifest, shard, caseEntry, caseResult, caseProject, summary, surrogateGrid, robustness, robustnessScenarios,
-    observations, htlAnalysis, requested: () => [...requested]};
+  return {manifest, shard, scenarios, defaultScenario, caseEntry, caseResult, caseProject, summary, factors, surrogate,
+    surrogateGrid, robustness, robustnessScenarios, observations, htlAnalysis, requested: () => [...requested]};
 }
