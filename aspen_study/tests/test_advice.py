@@ -120,7 +120,7 @@ def cases():
         "heat-integration.overlap": (summary(hx()), gr_overlap, None),
         "heat-integration.none": (summary(hx()), graph([gblock("HOT", "a", "b", 300.0), gblock("COLD", "c", "d", 640.0)],
                                                       [gstream("a", 350.0), gstream("b", 300.0), gstream("c", 600.0), gstream("d", 640.0)]), None),
-        "heat-integration.data-missing": (summary(hx()), None, None),
+        "heat-integration.data-missing": (summary(hx()), graph([gblock("HOT", "a", "b"), gblock("COLD", "c", "d")], []), None),
         "convergence.mass-balance": (summary(), graph([gblock("H1", "i", "o")], [gstream("i", 300.0, "BOUNDARY", "H1", mass=100.0), gstream("o", 300.0, "H1", "BOUNDARY", mass=90.0)]), None),
         "data-completeness.totals-incomplete": (summary(totals_complete=False), None, None),
         "data-completeness.energy-gaps": (summary(energy_gaps=[{"block": "B1", "path": "\\Data\\x", "reason": "读不到"}]), None, None),
@@ -128,7 +128,6 @@ def cases():
         "data-completeness.unmatched-block-types": (summary(discovery={"complete": True, "unmatched_block_types": ["Weird"]}), None, None),
         "data-completeness.unverified-paths": (summary([heater("B1", 1.0, verified=False)]), None, None),
         "data-completeness.study-failed": (summary(study={"ok": False, "error": "node 缺失"}), None, None),
-        "lca-readiness.no-roles": (summary(), None, None),
         "lca-readiness.roles-draft": (summary(), None, roles(review={"state": "auto_draft", "pending": ["stream P: product"]})),
         "lca-readiness.no-product": (summary(), None, roles(streams={"F": {"role": "feed"}})),
         "lca-readiness.multi-product": (summary(), None, roles(streams={"P": {"role": "product"}, "Q": {"role": "product"}})),
@@ -222,7 +221,7 @@ class RuleDetails(unittest.TestCase):
         self.assertNotIn("energy.warning-share", fired(run(s)))
 
     def test_heat_integration_no_temperature_data_says_so(self):
-        adv = run(summary([heater("HOT", -10.0), heater("COLD", 5.0)]))
+        adv = run(summary([heater("HOT", -10.0), heater("COLD", 5.0)]), graph([gblock("HOT", "a", "b"), gblock("COLD", "c", "d")], []))
         self.assertIn("heat-integration.data-missing", fired(adv))
         self.assertNotIn("heat-integration.overlap", fired(adv))
 
@@ -272,6 +271,79 @@ class RuleDetails(unittest.TestCase):
             self.assertNotIn(key, json.dumps(rules, ensure_ascii=False).lower().replace("ipcc", ""))
 
 
+class RequiresAndSkipped(unittest.TestCase):
+    """规则表的 requires（graph / roles）：缺输入的规则整条跳过并登记在 skipped，不再产生“缺 roles”之类的建议条目。"""
+
+    GRAPH_RULES = {"heat-integration.overlap", "heat-integration.none", "heat-integration.data-missing", "convergence.mass-balance"}
+    ROLES_RULES = {"lca-readiness.roles-draft", "lca-readiness.no-product", "lca-readiness.multi-product", "lca-readiness.no-functional-unit",
+                   "lca-readiness.fu-stream-mismatch", "lca-readiness.product-low-confidence", "lca-readiness.utility-guess", "lca-readiness.no-factor-key"}
+
+    def test_requires_is_declared_on_every_rule(self):
+        rules = A.load_rules()["rules"]
+        self.assertTrue(all(isinstance(r.get("requires"), list) and set(r["requires"]) <= {"graph", "roles"} for r in rules.values()))
+        self.assertEqual({k for k, r in rules.items() if "graph" in r["requires"]}, self.GRAPH_RULES)
+        self.assertEqual({k for k, r in rules.items() if "roles" in r["requires"]}, self.ROLES_RULES)
+        self.assertNotIn("lca-readiness.no-roles", rules)
+
+    def test_summary_only_skips_graph_and_roles_rules(self):
+        adv = run(summary())
+        by = {s["rule"]: s for s in adv["skipped"]}
+        self.assertTrue((self.GRAPH_RULES | self.ROLES_RULES) <= set(by))
+        self.assertEqual(by["lca-readiness.no-product"]["missing_inputs"], ["roles"])
+        self.assertIn("roles.json", by["lca-readiness.no-product"]["reason_zh"])
+        self.assertEqual(by["heat-integration.overlap"]["missing_inputs"], ["graph"])
+        self.assertNotIn("lca-readiness.no-roles", fired(adv))
+
+    def test_graph_given_roles_missing_only_skips_roles_rules(self):
+        adv = run(summary(), graph([gblock("H1", "i", "o")], [gstream("i", 300.0), gstream("o", 300.0)]))
+        skipped = {s["rule"] for s in adv["skipped"]}
+        self.assertTrue(self.ROLES_RULES <= skipped)
+        self.assertFalse(self.GRAPH_RULES & skipped - {"convergence.mass-balance"})  # 质量守恒可能因数据不足另行登记，但不是因为缺文件
+        self.assertTrue(all("missing_inputs" in s for s in adv["skipped"] if s["rule"] in self.ROLES_RULES))
+
+    def test_all_inputs_present_skips_nothing_for_missing_files(self):
+        adv = run(summary(), graph([gblock("H1", "i", "o")], [gstream("i", 300.0), gstream("o", 300.0)]), roles())
+        self.assertFalse([s for s in adv["skipped"] if "missing_inputs" in s])
+
+    def test_blocked_rules_never_fire_even_with_data_that_would_trigger_them(self):
+        s = summary([heater("HOT", -10.0), heater("COLD", 5.0)])
+        self.assertFalse(fired(run(s)) & self.GRAPH_RULES)  # 没有 graph：hx() 以前会触发 data-missing
+
+    def test_roles_rules_still_fire_when_roles_given(self):
+        self.assertIn("lca-readiness.no-product", fired(run(summary(), None, roles(streams={"F": {"role": "feed"}}))))
+
+
+class BlockFromPath(unittest.TestCase):
+    def test_parse_block_id_from_node_path(self):
+        from aspen_study.probe_compat import block_from_path
+        self.assertEqual(block_from_path("\\Data\\Blocks\\COOLER\\Output\\QCALC"), "COOLER")
+        self.assertEqual(block_from_path("\\Data\\Blocks\\E-100\\Input\\X"), "E-100")
+        self.assertIsNone(block_from_path("\\Data\\Streams\\S1"))
+        self.assertIsNone(block_from_path(""))
+        self.assertIsNone(block_from_path(None))
+
+    def test_build_summary_fills_block_from_path_and_leaves_stream_entries_null(self):
+        from aspen_study import probe
+
+        class Ad:
+            def energy_gap_items(self): return [{"block": None, "path": "\\Data\\Blocks\\B3\\Output\\QCALC", "reason": "x"}]
+            def unverified_items(self): return [{"block": None, "path": "\\Data\\Streams\\S1", "reason": "y"}, {"block": "Z", "path": "\\Data\\Blocks\\Q\\Output\\W", "reason": "z"}]
+            def cleaned_pids(self): return []
+        g = {"model": {"file": "m", "sha256": SHA, "simulator": "aspen-plus"}, "blocks": [], "streams": [], "discovery": {}}
+        rep = {"state": "ok", "run_completed": True, "errors": [], "warnings": [], "notes": [], "raw_status": {}, "run_status_lines": [], "run_seconds": 1}
+        s = probe.build_summary(g, Ad(), [], rep, 1.0, 4.1868, True)
+        self.assertEqual(s["energy_gaps"][0]["block"], "B3")
+        self.assertIsNone(s["unverified_paths"][0]["block"])
+        self.assertEqual(s["unverified_paths"][1]["block"], "Z")  # 已有 block 不改写
+        validate(s, "probe")
+
+    def test_legacy_1_0_gaps_get_block_from_text(self):
+        s = load("heatrecovery.probe-summary.v1.0.json")
+        s["energy_gaps"] = ["B3（Sep）heat：QCALC/QNET 都读不到"]
+        up = A.upgrade_summary(s)
+        self.assertEqual(up["energy_gaps"][0]["block"], "B3")
+
+
 class LiveFixtures(unittest.TestCase):
     def test_heatrecovery_matches_golden_and_expected_rules(self):
         adv = run(load("heatrecovery.probe-summary.json"), load("heatrecovery.graph.json"), load("heatrecovery.roles.json"))
@@ -290,7 +362,7 @@ class LiveFixtures(unittest.TestCase):
         adv = run(load("mch.probe-summary.json"))
         self.assertEqual(adv, load("mch.advice.json"))
         self.assertEqual(adv["counts"]["warn"] + adv["counts"]["critical"], 0)
-        self.assertEqual(fired(adv), {"lca-readiness.no-roles", "units.non-si-set", "heat-integration.data-missing"})
+        self.assertEqual(fired(adv), {"units.non-si-set"})
 
     def test_legacy_1_0_and_upgraded_1_1_give_same_advice(self):
         a = run(load("heatrecovery.probe-summary.v1.0.json"), load("heatrecovery.graph.json"), load("heatrecovery.roles.json"))

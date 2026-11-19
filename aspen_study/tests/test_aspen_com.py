@@ -398,6 +398,27 @@ class RulesTests(unittest.TestCase):
         self.assertEqual(R.classify_run(False, 8, [], blocks)["state"], "error")
         self.assertFalse(R.classify_run(False, 8, [], blocks)["run_completed"])
 
+    def test_finished_run_without_any_result_is_an_error_not_ok(self):
+        """真机：Integrated Model with Membrane Separation.bkp（含 Hierarchy/ACM）运行 1.1 秒“结束”，但没有 Run-Status，
+        所有块都没有 BLKSTAT——以前被判成 ok 并给出全 0 的合计。"""
+        unknown = {"B1": {"state": "unknown", "blkstat": None}, "B2": {"state": "unknown", "blkstat": None}}
+        v = R.classify_run(True, None, [], unknown)
+        self.assertEqual(v["state"], "error")
+        self.assertFalse(v["run_completed"])
+        self.assertIn("没有任何计算结果", v["errors"][0])
+        # 只要有任何一个块有 BLKSTAT，或读到了 UOSSTAT2 / Run-Status 文字，就不是“无结果”
+        self.assertEqual(R.classify_run(True, None, [], dict(unknown, B3={"state": "ok", "blkstat": 0}))["state"], "ok")
+        self.assertEqual(R.classify_run(True, 8, [], unknown)["state"], "ok")
+        self.assertEqual(R.classify_run(True, None, [], {})["state"], "ok")  # 没有块：没有证据，不下结论
+
+    def test_recipes_verified_live_on_aspen_v15_examples(self):
+        """2026-11 在真机核对（见 aspen_study/tests/fixtures/live/nodes）：这些类型的能量节点已验证。"""
+        for t in ("compr", "mcompr", "rstoic", "ryield", "rgibbs", "rcstr", "flash3"):
+            self.assertTrue(all(v for *_x, v in R.RECIPES[t]["energy"]), t)
+        # MCompr：轴功（WNET）+ 级间冷却热（QNET，<0）。只读功会漏掉整段冷却负荷（Methane Pyrolysis MC-M：-2622 kW）
+        kinds = [(k, nodes[0]) for k, _h, nodes, _v in R.RECIPES["mcompr"]["energy"]]
+        self.assertEqual(kinds, [("work", "WNET"), ("heat", "QNET")])
+
 
 class ProbeTests(unittest.TestCase):
     def factory(self, env):

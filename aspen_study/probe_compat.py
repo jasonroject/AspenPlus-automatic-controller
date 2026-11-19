@@ -11,6 +11,7 @@
 from __future__ import annotations
 
 import copy
+import re
 
 from .adapters import aspen_rules as R
 
@@ -18,6 +19,28 @@ SCHEMA = "aspen-probe/1.1"
 LEGACY = "aspen-probe/1"
 SKIP_LINES = ("*  WARNING", "*  ERROR")
 PER_ERROR_CAP = 12
+
+
+_BLOCK_IN_PATH = re.compile(r"\\Blocks\\([^\\]+)\\", re.I)
+_BLOCK_IN_TEXT = re.compile(r"^([^\s（(：:]+)（[^）]*）")  # 1.0 的 energy_gaps 文本：“B3（Sep）heat：…”
+
+
+def block_from_path(path, text=None):
+    """从节点路径 \\Data\\Blocks\\<ID>\\… 解析块 id；解析不了才是 None（流股、全局条目）。
+    text 只给 1.0 迁移用：旧文本形如 “ID（类型）…”，路径里没有块时按它兜底。"""
+    m = _BLOCK_IN_PATH.search(str(path or ""))
+    if m:
+        return m.group(1)
+    m = _BLOCK_IN_TEXT.match(str(text or ""))
+    return m.group(1) if m else None
+
+
+def with_block(item, text=None):
+    """{block, path, reason}：block 为空时按 path 解析，已有 block 不改。"""
+    out = dict(item)
+    if not out.get("block"):
+        out["block"] = block_from_path(out.get("path"), text if text is not None else out.get("reason"))
+    return out
 
 
 def group_totals(rows, totals_complete=True):
@@ -83,10 +106,10 @@ def upgrade_summary(summary):
             if "verified" not in e:
                 e["verified"] = _verified_by_recipe(b["type"], e.get("path", ""))
     disc = s.setdefault("discovery", {})
-    gaps = [g if isinstance(g, dict) else {"block": None, "path": str(g), "reason": "迁移自 aspen-probe/1（原为字符串）：" + str(g)}
+    gaps = [with_block(g) if isinstance(g, dict) else with_block({"block": None, "path": str(g), "reason": "迁移自 aspen-probe/1（原为字符串）：" + str(g)}, str(g))
             for g in s.get("energy_gaps", [])]
     s["energy_gaps"] = gaps
-    s["unverified_paths"] = [u if isinstance(u, dict) else {"block": None, "path": str(u), "reason": "迁移自 aspen-probe/1（原为字符串）"}
+    s["unverified_paths"] = [with_block(u) if isinstance(u, dict) else with_block({"block": None, "path": str(u), "reason": "迁移自 aspen-probe/1（原为字符串）"})
                              for u in disc.pop("unverified_paths", [])]
     if "totals_complete" not in s:
         s["totals_complete"] = not gaps and not disc.get("unmatched_block_types")

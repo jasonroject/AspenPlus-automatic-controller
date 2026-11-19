@@ -51,18 +51,18 @@ def to_kW(value, unit, calorie_J=None):
 RECIPES = {
     "heater": {"energy": [("heat", None, ["QCALC", "QNET"], True)], "temp": ["B_TEMP"]},                    # [真机]
     "flash2": {"energy": [("heat", None, ["QCALC", "QNET"], True)], "temp": ["B_TEMP"]},                    # [真机]
-    "flash3": {"energy": [("heat", None, ["QCALC", "QNET"], False)], "temp": ["B_TEMP"]},                   # [推断]
+    "flash3": {"energy": [("heat", None, ["QCALC", "QNET"], True)], "temp": ["B_TEMP"]},                    # [真机] HTL RYIELD.bkp B1：QCALC
     "decanter": {"energy": [("heat", None, ["QCALC", "QNET"], False)], "temp": ["B_TEMP"]},                 # [推断]
     "heatx": {"energy": [("heat", "exchanged", ["HX_DUTY", "QCALC"], True)], "temp": []},                   # [真机] HX_DUTY
     "mheatx": {"energy": [("heat", "exchanged", ["QCALC", "HX_DUTY"], False)], "temp": []},                 # [推断]
     "pump": {"energy": [("work", None, ["ELEC_POWER", "BRAKE_POWER", "WNET"], True)], "temp": []},          # [真机] 三个节点均存在
-    "compr": {"energy": [("work", None, ["ELEC_POWER", "BRAKE_POWER", "WNET"], False)], "temp": ["B_TEMP"]},   # [推断] 透平为负
-    "mcompr": {"energy": [("work", None, ["WNET", "BRAKE_POWER"], False)], "temp": []},                      # [推断]
-    "rstoic": {"energy": [("heat", None, ["QCALC", "QNET"], False)], "temp": ["B_TEMP"]},                   # [推断]
-    "ryield": {"energy": [("heat", None, ["QCALC", "QNET"], False)], "temp": ["B_TEMP"]},                   # [推断]
+    "compr": {"energy": [("work", None, ["ELEC_POWER", "BRAKE_POWER", "WNET"], True)], "temp": ["B_TEMP"]},    # [真机] BRAKE_POWER（无 ELEC_POWER）；压缩机为正，透平（出口压力更低）为负，NGCC GT/HP/IP/LP 与 Methane Pyrolysis TURB1/2 核对
+    "mcompr": {"energy": [("work", None, ["WNET", "BRAKE_POWER"], True), ("heat", None, ["QNET"], True)], "temp": []},  # [真机] Methane Pyrolysis MC-M：WNET；BRAKE_POWER 是向量（读成占位 1，不能用）；级间冷却热 QNET（<0），Hin+W+Q=Hout 核对
+    "rstoic": {"energy": [("heat", None, ["QCALC", "QNET"], True)], "temp": ["B_TEMP"]},                   # [真机] QCALC
+    "ryield": {"energy": [("heat", None, ["QCALC", "QNET"], True)], "temp": ["B_TEMP"]},                   # [真机] QCALC
     "requil": {"energy": [("heat", None, ["QCALC", "QNET"], False)], "temp": ["B_TEMP"]},                   # [推断]
-    "rgibbs": {"energy": [("heat", None, ["QCALC", "QNET"], False)], "temp": ["B_TEMP"]},                   # [推断]
-    "rcstr": {"energy": [("heat", None, ["QCALC", "QNET"], False)], "temp": ["B_TEMP"]},                    # [推断]
+    "rgibbs": {"energy": [("heat", None, ["QCALC", "QNET"], True)], "temp": ["B_TEMP"]},                   # [真机] QCALC
+    "rcstr": {"energy": [("heat", None, ["QCALC", "QNET"], True)], "temp": ["B_TEMP"]},                    # [真机] QCALC
     "rbatch": {"energy": [("heat", None, ["QCALC", "QNET"], False)], "temp": []},                           # [推断]
     "rplug": {"energy": [("heat", None, ["QCALC", "QNET"], True)], "temp": ["B_TEMP"]},                     # [真机] QCALC；B_TEMP 是剖面，取最后一点
     "radfrac": {"energy": [("heat", "condenser", ["COND_DUTY"], True), ("heat", "reboiler", ["REB_DUTY"], True)],
@@ -156,7 +156,11 @@ def classify_run(finished, uosstat2, run_lines, blocks):
                 warnings.append(msg)
             else:
                 warnings = [msg if w.startswith(f"块 {bid}：") else w for w in warnings]
-    if uosstat2 is None:
+    no_results = bool(finished) and uosstat2 is None and not run["text"].strip() and bool(blocks) \
+        and all(i["state"] == "unknown" and i.get("blkstat") is None for i in blocks.values())
+    if no_results:
+        errors.append("运行结束了，但没有任何计算结果（Run-Status 和所有块的 BLKSTAT 都读不到）：模型可能输入不完整、依赖外部组件（如 ACM），或根本没有真正计算。请在 Aspen 里打开并成功运行一次。")
+    elif uosstat2 is None:
         notes.append("没有读到 UOSSTAT2，状态仅由块状态与运行消息推断")
     elif uosstat2 == RUN_ERR:
         errors.append("UOSSTAT2=9：运行完成但有错误")
