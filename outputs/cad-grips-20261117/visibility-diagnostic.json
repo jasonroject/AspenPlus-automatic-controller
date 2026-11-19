@@ -1,4 +1,0 @@
-{
-  "hot": false,
-  "events": "\n{\"event\":\"start\",\"time\":39861.799999952316,\"hidden\":false,\"hot\":true}\n{\"event\":\"blur\",\"time\":39866.699999928474,\"hidden\":false,\"hot\":false}\n{\"event\":\"visibility\",\"time\":39873.799999952316,\"hidden\":true,\"hot\":false}\n{\"event\":\"after50\",\"time\":40364.699999928474,\"hidden\":true,\"hot\":false}\n{\"event\":\"visibility\",\"time\":41536.299999952316,\"hidden\":false,\"hot\":false}\n{\"event\":\"focus\",\"time\":41538,\"hidden\":false,\"hot\":false}"
-}

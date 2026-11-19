@@ -1,1 +1,0 @@
-const task=await taskSpace(2);await task.page('p1').close();const page=await task.newPage();console.log('recovery page',page.label);await page.goto('http://127.0.0.1:8766/universal.html?lang=en');console.log(await page.snapshot());

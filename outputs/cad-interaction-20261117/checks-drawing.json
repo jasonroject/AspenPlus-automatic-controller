@@ -1,6 +1,0 @@
-{
-  "blindAbsoluteRelativePolarDistance": true,
-  "closeReusesFirstNode": true,
-  "repeatReuseAndLocalUndo": true,
-  "repeatedEndpointNoZeroLine": true
-}

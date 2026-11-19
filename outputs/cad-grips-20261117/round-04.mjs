@@ -1,2 +1,0 @@
-import {setup,xy,save,assert,base,fs} from './helpers.mjs';
-const p=(await taskSpace(1)).page('p1');await setup(p);console.log(await p.snapshot());await p.click('.object-select[title="AB"]');let pos=await xy(p,0,0);await p.mouse.click(pos.x,pos.y);await p.waitForSelector('[data-testid="grip-edit-bar"]');pos=await xy(p,20,15);await p.mouse.move(pos.x,pos.y);await p.screenshot({path:base+'hot-grip-preview.png'});console.log(await p.evaluate(()=>document.querySelector('[data-testid="grip-edit-bar"]').textContent));console.log({shapes:(await save(p,'preview-saved')).length});

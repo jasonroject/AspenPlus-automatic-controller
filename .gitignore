@@ -10,3 +10,21 @@ __pycache__/
 
 node_modules/
 **/node_modules/
+
+# Generated run artifacts: screenshots, browser audits, release snapshots, vendored
+# Python wheels, logs and Aspen working copies. Regenerate locally; do not commit.
+# Everything under outputs/ is ignored except the folders that build scripts and
+# tests read (see below). A few small evidence files under
+# outputs/workspace-bilingual-20261117/ (preregistered plans, raw native run
+# records, scripts/notes) stay tracked because analysis_web/data/generic-htl-extension
+# pins them by SHA-256; tracked files are unaffected by these rules.
+/outputs/*
+!/outputs/htl_pipeline/
+!/outputs/universal_pipeline/
+!/outputs/htl_energy_lca_workflow/
+
+# Local virtualenvs, build output and Vercel CLI state
+.venv*/
+venv/
+extrudecad-web/dist/
+.vercel/

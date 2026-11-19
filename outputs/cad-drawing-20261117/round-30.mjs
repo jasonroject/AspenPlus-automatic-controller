@@ -1,7 +1,0 @@
-const page=(await taskSpace(13)).page('p1');const fs=await import('node:fs/promises');const assert=(await import('node:assert/strict')).default;const base='C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/cad-drawing-20261117/';
-await page.click('loc=role:button[name="导入 3 个对象"]');await page.waitForFunction(()=>document.querySelectorAll('.object-select').length===3);
-const dp=page.waitForEvent('download',{timeout:30000});await page.click('loc=css:.header-actions button[title="下载可继续编辑的工程文件"]');await(await dp).saveAs(base+'dxf-reimport.extrudecad.json');
-const source=JSON.parse(await fs.readFile(base+'edited-points.extrudecad.json','utf8')).shapes;const target=JSON.parse(await fs.readFile(base+'dxf-reimport.extrudecad.json','utf8')).shapes;
-assert.deepEqual(target.map(s=>({type:s.type,points:s.points,zOffset:s.zOffset,zHeight:s.zHeight})),source.map(s=>({type:s.type,points:s.points,zOffset:s.zOffset,zHeight:s.zHeight})));
-await fs.writeFile(base+'checks-reference-dxf.json',JSON.stringify({browserExportAndReimport:true,exactCoordinates:true,entityTypes:target.map(s=>s.type)},null,2));
-await page.click('loc=role:button[name="打开文件菜单"]');const cp=page.waitForFileChooser({timeout:10000});await page.click('loc=role:menuitem[name*="打开工程"]');await(await cp).setFiles(base+'empty.extrudecad.json');await page.waitForFunction(()=>document.querySelectorAll('.object-select').length===0);console.log({checks:'DXF UI round trip passed; empty scene ready'});

@@ -1,4 +1,0 @@
-const {base,fs,setup,toggle,xy,save}=await import('./helpers.mjs');const p=(await taskSpace(1)).page('p1');await setup(p);await toggle(p,'切换智能对齐参考线',false);await toggle(p,'切换网格吸附',true);await toggle(p,'切换对象捕捉',false);
-await p.click('.object-select[title="B"]');await p.evaluate(()=>{window.cadQADragEvents=[];for(const event of ['visibilitychange','pointerdown','pointerup','pointercancel','lostpointercapture'])document.addEventListener(event,e=>window.cadQADragEvents.push({event,time:performance.now(),hidden:document.hidden,x:e.clientX,y:e.clientY}));});
-const q=await xy(p,0,0);await p.mouse.move(q.x,q.y);await p.mouse.down();for(let i=1;i<=8;i++){await p.mouse.move(q.x+7*i,q.y-3.5*i);}
-await p.mouse.up();console.log(await p.evaluate(()=>window.cadQADragEvents));console.log((await save(p,'visibility-investigation')).find(s=>s.id==='B'));

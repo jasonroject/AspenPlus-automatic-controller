@@ -1,3 +1,0 @@
-# Preserve original evidence bytes; do not rewrite line endings during checkout.
-analysis_web/data/generic-htl-*/*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
-universal_pipeline/fixtures/surrogate-demo.*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

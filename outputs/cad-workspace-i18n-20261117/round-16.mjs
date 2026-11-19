@@ -1,1 +1,0 @@
-const p=(await taskSpace(1)).page('p1');console.log(await p.evaluate(()=>({tabs:[...document.querySelectorAll('[role="tab"]')].map(e=>({text:e.textContent,selected:e.getAttribute('aria-selected')})),form:document.querySelector('#precision-transform-form')?.textContent,command:document.querySelector('#cad-command-input')?.value})));console.log(await p.snapshot());

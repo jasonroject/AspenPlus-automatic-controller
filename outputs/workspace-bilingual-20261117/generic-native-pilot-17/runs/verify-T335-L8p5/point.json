@@ -1,8 +1,0 @@
-{
-  "id": "verify-T335-L8p5",
-  "parameters": {
-    "reactor_temperature_K": 608.15,
-    "tube_length_m": 8.5
-  },
-  "split": "verification"
-}

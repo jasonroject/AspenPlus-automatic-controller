@@ -1,8 +1,0 @@
-{
-  "id": "v2-train-T347-L8",
-  "parameters": {
-    "reactor_temperature_K": 620.15,
-    "tube_length_m": 8
-  },
-  "split": "training"
-}

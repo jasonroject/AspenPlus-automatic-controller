@@ -1,8 +1,0 @@
-{
-  "id": "case-004",
-  "parameters": {
-    "reactor_temperature_K": 593.15,
-    "tube_length_m": 5
-  },
-  "split": "holdout"
-}

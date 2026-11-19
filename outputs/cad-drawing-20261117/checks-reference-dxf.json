@@ -1,9 +1,0 @@
-{
-  "browserExportAndReimport": true,
-  "exactCoordinates": true,
-  "entityTypes": [
-    "point",
-    "point",
-    "segment"
-  ]
-}

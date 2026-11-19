@@ -1,3 +1,0 @@
-const task=await taskSpace(10);const page=task.page('p1');await page.cdp('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:false});
-console.log(await page.evaluate(()=>({panel:document.querySelector('#cad-command-panel')?.innerText,buttons:[...document.querySelectorAll('[aria-label="CAD绘图工具栏"] button')].map(x=>({label:x.getAttribute('aria-label'),r:{x:x.getBoundingClientRect().x,y:x.getBoundingClientRect().y,w:x.getBoundingClientRect().width}}))})));
-await page.screenshot({path:'C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/outputs/cad-expansion-20261117/layout-390-current.png'});

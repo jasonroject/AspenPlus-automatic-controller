@@ -1,1 +1,0 @@
-import {setup,base,assert,fs} from './helpers.mjs';const p=(await taskSpace(1)).page('p1');await setup(p);console.log(await p.snapshot());console.log(await p.screenshot({path:base+'new-workspace-zh.png'}));

@@ -1,8 +1,0 @@
-{
-  "id": "verify-T345-L17p5",
-  "parameters": {
-    "reactor_temperature_K": 618.15,
-    "tube_length_m": 17.5
-  },
-  "split": "verification"
-}
