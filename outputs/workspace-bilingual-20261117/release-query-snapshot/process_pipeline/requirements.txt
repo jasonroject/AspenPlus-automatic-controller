@@ -1,8 +1,0 @@
-# Tested full local workflow: Python >=3.12 (NumPy/SciPy pins require it).
-# Reuse the HTL stack, including pandas/joblib for its existing build tools.
--r ../htl_pipeline/requirements.txt
-# Explicit direct imports of process_pipeline.surrogate; do not rely only on
-# scikit-learn's transitive dependency resolution for these requirements.
-scipy==1.18.1
-threadpoolctl==3.7.0
-pywin32==312; sys_platform == "win32"

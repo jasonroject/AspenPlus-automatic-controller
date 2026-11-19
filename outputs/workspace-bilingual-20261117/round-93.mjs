@@ -1,5 +1,0 @@
-const task=await taskSpace(2),page=task.page('p8');await page.setInputFiles('#files',['C:/Users/Administrator/Documents/Codex/2026-09-16/project1jason/automatic/analysis_web/data/generic-htl-pilot/project.json']);await page.click('.pipeline-tabs [data-tab="import"]');
-await page.evaluate(()=>{document.querySelector('#project-json').closest('details').open=true;});
-const draft=await page.evaluate(()=>JSON.parse(document.querySelector('#project-json').value));draft.cases[0].product_rate=2.81;console.log('paste bytes',JSON.stringify(draft,null,2).length);
-await page.focus('#project-json');await page.press('#project-json','ControlOrMeta+A');await page.keyboard.paste(JSON.stringify(draft,null,2));await page.click('#apply-json');
-console.log('native-size JSON paste applied',await page.evaluate(()=>{const p=JSON.parse(document.querySelector('#project-json').value);return {edited:p.meta.locally_modified,origin:p.meta.origin?.scan_audit?.accepted,product:p.cases[0].product_rate};}));console.log(await page.snapshot());

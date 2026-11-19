@@ -1,1 +1,0 @@
-{"profile_version":1,"name":{"toString":{}},"id":"bad-profile","variables":[{"id":{"toString":{}},"min":"1\" data-untrusted=\"true","max":4}],"model":{"sha256":{"toString":{}}},"limits":{"max_cases":null}}

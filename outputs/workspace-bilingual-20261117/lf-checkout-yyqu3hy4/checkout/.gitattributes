@@ -1,3 +1,0 @@
-# Preserve byte hashes in published numerical evidence on Windows checkouts.
-analysis_web/data/generic-htl-*/*.json text eol=lf
-universal_pipeline/fixtures/surrogate-demo.*.json text eol=lf

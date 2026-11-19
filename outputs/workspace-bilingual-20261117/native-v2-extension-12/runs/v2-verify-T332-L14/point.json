@@ -1,8 +1,0 @@
-{
-  "id": "v2-verify-T332-L14",
-  "parameters": {
-    "reactor_temperature_K": 605.15,
-    "tube_length_m": 14
-  },
-  "split": "verification"
-}

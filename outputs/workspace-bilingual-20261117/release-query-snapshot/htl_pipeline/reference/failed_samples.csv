@@ -1,5 +1,0 @@
-file,error,temperature_C,length_m,resolved_by_successful_retry
-raw\T320p00_L13p00.json,Native completion gate failed,320.0,13,True
-raw\T320p00_L20p00.json,Native completion gate failed,320.0,20,True
-raw\T320p00_L3p00.json,Native completion gate failed,320.0,3,True
-raw\T320p00_L7p00.json,Native completion gate failed,320.0,7,True

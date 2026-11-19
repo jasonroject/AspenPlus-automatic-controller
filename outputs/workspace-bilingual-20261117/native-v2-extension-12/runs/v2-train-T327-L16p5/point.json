@@ -1,8 +1,0 @@
-{
-  "id": "v2-train-T327-L16p5",
-  "parameters": {
-    "reactor_temperature_K": 600.15,
-    "tube_length_m": 16.5
-  },
-  "split": "training"
-}
