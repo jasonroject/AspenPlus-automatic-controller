@@ -7,7 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 REFERENCE = ROOT / 'htl_pipeline/reference/native_samples.csv'
 FRESH = ROOT / 'outputs/htl_pipeline/fresh_comparison.json'
-OUTPUT = ROOT / 'analysis_web/data/pipeline-observations.json'
+OUTPUT = ROOT / 'outputs/htl_pipeline/web-observations.json'  # input of aspen_study.pipeline_to_study
 FIELDS = ['temperature_C', 'length_m', 'target_kg_h', 'STD_electricity_kWh',
           'HR_electricity_kWh', 'CF_STD', 'CF_HR']
 

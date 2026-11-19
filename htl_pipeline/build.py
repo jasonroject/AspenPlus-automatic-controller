@@ -15,7 +15,6 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 OUT = ROOT / 'outputs/htl_pipeline'
 REF = HERE / 'reference'
-WEB = ROOT / 'analysis_web/data/pipeline.json'
 
 def save(path, value):
     path.write_text(json.dumps(value, indent=2, allow_nan=False), encoding='utf-8')
@@ -195,7 +194,8 @@ def analyze():
     save(OUT/'holdout_comparison.json',hold_rows)
     save(OUT/'fresh_comparison.json',fresh_rows)
     save(OUT/'pipeline.json',result)
-    WEB.write_text(json.dumps(result,separators=(',',':'),allow_nan=False),encoding='utf-8')
+    # Web artifact: run `python -m htl_pipeline.build_web_observations` then `python -m aspen_study.pipeline_to_study`
+    # (from the repo root) to publish OUT/pipeline.json as the aspen-study/2 package in analysis_web/data/study/.
     print(json.dumps({'status':result['status'],'holdout':hold_scores,'fresh':fresh_scores,'native':ledger},indent=2),flush=True)
 
 if __name__=='__main__':

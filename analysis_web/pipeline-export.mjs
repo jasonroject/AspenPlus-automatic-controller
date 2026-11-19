@@ -12,7 +12,7 @@ export function predictionChartRows(kind,{analysis,current,scenario='HR',slice,o
       temperature_C:row.temperature_C,length_m:row.length_m,scenario:route,response:key,value:row[key],unit:responseUnit(key),
       evidence_type:native?'native_simulation':'frozen_GP_prediction',split:native?row.split:'',
       selected_prediction:!native&&row.temperature_C===current.temperature_C&&row.length_m===current.length_m,
-      source:native?source?.path||row.source:'data/pipeline.json',source_record:native?row.source_record||'':'',source_sha256:source?.sha256||'',
+      source:native?source?.path||row.source:'data/study/surrogate/grid.json',source_record:native?row.source_record||'':'',source_sha256:source?.sha256||'',
       reference_sha256:analysis.training?.reference_sha256||'',wet_feed_kg:analysis.basis?.wet_feed_kg,duration_h:analysis.basis?.duration_h,pressure_MPa:analysis.basis?.pressure_MPa,
       status:'available',physical_validation:false,
     };

@@ -4,9 +4,11 @@ import {readFileSync} from 'node:fs';
 import {buildCSV,standaloneSVG,wrapSVGText} from '../analysis_web/chart-export.mjs';
 import {predictionColumns,predictionChartRows} from '../analysis_web/pipeline-export.mjs';
 import {responseSlice,responseChart,pairChart,supportedPoint} from '../analysis_web/pipeline-charts.mjs';
+import {createStudyLoader,fsJsonFetcher} from '../analysis_web/study-loader.mjs';
+const study=createStudyLoader({fetchJson:fsJsonFetcher(new URL('../analysis_web/data/study/',import.meta.url))});
 
-const analysis=JSON.parse(readFileSync(new URL('../analysis_web/data/pipeline.json',import.meta.url),'utf8'));
-const observations=JSON.parse(readFileSync(new URL('../analysis_web/data/pipeline-observations.json',import.meta.url),'utf8'));
+const analysis=await study.htlAnalysis();
+const observations=await study.observations();
 const current=supportedPoint(analysis.grid.rows,325,8.5);
 const slice=responseSlice(analysis.grid.rows,observations.rows,current,'temperature_C','HR_electricity_kWh');
 
@@ -62,7 +64,7 @@ test('paired exports match both frozen routes and all exports fail closed after 
 
 test('standalone SVG retains editable geometry, language/units and evidence notes without webpage styling or transient cursor',()=>{
   const chart=responseChart(slice,{title:'能耗',xLabel:'温度 / °C',yLabel:'kWh / 100 kg wet feed',nativeLabel:'原生',selectedLabel:'预测'});
-  const exported=standaloneSVG(chart,{title:'当前能耗 <HR>',description:'模型预测，不代表物理验证。',metadata:{basis:'100 kg wet feed / 1 h',source:'data/pipeline.json',reference:analysis.training.reference_sha256}});
+  const exported=standaloneSVG(chart,{title:'当前能耗 <HR>',description:'模型预测，不代表物理验证。',metadata:{basis:'100 kg wet feed / 1 h',source:'data/study/surrogate/grid.json',reference:analysis.training.reference_sha256}});
   assert.match(exported,/xmlns="http:\/\/www.w3.org\/2000\/svg"/);assert.match(exported,/<polyline /);
   assert.match(exported,/Microsoft YaHei/);assert.match(exported,/fill="#fff"/);
   assert.ok(exported.includes('当前能耗 &lt;HR&gt;'));assert.ok(exported.includes('温度 / °C'));

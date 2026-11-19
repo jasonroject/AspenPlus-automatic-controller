@@ -3,10 +3,12 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {responseSlice,responseChart,responseChartLayout} from '../analysis_web/pipeline-charts.mjs';
 import {inspectionPoints,nearestInspectionIndex,inspectionKey,mountResponseInspector,clearResponseInspector} from '../analysis_web/response-inspector.mjs';
+import {createStudyLoader,fsJsonFetcher} from '../analysis_web/study-loader.mjs';
+const study=createStudyLoader({fetchJson:fsJsonFetcher(new URL('../analysis_web/data/study/',import.meta.url))});
 
 test('nearest-x inspection returns exported values and separately identifies exact native evidence',async()=>{
-  const analysis=JSON.parse(await readFile(new URL('../analysis_web/data/pipeline.json',import.meta.url),'utf8'));
-  const observations=JSON.parse(await readFile(new URL('../analysis_web/data/pipeline-observations.json',import.meta.url),'utf8'));
+  const analysis=await study.htlAnalysis();
+  const observations=await study.observations();
   const selected=analysis.grid.rows.find(row=>row.temperature_C===325&&row.length_m===8.5);
   const before=JSON.stringify({selected,observations});
   const slice=responseSlice(analysis.grid.rows,observations.rows,selected,'temperature_C','HR_electricity_kWh'),points=inspectionPoints(slice);
