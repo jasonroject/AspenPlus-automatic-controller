@@ -1,0 +1,277 @@
+{
+ "schema": "aspen-probe/1.1",
+ "created": "2026-11-19T23:05:55+08:00",
+ "model": {
+  "file": "heatrecovery.bkp",
+  "sha256": "91965a901c1074cc6e0d47a9b614d9cd54df18e4841bf0de248e143a66edac0f",
+  "simulator": "aspen-plus",
+  "version": "41.0",
+  "progid": "Apwn.Document.41.0",
+  "adapter": "aspen-plus-com",
+  "source_unchanged": true
+ },
+ "status": {
+  "state": "warning",
+  "run_completed": true,
+  "errors": [],
+  "warnings": [
+   "块 COOLER：PROBLEM(S) ENCOUNTERED DURING PHASE STABILITY CHECK",
+   "块 REACTOR：REACTION RATE IS SET TO ZERO FOR SOME REACTIONS",
+   "块 VALVE：PROBLEM(S) ENCOUNTERED DURING PHASE STABILITY CHECK"
+  ],
+  "notes": [],
+  "raw_status": {
+   "UOSSTAT": 1,
+   "UOSSTAT2": 10,
+   "CVSTAT": 0,
+   "CSSTAT": 2,
+   "RSTAT": 0,
+   "PPSTAT": 2,
+   "SENSSTAT": 2,
+   "ITSTAT": 4,
+   "SSTAT": 0
+  },
+  "run_status_lines": [
+   "The following Unit Operation blocks were",
+   "completed with warnings:",
+   " COOLER  REACTOR  VALVE "
+  ],
+  "run_seconds": 18.5
+ },
+ "units": {
+  "INSET": "MET",
+  "OUTSET": "MET",
+  "calorie_J": 4.1868,
+  "note": "块负荷与流股焓流保留各节点自己的 UnitString，不假设 kW（MET 的热负荷是 cal/sec，ENG 是 Btu/hr）。1 cal = 4.1868 J 经真机核对（同一结果在 MET 与 SI 下各读一次，比值 4.1868）。"
+ },
+ "calorie_J": 4.1868,
+ "blocks": [
+  {
+   "id": "B6",
+   "type": "Flash2",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 192.82363,
+     "unit": "cal/sec",
+     "kW": 0.8073139740840001,
+     "path": "\\Data\\Blocks\\B6\\Output\\QCALC",
+     "verified": true,
+     "note": "按 1 cal = 4.1868 J"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 313.0,
+    "unit": "K",
+    "path": "\\Data\\Blocks\\B6\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "COOLER",
+   "type": "Heater",
+   "status": "warning",
+   "blkstat": 2,
+   "blkmsg": "PROBLEM(S) ENCOUNTERED DURING PHASE STABILITY CHECK",
+   "per_error": [
+    "   STABILITY CHECK FOR LIQUID PHASE: STABILITY CRITERION NOT SATISFIED FOR",
+    "   COMPONENT 'STYRENE'. STABILITY INDEX IS (4.7808), MOLE FRACTION IS (",
+    "   1.5506-03 ). THIS PHASE MAY BE UNSTABLE. TRY USING 3-PHASE CALCULATIONS.",
+    "   PROBLEM OCCURRED WHILE FLASHING OUTLET STREAM."
+   ],
+   "per_error_total": 4,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": -2087.51163,
+     "unit": "cal/sec",
+     "kW": -8.739993692484001,
+     "path": "\\Data\\Blocks\\COOLER\\Output\\QCALC",
+     "verified": true,
+     "note": "按 1 cal = 4.1868 J"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 313.0,
+    "unit": "K",
+    "path": "\\Data\\Blocks\\COOLER\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "HEATCHAG",
+   "type": "HeatX",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [
+    "   STABILITY CHECK FOR LIQUID PHASE: STABILITY CRITERION NOT SATISFIED FOR",
+    "   COMPONENT 'STYRENE'. STABILITY INDEX IS (2.8703), MOLE FRACTION IS (",
+    "   1.5506-03 ). THIS PHASE MAY BE UNSTABLE. TRY USING 3-PHASE CALCULATIONS.",
+    "   STABILITY CHECK FOR LIQUID PHASE: STABILITY CRITERION NOT SATISFIED FOR",
+    "   COMPONENT 'STYRENE'. STABILITY INDEX IS (1.0798), MOLE FRACTION IS (",
+    "   1.5506-03 ). THIS PHASE MAY BE UNSTABLE. TRY USING 3-PHASE CALCULATIONS.",
+    "   CALCULATED PROPERTIES MAY BE UNRELIABLE DUE TO FLASH PROBLEMS.",
+    "   STABILITY CHECK FOR LIQUID PHASE: STABILITY CRITERION NOT SATISFIED FOR",
+    "   COMPONENT 'STYRENE'. STABILITY INDEX IS (1.3203), MOLE FRACTION IS (",
+    "   1.5506-03 ). THIS PHASE MAY BE UNSTABLE. TRY USING 3-PHASE CALCULATIONS.",
+    "   CALCULATED PROPERTIES MAY BE UNRELIABLE DUE TO FLASH PROBLEMS.",
+    "   STABILITY CHECK FOR LIQUID PHASE: STABILITY CRITERION NOT SATISFIED FOR"
+   ],
+   "per_error_total": 27,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 9673.5897,
+     "unit": "cal/sec",
+     "kW": 40.501385355960004,
+     "path": "\\Data\\Blocks\\HEATCHAG\\Output\\HX_DUTY",
+     "verified": true,
+     "role_hint": "exchanged",
+     "note": "按 1 cal = 4.1868 J"
+    }
+   ]
+  },
+  {
+   "id": "HEATER",
+   "type": "Heater",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 1000.52531,
+     "unit": "cal/sec",
+     "kW": 4.188999367908,
+     "path": "\\Data\\Blocks\\HEATER\\Output\\QCALC",
+     "verified": true,
+     "note": "按 1 cal = 4.1868 J"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 603.0,
+    "unit": "K",
+    "path": "\\Data\\Blocks\\HEATER\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "PUMP",
+   "type": "Pump",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "work",
+     "value": 2.1717208,
+     "unit": "kW",
+     "kW": 2.1717208,
+     "path": "\\Data\\Blocks\\PUMP\\Output\\ELEC_POWER",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "REACTOR",
+   "type": "RPlug",
+   "status": "warning",
+   "blkstat": 2,
+   "blkmsg": "REACTION RATE IS SET TO ZERO FOR SOME REACTIONS",
+   "per_error": [
+    "   AT Z =    19.876     :",
+    "   REACTION RATE IS GREATER THAN ZERO FOR REACTION (29) BUT",
+    "   REACTANT 'H2' IS NOT PRESENT.  POSSIBLE CAUSE:",
+    "   ZEROTH ORDER REACTANT NOT PRESENT.  RATE IS SET TO ZERO.",
+    "   AT Z =    19.876     :",
+    "   REACTION RATE IS GREATER THAN ZERO FOR REACTION (30) BUT",
+    "   REACTANT 'H2' IS NOT PRESENT.  POSSIBLE CAUSE:",
+    "   ZEROTH ORDER REACTANT NOT PRESENT.  RATE IS SET TO ZERO.",
+    "   AT Z =    19.876     :",
+    "   REACTION RATE IS GREATER THAN ZERO FOR REACTION (31) BUT",
+    "   REACTANT 'H2' IS NOT PRESENT.  POSSIBLE CAUSE:",
+    "   ZEROTH ORDER REACTANT NOT PRESENT.  RATE IS SET TO ZERO."
+   ],
+   "per_error_total": 200,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 2891.5462,
+     "unit": "cal/sec",
+     "kW": 12.10632563016,
+     "path": "\\Data\\Blocks\\REACTOR\\Output\\QCALC",
+     "verified": true,
+     "note": "按 1 cal = 4.1868 J"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 603.0,
+    "unit": "K",
+    "path": "\\Data\\Blocks\\REACTOR\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "VALVE",
+   "type": "Valve",
+   "status": "warning",
+   "blkstat": 2,
+   "blkmsg": "PROBLEM(S) ENCOUNTERED DURING PHASE STABILITY CHECK",
+   "per_error": [
+    "   STABILITY CHECK FOR LIQUID PHASE: STABILITY CRITERION NOT SATISFIED FOR",
+    "   COMPONENT 'STYRENE'. STABILITY INDEX IS (4.7808), MOLE FRACTION IS (",
+    "   1.5506-03 ). THIS PHASE MAY BE UNSTABLE. TRY USING 3-PHASE CALCULATIONS.",
+    "   PROBLEM WITH OUTLET STREAM FLASH. CHECK PHASE SPECIFICATIONS."
+   ],
+   "per_error_total": 4,
+   "energy": []
+  }
+ ],
+ "totals_kW": {
+  "heating": 17.102639,
+  "cooling": -8.739994,
+  "work": 2.171721,
+  "internal_exchange": 40.501385
+ },
+ "totals_complete": true,
+ "group_totals": {
+  "heating": {
+   "kW": 17.102639,
+   "complete": true
+  },
+  "cooling": {
+   "kW": -8.739994,
+   "complete": true
+  },
+  "shaft_work": {
+   "kW": 2.171721,
+   "complete": true
+  },
+  "internal_exchange": {
+   "kW": 40.501385,
+   "complete": true
+  },
+  "overall": {
+   "kW": 10.534366,
+   "complete": true
+  }
+ },
+ "energy_gaps": [],
+ "unverified_paths": [],
+ "discovery": {
+  "mode": "recipe",
+  "nodes_read": 449,
+  "complete": true,
+  "unmatched_block_types": []
+ },
+ "cleanup": {
+  "killed_pids": []
+ },
+ "elapsed_seconds": 28.5
+}

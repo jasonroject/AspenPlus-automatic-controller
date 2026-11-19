@@ -198,6 +198,15 @@
      },
      "reason_zh": {
       "type": "string"
+     },
+     "missing_inputs": {
+      "type": "array",
+      "items": {
+       "enum": [
+        "graph",
+        "roles"
+       ]
+      }
      }
     }
    }

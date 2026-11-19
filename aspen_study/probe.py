@@ -18,7 +18,7 @@ from pathlib import Path
 from .adapters.aspen_com import AspenPlusCOMAdapter
 from .adapters.aspen_rules import to_kW
 from .adapters.errors import AspenError
-from .probe_compat import PER_ERROR_CAP, SCHEMA, SKIP_LINES, group_totals
+from .probe_compat import PER_ERROR_CAP, SCHEMA, SKIP_LINES, group_totals, with_block
 from .schema_check import validate
 
 HINT_ZH = {"exchanged": "内部换热", "condenser": "冷凝器", "reboiler": "再沸器"}
@@ -81,6 +81,8 @@ def build_summary(graph, adapter, rows, report, elapsed, calorie_J, source_uncha
         {"block": None, "path": str(g), "reason": str(g)} for g in adapter.energy_gaps()]
     unverified = adapter.unverified_items() if hasattr(adapter, "unverified_items") else [
         {"block": None, "path": str(u), "reason": "未在真机验证"} for u in discovery.get("unverified_paths", [])]
+    gaps = [with_block(g) for g in gaps]  # block 为空时按 \\Blocks\\<ID>\\ 路径解析；解析不了才保留 null
+    unverified = [with_block(u) for u in unverified]
     complete = not gaps and not discovery.get("unmatched_block_types")
     disc = {k: discovery[k] for k in ("mode", "nodes_read", "complete", "unmatched_block_types") if k in discovery}
     return {"schema": SCHEMA,

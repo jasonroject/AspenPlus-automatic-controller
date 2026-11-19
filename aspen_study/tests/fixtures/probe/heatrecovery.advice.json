@@ -1,6 +1,6 @@
 {
  "schema": "aspen-advice/1",
- "rules_version": "1.0.0",
+ "rules_version": "1.1.0",
  "model": {
   "file": "heatrecovery.bkp",
   "sha256": "91965a901c1074cc6e0d47a9b614d9cd54df18e4841bf0de248e143a66edac0f"

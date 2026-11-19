@@ -84,8 +84,11 @@ class _Ctx:
         self.th, self.tx = rules["thresholds"], rules["texts"]
         self.items = []
         self.skipped = []
+        self.blocked = set()  # requires 缺输入的规则：不评估，已在 skipped 里登记
 
     def add(self, rule_id, tpl, vars_, target, evidence, severity=None, suffix=None, title_extra="", detail_extra=""):
+        if rule_id in self.blocked:
+            return
         vars_ = {k: sv(v) for k, v in vars_.items()}
         item_id = rule_id + (":" + target[1] if target[1] else "") + (":" + suffix if suffix else "")
         self.items.append({
@@ -308,9 +311,7 @@ def _heat_integration(c):
         return
     base = [ev(SUMMARY_FILE, "/group_totals/heating/kW", heating), ev(SUMMARY_FILE, "/group_totals/cooling/kW", cooling)]
     vars_ = {"heating": num(heating), "cooling": num(cooling)}
-    if G is None:
-        c.add("heat-integration.data-missing", c.rule("heat-integration.data-missing"),
-              dict(vars_, missing="graph.json", why="probe-summary 只有块出口温度，没有进口温度和块之间的连接"), ("global", None), base)
+    if G is None:  # requires=['graph']，已在 skipped 里登记
         return
     dT, iso = c.th["heat_integration_dTmin_K"], c.th["isothermal_span_K"]
     hot, cold, mixed = [], [], []
@@ -356,8 +357,7 @@ def _heat_integration(c):
 
 def _mass_balance(c):
     G = c.G
-    if G is None:
-        c.skipped.append({"rule": "convergence.mass-balance", "reason_zh": "没有 graph.json，不检查边界物料守恒"})
+    if G is None:  # requires=['graph']，已在 skipped 里登记
         return
     ins, outs, units = [], [], set()
     for k, s in enumerate(G["streams"]):
@@ -437,8 +437,7 @@ def _lca(c):
         if other != sha:
             c.add("lca-readiness.sha-mismatch", c.rule("lca-readiness.sha-mismatch"), {"which": which}, ("global", None),
                   [ev(SUMMARY_FILE, "/model/sha256", sha), ev(which, "/model/sha256" if name else "/model_sha256", other)], suffix=which)
-    if R is None:
-        c.add("lca-readiness.no-roles", c.rule("lca-readiness.no-roles"), {}, ("global", None), [ev(SUMMARY_FILE, "/schema", S["schema"])])
+    if R is None:  # roles 相关规则 requires=['roles']，已在 skipped 里登记
         return
     streams, review = R.get("streams", {}), R.get("review", {})
     if review.get("state") != "reviewed":
@@ -510,10 +509,25 @@ def package_problems(summary, graph=None, roles=None):
 
 
 # --------------------------------------------------------------------------- 入口
+INPUT_FILES = (("graph", GRAPH_FILE), ("roles", ROLES_FILE))
+
+
+def _skip_missing_inputs(c):
+    """规则表里每条规则的 requires（graph / roles）缺了就整条跳过，并按规则表顺序登记到 skipped。"""
+    have = {"graph": c.G is not None, "roles": c.R is not None}
+    for rid, rule in c.rules["rules"].items():
+        missing = [name for name, _ in INPUT_FILES if name in rule.get("requires", []) and not have[name]]
+        if missing:
+            files = [f for name, f in INPUT_FILES if name in missing]
+            c.blocked.add(rid)
+            c.skipped.append({"rule": rid, "missing_inputs": missing, "reason_zh": render(c.tx["skipped_missing"], {"files": join_zh(files)})})
+
+
 def advise(summary, graph=None, roles=None, rules=None):
     rules = rules or load_rules()
     S = upgrade_summary(summary)
     c = _Ctx(rules, S, graph, roles)
+    _skip_missing_inputs(c)
     for fn in (_status_rules, _block_rules, _unit_rules, _energy_rules, _heat_integration, _mass_balance, _completeness, _lca):
         fn(c)
     order = {k: n for n, k in enumerate(CAT_ORDER)}

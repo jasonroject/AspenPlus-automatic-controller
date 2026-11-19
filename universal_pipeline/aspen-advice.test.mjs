@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-import {advise, classifyBundle, energyRows, loadRules, upgradeSummary, AdviceInputError, num} from '../analysis_web/aspen-advice.mjs';
+import {advise, blockFromPath, classifyBundle, energyRows, loadRules, upgradeSummary, AdviceInputError, num} from '../analysis_web/aspen-advice.mjs';
 import {adviceHTML, energyHTML, headerHTML} from '../analysis_web/aspen-advice-view.mjs';
 import {readZipJson} from '../analysis_web/aspen-zip.mjs';
 const FIX = new URL('../aspen_study/tests/fixtures/probe/', import.meta.url);
@@ -116,4 +116,42 @@ test('rendering escapes content and shows evidence, energy table and totals', as
 test('rule table carries thresholds only, no emission-factor style numbers', async () => {
   assert.ok(!JSON.stringify(rules).toLowerCase().includes('kgco2'));
   assert.equal(rules.schema, 'aspen-advice-rules/1');
+});
+
+test('requires: missing graph / roles skips whole rules (recorded in skipped), no separate no-roles item', async () => {
+  const s = await load('heatrecovery.probe-summary.json');
+  assert.ok(!('lca-readiness.no-roles' in rules.rules));
+  assert.ok(Object.values(rules.rules).every(r => Array.isArray(r.requires) && r.requires.every(x => ['graph', 'roles'].includes(x))));
+  const adv = advise(s, null, null, rules);
+  const by = Object.fromEntries(adv.skipped.map(x => [x.rule, x]));
+  for (const id of ['heat-integration.overlap', 'heat-integration.none', 'heat-integration.data-missing', 'convergence.mass-balance']) assert.deepEqual(by[id].missing_inputs, ['graph'], id);
+  for (const id of ['lca-readiness.roles-draft', 'lca-readiness.no-product', 'lca-readiness.no-factor-key']) { assert.deepEqual(by[id].missing_inputs, ['roles'], id); assert.match(by[id].reason_zh, /roles\.json/); }
+  assert.ok(!adv.items.some(i => i.rule.startsWith('lca-readiness.') && i.rule !== 'lca-readiness.sha-mismatch'));
+  assert.ok(!adv.items.some(i => i.rule.startsWith('heat-integration.')));
+  const withAll = advise(s, await load('heatrecovery.graph.json'), await load('heatrecovery.roles.json'), rules);
+  assert.ok(!withAll.skipped.some(x => 'missing_inputs' in x));
+  const graphOnly = advise(s, await load('heatrecovery.graph.json'), null, rules);
+  assert.ok(graphOnly.skipped.every(x => !x.missing_inputs || x.missing_inputs.join() === 'roles'));
+});
+
+test('probe 1.0 upgrade fills energy_gaps / unverified_paths block from the node path (null only if unparseable)', async () => {
+  const old = await load('heatrecovery.probe-summary.v1.0.json');
+  old.energy_gaps = ['B3（Sep）heat：QCALC/QNET 都读不到', '流股类别 X'];
+  old.discovery.unverified_paths = ['\\Data\\Blocks\\COOLER\\Output\\QCALC', '\\Data\\Streams\\S1'];
+  const up = upgradeSummary(old, rules);
+  assert.deepEqual(up.energy_gaps.map(g => g.block), ['B3', null]);
+  assert.deepEqual(up.unverified_paths.map(u => u.block), ['COOLER', null]);
+  assert.equal(blockFromPath('\\Data\\Blocks\\E-100\\Output\\QCALC'), 'E-100');
+  assert.equal(blockFromPath(''), null);
+});
+
+test('live 1.1 outputs (heatrecovery, mch, Methane Pyrolysis, no-result membrane) equal the Python golden advice', async () => {
+  const L = n => load('live11/' + n);
+  const cases = [['hr', true, true], ['mch', true, false], ['methane', true, false], ['membrane', false, false]];
+  for (const [k, g, r] of cases) {
+    const adv = advise(await L(`${k}.probe-summary.json`), g ? await L(`${k}.graph.json`) : null, r ? await L(`${k}.roles.json`) : null, rules);
+    assert.deepEqual(adv, await L(`${k}.advice.json`), k);
+  }
+  const mem = await L('membrane.advice.json');
+  assert.ok(mem.items.some(i => i.id === 'status.error' && i.severity === 'critical'));
 });

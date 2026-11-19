@@ -1,0 +1,274 @@
+{
+ "schema": "aspen-probe/1.1",
+ "created": "2026-11-19T23:06:34+08:00",
+ "model": {
+  "file": "Integrated Model with Membrane Separation.bkp",
+  "sha256": "f02cf7f9af44f9521017571d064762d3e41695b01e47caef5d681299ef58cd9a",
+  "simulator": "aspen-plus",
+  "version": null,
+  "progid": "Apwn.Document.41.0",
+  "adapter": "aspen-plus-com",
+  "source_unchanged": true
+ },
+ "status": {
+  "state": "error",
+  "run_completed": false,
+  "errors": [
+   "运行结束了，但没有任何计算结果（Run-Status 和所有块的 BLKSTAT 都读不到）：模型可能输入不完整、依赖外部组件（如 ACM），或根本没有真正计算。请在 Aspen 里打开并成功运行一次。"
+  ],
+  "warnings": [],
+  "notes": [],
+  "raw_status": {
+   "UOSSTAT": null,
+   "UOSSTAT2": null,
+   "CVSTAT": null,
+   "CSSTAT": null,
+   "RSTAT": null,
+   "PPSTAT": null,
+   "SENSSTAT": null,
+   "ITSTAT": null,
+   "SSTAT": null
+  },
+  "run_status_lines": [],
+  "run_seconds": 1.1
+ },
+ "units": {
+  "INSET": "METCBAR",
+  "OUTSET": "METCBAR",
+  "calorie_J": 4.1868,
+  "note": "块负荷与流股焓流保留各节点自己的 UnitString，不假设 kW（MET 的热负荷是 cal/sec，ENG 是 Btu/hr）。1 cal = 4.1868 J 经真机核对（同一结果在 MET 与 SI 下各读一次，比值 4.1868）。"
+ },
+ "calorie_J": 4.1868,
+ "blocks": [
+  {
+   "id": "B3",
+   "type": "Sep",
+   "status": "unknown",
+   "blkstat": null,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": []
+  },
+  {
+   "id": "CO2CAPTU",
+   "type": "Hierarchy",
+   "status": "unknown",
+   "blkstat": null,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": []
+  },
+  {
+   "id": "COMP2",
+   "type": "Compr",
+   "status": "unknown",
+   "blkstat": null,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": []
+  },
+  {
+   "id": "COOLER2",
+   "type": "Heater",
+   "status": "unknown",
+   "blkstat": null,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": []
+  },
+  {
+   "id": "E-100",
+   "type": "Heater",
+   "status": "unknown",
+   "blkstat": null,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": []
+  },
+  {
+   "id": "E-101",
+   "type": "Heater",
+   "status": "unknown",
+   "blkstat": null,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": []
+  },
+  {
+   "id": "E-102",
+   "type": "Heater",
+   "status": "unknown",
+   "blkstat": null,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": []
+  },
+  {
+   "id": "E-103",
+   "type": "Heater",
+   "status": "unknown",
+   "blkstat": null,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": []
+  },
+  {
+   "id": "E-104",
+   "type": "Heater",
+   "status": "unknown",
+   "blkstat": null,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": []
+  },
+  {
+   "id": "REFORMER",
+   "type": "RCSTR",
+   "status": "unknown",
+   "blkstat": null,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": []
+  },
+  {
+   "id": "WGS-HT",
+   "type": "RCSTR",
+   "status": "unknown",
+   "blkstat": null,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": []
+  },
+  {
+   "id": "WGS-LT",
+   "type": "RCSTR",
+   "status": "unknown",
+   "blkstat": null,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": []
+  }
+ ],
+ "totals_kW": {
+  "heating": 0.0,
+  "cooling": 0.0,
+  "work": 0.0,
+  "internal_exchange": 0.0
+ },
+ "totals_complete": false,
+ "group_totals": {
+  "heating": {
+   "kW": 0.0,
+   "complete": false
+  },
+  "cooling": {
+   "kW": 0.0,
+   "complete": false
+  },
+  "shaft_work": {
+   "kW": 0.0,
+   "complete": false
+  },
+  "internal_exchange": {
+   "kW": 0.0,
+   "complete": false
+  },
+  "overall": {
+   "kW": 0.0,
+   "complete": false
+  }
+ },
+ "energy_gaps": [
+  {
+   "block": "B3",
+   "path": "\\Data\\Blocks\\B3\\Output\\QCALC",
+   "reason": "B3（Sep）heat：QCALC/QNET 都读不到"
+  },
+  {
+   "block": "COMP2",
+   "path": "\\Data\\Blocks\\COMP2\\Output\\ELEC_POWER",
+   "reason": "COMP2（Compr）work：ELEC_POWER/BRAKE_POWER/WNET 都读不到"
+  },
+  {
+   "block": "COOLER2",
+   "path": "\\Data\\Blocks\\COOLER2\\Output\\QCALC",
+   "reason": "COOLER2（Heater）heat：QCALC/QNET 都读不到"
+  },
+  {
+   "block": "E-100",
+   "path": "\\Data\\Blocks\\E-100\\Output\\QCALC",
+   "reason": "E-100（Heater）heat：QCALC/QNET 都读不到"
+  },
+  {
+   "block": "E-101",
+   "path": "\\Data\\Blocks\\E-101\\Output\\QCALC",
+   "reason": "E-101（Heater）heat：QCALC/QNET 都读不到"
+  },
+  {
+   "block": "E-102",
+   "path": "\\Data\\Blocks\\E-102\\Output\\QCALC",
+   "reason": "E-102（Heater）heat：QCALC/QNET 都读不到"
+  },
+  {
+   "block": "E-103",
+   "path": "\\Data\\Blocks\\E-103\\Output\\QCALC",
+   "reason": "E-103（Heater）heat：QCALC/QNET 都读不到"
+  },
+  {
+   "block": "E-104",
+   "path": "\\Data\\Blocks\\E-104\\Output\\QCALC",
+   "reason": "E-104（Heater）heat：QCALC/QNET 都读不到"
+  },
+  {
+   "block": "REFORMER",
+   "path": "\\Data\\Blocks\\REFORMER\\Output\\QCALC",
+   "reason": "REFORMER（RCSTR）heat：QCALC/QNET 都读不到"
+  },
+  {
+   "block": "WGS-HT",
+   "path": "\\Data\\Blocks\\WGS-HT\\Output\\QCALC",
+   "reason": "WGS-HT（RCSTR）heat：QCALC/QNET 都读不到"
+  },
+  {
+   "block": "WGS-LT",
+   "path": "\\Data\\Blocks\\WGS-LT\\Output\\QCALC",
+   "reason": "WGS-LT（RCSTR）heat：QCALC/QNET 都读不到"
+  }
+ ],
+ "unverified_paths": [
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\Q4",
+   "reason": "HEAT 类流股的负荷节点未读取（块负荷已计）"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\W2",
+   "reason": "WORK 类流股的负荷节点未读取（块负荷已计）"
+  }
+ ],
+ "discovery": {
+  "mode": "recipe",
+  "nodes_read": 335,
+  "complete": false,
+  "unmatched_block_types": [
+   "Hierarchy"
+  ]
+ },
+ "cleanup": {
+  "killed_pids": []
+ },
+ "elapsed_seconds": 10.6
+}

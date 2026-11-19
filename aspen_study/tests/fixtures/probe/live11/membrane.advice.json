@@ -1,0 +1,767 @@
+{
+ "schema": "aspen-advice/1",
+ "rules_version": "1.1.0",
+ "model": {
+  "file": "Integrated Model with Membrane Separation.bkp",
+  "sha256": "f02cf7f9af44f9521017571d064762d3e41695b01e47caef5d681299ef58cd9a"
+ },
+ "inputs": {
+  "probe": "aspen-probe/1.1",
+  "migrated_from": null,
+  "graph": false,
+  "roles": false
+ },
+ "counts": {
+  "critical": 2,
+  "warn": 6,
+  "suggest": 23,
+  "info": 0,
+  "total": 31
+ },
+ "items": [
+  {
+   "id": "status.error",
+   "rule": "status.error",
+   "severity": "critical",
+   "category": "convergence",
+   "target": "global",
+   "title_zh": "运行状态为错误：结果不可信",
+   "detail_zh": "探针读到运行状态 error，共 1 条错误。有错误时能量表和物流结果可能是上一次的残留值，不能作为分析依据。第一条：运行结束了，但没有任何计算结果（Run-Status 和所有块的 BLKSTAT 都读不到）：模型可能输入不完整、依赖外部组件（如 ACM），或根本没有真正计算。请在 Aspen 里打开并成功运行一次。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/status/state",
+     "value": "error"
+    },
+    {
+     "path": "probe-summary.json#/status/errors/0",
+     "value": "运行结束了，但没有任何计算结果（Run-Status 和所有块的 BLKSTAT 都读不到）：模型可能输入不完整、依赖外部组件（如 ACM），或根本没有真正计算。请在 Aspen 里打开并成功运行一次。"
+    }
+   ],
+   "action_zh": "先在 Aspen 里修复这些错误并成功重算，再重新体检；本页的节能与 LCA 建议在此之前仅供参考。",
+   "confidence": "verified"
+  },
+  {
+   "id": "status.incomplete",
+   "rule": "status.incomplete",
+   "severity": "critical",
+   "category": "convergence",
+   "target": "global",
+   "title_zh": "运行没有跑完",
+   "detail_zh": "探针记录 run_completed=false：模拟没有正常结束（可能超时、被中断或引擎卡住）。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/status/run_completed",
+     "value": false
+    }
+   ],
+   "action_zh": "排查是否超时（可加大 --timeout）、是否有对话框阻塞或模型本身发散，跑完后再分析。",
+   "confidence": "verified"
+  },
+  {
+   "id": "status.global-warning:errors-0",
+   "rule": "status.global-warning",
+   "severity": "warn",
+   "category": "convergence",
+   "target": "global",
+   "title_zh": "存在没有归到具体块的错误",
+   "detail_zh": "运行状态里有一条不属于任何块的错误：运行结束了，但没有任何计算结果（Run-Status 和所有块的 BLKSTAT 都读不到）：模型可能输入不完整、依赖外部组件（如 ACM），或根本没有真正计算。请在 Aspen 里打开并成功运行一次。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/status/errors/0",
+     "value": "运行结束了，但没有任何计算结果（Run-Status 和所有块的 BLKSTAT 都读不到）：模型可能输入不完整、依赖外部组件（如 ACM），或根本没有真正计算。请在 Aspen 里打开并成功运行一次。"
+    }
+   ],
+   "action_zh": "对照 Aspen 的 Run Status / Control Panel 完整消息定位来源。",
+   "confidence": "verified"
+  },
+  {
+   "id": "energy.none",
+   "rule": "energy.none",
+   "severity": "warn",
+   "category": "data-completeness",
+   "target": "global",
+   "title_zh": "没有读到任何能量项",
+   "detail_zh": "所有块的能量列表都是空的，无法做能耗分析。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/0/energy",
+     "value": []
+    },
+    {
+     "path": "probe-summary.json#/blocks/1/energy",
+     "value": []
+    },
+    {
+     "path": "probe-summary.json#/blocks/2/energy",
+     "value": []
+    },
+    {
+     "path": "probe-summary.json#/blocks/3/energy",
+     "value": []
+    },
+    {
+     "path": "probe-summary.json#/blocks/4/energy",
+     "value": []
+    }
+   ],
+   "action_zh": "确认运行成功并且块类型被探针支持（见 discovery.unmatched_block_types）。",
+   "confidence": "verified"
+  },
+  {
+   "id": "data-completeness.totals-incomplete",
+   "rule": "data-completeness.totals-incomplete",
+   "severity": "warn",
+   "category": "data-completeness",
+   "target": "global",
+   "title_zh": "能量合计不完整",
+   "detail_zh": "探针标记 totals_complete=false，或合计中有空值（无）。不完整的合计不能当作总能耗。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/totals_complete",
+     "value": false
+    },
+    {
+     "path": "probe-summary.json#/group_totals",
+     "value": {
+      "heating": {
+       "kW": 0.0,
+       "complete": false
+      },
+      "cooling": {
+       "kW": 0.0,
+       "complete": false
+      },
+      "shaft_work": {
+       "kW": 0.0,
+       "complete": false
+      },
+      "internal_exchange": {
+       "kW": 0.0,
+       "complete": false
+      },
+      "overall": {
+       "kW": 0.0,
+       "complete": false
+      }
+     }
+    }
+   ],
+   "action_zh": "先补全缺失的块或单位，再引用合计。",
+   "confidence": "verified"
+  },
+  {
+   "id": "data-completeness.energy-gaps",
+   "rule": "data-completeness.energy-gaps",
+   "severity": "warn",
+   "category": "data-completeness",
+   "target": "global",
+   "title_zh": "探针记录了 11 处能量读取缺口",
+   "detail_zh": "energy_gaps：B3：B3（Sep）heat：QCALC/QNET 都读不到；COMP2：COMP2（Compr）work：ELEC_POWER/BRAKE_POWER/WNET 都读不到；COOLER2：COOLER2（Heater）heat：QCALC/QNET 都读不到；E-100：E-100（Heater）heat：QCALC/QNET 都读不到；E-101：E-101（Heater）heat：QCALC/QNET 都读不到；E-102：E-102（Heater）heat：QCALC/QNET 都读不到；E-103：E-103（Heater）heat：QCALC/QNET 都读不到；E-104：E-104（Heater）heat：QCALC/QNET 都读不到；REFORMER：REFORMER（RCSTR）heat：QCALC/QNET 都读不到；WGS-HT：WGS-HT（RCSTR）heat：QCALC/QNET 都读不到；WGS-LT：WGS-LT（RCSTR）heat：QCALC/QNET 都读不到",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/energy_gaps/0",
+     "value": {
+      "block": "B3",
+      "path": "\\Data\\Blocks\\B3\\Output\\QCALC",
+      "reason": "B3（Sep）heat：QCALC/QNET 都读不到"
+     }
+    },
+    {
+     "path": "probe-summary.json#/energy_gaps/1",
+     "value": {
+      "block": "COMP2",
+      "path": "\\Data\\Blocks\\COMP2\\Output\\ELEC_POWER",
+      "reason": "COMP2（Compr）work：ELEC_POWER/BRAKE_POWER/WNET 都读不到"
+     }
+    },
+    {
+     "path": "probe-summary.json#/energy_gaps/2",
+     "value": {
+      "block": "COOLER2",
+      "path": "\\Data\\Blocks\\COOLER2\\Output\\QCALC",
+      "reason": "COOLER2（Heater）heat：QCALC/QNET 都读不到"
+     }
+    }
+   ],
+   "action_zh": "逐条补读这些位置，或确认它们确实没有能量项。",
+   "confidence": "verified"
+  },
+  {
+   "id": "data-completeness.discovery-incomplete",
+   "rule": "data-completeness.discovery-incomplete",
+   "severity": "warn",
+   "category": "data-completeness",
+   "target": "global",
+   "title_zh": "模型结构读取不完整",
+   "detail_zh": "discovery.complete=false：探针没有读完整个模型（已读 335 个节点）。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/discovery/complete",
+     "value": false
+    }
+   ],
+   "action_zh": "重新体检；若仍不完整，把模型和体检日志交给维护者排查。",
+   "confidence": "verified"
+  },
+  {
+   "id": "data-completeness.unmatched-block-types",
+   "rule": "data-completeness.unmatched-block-types",
+   "severity": "warn",
+   "category": "data-completeness",
+   "target": "global",
+   "title_zh": "有探针未支持的块类型：Hierarchy",
+   "detail_zh": "这些类型的块没有匹配到读取规则，其能量没有被读入，合计会偏低。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/discovery/unmatched_block_types",
+     "value": [
+      "Hierarchy"
+     ]
+    }
+   ],
+   "action_zh": "为这些块类型补充读取规则（aspen_rules），或在模型里用已支持的块等价替代后重试。",
+   "confidence": "verified"
+  },
+  {
+   "id": "block.status-unknown:B3",
+   "rule": "block.status-unknown",
+   "severity": "suggest",
+   "category": "data-completeness",
+   "target": "B3",
+   "title_zh": "块 B3 没有读到状态",
+   "detail_zh": "B3（Sep）的状态为 unknown（BLKSTAT 未读到）。无法判断它是否正常，其能量值也无法核验。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/0/status",
+     "value": "unknown"
+    },
+    {
+     "path": "probe-summary.json#/blocks/0/blkstat",
+     "value": null
+    }
+   ],
+   "action_zh": "检查该块类型是否被探针支持；必要时手动在 Aspen 里确认该块无警告。",
+   "confidence": "verified"
+  },
+  {
+   "id": "block.status-unknown:CO2CAPTU",
+   "rule": "block.status-unknown",
+   "severity": "suggest",
+   "category": "data-completeness",
+   "target": "CO2CAPTU",
+   "title_zh": "块 CO2CAPTU 没有读到状态",
+   "detail_zh": "CO2CAPTU（Hierarchy）的状态为 unknown（BLKSTAT 未读到）。无法判断它是否正常，其能量值也无法核验。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/1/status",
+     "value": "unknown"
+    },
+    {
+     "path": "probe-summary.json#/blocks/1/blkstat",
+     "value": null
+    }
+   ],
+   "action_zh": "检查该块类型是否被探针支持；必要时手动在 Aspen 里确认该块无警告。",
+   "confidence": "verified"
+  },
+  {
+   "id": "block.status-unknown:COMP2",
+   "rule": "block.status-unknown",
+   "severity": "suggest",
+   "category": "data-completeness",
+   "target": "COMP2",
+   "title_zh": "块 COMP2 没有读到状态",
+   "detail_zh": "COMP2（Compr）的状态为 unknown（BLKSTAT 未读到）。无法判断它是否正常，其能量值也无法核验。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/2/status",
+     "value": "unknown"
+    },
+    {
+     "path": "probe-summary.json#/blocks/2/blkstat",
+     "value": null
+    }
+   ],
+   "action_zh": "检查该块类型是否被探针支持；必要时手动在 Aspen 里确认该块无警告。",
+   "confidence": "verified"
+  },
+  {
+   "id": "block.status-unknown:COOLER2",
+   "rule": "block.status-unknown",
+   "severity": "suggest",
+   "category": "data-completeness",
+   "target": "COOLER2",
+   "title_zh": "块 COOLER2 没有读到状态",
+   "detail_zh": "COOLER2（Heater）的状态为 unknown（BLKSTAT 未读到）。无法判断它是否正常，其能量值也无法核验。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/3/status",
+     "value": "unknown"
+    },
+    {
+     "path": "probe-summary.json#/blocks/3/blkstat",
+     "value": null
+    }
+   ],
+   "action_zh": "检查该块类型是否被探针支持；必要时手动在 Aspen 里确认该块无警告。",
+   "confidence": "verified"
+  },
+  {
+   "id": "block.status-unknown:E-100",
+   "rule": "block.status-unknown",
+   "severity": "suggest",
+   "category": "data-completeness",
+   "target": "E-100",
+   "title_zh": "块 E-100 没有读到状态",
+   "detail_zh": "E-100（Heater）的状态为 unknown（BLKSTAT 未读到）。无法判断它是否正常，其能量值也无法核验。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/4/status",
+     "value": "unknown"
+    },
+    {
+     "path": "probe-summary.json#/blocks/4/blkstat",
+     "value": null
+    }
+   ],
+   "action_zh": "检查该块类型是否被探针支持；必要时手动在 Aspen 里确认该块无警告。",
+   "confidence": "verified"
+  },
+  {
+   "id": "block.status-unknown:E-101",
+   "rule": "block.status-unknown",
+   "severity": "suggest",
+   "category": "data-completeness",
+   "target": "E-101",
+   "title_zh": "块 E-101 没有读到状态",
+   "detail_zh": "E-101（Heater）的状态为 unknown（BLKSTAT 未读到）。无法判断它是否正常，其能量值也无法核验。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/5/status",
+     "value": "unknown"
+    },
+    {
+     "path": "probe-summary.json#/blocks/5/blkstat",
+     "value": null
+    }
+   ],
+   "action_zh": "检查该块类型是否被探针支持；必要时手动在 Aspen 里确认该块无警告。",
+   "confidence": "verified"
+  },
+  {
+   "id": "block.status-unknown:E-102",
+   "rule": "block.status-unknown",
+   "severity": "suggest",
+   "category": "data-completeness",
+   "target": "E-102",
+   "title_zh": "块 E-102 没有读到状态",
+   "detail_zh": "E-102（Heater）的状态为 unknown（BLKSTAT 未读到）。无法判断它是否正常，其能量值也无法核验。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/6/status",
+     "value": "unknown"
+    },
+    {
+     "path": "probe-summary.json#/blocks/6/blkstat",
+     "value": null
+    }
+   ],
+   "action_zh": "检查该块类型是否被探针支持；必要时手动在 Aspen 里确认该块无警告。",
+   "confidence": "verified"
+  },
+  {
+   "id": "block.status-unknown:E-103",
+   "rule": "block.status-unknown",
+   "severity": "suggest",
+   "category": "data-completeness",
+   "target": "E-103",
+   "title_zh": "块 E-103 没有读到状态",
+   "detail_zh": "E-103（Heater）的状态为 unknown（BLKSTAT 未读到）。无法判断它是否正常，其能量值也无法核验。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/7/status",
+     "value": "unknown"
+    },
+    {
+     "path": "probe-summary.json#/blocks/7/blkstat",
+     "value": null
+    }
+   ],
+   "action_zh": "检查该块类型是否被探针支持；必要时手动在 Aspen 里确认该块无警告。",
+   "confidence": "verified"
+  },
+  {
+   "id": "block.status-unknown:E-104",
+   "rule": "block.status-unknown",
+   "severity": "suggest",
+   "category": "data-completeness",
+   "target": "E-104",
+   "title_zh": "块 E-104 没有读到状态",
+   "detail_zh": "E-104（Heater）的状态为 unknown（BLKSTAT 未读到）。无法判断它是否正常，其能量值也无法核验。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/8/status",
+     "value": "unknown"
+    },
+    {
+     "path": "probe-summary.json#/blocks/8/blkstat",
+     "value": null
+    }
+   ],
+   "action_zh": "检查该块类型是否被探针支持；必要时手动在 Aspen 里确认该块无警告。",
+   "confidence": "verified"
+  },
+  {
+   "id": "block.status-unknown:REFORMER",
+   "rule": "block.status-unknown",
+   "severity": "suggest",
+   "category": "data-completeness",
+   "target": "REFORMER",
+   "title_zh": "块 REFORMER 没有读到状态",
+   "detail_zh": "REFORMER（RCSTR）的状态为 unknown（BLKSTAT 未读到）。无法判断它是否正常，其能量值也无法核验。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/9/status",
+     "value": "unknown"
+    },
+    {
+     "path": "probe-summary.json#/blocks/9/blkstat",
+     "value": null
+    }
+   ],
+   "action_zh": "检查该块类型是否被探针支持；必要时手动在 Aspen 里确认该块无警告。",
+   "confidence": "verified"
+  },
+  {
+   "id": "block.status-unknown:WGS-HT",
+   "rule": "block.status-unknown",
+   "severity": "suggest",
+   "category": "data-completeness",
+   "target": "WGS-HT",
+   "title_zh": "块 WGS-HT 没有读到状态",
+   "detail_zh": "WGS-HT（RCSTR）的状态为 unknown（BLKSTAT 未读到）。无法判断它是否正常，其能量值也无法核验。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/10/status",
+     "value": "unknown"
+    },
+    {
+     "path": "probe-summary.json#/blocks/10/blkstat",
+     "value": null
+    }
+   ],
+   "action_zh": "检查该块类型是否被探针支持；必要时手动在 Aspen 里确认该块无警告。",
+   "confidence": "verified"
+  },
+  {
+   "id": "block.status-unknown:WGS-LT",
+   "rule": "block.status-unknown",
+   "severity": "suggest",
+   "category": "data-completeness",
+   "target": "WGS-LT",
+   "title_zh": "块 WGS-LT 没有读到状态",
+   "detail_zh": "WGS-LT（RCSTR）的状态为 unknown（BLKSTAT 未读到）。无法判断它是否正常，其能量值也无法核验。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/11/status",
+     "value": "unknown"
+    },
+    {
+     "path": "probe-summary.json#/blocks/11/blkstat",
+     "value": null
+    }
+   ],
+   "action_zh": "检查该块类型是否被探针支持；必要时手动在 Aspen 里确认该块无警告。",
+   "confidence": "verified"
+  },
+  {
+   "id": "energy.block-missing:COMP2",
+   "rule": "energy.block-missing",
+   "severity": "suggest",
+   "category": "data-completeness",
+   "target": "COMP2",
+   "title_zh": "块 COMP2（Compr）没有读到能量项",
+   "detail_zh": "Compr 类块通常带热负荷或功率，但探针没有读到任何值。能耗合计可能漏掉它。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/2/energy",
+     "value": []
+    }
+   ],
+   "action_zh": "确认该块是否确实没有能量项（如绝热规格）；否则为该块类型补充读取路径。",
+   "confidence": "heuristic"
+  },
+  {
+   "id": "energy.block-missing:COOLER2",
+   "rule": "energy.block-missing",
+   "severity": "suggest",
+   "category": "data-completeness",
+   "target": "COOLER2",
+   "title_zh": "块 COOLER2（Heater）没有读到能量项",
+   "detail_zh": "Heater 类块通常带热负荷或功率，但探针没有读到任何值。能耗合计可能漏掉它。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/3/energy",
+     "value": []
+    }
+   ],
+   "action_zh": "确认该块是否确实没有能量项（如绝热规格）；否则为该块类型补充读取路径。",
+   "confidence": "heuristic"
+  },
+  {
+   "id": "energy.block-missing:E-100",
+   "rule": "energy.block-missing",
+   "severity": "suggest",
+   "category": "data-completeness",
+   "target": "E-100",
+   "title_zh": "块 E-100（Heater）没有读到能量项",
+   "detail_zh": "Heater 类块通常带热负荷或功率，但探针没有读到任何值。能耗合计可能漏掉它。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/4/energy",
+     "value": []
+    }
+   ],
+   "action_zh": "确认该块是否确实没有能量项（如绝热规格）；否则为该块类型补充读取路径。",
+   "confidence": "heuristic"
+  },
+  {
+   "id": "energy.block-missing:E-101",
+   "rule": "energy.block-missing",
+   "severity": "suggest",
+   "category": "data-completeness",
+   "target": "E-101",
+   "title_zh": "块 E-101（Heater）没有读到能量项",
+   "detail_zh": "Heater 类块通常带热负荷或功率，但探针没有读到任何值。能耗合计可能漏掉它。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/5/energy",
+     "value": []
+    }
+   ],
+   "action_zh": "确认该块是否确实没有能量项（如绝热规格）；否则为该块类型补充读取路径。",
+   "confidence": "heuristic"
+  },
+  {
+   "id": "energy.block-missing:E-102",
+   "rule": "energy.block-missing",
+   "severity": "suggest",
+   "category": "data-completeness",
+   "target": "E-102",
+   "title_zh": "块 E-102（Heater）没有读到能量项",
+   "detail_zh": "Heater 类块通常带热负荷或功率，但探针没有读到任何值。能耗合计可能漏掉它。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/6/energy",
+     "value": []
+    }
+   ],
+   "action_zh": "确认该块是否确实没有能量项（如绝热规格）；否则为该块类型补充读取路径。",
+   "confidence": "heuristic"
+  },
+  {
+   "id": "energy.block-missing:E-103",
+   "rule": "energy.block-missing",
+   "severity": "suggest",
+   "category": "data-completeness",
+   "target": "E-103",
+   "title_zh": "块 E-103（Heater）没有读到能量项",
+   "detail_zh": "Heater 类块通常带热负荷或功率，但探针没有读到任何值。能耗合计可能漏掉它。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/7/energy",
+     "value": []
+    }
+   ],
+   "action_zh": "确认该块是否确实没有能量项（如绝热规格）；否则为该块类型补充读取路径。",
+   "confidence": "heuristic"
+  },
+  {
+   "id": "energy.block-missing:E-104",
+   "rule": "energy.block-missing",
+   "severity": "suggest",
+   "category": "data-completeness",
+   "target": "E-104",
+   "title_zh": "块 E-104（Heater）没有读到能量项",
+   "detail_zh": "Heater 类块通常带热负荷或功率，但探针没有读到任何值。能耗合计可能漏掉它。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/8/energy",
+     "value": []
+    }
+   ],
+   "action_zh": "确认该块是否确实没有能量项（如绝热规格）；否则为该块类型补充读取路径。",
+   "confidence": "heuristic"
+  },
+  {
+   "id": "energy.block-missing:REFORMER",
+   "rule": "energy.block-missing",
+   "severity": "suggest",
+   "category": "data-completeness",
+   "target": "REFORMER",
+   "title_zh": "块 REFORMER（RCSTR）没有读到能量项",
+   "detail_zh": "RCSTR 类块通常带热负荷或功率，但探针没有读到任何值。能耗合计可能漏掉它。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/9/energy",
+     "value": []
+    }
+   ],
+   "action_zh": "确认该块是否确实没有能量项（如绝热规格）；否则为该块类型补充读取路径。",
+   "confidence": "heuristic"
+  },
+  {
+   "id": "energy.block-missing:WGS-HT",
+   "rule": "energy.block-missing",
+   "severity": "suggest",
+   "category": "data-completeness",
+   "target": "WGS-HT",
+   "title_zh": "块 WGS-HT（RCSTR）没有读到能量项",
+   "detail_zh": "RCSTR 类块通常带热负荷或功率，但探针没有读到任何值。能耗合计可能漏掉它。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/10/energy",
+     "value": []
+    }
+   ],
+   "action_zh": "确认该块是否确实没有能量项（如绝热规格）；否则为该块类型补充读取路径。",
+   "confidence": "heuristic"
+  },
+  {
+   "id": "energy.block-missing:WGS-LT",
+   "rule": "energy.block-missing",
+   "severity": "suggest",
+   "category": "data-completeness",
+   "target": "WGS-LT",
+   "title_zh": "块 WGS-LT（RCSTR）没有读到能量项",
+   "detail_zh": "RCSTR 类块通常带热负荷或功率，但探针没有读到任何值。能耗合计可能漏掉它。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/11/energy",
+     "value": []
+    }
+   ],
+   "action_zh": "确认该块是否确实没有能量项（如绝热规格）；否则为该块类型补充读取路径。",
+   "confidence": "heuristic"
+  },
+  {
+   "id": "data-completeness.unverified-paths",
+   "rule": "data-completeness.unverified-paths",
+   "severity": "suggest",
+   "category": "data-completeness",
+   "target": "global",
+   "title_zh": "2 个读取路径尚未在真机上核验",
+   "detail_zh": "这些路径来自规则推断，没有在真实 Aspen 模型上验证过：全局 \\Data\\Streams\\Q4；全局 \\Data\\Streams\\W2",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/unverified_paths/0",
+     "value": {
+      "block": null,
+      "path": "\\Data\\Streams\\Q4",
+      "reason": "HEAT 类流股的负荷节点未读取（块负荷已计）"
+     }
+    },
+    {
+     "path": "probe-summary.json#/unverified_paths/1",
+     "value": {
+      "block": null,
+      "path": "\\Data\\Streams\\W2",
+      "reason": "WORK 类流股的负荷节点未读取（块负荷已计）"
+     }
+    }
+   ],
+   "action_zh": "在含这类块的真实模型上验证后，数值才可引用；此前请把相应块的数当作待核。",
+   "confidence": "verified"
+  }
+ ],
+ "skipped": [
+  {
+   "rule": "heat-integration.overlap",
+   "missing_inputs": [
+    "graph"
+   ],
+   "reason_zh": "没有提供 graph.json，该规则未评估。"
+  },
+  {
+   "rule": "heat-integration.none",
+   "missing_inputs": [
+    "graph"
+   ],
+   "reason_zh": "没有提供 graph.json，该规则未评估。"
+  },
+  {
+   "rule": "heat-integration.data-missing",
+   "missing_inputs": [
+    "graph"
+   ],
+   "reason_zh": "没有提供 graph.json，该规则未评估。"
+  },
+  {
+   "rule": "convergence.mass-balance",
+   "missing_inputs": [
+    "graph"
+   ],
+   "reason_zh": "没有提供 graph.json，该规则未评估。"
+  },
+  {
+   "rule": "lca-readiness.roles-draft",
+   "missing_inputs": [
+    "roles"
+   ],
+   "reason_zh": "没有提供 roles.json，该规则未评估。"
+  },
+  {
+   "rule": "lca-readiness.no-product",
+   "missing_inputs": [
+    "roles"
+   ],
+   "reason_zh": "没有提供 roles.json，该规则未评估。"
+  },
+  {
+   "rule": "lca-readiness.multi-product",
+   "missing_inputs": [
+    "roles"
+   ],
+   "reason_zh": "没有提供 roles.json，该规则未评估。"
+  },
+  {
+   "rule": "lca-readiness.no-functional-unit",
+   "missing_inputs": [
+    "roles"
+   ],
+   "reason_zh": "没有提供 roles.json，该规则未评估。"
+  },
+  {
+   "rule": "lca-readiness.fu-stream-mismatch",
+   "missing_inputs": [
+    "roles"
+   ],
+   "reason_zh": "没有提供 roles.json，该规则未评估。"
+  },
+  {
+   "rule": "lca-readiness.product-low-confidence",
+   "missing_inputs": [
+    "roles"
+   ],
+   "reason_zh": "没有提供 roles.json，该规则未评估。"
+  },
+  {
+   "rule": "lca-readiness.utility-guess",
+   "missing_inputs": [
+    "roles"
+   ],
+   "reason_zh": "没有提供 roles.json，该规则未评估。"
+  },
+  {
+   "rule": "lca-readiness.no-factor-key",
+   "missing_inputs": [
+    "roles"
+   ],
+   "reason_zh": "没有提供 roles.json，该规则未评估。"
+  },
+  {
+   "rule": "energy.hotspot",
+   "reason_zh": "少于两个块有外部能量项，不做热点排序"
+  }
+ ]
+}
