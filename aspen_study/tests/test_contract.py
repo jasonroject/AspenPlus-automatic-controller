@@ -57,10 +57,12 @@ def surrogate_manifest():
             "contract": {"project_schema": 1, "results_schema": "aspen-results/1"},
             "scenarios": [{"id": "HR", "label": "热回收"}, {"id": "STD", "label": "无热回收"}], "default_scenario": "HR",
             "cases": [
-                {"id": "T310_L13", "scenario": "HR", "has_results": True, "result": "results/T310_L13.json", "source": "archived",
-                 "case_params": {"temperature_C": 310, "length_m": 13}, "kpi": {"energy_per_fu": 2.06, "gwp_per_fu": None, "max_balance_ratio": None},
-                 "completeness": {"GWP100": {"status": "unknown", "complete": False, "contribution_coverage": None, "missing_count": 0, "lower_bound": None}}},
-                {"id": "T310_L13", "scenario": "STD", "has_results": False, "source": "surrogate",
+                {"id": "T310_L13", "scenario": "HR", "has_results": True, "file": "cases/T310_L13.json", "result": "results/T310_L13.json", "source": "archived",
+                 "split": "train", "source_record": "T310p00_L13p00", "evidence": [{"kind": "gate", "file": "results/T310_L13.json"}],
+                 "case_params": {"temperature_C": 310, "length_m": 13}, "kpi": {"energy_per_fu": 2.06, "gwp_per_fu": 11.44, "max_balance_ratio": None},
+                 "completeness": {"GWP100": {"status": "unknown", "complete": False, "contribution_coverage": None, "missing_count": 0, "lower_bound": None, "total": 11.44}}},
+                {"id": "T310_L13", "scenario": "STD", "has_results": False, "source": "surrogate", "split": "fresh",
+                 "evidence": [{"kind": "observation", "file": "observations.json", "sha256": "b" * 64}],
                  "case_params": {"temperature_C": 310, "length_m": 13}, "kpi": {"energy_per_fu": 8.9, "gwp_per_fu": None, "max_balance_ratio": None},
                  "completeness": {"GWP100": {"status": "unknown", "complete": False, "contribution_coverage": None, "missing_count": 0, "lower_bound": None}}}],
             "shards": {"factors": "factors.json", "surrogate": "surrogate/surrogate.json"}}
@@ -73,7 +75,10 @@ class ManifestRuleTests(unittest.TestCase):
     def test_rules(self):
         cases = {
             "has_results=false must not reference": lambda m: m["cases"][1].update(file="cases/x.json"),
-            "has_results=true requires result": lambda m: m["cases"][0].pop("result"),
+            "has_results=true requires the five-table file": lambda m: m["cases"][0].pop("file"),
+            "must not carry total": lambda m: m["cases"][0]["completeness"]["GWP100"].update(status="incomplete", missing_count=2),
+            "kpi.gwp_per_fu must be null": lambda m: m["cases"][0]["completeness"]["GWP100"].update(status="incomplete", missing_count=2, total=None),
+            "split": lambda m: m["cases"][0].update(split="holdout"),
             "give sha256": lambda m: m["model"].pop("source_sha256"),
             "duplicate case identity": lambda m: m["cases"][1].update(scenario="HR", has_results=False),
             "scenario not declared": lambda m: m["cases"][1].update(scenario="LOW"),
@@ -87,6 +92,13 @@ class ManifestRuleTests(unittest.TestCase):
             with self.assertRaises(ValueError, msg=text) as ctx:
                 validate(m, "manifest")
             self.assertIn(text, str(ctx.exception))
+
+    def test_results_allocation_may_be_null_with_note(self):
+        res = {"schema": "aspen-results/1", "study_id": "x",
+               "method": {"functional_unit": "1 kg", "system_boundary": "gate-to-gate", "allocation": None,
+                          "allocation_note": "single product; archived study did not declare allocation", "factor_sources": []},
+               "cases": [], "contributions": []}
+        validate(res, "results")
 
     def test_legacy_surrogate_array_still_accepted(self):
         m = surrogate_manifest()

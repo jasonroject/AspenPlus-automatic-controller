@@ -348,7 +348,7 @@ def assess_case(graph, roles, case_id="case-1", case_params=None, entries=None, 
     result["status"] = V.case_status(gates)
     gwp = completeness.get("GWP100", {})
     kpi = {"energy_per_fu": energy_intensity, "energy_unit": "kWh/kg",
-           "gwp_per_fu": gwp.get("total") if gwp.get("complete") else None, "gwp_unit": "kg CO2-eq/kg",
+           "gwp_per_fu": gwp.get("total") if gwp.get("status") in ("complete", "unknown") else None, "gwp_unit": "kg CO2-eq/kg",
            "efficiency": rc["yield"][1] if rc.get("yield") else None,
            "max_balance_ratio": max((r["ratio"] for r in rows), default=None)}
     sources = [{"factor_id": e["id"], "source": e["source"], "year": e["year"], "status": e["status"]} for e in used.values()]
@@ -396,7 +396,7 @@ def write_study(out_dir, study_id, graph, roles, cases, entries=None, categories
                "result": f"results/{stem}.json", "status": result["status"], "case_params": params or {}, "kpi": kpi,
                "completeness": {cat: {"status": c["status"], "complete": c["complete"], "mass_coverage": c["mass_coverage"],
                                       "contribution_coverage": c["contribution_coverage"],
-                                      "missing_count": len(c["missing"]), "lower_bound": c["lower_bound"]}
+                                      "missing_count": len(c["missing"]), "lower_bound": c["lower_bound"], "total": c["total"]}
                                 for cat, c in result["completeness"].items()}}
         if project is not None:
             case_file = out / "cases" / f"{stem}.json"
