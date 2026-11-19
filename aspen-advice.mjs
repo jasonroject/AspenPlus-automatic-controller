@@ -73,6 +73,16 @@ function splitMessages(messages) {
   if (lines.length && !/^\s/.test(lines[0])) return [lines[0], lines.slice(1)];
   return [null, lines];
 }
+const BLOCK_IN_PATH = /\\Blocks\\([^\\]+)\\/i, BLOCK_IN_TEXT = /^([^\s（(：:]+)（[^）]*）/;
+/** 从节点路径 \Data\Blocks\<ID>\… 解析块 id；解析不了才是 null。text 只给 1.0 迁移兜底（“ID（类型）…”）。与 probe_compat.block_from_path 一致。 */
+export function blockFromPath(path, text = null) {
+  let m = BLOCK_IN_PATH.exec(String(path || ''));
+  if (m) return m[1];
+  m = BLOCK_IN_TEXT.exec(String(text || ''));
+  return m ? m[1] : null;
+}
+const withBlock = (item, text = null) => ({...item, block: item.block || blockFromPath(item.path, text ?? item.reason)});
+
 export function upgradeSummary(summary, rules) {
   const s = JSON.parse(JSON.stringify(summary));
   if (s.schema === PROBE_SCHEMA) return s;
@@ -93,8 +103,8 @@ export function upgradeSummary(summary, rules) {
     }
   }
   s.discovery = s.discovery || {};
-  s.energy_gaps = (s.energy_gaps || []).map(g => (isObj(g) ? g : {block: null, path: String(g), reason: '迁移自 aspen-probe/1（原为字符串）：' + g}));
-  s.unverified_paths = (s.discovery.unverified_paths || []).map(u => (isObj(u) ? u : {block: null, path: String(u), reason: '迁移自 aspen-probe/1（原为字符串）'}));
+  s.energy_gaps = (s.energy_gaps || []).map(g => (isObj(g) ? withBlock(g) : withBlock({block: null, path: String(g), reason: '迁移自 aspen-probe/1（原为字符串）：' + g}, String(g))));
+  s.unverified_paths = (s.discovery.unverified_paths || []).map(u => (isObj(u) ? withBlock(u) : withBlock({block: null, path: String(u), reason: '迁移自 aspen-probe/1（原为字符串）'})));
   delete s.discovery.unverified_paths;
   if (!('totals_complete' in s)) s.totals_complete = !s.energy_gaps.length && !(s.discovery.unmatched_block_types || []).length;
   s.group_totals = groupTotals(s.blocks || [], s.totals_complete);
@@ -174,9 +184,10 @@ export function classifyBundle(docs, rules) {
 
 // ---------------------------------------------------------------- 引擎
 class Ctx {
-  constructor(rules, S, G, R) { this.rules = rules; this.S = S; this.G = G; this.R = R; this.th = rules.thresholds; this.tx = rules.texts; this.items = []; this.skipped = []; }
+  constructor(rules, S, G, R) { this.rules = rules; this.S = S; this.G = G; this.R = R; this.th = rules.thresholds; this.tx = rules.texts; this.items = []; this.skipped = []; this.blocked = new Set(); }
   rule(id) { return this.rules.rules[id]; }
   add(ruleId, tpl, vars, target, evidence, {severity = null, suffix = null, titleExtra = '', detailExtra = ''} = {}) {
+    if (this.blocked.has(ruleId)) return;
     const v = {}; for (const [k, x] of Object.entries(vars)) v[k] = sv(x);
     this.items.push({
       id: ruleId + (target[1] ? ':' + target[1] : '') + (suffix ? ':' + suffix : ''), rule: ruleId, severity: severity || tpl.severity, category: tpl.category,
@@ -331,7 +342,7 @@ function heatIntegration(c) {
   if (!heating || !cooling || heating <= 0 || cooling >= 0) return;
   const base = [ev(SUMMARY_FILE, '/group_totals/heating/kW', heating), ev(SUMMARY_FILE, '/group_totals/cooling/kW', cooling)];
   const vars = {heating: num(heating), cooling: num(cooling)};
-  if (G === null) { c.add('heat-integration.data-missing', c.rule('heat-integration.data-missing'), {...vars, missing: 'graph.json', why: 'probe-summary 只有块出口温度，没有进口温度和块之间的连接'}, ['global', null], base); return; }
+  if (G === null) return; // requires=['graph']，已在 skipped 里登记
   const dT = c.th.heat_integration_dTmin_K, iso = c.th.isothermal_span_K;
   const hot = [], cold = [], mixed = [];
   S.blocks.forEach((b, i) => {
@@ -364,7 +375,7 @@ function heatIntegration(c) {
 
 function massBalance(c) {
   const {G} = c;
-  if (G === null) { c.skipped.push({rule: 'convergence.mass-balance', reason_zh: '没有 graph.json，不检查边界物料守恒'}); return; }
+  if (G === null) return; // requires=['graph']，已在 skipped 里登记
   const ins = [], outs = [], units = new Set();
   G.streams.forEach((s, k) => {
     const t = s.total || {};
@@ -416,7 +427,7 @@ function lca(c) {
     const other = isGraph ? (doc.model ?? {}).sha256 : doc.model_sha256;
     if (other !== sha) c.add('lca-readiness.sha-mismatch', c.rule('lca-readiness.sha-mismatch'), {which}, ['global', null], [ev(SUMMARY_FILE, '/model/sha256', sha), ev(which, isGraph ? '/model/sha256' : '/model_sha256', other ?? null)], {suffix: which});
   }
-  if (R === null) { c.add('lca-readiness.no-roles', c.rule('lca-readiness.no-roles'), {}, ['global', null], [ev(SUMMARY_FILE, '/schema', S.schema)]); return; }
+  if (R === null) return; // roles 相关规则 requires=['roles']，已在 skipped 里登记
   const streams = R.streams || {}, review = R.review || {};
   if (review.state !== 'reviewed') {
     const pend = review.pending || [];
@@ -447,9 +458,21 @@ function lca(c) {
 }
 
 /** summary 可以是 1.0 或 1.1；graph / roles 可为 null。返回 aspen-advice/1。 */
+const INPUT_FILES = [['graph', GRAPH_FILE], ['roles', ROLES_FILE]];
+/** 规则表里每条规则的 requires（graph / roles）缺了就整条跳过，并按规则表顺序登记到 skipped。 */
+function skipMissingInputs(c) {
+  const have = {graph: c.G !== null, roles: c.R !== null};
+  for (const [rid, rule] of Object.entries(c.rules.rules)) {
+    const missing = INPUT_FILES.map(([n]) => n).filter(n => (rule.requires || []).includes(n) && !have[n]);
+    if (!missing.length) continue;
+    c.blocked.add(rid);
+    c.skipped.push({rule: rid, missing_inputs: missing, reason_zh: render(c.tx.skipped_missing, {files: joinZh(INPUT_FILES.filter(([n]) => missing.includes(n)).map(([, f]) => f))})});
+  }
+}
 export function advise(summary, graph = null, roles = null, rules) {
   const S = upgradeSummary(summary, rules);
   const c = new Ctx(rules, S, graph, roles);
+  skipMissingInputs(c);
   for (const fn of [statusRules, blockRules, unitRules, energyRules, heatIntegration, massBalance, completeness, lca]) fn(c);
   const ranked = c.items.map((it, n) => [n, it]).sort((a, b) => (SEV_RANK[a[1].severity] - SEV_RANK[b[1].severity]) || (CAT_ORDER.indexOf(a[1].category) - CAT_ORDER.indexOf(b[1].category)) || (a[0] - b[0]));
   const items = ranked.map(p => p[1]);
