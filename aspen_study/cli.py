@@ -1,4 +1,4 @@
-"""Command line: python -m aspen_study {probe,classify,assess} ..."""
+"""Command line: python -m aspen_study {probe,advise,upgrade,classify,assess} ..."""
 from __future__ import annotations
 
 import argparse
@@ -26,6 +26,14 @@ def main(argv=None):
     pr.add_argument("--keep-work", action="store_true", help="保留临时副本目录用于排查")
     pr.add_argument("--no-study", action="store_true", help="只写 graph.json 与 probe-summary.json，不生成 aspen-study 包")
     pr.add_argument("--json", action="store_true", help="终端只输出 probe-summary.json 的内容")
+    ad = sub.add_parser("advise", help="probe-summary.json (+ graph.json, roles.json) -> advice.json（规则建议，不需要 Aspen）")
+    ad.add_argument("summary", help="probe-summary.json（aspen-probe/1 或 1.1）")
+    ad.add_argument("--graph", help="graph.json（可选；有了才能做热集成与物料守恒检查）")
+    ad.add_argument("--roles", help="roles.json（可选；有了才能做 LCA 就绪度检查）")
+    ad.add_argument("--out", help="写 advice.json；不给就在终端打印中文摘要")
+    up = sub.add_parser("upgrade", help="aspen-probe/1 的 probe-summary.json 离线升级为 1.1（不需要 Aspen）")
+    up.add_argument("summary")
+    up.add_argument("--out", required=True)
     c = sub.add_parser("classify", help="graph.json (+ roles.yaml) -> roles.json")
     c.add_argument("--graph", required=True)
     c.add_argument("--override")
@@ -42,6 +50,8 @@ def main(argv=None):
     args = p.parse_args(argv)
     if args.cmd == "probe":
         return _probe(args)
+    if args.cmd in ("advise", "upgrade"):
+        return _advise(args) if args.cmd == "advise" else _upgrade(args)
     graph = MockAdapter(args.graph).discover()
     if args.cmd == "classify":
         roles = classify(graph, region=args.region)
@@ -56,6 +66,60 @@ def main(argv=None):
                            entries=load_library(extra=extra), calorie_J=args.calorie_J)
     for case in manifest["cases"]:
         print(case["id"], case["status"], json.dumps(case["kpi"], ensure_ascii=False))
+    return 0
+
+
+def _load(path, what):
+    try:
+        return json.loads(Path(path).read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        raise SystemExit(f"找不到 {what}：{path}")
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise SystemExit(f"{what} 不是有效的 JSON：{path}（{exc}）")
+
+
+def _upgrade(args):
+    from .probe_compat import upgrade_summary
+    from .schema_check import validate
+    try:
+        up = upgrade_summary(_load(args.summary, "probe-summary.json"))
+        validate(up, "probe")
+    except (ValueError, KeyError, TypeError) as exc:
+        raise SystemExit(f"升级失败：{exc}")
+    Path(args.out).write_text(json.dumps(up, ensure_ascii=False, indent=1), encoding="utf-8")
+    print(f"{args.out}: {up['schema']}" + (f"（迁移自 {up['migrated_from']}）" if up.get("migrated_from") else ""))
+    return 0
+
+
+def _advise(args):
+    from .advice import advise
+    from .probe_compat import upgrade_summary
+    from .schema_check import validate
+    summary = _load(args.summary, "probe-summary.json")
+    graph = _load(args.graph, "graph.json") if args.graph else None
+    roles = _load(args.roles, "roles.json") if args.roles else None
+    try:
+        validate(upgrade_summary(summary), "probe")
+    except (ValueError, KeyError, TypeError) as exc:
+        raise SystemExit(f"{args.summary} 不是有效的 probe-summary.json：{exc}")
+    from .advice import package_problems
+    problems = package_problems(summary, graph, roles)
+    if problems:
+        raise SystemExit("输入文件不一致，不做分析：" + "；".join(problems))
+    advice = advise(summary, graph, roles)
+    validate(advice, "advice")
+    if args.out:
+        Path(args.out).write_text(json.dumps(advice, ensure_ascii=False, indent=1), encoding="utf-8")
+        print(f"{args.out}: " + "，".join(f"{k}={v}" for k, v in advice["counts"].items()))
+        return 0
+    for stream in (sys.stdout,):
+        try:
+            stream.reconfigure(errors="replace")
+        except Exception:
+            pass
+    print(f"模型 {advice['model']['file']}：" + "，".join(f"{k}={v}" for k, v in advice["counts"].items()))
+    for it in advice["items"]:
+        print(f"\n[{it['severity']}] {it['title_zh']}  ({it['category']}, {it['confidence']})\n  {it['detail_zh']}\n  建议：{it['action_zh']}")
     return 0
 
 

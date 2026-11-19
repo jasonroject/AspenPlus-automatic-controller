@@ -1,0 +1,281 @@
+{
+ "schema": "aspen-probe/1.1",
+ "created": "2026-11-19T22:20:35+08:00",
+ "model": {
+  "file": "heatrecovery.bkp",
+  "sha256": "91965a901c1074cc6e0d47a9b614d9cd54df18e4841bf0de248e143a66edac0f",
+  "simulator": "aspen-plus",
+  "version": "41.0",
+  "progid": "Apwn.Document.41.0",
+  "adapter": "aspen-plus-com",
+  "source_unchanged": true
+ },
+ "status": {
+  "state": "warning",
+  "run_completed": true,
+  "errors": [],
+  "warnings": [
+   "块 COOLER：PROBLEM(S) ENCOUNTERED DURING PHASE STABILITY CHECK",
+   "块 REACTOR：REACTION RATE IS SET TO ZERO FOR SOME REACTIONS",
+   "块 VALVE：PROBLEM(S) ENCOUNTERED DURING PHASE STABILITY CHECK"
+  ],
+  "notes": [],
+  "raw_status": {
+   "UOSSTAT": 1,
+   "UOSSTAT2": 10,
+   "CVSTAT": 0,
+   "CSSTAT": 2,
+   "RSTAT": 0,
+   "PPSTAT": 2,
+   "SENSSTAT": 2,
+   "ITSTAT": 4,
+   "SSTAT": 0
+  },
+  "run_status_lines": [
+   "The following Unit Operation blocks were",
+   "completed with warnings:",
+   " COOLER  REACTOR  VALVE "
+  ],
+  "run_seconds": 18.0
+ },
+ "units": {
+  "INSET": "MET",
+  "OUTSET": "MET",
+  "calorie_J": 4.1868,
+  "note": "块负荷与流股焓流保留各节点自己的 UnitString；MET 单位集的热负荷是 cal/sec，不是 kW。1 cal = 4.1868 J 经真机核对（同一结果在 MET 与 SI 下各读一次，比值 4.1868）。"
+ },
+ "calorie_J": 4.1868,
+ "blocks": [
+  {
+   "id": "B6",
+   "type": "Flash2",
+   "status": "ok",
+   "blkstat": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 192.82363,
+     "unit": "cal/sec",
+     "kW": 0.8073139740840001,
+     "path": "\\Data\\Blocks\\B6\\Output\\QCALC",
+     "note": "按 1 cal = 4.1868 J",
+     "verified": true
+    }
+   ],
+   "outlet_temperature": {
+    "value": 313.0,
+    "unit": "K",
+    "path": "\\Data\\Blocks\\B6\\Output\\B_TEMP"
+   },
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": null
+  },
+  {
+   "id": "COOLER",
+   "type": "Heater",
+   "status": "warning",
+   "blkstat": 2,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": -2087.51163,
+     "unit": "cal/sec",
+     "kW": -8.739993692484001,
+     "path": "\\Data\\Blocks\\COOLER\\Output\\QCALC",
+     "note": "按 1 cal = 4.1868 J",
+     "verified": true
+    }
+   ],
+   "outlet_temperature": {
+    "value": 313.0,
+    "unit": "K",
+    "path": "\\Data\\Blocks\\COOLER\\Output\\B_TEMP"
+   },
+   "blkmsg": "PROBLEM(S) ENCOUNTERED DURING PHASE STABILITY CHECK",
+   "per_error": [
+    "   STABILITY CHECK FOR LIQUID PHASE: STABILITY CRITERION NOT SATISFIED FOR",
+    "   COMPONENT 'STYRENE'. STABILITY INDEX IS (4.7808), MOLE FRACTION IS (",
+    "   1.5506-03 ). THIS PHASE MAY BE UNSTABLE. TRY USING 3-PHASE CALCULATIONS.",
+    "   PROBLEM OCCURRED WHILE FLASHING OUTLET STREAM."
+   ],
+   "per_error_total": null
+  },
+  {
+   "id": "HEATCHAG",
+   "type": "HeatX",
+   "status": "ok",
+   "blkstat": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 9673.5897,
+     "unit": "cal/sec",
+     "kW": 40.501385355960004,
+     "path": "\\Data\\Blocks\\HEATCHAG\\Output\\HX_DUTY",
+     "role_hint": "exchanged",
+     "note": "按 1 cal = 4.1868 J",
+     "verified": true
+    }
+   ],
+   "blkmsg": null,
+   "per_error": [
+    "   STABILITY CHECK FOR LIQUID PHASE: STABILITY CRITERION NOT SATISFIED FOR",
+    "   COMPONENT 'STYRENE'. STABILITY INDEX IS (2.8703), MOLE FRACTION IS (",
+    "   1.5506-03 ). THIS PHASE MAY BE UNSTABLE. TRY USING 3-PHASE CALCULATIONS.",
+    "   STABILITY CHECK FOR LIQUID PHASE: STABILITY CRITERION NOT SATISFIED FOR",
+    "   COMPONENT 'STYRENE'. STABILITY INDEX IS (1.0798), MOLE FRACTION IS (",
+    "   1.5506-03 ). THIS PHASE MAY BE UNSTABLE. TRY USING 3-PHASE CALCULATIONS.",
+    "   CALCULATED PROPERTIES MAY BE UNRELIABLE DUE TO FLASH PROBLEMS.",
+    "   STABILITY CHECK FOR LIQUID PHASE: STABILITY CRITERION NOT SATISFIED FOR",
+    "   COMPONENT 'STYRENE'. STABILITY INDEX IS (1.3203), MOLE FRACTION IS (",
+    "   1.5506-03 ). THIS PHASE MAY BE UNSTABLE. TRY USING 3-PHASE CALCULATIONS.",
+    "   CALCULATED PROPERTIES MAY BE UNRELIABLE DUE TO FLASH PROBLEMS.",
+    "   STABILITY CHECK FOR LIQUID PHASE: STABILITY CRITERION NOT SATISFIED FOR"
+   ],
+   "per_error_total": null
+  },
+  {
+   "id": "HEATER",
+   "type": "Heater",
+   "status": "ok",
+   "blkstat": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 1000.52531,
+     "unit": "cal/sec",
+     "kW": 4.188999367908,
+     "path": "\\Data\\Blocks\\HEATER\\Output\\QCALC",
+     "note": "按 1 cal = 4.1868 J",
+     "verified": true
+    }
+   ],
+   "outlet_temperature": {
+    "value": 603.0,
+    "unit": "K",
+    "path": "\\Data\\Blocks\\HEATER\\Output\\B_TEMP"
+   },
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": null
+  },
+  {
+   "id": "PUMP",
+   "type": "Pump",
+   "status": "ok",
+   "blkstat": 0,
+   "energy": [
+    {
+     "kind": "work",
+     "value": 2.1717208,
+     "unit": "kW",
+     "kW": 2.1717208,
+     "path": "\\Data\\Blocks\\PUMP\\Output\\ELEC_POWER",
+     "verified": true
+    }
+   ],
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": null
+  },
+  {
+   "id": "REACTOR",
+   "type": "RPlug",
+   "status": "warning",
+   "blkstat": 2,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 2891.5462,
+     "unit": "cal/sec",
+     "kW": 12.10632563016,
+     "path": "\\Data\\Blocks\\REACTOR\\Output\\QCALC",
+     "note": "按 1 cal = 4.1868 J",
+     "verified": true
+    }
+   ],
+   "outlet_temperature": {
+    "value": 603.0,
+    "unit": "K",
+    "path": "\\Data\\Blocks\\REACTOR\\Output\\B_TEMP"
+   },
+   "blkmsg": "REACTION RATE IS SET TO ZERO FOR SOME REACTIONS",
+   "per_error": [
+    "   AT Z =    19.876     :",
+    "   REACTION RATE IS GREATER THAN ZERO FOR REACTION (29) BUT",
+    "   REACTANT 'H2' IS NOT PRESENT.  POSSIBLE CAUSE:",
+    "   ZEROTH ORDER REACTANT NOT PRESENT.  RATE IS SET TO ZERO.",
+    "   AT Z =    19.876     :",
+    "   REACTION RATE IS GREATER THAN ZERO FOR REACTION (30) BUT",
+    "   REACTANT 'H2' IS NOT PRESENT.  POSSIBLE CAUSE:",
+    "   ZEROTH ORDER REACTANT NOT PRESENT.  RATE IS SET TO ZERO.",
+    "   AT Z =    19.876     :",
+    "   REACTION RATE IS GREATER THAN ZERO FOR REACTION (31) BUT",
+    "   REACTANT 'H2' IS NOT PRESENT.  POSSIBLE CAUSE:"
+   ],
+   "per_error_total": null
+  },
+  {
+   "id": "VALVE",
+   "type": "Valve",
+   "status": "warning",
+   "blkstat": 2,
+   "energy": [],
+   "blkmsg": "PROBLEM(S) ENCOUNTERED DURING PHASE STABILITY CHECK",
+   "per_error": [
+    "   STABILITY CHECK FOR LIQUID PHASE: STABILITY CRITERION NOT SATISFIED FOR",
+    "   COMPONENT 'STYRENE'. STABILITY INDEX IS (4.7808), MOLE FRACTION IS (",
+    "   1.5506-03 ). THIS PHASE MAY BE UNSTABLE. TRY USING 3-PHASE CALCULATIONS.",
+    "   PROBLEM WITH OUTLET STREAM FLASH. CHECK PHASE SPECIFICATIONS."
+   ],
+   "per_error_total": null
+  }
+ ],
+ "totals_kW": {
+  "heating": 17.102639,
+  "cooling": -8.739994,
+  "work": 2.171721,
+  "internal_exchange": 40.501385
+ },
+ "energy_gaps": [],
+ "discovery": {
+  "mode": "recipe",
+  "nodes_read": 449,
+  "complete": true,
+  "unmatched_block_types": []
+ },
+ "cleanup": {
+  "killed_pids": []
+ },
+ "elapsed_seconds": 31.2,
+ "study": {
+  "ok": false,
+  "error": "生成 aspen-study 包失败：universal-core bridge failed: node:internal/modules/cjs/loader:1522\n  throw err;\n  ^\n\nError: Cannot find module 'C:\\Users\\Administrator\\AppData\\Local\\Temp\\aspen_live\\process_pipeline\\assess_project.mjs'\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1519:15)\n    at wrapResolveFilename (node:internal/modules/cjs/loader:1073:27)\n    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1097:10)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1124:12)\n    at Module._load (node:internal/modules/cjs/loader:1296:5)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  code: 'MODULE_NOT_FOUND',\n  requireStack: []\n}\n\nNode.js v26.3.0\n"
+ },
+ "migrated_from": "aspen-probe/1",
+ "unverified_paths": [],
+ "totals_complete": true,
+ "group_totals": {
+  "heating": {
+   "kW": 17.102639,
+   "complete": true
+  },
+  "cooling": {
+   "kW": -8.739994,
+   "complete": true
+  },
+  "shaft_work": {
+   "kW": 2.171721,
+   "complete": true
+  },
+  "internal_exchange": {
+   "kW": 40.501385,
+   "complete": true
+  },
+  "overall": {
+   "kW": 10.534366,
+   "complete": true
+  }
+ }
+}

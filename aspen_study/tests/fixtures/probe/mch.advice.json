@@ -1,0 +1,98 @@
+{
+ "schema": "aspen-advice/1",
+ "rules_version": "1.0.0",
+ "model": {
+  "file": "mch.bkp",
+  "sha256": "57bce0dbe0f47156aabbf690df0c6f65d0d3b64b2236604027e3983165506abd"
+ },
+ "inputs": {
+  "probe": "aspen-probe/1.1",
+  "migrated_from": "aspen-probe/1",
+  "graph": false,
+  "roles": false
+ },
+ "counts": {
+  "critical": 0,
+  "warn": 0,
+  "suggest": 1,
+  "info": 2,
+  "total": 3
+ },
+ "items": [
+  {
+   "id": "lca-readiness.no-roles",
+   "rule": "lca-readiness.no-roles",
+   "severity": "suggest",
+   "category": "lca-readiness",
+   "target": "global",
+   "title_zh": "未提供 roles.json：无法评估 LCA 就绪度",
+   "detail_zh": "没有上传 roles.json，不知道哪条物流是产品、功能单位是什么、公用工程怎么取。能耗分析不受影响，但不能给出 LCA 结论。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/schema",
+     "value": "aspen-probe/1.1"
+    }
+   ],
+   "action_zh": "上传体检时一并生成的 roles.json，或先运行 classify 生成草稿并人工确认。",
+   "confidence": "verified"
+  },
+  {
+   "id": "units.non-si-set",
+   "rule": "units.non-si-set",
+   "severity": "info",
+   "category": "units",
+   "target": "global",
+   "title_zh": "模型使用 ENG 输入 / ENG 输出单位集",
+   "detail_zh": "探针读到的块负荷保留了各节点自己的单位（本模型出现的能量单位：Btu/hr），并换算成 kW（含 cal 的单位按 1 cal = 4.1868 J）。原生数值不是 kW，不同单位的换算倍数不同，直接当 kW 用会得出错误结论。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/units/INSET",
+     "value": "ENG"
+    },
+    {
+     "path": "probe-summary.json#/units/OUTSET",
+     "value": "ENG"
+    },
+    {
+     "path": "probe-summary.json#/calorie_J",
+     "value": 4.1868
+    }
+   ],
+   "action_zh": "与其他来源（文献、能耗清单）比较时使用 kW 列；要在 Aspen 里核对，请注意界面显示的是原生单位。",
+   "confidence": "verified"
+  },
+  {
+   "id": "heat-integration.data-missing",
+   "rule": "heat-integration.data-missing",
+   "severity": "info",
+   "category": "heat-integration",
+   "target": "global",
+   "title_zh": "热集成无法判断：缺少 graph.json",
+   "detail_zh": "模型同时有外部加热（9353.46 kW）和外部冷却（-7041.49 kW），但 probe-summary 只有块出口温度，没有进口温度和块之间的连接，所以不能判断两者能否匹配。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/group_totals/heating/kW",
+     "value": 9353.463171,
+     "unit": "kW"
+    },
+    {
+     "path": "probe-summary.json#/group_totals/cooling/kW",
+     "value": -7041.494781,
+     "unit": "kW"
+    }
+   ],
+   "action_zh": "把体检生成的 graph.json 一起上传（包含物流温度和块连接）。",
+   "confidence": "verified"
+  }
+ ],
+ "skipped": [
+  {
+   "rule": "energy.hotspot",
+   "reason_zh": "少于两个块有外部能量项，不做热点排序"
+  },
+  {
+   "rule": "convergence.mass-balance",
+   "reason_zh": "没有 graph.json，不检查边界物料守恒"
+  }
+ ]
+}

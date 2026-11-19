@@ -78,7 +78,8 @@ manifest 随工况数线性增长：每个工况条目约 0.5–1 KB（参数 + 
 | `validation.py` | G1 收敛/无错、警告、G2 完整性、G3 块级与边界衡算、G5 因子覆盖 |
 | `build.py` | graph + roles + 因子 → 五表 project 与 results（含可视化字段） |
 | `adapters/` | 仿真器适配器接口；`mock.py` 读取 graph 夹具；`aspen_com.py` 是已在真机验证的 Aspen COM 适配器，`aspen_rules.py` 是节点配方/单位/状态规则（纯 Python，可无 Aspen 测试），`aspen_process.py` 只清理本次启动的 Aspen 进程，`errors.py` 是中文错误类型 |
-| `probe.py` | 一键体检（`python -m aspen_study probe`）：运行状态 + 逐块能量表 → `probe-summary.json`（`aspen-probe/1`）+ `graph.json` + 可选研究包 |
+| `advice.py` / `probe_compat.py` | 规则式模型建议（`advise`，`aspen-advice/1`）与 1.0→1.1 升级（`upgrade`）；规则表在 `analysis_web/data/aspen-advice-rules.json`，浏览器端 `analysis_web/aspen-advice.mjs` 读同一份 |
+| `probe.py` | 一键体检（`python -m aspen_study probe`）：运行状态 + 逐块能量表 → `probe-summary.json`（`aspen-probe/1.1`）+ `graph.json` + 可选研究包 |
 
 运行测试（Linux 即可，不需要 Aspen）：
 
@@ -102,6 +103,38 @@ python -m aspen_study.cli classify --graph graph.json --override roles.yaml --ou
 # 生成 aspen-study/2 研究包（需要 Node.js 调用 universal-core）
 python -m aspen_study.cli assess --graph graph.json --roles roles.json --study-id demo --out-dir study/ [--factors my-factors.json] [--calorie-J 4.1868]
 ```
+
+## aspen-probe/1.1 与模型建议（advise）
+
+**1.1 相对 1.0**（`probe_compat.upgrade_summary` / `python -m aspen_study upgrade` 能把 1.0 文件离线升级；`advise` 直接读 1.0 或 1.1）：
+
+| 字段 | 1.0 | 1.1 |
+| --- | --- | --- |
+| `totals_complete` | 早期文件可能缺失 | 必有（无读取缺口且无未登记块类型） |
+| 块消息 | `messages[]`（BLKMSG + 消息行混在一起，最多 12 行） | `blkmsg`（字符串或 null）+ `per_error[]`（最多 12 行）+ `per_error_total`（真实行数）；`status` 仍由 BLKSTAT 派生 |
+| `energy_gaps` | 字符串数组 | `[{block, path, reason}]` |
+| `unverified_paths` | `discovery.unverified_paths`（字符串） | **顶层** `[{block, path, reason}]`（block 为 null 表示全局） |
+| 能量项 | — | `verified: true/false`（该节点是否已在真机验证；没有映射时一律 false） |
+| `group_totals` | — | `heating / cooling / shaft_work / internal_exchange / overall`，每项 `{kW, complete}`；任一成员 kW 为 null 则该项 kW 为 null；`overall` = 加热 + 冷却（负）+ 轴功的带符号净值，**不含内部换热**，不是总能耗 |
+| `totals_kW` | 有 | 保留（兼容旧读者；`work` 即 `shaft_work`） |
+
+从 1.0 升级时：`blkmsg` 按“首行不缩进”推断，`per_error_total` 为 null，`verified` 按 `aspen_rules.RECIPES` 推出，输出带 `migrated_from: "aspen-probe/1"`。`advice` 不写进 summary，单独是 `advice.json`。
+
+**与批量结果（`batch_runner`）的字段对照**：批量结果每块 `status / blkstat / messages`；1.1 的 `messages` 等于 `([blkmsg] if blkmsg else []) + per_error`，`status`、`blkstat` 同名同义。
+
+**模型建议**：
+
+```
+python -m aspen_study advise probe-summary.json [--graph graph.json] [--roles roles.json] [--out advice.json]
+```
+
+只用探针里真实存在的字段，不带任何排放因子或外部数值。每条建议 `{id, rule, severity(info|suggest|warn|critical), category, target(块/流股 id 或 "global"), title_zh, detail_zh, action_zh, evidence[{path, value, unit?}], confidence}`；`evidence.path` 是 JSON Pointer（`probe-summary.json#/blocks/1/status`），指向升级到 1.1 之后的视图。`confidence`：`verified` = 直接来自探针字段/消息原文；`heuristic` = 含阈值或经验推断（热点占比、热集成上界等）。输出确定性（无时间戳），Python 与 JS 对拍必须逐字段一致。
+
+分析前会做与 `result_package.validate_package` 同语义的一致性检查（`advice.package_problems`）：同一模型 sha256、块/流股 id 一致、`source_unchanged` 不为 false，否则拒绝并给出中文原因。与 `result_package` 的区别：这里 `graph.json`、`roles.json` 可缺——缺了就跳过热集成/物料守恒/LCA 检查，并在建议里说明。
+
+规则（`analysis_web/data/aspen-advice-rules.json` 里改文案或阈值，不用改代码）：状态与收敛 `status.error / incomplete / global-warning / source-modified`、`block.unmatched-* / status-unknown`、`convergence.not-converged / max-iterations / mass-balance`；物性相态 `thermo.phase-stability / flash-unreliable / outlet-flash-problem / property-missing`；反应 `reaction.rate-zero`；单位 `units.non-si-set / calorie-definition / kw-null`；能量 `energy.hotspot / warning-share / internal-exchange / none / block-missing`；热集成 `heat-integration.overlap / none / data-missing / temperature-cross`；数据完整性 `data-completeness.*`；LCA 就绪度 `lca-readiness.*`。块状态为 ok 但消息里仍有已知问题（如 heatrecovery 的 HEATCHAG）时降为 suggest 并注明。
+
+最终 schema 同步放在 `analysis_web/schemas/aspen-probe-1.1.schema.json`、`aspen-advice-1.schema.json`（测试保证和 `aspen_study/schemas/` 一致；改 schema 后请重新复制）。夹具：`tests/fixtures/probe/`（heatrecovery 有警告 + graph + roles 草稿，mch 干净；`*.v1.0.json` 是原始 1.0 输出，`*.advice.json` 是 Python 的黄金输出，JS 测试与之对拍）。**mch 没有 graph.json**：当时的真机运行只留下 summary，下次在装有 Aspen 的电脑上跑 `probe` 会重新生成。
 
 ## 自动分类规则（摘要）
 
