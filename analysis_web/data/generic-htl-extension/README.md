@@ -31,7 +31,7 @@ Native checks, prediction-error checks and physical validation are separate. No 
 - `local-perturbation-comparison.json`, `local-plan.json`, `local-mapping.json`, `local-preregistration.json`: separate frozen-v1 local evidence, including the center repeat.
 - `index.json`: SHA256 and size of **every released JSON file except itself**. The source-derived JSON bytes were copied unchanged. The finalizer summary's `artifact_sha256` describes a different set of original local finalizer artifacts, including private audits that are not distributed here.
 
-Relative `outputs/workspace-bilingual-20261117` and `runs/.../raw.json` strings are evidence namespaces, **not public download URLs**. Native `.bkp`/`.apw` archives, raw captures, source-hash files containing private paths, fit markers, local accounts and credentials are not included. File hashes bind artifacts; they do not independently certify native execution.
+Relative `outputs/workspace-bilingual-20261117` and `runs/.../raw.json` strings are evidence namespaces, **not public download URLs**. Only the plans, native `raw.json` run records and scripts under that folder remain tracked in the repo; the other files (screenshots, audits, release snapshots) are no longer shipped with the repo and remain in git history or local runs. Native `.bkp`/`.apw` archives, raw captures, source-hash files containing private paths, fit markers, local accounts and credentials are not included. File hashes bind artifacts; they do not independently certify native execution.
 
 ## Reproduce derived checks
 
