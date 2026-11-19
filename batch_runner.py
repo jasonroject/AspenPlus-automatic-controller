@@ -156,13 +156,14 @@ class BatchRunner:
         return result
 
     def _collect(self, adapter, aspen, result):
-        """运行状态 + 数据抓取；status 与逐块 messages 来自 Aspen 自己的 BLKSTAT / UOSSTAT2 / PER_ERROR。"""
+        """运行状态 + 数据抓取；status 与逐块 blkmsg/per_error 来自 Aspen 自己的 BLKSTAT / UOSSTAT2 / PER_ERROR。"""
         report = adapter.run_report()
         capture = datacatch.capture_all(aspen, self.model_path)
         rows = {}
-        try:  # same per-block table as `python -m aspen_study probe` (native value + unit + kW, status, messages)
+        try:  # same per-block table as `python -m aspen_study probe` (native value + unit + kW, status, blkmsg, per_error)
             from aspen_study.probe import energy_table
-            rows = {row["id"]: row for row in energy_table({"blocks": adapter.blocks()}, report, CALORIE_J)}
+            verified = adapter.energy_verified() if hasattr(adapter, "energy_verified") else None
+            rows = {row["id"]: row for row in energy_table({"blocks": adapter.blocks()}, report, CALORIE_J, verified)}
         except Exception as exc:
             result.setdefault("warnings", []).append(f"逐块能量表读取失败：{exc}")
         for name, block in capture["blocks"].items():
@@ -170,8 +171,7 @@ class BatchRunner:
             if row is None:
                 block.update(run_status.block_fields((report.get("blocks") or {}).get(name, {"state": "unknown"})))
                 continue
-            block.update(status=row["status"], blkstat=row["blkstat"], energy=row["energy"],
-                         messages=row["messages"] + block.get("messages", []))
+            block.update({k: row[k] for k in ("status", "blkstat", "blkmsg", "per_error", "per_error_total", "energy")})
             if "outlet_temperature" in row:
                 block["outlet_temperature"] = row["outlet_temperature"]
             block["block_type"] = row["type"]
@@ -252,7 +252,7 @@ class BatchRunner:
         summary_data = {
             "batch_id": self.batch_id,
             "model_path": str(self.model_path),
-            "summary_version": 2,
+            "summary_version": 3,   # 3: per-block blkmsg + per_error (aspen-probe/1.1 shape) instead of messages
             "total_runs": len(self.batch_results),
             "status_counts": {k: v for k, v in counts.items() if k in run_status.STATUSES},
             # legacy totals: success = exported (ok or warning)
@@ -344,7 +344,7 @@ class BatchRunner:
                     row.append(result["blocks"].get(b, {}).get("status", ""))
 
                 for b in all_block_names:
-                    row.append(" | ".join(str(m).strip() for m in result["blocks"].get(b, {}).get("messages", []) if str(m).strip()))
+                    row.append(" | ".join(str(m).strip() for m in run_status.block_messages(result["blocks"].get(b, {}))))
 
                 for s in all_stream_names:
                     stream_data = result["streams"].get(s, {})

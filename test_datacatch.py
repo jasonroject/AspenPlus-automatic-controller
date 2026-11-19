@@ -105,7 +105,7 @@ def capture_block(aspen, bname):
 
     heat = pick(("QCALC", "DUTY", "UTIL_DUTY"), "热负荷")
     power = pick(("ACT_POWER", "BRAKE_POWER", "POWER", "ELEC_POWER", "IN_POWER", "WNET", "FLUID_POWER"), "功率")
-    return {"heat_kW": heat, "power_kW": power, "units": dict(BLOCK_UNITS), "messages": messages,
+    return {"heat_kW": heat, "power_kW": power, "units": dict(BLOCK_UNITS), "conversion_notes": messages,
             "source_quantities": source}
 
 

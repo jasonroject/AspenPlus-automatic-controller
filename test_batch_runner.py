@@ -1,4 +1,4 @@
-"""Batch runner tests: adapter-driven run (polling/timeout/stop/cleanup), status + per-block messages, units.
+"""Batch runner tests: adapter-driven run (polling/timeout/stop/cleanup), status + per-block blkmsg/per_error (aspen-probe/1.1 shape), units.
 
 No Aspen needed. COM is faked from the real 2026-11-19 probe outputs in aspen_study/tests/fixtures/live/
 (heatrecovery.bkp, status 'warning'; mch.bkp, status 'ok'): statuses, messages and energies come from those
@@ -16,17 +16,20 @@ import batch_runner
 import run_status
 import test_datacatch as datacatch
 from aspen_study.adapters.aspen_com import AspenPlusCOMAdapter
+from aspen_study.probe_compat import upgrade_summary
 from aspen_study.tests.fake_aspen import (FakeDoc, FakeEngine, FakeProcessOps, build_table, heatrecovery_spec,
                                           radfrac_spec)
 from batch_runner import BatchRunner, positive_seconds
 from result_units import BLOCK_UNITS, STREAM_UNITS, convert_quantity, missing_units
 
 LIVE = Path(__file__).resolve().parent / "aspen_study/tests/fixtures/live"
+PROBE_FIXTURES = LIVE.parent / "probe"
 STATUS = r"\Data\Results Summary\Run-Status\Output"
 
 
 def live(name):
-    return json.loads((LIVE / name).read_text(encoding="utf-8"))
+    """The real 1.0 probe output, read through probe_compat.upgrade_summary (blkmsg + per_error, like 1.1)."""
+    return upgrade_summary(json.loads((LIVE / name).read_text(encoding="utf-8")))
 
 
 def spec_from_live(summary, spec):
@@ -42,7 +45,9 @@ def spec_from_live(summary, spec):
         out = rf"\Data\Blocks\{block['id']}\Output"
         spec[out + r"\BLKSTAT"] = dict(value=block["blkstat"])
         spec.pop(out + r"\BLKMSG", None)
-        lines = (["*  WARNING"] if block["status"] == "warning" else []) + block["messages"]
+        if block["blkmsg"]:
+            spec[out + r"\BLKMSG"] = dict(value=block["blkmsg"])
+        lines = (["*  WARNING"] if block["status"] == "warning" else []) + block["per_error"]
         spec[out + r"\PER_ERROR"] = dict(value=1, dim=1, kids=[str(i) for i in range(len(lines))])
         for i, line in enumerate(lines):
             spec[out + rf"\PER_ERROR\{i}"] = dict(value=line)
@@ -125,13 +130,44 @@ class HeatrecoveryRegressionTests(unittest.TestCase):
         self.assertEqual(run["errors"], [])
         self.assertEqual(run["raw_status"]["UOSSTAT2"], 10)
 
-    def test_per_block_messages_are_aspens_own_and_match_the_probe(self):
+    def test_per_block_blkmsg_and_per_error_are_aspens_own_and_match_the_1_1_probe(self):
         result = self.run_once()
         for block in self.summary["blocks"]:
-            self.assertEqual(result["blocks"][block["id"]]["messages"], block["messages"], block["id"])
-        self.assertIn("PHASE STABILITY CHECK", result["blocks"]["COOLER"]["messages"][0])
-        self.assertIn("ZERO", result["blocks"]["REACTOR"]["messages"][0])
-        self.assertEqual(result["blocks"]["PUMP"]["messages"], [])
+            mine = result["blocks"][block["id"]]
+            self.assertEqual((mine["blkmsg"], mine["per_error"]), (block["blkmsg"], block["per_error"]), block["id"])
+            self.assertEqual(mine["per_error_total"], len(block["per_error"]), block["id"])
+            self.assertNotIn("messages", mine, "legacy flat list is read-compat only, never written")
+        self.assertIn("PHASE STABILITY CHECK", result["blocks"]["COOLER"]["blkmsg"])
+        self.assertIn("ZERO", result["blocks"]["REACTOR"]["blkmsg"])
+        self.assertIsNone(result["blocks"]["PUMP"]["blkmsg"])
+        self.assertEqual(result["blocks"]["PUMP"]["per_error"], [])
+        # a normal (non-warning) block can still carry per_error lines: HEATCHAG is status ok with stability text
+        self.assertEqual(result["blocks"]["HEATCHAG"]["status"], "ok")
+
+    def test_block_energy_items_carry_the_verified_flag_like_the_probe(self):
+        result = self.run_once()
+        for block in self.summary["blocks"]:
+            mine = {e["path"]: e["verified"] for e in result["blocks"][block["id"]]["energy"]}
+            self.assertEqual(mine, {e["path"]: e["verified"] for e in block["energy"]}, block["id"])
+
+    def test_legacy_messages_are_still_readable(self):
+        legacy = {"status": "warning", "messages": ["PHASE", "  detail", " "]}
+        self.assertEqual(run_status.block_messages(legacy), ["PHASE", "  detail"])
+        new = {"blkmsg": "PHASE", "per_error": ["  detail"]}
+        self.assertEqual(run_status.block_messages(new), ["PHASE", "  detail"])
+        self.assertEqual(run_status.block_messages({"blkmsg": None, "per_error": []}), [])
+        info = {"state": "warning", "blkstat": 2, "blkmsg": "X", "messages": ["*  WARNING", "  a", ""]}
+        self.assertEqual(run_status.block_fields(info), {"status": "warning", "blkstat": 2, "blkmsg": "X",
+                                                           "per_error": ["  a"], "per_error_total": 1})
+
+    def test_batch_blocks_equal_the_real_1_1_fixture_fields(self):
+        """BRO's checked-in 1.1 heatrecovery fixture is the same data: batch rows and probe summary agree per block."""
+        probe = json.loads((PROBE_FIXTURES / "heatrecovery.probe-summary.json").read_text(encoding="utf-8"))
+        result = self.run_once()
+        for block in probe["blocks"]:
+            mine = result["blocks"][block["id"]]
+            self.assertEqual((mine["status"], mine["blkstat"], mine["blkmsg"], mine["per_error"]),
+                             (block["status"], block["blkstat"], block["blkmsg"], block["per_error"]), block["id"])
 
     def test_heat_uses_cal_per_sec_and_4_1868_not_kw_or_4_184(self):
         result = self.run_once()
@@ -153,7 +189,7 @@ class HeatrecoveryRegressionTests(unittest.TestCase):
         result = self.run_once()
         for name, block in result["blocks"].items():
             self.assertEqual(block["units"], BLOCK_UNITS)
-            self.assertEqual(missing_units(block, BLOCK_UNITS, name, exempt={"blkstat"}), [], name)
+            self.assertEqual(missing_units(block, BLOCK_UNITS, name, exempt={"blkstat", "per_error_total"}), [], name)
             for e in block["energy"]:
                 self.assertTrue(e["unit"], (name, e))
         for name, stream in result["streams"].items():
@@ -197,7 +233,7 @@ class NormalRunTests(unittest.TestCase):
             result = env.runner().run_single({}, 1)
         self.assertEqual(result["status"], "ok")
         self.assertEqual(result["blocks"]["B1"]["status"], "ok")
-        self.assertEqual(result["blocks"]["B1"]["messages"], [])
+        self.assertEqual((result["blocks"]["B1"]["blkmsg"], result["blocks"]["B1"]["per_error"]), (None, []))
         energy = result["blocks"]["B1"]["energy"]
         real = summary["blocks"][0]["energy"]
         self.assertEqual([e["unit"] for e in energy], ["Btu/hr", "Btu/hr"])
@@ -303,7 +339,7 @@ class BatchSummaryTests(unittest.TestCase):
             runner.batch_results.append(skipped)
             summary_json, summary_csv, directory = runner.save_batch_summary()
         data = json.loads(summary_json.read_text(encoding="utf-8"))
-        self.assertEqual(data["summary_version"], 2)
+        self.assertEqual(data["summary_version"], 3)
         self.assertEqual(data["status_counts"], {"ok": 0, "warning": 1, "error": 0, "timeout": 1, "stopped": 0, "skipped": 0})
         self.assertEqual((data["success_count"], data["failed_count"]), (1, 1))
         self.assertEqual((data["timeout_s"], data["calorie_J"]), (1200, 4.1868))
