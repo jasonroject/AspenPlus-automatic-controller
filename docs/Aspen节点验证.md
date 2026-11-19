@@ -52,7 +52,7 @@ git push
 | 文件 | 内容 |
 |---|---|
 | `<模型名>.nodes.json` | `aspen-node-verification/1`：每个块的全部候选节点（是否存在、数值、UnitString、是否标量）、`...\Output` 下的全部子节点名、RECIPES 实际用到的节点、Compr/MCompr 的功符号检查、`coverage`（已覆盖/未覆盖的类型） |
-| `<模型名>.probe-summary.json` | 同一次运行的 `aspen-probe/1` |
+| `<模型名>.probe-summary.json` | 同一次运行的 `aspen-probe/1.1` |
 | `<模型名>.graph.json` | 同一次运行的 `aspen-model-graph/1`（三个文件也能直接组成结果包） |
 
 文件名里的空格会变成下划线（`HTL RYIELD.bkp` → `HTL_RYIELD.*`）。

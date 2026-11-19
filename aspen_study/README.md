@@ -106,7 +106,7 @@ python -m aspen_study.cli assess --graph graph.json --roles roles.json --study-i
 
 ## 结果包与本机模式
 
-`probe-summary.json` + `graph.json` + `roles.json` 是本机模式和在线上传共用的输入（zip 或散文件）。读写与校验：`aspen_study/result_package.py`；本机入口：`python serve_web.py --local`（`POST /api/local/probe`）。详见 `docs/使用指南.md` 的“一个结果包”。
+`probe-summary.json`（必需，1.1；1.0 经 `upgrade_summary` 读取）+ 可选的 `graph.json`、`roles.json`、`advice.json` 是本机模式和在线上传共用的输入（zip 或散文件）；本机模式用 `advice.advise` 生成 `advice.json`，文件不一致（`advice.package_problems`）则不生成结果包。读写与校验：`aspen_study/result_package.py`；本机入口：`python serve_web.py --local`（`POST /api/local/probe`）。详见 `docs/使用指南.md` 的“一个结果包”。
 
 ```bash
 python -m aspen_study.result_package check <文件夹|包.zip|json>
