@@ -1,0 +1,415 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aspen-study/2/manifest.schema.json",
+  "title": "aspen-study/2 研究包入口 manifest.json",
+  "description": "首页只需加载本文件；工况明细、结果、因子快照、代理模型按 shards 与 cases[] 中的相对路径按需加载。路径一律相对 manifest 所在目录，不允许 .. 或绝对路径。 每个工况条目自带 case_params、kpi 与 completeness 摘要，供热图与刷选；energy_edges / contributions / internal_loops / 逐块 balance 只在 results 分片中。 额外规则（JSON Schema 难以表达，由 schema_check.manifest_rules 检查）：has_results=true 时必须有 file、false 时不得有 file；sha256 与 source_sha256 至少一个；(id, scenario) 唯一且 scenario 在 scenarios 中；指标键不得带情景后缀；completeness.status=complete 需要 contribution_coverage=1 且 missing_count=0。 若 GWP 类别 status=incomplete，则 completeness.total 与 kpi.gwp_per_fu 必须为 null（用 lower_bound）。",
+  "type": "object",
+  "required": [
+    "schema",
+    "study_id",
+    "model",
+    "contract",
+    "scenarios",
+    "default_scenario",
+    "cases",
+    "shards"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "aspen-study/2"
+    },
+    "study_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,79}$"
+    },
+    "title": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "model": {
+      "type": "object",
+      "required": [
+        "simulator"
+      ],
+      "description": "sha256（Aspen 模型文件哈希）与 source_sha256（无模型文件时源数据文件的哈希）至少给一个（规则在 schema_check.manifest_rules 中检查）",
+      "properties": {
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "source_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "source_file": {
+          "type": "string"
+        },
+        "simulator": {
+          "type": "string"
+        },
+        "version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "file": {
+          "type": "string"
+        }
+      }
+    },
+    "contract": {
+      "type": "object",
+      "required": [
+        "project_schema"
+      ],
+      "properties": {
+        "project_schema": {
+          "const": 1
+        },
+        "graph_schema": {
+          "const": "aspen-model-graph/1"
+        },
+        "roles_schema": {
+          "const": "aspen-roles/1"
+        },
+        "results_schema": {
+          "const": "aspen-results/1"
+        },
+        "factor_library": {
+          "type": "string"
+        }
+      }
+    },
+    "functional_unit": {
+      "type": "string"
+    },
+    "variables": {
+      "type": "array",
+      "description": "工况参数（扫描变量），替代 pipeline.js 中写死的 temperature_C / length_m 坐标轴。",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "unit"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "unit": {
+            "type": "string"
+          },
+          "min": {
+            "type": "number"
+          },
+          "max": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "gates": {
+      "type": "object",
+      "additionalProperties": {
+        "enum": [
+          "pass",
+          "warn",
+          "fail",
+          "not_run"
+        ]
+      }
+    },
+    "cases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "scenario",
+          "has_results",
+          "case_params",
+          "kpi",
+          "completeness"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "file": {
+            "$ref": "#/$defs/relpath"
+          },
+          "result": {
+            "$ref": "#/$defs/relpath"
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "status": {
+            "enum": [
+              "accepted",
+              "accepted_with_warnings",
+              "rejected",
+              "not_run"
+            ]
+          },
+          "case_params": {
+            "type": "object",
+            "additionalProperties": {
+              "type": [
+                "number",
+                "string",
+                "null"
+              ]
+            },
+            "description": "工况参数，热图与刷选用"
+          },
+          "kpi": {
+            "type": "object",
+            "description": "关键指标摘要，热图（工况 × 指标）无需加载分片。数值为 null 表示无法给出（例如因子缺失），绝不补 0。",
+            "required": [
+              "energy_per_fu",
+              "gwp_per_fu",
+              "max_balance_ratio"
+            ],
+            "properties": {
+              "energy_per_fu": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "energy_unit": {
+                "type": "string"
+              },
+              "gwp_per_fu": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "description": "GWP 总值。仅在 status=incomplete 时禁止填写（此时用 lower_bound）；status=complete 或 unknown（已知总值但无分项）时可以填写；对应 GWP 类别 status=incomplete 时必须为 null"
+              },
+              "gwp_unit": {
+                "type": "string"
+              },
+              "efficiency": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "description": "例如产品质量收率（产品/进料）"
+              },
+              "max_balance_ratio": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "description": "所有块 balance.ratio 的最大值；≤1 为闭合"
+              }
+            },
+            "additionalProperties": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          },
+          "completeness": {
+            "type": "object",
+            "description": "按影响类别的完整度摘要；明细在 results/<case>.json",
+            "additionalProperties": {
+              "type": "object",
+              "required": [
+                "status",
+                "complete",
+                "contribution_coverage",
+                "missing_count",
+                "lower_bound"
+              ],
+              "properties": {
+                "complete": {
+                  "type": "boolean"
+                },
+                "mass_coverage": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "contribution_coverage": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "missing_count": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "lower_bound": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "status": {
+                  "enum": [
+                    "complete",
+                    "incomplete",
+                    "unknown"
+                  ]
+                },
+                "total": {
+                  "type": [
+                    "number",
+                    "null"
+                  ],
+                  "description": "仅在 status=incomplete 时禁止填写（此时用 lower_bound）；status=complete 或 unknown（已知总值但无分项）时可以填写"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "scenario": {
+            "type": "string",
+            "minLength": 1
+          },
+          "has_results": {
+            "type": "boolean",
+            "description": "严格表示“五表结果文件（file，cases/<id>.json）存在”：true 时必须有 file，false 时不得有 file。验证证据放在 evidence。"
+          },
+          "source": {
+            "enum": [
+              "aspen",
+              "surrogate",
+              "archived",
+              "manual"
+            ],
+            "description": "该工况数据来源"
+          },
+          "evidence": {
+            "type": "array",
+            "description": "该工况的校验/观测证据（has_results=false 时也可以有）",
+            "items": {
+              "type": "object",
+              "required": [
+                "kind",
+                "file"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "如 gate / observation / raw_capture / report"
+                },
+                "file": {
+                  "$ref": "#/$defs/relpath"
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "note": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "split": {
+            "enum": [
+              "train",
+              "validation",
+              "test",
+              "fresh"
+            ],
+            "description": "代理模型数据划分（数据溯源）"
+          },
+          "source_record": {
+            "type": "string",
+            "description": "源数据中的记录标识（如归档 raw 文件名或行号）"
+          }
+        }
+      }
+    },
+    "shards": {
+      "type": "object",
+      "properties": {
+        "graph": {
+          "$ref": "#/$defs/relpath"
+        },
+        "roles": {
+          "$ref": "#/$defs/relpath"
+        },
+        "factors": {
+          "$ref": "#/$defs/relpath",
+          "description": "factors.json 快照（schemas/factors-snapshot.schema.json）：本研究实际使用的因子值；results 只引用 factor_id"
+        },
+        "summary": {
+          "$ref": "#/$defs/relpath"
+        },
+        "surrogate": {
+          "description": "surrogate.json 描述文件（schemas/surrogate.schema.json）的相对路径；与 Aspen 结果分开。旧的“网格文件数组”写法暂时兼容，建议迁移。",
+          "type": [
+            "string",
+            "array"
+          ],
+          "pattern": "^(?!/)(?!.*\\.\\.)(?![A-Za-z]:)[A-Za-z0-9_./-]+$",
+          "items": {
+            "$ref": "#/$defs/relpath"
+          }
+        },
+        "extra": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/relpath"
+          }
+        }
+      }
+    },
+    "scenarios": {
+      "type": "array",
+      "description": "情景列表（如 HR / STD）。工况身份 = case_id + scenario；指标字段不得带 _STD / _HR 等情景后缀。",
+      "items": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,39}$"
+          },
+          "label": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "default_scenario": {
+      "type": "string"
+    }
+  },
+  "$defs": {
+    "relpath": {
+      "type": "string",
+      "pattern": "^(?!/)(?!.*\\.\\.)(?![A-Za-z]:)[A-Za-z0-9_./-]+$"
+    }
+  }
+}

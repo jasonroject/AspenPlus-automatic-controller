@@ -48,7 +48,7 @@ def clean_json(value):
 
 def adapt_export(data, source_name="memory", source_sha256=None):
     diagnostics = []
-    trusted_format = (data.get("unit_conversion") == "node-unit-aware-v1"
+    trusted_format = (data.get("unit_conversion") in ("node-unit-aware-v1", "node-unit-aware-v2")
                       and data.get("component_export") == "all-stream-components-v1")
     if not trusted_format:
         diagnostics.append({"code": "unverified_export_format", "path": source_name,

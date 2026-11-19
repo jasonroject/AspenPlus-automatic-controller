@@ -1,0 +1,239 @@
+{
+ "schema": "aspen-roles/1",
+ "model_sha256": "91965a901c1074cc6e0d47a9b614d9cd54df18e4841bf0de248e143a66edac0f",
+ "streams": {
+  "FEED": {
+   "role": "feed",
+   "inventory": {
+    "kind": "material"
+   },
+   "provenance": {
+    "source": "auto",
+    "confidence": 0.9,
+    "reasons": [
+     "来源为 BOUNDARY → 进料"
+    ],
+    "needs_confirmation": false
+   }
+  },
+  "S2": {
+   "role": "internal",
+   "provenance": {
+    "source": "auto",
+    "confidence": 0.95,
+    "reasons": [
+     "两端均为内部块"
+    ],
+    "needs_confirmation": false
+   }
+  },
+  "S3": {
+   "role": "internal",
+   "provenance": {
+    "source": "auto",
+    "confidence": 0.95,
+    "reasons": [
+     "两端均为内部块"
+    ],
+    "needs_confirmation": false
+   }
+  },
+  "S4": {
+   "role": "internal",
+   "provenance": {
+    "source": "auto",
+    "confidence": 0.95,
+    "reasons": [
+     "两端均为内部块"
+    ],
+    "needs_confirmation": false
+   }
+  },
+  "S5": {
+   "role": "internal",
+   "provenance": {
+    "source": "auto",
+    "confidence": 0.95,
+    "reasons": [
+     "两端均为内部块"
+    ],
+    "needs_confirmation": false
+   }
+  },
+  "S6": {
+   "role": "internal",
+   "provenance": {
+    "source": "auto",
+    "confidence": 0.95,
+    "reasons": [
+     "两端均为内部块"
+    ],
+    "needs_confirmation": false
+   }
+  },
+  "S9": {
+   "role": "internal",
+   "provenance": {
+    "source": "auto",
+    "confidence": 0.95,
+    "reasons": [
+     "两端均为内部块"
+    ],
+    "needs_confirmation": false
+   }
+  },
+  "S10": {
+   "role": "internal",
+   "provenance": {
+    "source": "auto",
+    "confidence": 0.95,
+    "reasons": [
+     "两端均为内部块"
+    ],
+    "needs_confirmation": false
+   }
+  },
+  "S7": {
+   "role": "waste",
+   "provenance": {
+    "source": "auto",
+    "confidence": 0.6,
+    "reasons": [
+     "水占 86% → 废水候选"
+    ],
+    "needs_confirmation": true
+   },
+   "inventory": {
+    "kind": "waste"
+   },
+   "treatment": "wastewater"
+  },
+  "S8": {
+   "role": "product",
+   "provenance": {
+    "source": "auto",
+    "confidence": 0.45,
+    "reasons": [
+     "出口物流中“非水非气组分占比/名称”评分最高 → 产品候选"
+    ],
+    "needs_confirmation": true
+   }
+  }
+ },
+ "blocks": {
+  "B6": {
+   "role": "separator",
+   "utility": "lp_steam",
+   "provenance": {
+    "source": "auto",
+    "confidence": 0.55,
+    "reasons": [
+     "块类型 Flash2 → separator",
+     "duty: 出口 40 °C + 10 K 温差 ≤ 150 °C → lp_steam（经验分级，需确认）"
+    ],
+    "needs_confirmation": true
+   }
+  },
+  "COOLER": {
+   "role": "cooler",
+   "utility": "cooling_water",
+   "provenance": {
+    "source": "auto",
+    "confidence": 0.6,
+    "reasons": [
+     "块类型 Heater → heater",
+     "duty: 出口 40 °C 可由冷却水（约 25–35 °C）冷却"
+    ],
+    "needs_confirmation": true
+   }
+  },
+  "HEATCHAG": {
+   "role": "internal_recovery",
+   "utility": "fired_heat",
+   "provenance": {
+    "source": "auto",
+    "confidence": 0.55,
+    "reasons": [
+     "块类型 HeatX → heat_exchanger",
+     "两侧均为流程物料流 → 内部换热，不计外购公用工程",
+     "exchanged: 出口 315 °C 高于高压蒸汽可及范围 → 加热炉/燃料（需确认）"
+    ],
+    "needs_confirmation": true
+   }
+  },
+  "HEATER": {
+   "role": "heater",
+   "utility": "fired_heat",
+   "provenance": {
+    "source": "auto",
+    "confidence": 0.55,
+    "reasons": [
+     "块类型 Heater → heater",
+     "duty: 出口 330 °C 高于高压蒸汽可及范围 → 加热炉/燃料（需确认）"
+    ],
+    "needs_confirmation": true
+   }
+  },
+  "PUMP": {
+   "role": "pump",
+   "utility": "electricity",
+   "provenance": {
+    "source": "auto",
+    "confidence": 0.9,
+    "reasons": [
+     "块类型 Pump → pump",
+     "轴功 → 电力（默认电机效率需确认）"
+    ],
+    "needs_confirmation": false
+   }
+  },
+  "REACTOR": {
+   "role": "reactor",
+   "utility": "fired_heat",
+   "provenance": {
+    "source": "auto",
+    "confidence": 0.55,
+    "reasons": [
+     "块类型 RPlug → reactor",
+     "duty: 出口 330 °C 高于高压蒸汽可及范围 → 加热炉/燃料（需确认）"
+    ],
+    "needs_confirmation": true
+   }
+  },
+  "VALVE": {
+   "role": "valve",
+   "utility": "none",
+   "provenance": {
+    "source": "auto",
+    "confidence": 0.9,
+    "reasons": [
+     "块类型 Valve → valve"
+    ],
+    "needs_confirmation": false
+   }
+  }
+ },
+ "allocation": {
+  "method": "none"
+ },
+ "system_boundary": "gate-to-gate",
+ "review": {
+  "state": "auto_draft",
+  "pending": [
+   "stream S7: waste",
+   "stream S8: product",
+   "block B6: separator/lp_steam",
+   "block COOLER: cooler/cooling_water",
+   "block HEATCHAG: internal_recovery/fired_heat",
+   "block HEATER: heater/fired_heat",
+   "block REACTOR: reactor/fired_heat",
+   "functional_unit: 需人工确认产品流股与组分"
+  ]
+ },
+ "functional_unit": {
+  "basis": "product_mass",
+  "amount": 1,
+  "unit": "kg",
+  "stream": "S8"
+ }
+}

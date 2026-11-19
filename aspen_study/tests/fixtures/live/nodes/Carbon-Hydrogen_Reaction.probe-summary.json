@@ -1,0 +1,114 @@
+{
+ "schema": "aspen-probe/1.1",
+ "created": "2026-11-19T23:08:46+08:00",
+ "model": {
+  "file": "Carbon-Hydrogen Reaction.bkp",
+  "sha256": "0773ce33ca2537ba04a27ad1ad0b073760cc4f44386397d6043e07a74b69840e",
+  "simulator": "aspen-plus",
+  "version": "41.0",
+  "progid": "Apwn.Document.41.0",
+  "adapter": "aspen-plus-com",
+  "source_unchanged": true
+ },
+ "status": {
+  "state": "ok",
+  "run_completed": true,
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "raw_status": {
+   "UOSSTAT": 0,
+   "UOSSTAT2": 8,
+   "CVSTAT": 0,
+   "CSSTAT": 2,
+   "RSTAT": 0,
+   "PPSTAT": 2,
+   "SENSSTAT": 0,
+   "ITSTAT": 4,
+   "SSTAT": 0
+  },
+  "run_status_lines": [
+   "The following messages were issued during Input Translation:",
+   "*  WARNING IN THE 'STREAM' PARAGRAPH WHICH BEGINS ON LINE 202",
+   "   STREAM NAME: H2",
+   "   COMPONENT MOLE FLOWS OF SUBSTREAM: 'MIXED'",
+   "   ARE NORMALIZED TO THE TOTAL MOLE FLOW VALUE."
+  ],
+  "run_seconds": 2.7
+ },
+ "units": {
+  "INSET": "METCHEM",
+  "OUTSET": "METCHEM",
+  "calorie_J": 4.1868,
+  "note": "块负荷与流股焓流保留各节点自己的 UnitString，不假设 kW（MET 的热负荷是 cal/sec，ENG 是 Btu/hr）。1 cal = 4.1868 J 经真机核对（同一结果在 MET 与 SI 下各读一次，比值 4.1868）。"
+ },
+ "calorie_J": 4.1868,
+ "blocks": [
+  {
+   "id": "RGIBBS",
+   "type": "RGibbs",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 0.157882866,
+     "unit": "Gcal/hr",
+     "kW": 183.61777315799998,
+     "path": "\\Data\\Blocks\\RGIBBS\\Output\\QCALC",
+     "verified": true,
+     "note": "按 1 cal = 4.1868 J"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 764.229764,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\RGIBBS\\Output\\B_TEMP"
+   }
+  }
+ ],
+ "totals_kW": {
+  "heating": 183.617773,
+  "cooling": 0.0,
+  "work": 0.0,
+  "internal_exchange": 0.0
+ },
+ "totals_complete": true,
+ "group_totals": {
+  "heating": {
+   "kW": 183.617773,
+   "complete": true
+  },
+  "cooling": {
+   "kW": 0.0,
+   "complete": true
+  },
+  "shaft_work": {
+   "kW": 0.0,
+   "complete": true
+  },
+  "internal_exchange": {
+   "kW": 0.0,
+   "complete": true
+  },
+  "overall": {
+   "kW": 183.617773,
+   "complete": true
+  }
+ },
+ "energy_gaps": [],
+ "unverified_paths": [],
+ "discovery": {
+  "mode": "recipe",
+  "nodes_read": 143,
+  "complete": true,
+  "unmatched_block_types": []
+ },
+ "cleanup": {
+  "killed_pids": []
+ },
+ "elapsed_seconds": 12.1
+}

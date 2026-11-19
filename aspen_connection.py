@@ -26,7 +26,12 @@ def registered_document_progids():
 
 
 def create_aspen_document():
-    """Prefer installed versioned classes; retry only missing registrations.
+    """Compatibility wrapper: returns only the document. See create_aspen_document_ex."""
+    return create_aspen_document_ex()[0]
+
+
+def create_aspen_document_ex():
+    """Return (document, progid). Prefer installed versioned classes; retry only missing registrations.
 
     Callers initialise COM on their own thread and close the returned document.
     License/startup errors must remain visible rather than selecting another
@@ -42,7 +47,7 @@ def create_aspen_document():
     last_error = None
     for progid in candidates:
         try:
-            return win32com.client.DispatchEx(progid)
+            return win32com.client.DispatchEx(progid), progid
         except pywintypes.com_error as exc:
             # CO_E_CLASSSTRING / REGDB_E_CLASSNOTREG; other errors are actionable.
             if exc.hresult not in (-2147221005, -2147221164):

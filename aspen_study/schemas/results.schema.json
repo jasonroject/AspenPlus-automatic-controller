@@ -1,0 +1,484 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aspen-study/2/results.schema.json",
+  "title": "aspen-results/1：能量 / LCA / 校验结果（summary.json 与 results/<case>.json 共用）",
+  "description": "可视化字段与美术家约定：energy_edges（主桑基图，必须无环）、internal_loops（内部换热/循环单列并注释）、contributions、completeness、balance、case_params、method。符号约定沿用现有核心：heat/work 进入块为正，冷却与对外做功为负；energy_edges.value 一律为非负的流量大小，方向由 source→target 表示。缺失因子的类别 status=incomplete，total 必须为 null，已知部分只作为 lower_bound，绝不补 0；status=unknown（已知总值但无分项/覆盖未核实）可以给 total。",
+  "type": "object",
+  "required": [
+    "schema",
+    "study_id",
+    "method",
+    "cases",
+    "contributions"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "aspen-results/1"
+    },
+    "study_id": {
+      "type": "string"
+    },
+    "core": {
+      "type": "string",
+      "description": "计算核心，如 analysis_web/universal-core.mjs"
+    },
+    "sign_convention": {
+      "type": "string"
+    },
+    "method": {
+      "type": "object",
+      "required": [
+        "functional_unit",
+        "system_boundary",
+        "allocation",
+        "factor_sources"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "functional_unit": {
+          "type": "string"
+        },
+        "system_boundary": {
+          "type": "string"
+        },
+        "allocation": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "分配方法；null 表示未声明或不适用，此时应给 allocation_note"
+        },
+        "lcia_method": {
+          "type": "string"
+        },
+        "enthalpy_basis": {
+          "type": "string"
+        },
+        "factor_sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "factor_id",
+              "source",
+              "year"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "factor_id": {
+                "type": "string"
+              },
+              "source": {
+                "type": "string"
+              },
+              "year": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "status": {
+                "enum": [
+                  "verified",
+                  "placeholder",
+                  "proxy",
+                  "user_supplied"
+                ]
+              }
+            }
+          }
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "factors_snapshot": {
+          "type": "string",
+          "description": "对应的 factors.json 快照路径（相对研究包根目录）"
+        },
+        "allocation_note": {
+          "type": "string"
+        }
+      }
+    },
+    "cases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "case",
+          "scenario",
+          "status",
+          "gates",
+          "case_params",
+          "balance",
+          "completeness",
+          "energy_edges",
+          "internal_loops"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "case": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "accepted",
+              "accepted_with_warnings",
+              "rejected",
+              "not_run"
+            ]
+          },
+          "case_params": {
+            "type": "object",
+            "additionalProperties": {
+              "type": [
+                "number",
+                "string",
+                "null"
+              ]
+            }
+          },
+          "gates": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "status",
+                "messages"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "enum": [
+                    "G0_identity",
+                    "G1_converged",
+                    "G1_warnings",
+                    "G2_completeness",
+                    "G3_balance",
+                    "G4_roles",
+                    "G5_factors"
+                  ]
+                },
+                "status": {
+                  "enum": [
+                    "pass",
+                    "warn",
+                    "fail",
+                    "not_run"
+                  ]
+                },
+                "messages": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "energy": {
+            "type": "object",
+            "description": "按公用工程汇总（单位 kW，已换算）",
+            "properties": {
+              "hot_utility_kW": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "cold_utility_kW": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "electricity_kW": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "by_utility": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "number"
+                }
+              },
+              "intensity": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "intensity_unit": {
+                "type": "string"
+              }
+            }
+          },
+          "energy_edges": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "source",
+                "target",
+                "value",
+                "unit",
+                "kind"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "source": {
+                  "type": "string"
+                },
+                "target": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "unit": {
+                  "type": "string"
+                },
+                "kind": {
+                  "enum": [
+                    "utility",
+                    "process",
+                    "loss",
+                    "feed",
+                    "product"
+                  ]
+                }
+              }
+            }
+          },
+          "internal_loops": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "source",
+                "target",
+                "value",
+                "unit",
+                "kind",
+                "annotation"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "source": {
+                  "type": "string"
+                },
+                "target": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "unit": {
+                  "type": "string"
+                },
+                "kind": {
+                  "enum": [
+                    "heat_exchange",
+                    "recycle"
+                  ]
+                },
+                "annotation": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "balance": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "block",
+                "mass_residual",
+                "energy_residual",
+                "tolerance",
+                "ratio"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "block": {
+                  "type": "string"
+                },
+                "mass_residual": {
+                  "type": "number"
+                },
+                "energy_residual": {
+                  "type": "number"
+                },
+                "mass_unit": {
+                  "type": "string"
+                },
+                "energy_unit": {
+                  "type": "string"
+                },
+                "tolerance": {
+                  "type": "object",
+                  "required": [
+                    "mass",
+                    "energy"
+                  ],
+                  "properties": {
+                    "mass": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    },
+                    "energy": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    }
+                  }
+                },
+                "ratio": {
+                  "type": "number",
+                  "minimum": 0,
+                  "description": "max(|mass_residual|/tolerance.mass, |energy_residual|/tolerance.energy)；≤1 为闭合"
+                }
+              }
+            }
+          },
+          "completeness": {
+            "type": "object",
+            "description": "按影响类别",
+            "additionalProperties": {
+              "type": "object",
+              "required": [
+                "status",
+                "complete",
+                "mass_coverage",
+                "contribution_coverage",
+                "missing",
+                "lower_bound"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "complete": {
+                  "type": "boolean"
+                },
+                "mass_coverage": {
+                  "type": [
+                    "number",
+                    "null"
+                  ],
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "contribution_coverage": {
+                  "type": [
+                    "number",
+                    "null"
+                  ],
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "missing": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "lower_bound": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "total": {
+                  "type": [
+                    "number",
+                    "null"
+                  ],
+                  "description": "仅在 status=incomplete 时禁止填写（此时用 lower_bound）；status=complete 或 unknown（已知总值但无分项）时可以填写"
+                },
+                "unit": {
+                  "type": "string"
+                },
+                "status": {
+                  "enum": [
+                    "complete",
+                    "incomplete",
+                    "unknown"
+                  ],
+                  "description": "complete：所有清单行都有已核实因子且有分项；incomplete：已知缺因子；unknown：只有总值、没有分项或因子覆盖未核实（contribution_coverage 为 null），绝不能标为 complete"
+                }
+              }
+            }
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "scenario": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "contributions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "case",
+          "scenario",
+          "category",
+          "item",
+          "value",
+          "unit",
+          "factor_id",
+          "proxy"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "case": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "item": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number"
+          },
+          "value_low": {
+            "type": "number"
+          },
+          "value_high": {
+            "type": "number"
+          },
+          "unit": {
+            "type": "string"
+          },
+          "factor_id": {
+            "type": "string"
+          },
+          "proxy": {
+            "type": "boolean"
+          },
+          "scenario": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

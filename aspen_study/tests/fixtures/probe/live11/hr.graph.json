@@ -1,0 +1,795 @@
+{
+ "schema": "aspen-model-graph/1",
+ "model": {
+  "file": "heatrecovery.bkp",
+  "sha256": "91965a901c1074cc6e0d47a9b614d9cd54df18e4841bf0de248e143a66edac0f",
+  "simulator": "aspen-plus",
+  "version": "41.0",
+  "progid": "Apwn.Document.41.0",
+  "adapter": "aspen-plus-com"
+ },
+ "status": {
+  "run_completed": true,
+  "errors": [],
+  "warnings": [
+   "块 COOLER：PROBLEM(S) ENCOUNTERED DURING PHASE STABILITY CHECK",
+   "块 REACTOR：REACTION RATE IS SET TO ZERO FOR SOME REACTIONS",
+   "块 VALVE：PROBLEM(S) ENCOUNTERED DURING PHASE STABILITY CHECK"
+  ],
+  "block_status": {
+   "B6": 0,
+   "COOLER": 2,
+   "HEATCHAG": 0,
+   "HEATER": 0,
+   "PUMP": 0,
+   "REACTOR": 2,
+   "VALVE": 2
+  },
+  "block_status_accepted": [
+   0,
+   2
+  ]
+ },
+ "components": [
+  {
+   "id": "GUAIA-01",
+   "alias": "C7H8O2-E1",
+   "cas": "90-05-1",
+   "type": "CONV"
+  },
+  {
+   "id": "CAT",
+   "alias": "C6H6O2-E1",
+   "cas": "120-80-9",
+   "type": "CONV"
+  },
+  {
+   "id": "ANISOLE",
+   "alias": "C7H8O-1",
+   "cas": "100-66-3",
+   "type": "CONV"
+  },
+  {
+   "id": "PPE",
+   "alias": "C6H12O6",
+   "cas": "50-99-7",
+   "type": "CONV"
+  },
+  {
+   "id": "PEA",
+   "alias": "C8H10O",
+   "cas": "60-12-8",
+   "type": "CONV"
+  },
+  {
+   "id": "STYRENE",
+   "alias": "C8H8",
+   "cas": "100-42-5",
+   "type": "CONV"
+  },
+  {
+   "id": "ETHYLBEN",
+   "alias": "C8H10-4",
+   "cas": "100-41-4",
+   "type": "CONV"
+  },
+  {
+   "id": "DPE",
+   "alias": "C12H10O",
+   "cas": "101-84-8",
+   "type": "CONV"
+  },
+  {
+   "id": "PHENO-01",
+   "alias": "C6H6O",
+   "cas": "108-95-2",
+   "type": "CONV"
+  },
+  {
+   "id": "BENZENE",
+   "alias": "C6H6",
+   "cas": "71-43-2",
+   "type": "CONV"
+  },
+  {
+   "id": "O-CRE-01",
+   "alias": "C7H8O-3",
+   "cas": "95-48-7",
+   "type": "CONV"
+  },
+  {
+   "id": "CH4O",
+   "alias": "CH4O",
+   "cas": "67-56-1",
+   "type": "CONV"
+  },
+  {
+   "id": "ACETI-01",
+   "alias": "C2H4O2-1",
+   "cas": "64-19-7",
+   "type": "CONV"
+  },
+  {
+   "id": "CH2O",
+   "alias": "CH2O",
+   "cas": "50-00-0",
+   "type": "CONV"
+  },
+  {
+   "id": "H2O",
+   "alias": "H2O",
+   "cas": "7732-18-5",
+   "type": "CONV"
+  },
+  {
+   "id": "CH4",
+   "alias": "CH4",
+   "cas": "74-82-8",
+   "type": "CONV"
+  },
+  {
+   "id": "CO2",
+   "alias": "CO2",
+   "cas": "124-38-9",
+   "type": "CONV"
+  },
+  {
+   "id": "H2",
+   "alias": "H2",
+   "cas": "1333-74-0",
+   "type": "CONV"
+  },
+  {
+   "id": "C2H2",
+   "alias": "C2H2",
+   "cas": "74-86-2",
+   "type": "CONV"
+  },
+  {
+   "id": "C",
+   "alias": "C",
+   "cas": "7440-44-0",
+   "type": "CONV"
+  },
+  {
+   "id": "CO",
+   "alias": "CO",
+   "cas": "630-08-0",
+   "type": "CONV"
+  }
+ ],
+ "blocks": [
+  {
+   "id": "B6",
+   "type": "Flash2",
+   "ports": {
+    "in": [
+     "S6"
+    ],
+    "out": [
+     "S8",
+     "S7"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 192.82363,
+     "unit": "cal/sec",
+     "path": "\\Data\\Blocks\\B6\\Output\\QCALC"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 313.0,
+    "unit": "K",
+    "path": "\\Data\\Blocks\\B6\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "COOLER",
+   "type": "Heater",
+   "ports": {
+    "in": [
+     "S10"
+    ],
+    "out": [
+     "S5"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "heat",
+     "value": -2087.51163,
+     "unit": "cal/sec",
+     "path": "\\Data\\Blocks\\COOLER\\Output\\QCALC"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 313.0,
+    "unit": "K",
+    "path": "\\Data\\Blocks\\COOLER\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "HEATCHAG",
+   "type": "HeatX",
+   "ports": {
+    "in": [
+     "S4",
+     "S2"
+    ],
+    "out": [
+     "S10",
+     "S9"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 9673.5897,
+     "unit": "cal/sec",
+     "path": "\\Data\\Blocks\\HEATCHAG\\Output\\HX_DUTY",
+     "role_hint": "exchanged"
+    }
+   ]
+  },
+  {
+   "id": "HEATER",
+   "type": "Heater",
+   "ports": {
+    "in": [
+     "S9"
+    ],
+    "out": [
+     "S3"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 1000.52531,
+     "unit": "cal/sec",
+     "path": "\\Data\\Blocks\\HEATER\\Output\\QCALC"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 603.0,
+    "unit": "K",
+    "path": "\\Data\\Blocks\\HEATER\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "PUMP",
+   "type": "Pump",
+   "ports": {
+    "in": [
+     "FEED"
+    ],
+    "out": [
+     "S2"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "work",
+     "value": 2.1717208,
+     "unit": "kW",
+     "path": "\\Data\\Blocks\\PUMP\\Output\\ELEC_POWER"
+    }
+   ]
+  },
+  {
+   "id": "REACTOR",
+   "type": "RPlug",
+   "ports": {
+    "in": [
+     "S3"
+    ],
+    "out": [
+     "S4"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 2891.5462,
+     "unit": "cal/sec",
+     "path": "\\Data\\Blocks\\REACTOR\\Output\\QCALC"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 603.0,
+    "unit": "K",
+    "path": "\\Data\\Blocks\\REACTOR\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "VALVE",
+   "type": "Valve",
+   "ports": {
+    "in": [
+     "S5"
+    ],
+    "out": [
+     "S6"
+    ]
+   },
+   "energy": []
+  }
+ ],
+ "streams": [
+  {
+   "id": "FEED",
+   "class": "MATERIAL",
+   "from": "BOUNDARY",
+   "to": "PUMP",
+   "total": {
+    "mass_flow": 100.0,
+    "mass_unit": "kg/hr",
+    "h_mass": -3341.02058,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -92806.1272,
+    "energy_unit": "cal/sec",
+    "T": 298.15,
+    "T_unit": "K",
+    "P": 1.0,
+    "P_unit": "atm"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "GUAIA-01": 4.5,
+      "CAT": 0.0,
+      "ANISOLE": 1.5,
+      "PPE": 6.75,
+      "PEA": 0.0,
+      "STYRENE": 0.0,
+      "ETHYLBEN": 0.0,
+      "DPE": 2.25,
+      "PHENO-01": 0.0,
+      "BENZENE": 0.0,
+      "O-CRE-01": 0.0,
+      "CH4O": 0.0,
+      "ACETI-01": 0.0,
+      "CH2O": 0.0,
+      "H2O": 85.0,
+      "CH4": 0.0,
+      "CO2": 0.0,
+      "H2": 0.0,
+      "C2H2": 0.0,
+      "C": 0.0,
+      "CO": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S2",
+   "class": "MATERIAL",
+   "from": "PUMP",
+   "to": "HEATCHAG",
+   "total": {
+    "mass_flow": 100.0,
+    "mass_unit": "kg/hr",
+    "h_mass": -3322.34714,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -92287.4206,
+    "energy_unit": "cal/sec",
+    "T": 318.979615,
+    "T_unit": "K",
+    "P": 246.730817,
+    "P_unit": "atm"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "GUAIA-01": 4.5,
+      "CAT": 0.0,
+      "ANISOLE": 1.5,
+      "PPE": 6.75,
+      "PEA": 0.0,
+      "STYRENE": 0.0,
+      "ETHYLBEN": 0.0,
+      "DPE": 2.25,
+      "PHENO-01": 0.0,
+      "BENZENE": 0.0,
+      "O-CRE-01": 0.0,
+      "CH4O": 0.0,
+      "ACETI-01": 0.0,
+      "CH2O": 0.0,
+      "H2O": 85.0,
+      "CH4": 0.0,
+      "CO2": 0.0,
+      "H2": 0.0,
+      "C2H2": 0.0,
+      "C": 0.0,
+      "CO": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S3",
+   "class": "MATERIAL",
+   "from": "HEATER",
+   "to": "REACTOR",
+   "total": {
+    "mass_flow": 100.0,
+    "mass_unit": "kg/hr",
+    "h_mass": -2938.079,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -81613.3056,
+    "energy_unit": "cal/sec",
+    "T": 603.0,
+    "T_unit": "K",
+    "P": 246.730817,
+    "P_unit": "atm"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "GUAIA-01": 4.5,
+      "CAT": 0.0,
+      "ANISOLE": 1.5,
+      "PPE": 6.75,
+      "PEA": 0.0,
+      "STYRENE": 0.0,
+      "ETHYLBEN": 0.0,
+      "DPE": 2.25,
+      "PHENO-01": 0.0,
+      "BENZENE": 0.0,
+      "O-CRE-01": 0.0,
+      "CH4O": 0.0,
+      "ACETI-01": 0.0,
+      "CH2O": 0.0,
+      "H2O": 85.0,
+      "CH4": 0.0,
+      "CO2": 0.0,
+      "H2": 0.0,
+      "C2H2": 0.0,
+      "C": 0.0,
+      "CO": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S4",
+   "class": "MATERIAL",
+   "from": "REACTOR",
+   "to": "HEATCHAG",
+   "total": {
+    "mass_flow": 100.000667,
+    "mass_unit": "kg/hr",
+    "h_mass": -2833.96443,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -78721.7594,
+    "energy_unit": "cal/sec",
+    "T": 603.0,
+    "T_unit": "K",
+    "P": 246.730817,
+    "P_unit": "atm"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "GUAIA-01": 0.000165771314,
+      "CAT": 3.53403498,
+      "ANISOLE": 1.2231612,
+      "PPE": 0.988883432,
+      "PEA": 1.54298557,
+      "STYRENE": 0.783554771,
+      "ETHYLBEN": 0.880804781,
+      "DPE": 2.24091728,
+      "PHENO-01": 1.00453139,
+      "BENZENE": 0.035208342,
+      "O-CRE-01": 2.42329225,
+      "CH4O": 0.398649671,
+      "ACETI-01": 0.00152053644,
+      "CH2O": 0.0,
+      "H2O": 84.5423193,
+      "CH4": 0.0433805778,
+      "CO2": 0.145973887,
+      "H2": 0.0,
+      "C2H2": 0.0,
+      "C": 0.195564945,
+      "CO": 0.0157185067
+     }
+    }
+   }
+  },
+  {
+   "id": "S5",
+   "class": "MATERIAL",
+   "from": "COOLER",
+   "to": "VALVE",
+   "total": {
+    "mass_flow": 100.000667,
+    "mass_unit": "kg/hr",
+    "h_mass": -3257.36125,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -90482.8607,
+    "energy_unit": "cal/sec",
+    "T": 313.0,
+    "T_unit": "K",
+    "P": 246.730817,
+    "P_unit": "atm"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "GUAIA-01": 0.000165771314,
+      "CAT": 3.53403498,
+      "ANISOLE": 1.2231612,
+      "PPE": 0.988883432,
+      "PEA": 1.54298557,
+      "STYRENE": 0.783554771,
+      "ETHYLBEN": 0.880804781,
+      "DPE": 2.24091728,
+      "PHENO-01": 1.00453139,
+      "BENZENE": 0.035208342,
+      "O-CRE-01": 2.42329225,
+      "CH4O": 0.398649671,
+      "ACETI-01": 0.00152053644,
+      "CH2O": 0.0,
+      "H2O": 84.5423193,
+      "CH4": 0.0433805778,
+      "CO2": 0.145973887,
+      "H2": 0.0,
+      "C2H2": 0.0,
+      "C": 0.195564945,
+      "CO": 0.0157185067
+     }
+    }
+   }
+  },
+  {
+   "id": "S6",
+   "class": "MATERIAL",
+   "from": "VALVE",
+   "to": "B6",
+   "total": {
+    "mass_flow": 100.000667,
+    "mass_unit": "kg/hr",
+    "h_mass": -3257.36125,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -90482.8607,
+    "energy_unit": "cal/sec",
+    "T": 313.0,
+    "T_unit": "K",
+    "P": 0.986923267,
+    "P_unit": "atm"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "GUAIA-01": 0.000165771314,
+      "CAT": 3.53403498,
+      "ANISOLE": 1.2231612,
+      "PPE": 0.988883432,
+      "PEA": 1.54298557,
+      "STYRENE": 0.783554771,
+      "ETHYLBEN": 0.880804781,
+      "DPE": 2.24091728,
+      "PHENO-01": 1.00453139,
+      "BENZENE": 0.035208342,
+      "O-CRE-01": 2.42329225,
+      "CH4O": 0.398649671,
+      "ACETI-01": 0.00152053644,
+      "CH2O": 0.0,
+      "H2O": 84.5423193,
+      "CH4": 0.0433805778,
+      "CO2": 0.145973887,
+      "H2": 0.0,
+      "C2H2": 0.0,
+      "C": 0.195564945,
+      "CO": 0.0157185067
+     }
+    }
+   }
+  },
+  {
+   "id": "S7",
+   "class": "MATERIAL",
+   "from": "B6",
+   "to": "BOUNDARY",
+   "total": {
+    "mass_flow": 97.2058935,
+    "mass_unit": "kg/hr",
+    "h_mass": -3311.09186,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -89404.9007,
+    "energy_unit": "cal/sec",
+    "T": 313.0,
+    "T_unit": "K",
+    "P": 0.1,
+    "P_unit": "atm"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "GUAIA-01": 0.000165761386,
+      "CAT": 3.53398711,
+      "ANISOLE": 1.22124572,
+      "PPE": 0.988883432,
+      "PEA": 1.54294459,
+      "STYRENE": 0.0630774304,
+      "ETHYLBEN": 0.0336494226,
+      "DPE": 2.24089224,
+      "PHENO-01": 1.00134753,
+      "BENZENE": 0.000955846372,
+      "O-CRE-01": 2.42329121,
+      "CH4O": 0.379736642,
+      "ACETI-01": 0.00151257177,
+      "CH2O": 0.0,
+      "H2O": 83.5646543,
+      "CH4": 0.000848996785,
+      "CO2": 0.0130042574,
+      "H2": 0.0,
+      "C2H2": 0.0,
+      "C": 0.195564945,
+      "CO": 0.000131460222
+     }
+    }
+   }
+  },
+  {
+   "id": "S8",
+   "class": "MATERIAL",
+   "from": "B6",
+   "to": "BOUNDARY",
+   "total": {
+    "mass_flow": 2.79477374,
+    "mass_unit": "kg/hr",
+    "h_mass": -1140.1607,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -885.136442,
+    "energy_unit": "cal/sec",
+    "T": 313.0,
+    "T_unit": "K",
+    "P": 0.1,
+    "P_unit": "atm"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "GUAIA-01": 9.92792396e-09,
+      "CAT": 4.78706848e-05,
+      "ANISOLE": 0.00191547304,
+      "PPE": 2.80850579e-18,
+      "PEA": 4.09866561e-05,
+      "STYRENE": 0.72047734,
+      "ETHYLBEN": 0.847155359,
+      "DPE": 2.50450337e-05,
+      "PHENO-01": 0.00318386139,
+      "BENZENE": 0.0342524956,
+      "O-CRE-01": 1.04475343e-06,
+      "CH4O": 0.0189130295,
+      "ACETI-01": 7.96467163e-06,
+      "CH2O": 0.0,
+      "H2O": 0.977664999,
+      "CH4": 0.042531581,
+      "CO2": 0.132969629,
+      "H2": 0.0,
+      "C2H2": 0.0,
+      "C": 2.394455e-64,
+      "CO": 0.0155870465
+     }
+    }
+   }
+  },
+  {
+   "id": "S9",
+   "class": "MATERIAL",
+   "from": "HEATCHAG",
+   "to": "HEATER",
+   "total": {
+    "mass_flow": 100.0,
+    "mass_unit": "kg/hr",
+    "h_mass": -2974.09791,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -82613.8309,
+    "energy_unit": "cal/sec",
+    "T": 588.0,
+    "T_unit": "K",
+    "P": 246.730817,
+    "P_unit": "atm"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "GUAIA-01": 4.5,
+      "CAT": 0.0,
+      "ANISOLE": 1.5,
+      "PPE": 6.75,
+      "PEA": 0.0,
+      "STYRENE": 0.0,
+      "ETHYLBEN": 0.0,
+      "DPE": 2.25,
+      "PHENO-01": 0.0,
+      "BENZENE": 0.0,
+      "O-CRE-01": 0.0,
+      "CH4O": 0.0,
+      "ACETI-01": 0.0,
+      "CH2O": 0.0,
+      "H2O": 85.0,
+      "CH4": 0.0,
+      "CO2": 0.0,
+      "H2": 0.0,
+      "C2H2": 0.0,
+      "C": 0.0,
+      "CO": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S10",
+   "class": "MATERIAL",
+   "from": "HEATCHAG",
+   "to": "COOLER",
+   "total": {
+    "mass_flow": 100.000667,
+    "mass_unit": "kg/hr",
+    "h_mass": -3182.21134,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -88395.3491,
+    "energy_unit": "cal/sec",
+    "T": 370.427717,
+    "T_unit": "K",
+    "P": 246.730817,
+    "P_unit": "atm"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "GUAIA-01": 0.000165771314,
+      "CAT": 3.53403498,
+      "ANISOLE": 1.2231612,
+      "PPE": 0.988883432,
+      "PEA": 1.54298557,
+      "STYRENE": 0.783554771,
+      "ETHYLBEN": 0.880804781,
+      "DPE": 2.24091728,
+      "PHENO-01": 1.00453139,
+      "BENZENE": 0.035208342,
+      "O-CRE-01": 2.42329225,
+      "CH4O": 0.398649671,
+      "ACETI-01": 0.00152053644,
+      "CH2O": 0.0,
+      "H2O": 84.5423193,
+      "CH4": 0.0433805778,
+      "CO2": 0.145973887,
+      "H2": 0.0,
+      "C2H2": 0.0,
+      "C": 0.195564945,
+      "CO": 0.0157185067
+     }
+    }
+   }
+  }
+ ],
+ "units": {
+  "INSET": "MET",
+  "OUTSET": "MET",
+  "calorie_J": 4.1868,
+  "note": "块负荷与流股焓流保留各节点自己的 UnitString，不假设 kW（MET 的热负荷是 cal/sec，ENG 是 Btu/hr）。1 cal = 4.1868 J 经真机核对（同一结果在 MET 与 SI 下各读一次，比值 4.1868）。"
+ },
+ "discovery": {
+  "mode": "recipe",
+  "nodes_read": 449,
+  "complete": true,
+  "unmatched_block_types": [],
+  "unverified_paths": []
+ }
+}

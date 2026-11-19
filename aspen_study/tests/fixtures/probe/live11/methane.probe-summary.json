@@ -1,0 +1,1001 @@
+{
+ "schema": "aspen-probe/1.1",
+ "created": "2026-11-19T23:06:24+08:00",
+ "model": {
+  "file": "Methane Pyrolysis.bkp",
+  "sha256": "f3a7e8af6700bf6a81ae7541cd994be4ae83ad5f8d0ef4108f951d146a2bcb02",
+  "simulator": "aspen-plus",
+  "version": "41.0",
+  "progid": "Apwn.Document.41.0",
+  "adapter": "aspen-plus-com",
+  "source_unchanged": true
+ },
+ "status": {
+  "state": "ok",
+  "run_completed": true,
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "raw_status": {
+   "UOSSTAT": 0,
+   "UOSSTAT2": 8,
+   "CVSTAT": 0,
+   "CSSTAT": 2,
+   "RSTAT": 0,
+   "PPSTAT": 2,
+   "SENSSTAT": 0,
+   "ITSTAT": 0,
+   "SSTAT": 0
+  },
+  "run_status_lines": [],
+  "run_seconds": 3.0
+ },
+ "units": {
+  "INSET": "METCBAR",
+  "OUTSET": "METCBAR",
+  "calorie_J": 4.1868,
+  "note": "块负荷与流股焓流保留各节点自己的 UnitString，不假设 kW（MET 的热负荷是 cal/sec，ENG 是 Btu/hr）。1 cal = 4.1868 J 经真机核对（同一结果在 MET 与 SI 下各读一次，比值 4.1868）。"
+ },
+ "calorie_J": 4.1868,
+ "blocks": [
+  {
+   "id": "CCSEP",
+   "type": "Cyclone",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": []
+  },
+  {
+   "id": "CH4-COMB",
+   "type": "RStoic",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": -14701125.7,
+     "unit": "cal/sec",
+     "kW": -61550.673080759996,
+     "path": "\\Data\\Blocks\\CH4-COMB\\Output\\QCALC",
+     "verified": true,
+     "note": "按 1 cal = 4.1868 J"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 1000.0,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\CH4-COMB\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "CO2-SEP",
+   "type": "Flash2",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": -2091109.96,
+     "unit": "cal/sec",
+     "kW": -8755.059180528,
+     "path": "\\Data\\Blocks\\CO2-SEP\\Output\\QCALC",
+     "verified": true,
+     "note": "按 1 cal = 4.1868 J"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 25.0,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\CO2-SEP\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "COMP1",
+   "type": "Compr",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "work",
+     "value": 3068.25633,
+     "unit": "kW",
+     "kW": 3068.25633,
+     "path": "\\Data\\Blocks\\COMP1\\Output\\BRAKE_POWER",
+     "verified": true
+    }
+   ],
+   "outlet_temperature": {
+    "value": 25.0,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\COMP1\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "COMP2",
+   "type": "Compr",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "work",
+     "value": 11028.2068,
+     "unit": "kW",
+     "kW": 11028.2068,
+     "path": "\\Data\\Blocks\\COMP2\\Output\\BRAKE_POWER",
+     "verified": true
+    }
+   ],
+   "outlet_temperature": {
+    "value": 30.0,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\COMP2\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "COMP4",
+   "type": "Compr",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "work",
+     "value": 296.059331,
+     "unit": "kW",
+     "kW": 296.059331,
+     "path": "\\Data\\Blocks\\COMP4\\Output\\BRAKE_POWER",
+     "verified": true
+    }
+   ],
+   "outlet_temperature": {
+    "value": 25.0,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\COMP4\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "COND",
+   "type": "Heater",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": -3003317.12,
+     "unit": "cal/sec",
+     "kW": -12574.288118016,
+     "path": "\\Data\\Blocks\\COND\\Output\\QCALC",
+     "verified": true,
+     "note": "按 1 cal = 4.1868 J"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 25.0,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\COND\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "HE3",
+   "type": "HeatX",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 3744237.02,
+     "unit": "cal/sec",
+     "kW": 15676.371555336,
+     "path": "\\Data\\Blocks\\HE3\\Output\\HX_DUTY",
+     "verified": true,
+     "role_hint": "exchanged",
+     "note": "按 1 cal = 4.1868 J"
+    }
+   ]
+  },
+  {
+   "id": "HE4",
+   "type": "HeatX",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 1207844.36,
+     "unit": "cal/sec",
+     "kW": 5057.002766448,
+     "path": "\\Data\\Blocks\\HE4\\Output\\HX_DUTY",
+     "verified": true,
+     "role_hint": "exchanged",
+     "note": "按 1 cal = 4.1868 J"
+    }
+   ]
+  },
+  {
+   "id": "HE5",
+   "type": "HeatX",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 8492778.59,
+     "unit": "cal/sec",
+     "kW": 35557.565400611995,
+     "path": "\\Data\\Blocks\\HE5\\Output\\HX_DUTY",
+     "verified": true,
+     "role_hint": "exchanged",
+     "note": "按 1 cal = 4.1868 J"
+    }
+   ]
+  },
+  {
+   "id": "HE5A",
+   "type": "Heater",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": -1528947.44,
+     "unit": "cal/sec",
+     "kW": -6401.397141791999,
+     "path": "\\Data\\Blocks\\HE5A\\Output\\QCALC",
+     "verified": true,
+     "note": "按 1 cal = 4.1868 J"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 350.0,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\HE5A\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "HE5B",
+   "type": "Heater",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 1528947.44,
+     "unit": "cal/sec",
+     "kW": 6401.397141791999,
+     "path": "\\Data\\Blocks\\HE5B\\Output\\QCALC",
+     "verified": true,
+     "note": "按 1 cal = 4.1868 J"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 495.768733,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\HE5B\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "HE6A",
+   "type": "Heater",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": -3094301.17,
+     "unit": "cal/sec",
+     "kW": -12955.220138556,
+     "path": "\\Data\\Blocks\\HE6A\\Output\\QCALC",
+     "verified": true,
+     "note": "按 1 cal = 4.1868 J"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 300.0,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\HE6A\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "HE6B",
+   "type": "Heater",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 3094301.17,
+     "unit": "cal/sec",
+     "kW": 12955.220138556,
+     "path": "\\Data\\Blocks\\HE6B\\Output\\QCALC",
+     "verified": true,
+     "note": "按 1 cal = 4.1868 J"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 501.392345,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\HE6B\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "HE7",
+   "type": "Heater",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": -1332251.55,
+     "unit": "cal/sec",
+     "kW": -5577.87078954,
+     "path": "\\Data\\Blocks\\HE7\\Output\\QCALC",
+     "verified": true,
+     "note": "按 1 cal = 4.1868 J"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 30.0,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\HE7\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "HE8",
+   "type": "Heater",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": -2470697.87,
+     "unit": "cal/sec",
+     "kW": -10344.317842116001,
+     "path": "\\Data\\Blocks\\HE8\\Output\\QCALC",
+     "verified": true,
+     "note": "按 1 cal = 4.1868 J"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 49.0,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\HE8\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "M1",
+   "type": "Mixer",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": []
+  },
+  {
+   "id": "M2",
+   "type": "Mixer",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": []
+  },
+  {
+   "id": "MC-M",
+   "type": "MCompr",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "work",
+     "value": 3624.77093,
+     "unit": "kW",
+     "kW": 3624.77093,
+     "path": "\\Data\\Blocks\\MC-M\\Output\\WNET",
+     "verified": true
+    },
+    {
+     "kind": "heat",
+     "value": -626174.742,
+     "unit": "cal/sec",
+     "kW": -2621.6684098056,
+     "path": "\\Data\\Blocks\\MC-M\\Output\\QNET",
+     "verified": true,
+     "note": "按 1 cal = 4.1868 J"
+    }
+   ]
+  },
+  {
+   "id": "PUMP",
+   "type": "Pump",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "work",
+     "value": 46.5914188,
+     "unit": "kW",
+     "kW": 46.5914188,
+     "path": "\\Data\\Blocks\\PUMP\\Output\\ELEC_POWER",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "REACTOR",
+   "type": "RCSTR",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 14701125.8,
+     "unit": "cal/sec",
+     "kW": 61550.67349944,
+     "path": "\\Data\\Blocks\\REACTOR\\Output\\QCALC",
+     "verified": true,
+     "note": "按 1 cal = 4.1868 J"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 1067.0,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\REACTOR\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "SEP",
+   "type": "Sep",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": -1259.95412,
+     "unit": "cal/sec",
+     "kW": -5.275175909616,
+     "path": "\\Data\\Blocks\\SEP\\Output\\QCALC",
+     "verified": false,
+     "note": "按 1 cal = 4.1868 J"
+    }
+   ]
+  },
+  {
+   "id": "SP2",
+   "type": "FSplit",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": []
+  },
+  {
+   "id": "TURB1",
+   "type": "Compr",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "work",
+     "value": -6828.92056,
+     "unit": "kW",
+     "kW": -6828.92056,
+     "path": "\\Data\\Blocks\\TURB1\\Output\\BRAKE_POWER",
+     "verified": true
+    }
+   ],
+   "outlet_temperature": {
+    "value": 499.527279,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\TURB1\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "TURB2",
+   "type": "Compr",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "work",
+     "value": -2968.40278,
+     "unit": "kW",
+     "kW": -2968.40278,
+     "path": "\\Data\\Blocks\\TURB2\\Output\\BRAKE_POWER",
+     "verified": true
+    }
+   ],
+   "outlet_temperature": {
+    "value": 185.825474,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\TURB2\\Output\\B_TEMP"
+   }
+  }
+ ],
+ "totals_kW": {
+  "heating": 80907.29078,
+  "cooling": -120785.769877,
+  "work": 8266.56147,
+  "internal_exchange": 56290.939722
+ },
+ "totals_complete": false,
+ "group_totals": {
+  "heating": {
+   "kW": 80907.29078,
+   "complete": false
+  },
+  "cooling": {
+   "kW": -120785.769877,
+   "complete": false
+  },
+  "shaft_work": {
+   "kW": 8266.56147,
+   "complete": false
+  },
+  "internal_exchange": {
+   "kW": 56290.939722,
+   "complete": false
+  },
+  "overall": {
+   "kW": -31611.917627,
+   "complete": false
+  }
+ },
+ "energy_gaps": [],
+ "unverified_paths": [
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\AIR\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\AIR\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\CARBON\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\CARBON\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\CH4\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\CH4\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\F-CH4\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\F-CH4\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\PRO-H2\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\PRO-H2\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\Q20",
+   "reason": "HEAT 类流股的负荷节点未读取（块负荷已计）"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\Q30",
+   "reason": "HEAT 类流股的负荷节点未读取（块负荷已计）"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\Q40",
+   "reason": "HEAT 类流股的负荷节点未读取（块负荷已计）"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\Q50",
+   "reason": "HEAT 类流股的负荷节点未读取（块负荷已计）"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S10\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S10\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S12\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S12\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S13\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S13\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S14\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S14\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S15\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S15\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S16\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S16\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S17\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S17\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S20\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S20\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S21\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S21\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S22\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S22\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S24\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S24\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S25\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S25\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S26\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S26\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S27\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S27\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S28\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S28\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S29\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S29\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S2\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S2\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S30\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S30\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S31\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S31\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S32\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S32\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S33\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S33\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S34\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S34\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S35\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S35\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S36\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S36\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S37\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S37\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S38\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S38\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S39\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S39\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S4\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S4\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S5\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S5\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S7\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S7\\Output\\MASSFLOW\\CIPSD",
+   "reason": "子流股 CIPSD 没有真机样本"
+  },
+  {
+   "block": "SEP",
+   "path": "\\Data\\Blocks\\SEP\\Output\\QCALC",
+   "reason": "块类型 Sep 的节点 QCALC 来自 Aspen 自动化的常见写法，未在真机验证"
+  }
+ ],
+ "discovery": {
+  "mode": "recipe",
+  "nodes_read": 1336,
+  "complete": false,
+  "unmatched_block_types": [
+   "Cyclone"
+  ]
+ },
+ "cleanup": {
+  "killed_pids": []
+ },
+ "elapsed_seconds": 16.8
+}

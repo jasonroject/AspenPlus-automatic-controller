@@ -1,0 +1,311 @@
+{
+ "schema": "aspen-advice/1",
+ "rules_version": "1.1.0",
+ "model": {
+  "file": "Methane Pyrolysis.bkp",
+  "sha256": "f3a7e8af6700bf6a81ae7541cd994be4ae83ad5f8d0ef4108f951d146a2bcb02"
+ },
+ "inputs": {
+  "probe": "aspen-probe/1.1",
+  "migrated_from": null,
+  "graph": true,
+  "roles": false
+ },
+ "counts": {
+  "critical": 0,
+  "warn": 3,
+  "suggest": 1,
+  "info": 4,
+  "total": 8
+ },
+ "items": [
+  {
+   "id": "data-completeness.totals-incomplete",
+   "rule": "data-completeness.totals-incomplete",
+   "severity": "warn",
+   "category": "data-completeness",
+   "target": "global",
+   "title_zh": "能量合计不完整",
+   "detail_zh": "探针标记 totals_complete=false，或合计中有空值（无）。不完整的合计不能当作总能耗。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/totals_complete",
+     "value": false
+    },
+    {
+     "path": "probe-summary.json#/group_totals",
+     "value": {
+      "heating": {
+       "kW": 80907.29078,
+       "complete": false
+      },
+      "cooling": {
+       "kW": -120785.769877,
+       "complete": false
+      },
+      "shaft_work": {
+       "kW": 8266.56147,
+       "complete": false
+      },
+      "internal_exchange": {
+       "kW": 56290.939722,
+       "complete": false
+      },
+      "overall": {
+       "kW": -31611.917627,
+       "complete": false
+      }
+     }
+    }
+   ],
+   "action_zh": "先补全缺失的块或单位，再引用合计。",
+   "confidence": "verified"
+  },
+  {
+   "id": "data-completeness.discovery-incomplete",
+   "rule": "data-completeness.discovery-incomplete",
+   "severity": "warn",
+   "category": "data-completeness",
+   "target": "global",
+   "title_zh": "模型结构读取不完整",
+   "detail_zh": "discovery.complete=false：探针没有读完整个模型（已读 1336 个节点）。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/discovery/complete",
+     "value": false
+    }
+   ],
+   "action_zh": "重新体检；若仍不完整，把模型和体检日志交给维护者排查。",
+   "confidence": "verified"
+  },
+  {
+   "id": "data-completeness.unmatched-block-types",
+   "rule": "data-completeness.unmatched-block-types",
+   "severity": "warn",
+   "category": "data-completeness",
+   "target": "global",
+   "title_zh": "有探针未支持的块类型：Cyclone",
+   "detail_zh": "这些类型的块没有匹配到读取规则，其能量没有被读入，合计会偏低。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/discovery/unmatched_block_types",
+     "value": [
+      "Cyclone"
+     ]
+    }
+   ],
+   "action_zh": "为这些块类型补充读取规则（aspen_rules），或在模型里用已支持的块等价替代后重试。",
+   "confidence": "verified"
+  },
+  {
+   "id": "data-completeness.unverified-paths",
+   "rule": "data-completeness.unverified-paths",
+   "severity": "suggest",
+   "category": "data-completeness",
+   "target": "global",
+   "title_zh": "75 个读取路径尚未在真机上核验",
+   "detail_zh": "这些路径来自规则推断，没有在真实 Aspen 模型上验证过：全局 \\Data\\Streams\\AIR\\Output\\MASSFLOW\\$TOTAL；全局 \\Data\\Streams\\AIR\\Output\\MASSFLOW\\CIPSD；全局 \\Data\\Streams\\CARBON\\Output\\MASSFLOW\\$TOTAL；全局 \\Data\\Streams\\CARBON\\Output\\MASSFLOW\\CIPSD；全局 \\Data\\Streams\\CH4\\Output\\MASSFLOW\\$TOTAL …共 75 个",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/unverified_paths/0",
+     "value": {
+      "block": null,
+      "path": "\\Data\\Streams\\AIR\\Output\\MASSFLOW\\$TOTAL",
+      "reason": "子流股 $TOTAL 没有真机样本"
+     }
+    },
+    {
+     "path": "probe-summary.json#/unverified_paths/1",
+     "value": {
+      "block": null,
+      "path": "\\Data\\Streams\\AIR\\Output\\MASSFLOW\\CIPSD",
+      "reason": "子流股 CIPSD 没有真机样本"
+     }
+    },
+    {
+     "path": "probe-summary.json#/unverified_paths/2",
+     "value": {
+      "block": null,
+      "path": "\\Data\\Streams\\CARBON\\Output\\MASSFLOW\\$TOTAL",
+      "reason": "子流股 $TOTAL 没有真机样本"
+     }
+    },
+    {
+     "path": "probe-summary.json#/unverified_paths/3",
+     "value": {
+      "block": null,
+      "path": "\\Data\\Streams\\CARBON\\Output\\MASSFLOW\\CIPSD",
+      "reason": "子流股 CIPSD 没有真机样本"
+     }
+    },
+    {
+     "path": "probe-summary.json#/unverified_paths/4",
+     "value": {
+      "block": null,
+      "path": "\\Data\\Streams\\CH4\\Output\\MASSFLOW\\$TOTAL",
+      "reason": "子流股 $TOTAL 没有真机样本"
+     }
+    }
+   ],
+   "action_zh": "在含这类块的真实模型上验证后，数值才可引用；此前请把相应块的数当作待核。",
+   "confidence": "verified"
+  },
+  {
+   "id": "units.non-si-set",
+   "rule": "units.non-si-set",
+   "severity": "info",
+   "category": "units",
+   "target": "global",
+   "title_zh": "模型使用 METCBAR 输入 / METCBAR 输出单位集",
+   "detail_zh": "探针读到的块负荷保留了各节点自己的单位（本模型出现的能量单位：cal/sec、kW），并换算成 kW（含 cal 的单位按 1 cal = 4.1868 J）。原生数值不是 kW，不同单位的换算倍数不同，直接当 kW 用会得出错误结论。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/units/INSET",
+     "value": "METCBAR"
+    },
+    {
+     "path": "probe-summary.json#/units/OUTSET",
+     "value": "METCBAR"
+    },
+    {
+     "path": "probe-summary.json#/calorie_J",
+     "value": 4.1868
+    }
+   ],
+   "action_zh": "与其他来源（文献、能耗清单）比较时使用 kW 列；要在 Aspen 里核对，请注意界面显示的是原生单位。",
+   "confidence": "verified"
+  },
+  {
+   "id": "energy.hotspot",
+   "rule": "energy.hotspot",
+   "severity": "info",
+   "category": "energy",
+   "target": "global",
+   "title_zh": "能耗热点：REACTOR、CH4-COMB",
+   "detail_zh": "按外部热/冷/功的 |kW| 简单相加（内部换热不计，热与功不折算品位）共 229554.27 kW，占比最大的块：REACTOR 27%（61550.67 kW）、CH4-COMB 27%（61550.67 kW）。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/1/energy/0/kW",
+     "value": -61550.673080759996,
+     "unit": "kW"
+    },
+    {
+     "path": "probe-summary.json#/blocks/20/energy/0/kW",
+     "value": 61550.67349944,
+     "unit": "kW"
+    }
+   ],
+   "action_zh": "优化与节能优先看这几个块：先核对它们的规格是否合理，再评估热集成或工艺条件调整的空间。",
+   "confidence": "heuristic"
+  },
+  {
+   "id": "energy.internal-exchange",
+   "rule": "energy.internal-exchange",
+   "severity": "info",
+   "category": "energy",
+   "target": "global",
+   "title_zh": "内部换热 56290.94 kW 单独列出",
+   "detail_zh": "换热器 HE3、HE4、HE5 的内部换热合计 56290.94 kW，没有计入外购加热/冷却（外部加热 80907.29 kW，外部冷却 -120785.77 kW）。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/7/energy/0/kW",
+     "value": 15676.371555336,
+     "unit": "kW"
+    },
+    {
+     "path": "probe-summary.json#/blocks/8/energy/0/kW",
+     "value": 5057.002766448,
+     "unit": "kW"
+    },
+    {
+     "path": "probe-summary.json#/blocks/9/energy/0/kW",
+     "value": 35557.565400611995,
+     "unit": "kW"
+    }
+   ],
+   "action_zh": "LCA 与公用工程核算只用外部项；内部换热量可用来评估热回收程度。",
+   "confidence": "verified"
+  },
+  {
+   "id": "heat-integration.data-missing",
+   "rule": "heat-integration.data-missing",
+   "severity": "info",
+   "category": "heat-integration",
+   "target": "global",
+   "title_zh": "热集成无法判断：缺少 进出口温度",
+   "detail_zh": "模型同时有外部加热（80907.29 kW）和外部冷却（-120785.77 kW），但 graph.json 里的加热/冷却块缺少进口或出口温度（或进口不止一股），所以不能判断两者能否匹配。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/group_totals/heating/kW",
+     "value": 80907.29078,
+     "unit": "kW"
+    },
+    {
+     "path": "probe-summary.json#/group_totals/cooling/kW",
+     "value": -120785.769877,
+     "unit": "kW"
+    }
+   ],
+   "action_zh": "把体检生成的 graph.json 一起上传（包含物流温度和块连接）。",
+   "confidence": "verified"
+  }
+ ],
+ "skipped": [
+  {
+   "rule": "lca-readiness.roles-draft",
+   "missing_inputs": [
+    "roles"
+   ],
+   "reason_zh": "没有提供 roles.json，该规则未评估。"
+  },
+  {
+   "rule": "lca-readiness.no-product",
+   "missing_inputs": [
+    "roles"
+   ],
+   "reason_zh": "没有提供 roles.json，该规则未评估。"
+  },
+  {
+   "rule": "lca-readiness.multi-product",
+   "missing_inputs": [
+    "roles"
+   ],
+   "reason_zh": "没有提供 roles.json，该规则未评估。"
+  },
+  {
+   "rule": "lca-readiness.no-functional-unit",
+   "missing_inputs": [
+    "roles"
+   ],
+   "reason_zh": "没有提供 roles.json，该规则未评估。"
+  },
+  {
+   "rule": "lca-readiness.fu-stream-mismatch",
+   "missing_inputs": [
+    "roles"
+   ],
+   "reason_zh": "没有提供 roles.json，该规则未评估。"
+  },
+  {
+   "rule": "lca-readiness.product-low-confidence",
+   "missing_inputs": [
+    "roles"
+   ],
+   "reason_zh": "没有提供 roles.json，该规则未评估。"
+  },
+  {
+   "rule": "lca-readiness.utility-guess",
+   "missing_inputs": [
+    "roles"
+   ],
+   "reason_zh": "没有提供 roles.json，该规则未评估。"
+  },
+  {
+   "rule": "lca-readiness.no-factor-key",
+   "missing_inputs": [
+    "roles"
+   ],
+   "reason_zh": "没有提供 roles.json，该规则未评估。"
+  }
+ ]
+}

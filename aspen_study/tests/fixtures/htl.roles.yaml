@@ -1,0 +1,16 @@
+# HTL 覆盖：产品为 S7 中的邻苯二酚 + 邻甲酚；S8 为气相排放
+model_sha256: "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed"
+functional_unit: {basis: product_mass, amount: 1, unit: kg, stream: S7, components: [CAT, O-CRE-01]}
+streams:
+  S7: {role: product}
+  S8: {role: emission, carbon_origin: biogenic, inventory: {kind: emission, split_by_component: true}}
+  FEED: {role: feed, inventory: {kind: material, factor_key: "component:HTL-FEED"}}
+blocks:
+  HEATER: {utility: electricity, efficiency: 1.0}
+  REACTOR: {utility: electricity, efficiency: 1.0}
+  B6: {utility: none}
+  COOLER: {utility: cooling_water}
+allocation: {method: none}
+system_boundary: gate-to-gate
+lcia_method: "IPCC 2021 GWP100"
+review: {state: reviewed, reviewer: fixture}

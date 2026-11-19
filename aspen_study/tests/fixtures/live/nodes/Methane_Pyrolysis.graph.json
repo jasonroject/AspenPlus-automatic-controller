@@ -1,0 +1,2407 @@
+{
+ "schema": "aspen-model-graph/1",
+ "model": {
+  "file": "Methane Pyrolysis.bkp",
+  "sha256": "f3a7e8af6700bf6a81ae7541cd994be4ae83ad5f8d0ef4108f951d146a2bcb02",
+  "simulator": "aspen-plus",
+  "version": "41.0",
+  "progid": "Apwn.Document.41.0",
+  "adapter": "aspen-plus-com"
+ },
+ "status": {
+  "run_completed": true,
+  "errors": [],
+  "warnings": [],
+  "block_status": {
+   "CCSEP": 0,
+   "CH4-COMB": 0,
+   "CO2-SEP": 0,
+   "COMP1": 0,
+   "COMP2": 0,
+   "COMP4": 0,
+   "COND": 0,
+   "HE3": 0,
+   "HE4": 0,
+   "HE5": 0,
+   "HE5A": 0,
+   "HE5B": 0,
+   "HE6A": 0,
+   "HE6B": 0,
+   "HE7": 0,
+   "HE8": 0,
+   "M1": 0,
+   "M2": 0,
+   "MC-M": 0,
+   "PUMP": 0,
+   "REACTOR": 0,
+   "SEP": 0,
+   "SP2": 0,
+   "TURB1": 0,
+   "TURB2": 0
+  },
+  "block_status_accepted": [
+   0,
+   2
+  ]
+ },
+ "components": [
+  {
+   "id": "CH4",
+   "alias": "CH4",
+   "cas": "74-82-8",
+   "type": "CONV"
+  },
+  {
+   "id": "H2",
+   "alias": "H2",
+   "cas": "1333-74-0",
+   "type": "CONV"
+  },
+  {
+   "id": "C(S)",
+   "alias": "C",
+   "cas": "7440-44-0",
+   "type": "SOLID"
+  },
+  {
+   "id": "AR",
+   "alias": "AR",
+   "cas": "7440-37-1",
+   "type": "CONV"
+  },
+  {
+   "id": "H2O",
+   "alias": "H2O",
+   "cas": "7732-18-5",
+   "type": "CONV"
+  },
+  {
+   "id": "CO",
+   "alias": "CO",
+   "cas": "630-08-0",
+   "type": "CONV"
+  },
+  {
+   "id": "CO2",
+   "alias": "CO2",
+   "cas": "124-38-9",
+   "type": "CONV"
+  },
+  {
+   "id": "N2",
+   "alias": "N2",
+   "cas": "7727-37-9",
+   "type": "CONV"
+  },
+  {
+   "id": "O2",
+   "alias": "O2",
+   "cas": "7782-44-7",
+   "type": "CONV"
+  }
+ ],
+ "blocks": [
+  {
+   "id": "CCSEP",
+   "type": "Cyclone",
+   "ports": {
+    "in": [
+     "S7"
+    ],
+    "out": [
+     "S12",
+     "S10"
+    ]
+   },
+   "energy": []
+  },
+  {
+   "id": "CH4-COMB",
+   "type": "RStoic",
+   "ports": {
+    "in": [
+     "S22",
+     "S24"
+    ],
+    "out": [
+     "S25",
+     "Q30"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "heat",
+     "value": -14701125.7,
+     "unit": "cal/sec",
+     "path": "\\Data\\Blocks\\CH4-COMB\\Output\\QCALC"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 1000.0,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\CH4-COMB\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "CO2-SEP",
+   "type": "Flash2",
+   "ports": {
+    "in": [
+     "S29"
+    ],
+    "out": [
+     "S30",
+     "S31"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "heat",
+     "value": -2091109.96,
+     "unit": "cal/sec",
+     "path": "\\Data\\Blocks\\CO2-SEP\\Output\\QCALC"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 25.0,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\CO2-SEP\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "COMP1",
+   "type": "Compr",
+   "ports": {
+    "in": [
+     "AIR"
+    ],
+    "out": [
+     "S20"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "work",
+     "value": 3068.25633,
+     "unit": "kW",
+     "path": "\\Data\\Blocks\\COMP1\\Output\\BRAKE_POWER"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 25.0,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\COMP1\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "COMP2",
+   "type": "Compr",
+   "ports": {
+    "in": [
+     "S14"
+    ],
+    "out": [
+     "S15"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "work",
+     "value": 11028.2068,
+     "unit": "kW",
+     "path": "\\Data\\Blocks\\COMP2\\Output\\BRAKE_POWER"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 30.0,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\COMP2\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "COMP4",
+   "type": "Compr",
+   "ports": {
+    "in": [
+     "CH4"
+    ],
+    "out": [
+     "S24"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "work",
+     "value": 296.059331,
+     "unit": "kW",
+     "path": "\\Data\\Blocks\\COMP4\\Output\\BRAKE_POWER"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 25.0,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\COMP4\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "COND",
+   "type": "Heater",
+   "ports": {
+    "in": [
+     "S39"
+    ],
+    "out": [
+     "S32"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "heat",
+     "value": -3003317.12,
+     "unit": "cal/sec",
+     "path": "\\Data\\Blocks\\COND\\Output\\QCALC"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 25.0,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\COND\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "HE3",
+   "type": "HeatX",
+   "ports": {
+    "in": [
+     "S25",
+     "S21"
+    ],
+    "out": [
+     "S26",
+     "S22"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 3744237.02,
+     "unit": "cal/sec",
+     "path": "\\Data\\Blocks\\HE3\\Output\\HX_DUTY",
+     "role_hint": "exchanged"
+    }
+   ]
+  },
+  {
+   "id": "HE4",
+   "type": "HeatX",
+   "ports": {
+    "in": [
+     "S27",
+     "S20"
+    ],
+    "out": [
+     "S28",
+     "S21"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 1207844.36,
+     "unit": "cal/sec",
+     "path": "\\Data\\Blocks\\HE4\\Output\\HX_DUTY",
+     "role_hint": "exchanged"
+    }
+   ]
+  },
+  {
+   "id": "HE5",
+   "type": "HeatX",
+   "ports": {
+    "in": [
+     "S12",
+     "S4"
+    ],
+    "out": [
+     "S13",
+     "S5"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 8492778.59,
+     "unit": "cal/sec",
+     "path": "\\Data\\Blocks\\HE5\\Output\\HX_DUTY",
+     "role_hint": "exchanged"
+    }
+   ]
+  },
+  {
+   "id": "HE5A",
+   "type": "Heater",
+   "ports": {
+    "in": [
+     "S26"
+    ],
+    "out": [
+     "S27",
+     "Q20"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "heat",
+     "value": -1528947.44,
+     "unit": "cal/sec",
+     "path": "\\Data\\Blocks\\HE5A\\Output\\QCALC"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 350.0,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\HE5A\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "HE5B",
+   "type": "Heater",
+   "ports": {
+    "in": [
+     "S34",
+     "Q20"
+    ],
+    "out": [
+     "S36"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 1528947.44,
+     "unit": "cal/sec",
+     "path": "\\Data\\Blocks\\HE5B\\Output\\QCALC"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 495.768733,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\HE5B\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "HE6A",
+   "type": "Heater",
+   "ports": {
+    "in": [
+     "S10"
+    ],
+    "out": [
+     "CARBON",
+     "Q40"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "heat",
+     "value": -3094301.17,
+     "unit": "cal/sec",
+     "path": "\\Data\\Blocks\\HE6A\\Output\\QCALC"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 300.0,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\HE6A\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "HE6B",
+   "type": "Heater",
+   "ports": {
+    "in": [
+     "S35",
+     "Q40"
+    ],
+    "out": [
+     "S37"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 3094301.17,
+     "unit": "cal/sec",
+     "path": "\\Data\\Blocks\\HE6B\\Output\\QCALC"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 501.392345,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\HE6B\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "HE7",
+   "type": "Heater",
+   "ports": {
+    "in": [
+     "S13"
+    ],
+    "out": [
+     "S14"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "heat",
+     "value": -1332251.55,
+     "unit": "cal/sec",
+     "path": "\\Data\\Blocks\\HE7\\Output\\QCALC"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 30.0,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\HE7\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "HE8",
+   "type": "Heater",
+   "ports": {
+    "in": [
+     "S15"
+    ],
+    "out": [
+     "S16"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "heat",
+     "value": -2470697.87,
+     "unit": "cal/sec",
+     "path": "\\Data\\Blocks\\HE8\\Output\\QCALC"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 49.0,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\HE8\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "M1",
+   "type": "Mixer",
+   "ports": {
+    "in": [
+     "S2",
+     "S17"
+    ],
+    "out": [
+     "S4"
+    ]
+   },
+   "energy": []
+  },
+  {
+   "id": "M2",
+   "type": "Mixer",
+   "ports": {
+    "in": [
+     "S36",
+     "S37"
+    ],
+    "out": [
+     "S38"
+    ]
+   },
+   "energy": []
+  },
+  {
+   "id": "MC-M",
+   "type": "MCompr",
+   "ports": {
+    "in": [
+     "F-CH4"
+    ],
+    "out": [
+     "S2"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "work",
+     "value": 3624.77093,
+     "unit": "kW",
+     "path": "\\Data\\Blocks\\MC-M\\Output\\WNET"
+    },
+    {
+     "kind": "heat",
+     "value": -626174.742,
+     "unit": "cal/sec",
+     "path": "\\Data\\Blocks\\MC-M\\Output\\QNET"
+    }
+   ]
+  },
+  {
+   "id": "PUMP",
+   "type": "Pump",
+   "ports": {
+    "in": [
+     "S32"
+    ],
+    "out": [
+     "S33"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "work",
+     "value": 46.5914188,
+     "unit": "kW",
+     "path": "\\Data\\Blocks\\PUMP\\Output\\ELEC_POWER"
+    }
+   ]
+  },
+  {
+   "id": "REACTOR",
+   "type": "RCSTR",
+   "ports": {
+    "in": [
+     "S5",
+     "Q30"
+    ],
+    "out": [
+     "S7",
+     "Q50"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 14701125.8,
+     "unit": "cal/sec",
+     "path": "\\Data\\Blocks\\REACTOR\\Output\\QCALC"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 1067.0,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\REACTOR\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "SEP",
+   "type": "Sep",
+   "ports": {
+    "in": [
+     "S16"
+    ],
+    "out": [
+     "S17",
+     "PRO-H2"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "heat",
+     "value": -1259.95412,
+     "unit": "cal/sec",
+     "path": "\\Data\\Blocks\\SEP\\Output\\QCALC"
+    }
+   ]
+  },
+  {
+   "id": "SP2",
+   "type": "FSplit",
+   "ports": {
+    "in": [
+     "S33"
+    ],
+    "out": [
+     "S34",
+     "S35"
+    ]
+   },
+   "energy": []
+  },
+  {
+   "id": "TURB1",
+   "type": "Compr",
+   "ports": {
+    "in": [
+     "S38"
+    ],
+    "out": [
+     "S39"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "work",
+     "value": -6828.92056,
+     "unit": "kW",
+     "path": "\\Data\\Blocks\\TURB1\\Output\\BRAKE_POWER"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 499.527279,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\TURB1\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "TURB2",
+   "type": "Compr",
+   "ports": {
+    "in": [
+     "S28"
+    ],
+    "out": [
+     "S29"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "work",
+     "value": -2968.40278,
+     "unit": "kW",
+     "path": "\\Data\\Blocks\\TURB2\\Output\\BRAKE_POWER"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 185.825474,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\TURB2\\Output\\B_TEMP"
+   }
+  }
+ ],
+ "streams": [
+  {
+   "id": "AIR",
+   "class": "MATERIAL",
+   "from": "BOUNDARY",
+   "to": "COMP1",
+   "total": {
+    "mass_flow": 89720.1189,
+    "mass_unit": "kg/hr",
+    "h_mass": -0.0665615966,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -1658.8651,
+    "energy_unit": "cal/sec",
+    "T": 25.0,
+    "T_unit": "C",
+    "P": 1.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 68822.7778,
+      "O2": 20897.341
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "CARBON",
+   "class": "MATERIAL",
+   "from": "HE6A",
+   "to": "BOUNDARY",
+   "total": {
+    "mass_flow": 24310.2595,
+    "mass_unit": "kg/hr",
+    "h_mass": 71.0860957,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": 480033.732,
+    "energy_unit": "cal/sec",
+    "T": 300.0,
+    "T_unit": "C",
+    "P": 1.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 24310.2595,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "CH4",
+   "class": "MATERIAL",
+   "from": "BOUNDARY",
+   "to": "COMP4",
+   "total": {
+    "mass_flow": 4989.04166,
+    "mass_unit": "kg/hr",
+    "h_mass": -1109.72909,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -1537912.4,
+    "energy_unit": "cal/sec",
+    "T": 25.0,
+    "T_unit": "C",
+    "P": 1.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 4989.04166,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "F-CH4",
+   "class": "MATERIAL",
+   "from": "BOUNDARY",
+   "to": "MC-M",
+   "total": {
+    "mass_flow": 32470.5462,
+    "mass_unit": "kg/hr",
+    "h_mass": -1109.72909,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -10009308.2,
+    "energy_unit": "cal/sec",
+    "T": 25.0,
+    "T_unit": "C",
+    "P": 1.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 32470.5462,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "PRO-H2",
+   "class": "MATERIAL",
+   "from": "SEP",
+   "to": "BOUNDARY",
+   "total": {
+    "mass_flow": 8160.27574,
+    "mass_unit": "kg/hr",
+    "h_mass": 82.4497135,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": 186892.332,
+    "energy_unit": "cal/sec",
+    "T": 49.0,
+    "T_unit": "C",
+    "P": 5.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 8160.27574,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "Q20",
+   "class": "HEAT",
+   "from": "HE5A",
+   "to": "HE5B"
+  },
+  {
+   "id": "Q30",
+   "class": "HEAT",
+   "from": "CH4-COMB",
+   "to": "REACTOR"
+  },
+  {
+   "id": "Q40",
+   "class": "HEAT",
+   "from": "HE6A",
+   "to": "HE6B"
+  },
+  {
+   "id": "Q50",
+   "class": "HEAT",
+   "from": "REACTOR",
+   "to": "BOUNDARY"
+  },
+  {
+   "id": "S2",
+   "class": "MATERIAL",
+   "from": "MC-M",
+   "to": "M1",
+   "total": {
+    "mass_flow": 32470.5462,
+    "mass_unit": "kg/hr",
+    "h_mass": -1083.16615,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -9769721.3,
+    "energy_unit": "cal/sec",
+    "T": 75.0,
+    "T_unit": "C",
+    "P": 5.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 32470.5462,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S4",
+   "class": "MATERIAL",
+   "from": "M1",
+   "to": "HE5",
+   "total": {
+    "mass_flow": 38004.5303,
+    "mass_unit": "kg/hr",
+    "h_mass": -1084.23078,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -11446022.6,
+    "energy_unit": "cal/sec",
+    "T": 71.2774694,
+    "T_unit": "C",
+    "P": 5.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 37968.109,
+      "H2": 0.0,
+      "C(S)": 36.4213641,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S5",
+   "class": "MATERIAL",
+   "from": "HE5",
+   "to": "REACTOR",
+   "total": {
+    "mass_flow": 38004.5303,
+    "mass_unit": "kg/hr",
+    "h_mass": -279.747663,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -2953244.04,
+    "energy_unit": "cal/sec",
+    "T": 950.0,
+    "T_unit": "C",
+    "P": 5.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 37968.109,
+      "H2": 0.0,
+      "C(S)": 36.4213641,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S7",
+   "class": "MATERIAL",
+   "from": "REACTOR",
+   "to": "CCSEP",
+   "total": {
+    "mass_flow": 38004.5303,
+    "mass_unit": "kg/hr",
+    "h_mass": 1112.82455,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": 11747881.8,
+    "energy_unit": "cal/sec",
+    "T": 1067.0,
+    "T_unit": "C",
+    "P": 1.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 5497.56875,
+      "H2": 8160.28073,
+      "C(S)": 24346.6809,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S10",
+   "class": "MATERIAL",
+   "from": "CCSEP",
+   "to": "HE6A",
+   "total": {
+    "mass_flow": 24310.2595,
+    "mass_unit": "kg/hr",
+    "h_mass": 529.307622,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": 3574334.9,
+    "energy_unit": "cal/sec",
+    "T": 1067.0,
+    "T_unit": "C",
+    "P": 1.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 24310.2595,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S12",
+   "class": "MATERIAL",
+   "from": "CCSEP",
+   "to": "HE5",
+   "total": {
+    "mass_flow": 13694.2598,
+    "mass_unit": "kg/hr",
+    "h_mass": 2148.69103,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": 8173537.03,
+    "energy_unit": "cal/sec",
+    "T": 1067.0,
+    "T_unit": "C",
+    "P": 0.989513503,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 5497.56274,
+      "H2": 8160.27574,
+      "C(S)": 36.4213641,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S13",
+   "class": "MATERIAL",
+   "from": "HE5",
+   "to": "HE7",
+   "total": {
+    "mass_flow": 13694.2598,
+    "mass_unit": "kg/hr",
+    "h_mass": -83.9234548,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -319241.554,
+    "energy_unit": "cal/sec",
+    "T": 182.698244,
+    "T_unit": "C",
+    "P": 0.989513503,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 5497.56274,
+      "H2": 8160.27574,
+      "C(S)": 36.4213641,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S14",
+   "class": "MATERIAL",
+   "from": "HE7",
+   "to": "COMP2",
+   "total": {
+    "mass_flow": 13694.2598,
+    "mass_unit": "kg/hr",
+    "h_mass": -434.150897,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -1651493.11,
+    "energy_unit": "cal/sec",
+    "T": 30.0,
+    "T_unit": "C",
+    "P": 1.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 5497.56274,
+      "H2": 8160.27574,
+      "C(S)": 36.4213641,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S15",
+   "class": "MATERIAL",
+   "from": "COMP2",
+   "to": "HE8",
+   "total": {
+    "mass_flow": 13694.2598,
+    "mass_unit": "kg/hr",
+    "h_mass": 258.296238,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": 982548.831,
+    "energy_unit": "cal/sec",
+    "T": 327.390637,
+    "T_unit": "C",
+    "P": 10.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 5497.56274,
+      "H2": 8160.27574,
+      "C(S)": 36.4213641,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S16",
+   "class": "MATERIAL",
+   "from": "HE8",
+   "to": "SEP",
+   "total": {
+    "mass_flow": 13694.2598,
+    "mass_unit": "kg/hr",
+    "h_mass": -391.210376,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -1488149.04,
+    "energy_unit": "cal/sec",
+    "T": 49.0,
+    "T_unit": "C",
+    "P": 5.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 5497.56274,
+      "H2": 8160.27574,
+      "C(S)": 36.4213641,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S17",
+   "class": "MATERIAL",
+   "from": "SEP",
+   "to": "M1",
+   "total": {
+    "mass_flow": 5533.9841,
+    "mass_unit": "kg/hr",
+    "h_mass": -1090.47743,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -1676301.33,
+    "energy_unit": "cal/sec",
+    "T": 49.0,
+    "T_unit": "C",
+    "P": 5.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 5497.56274,
+      "H2": 0.0,
+      "C(S)": 36.4213641,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S20",
+   "class": "MATERIAL",
+   "from": "COMP1",
+   "to": "HE4",
+   "total": {
+    "mass_flow": 89720.1189,
+    "mass_unit": "kg/hr",
+    "h_mass": 29.3384994,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": 731181.569,
+    "energy_unit": "cal/sec",
+    "T": 146.274869,
+    "T_unit": "C",
+    "P": 3.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 68822.7778,
+      "O2": 20897.341
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S21",
+   "class": "MATERIAL",
+   "from": "HE4",
+   "to": "HE3",
+   "total": {
+    "mass_flow": 89720.1189,
+    "mass_unit": "kg/hr",
+    "h_mass": 77.8029881,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": 1939025.93,
+    "energy_unit": "cal/sec",
+    "T": 341.0,
+    "T_unit": "C",
+    "P": 3.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 68822.7778,
+      "O2": 20897.341
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S22",
+   "class": "MATERIAL",
+   "from": "HE3",
+   "to": "CH4-COMB",
+   "total": {
+    "mass_flow": 89720.1189,
+    "mass_unit": "kg/hr",
+    "h_mass": 228.039673,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": 5683262.95,
+    "energy_unit": "cal/sec",
+    "T": 900.0,
+    "T_unit": "C",
+    "P": 3.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 68822.7778,
+      "O2": 20897.341
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S24",
+   "class": "MATERIAL",
+   "from": "COMP4",
+   "to": "CH4-COMB",
+   "total": {
+    "mass_flow": 4989.04166,
+    "mass_unit": "kg/hr",
+    "h_mass": -1058.70422,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -1467199.84,
+    "energy_unit": "cal/sec",
+    "T": 116.291115,
+    "T_unit": "C",
+    "P": 3.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 4989.04166,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S25",
+   "class": "MATERIAL",
+   "from": "CH4-COMB",
+   "to": "HE3",
+   "total": {
+    "mass_flow": 94709.0995,
+    "mass_unit": "kg/hr",
+    "h_mass": -398.548834,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -10485055.9,
+    "energy_unit": "cal/sec",
+    "T": 1000.0,
+    "T_unit": "C",
+    "P": 3.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 11204.9204,
+      "CO": 0.0,
+      "CO2": 13686.3348,
+      "N2": 68822.7335,
+      "O2": 995.110836
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S26",
+   "class": "MATERIAL",
+   "from": "HE3",
+   "to": "HE5A",
+   "total": {
+    "mass_flow": 94709.0995,
+    "mass_unit": "kg/hr",
+    "h_mass": -540.871518,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -14229292.9,
+    "energy_unit": "cal/sec",
+    "T": 548.567739,
+    "T_unit": "C",
+    "P": 3.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 11204.9204,
+      "CO": 0.0,
+      "CO2": 13686.3348,
+      "N2": 68822.7335,
+      "O2": 995.110836
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S27",
+   "class": "MATERIAL",
+   "from": "HE5A",
+   "to": "HE4",
+   "total": {
+    "mass_flow": 94709.0995,
+    "mass_unit": "kg/hr",
+    "h_mass": -598.98854,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -15758240.3,
+    "energy_unit": "cal/sec",
+    "T": 350.0,
+    "T_unit": "C",
+    "P": 3.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 11204.9204,
+      "CO": 0.0,
+      "CO2": 13686.3348,
+      "N2": 68822.7335,
+      "O2": 995.110836
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S28",
+   "class": "MATERIAL",
+   "from": "HE4",
+   "to": "TURB2",
+   "total": {
+    "mass_flow": 94709.0995,
+    "mass_unit": "kg/hr",
+    "h_mass": -644.90007,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -16966084.7,
+    "energy_unit": "cal/sec",
+    "T": 185.825474,
+    "T_unit": "C",
+    "P": 3.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 11204.9204,
+      "CO": 0.0,
+      "CO2": 13686.3348,
+      "N2": 68822.7335,
+      "O2": 995.110836
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S29",
+   "class": "MATERIAL",
+   "from": "TURB2",
+   "to": "CO2-SEP",
+   "total": {
+    "mass_flow": 94709.0995,
+    "mass_unit": "kg/hr",
+    "h_mass": -671.849614,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -17675075.5,
+    "energy_unit": "cal/sec",
+    "T": 85.8205874,
+    "T_unit": "C",
+    "P": 1.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 11204.9204,
+      "CO": 0.0,
+      "CO2": 13686.3348,
+      "N2": 68822.7335,
+      "O2": 995.110836
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S30",
+   "class": "MATERIAL",
+   "from": "CO2-SEP",
+   "to": "BOUNDARY",
+   "total": {
+    "mass_flow": 84856.9683,
+    "mass_unit": "kg/hr",
+    "h_mass": -395.651463,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -9326051.03,
+    "energy_unit": "cal/sec",
+    "T": 25.0,
+    "T_unit": "C",
+    "P": 1.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 1352.82299,
+      "CO": 0.0,
+      "CO2": 13686.3028,
+      "N2": 68822.7322,
+      "O2": 995.110351
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S31",
+   "class": "MATERIAL",
+   "from": "CO2-SEP",
+   "to": "BOUNDARY",
+   "total": {
+    "mass_flow": 9852.13112,
+    "mass_unit": "kg/hr",
+    "h_mass": -3814.85828,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -10440134.4,
+    "energy_unit": "cal/sec",
+    "T": 25.0,
+    "T_unit": "C",
+    "P": 1.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 9852.09741,
+      "CO": 0.0,
+      "CO2": 0.031978642,
+      "N2": 0.0012504596,
+      "O2": 0.000485384443
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S32",
+   "class": "MATERIAL",
+   "from": "COND",
+   "to": "PUMP",
+   "total": {
+    "mass_flow": 20537.4192,
+    "mass_unit": "kg/hr",
+    "h_mass": -3814.86465,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -21763187.4,
+    "energy_unit": "cal/sec",
+    "T": 25.0,
+    "T_unit": "C",
+    "P": 1.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 20537.4192,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S33",
+   "class": "MATERIAL",
+   "from": "PUMP",
+   "to": "SP2",
+   "total": {
+    "mass_flow": 20537.4192,
+    "mass_unit": "kg/hr",
+    "h_mass": -3812.914,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -21752059.2,
+    "energy_unit": "cal/sec",
+    "T": 25.3603905,
+    "T_unit": "C",
+    "P": 70.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 20537.4192,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S34",
+   "class": "MATERIAL",
+   "from": "SP2",
+   "to": "HE5B",
+   "total": {
+    "mass_flow": 6809.77584,
+    "mass_unit": "kg/hr",
+    "h_mass": -3812.914,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -7212524.9,
+    "energy_unit": "cal/sec",
+    "T": 25.3603905,
+    "T_unit": "C",
+    "P": 70.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 6809.77584,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S35",
+   "class": "MATERIAL",
+   "from": "SP2",
+   "to": "HE6B",
+   "total": {
+    "mass_flow": 13727.6434,
+    "mass_unit": "kg/hr",
+    "h_mass": -3812.914,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -14539534.3,
+    "energy_unit": "cal/sec",
+    "T": 25.3603905,
+    "T_unit": "C",
+    "P": 70.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 13727.6434,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S36",
+   "class": "MATERIAL",
+   "from": "HE5B",
+   "to": "M2",
+   "total": {
+    "mass_flow": 6809.77584,
+    "mass_unit": "kg/hr",
+    "h_mass": -3004.63324,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -5683577.46,
+    "energy_unit": "cal/sec",
+    "T": 495.768733,
+    "T_unit": "C",
+    "P": 70.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 6809.77584,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S37",
+   "class": "MATERIAL",
+   "from": "HE6B",
+   "to": "M2",
+   "total": {
+    "mass_flow": 13727.6434,
+    "mass_unit": "kg/hr",
+    "h_mass": -3001.4503,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -11445233.1,
+    "energy_unit": "cal/sec",
+    "T": 501.392345,
+    "T_unit": "C",
+    "P": 70.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 13727.6434,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S38",
+   "class": "MATERIAL",
+   "from": "M2",
+   "to": "TURB1",
+   "total": {
+    "mass_flow": 20537.4192,
+    "mass_unit": "kg/hr",
+    "h_mass": -3002.5057,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -17128810.6,
+    "energy_unit": "cal/sec",
+    "T": 499.52728,
+    "T_unit": "C",
+    "P": 70.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 20537.4192,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S39",
+   "class": "MATERIAL",
+   "from": "TURB1",
+   "to": "COND",
+   "total": {
+    "mass_flow": 20537.4192,
+    "mass_unit": "kg/hr",
+    "h_mass": -3288.41381,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -18759870.3,
+    "energy_unit": "cal/sec",
+    "T": 27.3840991,
+    "T_unit": "C",
+    "P": 0.03,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 20537.4192,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    },
+    "CIPSD": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CH4": 0.0,
+      "H2": 0.0,
+      "C(S)": 0.0,
+      "AR": 0.0,
+      "H2O": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "N2": 0.0,
+      "O2": 0.0
+     }
+    }
+   }
+  }
+ ],
+ "units": {
+  "INSET": "METCBAR",
+  "OUTSET": "METCBAR",
+  "calorie_J": 4.1868,
+  "note": "块负荷与流股焓流保留各节点自己的 UnitString，不假设 kW（MET 的热负荷是 cal/sec，ENG 是 Btu/hr）。1 cal = 4.1868 J 经真机核对（同一结果在 MET 与 SI 下各读一次，比值 4.1868）。"
+ },
+ "discovery": {
+  "mode": "recipe",
+  "nodes_read": 1336,
+  "complete": false,
+  "unmatched_block_types": [
+   "Cyclone"
+  ],
+  "unverified_paths": [
+   "HEAT 流股负荷节点（块负荷已计，流股 duty 未读取）",
+   "Sep: QCALC",
+   "非 MIXED 子流股 $TOTAL",
+   "非 MIXED 子流股 CIPSD"
+  ]
+ }
+}

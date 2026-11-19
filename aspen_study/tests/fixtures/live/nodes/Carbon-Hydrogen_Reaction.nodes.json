@@ -1,0 +1,226 @@
+{
+ "schema": "aspen-node-verification/1",
+ "created": "2026-11-19T23:08:46+08:00",
+ "model": {
+  "file": "Carbon-Hydrogen Reaction.bkp",
+  "sha256": "0773ce33ca2537ba04a27ad1ad0b073760cc4f44386397d6043e07a74b69840e",
+  "simulator": "aspen-plus",
+  "version": "41.0",
+  "progid": "Apwn.Document.41.0",
+  "adapter": "aspen-plus-com",
+  "source_unchanged": true
+ },
+ "calorie_J": 4.1868,
+ "run": {
+  "state": "ok",
+  "run_completed": true,
+  "run_error": null
+ },
+ "units": {
+  "INSET": "METCHEM",
+  "OUTSET": "METCHEM",
+  "calorie_J": 4.1868,
+  "note": "块负荷与流股焓流保留各节点自己的 UnitString，不假设 kW（MET 的热负荷是 cal/sec，ENG 是 Btu/hr）。1 cal = 4.1868 J 经真机核对（同一结果在 MET 与 SI 下各读一次，比值 4.1868）。"
+ },
+ "blocks": [
+  {
+   "id": "RGIBBS",
+   "type": "RGibbs",
+   "target": true,
+   "recipe": "verified",
+   "status": "ok",
+   "ports": {
+    "in": [
+     "H2",
+     "C"
+    ],
+    "out": [
+     "PRODUCTS"
+    ]
+   },
+   "energy_read": [
+    {
+     "kind": "heat",
+     "value": 0.157882866,
+     "unit": "Gcal/hr",
+     "path": "\\Data\\Blocks\\RGIBBS\\Output\\QCALC"
+    }
+   ],
+   "output_children": [
+    "Unit Set",
+    "Prop Data",
+    "User Table",
+    "User Tree",
+    "ATOM",
+    "BAL_ENTH_GEN",
+    "BAL_ENTH_OUT",
+    "BAL_FEEDCO2E",
+    "BAL_MASG_FLW",
+    "BAL_MASG_TFL",
+    "BAL_MASI_TFL",
+    "BAL_MASO_FLW",
+    "BAL_MASO_TFL",
+    "BAL_MASR_TFL",
+    "BAL_MOLG_FLW",
+    "BAL_MOLG_TFL",
+    "BAL_MOLI_TFL",
+    "BAL_MOLO_FLW",
+    "BAL_MOLO_TFL",
+    "BAL_MOLR_TFL",
+    "BAL_NETSTRCO2E",
+    "BAL_NNCG_FLW",
+    "BAL_NNCI_FLW",
+    "BAL_NNCO_FLW",
+    "BAL_NNCR_FLW",
+    "BAL_PRODCO2E",
+    "BAL_TOTCO2E",
+    "BAL_UTILCO2E",
+    "BLKMSG",
+    "BLKSTAT",
+    "B_PRES",
+    "B_TEMP",
+    "B_TEMP2",
+    "B_VFRAC",
+    "B_VFRAC2",
+    "CSD-PHASE",
+    "DESCRIPTION",
+    "GUID",
+    "K",
+    "L1_ENTH",
+    "L1_ENTR",
+    "L1_MW",
+    "L1_RHO",
+    "L2_ENTH",
+    "L2_ENTR",
+    "L2_MW",
+    "L2_RHO",
+    "LIQ_ENTH",
+    "LIQ_RATIO",
+    "L_ENTR",
+    "MOLEFLMX",
+    "MOLEFRAC",
+    "MW_GAS",
+    "MW_LIQ",
+    "NPHASE_OUT",
+    "PER_ERROR",
+    "PHASE-FRAC",
+    "PHASE_OUT",
+    "PLACED-STRM",
+    "PROPSTAT",
+    "QCALC",
+    "QNET",
+    "RHO_GAS",
+    "RHO_LIQ",
+    "ROWSTATSG",
+    "SOL_FLOW",
+    "TOT_ENTH_ABS",
+    "TOT_ENTH_REL",
+    "TOT_MASS_ABS",
+    "TOT_MASS_REL",
+    "TOT_MOLE_ABS",
+    "TOT_MOLE_REL",
+    "UTIL_CO2RATE",
+    "UTIL_COST",
+    "UTIL_DUTY",
+    "UTL_ID",
+    "UTL_USAGE",
+    "VAP_ENTH",
+    "V_ENTR",
+    "X",
+    "X1",
+    "X2",
+    "Y"
+   ],
+   "candidates": [
+    {
+     "path": "\\Data\\Blocks\\RGIBBS\\Output\\QCALC",
+     "exists": true,
+     "readable": true,
+     "scalar": true,
+     "value": 0.157882866,
+     "unit": "Gcal/hr"
+    },
+    {
+     "path": "\\Data\\Blocks\\RGIBBS\\Output\\QNET",
+     "exists": true,
+     "readable": true,
+     "scalar": true,
+     "value": 0.157882866,
+     "unit": "Gcal/hr"
+    },
+    {
+     "path": "\\Data\\Blocks\\RGIBBS\\Output\\B_TEMP",
+     "exists": true,
+     "readable": true,
+     "scalar": true,
+     "value": 764.229764,
+     "unit": "C"
+    },
+    {
+     "path": "\\Data\\Blocks\\RGIBBS\\Output\\HX_DUTY",
+     "exists": false,
+     "readable": false,
+     "error": "节点不存在"
+    },
+    {
+     "path": "\\Data\\Blocks\\RGIBBS\\Output\\DUTY",
+     "exists": false,
+     "readable": false,
+     "error": "节点不存在"
+    },
+    {
+     "path": "\\Data\\Blocks\\RGIBBS\\Output\\NET_DUTY",
+     "exists": false,
+     "readable": false,
+     "error": "节点不存在"
+    },
+    {
+     "path": "\\Data\\Blocks\\RGIBBS\\Output\\B_PRES",
+     "exists": true,
+     "readable": true,
+     "scalar": true,
+     "value": 1.0,
+     "unit": "bar"
+    },
+    {
+     "path": "\\Data\\Blocks\\RGIBBS\\Output\\POC",
+     "exists": false,
+     "readable": false,
+     "error": "节点不存在"
+    },
+    {
+     "path": "\\Data\\Blocks\\RGIBBS\\Output\\PRES_OUT",
+     "exists": false,
+     "readable": false,
+     "error": "节点不存在"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 764.229764,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\RGIBBS\\Output\\B_TEMP"
+   }
+  }
+ ],
+ "coverage": {
+  "types": {
+   "Compr": false,
+   "MCompr": false,
+   "RStoic": false,
+   "RYield": false,
+   "RGibbs": true,
+   "RCSTR": false,
+   "Flash3": false
+  },
+  "turbine": false,
+  "missing": [
+   "Compr",
+   "MCompr",
+   "RStoic",
+   "RYield",
+   "RCSTR",
+   "Flash3",
+   "turbine"
+  ]
+ }
+}

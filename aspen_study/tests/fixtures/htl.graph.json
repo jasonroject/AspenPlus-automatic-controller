@@ -1,0 +1,388 @@
+{
+ "schema": "aspen-model-graph/1",
+ "model": {
+  "file": "HTL-HR.bkp",
+  "sha256": "4c93329ad8d44a44857ee63e18b4a1567aa7762aa1c4b9929b09d325e7021bed",
+  "simulator": "aspen-plus",
+  "version": "fixture"
+ },
+ "status": {
+  "cvstat": 0,
+  "cvstat_accepted": [
+   0
+  ],
+  "run_completed": true,
+  "errors": [],
+  "warnings": [
+   "COOLER, REACTOR, VALVE: completed with warnings (from audited export)"
+  ],
+  "block_status": {
+   "PUMP": 0,
+   "HEATCHAG": 0,
+   "HEATER": 0,
+   "REACTOR": 2,
+   "COOLER": 0,
+   "VALVE": 0,
+   "B6": 0
+  },
+  "block_status_accepted": [
+   0,
+   2
+  ]
+ },
+ "units": {
+  "note": "fixture；块负荷与焓流均已为 kW"
+ },
+ "components": [
+  {
+   "id": "H2O",
+   "cas": "7732-18-5"
+  },
+  {
+   "id": "GUAIA-01",
+   "cas": "90-05-1",
+   "alias": "C7H8O2"
+  },
+  {
+   "id": "CAT",
+   "cas": "120-80-9",
+   "alias": "C6H6O2"
+  },
+  {
+   "id": "O-CRE-01",
+   "cas": "95-48-7",
+   "alias": "C7H8O"
+  },
+  {
+   "id": "CO2",
+   "cas": "124-38-9"
+  },
+  {
+   "id": "CH4",
+   "cas": "74-82-8"
+  },
+  {
+   "id": "H2",
+   "cas": "1333-74-0"
+  }
+ ],
+ "blocks": [
+  {
+   "id": "PUMP",
+   "type": "Pump",
+   "ports": {
+    "in": [
+     "FEED"
+    ],
+    "out": [
+     "S2"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "work",
+     "value": 2.1717208,
+     "unit": "kW",
+     "path": "\\Data\\Blocks\\PUMP\\Output\\WNET"
+    }
+   ]
+  },
+  {
+   "id": "HEATCHAG",
+   "type": "HeatX",
+   "ports": {
+    "in": [
+     "S2",
+     "S4"
+    ],
+    "out": [
+     "S9",
+     "S10"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 39.265041,
+     "unit": "kW",
+     "path": "\\Data\\Blocks\\HEATCHAG\\Output\\HX_DUTY",
+     "role_hint": "exchanged"
+    }
+   ]
+  },
+  {
+   "id": "HEATER",
+   "type": "Heater",
+   "ports": {
+    "in": [
+     "S9"
+    ],
+    "out": [
+     "S3"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 4.0017766538844,
+     "unit": "kW",
+     "path": "\\Data\\Blocks\\HEATER\\Output\\QCALC"
+    }
+   ]
+  },
+  {
+   "id": "REACTOR",
+   "type": "RPlug",
+   "ports": {
+    "in": [
+     "S3"
+    ],
+    "out": [
+     "S4"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 6.098953051188,
+     "unit": "kW",
+     "path": "\\Data\\Blocks\\REACTOR\\Output\\QCALC"
+    }
+   ]
+  },
+  {
+   "id": "COOLER",
+   "type": "Heater",
+   "ports": {
+    "in": [
+     "S10"
+    ],
+    "out": [
+     "S5"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "heat",
+     "value": -7.449536563632,
+     "unit": "kW",
+     "path": "\\Data\\Blocks\\COOLER\\Output\\QCALC"
+    }
+   ]
+  },
+  {
+   "id": "VALVE",
+   "type": "Valve",
+   "ports": {
+    "in": [
+     "S5"
+    ],
+    "out": [
+     "S6"
+    ]
+   },
+   "energy": []
+  },
+  {
+   "id": "B6",
+   "type": "Flash2",
+   "ports": {
+    "in": [
+     "S6"
+    ],
+    "out": [
+     "S7",
+     "S8"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 0.25470638624736003,
+     "unit": "kW",
+     "path": "\\Data\\Blocks\\B6\\Output\\QCALC"
+    }
+   ]
+  }
+ ],
+ "streams": [
+  {
+   "id": "FEED",
+   "class": "MATERIAL",
+   "from": "BOUNDARY",
+   "to": "PUMP",
+   "total": {
+    "mass_flow": 100.0,
+    "mass_unit": "kg/hr",
+    "enthalpy_flow": -388.560693454,
+    "energy_unit": "kW",
+    "T": 25,
+    "T_unit": "C"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "H2O": 90.0,
+      "GUAIA-01": 10.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S2",
+   "class": "MATERIAL",
+   "from": "PUMP",
+   "to": "HEATCHAG",
+   "total": {
+    "mass_flow": 100.0,
+    "mass_unit": "kg/hr",
+    "enthalpy_flow": -386.38897238199996,
+    "energy_unit": "kW",
+    "T": 26,
+    "T_unit": "C"
+   }
+  },
+  {
+   "id": "S9",
+   "class": "MATERIAL",
+   "from": "HEATCHAG",
+   "to": "HEATER",
+   "total": {
+    "mass_flow": 100.0,
+    "mass_unit": "kg/hr",
+    "enthalpy_flow": -347.123931528,
+    "energy_unit": "kW",
+    "T": 300,
+    "T_unit": "C"
+   }
+  },
+  {
+   "id": "S3",
+   "class": "MATERIAL",
+   "from": "HEATER",
+   "to": "REACTOR",
+   "total": {
+    "mass_flow": 100.0,
+    "mass_unit": "kg/hr",
+    "enthalpy_flow": -343.12215436099996,
+    "energy_unit": "kW",
+    "T": 325,
+    "T_unit": "C"
+   }
+  },
+  {
+   "id": "S4",
+   "class": "MATERIAL",
+   "from": "REACTOR",
+   "to": "HEATCHAG",
+   "total": {
+    "mass_flow": 100.000103,
+    "mass_unit": "kg/hr",
+    "enthalpy_flow": -337.02320149253995,
+    "energy_unit": "kW",
+    "T": 325,
+    "T_unit": "C"
+   }
+  },
+  {
+   "id": "S10",
+   "class": "MATERIAL",
+   "from": "HEATCHAG",
+   "to": "COOLER",
+   "total": {
+    "mass_flow": 100.000103,
+    "mass_unit": "kg/hr",
+    "enthalpy_flow": -376.2882420844901,
+    "energy_unit": "kW",
+    "T": 60,
+    "T_unit": "C"
+   }
+  },
+  {
+   "id": "S5",
+   "class": "MATERIAL",
+   "from": "COOLER",
+   "to": "VALVE",
+   "total": {
+    "mass_flow": 100.000103,
+    "mass_unit": "kg/hr",
+    "enthalpy_flow": -383.737778803505,
+    "energy_unit": "kW",
+    "T": 40,
+    "T_unit": "C"
+   }
+  },
+  {
+   "id": "S6",
+   "class": "MATERIAL",
+   "from": "VALVE",
+   "to": "B6",
+   "total": {
+    "mass_flow": 100.000103,
+    "mass_unit": "kg/hr",
+    "enthalpy_flow": -383.737778803505,
+    "energy_unit": "kW",
+    "T": 40,
+    "T_unit": "C"
+   }
+  },
+  {
+   "id": "S7",
+   "class": "MATERIAL",
+   "from": "B6",
+   "to": "BOUNDARY",
+   "total": {
+    "mass_flow": 99.1357513,
+    "mass_unit": "kg/hr",
+    "enthalpy_flow": -382.3779177359126,
+    "energy_unit": "kW",
+    "T": 40,
+    "T_unit": "C",
+    "vapor_fraction": 0.0
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "H2O": 84.544290579,
+      "CAT": 3.2,
+      "O-CRE-01": 2.300864712016662,
+      "GUAIA-01": 9.090596009
+     }
+    }
+   }
+  },
+  {
+   "id": "S8",
+   "class": "MATERIAL",
+   "from": "B6",
+   "to": "BOUNDARY",
+   "total": {
+    "mass_flow": 0.864351798,
+    "mass_unit": "kg/hr",
+    "enthalpy_flow": -1.1051555060624587,
+    "energy_unit": "kW",
+    "T": 40,
+    "T_unit": "C",
+    "vapor_fraction": 1.0
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CO2": 0.0339951446,
+      "CH4": 0.016028400793,
+      "H2": 0.0143282533,
+      "H2O": 0.8
+     }
+    }
+   }
+  }
+ ],
+ "discovery": {
+  "mode": "fixture",
+  "complete": true,
+  "unmatched_block_types": []
+ }
+}

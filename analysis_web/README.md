@@ -1,5 +1,9 @@
 # Process Studio 前端与开发者文档
 
+## Aspen 体检与建议页（`aspen-advice.html`）
+
+上传 `python -m aspen_study probe` 输出的 `probe-summary.json`（必需，可加 `graph.json`、`roles.json`，或它们的 `.zip`），在浏览器里完成分析：逐块能量表（kW + 原生单位 + 是否真机验证）和规则式模型建议（`aspen-advice/1`，可下载）。按 `schema` 字段而非文件名识别文件；错版本、缺字段、不同模型的文件会给出中文错误。引擎 `aspen-advice.mjs`、规则表 `data/aspen-advice-rules.json`、zip 读取 `aspen-zip.mjs` 在首次选择文件时才懒加载；规则表与 Python 的 `aspen_study advise` 共用。网站不会启动 Aspen。示例包在 `data/aspen-probe-example/`，schema 在 `schemas/`。测试：`node --test universal_pipeline/aspen-advice.test.mjs`。
+
 ## 当前工作区（2026-11-18）
 
 统一中英文入口为 `index.html` → `universal.html`（导入与衡算）、`models.html`（本地 Aspen 扫描与模型文件）和 `pipeline.html`（既有 HTL 参考预测）。全局语言切换保留正在检查的项目、工况和展开状态；输入或文件改变后旧计算与导出立即失效。可追溯 SVG / CSV 图表与详细数据按层展开，主页仍采用黑白 Inter 设计。
