@@ -2,9 +2,9 @@
 
     python serve_web.py                 public static files only (what the online site serves)
     python serve_web.py --local         + local mode: POST /api/local/probe runs `python -m aspen_study probe <model>`
-                                        on this machine and returns the SAME three-file result package the online
-                                        site accepts by upload (probe-summary.json + graph.json + roles.json,
-                                        optionally zipped; see aspen_study/result_package.py)
+                                        on this machine and returns the SAME result package the online
+                                        site accepts by upload (probe-summary.json + graph.json + roles.json
+                                        + advice.json, optionally zipped; see aspen_study/result_package.py)
 
 Local mode never uploads or serves the model: the request carries a path on this PC, Aspen runs here, only the
 JSON package comes back. It needs Aspen Plus + pywin32 (Windows); the static mode needs neither.
@@ -72,7 +72,8 @@ class LocalProbeService:
         return model
 
     def probe(self, payload):
-        from aspen_study.result_package import (PackageError, describe, package_from_probe_dir, validate_package, zip_bytes)
+        from aspen_study.result_package import (PackageError, ProbeOutputMissing, describe, package_from_probe_dir,
+                                                validate_package, zip_bytes)
         if not isinstance(payload, dict):
             raise ValueError("expected a JSON object")
         model = self.check_model(payload.get("model_path"))
@@ -85,11 +86,14 @@ class LocalProbeService:
             with tempfile.TemporaryDirectory(prefix="aspen-package-") as work:
                 code, out, err = self.runner(model, work, timeout_s)
                 try:
-                    parts = package_from_probe_dir(work)
-                except PackageError as exc:
+                    # summary + graph (+ drafted roles) -> consistency checks -> advice.json (advice.advise, schema-validated)
+                    parts = package_from_probe_dir(work, with_advice=True)
+                except ProbeOutputMissing as exc:
                     detail = " ".join((err or out or "").split())[-400:]
                     raise ProbeFailed(f"probe exit code {code}: {'; '.join(exc.problems)}" + (f" ({detail})" if detail else ""),
                                       code) from exc
+                except PackageError as exc:        # package_problems / schema errors: nothing is emitted
+                    raise PackageProblems(exc.problems, code) from exc
             report = validate_package(parts)
             blob = zip_bytes(parts)
         finally:
@@ -107,6 +111,14 @@ class LocalProbeService:
     def zip_for(self, package_id):
         with self._lock:
             return self._packages.get(package_id)
+
+
+class PackageProblems(RuntimeError):
+    """The probe produced files that do not form a valid package (inconsistent, wrong schema ...); no package is emitted."""
+
+    def __init__(self, problems, code):
+        super().__init__("; ".join(problems))
+        self.problems, self.code = list(problems), code
 
 
 class ProbeFailed(RuntimeError):
@@ -211,7 +223,7 @@ class LocalHandler(PublicHandler):
             if not self.trusted_host():
                 return self.send_error(403, "Forbidden host")
             return self.send_json({"local": True, "probe": "python -m aspen_study probe",
-                                   "package_files": ["probe-summary.json", "graph.json", "roles.json"]})
+                                   "package_files": ["probe-summary.json", "graph.json", "roles.json", "advice.json"]})
         if path.startswith("/api/local/package/") and path.endswith(".zip"):
             if not self.trusted_host():
                 return self.send_error(403, "Forbidden host")
@@ -250,6 +262,9 @@ class LocalHandler(PublicHandler):
             return self.send_json({"error": str(exc)}, 409)
         except ProbeFailed as exc:
             return self.send_json({"error": str(exc), "exit_code": exc.code}, 502)
+        except PackageProblems as exc:
+            return self.send_json({"error": "结果包不一致或无效，未生成：" + str(exc), "problems": exc.problems,
+                                   "exit_code": exc.code}, 422)
         except Exception as exc:                              # AspenError etc. never leak a traceback
             return self.send_json({"error": f"{type(exc).__name__}: {exc}"}, 500)
 

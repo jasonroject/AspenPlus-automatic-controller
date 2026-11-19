@@ -10,7 +10,7 @@ private temp dir, run, read, closed (the same adapter as `probe`).
 `verify` writes, per model, into aspen_study/tests/fixtures/live/nodes/ (commit these files):
     <stem>.nodes.json            aspen-node-verification/1: per target block, every candidate node read (value+UnitString),
                                  the child names under ...\\Output, which node the recipe used, and the work-sign check
-    <stem>.probe-summary.json    the normal aspen-probe/1 summary of the same run
+    <stem>.probe-summary.json    the normal aspen-probe/1.1 summary of the same run
     <stem>.graph.json            the aspen-model-graph/1 of the same run
 and `aspen_study/tests/test_live_node_fixtures.py` consumes them (every test is skipped until a fixture exists).
 Target types: Compr, MCompr, RStoic, RYield, RGibbs, RCSTR, Flash3 (+ turbine = a Compr whose outlet pressure is below its inlet).
@@ -152,7 +152,7 @@ def verify_model(model, *, calorie_J=4.1868, timeout_s=1200, adapter_factory=Non
             blocks.append(entry)
     finally:
         adapter.close()
-    rows = energy_table(graph, report, calorie_J)
+    rows = energy_table(graph, report, calorie_J, adapter.energy_verified() if hasattr(adapter, "energy_verified") else None)
     summary = build_summary(graph, adapter, rows, report, time.monotonic() - started, calorie_J, adapter.source_unchanged)
     doc = {"schema": SCHEMA, "created": datetime.now().astimezone().isoformat(timespec="seconds"),
            "model": dict(graph["model"], source_unchanged=adapter.source_unchanged), "calorie_J": calorie_J,
