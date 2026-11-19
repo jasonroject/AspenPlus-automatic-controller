@@ -1,0 +1,125 @@
+{
+ "schema": "aspen-probe/1.1",
+ "created": "2026-11-19T22:21:54+08:00",
+ "model": {
+  "file": "mch.bkp",
+  "sha256": "57bce0dbe0f47156aabbf690df0c6f65d0d3b64b2236604027e3983165506abd",
+  "simulator": "aspen-plus",
+  "version": "41.0",
+  "progid": "Apwn.Document.41.0",
+  "adapter": "aspen-plus-com",
+  "source_unchanged": true
+ },
+ "status": {
+  "state": "ok",
+  "run_completed": true,
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "raw_status": {
+   "UOSSTAT": 0,
+   "UOSSTAT2": 8,
+   "CVSTAT": 2,
+   "CSSTAT": 2,
+   "RSTAT": 0,
+   "PPSTAT": 2,
+   "SENSSTAT": 2,
+   "ITSTAT": 0,
+   "SSTAT": 0
+  },
+  "run_status_lines": [],
+  "run_seconds": 2.8
+ },
+ "units": {
+  "INSET": "ENG",
+  "OUTSET": "ENG",
+  "calorie_J": 4.1868,
+  "note": "块负荷与流股焓流保留各节点自己的 UnitString；MET 单位集的热负荷是 cal/sec，不是 kW。1 cal = 4.1868 J 经真机核对（同一结果在 MET 与 SI 下各读一次，比值 4.1868）。"
+ },
+ "calorie_J": 4.1868,
+ "blocks": [
+  {
+   "id": "B1",
+   "type": "RadFrac",
+   "status": "ok",
+   "blkstat": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": -24026577.5,
+     "unit": "Btu/hr",
+     "kW": -7041.494780500836,
+     "path": "\\Data\\Blocks\\B1\\Output\\COND_DUTY",
+     "role_hint": "condenser",
+     "verified": true
+    },
+    {
+     "kind": "heat",
+     "value": 31915341.1,
+     "unit": "Btu/hr",
+     "kW": 9353.46317108851,
+     "path": "\\Data\\Blocks\\B1\\Output\\REB_DUTY",
+     "role_hint": "reboiler",
+     "verified": true
+    }
+   ],
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": null
+  }
+ ],
+ "totals_kW": {
+  "heating": 9353.463171,
+  "cooling": -7041.494781,
+  "work": 0.0,
+  "internal_exchange": 0.0
+ },
+ "energy_gaps": [],
+ "discovery": {
+  "mode": "recipe",
+  "nodes_read": 89,
+  "complete": true,
+  "unmatched_block_types": []
+ },
+ "cleanup": {
+  "killed_pids": []
+ },
+ "elapsed_seconds": 11.3,
+ "study": {
+  "ok": true,
+  "dir": "study",
+  "manifest": "study/manifest.json",
+  "cases": [
+   {
+    "id": "case-1",
+    "status": "accepted_with_warnings"
+   }
+  ],
+  "note": "角色为自动草稿，需人工确认产品流股与功能单位后才可用于 LCA 结论"
+ },
+ "migrated_from": "aspen-probe/1",
+ "unverified_paths": [],
+ "totals_complete": true,
+ "group_totals": {
+  "heating": {
+   "kW": 9353.463171,
+   "complete": true
+  },
+  "cooling": {
+   "kW": -7041.494781,
+   "complete": true
+  },
+  "shaft_work": {
+   "kW": 0.0,
+   "complete": true
+  },
+  "internal_exchange": {
+   "kW": 0.0,
+   "complete": true
+  },
+  "overall": {
+   "kW": 2311.968391,
+   "complete": true
+  }
+ }
+}

@@ -1,0 +1,15 @@
+/* 最小功能样式；视觉设计由设计侧接管。 */
+#advice-drop{border:1px dashed #888;border-radius:12px;padding:24px;text-align:center;margin:16px 0}
+#advice-drop[data-active]{background:#f2f2f2}
+#advice-error{border:1px solid #b00020;border-radius:8px;padding:12px;color:#b00020;margin:12px 0}
+.advice-list{list-style:none;padding:0;display:grid;gap:12px}
+.advice-item{border:1px solid #ccc;border-radius:10px;padding:12px 14px}
+.advice-item[data-severity=critical]{border-color:#b00020}
+.advice-item[data-severity=warn]{border-color:#c77700}
+.advice-sev{font-size:12px;border:1px solid currentColor;border-radius:999px;padding:1px 8px}
+.advice-meta{display:block;font-size:12px;color:#666;margin-top:2px}
+.energy-table{border-collapse:collapse;width:100%;font-size:14px}
+.energy-table th,.energy-table td{border-bottom:1px solid #ddd;padding:4px 8px;text-align:left}
+.energy-table td.num{text-align:right;font-variant-numeric:tabular-nums}
+.energy-table tr[data-status=warning]{background:#fff8e6}
+.energy-table tr[data-status=error]{background:#fdecee}
