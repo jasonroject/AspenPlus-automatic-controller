@@ -60,7 +60,7 @@ class SimulatorAdapter(ABC):
     @abstractmethod
     def read(self, path: str) -> Reading: ...
 
-    def run(self, timeout_s: int = 1200) -> None:
+    def run(self, timeout_s: int = 1200, should_stop=None) -> None:
         raise NotImplementedError(f"{self.name} cannot run simulations")
 
     def close(self) -> None:

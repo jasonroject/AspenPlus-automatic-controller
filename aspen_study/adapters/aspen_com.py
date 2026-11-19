@@ -23,7 +23,7 @@ from pathlib import Path
 from . import aspen_rules as R
 from .aspen_process import WindowsProcessOps, aspen_pids, kill_ours, started_by_us
 from .base import Reading, RunStatus, SimulatorAdapter
-from .errors import (AspenConnectionLost, AspenError, AspenTimeout, AspenUnavailable, ModelOpenError)
+from .errors import (AspenConnectionLost, AspenError, AspenStopped, AspenTimeout, AspenUnavailable, ModelOpenError)
 
 STATUS_BRANCH = r"\Data\Results Summary\Run-Status\Output"
 UOSSTAT2 = STATUS_BRANCH + r"\UOSSTAT2"
@@ -265,7 +265,15 @@ class AspenPlusCOMAdapter(SimulatorAdapter):
             return Reading(path, error=self._brief(exc))
 
     # ------------------------------------------------------------------ 运行
-    def run(self, timeout_s=None):
+    @property
+    def document(self):
+        """The private Aspen document (COM object) opened by open(); None before open() / after close().
+        For callers that still write inputs or capture legacy exports through the COM tree."""
+        return self._doc
+
+    def run(self, timeout_s=None, should_stop=None):
+        """Reinit + Run2(1), poll until finished. Timeout or should_stop() -> engine.Stop() (then, if that does
+        not work, kill only the Aspen process this adapter started) and AspenTimeout / AspenStopped."""
         limit = self.timeout_s if timeout_s is None else timeout_s
         engine = self._doc.Engine
         started = time.monotonic()
@@ -275,6 +283,9 @@ class AspenPlusCOMAdapter(SimulatorAdapter):
             engine.Reinit()
             engine.Run2(1)
             while engine.IsRunning:
+                if should_stop is not None and should_stop():
+                    self._stop_engine(engine)
+                    raise AspenStopped("已按请求停止 Aspen 运行；这次运行没有可用结果。")
                 if time.monotonic() - started > limit:
                     self._stop_engine(engine)
                     raise AspenTimeout(f"Aspen 运行超过 {limit} 秒，已请求停止。可用 --timeout 调大，或检查模型是否收敛。")

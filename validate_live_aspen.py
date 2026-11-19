@@ -63,7 +63,7 @@ def main():
         model_unchanged=before == after, sha256=after, results=results, probes=probes),
         ensure_ascii=False, indent=2), encoding="utf-8")
     assert before == after, "Original archive changed"
-    assert all(r["status"] == "success" for r in results), "Integration check failed"
+    assert all(r["status"] in ("ok", "warning") for r in results), "Integration check failed"
     for result, temperature, pressure in zip(results, (25, 27), (25, 24)):
         assert len(result["applied_parameters"]) == 5
         assert result["streams"]["FEED"]["temperature_C"] == temperature

@@ -19,3 +19,7 @@ class AspenTimeout(AspenError):
 
 class AspenConnectionLost(AspenError):
     """COM 服务器中途消失（崩溃或被结束）。"""
+
+
+class AspenStopped(AspenError):
+    """调用方请求停止（should_stop 返回真）；引擎已请求停止，结果不可用。"""
