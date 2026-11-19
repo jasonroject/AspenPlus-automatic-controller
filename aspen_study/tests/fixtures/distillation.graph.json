@@ -1,0 +1,279 @@
+{
+ "schema": "aspen-model-graph/1",
+ "model": {
+  "file": "btx-column.bkp",
+  "sha256": "4572d5b723dffbcfb54120ba99a1db479f09953dc7ea5b83c665bf74d1b1cd11",
+  "simulator": "aspen-plus",
+  "version": "fixture"
+ },
+ "status": {
+  "cvstat": 0,
+  "cvstat_accepted": [
+   0
+  ],
+  "run_completed": true,
+  "errors": [],
+  "warnings": []
+ },
+ "components": [
+  {
+   "id": "BENZENE",
+   "cas": "71-43-2"
+  },
+  {
+   "id": "TOLUENE",
+   "cas": "108-88-3"
+  },
+  {
+   "id": "N2",
+   "cas": "7727-37-9"
+  }
+ ],
+ "blocks": [
+  {
+   "id": "P1",
+   "type": "Pump",
+   "ports": {
+    "in": [
+     "F1"
+    ],
+    "out": [
+     "S2"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "work",
+     "value": 1.5,
+     "unit": "kW",
+     "path": "\\Data\\Blocks\\P1\\Output\\WNET"
+    }
+   ]
+  },
+  {
+   "id": "H1",
+   "type": "Heater",
+   "ports": {
+    "in": [
+     "S2"
+    ],
+    "out": [
+     "S3"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 120.0,
+     "unit": "kW",
+     "path": "\\Data\\Blocks\\H1\\Output\\QCALC"
+    }
+   ]
+  },
+  {
+   "id": "C1",
+   "type": "RadFrac",
+   "ports": {
+    "in": [
+     "S3"
+    ],
+    "out": [
+     "BZPROD",
+     "VENT",
+     "BTMS"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "heat",
+     "value": -400.0,
+     "unit": "kW",
+     "path": "\\Data\\Blocks\\C1\\Output\\COND_DUTY",
+     "role_hint": "condenser"
+    },
+    {
+     "kind": "heat",
+     "value": 450.0,
+     "unit": "kW",
+     "path": "\\Data\\Blocks\\C1\\Output\\REB_DUTY",
+     "role_hint": "reboiler"
+    }
+   ]
+  },
+  {
+   "id": "CL1",
+   "type": "Heater",
+   "ports": {
+    "in": [
+     "BTMS"
+    ],
+    "out": [
+     "TOLPROD"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "heat",
+     "value": -100.0,
+     "unit": "kW",
+     "path": "\\Data\\Blocks\\CL1\\Output\\QCALC"
+    }
+   ]
+  }
+ ],
+ "streams": [
+  {
+   "id": "F1",
+   "class": "MATERIAL",
+   "from": "BOUNDARY",
+   "to": "P1",
+   "total": {
+    "mass_flow": 1000.0,
+    "mass_unit": "kg/hr",
+    "enthalpy_flow": 50.0,
+    "energy_unit": "kW",
+    "T": 25,
+    "T_unit": "C"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "BENZENE": 498.0,
+      "TOLUENE": 499.0,
+      "N2": 3.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S2",
+   "class": "MATERIAL",
+   "from": "P1",
+   "to": "H1",
+   "total": {
+    "mass_flow": 1000.0,
+    "mass_unit": "kg/hr",
+    "enthalpy_flow": 51.5,
+    "energy_unit": "kW",
+    "T": 26,
+    "T_unit": "C"
+   }
+  },
+  {
+   "id": "S3",
+   "class": "MATERIAL",
+   "from": "H1",
+   "to": "C1",
+   "total": {
+    "mass_flow": 1000.0,
+    "mass_unit": "kg/hr",
+    "enthalpy_flow": 171.5,
+    "energy_unit": "kW",
+    "T": 90,
+    "T_unit": "C"
+   }
+  },
+  {
+   "id": "BZPROD",
+   "class": "MATERIAL",
+   "from": "C1",
+   "to": "BOUNDARY",
+   "total": {
+    "mass_flow": 490.0,
+    "mass_unit": "kg/hr",
+    "enthalpy_flow": 78.0,
+    "energy_unit": "kW",
+    "T": 80,
+    "T_unit": "C",
+    "vapor_fraction": 0.0
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "BENZENE": 486.0,
+      "TOLUENE": 4.0
+     }
+    }
+   }
+  },
+  {
+   "id": "VENT",
+   "class": "MATERIAL",
+   "from": "C1",
+   "to": "BOUNDARY",
+   "total": {
+    "mass_flow": 5.0,
+    "mass_unit": "kg/hr",
+    "enthalpy_flow": 2.0,
+    "energy_unit": "kW",
+    "T": 80,
+    "T_unit": "C",
+    "vapor_fraction": 1.0
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "N2": 3.0,
+      "BENZENE": 2.0
+     }
+    }
+   }
+  },
+  {
+   "id": "BTMS",
+   "class": "MATERIAL",
+   "from": "C1",
+   "to": "CL1",
+   "total": {
+    "mass_flow": 505.0,
+    "mass_unit": "kg/hr",
+    "enthalpy_flow": 141.5,
+    "energy_unit": "kW",
+    "T": 110,
+    "T_unit": "C",
+    "vapor_fraction": 0.0
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "BENZENE": 10.0,
+      "TOLUENE": 495.0
+     }
+    }
+   }
+  },
+  {
+   "id": "TOLPROD",
+   "class": "MATERIAL",
+   "from": "CL1",
+   "to": "BOUNDARY",
+   "total": {
+    "mass_flow": 505.0,
+    "mass_unit": "kg/hr",
+    "enthalpy_flow": 41.5,
+    "energy_unit": "kW",
+    "T": 40,
+    "T_unit": "C",
+    "vapor_fraction": 0.0
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "BENZENE": 10.0,
+      "TOLUENE": 495.0
+     }
+    }
+   }
+  }
+ ],
+ "discovery": {
+  "mode": "fixture",
+  "complete": true,
+  "unmatched_block_types": []
+ }
+}

@@ -60,3 +60,38 @@ study/
 ```bash
 python -m unittest discover -s aspen_study/tests -t .
 ```
+
+## 命令行
+
+```bash
+# 自动分类 + 合并覆盖（roles.yaml 需要 PyYAML；也可用 roles.json）
+python -m aspen_study.cli classify --graph graph.json --override roles.yaml --out roles.json
+# 生成 aspen-study/2 研究包（需要 Node.js 调用 universal-core）
+python -m aspen_study.cli assess --graph graph.json --roles roles.json --study-id demo --out-dir study/ [--factors my-factors.json] [--calorie-J 4.1868]
+```
+
+## 自动分类规则（摘要）
+
+- **块**：按 Aspen 块模型名映射（Heater/HeatX/Flash2/RadFrac/RStoic…/Pump/Compr/Mixer/Valve）。HeatX 有两股物料进口 → `internal_recovery`（外部 Q=W=0，交换热只进 `internal_loops`）。正负荷按出口温度 + 10 K 推荐 LP/MP/HP 蒸汽或加热炉，负负荷推荐冷却水或冷冻，置信度 0.55–0.6，**必须确认**。泵/压缩机 → 电力；负轴功 → 透平（默认不抵扣）。
+- **流股**：来自 BOUNDARY → 进料；两端都在同一块循环内 → 循环（经过双侧换热器的环路视为热集成，不算循环）；出口按名称关键词与组成判断排放（不凝气 ≥ 50%）/ 废水（水 ≥ 80%）/ 产品候选。**产品与功能单位永远需要人工确认**。
+- **冷却公用工程**按“服务”计入 `material` 类清单，不计入外购能量强度（外购热 + 电）。
+- 排放流按组分拆分；N2/O2/Ar/H2O/He 视为惰性跳过，其余组分没有因子就进入 `missing`。CO2/CH4 需要声明 `carbon_origin`（fossil/biogenic），否则不匹配任何因子。
+
+## 待真机（Windows + Aspen）验证
+
+`adapters/aspen_com.py` 目前是桩，`status/components/blocks/streams` 抛出 `NotImplementedError`。以下内容需要在装有 Aspen 的机器上核实：
+
+1. 块模型名（RecordType 属性）与端口连接（`Connections` / `Ports\SOURCE|DEST`）的节点。
+2. 流股类别（MATERIAL/HEAT/WORK）与非 MIXED 子物流（CISOLID/NC）的节点；汽相分率节点。
+3. RadFrac `COND_DUTY` / `REB_DUTY`、HeatX `HX_DUTY` 等负荷节点名称。
+4. 组分别名与 CAS 的读取方式；公用工程对象节点。
+5. `CVSTAT` 与 `BLKSTAT` 的可接受代码（HTL 用过 BLKSTAT ∈ {0,2}，CVSTAT 接受值尚未确认）。
+6. HEAT/WORK 流股与块负荷是否会重复计算。
+7. `.apw` 能否直接打开（目前仍只接受 `.bkp`）。
+8. 至少一个非 HTL 的真实模型跑通发现 → 分类 → 研究包，并保存回放夹具。
+
+## 夹具
+
+- `tests/fixtures/htl.graph.json`：HTL 流程形状，数值取自 `analysis_web/data/universal-htl.json`（原生运行 T325p00_L8p50）；组分质量拆分为夹具假设。
+- `tests/fixtures/distillation.graph.json`：苯/甲苯精馏，人工配平的算术夹具，不是 Aspen 运行结果。
+- `tests/fixtures/errored.graph.json`：同一精馏但未收敛，用于验证拒绝。

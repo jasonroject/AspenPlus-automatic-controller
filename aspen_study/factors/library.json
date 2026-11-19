@@ -1,0 +1,298 @@
+{
+  "schema": "aspen-factor-library/1",
+  "version": "fl-2026.11-draft",
+  "notes": [
+    "只收录公开、可核对来源的数值；商业数据库（如 ecoinvent）因子只能由用户在本地研究包的 factors.json 中提供，不随仓库发布。",
+    "status=placeholder 且 value=null 的条目是结构占位，不是数值；匹配到它们的清单行会进入 completeness.missing，绝不按 0 计算。",
+    "匹配优先级：研究包内用户因子 > CAS > Aspen 别名 > 组分 ID > 公用工程类型；带 region 的条目优先于无 region 的通用条目。"
+  ],
+  "entries": [
+    {
+      "id": "dir-CO2-fossil",
+      "match": {
+        "cas": "124-38-9",
+        "flow": "emission_air",
+        "carbon_origin": "fossil"
+      },
+      "category": "GWP100",
+      "value": 1,
+      "low": null,
+      "high": null,
+      "denominator_unit": "kg",
+      "impact_unit": "kg CO2-eq",
+      "method": "IPCC 2021 GWP100",
+      "source": "IPCC AR6 WG1 (2021) Chapter 7, Table 7.15, GWP100 (https://www.ipcc.ch/report/ar6/wg1/chapter/chapter-7/)；CO2 为基准物质，按定义取 1",
+      "year": 2021,
+      "license": "public",
+      "status": "verified"
+    },
+    {
+      "id": "dir-CH4-fossil",
+      "match": {
+        "cas": "74-82-8",
+        "flow": "emission_air",
+        "carbon_origin": "fossil"
+      },
+      "category": "GWP100",
+      "value": 29.8,
+      "low": null,
+      "high": null,
+      "denominator_unit": "kg",
+      "impact_unit": "kg CO2-eq",
+      "method": "IPCC 2021 GWP100",
+      "source": "IPCC AR6 WG1 (2021) Chapter 7, Table 7.15, GWP100 (https://www.ipcc.ch/report/ar6/wg1/chapter/chapter-7/)",
+      "year": 2021,
+      "license": "public",
+      "status": "verified",
+      "note": "IPCC 于 2025-10 发布 AR6 WG1 勘误，修正后 GWP100：化石 CH4 28.1、非化石 CH4 25.3、N2O 267。按报告要求选择口径，并在 method 中注明。"
+    },
+    {
+      "id": "dir-CH4-biogenic",
+      "match": {
+        "cas": "74-82-8",
+        "flow": "emission_air",
+        "carbon_origin": "biogenic"
+      },
+      "category": "GWP100",
+      "value": 27.0,
+      "low": null,
+      "high": null,
+      "denominator_unit": "kg",
+      "impact_unit": "kg CO2-eq",
+      "method": "IPCC 2021 GWP100",
+      "source": "IPCC AR6 WG1 (2021) Chapter 7, Table 7.15, GWP100 (https://www.ipcc.ch/report/ar6/wg1/chapter/chapter-7/)（non-fossil）",
+      "year": 2021,
+      "license": "public",
+      "status": "verified",
+      "note": "IPCC 于 2025-10 发布 AR6 WG1 勘误，修正后 GWP100：化石 CH4 28.1、非化石 CH4 25.3、N2O 267。按报告要求选择口径，并在 method 中注明。"
+    },
+    {
+      "id": "dir-N2O",
+      "match": {
+        "cas": "10024-97-2",
+        "flow": "emission_air"
+      },
+      "category": "GWP100",
+      "value": 273,
+      "low": null,
+      "high": null,
+      "denominator_unit": "kg",
+      "impact_unit": "kg CO2-eq",
+      "method": "IPCC 2021 GWP100",
+      "source": "IPCC AR6 WG1 (2021) Chapter 7, Table 7.15, GWP100 (https://www.ipcc.ch/report/ar6/wg1/chapter/chapter-7/)",
+      "year": 2021,
+      "license": "public",
+      "status": "verified",
+      "note": "IPCC 于 2025-10 发布 AR6 WG1 勘误，修正后 GWP100：化石 CH4 28.1、非化石 CH4 25.3、N2O 267。按报告要求选择口径，并在 method 中注明。"
+    },
+    {
+      "id": "dir-CO2-biogenic",
+      "match": {
+        "cas": "124-38-9",
+        "flow": "emission_air",
+        "carbon_origin": "biogenic"
+      },
+      "category": "GWP100",
+      "value": null,
+      "low": null,
+      "high": null,
+      "denominator_unit": "kg",
+      "impact_unit": "kg CO2-eq",
+      "method": "IPCC 2021 GWP100",
+      "source": "",
+      "year": null,
+      "status": "placeholder",
+      "note": "生物源 CO2 的处理取决于所选方法（例如按 0 计并不计吸收，或按 1 计并另计吸收）；由研究者在方法中声明后填写"
+    },
+    {
+      "id": "elec-grid-CN",
+      "match": {
+        "utility": "electricity",
+        "region": "CN"
+      },
+      "category": "GWP100",
+      "value": null,
+      "low": null,
+      "high": null,
+      "denominator_unit": "kWh",
+      "impact_unit": "kg CO2-eq",
+      "method": "IPCC 2021 GWP100",
+      "source": "",
+      "year": null,
+      "status": "placeholder",
+      "note": "占位：需要填入官方来源与数值后再把 status 改为 verified；value=null 的条目不参与计算，结果标为不完整。建议来源：生态环境部发布的全国电网平均排放因子（注明发布年份）"
+    },
+    {
+      "id": "elec-grid-generic",
+      "match": {
+        "utility": "electricity"
+      },
+      "category": "GWP100",
+      "value": null,
+      "low": null,
+      "high": null,
+      "denominator_unit": "kWh",
+      "impact_unit": "kg CO2-eq",
+      "method": "IPCC 2021 GWP100",
+      "source": "",
+      "year": null,
+      "status": "placeholder",
+      "note": "占位：需要填入官方来源与数值后再把 status 改为 verified；value=null 的条目不参与计算，结果标为不完整。按研究所在地区选择官方电网因子"
+    },
+    {
+      "id": "steam-lp",
+      "match": {
+        "utility": "lp_steam"
+      },
+      "category": "GWP100",
+      "value": null,
+      "low": null,
+      "high": null,
+      "denominator_unit": "MJ",
+      "impact_unit": "kg CO2-eq",
+      "method": "IPCC 2021 GWP100",
+      "source": "",
+      "year": null,
+      "status": "placeholder",
+      "note": "占位：需要填入官方来源与数值后再把 status 改为 verified；value=null 的条目不参与计算，结果标为不完整。取决于锅炉燃料与效率"
+    },
+    {
+      "id": "steam-mp",
+      "match": {
+        "utility": "mp_steam"
+      },
+      "category": "GWP100",
+      "value": null,
+      "low": null,
+      "high": null,
+      "denominator_unit": "MJ",
+      "impact_unit": "kg CO2-eq",
+      "method": "IPCC 2021 GWP100",
+      "source": "",
+      "year": null,
+      "status": "placeholder",
+      "note": "占位：需要填入官方来源与数值后再把 status 改为 verified；value=null 的条目不参与计算，结果标为不完整"
+    },
+    {
+      "id": "steam-hp",
+      "match": {
+        "utility": "hp_steam"
+      },
+      "category": "GWP100",
+      "value": null,
+      "low": null,
+      "high": null,
+      "denominator_unit": "MJ",
+      "impact_unit": "kg CO2-eq",
+      "method": "IPCC 2021 GWP100",
+      "source": "",
+      "year": null,
+      "status": "placeholder",
+      "note": "占位：需要填入官方来源与数值后再把 status 改为 verified；value=null 的条目不参与计算，结果标为不完整"
+    },
+    {
+      "id": "fired-heat-natural-gas",
+      "match": {
+        "utility": "fired_heat"
+      },
+      "category": "GWP100",
+      "value": null,
+      "low": null,
+      "high": null,
+      "denominator_unit": "MJ",
+      "impact_unit": "kg CO2-eq",
+      "method": "IPCC 2021 GWP100",
+      "source": "",
+      "year": null,
+      "status": "placeholder",
+      "note": "占位：需要填入官方来源与数值后再把 status 改为 verified；value=null 的条目不参与计算，结果标为不完整。燃料燃烧 + 上游；效率在 roles 中按块给出"
+    },
+    {
+      "id": "natural-gas",
+      "match": {
+        "utility": "natural_gas"
+      },
+      "category": "GWP100",
+      "value": null,
+      "low": null,
+      "high": null,
+      "denominator_unit": "MJ",
+      "impact_unit": "kg CO2-eq",
+      "method": "IPCC 2021 GWP100",
+      "source": "",
+      "year": null,
+      "status": "placeholder",
+      "note": "占位：需要填入官方来源与数值后再把 status 改为 verified；value=null 的条目不参与计算，结果标为不完整"
+    },
+    {
+      "id": "cooling-water",
+      "match": {
+        "utility": "cooling_water"
+      },
+      "category": "GWP100",
+      "value": null,
+      "low": null,
+      "high": null,
+      "denominator_unit": "MJ",
+      "impact_unit": "kg CO2-eq",
+      "method": "IPCC 2021 GWP100",
+      "source": "",
+      "year": null,
+      "status": "placeholder",
+      "note": "占位：需要填入官方来源与数值后再把 status 改为 verified；value=null 的条目不参与计算，结果标为不完整。可按循环水泵/风机电耗或补水量折算，需声明"
+    },
+    {
+      "id": "refrigeration",
+      "match": {
+        "utility": "refrigeration"
+      },
+      "category": "GWP100",
+      "value": null,
+      "low": null,
+      "high": null,
+      "denominator_unit": "MJ",
+      "impact_unit": "kg CO2-eq",
+      "method": "IPCC 2021 GWP100",
+      "source": "",
+      "year": null,
+      "status": "placeholder",
+      "note": "占位：需要填入官方来源与数值后再把 status 改为 verified；value=null 的条目不参与计算，结果标为不完整。通常按制冷机电耗 / COP 折算"
+    },
+    {
+      "id": "wastewater-treatment",
+      "match": {
+        "flow": "waste",
+        "treatment": "wastewater"
+      },
+      "category": "GWP100",
+      "value": null,
+      "low": null,
+      "high": null,
+      "denominator_unit": "kg",
+      "impact_unit": "kg CO2-eq",
+      "method": "IPCC 2021 GWP100",
+      "source": "",
+      "year": null,
+      "status": "placeholder",
+      "note": "占位：需要填入官方来源与数值后再把 status 改为 verified；value=null 的条目不参与计算，结果标为不完整"
+    },
+    {
+      "id": "water-process",
+      "match": {
+        "cas": "7732-18-5",
+        "flow": "material_input"
+      },
+      "category": "GWP100",
+      "value": null,
+      "low": null,
+      "high": null,
+      "denominator_unit": "kg",
+      "impact_unit": "kg CO2-eq",
+      "method": "IPCC 2021 GWP100",
+      "source": "",
+      "year": null,
+      "status": "placeholder",
+      "note": "占位：需要填入官方来源与数值后再把 status 改为 verified；value=null 的条目不参与计算，结果标为不完整"
+    }
+  ]
+}
