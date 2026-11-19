@@ -2,6 +2,7 @@
 import copy
 import json
 from pathlib import Path
+import sys
 import unittest
 import numpy as np
 import pandas as pd
@@ -9,6 +10,8 @@ from model import carbon, predict
 from native_scan import report_warnings
 
 HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parent))
+from aspen_study.pipeline_to_study import read, reassemble  # published artifact is an aspen-study/2 package
 OUT = HERE.parent/'outputs/htl_pipeline'
 
 class AccountingTests(unittest.TestCase):
@@ -47,7 +50,7 @@ class AccountingTests(unittest.TestCase):
 class ArtifactTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.data=json.loads((HERE.parent/'analysis_web/data/pipeline.json').read_text())
+        cls.data=reassemble(read(HERE.parent/'analysis_web/data/study'))[0]
 
     def test_native_holdout_and_training_coordinates_disjoint(self):
         reference=pd.read_csv(HERE/'reference/native_samples.csv')

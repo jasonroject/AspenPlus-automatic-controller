@@ -3,6 +3,7 @@ import {escapeHTML as esc,conditionKey,responseSlice,climateContributions,ordere
 import {mountResponseInspector,clearResponseInspector} from './response-inspector.mjs';
 import {downloadCSV,downloadSVG} from './chart-export.mjs';
 import {predictionColumns,predictionChartRows} from './pipeline-export.mjs';
+import {createStudyLoader} from './study-loader.mjs';
 
 const q = selector => document.querySelector(selector);
 const format = (value,digits=2) => Number.isFinite(value) ? value.toLocaleString(getLanguage()==='zh'?'zh-CN':'en-US',{maximumFractionDigits:digits,minimumFractionDigits:digits}) : '—';
@@ -53,7 +54,7 @@ function installChartExports(){
           [t('Selected condition','所选工况')]:`${current.temperature_C} °C / ${current.length_m} m`,
           [t('Basis','核算基准')]:`${analysis.basis.wet_feed_kg} kg ${t('wet feed','湿进料')} / ${analysis.basis.duration_h} h; ${analysis.basis.pressure_MPa} MPa`,
           [t('Scope','范围')]:t('Fixed-background climate accounting; simulation/model evidence, not physical validation.','固定背景气候影响核算；属于仿真/模型证据，不代表物理验证。'),
-          [t('Source','来源')]:'data/pipeline.json',
+          [t('Source','来源')]:'data/study/surrogate/grid.json',
           'Reference SHA-256':analysis.training.reference_sha256,
         };
         if(kind==='response'){
@@ -124,7 +125,7 @@ function renderTrend(){
   mountResponseInspector(q('#response-chart'),currentSlice,{xLabel,yLabel:`${spec.label} · ${spec.unit}`,predictionLabel:t('GP prediction','GP 预测'),nativeLabel,noNativeLabel:t('No native value at this exact coordinate.','此精确坐标没有原生数据。'),inspectLabel:t('Inspect exported points','检查导出网格点'),hint:t('Move across the chart or use the slider. Arrow keys, Home and End inspect existing grid points; prediction inputs stay unchanged.','移动到图上或使用滑块；方向键、Home 和 End 检查已有网格点，不修改预测输入。')});
   const fixed=axis==='temperature_C'?`${format(current.length_m,2)} m`:`${format(current.temperature_C,1)} °C`;
   q('#response-caption').textContent=`${currentScenario} · ${t('Held fixed','固定输入')}: ${fixed}. ${currentSlice.predictions.length} ${t('grid predictions','个网格预测点')} · ${currentSlice.native.length} ${t('native points on this exact slice','个位于该精确切片的原生样本点')}. ${t('No native points are invented or interpolated. The vertical axis follows the displayed response range.','不生成或插值原生样本点；纵轴按当前响应范围显示。')}`;
-  const rows=[...currentSlice.predictions.map(r=>({...r,kind:'prediction',source:'data/pipeline.json',split:''})),...currentSlice.native.map(r=>({...r,kind:'native'}))].sort((a,b)=>a[axis]-b[axis]);
+  const rows=[...currentSlice.predictions.map(r=>({...r,kind:'prediction',source:'data/study/surrogate/grid.json',split:''})),...currentSlice.native.map(r=>({...r,kind:'native'}))].sort((a,b)=>a[axis]-b[axis]);
   q('#response-data').innerHTML=`<table><thead><tr><th>${esc(xLabel)}</th><th>${esc(spec.label)} / ${esc(spec.unit)}</th><th>${t('Evidence type','证据类型')}</th><th>${t('Source / split','来源 / 分组')}</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${format(r[axis],2)}</td><td>${format(r[spec.key],5)}</td><td>${r.kind==='native'?nativeLabel:t('GP prediction','GP 预测')}</td><td data-no-i18n>${esc(r.source)}${r.split?' / '+esc(r.split):''}</td></tr>`).join('')}</tbody></table>`;
   updateChartExports();
 }
@@ -231,10 +232,11 @@ async function initialize(){
   q('#pipeline-status').removeAttribute('data-i18n-en');q('#pipeline-status').removeAttribute('data-i18n-zh');
   t('Prediction & Robustness · Process Studio','预测与鲁棒性 · Process Studio');translatePage();refreshReferenceContext();updateActions();
   try{
-    const responses=await Promise.all([fetch('data/pipeline.json'),fetch('data/pipeline-observations.json').catch(()=>null)]);
-    if(!responses[0].ok)throw new Error(`HTTP ${responses[0].status}`);
-    analysis=await responses[0].json();
-    if(responses[1]?.ok){try{observations=await responses[1].json();observationsAvailable=Array.isArray(observations.rows);if(!observationsAvailable)observations={rows:[],sources:[]};}catch{observations={rows:[],sources:[]};}}
+    const study=createStudyLoader({base:'data/study/'});
+    await study.manifest();
+    const loaded=await Promise.all([study.htlAnalysis(),study.observations().catch(()=>null)]);
+    analysis=loaded[0];
+    if(loaded[1]){observations=loaded[1];observationsAvailable=Array.isArray(observations.rows);if(!observationsAvailable)observations={rows:[],sources:[]};}
     q('#pipeline-status').textContent=analysis.prediction_enabled?t('Archived HTL reference GP · Separate from the 17-case pilot · Fixed-background climate accounting','旧版 HTL 参考 GP · 与 17 工况试运行模型独立 · 固定背景气候影响核算'):t('Reference-model checks are incomplete or failed. Predictions are disabled; inspect the evidence.','参考模型检查未完成或未通过。预测已停用，请查看计算依据。');
     if(params.has('temperature'))q('#predict-temperature').value=params.get('temperature');
     if(params.has('length'))q('#predict-length').value=params.get('length');

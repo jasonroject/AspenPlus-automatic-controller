@@ -93,8 +93,8 @@ class FrozenIntegrityTests(unittest.TestCase):
             (reference/'failed_samples.csv').write_text('file,error\n')
             (output/'models.joblib').write_bytes(b'fake-model')
             (output/'training.json').write_text(json.dumps(meta))
-            target = base/'published.json'
-            with patch.object(build, 'REF', reference), patch.object(build, 'OUT', output), patch.object(build, 'WEB', target), \
+            target = output/'pipeline.json'   # build.analyze() output; published to analysis_web/data/study by aspen_study.pipeline_to_study
+            with patch.object(build, 'REF', reference), patch.object(build, 'OUT', output), \
                     patch('build.joblib.load', return_value=models), \
                     patch('build.fresh_records', return_value=(fresh, [{'accepted': True}]*3)), \
                     patch('build.validation', return_value=(score, [], {'complete': True})), \

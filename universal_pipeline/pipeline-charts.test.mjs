@@ -3,8 +3,10 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {responseSlice,climateContributions,orderedCandidates,supportedPoint,pairChart,responseChart,rankChart} from '../analysis_web/pipeline-charts.mjs';
-const analysis=JSON.parse(await readFile(new URL('../analysis_web/data/pipeline.json',import.meta.url),'utf8'));
-const observations=JSON.parse(await readFile(new URL('../analysis_web/data/pipeline-observations.json',import.meta.url),'utf8'));
+import {createStudyLoader,fsJsonFetcher} from '../analysis_web/study-loader.mjs';
+const study=createStudyLoader({fetchJson:fsJsonFetcher(new URL('../analysis_web/data/study/',import.meta.url))});
+const analysis=await study.htlAnalysis();
+const observations=await study.observations();
 const current=supportedPoint(analysis.grid.rows,325,8.5);
 
 test('prediction selection rejects off-grid and out-of-domain values instead of rounding',()=>{

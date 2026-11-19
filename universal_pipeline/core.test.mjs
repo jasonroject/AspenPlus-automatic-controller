@@ -68,7 +68,7 @@ test('legacy exporter adapter preserves missing enthalpy, topology and missing p
 test('real native HTL fixture reproduces independent audited carbon calculation',()=>{
   const p=JSON.parse(fs.readFileSync(new URL('../analysis_web/data/universal-htl.json',import.meta.url),'utf8')),r=assess(p).results[0];
   assert.equal(r.balance.within_tolerance,true);assert.equal(r.impacts[0].complete,true);
-  const prior=JSON.parse(fs.readFileSync(new URL('../analysis_web/data/pipeline.json',import.meta.url),'utf8'));
+  const prior=JSON.parse(fs.readFileSync(new URL('../analysis_web/data/study/meta.json',import.meta.url),'utf8'));
   // Independent fresh native comparison exists locally; public check always reconstructs foreground.
   const iv=p.inventory,amount=id=>iv.find(x=>x.id===id).amount,product=p.cases[0].product_rate,c=prior.accounting;
   near(r.impacts[0].nominal_subtotal,(c.fixed_feed_GWP+c.electricity_beta*amount('electricity')+amount('CO2')+36*amount('CH4')+c.wastewater_gamma*amount('wastewater')/1000)/product);
