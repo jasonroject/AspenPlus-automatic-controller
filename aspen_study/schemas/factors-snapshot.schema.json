@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aspen-study/2/factors-snapshot.schema.json",
+  "title": "factors.json：本研究实际使用的因子快照",
+  "description": "由因子库（或用户数据）抽取的、计算中真正用到的数值。results 里的 contributions 只写 factor_id，读者据此查到数值、单位、来源与年份。占位（value=null）的因子不会出现在这里。",
+  "type": "object",
+  "required": [
+    "schema",
+    "study_id",
+    "factors"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "aspen-factors-snapshot/1"
+    },
+    "study_id": {
+      "type": "string"
+    },
+    "library_version": {
+      "type": "string"
+    },
+    "factors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "category",
+          "value",
+          "unit",
+          "impact_unit",
+          "source",
+          "year"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "category": {
+            "type": "string",
+            "minLength": 1
+          },
+          "value": {
+            "type": "number",
+            "minimum": 0
+          },
+          "low": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "high": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "unit": {
+            "type": "string",
+            "minLength": 1,
+            "description": "因子分母单位，如 kWh、kg、MJ"
+          },
+          "impact_unit": {
+            "type": "string",
+            "minLength": 1
+          },
+          "method": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string",
+            "minLength": 1
+          },
+          "year": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "status": {
+            "enum": [
+              "verified",
+              "proxy",
+              "user_supplied",
+              "archived"
+            ]
+          },
+          "note": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

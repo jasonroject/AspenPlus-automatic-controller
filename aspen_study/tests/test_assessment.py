@@ -74,6 +74,7 @@ class AssessmentTests(unittest.TestCase):
         _, res, contrib, _, kpi = assess_case(g, htl_roles(g))
         c = res["completeness"]["GWP100"]
         self.assertFalse(c["complete"])
+        self.assertEqual(c["status"], "incomplete")
         self.assertIsNone(c["total"])
         self.assertIsNone(kpi["gwp_per_fu"])
         for item in ("emis_S8_CO2", "elec_PUMP", "feed_FEED"):
@@ -94,6 +95,7 @@ class AssessmentTests(unittest.TestCase):
         _, res, contrib, sources, kpi = assess_case(g, roles, entries=entries)
         c = res["completeness"]["GWP100"]
         self.assertTrue(c["complete"], c["missing"])
+        self.assertEqual((c["status"], c["contribution_coverage"]), ("complete", 1.0))
         product = 3.2 + 2.300864712016662
         expected = (0.5 * (2.1717208 + 4.0017766538844 + 6.098953051188) + 0.01 * 7.449536563632 * 3.6
                     + 2.0 * 100 + 0.0339951446 * 1 + 0.016028400793 * 29.8) / product
@@ -139,23 +141,31 @@ class AssessmentTests(unittest.TestCase):
     def test_write_study_bundle(self):
         g = MockAdapter(FIXTURES / "htl.graph.json").discover()
         roles = htl_roles(g)
-        g2 = json.loads(json.dumps(g))
         with tempfile.TemporaryDirectory() as tmp:
             manifest = write_study(tmp, "htl-fixture", g, roles,
-                                   [("T325_L8.5", g, {"temperature_C": 325, "length_m": 8.5}),
-                                    ("T325_L8.5_copy", g2, {"temperature_C": 325, "length_m": 8.5})],
-                                   variables=[{"id": "temperature_C", "unit": "C"}, {"id": "length_m", "unit": "m"}])
+                                   [("T325_L8.5", g, {"temperature_C": 325, "length_m": 8.5}, "HR"),
+                                    ("T325_L8.5", json.loads(json.dumps(g)), {"temperature_C": 325, "length_m": 8.5}, "STD")],
+                                   variables=[{"id": "temperature_C", "unit": "C"}, {"id": "length_m", "unit": "m"}],
+                                   scenarios=[{"id": "HR"}, {"id": "STD"}], default_scenario="HR")
             out = Path(tmp)
             validate(json.loads((out / "manifest.json").read_text(encoding="utf-8")), "manifest")
             validate(json.loads((out / "results/summary.json").read_text(encoding="utf-8")), "results")
+            snapshot = json.loads((out / "factors.json").read_text(encoding="utf-8"))
+            validate(snapshot, "factors-snapshot")
+            self.assertEqual({f["id"] for f in snapshot["factors"]}, {"dir-CH4-biogenic"})
+            self.assertEqual([(c["id"], c["scenario"]) for c in manifest["cases"]], [("T325_L8.5", "HR"), ("T325_L8.5", "STD")])
+            self.assertEqual(manifest["cases"][1]["result"], "results/T325_L8.5__STD.json")
             for c in manifest["cases"]:
+                self.assertTrue(c["has_results"])
                 self.assertTrue((out / c["file"]).exists() and (out / c["result"]).exists())
                 self.assertIn("energy_per_fu", c["kpi"])
-                self.assertIn("GWP100", c["completeness"])
+                self.assertEqual(c["completeness"]["GWP100"]["status"], "incomplete")
                 validate(json.loads((out / c["file"]).read_text(encoding="utf-8")), "case")
+                shard = json.loads((out / c["result"]).read_text(encoding="utf-8"))
+                self.assertEqual(shard["method"]["factors_snapshot"], "factors.json")
+                self.assertTrue(all(x["scenario"] == c["scenario"] for x in shard["contributions"]))
             self.assertNotIn("energy_edges", json.dumps(manifest))
             self.assertEqual(manifest["gates"]["G5_factors"], "warn")
-
 
 if __name__ == "__main__":
     unittest.main()
