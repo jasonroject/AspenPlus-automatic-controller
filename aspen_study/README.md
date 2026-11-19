@@ -104,6 +104,19 @@ python -m aspen_study.cli classify --graph graph.json --override roles.yaml --ou
 python -m aspen_study.cli assess --graph graph.json --roles roles.json --study-id demo --out-dir study/ [--factors my-factors.json] [--calorie-J 4.1868]
 ```
 
+## 结果包与本机模式
+
+`probe-summary.json`（必需，1.1；1.0 经 `upgrade_summary` 读取）+ 可选的 `graph.json`、`roles.json`、`advice.json` 是本机模式和在线上传共用的输入（zip 或散文件）；本机模式用 `advice.advise` 生成 `advice.json`，文件不一致（`advice.package_problems`）则不生成结果包。读写与校验：`aspen_study/result_package.py`；本机入口：`python serve_web.py --local`（`POST /api/local/probe`）。详见 `docs/使用指南.md` 的“一个结果包”。
+
+```bash
+python -m aspen_study.result_package check <文件夹|包.zip|json>
+python -m aspen_study.result_package zip <probe 输出文件夹> -o 包.zip
+```
+
+## 节点路径验证（尚未在真机核对的块类型）
+
+`python -m aspen_study.verify_nodes {find,verify,check}`；真机步骤见 `docs/Aspen节点验证.md`，夹具放在 `aspen_study/tests/fixtures/live/nodes/`，`test_live_node_fixtures.py` 在夹具出现前全部跳过。
+
 ## aspen-probe/1.1 与模型建议（advise）
 
 **1.1 相对 1.0**（`probe_compat.upgrade_summary` / `python -m aspen_study upgrade` 能把 1.0 文件离线升级；`advise` 直接读 1.0 或 1.1）：

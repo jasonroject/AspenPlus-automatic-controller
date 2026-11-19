@@ -125,7 +125,10 @@
   function rowStatus(index) {
     if (state.job.kind !== "run" || (state.runFingerprint && state.runFingerprint !== currentFingerprint())) return ["", "待运行"];
     const result=(state.job.results || []).find(item => Number(item.run_index) === index+1);
-    if (result) return result.status === "success" ? ["success","执行完成"] : ["failed","执行失败"];
+    if (result) {
+      const labels={ok:"执行完成",success:"执行完成",warning:"执行完成（有警告）",timeout:"运行超时",stopped:"已停止",skipped:"未执行"};
+      return ["ok","success","warning"].includes(result.status) ? ["success",labels[result.status]] : [result.status === "skipped" ? "" : "failed",labels[result.status] || "执行失败"];
+    }
     if (state.busy && Number(state.job.current) === index+1) return ["running","运行中…"];
     if (state.job.status === "stopped") return ["","未执行"];
     return ["","待运行"];

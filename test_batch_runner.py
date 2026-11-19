@@ -1,82 +1,412 @@
-"""批处理模块测试脚本 - 验证代码语法和基本功能"""
-import sys
+"""Batch runner tests: adapter-driven run (polling/timeout/stop/cleanup), status + per-block blkmsg/per_error (aspen-probe/1.1 shape), units.
+
+No Aspen needed. COM is faked from the real 2026-11-19 probe outputs in aspen_study/tests/fixtures/live/
+(heatrecovery.bkp, status 'warning'; mch.bkp, status 'ok'): statuses, messages and energies come from those
+files, not from invented numbers.
+"""
+import csv
+import json
+import tempfile
+import threading
+import unittest
 from pathlib import Path
+from unittest.mock import patch
 
-print("=" * 80)
-print("批处理模块测试")
-print("=" * 80)
+import batch_runner
+import run_status
+import test_datacatch as datacatch
+from aspen_study.adapters.aspen_com import AspenPlusCOMAdapter
+from aspen_study.probe_compat import upgrade_summary
+from aspen_study.tests.fake_aspen import (FakeDoc, FakeEngine, FakeProcessOps, build_table, heatrecovery_spec,
+                                          radfrac_spec)
+from batch_runner import BatchRunner, positive_seconds
+from result_units import BLOCK_UNITS, STREAM_UNITS, convert_quantity, missing_units
 
-# 测试 1: 导入模块
-print("\n[测试 1/4] 导入批处理模块...")
-try:
-    sys.path.insert(0, str(Path(__file__).resolve().parent))
-    from batch_runner import BatchRunner, generate_batch_template, run_from_config
-    print("✓ 模块导入成功")
-except Exception as e:
-    print(f"✗ 模块导入失败: {e}")
-    sys.exit(1)
+LIVE = Path(__file__).resolve().parent / "aspen_study/tests/fixtures/live"
+PROBE_FIXTURES = LIVE.parent / "probe"
+STATUS = r"\Data\Results Summary\Run-Status\Output"
 
-# 测试 2: 检查类定义
-print("\n[测试 2/4] 检查 BatchRunner 类...")
-try:
-    assert hasattr(BatchRunner, '__init__')
-    assert hasattr(BatchRunner, 'set_parameters')
-    assert hasattr(BatchRunner, 'run_single')
-    assert hasattr(BatchRunner, 'run_batch')
-    assert hasattr(BatchRunner, 'save_batch_summary')
-    assert hasattr(BatchRunner, '_print_brief_summary')
-    assert hasattr(BatchRunner, '_generate_summary_csv')
-    print("✓ BatchRunner 类结构完整")
-except AssertionError:
-    print("✗ BatchRunner 类缺少必要的方法")
-    sys.exit(1)
 
-# 测试 3: 检查函数定义
-print("\n[测试 3/4] 检查辅助函数...")
-try:
-    assert callable(generate_batch_template)
-    assert callable(run_from_config)
-    print("✓ 辅助函数定义正确")
-except AssertionError:
-    print("✗ 辅助函数定义有问题")
-    sys.exit(1)
+def live(name):
+    """The real 1.0 probe output, read through probe_compat.upgrade_summary (blkmsg + per_error, like 1.1)."""
+    return upgrade_summary(json.loads((LIVE / name).read_text(encoding="utf-8")))
 
-# 测试 4: 创建 BatchRunner 实例（模拟数据）
-print("\n[测试 4/4] 创建 BatchRunner 实例...")
-try:
-    mock_model_path = Path("test_model.bkp")
-    mock_blocks_config = {
-        "REACTOR": {
-            "type": "反应器",
-            "params": {"反应温度": 350},
-            "_nodes": {"反应温度": "REAC_TEMP"}
-        }
-    }
-    mock_streams_config = ["INLET", "OUTLET"]
 
-    runner = BatchRunner(mock_model_path, mock_blocks_config, mock_streams_config)
+def spec_from_live(summary, spec):
+    """Put the real probe's run status, per-block BLKSTAT/messages and energy readings onto a fake COM spec."""
+    spec = dict(spec)
+    raw = summary["status"]["raw_status"]
+    spec[STATUS + r"\UOSSTAT2"] = dict(value=raw["UOSSTAT2"])
+    lines = summary["status"]["run_status_lines"]
+    spec[STATUS + r"\PER_ERROR"] = dict(value=1, dim=1, kids=[str(i) for i in range(len(lines))])
+    for i, line in enumerate(lines):
+        spec[STATUS + rf"\PER_ERROR\{i}"] = dict(value=line)
+    for block in summary["blocks"]:
+        out = rf"\Data\Blocks\{block['id']}\Output"
+        spec[out + r"\BLKSTAT"] = dict(value=block["blkstat"])
+        spec.pop(out + r"\BLKMSG", None)
+        if block["blkmsg"]:
+            spec[out + r"\BLKMSG"] = dict(value=block["blkmsg"])
+        lines = (["*  WARNING"] if block["status"] == "warning" else []) + block["per_error"]
+        spec[out + r"\PER_ERROR"] = dict(value=1, dim=1, kids=[str(i) for i in range(len(lines))])
+        for i, line in enumerate(lines):
+            spec[out + rf"\PER_ERROR\{i}"] = dict(value=line)
+        for e in block["energy"]:
+            spec[e["path"]] = dict(value=e["value"], unit=e["unit"])
+    return spec
 
-    assert runner.model_path == mock_model_path
-    assert runner.blocks_config == mock_blocks_config
-    assert runner.streams_config == mock_streams_config
-    assert runner.batch_results == []
-    assert len(runner.batch_id) == 15  # 格式: YYYYMMDD-HHMMSS
 
-    print("✓ BatchRunner 实例创建成功")
-    print(f"  - 模型路径: {runner.model_path}")
-    print(f"  - 批次 ID: {runner.batch_id}")
-    print(f"  - 设备数量: {len(runner.blocks_config)}")
-    print(f"  - 物流数量: {len(runner.streams_config)}")
-except Exception as e:
-    print(f"✗ BatchRunner 实例创建失败: {e}")
-    sys.exit(1)
+class Env:
+    def __init__(self, spec, engine=None, name="m.bkp"):
+        self.dir = tempfile.TemporaryDirectory()
+        root = Path(self.dir.name)
+        self.model = root / name
+        self.model.write_bytes(b"fake archive")
+        self.doc = FakeDoc(build_table(spec), engine or FakeEngine())
+        self.ops = FakeProcessOps({1: (0, "explorer.exe"), 900: (1, "aspenplus.exe"), 901: (900, "apmain.exe")})
+        self.out = root / "outputdata"
+        self.patches = [patch.object(datacatch, "OUTPUT_ROOT", self.out), patch.object(batch_runner, "OUTPUT_ROOT", self.out)]
+        for p in self.patches:
+            p.start()
+        self.adapters = []
+        self.spawn = False
 
-print("\n" + "=" * 80)
-print("所有测试通过！批处理模块工作正常。")
-print("=" * 80)
-print("\n提示：")
-print("  1. 先运行 test_aspen_control.py 扫描你的 Aspen 模型")
-print("  2. 使用 batch_runner.py generate-template 生成配置模板")
-print("  3. 编辑配置文件，设置参数组合")
-print("  4. 使用 batch_runner.py run 运行批处理")
-print("\n详细使用说明请查看：docs/使用指南.md")
+    def _document(self):
+        if self.spawn:   # a new Aspen session appears after the baseline snapshot; 900/901 are the user's own
+            self.ops.table[7000] = (4242, "aspenplus.exe")
+            self.ops.table[7001] = (7000, "apmain.exe")
+            self.ops.table[7002] = (1, "chrome.exe")
+        return self.doc, "Apwn.Document.41.0"
+
+    def factory(self, **kw):
+        kw.setdefault("poll_s", 0.001)
+        kw.setdefault("grace_s", 0.01)
+        adapter = AspenPlusCOMAdapter(doc_factory=self._document, process_ops=self.ops, **kw)
+        self.adapters.append(adapter)
+        return adapter
+
+    def runner(self, catalog=None, **kw):
+        return BatchRunner(self.model, {}, [], catalog or {}, adapter_factory=self.factory, **kw)
+
+    def close(self):
+        for p in self.patches:
+            p.stop()
+        self.dir.cleanup()
+
+
+class HeatrecoveryRegressionTests(unittest.TestCase):
+    """heatrecovery.bkp: Aspen 'completed with warnings' (COOLER/VALVE phase stability, REACTOR zeroed rates)."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.summary = live("live_hr_summary.json")
+
+    def setUp(self):
+        self.env = Env(spec_from_live(self.summary, heatrecovery_spec()))
+        self.addCleanup(self.env.close)
+
+    def run_once(self, **kw):
+        with patch("builtins.print"):
+            return self.env.runner(**kw).run_single({}, 1, "baseline")
+
+    def test_fixture_numbers_match_the_fake_tree(self):
+        table = self.env.doc.Tree.table
+        for block in self.summary["blocks"]:
+            for e in block["energy"]:
+                self.assertEqual((table[e["path"]].Value, table[e["path"]].UnitString), (e["value"], e["unit"]), e["path"])
+
+    def test_status_is_warning_and_maps_blkstat_2(self):
+        result = self.run_once()
+        self.assertEqual(result["status"], "warning")
+        self.assertIsNone(result["error"])
+        self.assertTrue(run_status.is_exported(result["status"]))
+        self.assertEqual({b: d["status"] for b, d in result["blocks"].items()},
+                         {b["id"]: b["status"] for b in self.summary["blocks"]})
+        self.assertEqual({b: d["blkstat"] for b, d in result["blocks"].items() if d["blkstat"] == 2}.keys(),
+                         {"COOLER", "REACTOR", "VALVE"})
+        run = result["run_status"]
+        self.assertEqual(run["state"], "warning")
+        self.assertEqual(run["warnings"], self.summary["status"]["warnings"])
+        self.assertEqual(run["errors"], [])
+        self.assertEqual(run["raw_status"]["UOSSTAT2"], 10)
+
+    def test_per_block_blkmsg_and_per_error_are_aspens_own_and_match_the_1_1_probe(self):
+        result = self.run_once()
+        for block in self.summary["blocks"]:
+            mine = result["blocks"][block["id"]]
+            self.assertEqual((mine["blkmsg"], mine["per_error"]), (block["blkmsg"], block["per_error"]), block["id"])
+            self.assertEqual(mine["per_error_total"], len(block["per_error"]), block["id"])
+            self.assertNotIn("messages", mine, "legacy flat list is read-compat only, never written")
+        self.assertIn("PHASE STABILITY CHECK", result["blocks"]["COOLER"]["blkmsg"])
+        self.assertIn("ZERO", result["blocks"]["REACTOR"]["blkmsg"])
+        self.assertIsNone(result["blocks"]["PUMP"]["blkmsg"])
+        self.assertEqual(result["blocks"]["PUMP"]["per_error"], [])
+        # a normal (non-warning) block can still carry per_error lines: HEATCHAG is status ok with stability text
+        self.assertEqual(result["blocks"]["HEATCHAG"]["status"], "ok")
+
+    def test_block_energy_items_carry_the_verified_flag_like_the_probe(self):
+        result = self.run_once()
+        for block in self.summary["blocks"]:
+            mine = {e["path"]: e["verified"] for e in result["blocks"][block["id"]]["energy"]}
+            self.assertEqual(mine, {e["path"]: e["verified"] for e in block["energy"]}, block["id"])
+
+    def test_legacy_messages_are_still_readable(self):
+        legacy = {"status": "warning", "messages": ["PHASE", "  detail", " "]}
+        self.assertEqual(run_status.block_messages(legacy), ["PHASE", "  detail"])
+        new = {"blkmsg": "PHASE", "per_error": ["  detail"]}
+        self.assertEqual(run_status.block_messages(new), ["PHASE", "  detail"])
+        self.assertEqual(run_status.block_messages({"blkmsg": None, "per_error": []}), [])
+        info = {"state": "warning", "blkstat": 2, "blkmsg": "X", "messages": ["*  WARNING", "  a", ""]}
+        self.assertEqual(run_status.block_fields(info), {"status": "warning", "blkstat": 2, "blkmsg": "X",
+                                                           "per_error": ["  a"], "per_error_total": 1})
+
+    def test_batch_blocks_equal_the_real_1_1_fixture_fields(self):
+        """BRO's checked-in 1.1 heatrecovery fixture is the same data: batch rows and probe summary agree per block."""
+        probe = json.loads((PROBE_FIXTURES / "heatrecovery.probe-summary.json").read_text(encoding="utf-8"))
+        result = self.run_once()
+        for block in probe["blocks"]:
+            mine = result["blocks"][block["id"]]
+            self.assertEqual((mine["status"], mine["blkstat"], mine["blkmsg"], mine["per_error"]),
+                             (block["status"], block["blkstat"], block["blkmsg"], block["per_error"]), block["id"])
+
+    def test_heat_uses_cal_per_sec_and_4_1868_not_kw_or_4_184(self):
+        result = self.run_once()
+        heater = result["blocks"]["HEATER"]
+        self.assertAlmostEqual(heater["heat_kW"], 1000.52531 * 4.1868 / 1000)
+        self.assertNotAlmostEqual(heater["heat_kW"], 1000.52531 / 1000, places=2)   # old "treat cal/sec as W" bug
+        self.assertNotAlmostEqual(heater["heat_kW"], 1000.52531 * 4.184 / 1000, places=4)   # thermochemical calorie
+        self.assertEqual(heater["source_quantities"][r"\Data\Blocks\HEATER\Output\QCALC"], {"value": 1000.52531, "unit": "cal/sec"})
+        for live_block in self.summary["blocks"]:
+            block = result["blocks"][live_block["id"]]
+            self.assertEqual([(e["kind"], e["value"], e["unit"]) for e in block["energy"]],
+                             [(e["kind"], e["value"], e["unit"]) for e in live_block["energy"]])
+            for mine, real in zip(block["energy"], live_block["energy"]):
+                self.assertAlmostEqual(mine["kW"], real["kW"], places=9, msg=live_block["id"])
+        self.assertAlmostEqual(result["blocks"]["PUMP"]["power_kW"], 2.1717208)
+        self.assertEqual(result["calorie_J"], 4.1868)
+
+    def test_every_numeric_result_carries_a_unit(self):
+        result = self.run_once()
+        for name, block in result["blocks"].items():
+            self.assertEqual(block["units"], BLOCK_UNITS)
+            self.assertEqual(missing_units(block, BLOCK_UNITS, name, exempt={"blkstat", "per_error_total"}), [], name)
+            for e in block["energy"]:
+                self.assertTrue(e["unit"], (name, e))
+        for name, stream in result["streams"].items():
+            self.assertEqual(stream["units"], STREAM_UNITS)
+            self.assertEqual(missing_units(stream, STREAM_UNITS, name), [], name)
+        self.assertEqual(result["streams"]["FEED"]["pressure_MPa"], convert_quantity(1.0, "atm", "MPa"))   # atm, not bar
+        self.assertEqual(result["streams"]["S3"]["temperature_C"], 603.0 - 273.15)                      # from K
+        self.assertEqual(result["streams"]["FEED"]["mass_flow_kg_h"], 100.0)                            # kg/hr, not kg/s
+        self.assertEqual(result["units"]["elapsed_time_seconds"], "s")
+
+    def test_results_file_records_unit_conversion_and_run_cleanup(self):
+        result = self.run_once()
+        saved = json.loads(Path(result["output_dir"], "results.json").read_text(encoding="utf-8"))
+        self.assertEqual((saved["unit_conversion"], saved["calorie_J"]), ("node-unit-aware-v2", 4.1868))
+        self.assertEqual(result["cleanup"], {"killed_pids": [], "source_unchanged": True})
+        self.assertEqual(self.env.doc.closed, False)       # Close(False): never saves the model
+        self.assertEqual(self.env.doc.Engine.calls[:2], ["Reinit", ("Run2", 1)])
+        self.assertNotIn("Run", self.env.doc.Engine.calls)  # no blocking Engine.Run()
+
+    def test_parameters_are_written_before_the_run_and_read_back(self):
+        spec = spec_from_live(self.summary, heatrecovery_spec())
+        spec[r"\Data\Blocks\HEATER\Input\TEMP"] = dict(value=603.0, unit="K")
+        env = Env(spec)
+        self.addCleanup(env.close)
+        catalog = {"HEATER.TEMP": dict(path=r"\Data\Blocks\HEATER\Input\TEMP", value=603.0, unit="K")}
+        with patch("builtins.print"):
+            result = env.runner(catalog).run_single({"HEATER.TEMP": 613}, 1)
+        self.assertEqual(result["applied_parameters"], {"HEATER.TEMP": 613})
+        self.assertEqual(env.doc.Tree.table[r"\Data\Blocks\HEATER\Input\TEMP"].Value, 613)
+        self.assertEqual(result["status"], "warning")
+
+
+class NormalRunTests(unittest.TestCase):
+    """mch.bkp (Aspen RadFrac example): status ok; duties are native Btu/hr."""
+
+    def test_ok_status_and_native_btu_duties_converted_with_units(self):
+        summary = live("live_mch_summary.json")
+        env = Env(spec_from_live(summary, radfrac_spec()), name="mch.bkp")
+        self.addCleanup(env.close)
+        with patch("builtins.print"):
+            result = env.runner().run_single({}, 1)
+        self.assertEqual(result["status"], "ok")
+        self.assertEqual(result["blocks"]["B1"]["status"], "ok")
+        self.assertEqual((result["blocks"]["B1"]["blkmsg"], result["blocks"]["B1"]["per_error"]), (None, []))
+        energy = result["blocks"]["B1"]["energy"]
+        real = summary["blocks"][0]["energy"]
+        self.assertEqual([e["unit"] for e in energy], ["Btu/hr", "Btu/hr"])
+        for mine, theirs in zip(energy, real):
+            self.assertAlmostEqual(mine["kW"], theirs["kW"], places=6)
+        self.assertAlmostEqual(sum(e["kW"] for e in energy if e["kW"] > 0), summary["totals_kW"]["heating"], places=3)
+        # the legacy QCALC/DUTY lookup has no node on a column: missing stays None, never 0
+        self.assertIsNone(result["blocks"]["B1"]["heat_kW"])
+
+
+class FailureModeTests(unittest.TestCase):
+    def env(self, engine, **kw):
+        env = Env(heatrecovery_spec(), engine)
+        self.addCleanup(env.close)
+        return env, env.runner(**kw)
+
+    def test_timeout_stops_the_engine_and_is_reported_not_raised(self):
+        env, runner = self.env(FakeEngine(hang=True), timeout_s=0.05)
+        with patch("builtins.print"):
+            result = runner.run_single({}, 1, "slow")
+        self.assertEqual(result["status"], "timeout")
+        self.assertIn("0.05", result["error"])
+        self.assertIn("--timeout", result["error"])
+        self.assertFalse(run_status.is_exported(result["status"]))
+        self.assertEqual((result["blocks"], result["streams"]), ({}, {}))
+        self.assertIn("Stop", env.doc.Engine.calls)
+        self.assertEqual(result["run_status"]["state"], "timeout")
+        self.assertEqual(result["cleanup"]["killed_pids"], [])
+        self.assertEqual(env.doc.closed, False)
+        self.assertEqual(result["timeout_s"], 0.05)
+        self.assertEqual(result["units"]["timeout_s"], "s")
+
+    def test_timeout_that_ignores_stop_only_kills_the_aspen_this_run_started(self):
+        class Stubborn(FakeEngine):
+            def Stop(self):
+                self.calls.append("Stop")      # does not actually stop
+        env, runner = self.env(Stubborn(hang=True), timeout_s=0.02)
+        env.spawn = True
+        with patch("builtins.print"):
+            result = runner.run_single({}, 1)
+        self.assertEqual(result["status"], "timeout")
+        self.assertEqual(sorted(env.ops.killed), [7000, 7001])
+        self.assertEqual(sorted(result["cleanup"]["killed_pids"]), [7000, 7001])
+        for untouched in (1, 900, 901, 7002):
+            self.assertIn(untouched, env.ops.table, "never touches the user's own processes")
+
+    def test_stop_request_during_a_run(self):
+        env, runner = self.env(FakeEngine(hang=True), timeout_s=30)
+        timer = threading.Timer(0.05, runner.request_stop)
+        timer.start()
+        self.addCleanup(timer.cancel)
+        with patch("builtins.print"):
+            result = runner.run_single({}, 1)
+        self.assertEqual(result["status"], "stopped")
+        self.assertIn("Stop", env.doc.Engine.calls)
+        self.assertEqual(result["blocks"], {})
+
+    def test_batch_stop_marks_unstarted_rows_skipped(self):
+        env, runner = self.env(FakeEngine(hang=True), timeout_s=30)
+        runner.request_stop()
+        with patch("builtins.print"):
+            results = runner.run_batch([{}, {}, {}], ["a", "b", "c"])
+        self.assertEqual([r["status"] for r in results], ["skipped"] * 3)
+        self.assertEqual(env.doc.Engine.calls, [], "Aspen was never started")
+        counts = run_status.counts(results)
+        self.assertEqual((counts["skipped"], counts["success_count"], counts["failed_count"]), (3, 0, 3))
+
+    def test_engine_failure_and_open_failure_are_errors(self):
+        env, runner = self.env(FakeEngine(fail_run=RuntimeError("boom")))
+        with patch("builtins.print"):
+            result = runner.run_single({}, 1)
+        self.assertEqual(result["status"], "error")
+        self.assertIn("boom", result["error"])
+        env.model.unlink()
+        with patch("builtins.print"):
+            missing = runner.run_single({}, 2)
+        self.assertEqual(missing["status"], "error")
+        self.assertIn("找不到模型文件", missing["error"])
+
+    def test_unknown_blkstat_is_an_error_but_the_data_is_still_exported(self):
+        spec = heatrecovery_spec()
+        spec[r"\Data\Blocks\HEATER\Output\BLKSTAT"] = dict(value=1)
+        env = Env(spec)
+        self.addCleanup(env.close)
+        with patch("builtins.print"):
+            result = env.runner().run_single({}, 1)
+        self.assertEqual(result["status"], "error")
+        self.assertIn("HEATER", result["error"])
+        self.assertEqual(result["blocks"]["HEATER"]["status"], "error")
+        self.assertTrue(result["output_dir"])
+
+
+class BatchSummaryTests(unittest.TestCase):
+    def test_summary_counts_statuses_and_csv_has_block_status_and_messages(self):
+        summary = live("live_hr_summary.json")
+        env = Env(spec_from_live(summary, heatrecovery_spec()))
+        self.addCleanup(env.close)
+        runner = env.runner()
+        with patch("builtins.print"):
+            runner.run_batch([{}], ["hr"])
+            skipped = runner._new_result({}, 2, "later")
+            skipped.update(status="timeout", error="Aspen 运行超过 1 秒")
+            runner.batch_results.append(skipped)
+            summary_json, summary_csv, directory = runner.save_batch_summary()
+        data = json.loads(summary_json.read_text(encoding="utf-8"))
+        self.assertEqual(data["summary_version"], 3)
+        self.assertEqual(data["status_counts"], {"ok": 0, "warning": 1, "error": 0, "timeout": 1, "stopped": 0, "skipped": 0})
+        self.assertEqual((data["success_count"], data["failed_count"]), (1, 1))
+        self.assertEqual((data["timeout_s"], data["calorie_J"]), (1200, 4.1868))
+        with summary_csv.open(encoding="utf-8-sig") as handle:
+            rows = list(csv.DictReader(handle))
+        self.assertEqual([r["状态"] for r in rows], ["warning", "timeout"])
+        self.assertEqual(rows[0]["设备.COOLER.状态"], "warning")
+        self.assertIn("PHASE STABILITY", rows[0]["设备.COOLER.消息"])
+        self.assertEqual(rows[0]["设备.PUMP.状态"], "ok")
+        self.assertEqual(rows[1]["错误"], "Aspen 运行超过 1 秒")
+        json.dumps(data, allow_nan=False)
+
+    def test_legacy_status_words_still_read(self):
+        self.assertTrue(run_status.is_exported("success"))
+        self.assertFalse(run_status.is_exported("failed"))
+        self.assertEqual(run_status.counts([{"status": "success"}, {"status": "failed"}])["success_count"], 1)
+
+
+class TimeoutOptionTests(unittest.TestCase):
+    def test_cli_accepts_positive_seconds_only(self):
+        self.assertEqual(positive_seconds("90"), 90.0)
+        for bad in ("0", "-5", "abc", "inf", "nan"):
+            with self.assertRaises(Exception, msg=bad):
+                positive_seconds(bad)
+
+    def test_cli_timeout_overrides_config_overrides_default(self):
+        with tempfile.TemporaryDirectory() as d:
+            cfg = Path(d) / "c.json"
+            cfg.write_text(json.dumps({"model_path": str(Path(d) / "m.bkp"), "parameter_catalog": {"k": {"path": "\\x", "value": 1}},
+                                       "parameter_sets": [{"_name": "a", "parameters": {}}], "timeout_s": 77}), encoding="utf-8")
+            seen = []
+
+            class Spy(BatchRunner):
+                def __init__(self, *a, **kw):
+                    super().__init__(*a, **kw)
+                    seen.append(self.timeout_s)
+
+                def run_batch(self, *a, **kw):
+                    return []
+
+                def save_batch_summary(self):
+                    return None
+
+            with patch.object(batch_runner, "BatchRunner", Spy):
+                batch_runner.main(["run", str(cfg)])
+                batch_runner.main(["run", str(cfg), "--timeout", "5"])
+            cfg.write_text(json.dumps({"model_path": "m.bkp", "parameter_catalog": {"k": {"path": "\\x", "value": 1}},
+                                       "parameter_sets": []}), encoding="utf-8")
+            with patch.object(batch_runner, "BatchRunner", Spy):
+                batch_runner.main(["run", str(cfg)])
+        self.assertEqual(seen, [77, 5.0, 1200])
+
+    def test_runner_module_has_no_blocking_engine_run(self):
+        source = Path(batch_runner.__file__).read_text(encoding="utf-8")
+        self.assertFalse("Engine.Run()" in source)
+        self.assertIn("adapter.run(", source)
+        self.assertFalse("Engine.Run()" in Path(datacatch.__file__).read_text(encoding="utf-8"))
+
+    def test_class_structure(self):
+        for name in ("set_parameters", "run_single", "run_batch", "save_batch_summary", "request_stop",
+                     "_print_brief_summary", "_generate_summary_csv"):
+            self.assertTrue(hasattr(BatchRunner, name), name)
+        runner = BatchRunner(Path("test_model.bkp"), {"REACTOR": {"_nodes": {"反应温度": "REAC_TEMP"}, "params": {"反应温度": 350}}}, ["IN"])
+        self.assertEqual(runner.batch_results, [])
+        self.assertEqual(len(runner.batch_id), 15)
+        self.assertEqual(runner.timeout_s, 1200)
+
+
+if __name__ == "__main__":
+    unittest.main()

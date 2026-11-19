@@ -21,6 +21,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 from urllib.request import urlopen
 
+import run_status
 from parameter_catalog import coerce_value, discover_parameters
 from parameter_labels import is_common, parameter_detail, parameter_title
 from aspen_connection import create_aspen_document
@@ -309,8 +310,9 @@ class AutomationService:
                 with self.lock:
                     self.job["results"].append(copy.deepcopy(result))
                     self.job["completed"] = index
-                self.log(f"第 {index} 行已导出。" if result["status"] == "success"
-                         else f"第 {index} 行失败：{result.get('error') or '请检查 Aspen 状态'}")
+                self.log(f"第 {index} 行已导出{'（Aspen 有警告，见各设备消息）' if result['status'] == 'warning' else ''}。"
+                         if run_status.is_exported(result["status"])
+                         else f"第 {index} 行{run_status.label(result['status'])}：{result.get('error') or '请检查 Aspen 状态'}")
         except BaseException as exc:
             error = exc
         finally:

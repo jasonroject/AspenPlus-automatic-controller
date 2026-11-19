@@ -10,6 +10,7 @@ import csv
 import io
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import run_status
 from batch_runner import BatchRunner
 from parameter_catalog import discover_parameters, legacy_catalog, coerce_value
 from scan_dialog import MultiScanDialog
@@ -779,18 +780,19 @@ class BatchRunnerGUI:
 
                 self.root.after(0, lambda idx=i: self._row_status(idx, "运行中"))
                 result = self.runner.run_single(ps, i, rn)
-                status_text = "已导出" if result["status"] == "success" else "失败"
+                status_text = run_status.label(result["status"])
                 self.root.after(0, lambda idx=i, text=status_text: self._row_status(idx, text))
                 # GUI 逐次调用 run_single，不走 run_batch，因此必须手动累计结果。
                 self.runner.batch_results.append(result)
 
-                if result["status"] == "success":
+                if run_status.is_exported(result["status"]):
 
                     t = result.get("elapsed_time_seconds", 0)
-                    self.root.after(0, lambda _t=t: self.log(f"✓ 成功 ({_t}秒)"))
+                    note = "（有警告）" if result["status"] == "warning" else ""
+                    self.root.after(0, lambda _t=t, _n=note: self.log(f"✓ 成功{_n} ({_t}秒)"))
                 else:
                     err = result.get("error", "未知")
-                    self.root.after(0, lambda _e=err: self.log(f"✗ 失败: {_e}"))
+                    self.root.after(0, lambda _e=err, _s=run_status.label(result["status"]): self.log(f"✗ {_s}: {_e}"))
 
                 self.root.after(0, lambda _i=i: self.progress.configure(value=_i))
                 self.root.after(0, lambda _i=i: self.prog_label.configure(
@@ -800,7 +802,7 @@ class BatchRunnerGUI:
                 self.root.after(0, lambda: self.log("\n正在保存汇总..."))
                 jp, cp, bd = self.runner.save_batch_summary()
                 self.root.after(0, lambda _bd=bd: self.log(f"✓ 已保存到: {_bd}"))
-                sc = sum(1 for r in self.runner.batch_results if r["status"] == "success")
+                sc = sum(1 for r in self.runner.batch_results if run_status.is_exported(r["status"]))
                 self.root.after(0, lambda _sc=sc, _bd=bd: messagebox.showinfo(
                     "完成", f"批处理完成!\n\n成功: {_sc}/{total}\n\n结果: {_bd}"))
 

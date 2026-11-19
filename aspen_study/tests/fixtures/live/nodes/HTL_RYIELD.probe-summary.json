@@ -1,0 +1,189 @@
+{
+ "schema": "aspen-probe/1.1",
+ "created": "2026-11-19T23:08:09+08:00",
+ "model": {
+  "file": "HTL RYIELD.bkp",
+  "sha256": "670027013270ed4ea17594529eff0fa47b61007c07049a9c0b4fc446edab9779",
+  "simulator": "aspen-plus",
+  "version": null,
+  "progid": "Apwn.Document.41.0",
+  "adapter": "aspen-plus-com",
+  "source_unchanged": true
+ },
+ "status": {
+  "state": "ok",
+  "run_completed": true,
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "raw_status": {
+   "UOSSTAT": 0,
+   "UOSSTAT2": 8,
+   "CVSTAT": 2,
+   "CSSTAT": 2,
+   "RSTAT": 0,
+   "PPSTAT": 2,
+   "SENSSTAT": 2,
+   "ITSTAT": 4,
+   "SSTAT": 0
+  },
+  "run_status_lines": [
+   "The following messages were issued during Input Translation:",
+   "   INFORMATION",
+   "   THERE ARE HENRY COMPONENTS DEFINED IN THIS CASE, THE BINARY DATABANK",
+   "   WILL BE SEARCHED AUTOMATICALLY FOR ANY AVAILABLE HENRY CONSTANTS."
+  ],
+  "run_seconds": 2.8
+ },
+ "units": {
+  "INSET": "SET3",
+  "OUTSET": "SET3",
+  "calorie_J": 4.1868,
+  "note": "块负荷与流股焓流保留各节点自己的 UnitString，不假设 kW（MET 的热负荷是 cal/sec，ENG 是 Btu/hr）。1 cal = 4.1868 J 经真机核对（同一结果在 MET 与 SI 下各读一次，比值 4.1868）。"
+ },
+ "calorie_J": 4.1868,
+ "blocks": [
+  {
+   "id": "B1",
+   "type": "Flash3",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": -0.182312622,
+     "unit": "MMkcal/hr",
+     "kW": -212.02957938599997,
+     "path": "\\Data\\Blocks\\B1\\Output\\QCALC",
+     "verified": true,
+     "note": "按 1 cal = 4.1868 J"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 60.0,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\B1\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "HTL",
+   "type": "RYield",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 1.2407358,
+     "unit": "MMkcal/hr",
+     "kW": 1442.9757353999998,
+     "path": "\\Data\\Blocks\\HTL\\Output\\QCALC",
+     "verified": true,
+     "note": "按 1 cal = 4.1868 J"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 350.0,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\HTL\\Output\\B_TEMP"
+   }
+  }
+ ],
+ "totals_kW": {
+  "heating": 1442.975735,
+  "cooling": -212.029579,
+  "work": 0.0,
+  "internal_exchange": 0.0
+ },
+ "totals_complete": true,
+ "group_totals": {
+  "heating": {
+   "kW": 1442.975735,
+   "complete": true
+  },
+  "cooling": {
+   "kW": -212.029579,
+   "complete": true
+  },
+  "shaft_work": {
+   "kW": 0.0,
+   "complete": true
+  },
+  "internal_exchange": {
+   "kW": 0.0,
+   "complete": true
+  },
+  "overall": {
+   "kW": 1230.946156,
+   "complete": true
+  }
+ },
+ "energy_gaps": [],
+ "unverified_paths": [
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\AQ+SOL\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\AQ+SOL\\Output\\MASSFLOW\\CISOLID",
+   "reason": "子流股 CISOLID 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\BIOCRUDE\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\BIOCRUDE\\Output\\MASSFLOW\\CISOLID",
+   "reason": "子流股 CISOLID 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\BIOMASS\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\BIOMASS\\Output\\MASSFLOW\\CISOLID",
+   "reason": "子流股 CISOLID 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\GAS\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\GAS\\Output\\MASSFLOW\\CISOLID",
+   "reason": "子流股 CISOLID 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S2\\Output\\MASSFLOW\\$TOTAL",
+   "reason": "子流股 $TOTAL 没有真机样本"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S2\\Output\\MASSFLOW\\CISOLID",
+   "reason": "子流股 CISOLID 没有真机样本"
+  }
+ ],
+ "discovery": {
+  "mode": "recipe",
+  "nodes_read": 534,
+  "complete": true,
+  "unmatched_block_types": []
+ },
+ "cleanup": {
+  "killed_pids": []
+ },
+ "elapsed_seconds": 16.0
+}
