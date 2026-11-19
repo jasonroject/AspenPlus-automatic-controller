@@ -11,6 +11,7 @@ from aspen_study.adapters import aspen_rules as R
 from aspen_study.adapters.aspen_com import AspenPlusCOMAdapter
 from aspen_study.adapters.errors import AspenConnectionLost, AspenError, AspenTimeout, ModelOpenError
 from aspen_study.cli import main as cli_main
+from aspen_study.probe_compat import group_totals
 from aspen_study.probe import energy_table, format_report, run_probe, totals_kW
 from aspen_study.schema_check import validate
 
@@ -178,6 +179,83 @@ class AdapterTests(unittest.TestCase):
         self.assertIn("通用 QCALC", g["discovery"]["unverified_paths"])
 
 
+class ProbeV11Tests(unittest.TestCase):
+    """aspen-probe/1.1：blkmsg/per_error、verified、group_totals、对象形式的 energy_gaps / unverified_paths。"""
+
+    def probe(self, spec, name="m.bkp"):
+        env = Env(spec, name=name)
+        self.addCleanup(env.close)
+        with tempfile.TemporaryDirectory() as out:
+            summary, _ = run_probe(env.model, out, make_study=False, adapter_factory=lambda **kw: env.adapter(**kw), log=lambda *_: None)
+            on_disk = json.loads((Path(out) / "probe-summary.json").read_text(encoding="utf-8"))
+        validate(summary, "probe")
+        self.assertEqual(on_disk["schema"], "aspen-probe/1.1")
+        return summary
+
+    def test_block_messages_split_and_status_from_blkstat(self):
+        summary = self.probe(heatrecovery_spec())
+        for b in summary["blocks"]:
+            self.assertNotIn("messages", b)
+            self.assertIsInstance(b["per_error"], list)
+            self.assertIn("blkmsg", b)
+            self.assertEqual(b["status"], {0: "ok", 2: "warning"}.get(b["blkstat"], b["status"]))
+            self.assertGreaterEqual(b["per_error_total"], len(b["per_error"]))
+
+    def test_every_energy_entry_has_verified_flag(self):
+        summary = self.probe(heatrecovery_spec())
+        flags = {e["path"]: e["verified"] for b in summary["blocks"] for e in b["energy"]}
+        self.assertTrue(flags and all(isinstance(v, bool) for v in flags.values()))
+        self.assertTrue(all(flags.values()))  # heater/flash/heatx/pump/rplug 都是真机验证过的配方
+
+    def test_unregistered_block_is_unverified_and_listed_as_object(self):
+        spec = radfrac_spec(cond=None, reb=None)
+        spec[r"\Data\Blocks\B1"] = dict(attr6="WeirdUnit")
+        spec[r"\Data\Blocks\B1\Output\QCALC"] = dict(value=12.5, unit="kW")
+        summary = self.probe(spec)
+        self.assertFalse(summary["blocks"][0]["energy"][0]["verified"])
+        item = summary["unverified_paths"][0]
+        self.assertNotIn("unverified_paths", summary["discovery"])
+        self.assertEqual((item["block"], item["path"]), ("B1", r"\Data\Blocks\B1\Output\QCALC"))
+        self.assertTrue(item["reason"])
+        self.assertFalse(summary["totals_complete"])
+        self.assertFalse(summary["group_totals"]["overall"]["complete"])
+
+    def test_energy_gaps_are_objects(self):
+        spec = heatrecovery_spec()
+        del spec[r"\Data\Blocks\HEATER\Output\QCALC"]
+        summary = self.probe(spec)
+        gap = summary["energy_gaps"][0]
+        self.assertEqual(set(gap), {"block", "path", "reason"})
+        self.assertEqual(gap["block"], "HEATER")
+        self.assertFalse(summary["totals_complete"])
+
+    def test_group_totals_exclude_internal_exchange_and_match_legacy_totals(self):
+        summary = self.probe(heatrecovery_spec())
+        g, t = summary["group_totals"], summary["totals_kW"]
+        self.assertEqual((g["heating"]["kW"], g["cooling"]["kW"], g["shaft_work"]["kW"], g["internal_exchange"]["kW"]), (t["heating"], t["cooling"], t["work"], t["internal_exchange"]))
+        self.assertTrue(all(v["complete"] for v in g.values()))
+        self.assertGreater(g["internal_exchange"]["kW"], 0)
+        self.assertAlmostEqual(g["overall"]["kW"], t["heating"] + t["cooling"] + t["work"], places=5)  # 净值，不含内部换热
+        self.assertTrue(summary["totals_complete"])
+
+    def test_group_totals_null_when_a_member_cannot_convert(self):
+        rows = [{"energy": [{"kind": "heat", "value": 5.0, "unit": "weird", "kW": None},
+                            {"kind": "work", "value": 1.0, "unit": "kW", "kW": 1.0}]}]
+        g = group_totals(rows, True)
+        self.assertEqual(g["heating"], {"kW": None, "complete": False})
+        self.assertEqual(g["shaft_work"], {"kW": 1.0, "complete": True})
+        self.assertEqual(g["overall"], {"kW": None, "complete": False})
+        self.assertFalse(group_totals(rows[:0] or [{"energy": []}], False)["shaft_work"]["complete"])  # totals_complete=false 时全部不完整
+
+    def test_report_still_renders_with_objects(self):
+        spec = radfrac_spec(cond=None, reb=None)
+        spec[r"\Data\Blocks\B1"] = dict(attr6="WeirdUnit")
+        spec[r"\Data\Blocks\B1\Output\QCALC"] = dict(value=12.5, unit="kW")
+        text = format_report(self.probe(spec))
+        self.assertIn("尚未在真机验证", text)
+        self.assertIn("internal_exchange", text)
+
+
 class RunAndCleanupTests(unittest.TestCase):
     def test_engine_runs_reinit_then_async_and_private_doc(self):
         env = Env()
@@ -319,6 +397,27 @@ class RulesTests(unittest.TestCase):
         self.assertEqual(R.classify_run(True, 99, [], blocks)["state"], "error")
         self.assertEqual(R.classify_run(False, 8, [], blocks)["state"], "error")
         self.assertFalse(R.classify_run(False, 8, [], blocks)["run_completed"])
+
+    def test_finished_run_without_any_result_is_an_error_not_ok(self):
+        """真机：Integrated Model with Membrane Separation.bkp（含 Hierarchy/ACM）运行 1.1 秒“结束”，但没有 Run-Status，
+        所有块都没有 BLKSTAT——以前被判成 ok 并给出全 0 的合计。"""
+        unknown = {"B1": {"state": "unknown", "blkstat": None}, "B2": {"state": "unknown", "blkstat": None}}
+        v = R.classify_run(True, None, [], unknown)
+        self.assertEqual(v["state"], "error")
+        self.assertFalse(v["run_completed"])
+        self.assertIn("没有任何计算结果", v["errors"][0])
+        # 只要有任何一个块有 BLKSTAT，或读到了 UOSSTAT2 / Run-Status 文字，就不是“无结果”
+        self.assertEqual(R.classify_run(True, None, [], dict(unknown, B3={"state": "ok", "blkstat": 0}))["state"], "ok")
+        self.assertEqual(R.classify_run(True, 8, [], unknown)["state"], "ok")
+        self.assertEqual(R.classify_run(True, None, [], {})["state"], "ok")  # 没有块：没有证据，不下结论
+
+    def test_recipes_verified_live_on_aspen_v15_examples(self):
+        """2026-11 在真机核对（见 aspen_study/tests/fixtures/live/nodes）：这些类型的能量节点已验证。"""
+        for t in ("compr", "mcompr", "rstoic", "ryield", "rgibbs", "rcstr", "flash3"):
+            self.assertTrue(all(v for *_x, v in R.RECIPES[t]["energy"]), t)
+        # MCompr：轴功（WNET）+ 级间冷却热（QNET，<0）。只读功会漏掉整段冷却负荷（Methane Pyrolysis MC-M：-2622 kW）
+        kinds = [(k, nodes[0]) for k, _h, nodes, _v in R.RECIPES["mcompr"]["energy"]]
+        self.assertEqual(kinds, [("work", "WNET"), ("heat", "QNET")])
 
 
 class ProbeTests(unittest.TestCase):

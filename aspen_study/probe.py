@@ -3,7 +3,7 @@
     python -m aspen_study probe <model.bkp> [--out-dir DIR]
 
 产物（out-dir 下）：
-  probe-summary.json   aspen-probe/1：运行状态（ok/warning/error）、逐块消息、逐块能量表（原生单位 + kW）
+  probe-summary.json   aspen-probe/1.1：运行状态（ok/warning/error）、逐块消息、逐块能量表（原生单位 + kW）
   graph.json           aspen-model-graph/1：原生值与 UnitString，可直接交给 classify / assess
   study/               （可选）按 graph 自动生成的 aspen-study/2 包：manifest.json、cases/、results/ …
 源模型文件不被修改（前后 SHA-256 对比写入 summary）。
@@ -18,24 +18,31 @@ from pathlib import Path
 from .adapters.aspen_com import AspenPlusCOMAdapter
 from .adapters.aspen_rules import to_kW
 from .adapters.errors import AspenError
+from .probe_compat import PER_ERROR_CAP, SCHEMA, SKIP_LINES, group_totals, with_block
 from .schema_check import validate
 
 HINT_ZH = {"exchanged": "内部换热", "condenser": "冷凝器", "reboiler": "再沸器"}
 STATE_ZH = {"ok": "正常", "warning": "有警告（结果可用但要标注）", "error": "有错误（结果不可信）"}
 
 
-def energy_table(graph, report, calorie_J):
-    """逐块能量表：原生值、原生单位、换算后的 kW（换算不了就是 null，附原因）。"""
+def energy_table(graph, report, calorie_J, energy_verified=None):
+    """逐块能量表：原生值、原生单位、换算后的 kW（换算不了就是 null，附原因）。
+
+    每块：status（由 BLKSTAT 派生 ok/warning/error/unknown）、blkmsg（Aspen 的块摘要消息或 null）、
+    per_error（消息行，最多 12 行）、per_error_total（真实行数）。每个能量项：verified = 该节点读取是否已在真机验证
+    （energy_verified 来自适配器；没有映射时一律按未验证 false，不乐观）。"""
+    energy_verified = energy_verified or {}
     rows = []
     for b in graph["blocks"]:
         info = (report["blocks"] or {}).get(b["id"], {})
+        lines = [m for m in info.get("messages", []) if m.strip() and m.strip() not in SKIP_LINES]
+        blkmsg = (info.get("blkmsg") or "").strip() or None
         row = {"id": b["id"], "type": b["type"], "status": info.get("state", "unknown"), "blkstat": info.get("blkstat"),
-               "messages": (([info["blkmsg"]] if info.get("blkmsg") else []) + [m for m in info.get("messages", [])
-                                                                             if m.strip() and m.strip() not in ("*  WARNING", "*  ERROR")])[:12],
-               "energy": []}
+               "blkmsg": blkmsg, "per_error": lines[:PER_ERROR_CAP], "per_error_total": len(lines), "energy": []}
         for e in b["energy"]:
             kw, note = to_kW(e["value"], e["unit"], calorie_J)
-            item = {"kind": e["kind"], "value": e["value"], "unit": e["unit"], "kW": kw, "path": e.get("path", "")}
+            item = {"kind": e["kind"], "value": e["value"], "unit": e["unit"], "kW": kw, "path": e.get("path", ""),
+                    "verified": bool(energy_verified.get(e.get("path", ""), False))}
             if e.get("role_hint"):
                 item["role_hint"] = e["role_hint"]
             if note:
@@ -70,7 +77,15 @@ def totals_kW(rows):
 
 def build_summary(graph, adapter, rows, report, elapsed, calorie_J, source_unchanged):
     discovery = graph.get("discovery", {})
-    return {"schema": "aspen-probe/1",
+    gaps = adapter.energy_gap_items() if hasattr(adapter, "energy_gap_items") else [
+        {"block": None, "path": str(g), "reason": str(g)} for g in adapter.energy_gaps()]
+    unverified = adapter.unverified_items() if hasattr(adapter, "unverified_items") else [
+        {"block": None, "path": str(u), "reason": "未在真机验证"} for u in discovery.get("unverified_paths", [])]
+    gaps = [with_block(g) for g in gaps]  # block 为空时按 \\Blocks\\<ID>\\ 路径解析；解析不了才保留 null
+    unverified = [with_block(u) for u in unverified]
+    complete = not gaps and not discovery.get("unmatched_block_types")
+    disc = {k: discovery[k] for k in ("mode", "nodes_read", "complete", "unmatched_block_types") if k in discovery}
+    return {"schema": SCHEMA,
             "created": datetime.now().astimezone().isoformat(timespec="seconds"),
             "model": dict(graph["model"], source_unchanged=source_unchanged),
             "status": {"state": report["state"], "run_completed": report["run_completed"], "errors": report["errors"],
@@ -80,9 +95,11 @@ def build_summary(graph, adapter, rows, report, elapsed, calorie_J, source_uncha
             "calorie_J": calorie_J,
             "blocks": rows,
             "totals_kW": totals_kW(rows),
-            "totals_complete": not adapter.energy_gaps() and not discovery.get("unmatched_block_types"),
-            "energy_gaps": adapter.energy_gaps(),
-            "discovery": {k: discovery[k] for k in ("mode", "nodes_read", "complete", "unmatched_block_types", "unverified_paths") if k in discovery},
+            "totals_complete": complete,
+            "group_totals": group_totals(rows, complete),
+            "energy_gaps": gaps,
+            "unverified_paths": unverified,
+            "discovery": disc,
             "cleanup": {"killed_pids": adapter.cleaned_pids()},
             "elapsed_seconds": round(elapsed, 1)}
 
@@ -112,7 +129,8 @@ def run_probe(model, out_dir, *, study_id=None, case_id="case-1", calorie_J=4.18
         report = adapter.run_report()
     finally:
         adapter.close()
-    rows = energy_table(graph, report, calorie_J)
+    rows = energy_table(graph, report, calorie_J,
+                        adapter.energy_verified() if hasattr(adapter, "energy_verified") else None)
     summary = build_summary(graph, adapter, rows, report, time.monotonic() - started, calorie_J, adapter.source_unchanged)
     validate(summary, "probe")
     write_json(out / "graph.json", graph)
@@ -163,19 +181,20 @@ def format_report(summary):
             lines.append(f"{r['id'] if first else '':<10}{r['type'] if first else '':<10}{r['status'] if first else '':<9}"
                          f"{label:<12}{value:>14} {(e or {}).get('unit', ''):<10}{kw:>12}")
             first = False
-    t = s["totals_kW"]
+    t = s["group_totals"]
     lines.append("")
-    lines.append("合计 kW：" + "，".join(f"{k}={'未知' if v is None else v}" for k, v in t.items())
+    lines.append("合计 kW：" + "，".join(f"{k}={'未知' if v['kW'] is None else v['kW']}" for k, v in t.items())
+                 + "（internal_exchange 为内部换热；overall = 加热+冷却+轴功的净值，不含内部换热）"
                  + ("" if s["totals_complete"] else "（不完整：有块缺负荷读数或类型未登记，合计仅供参考）"))
     for title, key in (("错误", "errors"), ("警告", "warnings"), ("说明", "notes")):
         for x in s["status"][key]:
             lines.append(f"{title}：{x}")
     for g in s["energy_gaps"]:
-        lines.append(f"缺负荷读数（未补 0）：{g}")
+        lines.append(f"缺负荷读数（未补 0）：{g['reason']}")
     if s["discovery"].get("unmatched_block_types"):
         lines.append("未登记的块类型（只尝试了通用节点）：" + "、".join(s["discovery"]["unmatched_block_types"]))
-    if s["discovery"].get("unverified_paths"):
-        lines.append("以下读取尚未在真机验证：" + "；".join(s["discovery"]["unverified_paths"]))
+    if s["unverified_paths"]:
+        lines.append("以下读取尚未在真机验证：" + "；".join(u["path"] for u in s["unverified_paths"]))
     st = s.get("study")
     if st:
         lines.append("aspen-study 包：" + (f"{st['dir']}/（{', '.join(c['id'] + ':' + c['status'] for c in st['cases'])}）" if st["ok"] else st["error"]))

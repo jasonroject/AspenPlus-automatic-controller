@@ -1,0 +1,138 @@
+{
+ "schema": "aspen-advice/1",
+ "rules_version": "1.1.0",
+ "model": {
+  "file": "mch.bkp",
+  "sha256": "57bce0dbe0f47156aabbf690df0c6f65d0d3b64b2236604027e3983165506abd"
+ },
+ "inputs": {
+  "probe": "aspen-probe/1.1",
+  "migrated_from": "aspen-probe/1",
+  "graph": false,
+  "roles": false
+ },
+ "counts": {
+  "critical": 0,
+  "warn": 0,
+  "suggest": 0,
+  "info": 1,
+  "total": 1
+ },
+ "items": [
+  {
+   "id": "units.non-si-set",
+   "rule": "units.non-si-set",
+   "severity": "info",
+   "category": "units",
+   "target": "global",
+   "title_zh": "模型使用 ENG 输入 / ENG 输出单位集",
+   "detail_zh": "探针读到的块负荷保留了各节点自己的单位（本模型出现的能量单位：Btu/hr），并换算成 kW（含 cal 的单位按 1 cal = 4.1868 J）。原生数值不是 kW，不同单位的换算倍数不同，直接当 kW 用会得出错误结论。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/units/INSET",
+     "value": "ENG"
+    },
+    {
+     "path": "probe-summary.json#/units/OUTSET",
+     "value": "ENG"
+    },
+    {
+     "path": "probe-summary.json#/calorie_J",
+     "value": 4.1868
+    }
+   ],
+   "action_zh": "与其他来源（文献、能耗清单）比较时使用 kW 列；要在 Aspen 里核对，请注意界面显示的是原生单位。",
+   "confidence": "verified"
+  }
+ ],
+ "skipped": [
+  {
+   "rule": "heat-integration.overlap",
+   "missing_inputs": [
+    "graph"
+   ],
+   "reason_zh": "没有提供 graph.json，该规则未评估。"
+  },
+  {
+   "rule": "heat-integration.none",
+   "missing_inputs": [
+    "graph"
+   ],
+   "reason_zh": "没有提供 graph.json，该规则未评估。"
+  },
+  {
+   "rule": "heat-integration.data-missing",
+   "missing_inputs": [
+    "graph"
+   ],
+   "reason_zh": "没有提供 graph.json，该规则未评估。"
+  },
+  {
+   "rule": "convergence.mass-balance",
+   "missing_inputs": [
+    "graph"
+   ],
+   "reason_zh": "没有提供 graph.json，该规则未评估。"
+  },
+  {
+   "rule": "lca-readiness.roles-draft",
+   "missing_inputs": [
+    "roles"
+   ],
+   "reason_zh": "没有提供 roles.json，该规则未评估。"
+  },
+  {
+   "rule": "lca-readiness.no-product",
+   "missing_inputs": [
+    "roles"
+   ],
+   "reason_zh": "没有提供 roles.json，该规则未评估。"
+  },
+  {
+   "rule": "lca-readiness.multi-product",
+   "missing_inputs": [
+    "roles"
+   ],
+   "reason_zh": "没有提供 roles.json，该规则未评估。"
+  },
+  {
+   "rule": "lca-readiness.no-functional-unit",
+   "missing_inputs": [
+    "roles"
+   ],
+   "reason_zh": "没有提供 roles.json，该规则未评估。"
+  },
+  {
+   "rule": "lca-readiness.fu-stream-mismatch",
+   "missing_inputs": [
+    "roles"
+   ],
+   "reason_zh": "没有提供 roles.json，该规则未评估。"
+  },
+  {
+   "rule": "lca-readiness.product-low-confidence",
+   "missing_inputs": [
+    "roles"
+   ],
+   "reason_zh": "没有提供 roles.json，该规则未评估。"
+  },
+  {
+   "rule": "lca-readiness.utility-guess",
+   "missing_inputs": [
+    "roles"
+   ],
+   "reason_zh": "没有提供 roles.json，该规则未评估。"
+  },
+  {
+   "rule": "lca-readiness.no-factor-key",
+   "missing_inputs": [
+    "roles"
+   ],
+   "reason_zh": "没有提供 roles.json，该规则未评估。"
+  },
+  {
+   "rule": "energy.hotspot",
+   "reason_zh": "少于两个块有外部能量项，不做热点排序"
+  }
+ ]
+}

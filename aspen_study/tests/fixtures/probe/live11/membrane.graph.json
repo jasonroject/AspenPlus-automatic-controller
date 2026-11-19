@@ -1,0 +1,352 @@
+{
+ "schema": "aspen-model-graph/1",
+ "model": {
+  "file": "Integrated Model with Membrane Separation.bkp",
+  "sha256": "f02cf7f9af44f9521017571d064762d3e41695b01e47caef5d681299ef58cd9a",
+  "simulator": "aspen-plus",
+  "version": null,
+  "progid": "Apwn.Document.41.0",
+  "adapter": "aspen-plus-com"
+ },
+ "status": {
+  "run_completed": false,
+  "errors": [
+   "运行结束了，但没有任何计算结果（Run-Status 和所有块的 BLKSTAT 都读不到）：模型可能输入不完整、依赖外部组件（如 ACM），或根本没有真正计算。请在 Aspen 里打开并成功运行一次。"
+  ],
+  "warnings": [],
+  "block_status": {
+   "B3": null,
+   "CO2CAPTU": null,
+   "COMP2": null,
+   "COOLER2": null,
+   "E-100": null,
+   "E-101": null,
+   "E-102": null,
+   "E-103": null,
+   "E-104": null,
+   "REFORMER": null,
+   "WGS-HT": null,
+   "WGS-LT": null
+  },
+  "block_status_accepted": [
+   0,
+   2
+  ]
+ },
+ "components": [
+  {
+   "id": "CH4",
+   "alias": "CH4",
+   "cas": "74-82-8",
+   "type": "CONV"
+  },
+  {
+   "id": "H2O",
+   "alias": "H2O",
+   "cas": "7732-18-5",
+   "type": "CONV"
+  },
+  {
+   "id": "H2",
+   "alias": "H2",
+   "cas": "1333-74-0",
+   "type": "CONV"
+  },
+  {
+   "id": "CO2",
+   "alias": "CO2",
+   "cas": "124-38-9",
+   "type": "CONV"
+  },
+  {
+   "id": "CO",
+   "alias": "CO",
+   "cas": "630-08-0",
+   "type": "CONV"
+  }
+ ],
+ "blocks": [
+  {
+   "id": "B3",
+   "type": "Sep",
+   "ports": {
+    "in": [
+     "H2STREAM"
+    ],
+    "out": [
+     "GAS2",
+     "H2"
+    ]
+   },
+   "energy": []
+  },
+  {
+   "id": "CO2CAPTU",
+   "type": "Hierarchy",
+   "ports": {
+    "in": [
+     "SYNGAS"
+    ],
+    "out": [
+     "H2STREAM"
+    ]
+   },
+   "energy": []
+  },
+  {
+   "id": "COMP2",
+   "type": "Compr",
+   "ports": {
+    "in": [
+     "H2"
+    ],
+    "out": [
+     "S4",
+     "W2"
+    ]
+   },
+   "energy": []
+  },
+  {
+   "id": "COOLER2",
+   "type": "Heater",
+   "ports": {
+    "in": [
+     "S4"
+    ],
+    "out": [
+     "H2PROD",
+     "Q4"
+    ]
+   },
+   "energy": []
+  },
+  {
+   "id": "E-100",
+   "type": "Heater",
+   "ports": {
+    "in": [
+     "NG2"
+    ],
+    "out": [
+     "NG"
+    ]
+   },
+   "energy": []
+  },
+  {
+   "id": "E-101",
+   "type": "Heater",
+   "ports": {
+    "in": [
+     "NG1"
+    ],
+    "out": [
+     "NG2"
+    ]
+   },
+   "energy": []
+  },
+  {
+   "id": "E-102",
+   "type": "Heater",
+   "ports": {
+    "in": [
+     "SYNGAS1"
+    ],
+    "out": [
+     "SYNGAS2"
+    ]
+   },
+   "energy": []
+  },
+  {
+   "id": "E-103",
+   "type": "Heater",
+   "ports": {
+    "in": [
+     "SYNGAS2"
+    ],
+    "out": [
+     "SYNGAS3"
+    ]
+   },
+   "energy": []
+  },
+  {
+   "id": "E-104",
+   "type": "Heater",
+   "ports": {
+    "in": [
+     "SYNGAS4"
+    ],
+    "out": [
+     "SYNGAS5"
+    ]
+   },
+   "energy": []
+  },
+  {
+   "id": "REFORMER",
+   "type": "RCSTR",
+   "ports": {
+    "in": [
+     "NG",
+     "STEAM"
+    ],
+    "out": [
+     "SYNGAS1"
+    ]
+   },
+   "energy": []
+  },
+  {
+   "id": "WGS-HT",
+   "type": "RCSTR",
+   "ports": {
+    "in": [
+     "SYNGAS3"
+    ],
+    "out": [
+     "SYNGAS4"
+    ]
+   },
+   "energy": []
+  },
+  {
+   "id": "WGS-LT",
+   "type": "RCSTR",
+   "ports": {
+    "in": [
+     "SYNGAS5"
+    ],
+    "out": [
+     "SYNGAS"
+    ]
+   },
+   "energy": []
+  }
+ ],
+ "streams": [
+  {
+   "id": "GAS2",
+   "class": "MATERIAL",
+   "from": "B3",
+   "to": "BOUNDARY"
+  },
+  {
+   "id": "H2",
+   "class": "MATERIAL",
+   "from": "B3",
+   "to": "COMP2"
+  },
+  {
+   "id": "H2PROD",
+   "class": "MATERIAL",
+   "from": "COOLER2",
+   "to": "BOUNDARY"
+  },
+  {
+   "id": "H2STREAM",
+   "class": "MATERIAL",
+   "from": "CO2CAPTU",
+   "to": "B3"
+  },
+  {
+   "id": "NG",
+   "class": "MATERIAL",
+   "from": "E-100",
+   "to": "REFORMER"
+  },
+  {
+   "id": "NG1",
+   "class": "MATERIAL",
+   "from": "BOUNDARY",
+   "to": "E-101"
+  },
+  {
+   "id": "NG2",
+   "class": "MATERIAL",
+   "from": "E-101",
+   "to": "E-100"
+  },
+  {
+   "id": "Q4",
+   "class": "HEAT",
+   "from": "COOLER2",
+   "to": "BOUNDARY"
+  },
+  {
+   "id": "S4",
+   "class": "MATERIAL",
+   "from": "COMP2",
+   "to": "COOLER2"
+  },
+  {
+   "id": "STEAM",
+   "class": "MATERIAL",
+   "from": "BOUNDARY",
+   "to": "REFORMER"
+  },
+  {
+   "id": "SYNGAS",
+   "class": "MATERIAL",
+   "from": "WGS-LT",
+   "to": "CO2CAPTU"
+  },
+  {
+   "id": "SYNGAS1",
+   "class": "MATERIAL",
+   "from": "REFORMER",
+   "to": "E-102"
+  },
+  {
+   "id": "SYNGAS2",
+   "class": "MATERIAL",
+   "from": "E-102",
+   "to": "E-103"
+  },
+  {
+   "id": "SYNGAS3",
+   "class": "MATERIAL",
+   "from": "E-103",
+   "to": "WGS-HT"
+  },
+  {
+   "id": "SYNGAS4",
+   "class": "MATERIAL",
+   "from": "WGS-HT",
+   "to": "E-104"
+  },
+  {
+   "id": "SYNGAS5",
+   "class": "MATERIAL",
+   "from": "E-104",
+   "to": "WGS-LT"
+  },
+  {
+   "id": "W2",
+   "class": "WORK",
+   "from": "COMP2",
+   "to": "BOUNDARY"
+  }
+ ],
+ "units": {
+  "INSET": "METCBAR",
+  "OUTSET": "METCBAR",
+  "calorie_J": 4.1868,
+  "note": "块负荷与流股焓流保留各节点自己的 UnitString，不假设 kW（MET 的热负荷是 cal/sec，ENG 是 Btu/hr）。1 cal = 4.1868 J 经真机核对（同一结果在 MET 与 SI 下各读一次，比值 4.1868）。"
+ },
+ "discovery": {
+  "mode": "recipe",
+  "nodes_read": 335,
+  "complete": false,
+  "unmatched_block_types": [
+   "Hierarchy"
+  ],
+  "unverified_paths": [
+   "HEAT 流股负荷节点（块负荷已计，流股 duty 未读取）",
+   "WORK 流股负荷节点（块负荷已计，流股 duty 未读取）"
+  ]
+ }
+}

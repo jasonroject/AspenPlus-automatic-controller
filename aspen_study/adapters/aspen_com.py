@@ -83,6 +83,9 @@ class AspenPlusCOMAdapter(SimulatorAdapter):
         self._report = None
         self._graph_parts = {}
         self._unverified = set()
+        self._unverified_items = {}
+        self._energy_verified = {}
+        self._missing_items = []
         self._missing = []
         self._unmatched = set()
         self._watchdog = None
@@ -432,12 +435,16 @@ class AspenPlusCOMAdapter(SimulatorAdapter):
                 found = self.number(BLOCK_OUT.format(b=bid) + "\\" + n)
                 if found is not None:
                     if not verified:
-                        self._unverified.add(f"{model}: {n}")
+                        self._note_unverified(f"{model}: {n}", bid, BLOCK_OUT.format(b=bid) + "\\" + n,
+                                              f"块类型 {model} 的节点 {n} 来自 Aspen 自动化的常见写法，未在真机验证")
                     break
             if found is None:
-                self._missing.append(f"{bid}（{model}）{hint or kind}：{'/'.join(nodes)} 都读不到")
+                text = f"{bid}（{model}）{hint or kind}：{'/'.join(nodes)} 都读不到"
+                self._missing.append(text)
+                self._missing_items.append({"block": bid, "path": BLOCK_OUT.format(b=bid) + "\\" + nodes[0], "reason": text})
             else:
                 energy.append(self._energy_entry(bid, kind, hint, found))
+                self._energy_verified[found.path] = bool(verified)
         return energy
 
     def _generic_energy(self, bid):
@@ -447,7 +454,9 @@ class AspenPlusCOMAdapter(SimulatorAdapter):
                 found = self.number(BLOCK_OUT.format(b=bid) + "\\" + n)
                 if found is not None:
                     energy.append(self._energy_entry(bid, kind, None, found))
-                    self._unverified.add(f"通用 {n}")
+                    self._energy_verified[found.path] = False
+                    self._note_unverified(f"通用 {n}", bid, BLOCK_OUT.format(b=bid) + "\\" + n,
+                                          "块类型未登记，只能用通用节点读取，未在真机验证")
                     break
         return energy
 
@@ -469,7 +478,8 @@ class AspenPlusCOMAdapter(SimulatorAdapter):
                 self._lost(exc)
             cls = str(cls).upper() if cls else "MATERIAL"
             if cls not in ("MATERIAL", "HEAT", "WORK"):
-                self._unverified.add(f"流股类别 {cls}（按 MATERIAL 处理）")
+                self._note_unverified(f"流股类别 {cls}（按 MATERIAL 处理）", None, rf"\Data\Streams\{sid}",
+                                      f"流股类别 {cls} 没有真机样本，按 MATERIAL 处理")
                 cls = "MATERIAL"
             stream = {"id": sid, "class": cls, "from": source.get(sid, "BOUNDARY"), "to": dest.get(sid, "BOUNDARY")}
             if cls == "MATERIAL":
@@ -502,11 +512,13 @@ class AspenPlusCOMAdapter(SimulatorAdapter):
                     if comps:
                         subs[sub] = {"mass_unit": unit, "mass_by_component": {k: v for k, v in comps.items() if v >= 0}}
                     if sub != "MIXED":
-                        self._unverified.add(f"非 MIXED 子流股 {sub}")
+                        self._note_unverified(f"非 MIXED 子流股 {sub}", None, rf"\Data\Streams\{sid}\Output\MASSFLOW\{sub}",
+                                              f"子流股 {sub} 没有真机样本")
                 if subs:
                     stream["substreams"] = subs
             else:
-                self._unverified.add(f"{cls} 流股负荷节点（块负荷已计，流股 duty 未读取）")
+                self._note_unverified(f"{cls} 流股负荷节点（块负荷已计，流股 duty 未读取）", None, rf"\Data\Streams\{sid}",
+                                      f"{cls} 类流股的负荷节点未读取（块负荷已计）")
             out.append(stream)
         return out
 
@@ -531,6 +543,25 @@ class AspenPlusCOMAdapter(SimulatorAdapter):
 
     def energy_gaps(self):
         return list(self._missing)
+
+    def energy_gap_items(self):
+        """aspen-probe/1.1 的 energy_gaps：[{block, path, reason}]。"""
+        self.blocks()
+        return [dict(x) for x in self._missing_items]
+
+    def unverified_items(self):
+        """aspen-probe/1.1 的 discovery.unverified_paths：[{block, path, reason}]（block 为 null 表示全局）。"""
+        self.blocks()
+        return [{"block": b, "path": p, "reason": r} for (b, p, r) in sorted(self._unverified_items, key=lambda k: (k[0] or "", k[1], k[2]))]
+
+    def energy_verified(self):
+        """{能量节点路径: 该读取是否已在真机验证}。"""
+        self.blocks()
+        return dict(self._energy_verified)
+
+    def _note_unverified(self, text, block, path, reason):
+        self._unverified.add(text)
+        self._unverified_items[(block, path, reason)] = True
 
     # ------------------------------------------------------------------ 收尾
     def close(self):

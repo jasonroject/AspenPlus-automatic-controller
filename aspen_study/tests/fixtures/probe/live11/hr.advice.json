@@ -1,0 +1,432 @@
+{
+ "schema": "aspen-advice/1",
+ "rules_version": "1.1.0",
+ "model": {
+  "file": "heatrecovery.bkp",
+  "sha256": "91965a901c1074cc6e0d47a9b614d9cd54df18e4841bf0de248e143a66edac0f"
+ },
+ "inputs": {
+  "probe": "aspen-probe/1.1",
+  "migrated_from": null,
+  "graph": true,
+  "roles": true
+ },
+ "counts": {
+  "critical": 0,
+  "warn": 6,
+  "suggest": 7,
+  "info": 3,
+  "total": 16
+ },
+ "items": [
+  {
+   "id": "thermo.phase-stability:COOLER",
+   "rule": "thermo.phase-stability",
+   "severity": "warn",
+   "category": "thermo/phase",
+   "target": "COOLER",
+   "title_zh": "块 COOLER 相稳定性检查未通过",
+   "detail_zh": "COOLER（Heater）的消息里出现相稳定性问题，涉及组分：STYRENE。Aspen 原话提示该相可能不稳定，建议尝试三相计算。结果仍被算出，但出口相态、焓和热负荷可能受影响。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/1/status",
+     "value": "warning"
+    },
+    {
+     "path": "probe-summary.json#/blocks/1/blkstat",
+     "value": 2
+    },
+    {
+     "path": "probe-summary.json#/blocks/1/blkmsg",
+     "value": "PROBLEM(S) ENCOUNTERED DURING PHASE STABILITY CHECK"
+    },
+    {
+     "path": "probe-summary.json#/blocks/1/per_error/0",
+     "value": "   STABILITY CHECK FOR LIQUID PHASE: STABILITY CRITERION NOT SATISFIED FOR"
+    }
+   ],
+   "action_zh": "①确认物性方法能描述液液分层（活度系数类方法需有二元交互参数；理想法或缺 LLE 参数时三相计算没有意义）；②把该块的有效相态（Valid phases）改成气-液-液并重算；③若该组分很稀（消息里给出了摩尔分数），先比较两种设定下热负荷的差别，再决定是否接受警告并在报告里注明。",
+   "confidence": "verified"
+  },
+  {
+   "id": "thermo.outlet-flash-problem:COOLER",
+   "rule": "thermo.outlet-flash-problem",
+   "severity": "warn",
+   "category": "thermo/phase",
+   "target": "COOLER",
+   "title_zh": "块 COOLER 出口物流闪蒸出现问题",
+   "detail_zh": "COOLER（Heater）的消息指出出口物流闪蒸有问题（Aspen 建议检查相态规格）。出口物流的温度、压力或相态可能不是你期望的。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/1/status",
+     "value": "warning"
+    },
+    {
+     "path": "probe-summary.json#/blocks/1/blkstat",
+     "value": 2
+    },
+    {
+     "path": "probe-summary.json#/blocks/1/per_error/3",
+     "value": "   PROBLEM OCCURRED WHILE FLASHING OUTLET STREAM."
+    }
+   ],
+   "action_zh": "检查该块出口的温度/压力/汽化率等规格是否在合理范围，必要时放宽相态规格或换用更合适的闪蒸类型；修好后重算并确认下游物流状态。",
+   "confidence": "verified"
+  },
+  {
+   "id": "thermo.phase-stability:VALVE",
+   "rule": "thermo.phase-stability",
+   "severity": "warn",
+   "category": "thermo/phase",
+   "target": "VALVE",
+   "title_zh": "块 VALVE 相稳定性检查未通过",
+   "detail_zh": "VALVE（Valve）的消息里出现相稳定性问题，涉及组分：STYRENE。Aspen 原话提示该相可能不稳定，建议尝试三相计算。结果仍被算出，但出口相态、焓和热负荷可能受影响。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/6/status",
+     "value": "warning"
+    },
+    {
+     "path": "probe-summary.json#/blocks/6/blkstat",
+     "value": 2
+    },
+    {
+     "path": "probe-summary.json#/blocks/6/blkmsg",
+     "value": "PROBLEM(S) ENCOUNTERED DURING PHASE STABILITY CHECK"
+    },
+    {
+     "path": "probe-summary.json#/blocks/6/per_error/0",
+     "value": "   STABILITY CHECK FOR LIQUID PHASE: STABILITY CRITERION NOT SATISFIED FOR"
+    }
+   ],
+   "action_zh": "①确认物性方法能描述液液分层（活度系数类方法需有二元交互参数；理想法或缺 LLE 参数时三相计算没有意义）；②把该块的有效相态（Valid phases）改成气-液-液并重算；③若该组分很稀（消息里给出了摩尔分数），先比较两种设定下热负荷的差别，再决定是否接受警告并在报告里注明。",
+   "confidence": "verified"
+  },
+  {
+   "id": "thermo.outlet-flash-problem:VALVE",
+   "rule": "thermo.outlet-flash-problem",
+   "severity": "warn",
+   "category": "thermo/phase",
+   "target": "VALVE",
+   "title_zh": "块 VALVE 出口物流闪蒸出现问题",
+   "detail_zh": "VALVE（Valve）的消息指出出口物流闪蒸有问题（Aspen 建议检查相态规格）。出口物流的温度、压力或相态可能不是你期望的。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/6/status",
+     "value": "warning"
+    },
+    {
+     "path": "probe-summary.json#/blocks/6/blkstat",
+     "value": 2
+    },
+    {
+     "path": "probe-summary.json#/blocks/6/per_error/3",
+     "value": "   PROBLEM WITH OUTLET STREAM FLASH. CHECK PHASE SPECIFICATIONS."
+    }
+   ],
+   "action_zh": "检查该块出口的温度/压力/汽化率等规格是否在合理范围，必要时放宽相态规格或换用更合适的闪蒸类型；修好后重算并确认下游物流状态。",
+   "confidence": "verified"
+  },
+  {
+   "id": "reaction.rate-zero:REACTOR",
+   "rule": "reaction.rate-zero",
+   "severity": "warn",
+   "category": "reaction",
+   "target": "REACTOR",
+   "title_zh": "块 REACTOR 部分反应速率被强制置零",
+   "detail_zh": "REACTOR（RPlug）的消息说明：某些反应的速率为正，但反应物在该位置不存在，速率被置零。涉及反应编号：29、30、31；缺失的反应物：H2。这些反应在模型里实际没有贡献。（探针只保留了前 12 行消息，后面可能还有更多。）",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/5/status",
+     "value": "warning"
+    },
+    {
+     "path": "probe-summary.json#/blocks/5/blkstat",
+     "value": 2
+    },
+    {
+     "path": "probe-summary.json#/blocks/5/blkmsg",
+     "value": "REACTION RATE IS SET TO ZERO FOR SOME REACTIONS"
+    }
+   ],
+   "action_zh": "①核对缺失反应物是否本应由进料或循环带入（进料组成、循环物流是否接上）；②核对这些反应的化学计量和动力学（反应级数、浓度基准、指前因子）是否写对；③若确认这些是不会发生的副反应，可删除或在报告里说明其无贡献，避免警告掩盖真正的问题。",
+   "confidence": "verified"
+  },
+  {
+   "id": "energy.warning-share",
+   "rule": "energy.warning-share",
+   "severity": "warn",
+   "category": "energy",
+   "target": "global",
+   "title_zh": "74% 的外部能量来自带警告的块",
+   "detail_zh": "外部 |kW| 合计 28.01 kW 中，20.85 kW 来自状态为警告/错误的块：COOLER（8.74 kW）、REACTOR（12.11 kW）。这些块的能量值可靠性受其警告影响。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/1/status",
+     "value": "warning"
+    },
+    {
+     "path": "probe-summary.json#/blocks/5/status",
+     "value": "warning"
+    }
+   ],
+   "action_zh": "先处理这些块的警告再引用能耗结论；若必须引用，请同时给出警告说明。",
+   "confidence": "verified"
+  },
+  {
+   "id": "thermo.phase-stability:HEATCHAG",
+   "rule": "thermo.phase-stability",
+   "severity": "suggest",
+   "category": "thermo/phase",
+   "target": "HEATCHAG",
+   "title_zh": "块 HEATCHAG 相稳定性检查未通过（块状态为 ok，但消息里仍有此问题）",
+   "detail_zh": "HEATCHAG（HeatX）的消息里出现相稳定性问题，涉及组分：STYRENE。Aspen 原话提示该相可能不稳定，建议尝试三相计算。结果仍被算出，但出口相态、焓和热负荷可能受影响。（探针只保留了前 12 行消息，后面可能还有更多。）",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/2/status",
+     "value": "ok"
+    },
+    {
+     "path": "probe-summary.json#/blocks/2/blkstat",
+     "value": 0
+    },
+    {
+     "path": "probe-summary.json#/blocks/2/per_error/0",
+     "value": "   STABILITY CHECK FOR LIQUID PHASE: STABILITY CRITERION NOT SATISFIED FOR"
+    },
+    {
+     "path": "probe-summary.json#/blocks/2/per_error/2",
+     "value": "   1.5506-03 ). THIS PHASE MAY BE UNSTABLE. TRY USING 3-PHASE CALCULATIONS."
+    }
+   ],
+   "action_zh": "①确认物性方法能描述液液分层（活度系数类方法需有二元交互参数；理想法或缺 LLE 参数时三相计算没有意义）；②把该块的有效相态（Valid phases）改成气-液-液并重算；③若该组分很稀（消息里给出了摩尔分数），先比较两种设定下热负荷的差别，再决定是否接受警告并在报告里注明。",
+   "confidence": "verified"
+  },
+  {
+   "id": "thermo.flash-unreliable:HEATCHAG",
+   "rule": "thermo.flash-unreliable",
+   "severity": "suggest",
+   "category": "thermo/phase",
+   "target": "HEATCHAG",
+   "title_zh": "块 HEATCHAG 的闪蒸问题使物性可能不可靠（块状态为 ok，但消息里仍有此问题）",
+   "detail_zh": "HEATCHAG（HeatX）的消息明确写了“计算出的物性可能因闪蒸问题而不可靠”。出口焓、温度、相分率都会受牵连，进而影响该块及相邻块的能量数。（探针只保留了前 12 行消息，后面可能还有更多。）",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/2/status",
+     "value": "ok"
+    },
+    {
+     "path": "probe-summary.json#/blocks/2/blkstat",
+     "value": 0
+    },
+    {
+     "path": "probe-summary.json#/blocks/2/per_error/6",
+     "value": "   CALCULATED PROPERTIES MAY BE UNRELIABLE DUE TO FLASH PROBLEMS."
+    },
+    {
+     "path": "probe-summary.json#/blocks/2/per_error/10",
+     "value": "   CALCULATED PROPERTIES MAY BE UNRELIABLE DUE TO FLASH PROBLEMS."
+    }
+   ],
+   "action_zh": "先解决该块的相态/闪蒸警告（见同块的相稳定性建议），重算后再采信该块的热负荷；在此之前把它的能量值当作带不确定度的数。",
+   "confidence": "verified"
+  },
+  {
+   "id": "heat-integration.overlap:COOLER:B6",
+   "rule": "heat-integration.overlap",
+   "severity": "suggest",
+   "category": "heat-integration",
+   "target": "COOLER",
+   "title_zh": "热集成机会：COOLER 放热可部分供给 B6",
+   "detail_zh": "冷却块 COOLER（370.4→313 K，8.74 kW）与加热块 B6（313→313 K，0.81 kW）在最小温差 10 K 下温度区间有重叠；按线性 T-Q 近似（忽略相变潜热），可回收量上界约 0.81 kW。这只是筛查，不是设计。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/1/energy/0/kW",
+     "value": -8.739993692484001,
+     "unit": "kW"
+    },
+    {
+     "path": "graph.json#/streams/9/total/T",
+     "value": 370.427717,
+     "unit": "K"
+    },
+    {
+     "path": "graph.json#/blocks/1/outlet_temperature/value",
+     "value": 313.0,
+     "unit": "K"
+    },
+    {
+     "path": "probe-summary.json#/blocks/0/energy/0/kW",
+     "value": 0.8073139740840001,
+     "unit": "kW"
+    },
+    {
+     "path": "graph.json#/streams/5/total/T",
+     "value": 313.0,
+     "unit": "K"
+    },
+    {
+     "path": "graph.json#/blocks/0/outlet_temperature/value",
+     "value": 313.0,
+     "unit": "K"
+    }
+   ],
+   "action_zh": "做一次夹点分析或用 Aspen 的 HeatX/Aspen Energy Analyzer 验证：用实际的 T-Q 曲线（含相变）核算能否回收，并比较换热面积的代价。",
+   "confidence": "heuristic"
+  },
+  {
+   "id": "lca-readiness.roles-draft",
+   "rule": "lca-readiness.roles-draft",
+   "severity": "suggest",
+   "category": "lca-readiness",
+   "target": "global",
+   "title_zh": "角色仍是自动草稿，有 8 项待人工确认",
+   "detail_zh": "roles.review.state=auto_draft。自动分类只是启发式推断，待确认项：stream S7: waste；stream S8: product；block B6: separator/lp_steam；block COOLER: cooler/cooling_water；block HEATCHAG: internal_recovery/fired_heat …共 8 个。",
+   "evidence": [
+    {
+     "path": "roles.json#/review/state",
+     "value": "auto_draft"
+    }
+   ],
+   "action_zh": "逐项确认产品流股、功能单位和公用工程类型后，把 review.state 改为 reviewed，再据此做 LCA。",
+   "confidence": "verified"
+  },
+  {
+   "id": "lca-readiness.product-low-confidence:S8",
+   "rule": "lca-readiness.product-low-confidence",
+   "severity": "suggest",
+   "category": "lca-readiness",
+   "target": "S8",
+   "title_zh": "产品流股 S8 是低置信度的自动猜测",
+   "detail_zh": "S8 被自动标为产品，置信度 0.45，推理依据：出口物流中“非水非气组分占比/名称”评分最高 → 产品候选。分类器在选产品时可能与你的预期相反。",
+   "evidence": [
+    {
+     "path": "roles.json#/streams/S8/provenance/confidence",
+     "value": 0.45
+    }
+   ],
+   "action_zh": "对照流程图确认真正的产品流股；自动猜测不要直接用于 LCA。",
+   "confidence": "verified"
+  },
+  {
+   "id": "lca-readiness.utility-guess",
+   "rule": "lca-readiness.utility-guess",
+   "severity": "suggest",
+   "category": "lca-readiness",
+   "target": "global",
+   "title_zh": "4 个耗能块的公用工程类型是未确认的猜测",
+   "detail_zh": "下列有能量项的块，其公用工程类型（电/蒸汽/燃料/冷却水等）由温度经验分级得出，尚未确认：B6→lp_steam；COOLER→cooling_water；HEATER→fired_heat；REACTOR→fired_heat。公用工程类型直接决定背景因子。",
+   "evidence": [
+    {
+     "path": "roles.json#/blocks/B6/utility",
+     "value": "lp_steam"
+    },
+    {
+     "path": "roles.json#/blocks/COOLER/utility",
+     "value": "cooling_water"
+    },
+    {
+     "path": "roles.json#/blocks/HEATER/utility",
+     "value": "fired_heat"
+    },
+    {
+     "path": "roles.json#/blocks/REACTOR/utility",
+     "value": "fired_heat"
+    }
+   ],
+   "action_zh": "按实际供能方式逐块确认；加热块在电加热与燃料/蒸汽之间的选择对结果影响最大。",
+   "confidence": "verified"
+  },
+  {
+   "id": "lca-readiness.no-factor-key",
+   "rule": "lca-readiness.no-factor-key",
+   "severity": "suggest",
+   "category": "lca-readiness",
+   "target": "global",
+   "title_zh": "进料流股 FEED 没有选定背景因子",
+   "detail_zh": "这些进料没有 inventory.factor_key。本工具不自带任何排放因子数值，必须由研究者提供或选择因子库条目。",
+   "evidence": [
+    {
+     "path": "roles.json#/streams/FEED/inventory",
+     "value": {
+      "kind": "material"
+     }
+    }
+   ],
+   "action_zh": "为每个进料选定因子来源（数据库条目或文献值）并记录出处，否则 LCA 结果不完整。",
+   "confidence": "verified"
+  },
+  {
+   "id": "units.non-si-set",
+   "rule": "units.non-si-set",
+   "severity": "info",
+   "category": "units",
+   "target": "global",
+   "title_zh": "模型使用 MET 输入 / MET 输出单位集",
+   "detail_zh": "探针读到的块负荷保留了各节点自己的单位（本模型出现的能量单位：cal/sec、kW），并换算成 kW（含 cal 的单位按 1 cal = 4.1868 J）。原生数值不是 kW，不同单位的换算倍数不同，直接当 kW 用会得出错误结论。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/units/INSET",
+     "value": "MET"
+    },
+    {
+     "path": "probe-summary.json#/units/OUTSET",
+     "value": "MET"
+    },
+    {
+     "path": "probe-summary.json#/calorie_J",
+     "value": 4.1868
+    }
+   ],
+   "action_zh": "与其他来源（文献、能耗清单）比较时使用 kW 列；要在 Aspen 里核对，请注意界面显示的是原生单位。",
+   "confidence": "verified"
+  },
+  {
+   "id": "energy.hotspot",
+   "rule": "energy.hotspot",
+   "severity": "info",
+   "category": "energy",
+   "target": "global",
+   "title_zh": "能耗热点：REACTOR、COOLER、HEATER",
+   "detail_zh": "按外部热/冷/功的 |kW| 简单相加（内部换热不计，热与功不折算品位）共 28.01 kW，占比最大的块：REACTOR 43%（12.11 kW）、COOLER 31%（8.74 kW）、HEATER 15%（4.19 kW）。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/1/energy/0/kW",
+     "value": -8.739993692484001,
+     "unit": "kW"
+    },
+    {
+     "path": "probe-summary.json#/blocks/3/energy/0/kW",
+     "value": 4.188999367908,
+     "unit": "kW"
+    },
+    {
+     "path": "probe-summary.json#/blocks/5/energy/0/kW",
+     "value": 12.10632563016,
+     "unit": "kW"
+    }
+   ],
+   "action_zh": "优化与节能优先看这几个块：先核对它们的规格是否合理，再评估热集成或工艺条件调整的空间。",
+   "confidence": "heuristic"
+  },
+  {
+   "id": "energy.internal-exchange",
+   "rule": "energy.internal-exchange",
+   "severity": "info",
+   "category": "energy",
+   "target": "global",
+   "title_zh": "内部换热 40.5 kW 单独列出",
+   "detail_zh": "换热器 HEATCHAG 的内部换热合计 40.5 kW，没有计入外购加热/冷却（外部加热 17.1 kW，外部冷却 -8.74 kW）。",
+   "evidence": [
+    {
+     "path": "probe-summary.json#/blocks/2/energy/0/kW",
+     "value": 40.501385355960004,
+     "unit": "kW"
+    }
+   ],
+   "action_zh": "LCA 与公用工程核算只用外部项；内部换热量可用来评估热回收程度。",
+   "confidence": "verified"
+  }
+ ],
+ "skipped": []
+}
