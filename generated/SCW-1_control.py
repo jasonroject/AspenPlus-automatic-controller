@@ -8,6 +8,7 @@ import win32com.client as win32
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import test_datacatch as datacatch
+from result_units import format_quantity
 
 
 MODEL_PATH = Path(r"C:\Users\Administrator\Documents\AspenTech\Aspen Plus V15.0\SCW-1\SCW-1.bkp")
@@ -24,38 +25,16 @@ def _safe_float(value):
 
 
 def resolve_block_heat(aspen, bname):
-    candidates = [
-        rf"\Data\Blocks\{bname}\Output\QCALC",
-        rf"\Data\Blocks\{bname}\Output\DUTY",
-        rf"\Data\Blocks\{bname}\Output\UTIL_DUTY",
-    ]
-    for path in candidates:
-        node = aspen.Tree.FindNode(path)
-        value = _safe_float(getattr(node, "Value", None))
-        if value is not None:
-            return value
-    return None
+    """热负荷，单位 kW：按节点自己的 UnitString 换算（MET 下是 cal/sec，1 cal = 4.1868 J，不是 kW 或 W）。"""
+    return datacatch.capture_block(aspen, bname)["heat_kW"]
 
 
 def resolve_block_power(aspen, bname, power_override_kW=None):
-    # Aspen 该字段单位即为 kW（非瓦特），不要再除以 1000
-    candidates = [
-        rf"\Data\Blocks\{bname}\Output\ACT_POWER",
-        rf"\Data\Blocks\{bname}\Output\BRAKE_POWER",
-        rf"\Data\Blocks\{bname}\Output\POWER",
-        rf"\Data\Blocks\{bname}\Output\ELEC_POWER",
-        rf"\Data\Blocks\{bname}\Output\IN_POWER",
-        rf"\Data\Blocks\{bname}\Output\WNET",
-        rf"\Data\Blocks\{bname}\Output\FLUID_POWER",
-    ]
-    for path in candidates:
-        node = aspen.Tree.FindNode(path)
-        value = _safe_float(getattr(node, "Value", None))
-        if value is not None:
-            return value
-    if power_override_kW is not None:
+    """功率，单位 kW：按节点自己的 UnitString 换算；节点为空时才用手工覆盖值（定义即 kW）。"""
+    value = datacatch.capture_block(aspen, bname)["power_kW"]
+    if value is None and power_override_kW is not None:
         return float(power_override_kW)
-    return None
+    return value
 
 
 # ==============================================================================
@@ -147,51 +126,33 @@ def run_with_monitor(model_path, timeout_seconds=3600, visible=True):
                 q_val = resolve_block_heat(aspen, bname)
                 power_override_kW = blk.get("power_override_kW")
                 w_val = resolve_block_power(aspen, bname, power_override_kW=power_override_kW)
-                q_text = f"{round(q_val / 1000, 2)} kW" if q_val is not None else "无"
-                w_text = f"{round(w_val, 2)} kW" if w_val is not None else "无"
+                q_text = format_quantity(q_val, "kW")
+                w_text = format_quantity(w_val, "kW")
                 if power_override_kW is not None and w_val is not None and abs(w_val - float(power_override_kW)) < 1e-6:
-                    w_text = f"{round(w_val, 2)} kW (手工修正)"
+                    w_text = f"{w_text} (手工修正)"
                 print(f"  [实际计算结果]: 计算热负荷: {q_text}, 电耗/功耗: {w_text}")
             
             # 2. 打印物流热力学与流量计算结果
             print("\n" + "=" * 25 + " 物流状态计算结果 (Streams) " + "=" * 26)
             for sname in STREAMS_CONFIG:
-                t_node = aspen.Tree.FindNode(rf"\Data\Streams\{sname}\Output\TEMP_OUT\MIXED")
-                p_node = aspen.Tree.FindNode(rf"\Data\Streams\{sname}\Output\PRES_OUT\MIXED")
-                f_node = aspen.Tree.FindNode(rf"\Data\Streams\{sname}\Output\MASSFLMX\MIXED")
-                
-                # 换算单位（开氏度 -> 摄氏度，bar -> MPa，kg/s -> kg/h）
-                if t_node and t_node.Value is not None:
-                    t_str = f"{round(t_node.Value - 273.15, 2)} °C"
-                else:
-                    t_str = "未计算/无"
-                    
-                if p_node and p_node.Value is not None:
-                    p_str = f"{round(p_node.Value * 0.101325, 2)} MPa ({round(p_node.Value, 2)} bar/atm)"
-                else:
-                    p_str = "未计算/无"
-                    
-                if f_node and f_node.Value is not None:
-                    f_str = f"{round(f_node.Value * 3600, 2)} kg/h"
-                else:
-                    f_str = "未计算/无"
-                    
+                # 按各节点自己的 UnitString 换算（MET 下温度 C/K、压力 atm/bar、流量 kg/hr 都以节点为准，不做固定假设）
+                sdata = datacatch.capture_stream(aspen, sname)
+                t_str = format_quantity(sdata["temperature_C"], "°C", missing="未计算/无")
+                p_str = format_quantity(sdata["pressure_MPa"], "MPa", missing="未计算/无")
+                f_str = format_quantity(sdata["mass_flow_kg_h"], "kg/h", missing="未计算/无")
+
                 print(f"  物流 [{sname:<6}] | 温度: {t_str:<12} | 压力: {p_str:<26} | 总质量流量: {f_str}")
 
             # 3. 打印关键出口物流的物料组分分布（若存在反应产物）
             print("\n" + "=" * 25 + " 关键组分质量流量 (> 0.1 kg/h) " + "=" * 23)
             printed_comps = False
             for sname in STREAMS_CONFIG:
-                comps_node = aspen.Tree.FindNode(rf"\Data\Streams\{sname}\Output\MASSFLOW\MIXED")
-                if comps_node:
-                    comp_list = []
-                    for k in range(comps_node.Elements.Count):
-                        c = comps_node.Elements.Item(k)
-                        if c.Value and (c.Value * 3600) >= 0.1:
-                            comp_list.append(f"{c.Name}: {round(c.Value * 3600, 2)} kg/h")
-                    if comp_list:
-                        printed_comps = True
-                        print(f"  物流 [{sname}]: " + ", ".join(comp_list))
+                flows = datacatch.capture_stream(aspen, sname)["composition_kg_h"]
+                comp_list = [f"{comp}: {format_quantity(value, 'kg/h')}"
+                             for comp, value in flows.items() if value is not None and value >= 0.1]
+                if comp_list:
+                    printed_comps = True
+                    print(f"  物流 [{sname}]: " + ", ".join(comp_list))
             if not printed_comps:
                 print("  未检测到组分分解数据。")
             print("=" * 77 + "\n")
@@ -212,10 +173,10 @@ def run_with_monitor(model_path, timeout_seconds=3600, visible=True):
                         settings.append(f"{cname}={cval}")
                 settings_text = "; ".join(settings) if settings else "无固定输入设定"
 
-                q_text = f"{round(qv / 1000, 2)} kW" if qv is not None else "无"
-                w_text = f"{round(wv, 2)} kW" if wv is not None else "无"
+                q_text = format_quantity(qv, "kW")
+                w_text = format_quantity(wv, "kW")
                 if power_override_kW is not None and wv is not None:
-                    w_text = f"{round(wv, 2)} kW (手工修正)"
+                    w_text = f"{w_text} (手工修正)"
                 summary_lines.append(f"- [{bname}] {blk.get('type', '设备')}")
                 summary_lines.append(f"  设定: {settings_text}")
                 summary_lines.append(f"  计算结果: 热负荷={q_text}; 电耗/功耗={w_text}")
@@ -223,16 +184,10 @@ def run_with_monitor(model_path, timeout_seconds=3600, visible=True):
             summary_lines.append("")
             summary_lines.append("  物流状态摘要:")
             for sname in STREAMS_CONFIG:
-                tnode = aspen.Tree.FindNode(rf"\Data\Streams\{sname}\Output\TEMP_OUT\MIXED")
-                pnode = aspen.Tree.FindNode(rf"\Data\Streams\{sname}\Output\PRES_OUT\MIXED")
-                fnode = aspen.Tree.FindNode(rf"\Data\Streams\{sname}\Output\MASSFLMX\MIXED")
-                tval = round(tnode.Value - 273.15, 2) if tnode and tnode.Value is not None else None
-                pval = round(pnode.Value * 0.101325, 2) if pnode and pnode.Value is not None else None
-                fval = round(fnode.Value * 3600, 2) if fnode and fnode.Value is not None else None
-
-                t_text = f"{tval} °C" if tval is not None else "无"
-                p_text = f"{pval} MPa" if pval is not None else "无"
-                m_text = f"{fval} kg/h" if fval is not None else "无"
+                sdata = datacatch.capture_stream(aspen, sname)
+                t_text = format_quantity(sdata["temperature_C"], "°C")
+                p_text = format_quantity(sdata["pressure_MPa"], "MPa")
+                m_text = format_quantity(sdata["mass_flow_kg_h"], "kg/h")
                 summary_lines.append(f"  - {sname}: T={t_text}; P={p_text}; m={m_text}")
 
             for line in summary_lines:

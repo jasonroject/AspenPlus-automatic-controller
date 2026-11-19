@@ -3,7 +3,7 @@
 两种用法：
 1. 独立运行（自己开 Aspen、跑完再抓取）：
        py automatic/test_datacatch.py [模型.bkp路径]
-2. 被子脚本作为模块调用（子脚本已经跑完 Engine.Run()，直接传入 aspen 对象）：
+2. 被子脚本作为模块调用（子脚本已经跑完 Aspen 计算，直接传入 aspen 对象）：
        import test_datacatch as datacatch
        results = datacatch.capture_all(aspen, MODEL_PATH)
        datacatch.save_results(results, MODEL_PATH)
@@ -22,15 +22,14 @@ import math
 import sys
 from datetime import datetime
 from pathlib import Path
-from result_units import convert_quantity
-from aspen_connection import create_aspen_document
+from result_units import (BLOCK_UNITS, CALORIE_J, RUN_UNITS, STREAM_UNITS, convert_quantity)
 
+# pywin32 is only needed to talk to a real Aspen; the capture functions below work on any COM-like object,
+# so importing this module (and its tests) must not require Windows.
 try:
     import pythoncom
-    import win32com.client as win32
 except ImportError:
-    print("缺少 pywin32，请先运行：py -3 -m pip install pywin32")
-    sys.exit(1)
+    pythoncom = None
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -46,39 +45,6 @@ def _safe_float(value):
         return number if math.isfinite(number) else None
     except (TypeError, ValueError):
         return None
-
-
-def resolve_block_heat(aspen, bname):
-    candidates = [
-        rf"\Data\Blocks\{bname}\Output\QCALC",
-        rf"\Data\Blocks\{bname}\Output\DUTY",
-        rf"\Data\Blocks\{bname}\Output\UTIL_DUTY",
-    ]
-    for path in candidates:
-        node = aspen.Tree.FindNode(path)
-        value = _safe_float(getattr(node, "Value", None))
-        if value is not None:
-            return value
-    return None
-
-
-def resolve_block_power(aspen, bname):
-    # Aspen 该字段单位即为 kW（非瓦特），不要再除以 1000
-    candidates = [
-        rf"\Data\Blocks\{bname}\Output\ACT_POWER",
-        rf"\Data\Blocks\{bname}\Output\BRAKE_POWER",
-        rf"\Data\Blocks\{bname}\Output\POWER",
-        rf"\Data\Blocks\{bname}\Output\ELEC_POWER",
-        rf"\Data\Blocks\{bname}\Output\IN_POWER",
-        rf"\Data\Blocks\{bname}\Output\WNET",
-        rf"\Data\Blocks\{bname}\Output\FLUID_POWER",
-    ]
-    for path in candidates:
-        node = aspen.Tree.FindNode(path)
-        value = _safe_float(getattr(node, "Value", None))
-        if value is not None:
-            return value
-    return None
 
 
 def discover_names(aspen, base_path):
@@ -121,13 +87,26 @@ def _capture_quantity(aspen, paths, target, source):
 
 
 def capture_block(aspen, bname):
+    """Heat/work of one block in kW, converted from each node's own UnitString (1 cal = 4.1868 J).
+
+    `units` declares the unit of every numeric key; `source_quantities` keeps the native value and unit
+    of the node that was used. A node with an unknown unit gives None plus a message, never a guess.
+    """
     source = {}
+    messages = []
     base = rf"\Data\Blocks\{bname}\Output"
-    heat = _capture_quantity(aspen, [base + "\\" + key for key in
-        ("QCALC", "DUTY", "UTIL_DUTY")], "kW", source)
-    power = _capture_quantity(aspen, [base + "\\" + key for key in
-        ("ACT_POWER", "BRAKE_POWER", "POWER", "ELEC_POWER", "IN_POWER", "WNET", "FLUID_POWER")], "kW", source)
-    return {"heat_kW": heat, "power_kW": power, "source_quantities": source}
+
+    def pick(keys, label):
+        try:
+            return _capture_quantity(aspen, [base + "\\" + key for key in keys], "kW", source)
+        except ValueError as exc:
+            messages.append(f"{label}未换算：{exc}")
+            return None
+
+    heat = pick(("QCALC", "DUTY", "UTIL_DUTY"), "热负荷")
+    power = pick(("ACT_POWER", "BRAKE_POWER", "POWER", "ELEC_POWER", "IN_POWER", "WNET", "FLUID_POWER"), "功率")
+    return {"heat_kW": heat, "power_kW": power, "units": dict(BLOCK_UNITS), "messages": messages,
+            "source_quantities": source}
 
 
 def _children(node):
@@ -222,7 +201,7 @@ def capture_stream(aspen, sname, component_ids=None):
             "mass_flow_kg_h": flow, "mole_flow_kmol_h": mole_flow, **totals,
             "component_ids": ids if substreams else [], "substreams": substreams,
             "component_data_status": status, "missing_mass_components": missing if substreams else [],
-            "extraction_warnings": warnings, "source_quantities": source}
+            "units": dict(STREAM_UNITS), "extraction_warnings": warnings, "source_quantities": source}
 
 
 def capture_all(aspen, model_path):
@@ -248,7 +227,9 @@ def capture_all(aspen, model_path):
     return {
         "model_path": str(model_path),
         "captured_at": datetime.now().isoformat(timespec="seconds"),
-        "unit_conversion": "node-unit-aware-v1",
+        "unit_conversion": "node-unit-aware-v2",
+        "calorie_J": CALORIE_J,
+        "calorie_note": "1 cal = 4.1868 J (Aspen's own calorie; MET heat duties are cal/sec, not kW)",
         "component_export": "all-stream-components-v1",
         "component_ids": component_ids,
         "aspen_run_status": run_status,
@@ -257,27 +238,20 @@ def capture_all(aspen, model_path):
     }
 
 
-def run_and_capture(model_path):
-    """独立运行：自己打开 Aspen、Reinit+Run、抓取数据、关闭 Aspen。用于本模块单独调试。"""
-    pythoncom.CoInitialize()
-    aspen = None
+def run_and_capture(model_path, timeout_s=1200):
+    """独立运行：用 Aspen COM 适配器打开模型副本、Reinit + Run2 轮询（带超时）、抓取数据、清理 Aspen。"""
+    from aspen_study.adapters.aspen_com import AspenPlusCOMAdapter
+    adapter = AspenPlusCOMAdapter(timeout_s=timeout_s)
+    adapter.open(model_path)
     try:
-        aspen = create_aspen_document()
-        aspen.InitFromArchive2(str(model_path))
-        aspen.Visible = 0
-        aspen.SuppressDialogs = 1
-
-        print(">>> 重置运行环境...", flush=True)
-        aspen.Engine.Reinit()
-
-        print(">>> 开始运行 Aspen 模拟计算...", flush=True)
-        aspen.Engine.Run()
-
-        return capture_all(aspen, model_path)
+        print(f">>> 重置并运行 Aspen 模拟计算（最长 {timeout_s} 秒）...", flush=True)
+        adapter.run(timeout_s)
+        capture = capture_all(adapter.document, model_path)
+        report = adapter.run_report()
+        capture["run_status"] = {k: report[k] for k in ("state", "run_completed", "errors", "warnings", "notes")}
+        return capture
     finally:
-        if aspen is not None:
-            aspen.Close(False)
-        pythoncom.CoUninitialize()
+        adapter.close()
 
 
 COMPONENT_CSV_HEADER = ["物流", "子物流", "组分", "质量流量_kg_h", "摩尔流量_kmol_h",
@@ -358,13 +332,14 @@ def main():
         default=DEFAULT_MODEL_PATH,
         help="Aspen .bkp 文件路径；不填写时使用项目中的标准模型",
     )
+    parser.add_argument("--timeout", type=float, default=1200, metavar="SECONDS", help="Aspen 运行上限（秒，默认 1200）")
     args = parser.parse_args()
     model_path = args.model_path.expanduser().resolve()
 
     if not model_path.exists():
         raise FileNotFoundError(f"找不到 Aspen 模型：{model_path}")
 
-    results = run_and_capture(model_path)
+    results = run_and_capture(model_path, args.timeout)
     json_path, blocks_csv, streams_csv = save_results(results, model_path)
 
     print("\n" + "=" * 25 + " 数据抓取完成 " + "=" * 25)

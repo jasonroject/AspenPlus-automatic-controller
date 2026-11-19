@@ -34,7 +34,13 @@ class ControlTests(unittest.TestCase):
     def test_actual_aspen_units(self):
         self.assertEqual(convert_quantity(100, "kg/hr", "kg/h"), 100)
         self.assertAlmostEqual(convert_quantity(1, "kg/sec", "kg/h"), 3600)
-        self.assertAlmostEqual(convert_quantity(1000.52531, "cal/sec", "kW"), 4.18619789704)
+        # heatrecovery HEATER QCALC (real run): MET heat duty is cal/sec and Aspen's calorie is 4.1868 J
+        self.assertAlmostEqual(convert_quantity(1000.52531, "cal/sec", "kW"), 1000.52531 * 4.1868 / 1000)
+        self.assertAlmostEqual(convert_quantity(1000.52531, "cal/sec", "kW"), 4.188999367908)
+        self.assertAlmostEqual(convert_quantity(1000.52531, "cal/sec", "kW", calorie_J=4.184), 4.18619789704)  # explicit opt-in only
+        self.assertAlmostEqual(convert_quantity(-81613.3056, "cal/sec", "kW"), -341.698588, places=5)  # = -341698.588 W under SI
+        with self.assertRaises(ValueError):
+            convert_quantity(1, "cal/sec", "kW", calorie_J=4.2)
         self.assertAlmostEqual(convert_quantity(1, "atm", "MPa"), .101325)
         self.assertAlmostEqual(convert_quantity(298.15, "K", "C"), 25)
         with self.assertRaises(ValueError):
