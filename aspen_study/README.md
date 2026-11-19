@@ -18,7 +18,8 @@ study/
   surrogate/*.json         # 可选：代理模型网格等大文件分片
 ```
 
-- 网页首页只读 `manifest.json` + `results/summary.json`；其余按 `manifest.shards` / `manifest.cases[].file` 的**相对路径**懒加载（不允许绝对路径或 `..`）。
+- `manifest.cases[]` 每项自带 `case_params`、`kpi`（`energy_per_fu`、`gwp_per_fu`、`efficiency`、`max_balance_ratio`）与按类别的 `completeness` 摘要，工况 × 指标热图和刷选**不需要加载分片**；`energy_edges`、`contributions`、`internal_loops`、逐块 `balance` 只在 `results/<case_id>.json`，选中工况时再加载。
+- 网页首页只读 `manifest.json`（必要时加 `results/summary.json`）；其余按 `manifest.shards` / `manifest.cases[].file` 的**相对路径**懒加载（不允许绝对路径或 `..`）。
 - HTL 现有 `pipeline.json` 的拆分（Coding 负责）建议直接落成一个 `aspen-study/2` 研究包：grid / robustness 放 `surrogate/`，扫描变量写进 `manifest.variables`，取代 `pipeline.js` 里写死的 `temperature_C` / `length_m`。
 - 版本规则：`schema` 字段写成“名称/主版本”。读取方遇到不认识的主版本必须拒绝；同一主版本内只新增可选字段。
 
