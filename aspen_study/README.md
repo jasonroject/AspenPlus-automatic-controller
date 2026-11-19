@@ -27,13 +27,17 @@ study/
 ## 情景、结果来源与完整度（2026-11-19 补充）
 
 - **工况身份 = `id` + `scenario`**。manifest 必须给出 `scenarios`（如 `[{"id":"HR"},{"id":"STD"}]`）和 `default_scenario`；同一工况的不同情景是 `cases[]` 里的两条记录。**不要用 `gwp_per_fu_STD` 这类带情景后缀的字段**，校验器会拒绝。
-- **`has_results`**：`true` 时必须有 `result`（`file` 五表分片可选）；`false` 表示只有参数和 KPI 摘要（例如代理模型网格点或归档数值），此时不得出现 `file` / `result`。可以用 `source` 注明来源：`aspen` / `surrogate` / `archived` / `manual`。
+- **`has_results`** 严格表示“五表结果文件存在”：`true` 时必须有 `file`（`cases/<id>.json`），`false` 时不得有 `file`（例如代理模型网格点或只有归档数值）。`result`（结果分片）与它无关，可选。可以用 `source` 注明来源：`aspen` / `surrogate` / `archived` / `manual`。
+- **`evidence`**（可选）：`[{kind, file, sha256?, note?}]`，`kind` 如 `gate` / `observation`，即使 `has_results=false` 也可以指向校验或观测证据。
+- **代理模型数据溯源**（可选）：`split`（`train` / `validation` / `test` / `fresh`）与 `source_record`（源数据中的记录标识）。
+- **分配**：`method.allocation` 可以为 `null`（未声明或不适用），此时应写 `allocation_note` 说明。
 - **模型身份**：`model.sha256`（Aspen 模型文件）与 `model.source_sha256`（没有模型文件时，源数据文件的哈希，例如归档的 pipeline.json）至少给一个；`model.version` 可以为 `null`。
 - **代理模型**：预测网格不是 Aspen 结果。`shards.surrogate` 指向 `surrogate.json` 描述文件，网格文件由它的 `grid_files` 列出。旧写法（网格文件数组）暂时兼容，建议迁移。
 - **completeness.status**：`complete` / `incomplete` / `unknown`。
   - `complete`：每个清单行都有可用因子且有分项，`contribution_coverage = 1`、没有缺失项。
   - `incomplete`：已知缺因子，只给 `lower_bound`。
   - `unknown`：只有总值、没有分项，或因子覆盖未核实（`contribution_coverage` 为 `null`）。**这种情况绝不能标为 complete**（例如从归档 GWP 总值转换来的数据）。
+  - **总值规则**：`completeness.total` 和 `kpi.gwp_per_fu` 在 `complete` 或 `unknown`（已知总值、无分项）时可以填写；只有 `incomplete` 时禁止填写，改用 `lower_bound`。
   - 保留布尔字段 `complete` 以兼容，必须等于 `status == "complete"`。
 - 以上跨字段规则由 `schema_check.manifest_rules` / `results_rules` 检查，`validate(x, "manifest")` 会一并执行。
 
@@ -59,7 +63,7 @@ manifest 随工况数线性增长：每个工况条目约 0.5–1 KB（参数 + 
 - **符号**：块的 heat/work 以进入块为正，冷却与对外做功为负（与现有核心一致）。`energy_edges.value` 是非负的流量大小，方向由 `source → target` 表达。
 - **单位**：graph 与 case 分片保留原生值和原生 `UnitString`，只在 universal-core 中换算一次；results 中已换算的量在字段名或 `unit` 中写明。
 - **桑基图**：`energy_edges` 必须无环（只含公用工程→设备→产品/损失）；内部换热（HeatX 两侧都在流程内）和循环物流放进 `internal_loops` 并附 `annotation`。
-- **缺失因子**：类别标 `complete: false`，列出 `missing`，已知部分之和只作为 `lower_bound`，**绝不补 0**。
+- **缺失因子**：类别标 `status: "incomplete"`，列出 `missing`，`total` 为空，已知部分之和只作为 `lower_bound`，**绝不补 0**。
 - **占位因子**：因子库中 `value: null` / `status: "placeholder"` 的条目不参与计算；`proxy: true` 的贡献需要在界面上单独标出。
 - **人工确认**：产品流股与功能单位无法可靠推断，`roles.review.state` 必须是 `reviewed` 才输出 LCA 结果（G4）。
 

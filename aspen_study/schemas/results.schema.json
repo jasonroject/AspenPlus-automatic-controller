@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "aspen-study/2/results.schema.json",
   "title": "aspen-results/1：能量 / LCA / 校验结果（summary.json 与 results/<case>.json 共用）",
-  "description": "可视化字段与美术家约定：energy_edges（主桑基图，必须无环）、internal_loops（内部换热/循环单列并注释）、contributions、completeness、balance、case_params、method。符号约定沿用现有核心：heat/work 进入块为正，冷却与对外做功为负；energy_edges.value 一律为非负的流量大小，方向由 source→target 表示。缺失因子的类别 complete=false，其数值只作为 lower_bound，绝不补 0。",
+  "description": "可视化字段与美术家约定：energy_edges（主桑基图，必须无环）、internal_loops（内部换热/循环单列并注释）、contributions、completeness、balance、case_params、method。符号约定沿用现有核心：heat/work 进入块为正，冷却与对外做功为负；energy_edges.value 一律为非负的流量大小，方向由 source→target 表示。缺失因子的类别 status=incomplete，total 必须为 null，已知部分只作为 lower_bound，绝不补 0；status=unknown（已知总值但无分项/覆盖未核实）可以给 total。",
   "type": "object",
   "required": [
     "schema",
@@ -43,7 +43,11 @@
           "type": "string"
         },
         "allocation": {
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "分配方法；null 表示未声明或不适用，此时应给 allocation_note"
         },
         "lcia_method": {
           "type": "string"
@@ -94,6 +98,9 @@
         "factors_snapshot": {
           "type": "string",
           "description": "对应的 factors.json 快照路径（相对研究包根目录）"
+        },
+        "allocation_note": {
+          "type": "string"
         }
       }
     },
@@ -394,7 +401,7 @@
                     "number",
                     "null"
                   ],
-                  "description": "仅 complete=true 时给出"
+                  "description": "仅在 status=incomplete 时禁止填写（此时用 lower_bound）；status=complete 或 unknown（已知总值但无分项）时可以填写"
                 },
                 "unit": {
                   "type": "string"

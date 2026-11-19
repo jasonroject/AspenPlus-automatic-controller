@@ -103,6 +103,8 @@ SCENARIO_SUFFIX = re.compile(r"_(STD|HR)$", re.I)
 def _completeness_rule(where, cat, c, missing_count):
     out = []
     status, complete = c.get("status"), c.get("complete")
+    if status == "incomplete" and c.get("total") is not None:
+        out.append(f"{where}.completeness.{cat}: status 'incomplete' must not carry total; use lower_bound")
     if complete is not None and complete != (status == "complete"):
         out.append(f"{where}.completeness.{cat}: complete={complete} contradicts status={status}")
     if status == "complete":
@@ -133,10 +135,14 @@ def manifest_rules(m):
         seen.add(key)
         if ids and c.get("scenario") not in ids:
             out.append(f"{where}: scenario not declared in scenarios")
-        if c.get("has_results") is False and ("file" in c or "result" in c):
-            out.append(f"{where}: has_results=false must not reference file/result")
-        if c.get("has_results") is True and "result" not in c:
-            out.append(f"{where}: has_results=true requires result")
+        if c.get("has_results") is False and "file" in c:
+            out.append(f"{where}: has_results=false must not reference a five-table file")
+        if c.get("has_results") is True and "file" not in c:
+            out.append(f"{where}: has_results=true requires the five-table file")
+        gwp_incomplete = any(k.upper().startswith("GWP") and v.get("status") == "incomplete"
+                             for k, v in (c.get("completeness") or {}).items())
+        if gwp_incomplete and (c.get("kpi") or {}).get("gwp_per_fu") is not None:
+            out.append(f"{where}: kpi.gwp_per_fu must be null while a GWP category is 'incomplete'")
         for section in ("kpi", "case_params", "completeness"):
             for k in (c.get(section) or {}):
                 if suffix.search(k):
