@@ -9,8 +9,9 @@ from .helpers import FIXTURES, fixture
 class ContractTests(unittest.TestCase):
     def test_all_schemas_are_json_with_ids(self):
         names = sorted(p.name for p in SCHEMA_DIR.glob("*.schema.json"))
-        self.assertEqual(names, ["case.schema.json", "factor-library.schema.json", "graph.schema.json",
-                                 "manifest.schema.json", "results.schema.json", "roles.schema.json"])
+        self.assertEqual(names, ["case.schema.json", "factor-library.schema.json", "factors-snapshot.schema.json",
+                                 "graph.schema.json", "manifest.schema.json", "results.schema.json", "roles.schema.json",
+                                 "surrogate.schema.json"])
         for n in names:
             self.assertTrue(load_schema(n)["$id"].startswith("aspen-study/2/"))
 
@@ -43,9 +44,67 @@ class ContractTests(unittest.TestCase):
         for f in ("case", "category", "item", "value", "unit", "factor_id", "proxy", "value_low", "value_high"):
             self.assertIn(f, contrib)
         m = load_schema("manifest")["properties"]["cases"]["items"]
-        for f in ("case_params", "kpi", "completeness"):
+        for f in ("case_params", "kpi", "completeness", "scenario", "has_results"):
             self.assertIn(f, m["required"])
+        self.assertNotIn("file", m["required"])
         self.assertNotIn("energy_edges", m["properties"])
+
+
+def surrogate_manifest():
+    """Shape of a surrogate-only study (like Coding's HTL split): no Aspen file, grids separate."""
+    return {"schema": "aspen-study/2", "study_id": "htl-pilot-20261117",
+            "model": {"simulator": "Aspen Plus", "version": None, "source_sha256": "a" * 64},
+            "contract": {"project_schema": 1, "results_schema": "aspen-results/1"},
+            "scenarios": [{"id": "HR", "label": "热回收"}, {"id": "STD", "label": "无热回收"}], "default_scenario": "HR",
+            "cases": [
+                {"id": "T310_L13", "scenario": "HR", "has_results": True, "result": "results/T310_L13.json", "source": "archived",
+                 "case_params": {"temperature_C": 310, "length_m": 13}, "kpi": {"energy_per_fu": 2.06, "gwp_per_fu": None, "max_balance_ratio": None},
+                 "completeness": {"GWP100": {"status": "unknown", "complete": False, "contribution_coverage": None, "missing_count": 0, "lower_bound": None}}},
+                {"id": "T310_L13", "scenario": "STD", "has_results": False, "source": "surrogate",
+                 "case_params": {"temperature_C": 310, "length_m": 13}, "kpi": {"energy_per_fu": 8.9, "gwp_per_fu": None, "max_balance_ratio": None},
+                 "completeness": {"GWP100": {"status": "unknown", "complete": False, "contribution_coverage": None, "missing_count": 0, "lower_bound": None}}}],
+            "shards": {"factors": "factors.json", "surrogate": "surrogate/surrogate.json"}}
+
+
+class ManifestRuleTests(unittest.TestCase):
+    def test_surrogate_only_manifest_is_valid(self):
+        validate(surrogate_manifest(), "manifest")
+
+    def test_rules(self):
+        cases = {
+            "has_results=false must not reference": lambda m: m["cases"][1].update(file="cases/x.json"),
+            "has_results=true requires result": lambda m: m["cases"][0].pop("result"),
+            "give sha256": lambda m: m["model"].pop("source_sha256"),
+            "duplicate case identity": lambda m: m["cases"][1].update(scenario="HR", has_results=False),
+            "scenario not declared": lambda m: m["cases"][1].update(scenario="LOW"),
+            "scenario-suffixed field": lambda m: m["cases"][0]["kpi"].update(gwp_per_fu_STD=1.0),
+            "must be 'unknown'": lambda m: m["cases"][0]["completeness"]["GWP100"].update(status="complete", complete=True),
+            "default_scenario must be": lambda m: m.update(default_scenario="X"),
+        }
+        for text, mutate in cases.items():
+            m = surrogate_manifest()
+            mutate(m)
+            with self.assertRaises(ValueError, msg=text) as ctx:
+                validate(m, "manifest")
+            self.assertIn(text, str(ctx.exception))
+
+    def test_legacy_surrogate_array_still_accepted(self):
+        m = surrogate_manifest()
+        m["shards"]["surrogate"] = ["surrogate/grid.json"]
+        validate(m, "manifest")
+
+    def test_surrogate_and_snapshot_schemas(self):
+        validate({"schema": "aspen-surrogate/1", "model_type": "GaussianProcessRegressor (RBF/Matern52 by CV)",
+                  "prediction_enabled": True, "inputs": [{"id": "temperature_C", "unit": "C", "min": 310, "max": 350}],
+                  "targets": [{"id": "energy_per_fu", "unit": "kWh/kg", "scenario": "HR"}],
+                  "split": {"method": "fixed", "training": 100, "holdout": 18, "verification": 3},
+                  "metrics": {"holdout": {"energy_per_fu": {"median_APE_pct": 0.5}}},
+                  "data_source": {"description": "121 native reference runs", "reference_count": 121},
+                  "grid_files": ["surrogate/grid.json"]}, "surrogate")
+        with self.assertRaises(ValueError):
+            validate({"schema": "aspen-factors-snapshot/1", "study_id": "x",
+                      "factors": [{"id": "f", "category": "GWP100", "value": None, "unit": "kWh", "impact_unit": "kg CO2-eq",
+                                   "source": "s", "year": 2021}]}, "factors-snapshot")
 
 
 class FactorLibraryTests(unittest.TestCase):

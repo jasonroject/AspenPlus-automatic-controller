@@ -4,51 +4,153 @@
   "title": "aspen-model-graph/1：模型发现层输出（与仿真器无关的流程图）",
   "description": "数值一律保留原生值与原生 UnitString，换算只在 universal-core 中进行。符号约定：heat/work 以进入块为正，冷却与对外做功为负。",
   "type": "object",
-  "required": ["schema", "model", "status", "components", "blocks", "streams"],
+  "required": [
+    "schema",
+    "model",
+    "status",
+    "components",
+    "blocks",
+    "streams"
+  ],
   "additionalProperties": false,
   "properties": {
-    "schema": {"const": "aspen-model-graph/1"},
+    "schema": {
+      "const": "aspen-model-graph/1"
+    },
     "model": {
       "type": "object",
-      "required": ["file", "sha256", "simulator"],
+      "required": [
+        "file",
+        "sha256",
+        "simulator"
+      ],
       "additionalProperties": false,
       "properties": {
-        "file": {"type": "string", "minLength": 1},
-        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
-        "simulator": {"type": "string", "minLength": 1},
-        "version": {"type": "string"},
-        "progid": {"type": "string"},
-        "adapter": {"type": "string"}
+        "file": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "simulator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "progid": {
+          "type": "string"
+        },
+        "adapter": {
+          "type": "string"
+        }
       }
     },
     "status": {
       "type": "object",
-      "required": ["run_completed", "errors", "warnings"],
+      "required": [
+        "run_completed",
+        "errors",
+        "warnings"
+      ],
       "additionalProperties": false,
       "properties": {
-        "cvstat": {"type": ["integer", "string", "null"]},
-        "cvstat_accepted": {"type": "array", "items": {"type": ["integer", "string"]}},
-        "run_completed": {"type": "boolean"},
-        "errors": {"type": "array", "items": {"type": "string"}},
-        "warnings": {"type": "array", "items": {"type": "string"}},
-        "block_status": {"type": "object", "additionalProperties": {"type": ["integer", "string", "null"]}},
-        "block_status_accepted": {"type": "array", "items": {"type": ["integer", "string"]}}
+        "cvstat": {
+          "type": [
+            "integer",
+            "string",
+            "null"
+          ]
+        },
+        "cvstat_accepted": {
+          "type": "array",
+          "items": {
+            "type": [
+              "integer",
+              "string"
+            ]
+          }
+        },
+        "run_completed": {
+          "type": "boolean"
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "block_status": {
+          "type": "object",
+          "additionalProperties": {
+            "type": [
+              "integer",
+              "string",
+              "null"
+            ]
+          }
+        },
+        "block_status_accepted": {
+          "type": "array",
+          "items": {
+            "type": [
+              "integer",
+              "string"
+            ]
+          }
+        }
       }
     },
-    "units": {"type": "object"},
+    "units": {
+      "type": "object"
+    },
     "components": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id"],
+        "required": [
+          "id"
+        ],
         "additionalProperties": false,
         "properties": {
-          "id": {"type": "string", "minLength": 1},
-          "alias": {"type": "string"},
-          "cas": {"type": "string", "pattern": "^[0-9]{2,7}-[0-9]{2}-[0-9]$"},
-          "type": {"type": "string"},
-          "mw": {"type": "number", "exclusiveMinimum": 0},
-          "carbon_origin": {"enum": ["fossil", "biogenic", "mixed", "unknown"]}
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "alias": {
+            "type": "string"
+          },
+          "cas": {
+            "type": "string",
+            "pattern": "^[0-9]{2,7}-[0-9]{2}-[0-9]$"
+          },
+          "type": {
+            "type": "string"
+          },
+          "mw": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "carbon_origin": {
+            "enum": [
+              "fossil",
+              "biogenic",
+              "mixed",
+              "unknown"
+            ]
+          }
         }
       }
     },
@@ -56,24 +158,62 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "type", "ports", "energy"],
+        "required": [
+          "id",
+          "type",
+          "ports",
+          "energy"
+        ],
         "additionalProperties": false,
         "properties": {
-          "id": {"type": "string", "minLength": 1, "not": {"const": "BOUNDARY"}},
-          "type": {"type": "string", "minLength": 1},
-          "category": {"type": "string"},
-          "ports": {
-            "type": "object",
-            "required": ["in", "out"],
-            "additionalProperties": false,
-            "properties": {
-              "in": {"type": "array", "items": {"type": "string"}},
-              "out": {"type": "array", "items": {"type": "string"}}
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "not": {
+              "const": "BOUNDARY"
             }
           },
-          "energy": {"type": "array", "items": {"$ref": "#/$defs/energy"}},
-          "outlet_temperature": {"$ref": "#/$defs/reading"},
-          "inlet_temperature": {"$ref": "#/$defs/reading"}
+          "type": {
+            "type": "string",
+            "minLength": 1
+          },
+          "category": {
+            "type": "string"
+          },
+          "ports": {
+            "type": "object",
+            "required": [
+              "in",
+              "out"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "in": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "out": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "energy": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/energy"
+            }
+          },
+          "outlet_temperature": {
+            "$ref": "#/$defs/reading"
+          },
+          "inlet_temperature": {
+            "$ref": "#/$defs/reading"
+          }
         }
       }
     },
@@ -81,28 +221,73 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "class", "from", "to"],
+        "required": [
+          "id",
+          "class",
+          "from",
+          "to"
+        ],
         "additionalProperties": false,
         "properties": {
-          "id": {"type": "string", "minLength": 1},
-          "class": {"enum": ["MATERIAL", "HEAT", "WORK"]},
-          "from": {"type": "string", "minLength": 1},
-          "to": {"type": "string", "minLength": 1},
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "class": {
+            "enum": [
+              "MATERIAL",
+              "HEAT",
+              "WORK"
+            ]
+          },
+          "from": {
+            "type": "string",
+            "minLength": 1
+          },
+          "to": {
+            "type": "string",
+            "minLength": 1
+          },
           "total": {
             "type": "object",
             "additionalProperties": false,
             "properties": {
-              "mass_flow": {"type": "number", "minimum": 0},
-              "mass_unit": {"type": "string"},
-              "h_mass": {"type": "number"},
-              "h_unit": {"type": "string"},
-              "enthalpy_flow": {"type": "number"},
-              "energy_unit": {"type": "string"},
-              "T": {"type": "number"},
-              "T_unit": {"type": "string"},
-              "P": {"type": "number"},
-              "P_unit": {"type": "string"},
-              "vapor_fraction": {"type": "number", "minimum": 0, "maximum": 1}
+              "mass_flow": {
+                "type": "number",
+                "minimum": 0
+              },
+              "mass_unit": {
+                "type": "string"
+              },
+              "h_mass": {
+                "type": "number"
+              },
+              "h_unit": {
+                "type": "string"
+              },
+              "enthalpy_flow": {
+                "type": "number"
+              },
+              "energy_unit": {
+                "type": "string"
+              },
+              "T": {
+                "type": "number"
+              },
+              "T_unit": {
+                "type": "string"
+              },
+              "P": {
+                "type": "number"
+              },
+              "P_unit": {
+                "type": "string"
+              },
+              "vapor_fraction": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
             }
           },
           "substreams": {
@@ -110,47 +295,108 @@
             "additionalProperties": {
               "type": "object",
               "properties": {
-                "mass_unit": {"type": "string"},
-                "mass_by_component": {"type": "object", "additionalProperties": {"type": "number", "minimum": 0}}
+                "mass_unit": {
+                  "type": "string"
+                },
+                "mass_by_component": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                }
               }
             }
           },
-          "duty": {"$ref": "#/$defs/reading"}
+          "duty": {
+            "$ref": "#/$defs/reading"
+          }
         }
       }
     },
     "discovery": {
       "type": "object",
       "properties": {
-        "mode": {"enum": ["recipe", "full_walk", "fixture", "replay"]},
-        "nodes_read": {"type": "integer", "minimum": 0},
-        "complete": {"type": "boolean"},
-        "unmatched_block_types": {"type": "array", "items": {"type": "string"}},
-        "unverified_paths": {"type": "array", "items": {"type": "string"}}
+        "mode": {
+          "enum": [
+            "recipe",
+            "full_walk",
+            "fixture",
+            "replay"
+          ]
+        },
+        "nodes_read": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "complete": {
+          "type": "boolean"
+        },
+        "unmatched_block_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "unverified_paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       }
     }
   },
   "$defs": {
     "reading": {
       "type": "object",
-      "required": ["value", "unit"],
+      "required": [
+        "value",
+        "unit"
+      ],
       "properties": {
-        "value": {"type": "number"},
-        "unit": {"type": "string"},
-        "path": {"type": "string"}
+        "value": {
+          "type": "number"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        }
       }
     },
     "energy": {
       "type": "object",
-      "required": ["kind", "value", "unit"],
+      "required": [
+        "kind",
+        "value",
+        "unit"
+      ],
       "additionalProperties": false,
       "properties": {
-        "kind": {"enum": ["heat", "work"]},
-        "role_hint": {"type": "string"},
-        "value": {"type": "number"},
-        "unit": {"type": "string", "minLength": 1},
-        "path": {"type": "string"},
-        "explicit_zero": {"type": "boolean"}
+        "kind": {
+          "enum": [
+            "heat",
+            "work"
+          ]
+        },
+        "role_hint": {
+          "type": "string"
+        },
+        "value": {
+          "type": "number"
+        },
+        "unit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "path": {
+          "type": "string"
+        },
+        "explicit_zero": {
+          "type": "boolean"
+        }
       }
     }
   }

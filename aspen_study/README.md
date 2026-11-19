@@ -14,8 +14,9 @@ study/
   factors.json             # 本研究用到的因子（从因子库抽取），schemas/factor-library.schema.json
   cases/<case_id>.json     # 每工况一个五表 project（schema_version 1，原样交给 universal-core），schemas/case.schema.json
   results/summary.json     # 全部工况的汇总与校验结论，schemas/results.schema.json
-  results/<case_id>.json   # 单工况明细（同一 schema），按需加载
-  surrogate/*.json         # 可选：代理模型网格等大文件分片
+  results/<case_id>.json   # 单工况明细（同一 schema），按需加载；非默认情景为 <case_id>__<scenario>.json
+  factors.json             # 因子快照：本研究实际用到的因子值（schemas/factors-snapshot.schema.json）
+  surrogate/surrogate.json # 可选：代理模型描述（schemas/surrogate.schema.json），引用 surrogate/ 下的网格文件
 ```
 
 - `manifest.cases[]` 每项自带 `case_params`、`kpi`（`energy_per_fu`、`gwp_per_fu`、`efficiency`、`max_balance_ratio`）与按类别的 `completeness` 摘要，工况 × 指标热图和刷选**不需要加载分片**；`energy_edges`、`contributions`、`internal_loops`、逐块 `balance` 只在 `results/<case_id>.json`，选中工况时再加载。
@@ -23,6 +24,23 @@ study/
 - HTL 现有 `pipeline.json` 的拆分（Coding 负责）建议直接落成一个 `aspen-study/2` 研究包：grid / robustness 放 `surrogate/`，扫描变量写进 `manifest.variables`，取代 `pipeline.js` 里写死的 `temperature_C` / `length_m`。
   - 已实现：`python -m aspen_study.pipeline_to_study`（`aspen_study/pipeline_to_study.py`）把 `outputs/htl_pipeline/pipeline.json` + `web-observations.json` 转成 `analysis_web/data/study/`；网页端由 `analysis_web/study-loader.mjs` 先读 manifest 再按需加载分片。字段缺口见 PR 说明。
 - 版本规则：`schema` 字段写成“名称/主版本”。读取方遇到不认识的主版本必须拒绝；同一主版本内只新增可选字段。
+
+## 情景、结果来源与完整度（2026-11-19 补充）
+
+- **工况身份 = `id` + `scenario`**。manifest 必须给出 `scenarios`（如 `[{"id":"HR"},{"id":"STD"}]`）和 `default_scenario`；同一工况的不同情景是 `cases[]` 里的两条记录。**不要用 `gwp_per_fu_STD` 这类带情景后缀的字段**，校验器会拒绝。
+- **`has_results`**：`true` 时必须有 `result`（`file` 五表分片可选）；`false` 表示只有参数和 KPI 摘要（例如代理模型网格点或归档数值），此时不得出现 `file` / `result`。可以用 `source` 注明来源：`aspen` / `surrogate` / `archived` / `manual`。
+- **模型身份**：`model.sha256`（Aspen 模型文件）与 `model.source_sha256`（没有模型文件时，源数据文件的哈希，例如归档的 pipeline.json）至少给一个；`model.version` 可以为 `null`。
+- **代理模型**：预测网格不是 Aspen 结果。`shards.surrogate` 指向 `surrogate.json` 描述文件，网格文件由它的 `grid_files` 列出。旧写法（网格文件数组）暂时兼容，建议迁移。
+- **completeness.status**：`complete` / `incomplete` / `unknown`。
+  - `complete`：每个清单行都有可用因子且有分项，`contribution_coverage = 1`、没有缺失项。
+  - `incomplete`：已知缺因子，只给 `lower_bound`。
+  - `unknown`：只有总值、没有分项，或因子覆盖未核实（`contribution_coverage` 为 `null`）。**这种情况绝不能标为 complete**（例如从归档 GWP 总值转换来的数据）。
+  - 保留布尔字段 `complete` 以兼容，必须等于 `status == "complete"`。
+- 以上跨字段规则由 `schema_check.manifest_rules` / `results_rules` 检查，`validate(x, "manifest")` 会一并执行。
+
+## manifest 体积
+
+manifest 随工况数线性增长：每个工况条目约 0.5–1 KB（参数 + KPI + 完整度摘要）。约 50 个工况（每个两种情景）在几十 KB 内是正常的，不必为了压缩体积而删掉热图需要的字段；超过约 1000 条记录时再考虑按情景拆分 manifest 或把摘要移到 `results/summary.json`。大块数据（桑基边、贡献、逐块衡算、代理网格）始终放在分片里。
 
 ## 各文件要点
 
@@ -33,7 +51,9 @@ study/
 | roles.json | `aspen-roles/1` | 流股角色（feed/product/emission/waste/…）、设备角色与公用工程、功能单位、分配、置信度与来源（auto/override） |
 | cases/*.json | `schema_version: 1` | 与 `universal-core.mjs` 的 `TABLES` 完全一致 |
 | results/*.json | `aspen-results/1` | gates、`energy_edges`、`internal_loops`、`balance`、`completeness`、`contributions`、`case_params`、`method` |
-| factors | `aspen-factor-library/1` | 按 CAS / 别名 / 公用工程 / 地区匹配；带 `source`、`year`、`status` |
+| factors.json | `aspen-factors-snapshot/1` | 实际使用的因子：id、value、unit、impact_unit、source、year；results 只写 `factor_id` |
+| surrogate/surrogate.json | `aspen-surrogate/1` | 代理模型类型、输入范围、目标、训练/验证划分与指标、数据来源、网格文件；**与 Aspen 结果分开** |
+| 因子库 | `aspen-factor-library/1` | 按 CAS / 别名 / 公用工程 / 地区匹配；带 `source`、`year`、`status` |
 
 ## 约定
 

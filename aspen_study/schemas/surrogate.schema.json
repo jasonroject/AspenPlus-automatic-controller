@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aspen-study/2/surrogate.schema.json",
+  "title": "surrogate.json：代理模型（预测网格）描述，与 Aspen 结果分开",
+  "description": "代理模型的预测值不是 Aspen 计算结果；网格文件只由本描述引用，不进入 manifest.cases 的 Aspen 结果。",
+  "type": "object",
+  "required": [
+    "schema",
+    "model_type",
+    "inputs",
+    "targets",
+    "data_source",
+    "grid_files"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "aspen-surrogate/1"
+    },
+    "model_type": {
+      "type": "string",
+      "minLength": 1,
+      "description": "如 GaussianProcessRegressor(Matern52)"
+    },
+    "prediction_enabled": {
+      "type": "boolean"
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "unit"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "unit": {
+            "type": "string"
+          },
+          "min": {
+            "type": "number"
+          },
+          "max": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "targets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "unit": {
+            "type": "string"
+          },
+          "scenario": {
+            "type": "string"
+          },
+          "transform": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "split": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string"
+        },
+        "training": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "holdout": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "verification": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "description": "{数据集名: {target: {metric: value}}}，如 holdout / fresh",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "data_source": {
+      "type": "object",
+      "required": [
+        "description"
+      ],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "file": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "reference_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "grid_files": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/relpath"
+      }
+    },
+    "extra_files": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/relpath"
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "relpath": {
+      "type": "string",
+      "pattern": "^(?!/)(?!.*\\.\\.)(?![A-Za-z]:)[A-Za-z0-9_./-]+$"
+    }
+  }
+}

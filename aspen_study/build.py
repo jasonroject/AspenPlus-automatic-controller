@@ -252,7 +252,8 @@ def _completeness(project, core_case, used):
         total_mass = sum(r["amount"] for r in mass_rows)
         known = sum(c["nominal"] for c in imp["contributions"])
         missing = [r["id"] for r in inventory if not ok(r)]
-        out[cat] = {"complete": bool(imp["complete"]),
+        out[cat] = {"status": "complete" if imp["complete"] and not missing else "incomplete",
+                    "complete": bool(imp["complete"]) and not missing,
                     "mass_coverage": (sum(r["amount"] for r in mass_rows if ok(r)) / total_mass) if total_mass > 0 else None,
                     "contribution_coverage": (imp["covered"] / imp["total"]) if imp["total"] else None,
                     "missing": missing,
@@ -301,11 +302,11 @@ def _energy_edges(graph, roles, core_blocks):
     return edges, loops
 
 
-def assess_case(graph, roles, case_id="case-1", case_params=None, entries=None, categories=("GWP100",), calorie_J=None):
+def assess_case(graph, roles, case_id="case-1", case_params=None, entries=None, categories=("GWP100",), calorie_J=None, scenario="base"):
     """Return (project, case_result, contributions, factor_sources, kpi)."""
     gates = [V.g0_identity(graph), V.g1_converged(graph), V.g1_warnings(graph), V.g2_completeness(graph, roles)]
     if V.case_status(gates) == "rejected":
-        result = {"case": case_id, "status": "rejected", "case_params": case_params or {}, "gates": gates + [
+        result = {"case": case_id, "scenario": scenario, "status": "rejected", "case_params": case_params or {}, "gates": gates + [
             V.gate(g, "not_run", ["前置关卡未通过"]) for g in ("G3_balance", "G4_roles", "G5_factors")],
             "balance": [], "completeness": {}, "energy_edges": [], "internal_loops": [], "warnings": []}
         return None, result, [], [], {"energy_per_fu": None, "gwp_per_fu": None, "efficiency": None, "max_balance_ratio": None}
@@ -315,7 +316,7 @@ def assess_case(graph, roles, case_id="case-1", case_params=None, entries=None, 
     rows = V.block_balance(rc["balance"])
     completeness = _completeness(project, rc, used)
     for cat in categories:
-        completeness.setdefault(cat, {"complete": False, "mass_coverage": 0.0, "contribution_coverage": 0.0,
+        completeness.setdefault(cat, {"status": "incomplete", "complete": False, "mass_coverage": 0.0, "contribution_coverage": 0.0,
                                       "missing": [r["id"] for r in project["inventory"]], "lower_bound": None, "total": None, "unit": ""})
     gates += [V.g3_balance(rc["balance"], rows), V.g4_roles(roles), V.g5_factors(completeness)]
     edges, loops = _energy_edges(graph, roles, rc["balance"].get("blocks") or [])
@@ -324,7 +325,7 @@ def assess_case(graph, roles, case_id="case-1", case_params=None, entries=None, 
     for imp in rc["impacts"]:
         for c in imp["contributions"]:
             e = used.get((c["factor_id"], imp["category"]))
-            row = {"case": case_id, "category": imp["category"], "item": c["name"], "value": c["nominal"],
+            row = {"case": case_id, "scenario": scenario, "category": imp["category"], "item": c["name"], "value": c["nominal"],
                    "unit": f"{imp.get('unit') or factor_rows.get(c['factor_id'], {}).get('impact_unit', '')}/kg product",
                    "factor_id": c["factor_id"], "proxy": bool(e and e["status"] == "proxy")}
             if e and e["low"] is not None and e["high"] is not None and e["value"]:
@@ -339,7 +340,7 @@ def assess_case(graph, roles, case_id="case-1", case_params=None, entries=None, 
         key = x["source"] if x["kind"] == "utility" else x["target"]
         by_utility[key.split(":", 1)[1]] = by_utility.get(key.split(":", 1)[1], 0) + x["value"]
     energy_intensity = rc["energy"][-1]["range"][0] if rc.get("energy") else None
-    result = {"case": case_id, "case_params": case_params or {}, "gates": gates, "balance": rows,
+    result = {"case": case_id, "scenario": scenario, "case_params": case_params or {}, "gates": gates, "balance": rows,
               "completeness": completeness, "energy_edges": edges, "internal_loops": loops,
               "energy": {"hot_utility_kW": hot, "cold_utility_kW": cold, "electricity_kW": elec, "by_utility": by_utility,
                          "intensity": energy_intensity, "intensity_unit": "kWh/kg product（外购热 + 电，不含冷却服务）"},
@@ -365,50 +366,77 @@ def method_block(roles, sources):
             "factor_sources": list(uniq.values())}
 
 
-def write_study(out_dir, study_id, graph, roles, cases, entries=None, categories=("GWP100",), calorie_J=None, variables=None):
-    """cases: list of (case_id, graph_for_case, case_params). Writes an aspen-study/2 bundle."""
+def write_study(out_dir, study_id, graph, roles, cases, entries=None, categories=("GWP100",), calorie_J=None,
+                variables=None, scenarios=None, default_scenario="base"):
+    """Write an aspen-study/2 bundle.
+
+    cases: (case_id, graph_for_case, case_params[, scenario]); the case identity
+    is (case_id, scenario). scenarios: [{"id", "label"}], defaults to one
+    "base" scenario.
+    """
     out = Path(out_dir)
     for sub in ("cases", "results"):
         (out / sub).mkdir(parents=True, exist_ok=True)
-    manifest_cases, all_results, all_contrib, sources = [], [], [], []
-    for case_id, case_graph, params in cases:
-        project, result, contrib, src, kpi = assess_case(case_graph, roles, case_id, params, entries, categories, calorie_J)
+    scenarios = scenarios or [{"id": default_scenario}]
+    manifest_cases, all_results, all_contrib, sources, used_factors = [], [], [], [], {}
+    for entry in cases:
+        case_id, case_graph, params = entry[:3]
+        scenario = entry[3] if len(entry) > 3 else default_scenario
+        stem = case_id if scenario == default_scenario else f"{case_id}__{scenario}"
+        project, result, contrib, src, kpi = assess_case(case_graph, roles, case_id, params, entries, categories, calorie_J, scenario)
         sources += src
+        for f in (project or {}).get("factors", []):
+            used_factors[(f["id"], f["category"])] = f
+        method = dict(method_block(roles, src), factors_snapshot="factors.json")
         shard = {"schema": "aspen-results/1", "study_id": study_id, "core": "analysis_web/universal-core.mjs",
-                 "sign_convention": SIGN, "method": method_block(roles, src), "cases": [result], "contributions": contrib}
+                 "sign_convention": SIGN, "method": method, "cases": [result], "contributions": contrib}
         validate(shard, "results")
-        (out / "results" / f"{case_id}.json").write_text(json.dumps(shard, ensure_ascii=False, indent=1), encoding="utf-8")
-        case_file = out / "cases" / f"{case_id}.json"
-        case_file.write_text(json.dumps(project or {}, ensure_ascii=False, indent=1), encoding="utf-8")
-        manifest_cases.append({"id": case_id, "file": f"cases/{case_id}.json", "result": f"results/{case_id}.json",
-                               "bytes": case_file.stat().st_size, "status": result["status"], "case_params": params or {},
-                               "kpi": kpi, "completeness": {cat: {"complete": c["complete"], "mass_coverage": c["mass_coverage"],
-                                                                 "contribution_coverage": c["contribution_coverage"],
-                                                                 "missing_count": len(c["missing"]), "lower_bound": c["lower_bound"]}
-                                                           for cat, c in result["completeness"].items()}})
+        (out / "results" / f"{stem}.json").write_text(json.dumps(shard, ensure_ascii=False, indent=1), encoding="utf-8")
+        row = {"id": case_id, "scenario": scenario, "has_results": True, "source": "aspen",
+               "result": f"results/{stem}.json", "status": result["status"], "case_params": params or {}, "kpi": kpi,
+               "completeness": {cat: {"status": c["status"], "complete": c["complete"], "mass_coverage": c["mass_coverage"],
+                                      "contribution_coverage": c["contribution_coverage"],
+                                      "missing_count": len(c["missing"]), "lower_bound": c["lower_bound"]}
+                                for cat, c in result["completeness"].items()}}
+        if project is not None:
+            case_file = out / "cases" / f"{stem}.json"
+            case_file.write_text(json.dumps(project, ensure_ascii=False, indent=1), encoding="utf-8")
+            row.update(file=f"cases/{stem}.json", bytes=case_file.stat().st_size)
+        manifest_cases.append(row)
         all_results.append(result)
         all_contrib += contrib
     summary = {"schema": "aspen-results/1", "study_id": study_id, "core": "analysis_web/universal-core.mjs", "sign_convention": SIGN,
-               "method": method_block(roles, sources), "cases": all_results, "contributions": all_contrib}
+               "method": dict(method_block(roles, sources), factors_snapshot="factors.json"), "cases": all_results, "contributions": all_contrib}
     validate(summary, "results")
     (out / "results" / "summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=1), encoding="utf-8")
+    by_id = {s["factor_id"]: s for s in sources}
+    snapshot = {"schema": "aspen-factors-snapshot/1", "study_id": study_id, "library_version": "fl-2026.11-draft",
+                "factors": [{"id": f["id"], "category": f["category"], "value": f["value"],
+                             "low": f["low"] if f["low"] != "" else None, "high": f["high"] if f["high"] != "" else None,
+                             "unit": f["denominator_unit"], "impact_unit": f["impact_unit"], "method": f["method"],
+                             "source": by_id.get(f["id"], {}).get("source", f["source"]),
+                             "year": by_id.get(f["id"], {}).get("year"),
+                             **({"status": by_id[f["id"]]["status"]} if f["id"] in by_id and by_id[f["id"]]["status"] != "placeholder" else {})}
+                            for f in used_factors.values()]}
+    validate(snapshot, "factors-snapshot")
+    (out / "factors.json").write_text(json.dumps(snapshot, ensure_ascii=False, indent=1), encoding="utf-8")
     (out / "graph.json").write_text(json.dumps(graph, ensure_ascii=False, indent=1), encoding="utf-8")
     (out / "roles.json").write_text(json.dumps(roles, ensure_ascii=False, indent=1), encoding="utf-8")
+    order = ["pass", "not_run", "warn", "fail"]
     worst = {}
     for r in all_results:
         for g in r["gates"]:
-            order = ["pass", "not_run", "warn", "fail"]
-            if order.index(g["status"]) > order.index(worst.get(g["id"], "pass")):
+            if order.index(g["status"]) >= order.index(worst.get(g["id"], "pass")):
                 worst[g["id"]] = g["status"]
-            worst.setdefault(g["id"], g["status"])
+    model = graph["model"]
     manifest = {"schema": "aspen-study/2", "study_id": study_id,
-                "model": {"sha256": graph["model"]["sha256"], "simulator": graph["model"]["simulator"],
-                          **({"version": graph["model"]["version"]} if graph["model"].get("version") else {}), "file": graph["model"]["file"]},
+                "model": {"sha256": model["sha256"], "simulator": model["simulator"], "version": model.get("version"), "file": model["file"]},
                 "contract": {"project_schema": 1, "graph_schema": "aspen-model-graph/1", "roles_schema": "aspen-roles/1",
                              "results_schema": "aspen-results/1", "factor_library": "fl-2026.11-draft"},
                 "functional_unit": method_block(roles, [])["functional_unit"], "variables": variables or [],
+                "scenarios": scenarios, "default_scenario": default_scenario,
                 "gates": worst, "cases": manifest_cases,
-                "shards": {"graph": "graph.json", "roles": "roles.json", "summary": "results/summary.json"}}
+                "shards": {"graph": "graph.json", "roles": "roles.json", "factors": "factors.json", "summary": "results/summary.json"}}
     validate(manifest, "manifest")
     (out / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=1), encoding="utf-8")
     return manifest

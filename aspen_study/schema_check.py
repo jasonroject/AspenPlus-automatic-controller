@@ -97,8 +97,71 @@ def errors(instance, schema, root=None, path="$"):
     return out
 
 
+SCENARIO_SUFFIX = re.compile(r"_(STD|HR)$", re.I)
+
+
+def _completeness_rule(where, cat, c, missing_count):
+    out = []
+    status, complete = c.get("status"), c.get("complete")
+    if complete is not None and complete != (status == "complete"):
+        out.append(f"{where}.completeness.{cat}: complete={complete} contradicts status={status}")
+    if status == "complete":
+        if c.get("contribution_coverage") is None:
+            out.append(f"{where}.completeness.{cat}: total without breakdown/verified coverage must be 'unknown', not 'complete'")
+        elif c["contribution_coverage"] < 1 or missing_count:
+            out.append(f"{where}.completeness.{cat}: 'complete' requires contribution_coverage=1 and no missing items")
+    return out
+
+
+def manifest_rules(m):
+    out = []
+    model = m.get("model", {})
+    if not (model.get("sha256") or model.get("source_sha256")):
+        out.append("model: give sha256 (Aspen model file) or source_sha256 (source data file)")
+    ids = [s["id"] for s in m.get("scenarios", [])]
+    if len(set(ids)) != len(ids):
+        out.append("scenarios: duplicate id")
+    if m.get("default_scenario") not in ids:
+        out.append("default_scenario must be one of scenarios[].id")
+    suffix = re.compile(r"_(" + "|".join(map(re.escape, ids + ["STD", "HR"])) + r")$", re.I) if ids else SCENARIO_SUFFIX
+    seen = set()
+    for c in m.get("cases", []):
+        where = f"cases[{c.get('id')}/{c.get('scenario')}]"
+        key = (c.get("id"), c.get("scenario"))
+        if key in seen:
+            out.append(f"{where}: duplicate case identity (id, scenario)")
+        seen.add(key)
+        if ids and c.get("scenario") not in ids:
+            out.append(f"{where}: scenario not declared in scenarios")
+        if c.get("has_results") is False and ("file" in c or "result" in c):
+            out.append(f"{where}: has_results=false must not reference file/result")
+        if c.get("has_results") is True and "result" not in c:
+            out.append(f"{where}: has_results=true requires result")
+        for section in ("kpi", "case_params", "completeness"):
+            for k in (c.get(section) or {}):
+                if suffix.search(k):
+                    out.append(f"{where}.{section}.{k}: scenario-suffixed field; use one case per scenario instead")
+        for cat, comp in (c.get("completeness") or {}).items():
+            out += _completeness_rule(where, cat, comp, comp.get("missing_count", 0))
+    return out
+
+
+def results_rules(r):
+    out = []
+    for c in r.get("cases", []):
+        where = f"cases[{c.get('case')}/{c.get('scenario')}]"
+        for cat, comp in (c.get("completeness") or {}).items():
+            out += _completeness_rule(where, cat, comp, len(comp.get("missing", [])))
+    return out
+
+
+RULES = {"manifest": manifest_rules, "results": results_rules}
+
+
 def validate(instance, name: str) -> None:
-    """Raise ValueError listing every violation of schemas/<name>.schema.json."""
+    """Raise ValueError listing every violation of schemas/<name>.schema.json (+ semantic rules)."""
     problems = errors(instance, load_schema(name))
+    if not problems and name in RULES:
+        problems = RULES[name](instance)
     if problems:
         raise ValueError(f"{name}: " + "; ".join(problems[:20]) + (" …" if len(problems) > 20 else ""))
