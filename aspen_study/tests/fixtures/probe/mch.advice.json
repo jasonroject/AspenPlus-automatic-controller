@@ -1,6 +1,6 @@
 {
  "schema": "aspen-advice/1",
- "rules_version": "1.0.0",
+ "rules_version": "1.1.0",
  "model": {
   "file": "mch.bkp",
   "sha256": "57bce0dbe0f47156aabbf690df0c6f65d0d3b64b2236604027e3983165506abd"
@@ -14,28 +14,11 @@
  "counts": {
   "critical": 0,
   "warn": 0,
-  "suggest": 1,
-  "info": 2,
-  "total": 3
+  "suggest": 0,
+  "info": 1,
+  "total": 1
  },
  "items": [
-  {
-   "id": "lca-readiness.no-roles",
-   "rule": "lca-readiness.no-roles",
-   "severity": "suggest",
-   "category": "lca-readiness",
-   "target": "global",
-   "title_zh": "未提供 roles.json：无法评估 LCA 就绪度",
-   "detail_zh": "没有上传 roles.json，不知道哪条物流是产品、功能单位是什么、公用工程怎么取。能耗分析不受影响，但不能给出 LCA 结论。",
-   "evidence": [
-    {
-     "path": "probe-summary.json#/schema",
-     "value": "aspen-probe/1.1"
-    }
-   ],
-   "action_zh": "上传体检时一并生成的 roles.json，或先运行 classify 生成草稿并人工确认。",
-   "confidence": "verified"
-  },
   {
    "id": "units.non-si-set",
    "rule": "units.non-si-set",
@@ -60,39 +43,96 @@
    ],
    "action_zh": "与其他来源（文献、能耗清单）比较时使用 kW 列；要在 Aspen 里核对，请注意界面显示的是原生单位。",
    "confidence": "verified"
-  },
-  {
-   "id": "heat-integration.data-missing",
-   "rule": "heat-integration.data-missing",
-   "severity": "info",
-   "category": "heat-integration",
-   "target": "global",
-   "title_zh": "热集成无法判断：缺少 graph.json",
-   "detail_zh": "模型同时有外部加热（9353.46 kW）和外部冷却（-7041.49 kW），但 probe-summary 只有块出口温度，没有进口温度和块之间的连接，所以不能判断两者能否匹配。",
-   "evidence": [
-    {
-     "path": "probe-summary.json#/group_totals/heating/kW",
-     "value": 9353.463171,
-     "unit": "kW"
-    },
-    {
-     "path": "probe-summary.json#/group_totals/cooling/kW",
-     "value": -7041.494781,
-     "unit": "kW"
-    }
-   ],
-   "action_zh": "把体检生成的 graph.json 一起上传（包含物流温度和块连接）。",
-   "confidence": "verified"
   }
  ],
  "skipped": [
   {
-   "rule": "energy.hotspot",
-   "reason_zh": "少于两个块有外部能量项，不做热点排序"
+   "rule": "heat-integration.overlap",
+   "missing_inputs": [
+    "graph"
+   ],
+   "reason_zh": "没有提供 graph.json，该规则未评估。"
+  },
+  {
+   "rule": "heat-integration.none",
+   "missing_inputs": [
+    "graph"
+   ],
+   "reason_zh": "没有提供 graph.json，该规则未评估。"
+  },
+  {
+   "rule": "heat-integration.data-missing",
+   "missing_inputs": [
+    "graph"
+   ],
+   "reason_zh": "没有提供 graph.json，该规则未评估。"
   },
   {
    "rule": "convergence.mass-balance",
-   "reason_zh": "没有 graph.json，不检查边界物料守恒"
+   "missing_inputs": [
+    "graph"
+   ],
+   "reason_zh": "没有提供 graph.json，该规则未评估。"
+  },
+  {
+   "rule": "lca-readiness.roles-draft",
+   "missing_inputs": [
+    "roles"
+   ],
+   "reason_zh": "没有提供 roles.json，该规则未评估。"
+  },
+  {
+   "rule": "lca-readiness.no-product",
+   "missing_inputs": [
+    "roles"
+   ],
+   "reason_zh": "没有提供 roles.json，该规则未评估。"
+  },
+  {
+   "rule": "lca-readiness.multi-product",
+   "missing_inputs": [
+    "roles"
+   ],
+   "reason_zh": "没有提供 roles.json，该规则未评估。"
+  },
+  {
+   "rule": "lca-readiness.no-functional-unit",
+   "missing_inputs": [
+    "roles"
+   ],
+   "reason_zh": "没有提供 roles.json，该规则未评估。"
+  },
+  {
+   "rule": "lca-readiness.fu-stream-mismatch",
+   "missing_inputs": [
+    "roles"
+   ],
+   "reason_zh": "没有提供 roles.json，该规则未评估。"
+  },
+  {
+   "rule": "lca-readiness.product-low-confidence",
+   "missing_inputs": [
+    "roles"
+   ],
+   "reason_zh": "没有提供 roles.json，该规则未评估。"
+  },
+  {
+   "rule": "lca-readiness.utility-guess",
+   "missing_inputs": [
+    "roles"
+   ],
+   "reason_zh": "没有提供 roles.json，该规则未评估。"
+  },
+  {
+   "rule": "lca-readiness.no-factor-key",
+   "missing_inputs": [
+    "roles"
+   ],
+   "reason_zh": "没有提供 roles.json，该规则未评估。"
+  },
+  {
+   "rule": "energy.hotspot",
+   "reason_zh": "少于两个块有外部能量项，不做热点排序"
   }
  ]
 }

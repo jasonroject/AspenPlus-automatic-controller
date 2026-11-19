@@ -1,0 +1,202 @@
+{
+ "schema": "aspen-model-graph/1",
+ "model": {
+  "file": "mch.bkp",
+  "sha256": "57bce0dbe0f47156aabbf690df0c6f65d0d3b64b2236604027e3983165506abd",
+  "simulator": "aspen-plus",
+  "version": "41.0",
+  "progid": "Apwn.Document.41.0",
+  "adapter": "aspen-plus-com"
+ },
+ "status": {
+  "run_completed": true,
+  "errors": [],
+  "warnings": [],
+  "block_status": {
+   "B1": 0
+  },
+  "block_status_accepted": [
+   0,
+   2
+  ]
+ },
+ "components": [
+  {
+   "id": "TOLUENE",
+   "alias": "C7H8",
+   "cas": "108-88-3",
+   "type": "CONV"
+  },
+  {
+   "id": "PHENOL",
+   "alias": "C6H6O",
+   "cas": "108-95-2",
+   "type": "CONV"
+  },
+  {
+   "id": "MCH",
+   "alias": "C7H14-6",
+   "cas": "108-87-2",
+   "type": "CONV"
+  }
+ ],
+ "blocks": [
+  {
+   "id": "B1",
+   "type": "RadFrac",
+   "ports": {
+    "in": [
+     "1",
+     "2"
+    ],
+    "out": [
+     "3",
+     "4"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "heat",
+     "value": -24026577.5,
+     "unit": "Btu/hr",
+     "path": "\\Data\\Blocks\\B1\\Output\\COND_DUTY",
+     "role_hint": "condenser"
+    },
+    {
+     "kind": "heat",
+     "value": 31915341.1,
+     "unit": "Btu/hr",
+     "path": "\\Data\\Blocks\\B1\\Output\\REB_DUTY",
+     "role_hint": "reboiler"
+    }
+   ]
+  }
+ ],
+ "streams": [
+  {
+   "id": "1",
+   "class": "MATERIAL",
+   "from": "BOUNDARY",
+   "to": "B1",
+   "total": {
+    "mass_flow": 38065.736,
+    "mass_unit": "lb/hr",
+    "h_mass": -333.030838,
+    "h_unit": "Btu/lb",
+    "enthalpy_flow": -12677064.0,
+    "energy_unit": "Btu/hr",
+    "T": 220.0,
+    "T_unit": "F",
+    "P": 20.0,
+    "P_unit": "psia"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "lb/hr",
+     "mass_by_component": {
+      "TOLUENE": 18428.104,
+      "PHENOL": 0.0,
+      "MCH": 19637.632
+     }
+    }
+   }
+  },
+  {
+   "id": "2",
+   "class": "MATERIAL",
+   "from": "BOUNDARY",
+   "to": "B1",
+   "total": {
+    "mass_flow": 112935.648,
+    "mass_unit": "lb/hr",
+    "h_mass": -641.661218,
+    "h_unit": "Btu/lb",
+    "enthalpy_flow": -72466425.4,
+    "energy_unit": "Btu/hr",
+    "T": 220.0,
+    "T_unit": "F",
+    "P": 20.0,
+    "P_unit": "psia"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "lb/hr",
+     "mass_by_component": {
+      "TOLUENE": 0.0,
+      "PHENOL": 112935.648,
+      "MCH": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "3",
+   "class": "MATERIAL",
+   "from": "B1",
+   "to": "BOUNDARY",
+   "total": {
+    "mass_flow": 19604.9921,
+    "mass_unit": "lb/hr",
+    "h_mass": -739.234471,
+    "h_unit": "Btu/lb",
+    "enthalpy_flow": -14492685.9,
+    "energy_unit": "Btu/hr",
+    "T": 218.829961,
+    "T_unit": "F",
+    "P": 16.0,
+    "P_unit": "psia"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "lb/hr",
+     "mass_by_component": {
+      "TOLUENE": 480.450226,
+      "PHENOL": 25.5333462,
+      "MCH": 19099.0085
+     }
+    }
+   }
+  },
+  {
+   "id": "4",
+   "class": "MATERIAL",
+   "from": "B1",
+   "to": "BOUNDARY",
+   "total": {
+    "mass_flow": 131396.392,
+    "mass_unit": "lb/hr",
+    "h_mass": -477.654558,
+    "h_unit": "Btu/lb",
+    "enthalpy_flow": -62762085.5,
+    "energy_unit": "Btu/hr",
+    "T": 325.172101,
+    "T_unit": "F",
+    "P": 20.2,
+    "P_unit": "psia"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "lb/hr",
+     "mass_by_component": {
+      "TOLUENE": 17947.6538,
+      "PHENOL": 112910.115,
+      "MCH": 538.623508
+     }
+    }
+   }
+  }
+ ],
+ "units": {
+  "INSET": "ENG",
+  "OUTSET": "ENG",
+  "calorie_J": 4.1868,
+  "note": "块负荷与流股焓流保留各节点自己的 UnitString，不假设 kW（MET 的热负荷是 cal/sec，ENG 是 Btu/hr）。1 cal = 4.1868 J 经真机核对（同一结果在 MET 与 SI 下各读一次，比值 4.1868）。"
+ },
+ "discovery": {
+  "mode": "recipe",
+  "nodes_read": 89,
+  "complete": true,
+  "unmatched_block_types": [],
+  "unverified_paths": []
+ }
+}

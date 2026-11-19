@@ -364,6 +364,33 @@ class LiveFixtures(unittest.TestCase):
         self.assertEqual(adv["counts"]["warn"] + adv["counts"]["critical"], 0)
         self.assertEqual(fired(adv), {"units.non-si-set"})
 
+    def test_live_1_1_outputs_match_golden(self):
+        """Roice 的电脑上用最终代码跑出来的 aspen-probe/1.1（含 Methane Pyrolysis 的 MCompr 级间冷却，以及“运行结束但没有结果”的 membrane）。"""
+        L = lambda n: load("live11/" + n)
+        for k, g, r in (("hr", True, True), ("mch", True, False), ("methane", True, False), ("membrane", False, False)):
+            with self.subTest(model=k):
+                s = L(f"{k}.probe-summary.json")
+                validate(s, "probe")
+                adv = run(s, L(f"{k}.graph.json") if g else None, L(f"{k}.roles.json") if r else None)
+                self.assertEqual(adv, L(f"{k}.advice.json"))
+
+    def test_live_methane_mcompr_reports_work_and_interstage_cooling(self):
+        s = load("live11/methane.probe-summary.json")
+        mc = next(b for b in s["blocks"] if b["id"] == "MC-M")
+        self.assertEqual([(e["kind"], e["path"].rsplit("\\", 1)[-1], e["verified"]) for e in mc["energy"]], [("work", "WNET", True), ("heat", "QNET", True)])
+        work = mc["energy"][0]["kW"]; cool = mc["energy"][1]["kW"]
+        self.assertAlmostEqual(work, 3624.77, 1)
+        self.assertAlmostEqual(cool, -2621.7, 1)  # 焓衡算 Hin + W + Q = Hout 在真机核对过（见 fixtures/live 说明）
+        turb = [b for b in s["blocks"] if b["id"].startswith("TURB")]
+        self.assertTrue(turb and all(b["energy"][0]["kW"] < 0 for b in turb))  # 透平功为负
+
+    def test_live_membrane_without_results_is_error_with_block_ids_in_gaps(self):
+        s = load("live11/membrane.probe-summary.json")
+        self.assertEqual(s["status"]["state"], "error")
+        self.assertFalse(s["totals_complete"])
+        self.assertTrue(all(g["block"] for g in s["energy_gaps"]))  # 路径里能解析出块 id
+        self.assertTrue(all(u["block"] is None for u in s["unverified_paths"]))  # 流股条目没有块
+
     def test_legacy_1_0_and_upgraded_1_1_give_same_advice(self):
         a = run(load("heatrecovery.probe-summary.v1.0.json"), load("heatrecovery.graph.json"), load("heatrecovery.roles.json"))
         self.assertEqual(a, load("heatrecovery.advice.json"))
@@ -444,6 +471,11 @@ class JsParity(unittest.TestCase):
         every["live-hr"] = (load("heatrecovery.probe-summary.json"), load("heatrecovery.graph.json"), load("heatrecovery.roles.json"))
         every["live-hr-1.0"] = (load("heatrecovery.probe-summary.v1.0.json"), None, None)
         every["live-mch-1.0"] = (load("mch.probe-summary.v1.0.json"), None, None)
+        for k, g, r in (("hr", True, True), ("mch", True, False), ("methane", True, False), ("membrane", False, False)):
+            every[f"live11-{k}"] = (load(f"live11/{k}.probe-summary.json"), load(f"live11/{k}.graph.json") if g else None, load(f"live11/{k}.roles.json") if r else None)
+        hr_s, hr_g, hr_r = load("heatrecovery.probe-summary.json"), load("heatrecovery.graph.json"), load("heatrecovery.roles.json")
+        every["inputs-graph-only"] = (hr_s, hr_g, None)
+        every["inputs-roles-only"] = (hr_s, None, hr_r)
         with tempfile.TemporaryDirectory() as tmp:
             for name, (s, g, r) in every.items():
                 with self.subTest(case=name):
