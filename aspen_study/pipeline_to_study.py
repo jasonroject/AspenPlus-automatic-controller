@@ -8,8 +8,9 @@ robustness scenarios, validation evidence) plus a native reference ledger. Outpu
                                    case *and scenario*), shard paths
 * ``results/<id>.json``            aspen-results/1 shard, default-scenario record; other scenarios in
   ``results/<id>__<S>.json``       ``results/<id>__<scenario>.json``. Only cases with real gate evidence
-                                   (the three fresh verification runs) get shards: ``has_results=true``.
-                                   The other archived native values are ``has_results=false`` (summary only).
+                                   (the three fresh verification runs) get gate-verdict shards,
+                                   referenced from the case's ``evidence`` (+ optional ``result``). These are
+                                   not five-table results: every record has ``has_results=false`` (no ``file``).
 * ``results/summary.json``         the same records, all in one file
 * ``factors.json``                 aspen-factors-snapshot/1: the accounting coefficients (values live only here
                                    and in ``surrogate/details.json``; results reference ``factor_id``)
@@ -41,7 +42,10 @@ DEFAULT_SCENARIO = "HR"      # scenario the Process Studio page shows first
 SCENARIOS = [{"id": "HR", "label": "Heat recovery (HR)", "description": "HR flowsheet; heater duty from the native run"},
              {"id": "STD", "label": "Standard heating (STD)", "description": "No heat recovery; preheat duty reconstructed from the HR run's boundary"}]
 GATE_IDS = ["G0_identity", "G1_converged", "G1_warnings", "G2_completeness", "G3_balance", "G4_roles", "G5_factors"]
-ALLOCATION_MISSING = "not stated in pipeline.json"
+ALLOCATION_NOTE = "pipeline.json does not state an allocation method; left null rather than assumed"
+# observation split -> schema enum. 'extremum_check' has no unambiguous equivalent (not stated whether those three
+# native points were fitted), so it is left unset; the original value stays in observations.json.
+SPLIT_MAP = {"train": "train", "holdout": "test", "fresh_verification": "fresh"}
 CATEGORY = "GWP"             # source says "GWP"/"climate"; no characterisation horizon is stated
 ENERGY_UNIT, GWP_UNIT = "kWh electricity / kg target", "kg CO2-eq / kg target"
 STD_NOTE = "STD electricity is reconstructed from the HR native run's no-heat-recovery preheat boundary, not an independent flowsheet run"
@@ -126,7 +130,8 @@ def _method(pipeline):
     return {
         "functional_unit": "1 kg target (CAT + o-cresol at reactor outlet)",
         "system_boundary": f"{pipeline.get('scope', '')} {acc.get('scope', '')}".strip(),
-        "allocation": ALLOCATION_MISSING,
+        "allocation": None,
+        "allocation_note": ALLOCATION_NOTE,
         "factor_sources": [{"factor_id": k, "source": FACTOR_SOURCE, "year": None} for k in ids],
         "factors_snapshot": "factors.json",
         "notes": list(pipeline.get("limitations") or []) + [
@@ -209,16 +214,20 @@ def _case_records(row, cid, pipeline, fresh, scenario):
     hours = _num(basis.get("duration_h"))
     kwh, cf, target = _num(row.get(f"{scenario}_electricity_kWh")), _num(row.get(f"CF_{scenario}")), _num(row.get("target_kg_h"))
     per_fu = _div(kwh, target)
-    params = {"temperature_C": _num(row.get("temperature_C")), "length_m": _num(row.get("length_m")), "split": row.get("split")}
+    params = {"temperature_C": _num(row.get("temperature_C")), "length_m": _num(row.get("length_m"))}
     warnings = list(fresh.get("warnings") or []) if fresh else []
     status = "accepted_with_warnings" if warnings else "accepted"
     completeness = {"status": "unknown", "complete": False, "mass_coverage": None, "contribution_coverage": None,
                     "missing_count": 0, "lower_bound": None}
-    entry = {"id": cid, "scenario": scenario, "has_results": bool(fresh), "source": "aspen" if fresh else "archived",
+    entry = {"id": cid, "scenario": scenario, "has_results": False, "source": "aspen" if fresh else "archived",
              "status": status, "case_params": params,
              "kpi": {"energy_per_fu": per_fu, "energy_unit": ENERGY_UNIT, "gwp_per_fu": cf, "gwp_unit": GWP_UNIT,
                      "efficiency": _div(target, basis.get("wet_feed_kg")), "max_balance_ratio": None, "target_kg_h": target},
-             "completeness": {CATEGORY: dict(completeness)}}
+             "completeness": {CATEGORY: {**completeness, "total": cf}}}
+    if SPLIT_MAP.get(row.get("split")):
+        entry["split"] = SPLIT_MAP[row["split"]]
+    if row.get("source_record") is not None:
+        entry["source_record"] = str(row["source_record"])
     if not fresh:
         return entry, None
     gates = []
@@ -288,8 +297,11 @@ def convert(pipeline, observations, study_id=None, source_sha256=None, source_fi
             entry, record = _case_records(row, cid, pipeline, fresh, scenario)
             if record:
                 path = f"results/{cid}.json" if scenario == DEFAULT_SCENARIO else f"results/{cid}__{scenario}.json"
+                shard = {"schema": "aspen-results/1", "study_id": study_id, "method": method, "cases": [record], "contributions": []}
+                files[path] = shard
                 entry["result"] = path
-                files[path] = {"schema": "aspen-results/1", "study_id": study_id, "method": method, "cases": [record], "contributions": []}
+                entry["evidence"] = [{"kind": "gate", "file": path, "sha256": file_sha256(shard),
+                                      "note": "gate verdicts derived from the fresh-run ledger in pipeline.json; not five-table Aspen results"}]
                 records.append(record)
                 for g in record["gates"]:
                     if order.index(g["status"]) > order.index(worst.get(g["id"], "pass")):
@@ -315,6 +327,11 @@ def convert(pipeline, observations, study_id=None, source_sha256=None, source_fi
     return files
 
 
+def file_sha256(value):
+    """SHA-256 of the bytes write() produces for this value."""
+    return hashlib.sha256((dumps(value) + "\n").encode("utf-8")).hexdigest()
+
+
 SCHEMA_BY_PATH = [("manifest.json", "manifest"), ("results/", "results"), ("factors.json", "factors-snapshot"),
                   ("surrogate/surrogate.json", "surrogate")]
 
@@ -327,7 +344,8 @@ def check(files):
                 validate(value, name, path)
     m = files["manifest.json"]
     descriptor = files[m["shards"]["surrogate"]]
-    refs = [c["result"] for c in m["cases"] if "result" in c] + [m["shards"][k] for k in ("summary", "factors", "surrogate")] \
+    evidence = [(c, e) for c in m["cases"] for e in c.get("evidence", [])]
+    refs = [c["result"] for c in m["cases"] if "result" in c] + [e["file"] for _, e in evidence] + [m["shards"][k] for k in ("summary", "factors", "surrogate")] \
         + list(m["shards"].get("extra", {}).values()) + descriptor["grid_files"] + list(descriptor.get("extra_files", {}).values())
     missing = sorted({r for r in refs if r not in files})
     if missing:
@@ -335,6 +353,9 @@ def check(files):
     unreferenced = sorted(set(files) - set(refs) - {"manifest.json"})
     if unreferenced:
         raise ValueError(f"files not referenced by the manifest: {unreferenced}")
+    for c, e in evidence:
+        if "sha256" in e and file_sha256(files[e["file"]]) != e["sha256"]:
+            raise ValueError(f"{c['id']}/{c['scenario']}: evidence {e['file']} does not match its sha256")
     ids = {(c["id"], c["scenario"]) for c in m["cases"]}
     for path, value in files.items():
         if path.startswith("results/") and path != "results/summary.json":
@@ -403,7 +424,7 @@ def main(argv=None):
     manifest = write(args.out, files)
     sizes = {p: len(dumps(v)) + 1 for p, v in files.items()}
     print(f"wrote {len(files)} files to {args.out}; manifest {sizes['manifest.json']} B, grid {sizes['surrogate/grid.json']} B, "
-          f"{len(manifest['cases'])} case records ({sum(c['has_results'] for c in manifest['cases'])} with results)")
+          f"{len(manifest['cases'])} case records ({sum(bool(c.get('result')) for c in manifest['cases'])} with a gate-verdict result shard)")
 
 
 if __name__ == "__main__":

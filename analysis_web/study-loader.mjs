@@ -74,21 +74,32 @@ export function createStudyLoader({base = 'data/study/', fetchJson} = {}) {
     return shard(path);
   }
 
-  // One case/scenario's aspen-results/1 record, or null when the manifest says has_results=false
-  // (summary-only case: use the manifest entry's case_params/kpi/completeness). Lazy: one request per shard.
+  // One case/scenario's aspen-results/1 record from its optional `result` shard (decoupled from has_results:
+  // for the HTL package these are gate verdicts, not five-table results), or null when the entry has none
+  // (use the manifest entry's case_params/kpi/completeness). Lazy: one request per shard.
   async function caseResult(id, scenario) {
     const entry = await caseEntry(id, scenario);
-    if (!entry.has_results) return null;
+    if (!entry.result) return null;
     const file = await shard(entry.result);
     const record = file.cases.find(c => c.case === id && c.scenario === entry.scenario);
     if (!record) throw new Error(`Result shard ${entry.result} has no case ${id}/${entry.scenario}`);
     return {...record, contributions: file.contributions.filter(c => c.case === id && c.scenario === entry.scenario), method: file.method};
   }
 
-  // Five-table project, only for cases that carry one (optional `file`); otherwise null.
+  // Evidence descriptors [{kind, file, sha256?, note?}] straight from the manifest (no request); the files are
+  // fetched with evidenceFile(). Empty array when the case has none.
+  async function caseEvidence(id, scenario) {
+    return (await caseEntry(id, scenario)).evidence || [];
+  }
+  async function evidenceFile(id, scenario, kind) {
+    const item = (await caseEvidence(id, scenario)).find(e => !kind || e.kind === kind);
+    return item ? shard(item.file) : null;
+  }
+
+  // Five-table project: only when has_results=true (which requires `file`); otherwise null.
   async function caseProject(id, scenario) {
     const entry = await caseEntry(id, scenario);
-    return entry.file ? shard(entry.file) : null;
+    return entry.has_results && entry.file ? shard(entry.file) : null;
   }
 
   async function summary() {
@@ -145,6 +156,6 @@ export function createStudyLoader({base = 'data/study/', fetchJson} = {}) {
     return analysis;
   }
 
-  return {manifest, shard, scenarios, defaultScenario, caseEntry, caseResult, caseProject, summary, factors, surrogate,
+  return {manifest, shard, scenarios, defaultScenario, caseEntry, caseResult, caseEvidence, evidenceFile, caseProject, summary, factors, surrogate,
     surrogateGrid, robustness, robustnessScenarios, observations, htlAnalysis, requested: () => [...requested]};
 }

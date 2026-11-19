@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import http from 'node:http';
 import fs from 'node:fs';
+import {createHash} from 'node:crypto';
 import {readFile, stat} from 'node:fs/promises';
 import {extname, join, normalize} from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -30,7 +31,13 @@ test('manifest is fetched first, is small, and carries one record per case and s
     assert.equal(c.kpi.max_balance_ratio, null, 'balance is not in pipeline.json: null, never 0');
     for (const key of [...Object.keys(c.kpi), ...Object.keys(c.case_params), ...Object.keys(c.completeness)]) assert.doesNotMatch(key, /_(STD|HR)$/i, `scenario suffix in ${key}`);
     assert.equal(Object.hasOwn(c, 'file'), false, 'no five-table file for these cases');
-    assert.equal(c.has_results, Object.hasOwn(c, 'result'));
+    assert.equal(c.has_results, false, 'has_results means five-table results exist: none for this package');
+    assert.equal(Object.hasOwn(c, 'result'), Object.hasOwn(c, 'evidence'), 'gate shards double as evidence');
+    assert.ok(['train', 'test', 'fresh', undefined].includes(c.split), 'split is a top-level enum value');
+    assert.equal(Object.hasOwn(c.case_params, 'split'), false, 'split moved out of case_params');
+    assert.equal(typeof c.source_record, 'string');
+    const comp = c.completeness.GWP;
+    assert.equal(comp.total, c.kpi.gwp_per_fu, 'unknown status may carry the known GWP total');
     for (const comp of Object.values(c.completeness)) assert.deepEqual([comp.status, comp.complete], ['unknown', false], 'total-only GWP is unknown, not complete');
   }
   assert.deepEqual(manifest.variables.map(v => v.id), ['temperature_C', 'length_m']);
@@ -38,10 +45,10 @@ test('manifest is fetched first, is small, and carries one record per case and s
   assert.match(manifest.model.source_sha256, /^[0-9a-f]{64}$/);
 });
 
-test('case shards are lazy and cached; has_results=false cases need no request', async () => {
+test('result shards are lazy and cached; cases without one need no request', async () => {
   const {calls, fetchJson} = counting(), loader = createStudyLoader({fetchJson});
   const manifest = await loader.manifest();
-  const withResults = manifest.cases.filter(c => c.has_results);
+  const withResults = manifest.cases.filter(c => c.result);
   assert.equal(withResults.length, 6);
   assert.ok(withResults.some(c => c.scenario === 'STD' && c.result === `results/${c.id}__STD.json`), 'non-default scenario file name');
   assert.ok(withResults.some(c => c.scenario === 'HR' && c.result === `results/${c.id}.json`));
@@ -52,9 +59,14 @@ test('case shards are lazy and cached; has_results=false cases need no request',
   await loader.caseResult(hr.id);
   assert.deepEqual(calls, ['manifest.json', hr.result], 'one request per shard, nothing else');
   assert.equal((await loader.caseResult(std.id, 'STD')).scenario, 'STD');
-  const archived = manifest.cases.find(c => !c.has_results);
+  const archived = manifest.cases.find(c => !c.result);
   assert.equal(await loader.caseResult(archived.id, archived.scenario), null);
   assert.equal(await loader.caseProject(archived.id), null);
+  assert.deepEqual(await loader.caseEvidence(archived.id, archived.scenario), []);
+  const [evidence] = await loader.caseEvidence(hr.id);
+  assert.deepEqual([evidence.kind, evidence.file], ['gate', hr.result]);
+  assert.equal(await loader.caseProject(hr.id), null, 'has_results=false: no five-table project');
+  assert.deepEqual(await loader.evidenceFile(hr.id, 'HR', 'gate'), await loader.shard(hr.result));
   assert.equal(calls.length, 3, 'summary-only cases cost nothing');
   await assert.rejects(loader.caseResult('no-such-case'), /Unknown case/);
   await assert.rejects(loader.caseResult(hr.id, 'LOW'), /Unknown case/);
@@ -66,7 +78,7 @@ test('missing values stay null/empty, never 0; results reference factor_id only'
   const factors = await loader.factors();
   assert.equal(factors.schema, 'aspen-factors-snapshot/1');
   assert.ok(factors.factors.length >= 5 && factors.factors.every(f => f.value >= 0 && f.source && f.unit && f.impact_unit));
-  for (const entry of manifest.cases.filter(c => c.has_results)) {
+  for (const entry of manifest.cases.filter(c => c.result)) {
     const result = await loader.caseResult(entry.id, entry.scenario);
     assert.deepEqual([result.energy_edges, result.internal_loops, result.balance, result.contributions], [[], [], [], []]);
     assert.equal(result.energy.hot_utility_kW, null);
@@ -74,6 +86,10 @@ test('missing values stay null/empty, never 0; results reference factor_id only'
     assert.equal(result.completeness.GWP.status, 'unknown');
     assert.equal(result.completeness.GWP.lower_bound, null);
     assert.equal(result.completeness.GWP.total, entry.kpi.gwp_per_fu);
+    assert.equal(result.method.allocation, null);
+    assert.ok(result.method.allocation_note);
+    const [ev] = entry.evidence;
+    assert.equal(createHash('sha256').update(await readFile(new URL(ev.file, studyDir))).digest('hex'), ev.sha256, 'evidence hash matches the shard bytes');
     assert.equal(result.method.factors_snapshot, 'factors.json');
     for (const source of result.method.factor_sources) assert.ok(factors.factors.some(f => f.id === source.factor_id));
     const balance = result.gates.find(g => g.id === 'G3_balance');

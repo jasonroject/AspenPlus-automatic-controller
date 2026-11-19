@@ -80,19 +80,49 @@ class ConverterTests(unittest.TestCase):
         self.assertAlmostEqual(kpi_std["energy_per_fu"], 40.0 / 5.0)
         self.assertAlmostEqual(kpi_hr["efficiency"], 5.0 / 100)
 
-    def test_has_results_only_with_gate_evidence_and_scenario_file_names(self):
+    def test_has_results_is_false_everywhere_and_gate_shards_are_evidence(self):
         files = P.convert(*mini())
-        self.assertTrue(case(files, "fresh_T325p00_L8p50")["has_results"])
-        self.assertEqual(case(files, "fresh_T325p00_L8p50")["result"], "results/fresh_T325p00_L8p50.json")
+        self.assertFalse(any(c["has_results"] or "file" in c for c in files["manifest.json"]["cases"]))
+        fresh = case(files, "fresh_T325p00_L8p50")
+        self.assertEqual(fresh["result"], "results/fresh_T325p00_L8p50.json")
         self.assertEqual(case(files, "fresh_T325p00_L8p50", "STD")["result"], "results/fresh_T325p00_L8p50__STD.json")
+        [ev] = fresh["evidence"]
+        self.assertEqual((ev["kind"], ev["file"]), ("gate", fresh["result"]))
+        self.assertEqual(ev["sha256"], hashlib.sha256((P.dumps(files[ev["file"]]) + "\n").encode()).hexdigest())
         for cid in ("T310p00_L5p00", "T320p00_L6p00"):
             for scenario in ("HR", "STD"):
                 c = case(files, cid, scenario)
-                self.assertFalse(c["has_results"])
-                self.assertNotIn("result", c)
-                self.assertNotIn("file", c)
+                for key in ("result", "evidence", "file"):
+                    self.assertNotIn(key, c)
         self.assertFalse([p for p in files if p.startswith("cases/")], "no stub five-table files")
         self.assertEqual(len(files["results/summary.json"]["cases"]), 2)
+
+    def test_split_and_source_record_are_case_fields_not_case_params(self):
+        files = P.convert(*mini())
+        self.assertEqual([case(files, i)["split"] for i in ("T310p00_L5p00", "fresh_T325p00_L8p50")], ["train", "fresh"])
+        self.assertEqual(case(files, "T310p00_L5p00")["source_record"], "raw\\T310p00_L5p00.json")
+        self.assertEqual(case(files, "fresh_T325p00_L8p50")["source_record"], "0")
+        for c in files["manifest.json"]["cases"]:
+            self.assertNotIn("split", c["case_params"])
+        pipeline, obs = mini()
+        obs["rows"][0]["split"] = "holdout"
+        obs["rows"][1]["split"] = "extremum_check"
+        files = P.convert(pipeline, obs)
+        self.assertEqual(case(files, "T310p00_L5p00")["split"], "test")
+        self.assertNotIn("split", case(files, "T320p00_L6p00"), "no unambiguous mapping: left unset, never guessed")
+        self.assertEqual(P.reassemble(files)[1], obs, "original split labels survive in observations.json")
+
+    def test_allocation_is_null_with_a_note(self):
+        method = P.convert(*mini())["results/summary.json"]["method"]
+        self.assertIsNone(method["allocation"])
+        self.assertTrue(method["allocation_note"])
+
+    def test_known_gwp_total_is_kept_for_unknown_status_and_summarised(self):
+        files = P.convert(*mini())
+        c = case(files, "T310p00_L5p00")
+        self.assertEqual(c["completeness"]["GWP"]["total"], 11.0)
+        self.assertEqual(c["completeness"]["GWP"]["total"], c["kpi"]["gwp_per_fu"])
+        self.assertIsNone(case(files, "T320p00_L6p00")["completeness"]["GWP"]["total"])
 
     def test_completeness_is_unknown_not_complete_for_total_only_gwp(self):
         files = P.convert(*mini())
@@ -157,11 +187,14 @@ class ConverterTests(unittest.TestCase):
         files = P.convert(*mini())
         for mutate, text in [
             (lambda f: f["manifest.json"]["cases"][0].update(file="cases/x.json"), "has_results=false must not reference"),
+            (lambda f: f["manifest.json"]["cases"][0].update(has_results=True), "requires the five-table file"),
+            (lambda f: f["manifest.json"]["cases"][0]["completeness"]["GWP"].update(status="incomplete", complete=False), "must not carry total"),
+            (lambda f: case(f, "fresh_T325p00_L8p50")["evidence"][0].update(sha256="0" * 64), "does not match its sha256"),
             (lambda f: f["manifest.json"]["cases"][0]["kpi"].update(gwp_per_fu_STD=1.0), "scenario-suffixed"),
             (lambda f: f["manifest.json"]["cases"][0]["completeness"]["GWP"].update(status="complete", complete=True), "must be 'unknown'"),
             (lambda f: f["manifest.json"].update(default_scenario="X"), "default_scenario"),
             (lambda f: [f["manifest.json"]["model"].pop(k) for k in ("sha256", "source_sha256")], "give sha256"),
-            (lambda f: f["manifest.json"]["cases"][0].update(has_results=True, result="../escape.json"), "result"),
+            (lambda f: f["manifest.json"]["cases"][0].update(result="../escape.json"), "result"),
             (lambda f: f["results/fresh_T325p00_L8p50.json"]["cases"][0]["energy_edges"].append(
                 {"source": "a", "target": "b", "value": -1, "unit": "kW", "kind": "utility"}), "value"),
         ]:
@@ -206,7 +239,7 @@ class PublishedPackageTests(unittest.TestCase):
                 if path == prefix or (prefix.endswith("/") and path.startswith(prefix)):
                     repo_validate(value, name)
                     n += 1
-        self.assertEqual(n, 10)   # manifest, factors, surrogate descriptor, summary + 6 result shards
+        self.assertEqual(n, 10)   # manifest, factors, surrogate descriptor, summary + 6 gate-verdict shards
         self.assertFalse((ROOT / "analysis_web/data/pipeline.json").exists())
         self.assertFalse((STUDY / "cases").exists(), "stub case files are gone")
 
