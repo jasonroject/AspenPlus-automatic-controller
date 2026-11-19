@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aspen-study/2/probe.schema.json",
+  "title": "aspen-probe/1：单个模型的一键体检结果（运行状态 + 逐块能量表）",
+  "description": "energy[].value/unit 是节点原生值与 UnitString；kW 是换算结果，换算不了为 null（绝不补 0）。status.state：ok / warning / error。",
+  "type": "object",
+  "required": ["schema", "model", "status", "units", "calorie_J", "blocks", "totals_kW", "totals_complete", "energy_gaps", "discovery", "cleanup"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"const": "aspen-probe/1"},
+    "created": {"type": "string"},
+    "elapsed_seconds": {"type": "number"},
+    "model": {
+      "type": "object",
+      "required": ["file", "sha256", "simulator", "source_unchanged"],
+      "properties": {
+        "file": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "simulator": {"type": "string"},
+        "version": {"type": ["string", "null"]},
+        "progid": {"type": "string"},
+        "adapter": {"type": "string"},
+        "source_unchanged": {"type": ["boolean", "null"]}
+      }
+    },
+    "status": {
+      "type": "object",
+      "required": ["state", "run_completed", "errors", "warnings", "notes"],
+      "properties": {
+        "state": {"enum": ["ok", "warning", "error"]},
+        "run_completed": {"type": "boolean"},
+        "errors": {"type": "array", "items": {"type": "string"}},
+        "warnings": {"type": "array", "items": {"type": "string"}},
+        "notes": {"type": "array", "items": {"type": "string"}},
+        "raw_status": {"type": "object"},
+        "run_status_lines": {"type": "array", "items": {"type": "string"}},
+        "run_seconds": {"type": ["number", "null"]}
+      }
+    },
+    "units": {"type": "object"},
+    "calorie_J": {"type": "number"},
+    "blocks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "status", "energy"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "type": {"type": "string"},
+          "status": {"enum": ["ok", "warning", "error", "unknown"]},
+          "blkstat": {"type": ["integer", "null"]},
+          "messages": {"type": "array", "items": {"type": "string"}},
+          "outlet_temperature": {"type": "object"},
+          "energy": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["kind", "value", "unit", "kW"],
+              "properties": {
+                "kind": {"enum": ["heat", "work"]},
+                "role_hint": {"type": "string"},
+                "value": {"type": "number"},
+                "unit": {"type": "string"},
+                "kW": {"type": ["number", "null"]},
+                "note": {"type": "string"},
+                "path": {"type": "string"},
+                "explicit_zero": {"type": "boolean"}
+              }
+            }
+          }
+        }
+      }
+    },
+    "totals_kW": {
+      "type": "object",
+      "properties": {
+        "heating": {"type": ["number", "null"]},
+        "cooling": {"type": ["number", "null"]},
+        "work": {"type": ["number", "null"]},
+        "internal_exchange": {"type": ["number", "null"]}
+      }
+    },
+    "totals_complete": {"type": "boolean"},
+    "energy_gaps": {"type": "array", "items": {"type": "string"}},
+    "discovery": {"type": "object"},
+    "cleanup": {"type": "object"},
+    "study": {"type": "object"}
+  }
+}

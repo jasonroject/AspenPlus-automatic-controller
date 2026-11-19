@@ -10,7 +10,7 @@ class ContractTests(unittest.TestCase):
     def test_all_schemas_are_json_with_ids(self):
         names = sorted(p.name for p in SCHEMA_DIR.glob("*.schema.json"))
         self.assertEqual(names, ["case.schema.json", "factor-library.schema.json", "factors-snapshot.schema.json",
-                                 "graph.schema.json", "manifest.schema.json", "results.schema.json", "roles.schema.json",
+                                 "graph.schema.json", "manifest.schema.json", "probe.schema.json", "results.schema.json", "roles.schema.json",
                                  "surrogate.schema.json"])
         for n in names:
             self.assertTrue(load_schema(n)["$id"].startswith("aspen-study/2/"))

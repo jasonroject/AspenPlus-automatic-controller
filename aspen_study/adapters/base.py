@@ -69,6 +69,9 @@ class SimulatorAdapter(ABC):
     def discovery_info(self) -> dict:
         return {}
 
+    def units_info(self) -> dict:
+        return {}
+
     def discover(self) -> dict:
         st = self.status()
         status = {"run_completed": st.run_completed, "errors": list(st.errors), "warnings": list(st.warnings)}
@@ -82,6 +85,9 @@ class SimulatorAdapter(ABC):
             status["block_status_accepted"] = st.block_status_accepted
         graph = {"schema": "aspen-model-graph/1", "model": self.model_info(), "status": status,
                  "components": self.components(), "blocks": self.blocks(), "streams": self.streams()}
+        units = self.units_info()
+        if units:
+            graph["units"] = units
         info = self.discovery_info()
         if info:
             graph["discovery"] = info

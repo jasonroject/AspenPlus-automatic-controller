@@ -77,7 +77,8 @@ manifest 随工况数线性增长：每个工况条目约 0.5–1 KB（参数 + 
 | `factors.py` + `factor_library/library.json` | 因子库加载与匹配 |
 | `validation.py` | G1 收敛/无错、警告、G2 完整性、G3 块级与边界衡算、G5 因子覆盖 |
 | `build.py` | graph + roles + 因子 → 五表 project 与 results（含可视化字段） |
-| `adapters/` | 仿真器适配器接口；`mock.py` 读取 graph 夹具，`aspen_com.py` 为待真机验证的桩 |
+| `adapters/` | 仿真器适配器接口；`mock.py` 读取 graph 夹具；`aspen_com.py` 是已在真机验证的 Aspen COM 适配器，`aspen_rules.py` 是节点配方/单位/状态规则（纯 Python，可无 Aspen 测试），`aspen_process.py` 只清理本次启动的 Aspen 进程，`errors.py` 是中文错误类型 |
+| `probe.py` | 一键体检（`python -m aspen_study probe`）：运行状态 + 逐块能量表 → `probe-summary.json`（`aspen-probe/1`）+ `graph.json` + 可选研究包 |
 
 运行测试（Linux 即可，不需要 Aspen）：
 
@@ -86,6 +87,14 @@ python -m unittest discover -s aspen_study/tests -t .
 ```
 
 ## 命令行
+
+```bash
+# 一键体检（Windows + Aspen Plus + pywin32；在仓库根目录运行）。只在临时副本上开私有文档，源文件不改
+python -m aspen_study probe path\to\model.bkp [--out-dir DIR] [--timeout 1200] [--calorie-J 4.1868] [--no-study] [--json]
+# 退出码：0 正常/有警告；1 运行有错误（结果不可信）；3 Aspen 不可用/打不开/超时（中文提示）
+```
+
+输出目录：`probe-summary.json`（状态 ok/warning/error、逐块消息、逐块能量原生值 + kW、合计、未验证读取清单）、`graph.json`、`roles.json`、`study/`（需要 Node.js；失败不影响前两者）。
 
 ```bash
 # 自动分类 + 合并覆盖（roles.yaml 需要 PyYAML；也可用 roles.json）
@@ -101,18 +110,29 @@ python -m aspen_study.cli assess --graph graph.json --roles roles.json --study-i
 - **冷却公用工程**按“服务”计入 `material` 类清单，不计入外购能量强度（外购热 + 电）。
 - 排放流按组分拆分；N2/O2/Ar/H2O/He 视为惰性跳过，其余组分没有因子就进入 `missing`。CO2/CH4 需要声明 `carbon_origin`（fossil/biogenic），否则不匹配任何因子。
 
-## 待真机（Windows + Aspen）验证
+## Aspen COM 适配器：真机验证记录（2026-11-19，Aspen Plus V15，`Apwn.Document.41.0`）
 
-`adapters/aspen_com.py` 目前是桩，`status/components/blocks/streams` 抛出 `NotImplementedError`。以下内容需要在装有 Aspen 的机器上核实：
+验证模型：`heatrecovery.bkp`（Heater/HeatX/Flash2/Pump/RPlug/Valve，MET 单位集，有警告）与 Aspen 自带示例 `mch.bkp`（RadFrac，ENG 单位集，无警告）。
 
-1. 块模型名（RecordType 属性）与端口连接（`Connections` / `Ports\SOURCE|DEST`）的节点。
-2. 流股类别（MATERIAL/HEAT/WORK）与非 MIXED 子物流（CISOLID/NC）的节点；汽相分率节点。
-3. RadFrac `COND_DUTY` / `REB_DUTY`、HeatX `HX_DUTY` 等负荷节点名称。
-4. 组分别名与 CAS 的读取方式；公用工程对象节点。
-5. `CVSTAT` 与 `BLKSTAT` 的可接受代码（HTL 用过 BLKSTAT ∈ {0,2}，CVSTAT 接受值尚未确认）。
-6. HEAT/WORK 流股与块负荷是否会重复计算。
-7. `.apw` 能否直接打开（目前仍只接受 `.bkp`）。
-8. 至少一个非 HTL 的真实模型跑通发现 → 分类 → 研究包，并保存回放夹具。
+| 项目 | 结论与证据 |
+| --- | --- |
+| 块类型 | `\Data\Blocks\<id>` 的 `AttributeValue(6)` 返回模型名（`Heater`/`HeatX`/`Flash2`/`Pump`/`RPlug`/`Valve`/`RadFrac`）；节点的 `Value` 是描述文字，不是类型 |
+| 连接 | `\Data\Blocks\<id>\Ports\<端口>(IN|OUT)` 的子节点名就是流股 ID；`\Data\Streams\<id>\Ports\SOURCE|DEST` 读不到值，不能用 |
+| 流股类别 | `\Data\Streams\<id>` 的 `AttributeValue(6)` = `MATERIAL`（HEAT/WORK 未见样本） |
+| 单位 | **永远读节点自己的 `UnitString`**。MET 的热负荷是 `cal/sec`，不是 kW；`\Data\Setup\Global\Input\INSET/OUTSET` 给出单位集名。1 cal = **4.1868 J**：同一结果在 MET（HMX_FLOW −81613.3056 cal/sec）与 SI（−341698.588 W）下各读一次，比值 4.18680000 |
+| 加热/冷却/闪蒸 | `QCALC`（有向量占位问题的节点 `Dimension>0`，`Value` 恒为 1，必须跳过） |
+| HeatX | `HX_DUTY`；`DUTY_HOT/DUTY_CLD` 是 Dimension=1 的占位 |
+| 泵 | `ELEC_POWER` / `BRAKE_POWER` / `WNET` 都存在（kW） |
+| RPlug | `QCALC` 是标量；`B_TEMP`/`B_PRES` 是剖面（`B_TEMP\MIXED` 有 101 个点，`Value` 恒为 1），出口取最后一点 |
+| RadFrac | `COND_DUTY`、`REB_DUTY`（见 mch.bkp 的读数） |
+| 状态 | `BLKSTAT`：0 正常、2 警告（与 .rep 的 “completed with warnings: COOLER REACTOR VALVE” 完全一致）；`BLKMSG` 是一句话原因；块 `Output\PER_ERROR` 是消息文本集合（`Value=1` 只是占位，要遍历 `Elements`）；`Run-Status\Output\PER_ERROR` 是运行报告摘要行；`UOSSTAT2`：8 正常（mch）、10 有警告（heatrecovery），9=有错误来自第三方文档、未见样本 |
+| 不能用的码 | `CVSTAT` 不是通过/失败码（heatrecovery=0、干净的 mch=2）；`PER_ERROR` 的 `Value`=1 不是错误数 |
+| 运行 | `Engine.Reinit()` 后 `Engine.Run2(1)` 异步 + 轮询 `IsRunning`；`doc.Export(2, path)` 可导出 .rep |
+| 进程 | `doc.ProcessId` 是本次启动的 AspenPlus.exe；`Close(False)` 后进程自行退出 |
+
+仍未验证（适配器会把用到的未验证节点写进 `discovery.unverified_paths`）：Compr/MCompr/RStoic/RYield/RGibbs/RCSTR/Flash3/Decanter/MHeatX 的负荷节点名；透平的功符号；HEAT/WORK 流股的 duty；非 MIXED 子物流（CISOLID/NC）；汽相分率；公用工程对象；`.apw/.apwz`（见下）；`BLKSTAT` 的其他取值（1、4 等，当前一律按错误处理）。
+
+`.apw`：默认拒绝并提示“另存为 .bkp”；`AspenPlusCOMAdapter(verified_open_methods={".apw": "InitFromFile2"})` 可在验证后启用。
 
 ## 夹具
 
