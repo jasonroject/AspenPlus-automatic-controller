@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aspen-study/2/case.schema.json",
+  "title": "工况分片：现有五表 project（schema_version 1，不改）",
+  "description": "字段与 analysis_web/universal-core.mjs 的 TABLES 一致，由 universal-core 直接计算。每个分片通常只含一个工况。数值可为数字或数字字符串（Excel 导入兼容）。",
+  "type": "object",
+  "required": ["schema_version", "meta", "cases", "streams", "blocks", "inventory", "factors"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "meta": {
+      "type": "object",
+      "required": ["steady_state", "functional_unit"],
+      "properties": {
+        "name": {"type": "string"},
+        "steady_state": {"const": true},
+        "enthalpy_basis": {"type": "string"},
+        "boundary": {"type": "string"},
+        "functional_unit": {"type": "string", "pattern": "^1\\s+kg(\\s|$)"},
+        "allocation_method": {"type": "string"},
+        "calorie_J": {"enum": [null, 4.184, 4.1868]},
+        "inventory_complete": {"type": "boolean"},
+        "comparable_cases": {"type": "boolean"}
+      }
+    },
+    "cases": {"type": "array", "items": {"type": "object", "required": ["id"], "properties": {
+      "id": {"type": "string", "minLength": 1}, "product_rate": {"$ref": "#/$defs/num"}, "product_low": {"$ref": "#/$defs/num"},
+      "product_high": {"$ref": "#/$defs/num"}, "feed_rate": {"$ref": "#/$defs/num"}, "mass_unit": {"type": "string"},
+      "allocation": {"$ref": "#/$defs/num"}, "source": {"type": "string"}}}},
+    "streams": {"type": "array", "items": {"type": "object", "required": ["case_id", "id", "from", "to"], "properties": {
+      "case_id": {"type": "string"}, "id": {"type": "string"}, "from": {"type": "string"}, "to": {"type": "string"},
+      "mass_flow": {"$ref": "#/$defs/num"}, "mass_unit": {"type": "string"}, "enthalpy_flow": {"$ref": "#/$defs/num"},
+      "energy_unit": {"type": "string"}, "specific_enthalpy": {"$ref": "#/$defs/num"}, "enthalpy_unit": {"type": "string"},
+      "source": {"type": "string"}}}},
+    "blocks": {"type": "array", "items": {"type": "object", "required": ["case_id", "id"], "properties": {
+      "case_id": {"type": "string"}, "id": {"type": "string", "not": {"const": "BOUNDARY"}}, "heat": {"$ref": "#/$defs/num"},
+      "power": {"$ref": "#/$defs/num"}, "energy_unit": {"type": "string"}, "heat_unit": {"type": "string"},
+      "power_unit": {"type": "string"}, "source": {"type": "string"}}}},
+    "inventory": {"type": "array", "items": {"type": "object", "required": ["case_id", "id", "kind"], "properties": {
+      "case_id": {"type": "string"}, "id": {"type": "string"}, "name": {"type": "string"},
+      "kind": {"enum": ["energy", "material", "emission", "waste"]}, "amount": {"$ref": "#/$defs/num"},
+      "amount_low": {"$ref": "#/$defs/num"}, "amount_high": {"$ref": "#/$defs/num"}, "unit": {"type": "string"},
+      "factor_id": {"type": "string"}, "source": {"type": "string"}}}},
+    "factors": {"type": "array", "items": {"type": "object", "required": ["id", "category"], "properties": {
+      "id": {"type": "string"}, "category": {"type": "string"}, "value": {"$ref": "#/$defs/num"}, "low": {"$ref": "#/$defs/num"},
+      "high": {"$ref": "#/$defs/num"}, "denominator_unit": {"type": "string"}, "impact_unit": {"type": "string"},
+      "method": {"type": "string"}, "source": {"type": "string"}}}}
+  },
+  "$defs": {"num": {"type": ["number", "string"]}}
+}

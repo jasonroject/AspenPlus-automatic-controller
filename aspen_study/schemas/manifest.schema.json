@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aspen-study/2/manifest.schema.json",
+  "title": "aspen-study/2 研究包入口 manifest.json",
+  "description": "首页只需加载本文件和 results/summary.json；工况明细与代理模型网格按 shards 中的相对路径按需加载。路径一律相对 manifest 所在目录，不允许 .. 或绝对路径。",
+  "type": "object",
+  "required": ["schema", "study_id", "model", "contract", "cases", "shards"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"const": "aspen-study/2"},
+    "study_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,79}$"},
+    "title": {"type": "string"},
+    "created_at": {"type": "string"},
+    "model": {
+      "type": "object",
+      "required": ["sha256", "simulator"],
+      "properties": {
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "simulator": {"type": "string"},
+        "version": {"type": "string"},
+        "file": {"type": "string"}
+      }
+    },
+    "contract": {
+      "type": "object",
+      "required": ["project_schema"],
+      "properties": {
+        "project_schema": {"const": 1},
+        "graph_schema": {"const": "aspen-model-graph/1"},
+        "roles_schema": {"const": "aspen-roles/1"},
+        "results_schema": {"const": "aspen-results/1"},
+        "factor_library": {"type": "string"}
+      }
+    },
+    "functional_unit": {"type": "string"},
+    "variables": {
+      "type": "array",
+      "description": "工况参数（扫描变量），替代 pipeline.js 中写死的 temperature_C / length_m 坐标轴。",
+      "items": {
+        "type": "object",
+        "required": ["id", "unit"],
+        "properties": {
+          "id": {"type": "string"},
+          "label": {"type": "string"},
+          "unit": {"type": "string"},
+          "min": {"type": "number"},
+          "max": {"type": "number"}
+        }
+      }
+    },
+    "gates": {
+      "type": "object",
+      "additionalProperties": {"enum": ["pass", "warn", "fail", "not_run"]}
+    },
+    "cases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "file"],
+        "properties": {
+          "id": {"type": "string"},
+          "file": {"$ref": "#/$defs/relpath"},
+          "result": {"$ref": "#/$defs/relpath"},
+          "bytes": {"type": "integer", "minimum": 0},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "status": {"enum": ["accepted", "accepted_with_warnings", "rejected"]},
+          "params": {"type": "object", "additionalProperties": {"type": ["number", "string"]}}
+        }
+      }
+    },
+    "shards": {
+      "type": "object",
+      "properties": {
+        "graph": {"$ref": "#/$defs/relpath"},
+        "roles": {"$ref": "#/$defs/relpath"},
+        "factors": {"$ref": "#/$defs/relpath"},
+        "summary": {"$ref": "#/$defs/relpath"},
+        "surrogate": {"type": "array", "items": {"$ref": "#/$defs/relpath"}},
+        "extra": {"type": "object", "additionalProperties": {"$ref": "#/$defs/relpath"}}
+      }
+    }
+  },
+  "$defs": {
+    "relpath": {"type": "string", "pattern": "^(?!/)(?!.*\\.\\.)(?![A-Za-z]:)[A-Za-z0-9_./-]+$"}
+  }
+}

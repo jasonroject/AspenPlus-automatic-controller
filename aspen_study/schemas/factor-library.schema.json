@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aspen-study/2/factor-library.schema.json",
+  "title": "排放因子库",
+  "description": "按 CAS / 组分别名 / 公用工程类型 / 地区匹配。value 为 null 表示尚未填入官方数值（占位），该条目不会参与计算，结果会被标为不完整，绝不按 0 处理。",
+  "type": "object",
+  "required": ["schema", "version", "entries"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"const": "aspen-factor-library/1"},
+    "version": {"type": "string"},
+    "notes": {"type": "array", "items": {"type": "string"}},
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "match", "category", "value", "denominator_unit", "impact_unit", "method", "source", "year", "status"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,79}$"},
+          "match": {
+            "type": "object",
+            "minProperties": 1,
+            "additionalProperties": false,
+            "properties": {
+              "cas": {"type": "string", "pattern": "^[0-9]{2,7}-[0-9]{2}-[0-9]$"},
+              "alias": {"type": "string"},
+              "component": {"type": "string"},
+              "utility": {"type": "string"},
+              "flow": {"enum": ["material_input", "emission_air", "emission_water", "waste", "energy"]},
+              "treatment": {"type": "string"},
+              "region": {"type": "string"},
+              "carbon_origin": {"enum": ["fossil", "biogenic"]}
+            }
+          },
+          "category": {"type": "string", "minLength": 1},
+          "value": {"type": ["number", "null"]},
+          "low": {"type": ["number", "null"]},
+          "high": {"type": ["number", "null"]},
+          "denominator_unit": {"type": "string", "minLength": 1},
+          "impact_unit": {"type": "string", "minLength": 1},
+          "method": {"type": "string", "minLength": 1},
+          "source": {"type": "string"},
+          "year": {"type": ["integer", "null"]},
+          "region": {"type": "string"},
+          "license": {"type": "string"},
+          "status": {"enum": ["verified", "placeholder", "proxy", "user_supplied"]},
+          "note": {"type": "string"}
+        }
+      }
+    }
+  }
+}

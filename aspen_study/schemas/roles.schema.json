@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aspen-study/2/roles.schema.json",
+  "title": "roles：流股/设备角色映射（自动分类结果与用户覆盖合并后）",
+  "description": "source=auto 表示分类器推荐，override 表示来自 roles.yaml 或网页向导。产品与功能单位必须由人确认（review.state=reviewed）后才能出 LCA 结果。",
+  "type": "object",
+  "required": ["schema", "model_sha256", "streams", "blocks", "review"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"const": "aspen-roles/1"},
+    "model_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "functional_unit": {"$ref": "#/$defs/functional_unit"},
+    "streams": {"type": "object", "additionalProperties": {"$ref": "#/$defs/stream_role"}},
+    "blocks": {"type": "object", "additionalProperties": {"$ref": "#/$defs/block_role"}},
+    "allocation": {
+      "type": "object",
+      "required": ["method"],
+      "additionalProperties": false,
+      "properties": {
+        "method": {"enum": ["none", "mass", "energy_lhv", "economic", "system_expansion"]},
+        "shares": {"type": "object", "additionalProperties": {"type": "number", "minimum": 0, "maximum": 1}},
+        "note": {"type": "string"}
+      }
+    },
+    "region": {"type": "string"},
+    "lcia_method": {"type": "string"},
+    "system_boundary": {"enum": ["gate-to-gate", "cradle-to-gate", "cradle-to-grave"]},
+    "review": {
+      "type": "object",
+      "required": ["state"],
+      "additionalProperties": false,
+      "properties": {
+        "state": {"enum": ["auto_draft", "partially_reviewed", "reviewed"]},
+        "reviewer": {"type": "string"},
+        "reviewed_at": {"type": "string"},
+        "pending": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  },
+  "$defs": {
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "source": {"enum": ["auto", "override"]},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "reasons": {"type": "array", "items": {"type": "string"}},
+        "needs_confirmation": {"type": "boolean"}
+      }
+    },
+    "functional_unit": {
+      "type": "object",
+      "required": ["basis", "amount", "unit"],
+      "additionalProperties": false,
+      "properties": {
+        "basis": {"enum": ["product_mass", "product_energy_lhv", "feed_mass"]},
+        "amount": {"type": "number", "exclusiveMinimum": 0},
+        "unit": {"type": "string", "minLength": 1},
+        "stream": {"type": "string"},
+        "streams": {"type": "array", "items": {"type": "string"}},
+        "components": {"type": "array", "items": {"type": "string"}},
+        "lhv_MJ_per_kg": {"type": "number", "exclusiveMinimum": 0}
+      }
+    },
+    "stream_role": {
+      "type": "object",
+      "required": ["role"],
+      "properties": {
+        "role": {"enum": ["feed", "product", "coproduct", "emission", "waste", "internal", "recycle", "utility", "unclassified"]},
+        "inventory": {
+          "type": "object",
+          "properties": {
+            "kind": {"enum": ["material", "energy", "emission", "waste"]},
+            "factor_key": {"type": "string"},
+            "split_by_component": {"type": "boolean"}
+          }
+        },
+        "treatment": {"type": "string"},
+        "carbon_origin": {"enum": ["fossil", "biogenic", "mixed", "unknown"]},
+        "provenance": {"$ref": "#/$defs/provenance"}
+      }
+    },
+    "block_role": {
+      "type": "object",
+      "required": ["role"],
+      "properties": {
+        "role": {"enum": ["heater", "cooler", "heat_exchanger", "internal_recovery", "reactor", "separator", "column", "pump", "compressor", "turbine", "mixer_splitter", "valve", "other"]},
+        "utility": {"enum": ["electricity", "lp_steam", "mp_steam", "hp_steam", "fired_heat", "natural_gas", "cooling_water", "refrigeration", "air_cooling", "none", "unassigned"]},
+        "efficiency": {"type": "number", "exclusiveMinimum": 0, "maximum": 1},
+        "credit": {"type": "boolean"},
+        "provenance": {"$ref": "#/$defs/provenance"}
+      }
+    }
+  }
+}
