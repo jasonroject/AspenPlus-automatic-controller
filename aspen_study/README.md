@@ -50,7 +50,7 @@ study/
 | `schema_check.py` | 标准库实现的 JSON Schema 子集校验器（无需 jsonschema 依赖） |
 | `classifier.py` | 基于 graph.json 的角色自动分类（带置信度与理由） |
 | `overrides.py` | 合并 `roles.yaml` / `roles.json` 用户覆盖 |
-| `factors.py` + `factors/library.json` | 因子库加载与匹配 |
+| `factors.py` + `factor_library/library.json` | 因子库加载与匹配 |
 | `validation.py` | G1 收敛/无错、警告、G2 完整性、G3 块级与边界衡算、G5 因子覆盖 |
 | `build.py` | graph + roles + 因子 → 五表 project 与 results（含可视化字段） |
 | `adapters/` | 仿真器适配器接口；`mock.py` 读取 graph 夹具，`aspen_com.py` 为待真机验证的桩 |

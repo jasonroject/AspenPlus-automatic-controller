@@ -6,7 +6,7 @@ from pathlib import Path
 
 from .schema_check import validate
 
-LIBRARY = Path(__file__).resolve().with_name("factors") / "library.json"
+LIBRARY = Path(__file__).resolve().with_name("factor_library") / "library.json"
 # Higher number = more specific match key.
 _KEY_RANK = {"cas": 50, "alias": 40, "component": 30, "utility": 20, "treatment": 10, "flow": 1, "carbon_origin": 1}
 
