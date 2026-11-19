@@ -223,6 +223,8 @@ def check_verification(doc):
 
 # ------------------------------------------------------------------------------------------------ find
 BLOCK_LINE = re.compile(rb"^\s*BLOCK\s+\S+\s+([A-Za-z0-9]+)\s*$", re.M | re.I)
+# 真机核对：Aspen V15 示例 .bkp 里块类型写成 `BLKTYPE = "COMPR"`，大多数文件没有 `BLOCK id TYPE` 行
+BLKTYPE_ATTR = re.compile(rb'BLKTYPE\s*=\s*"([A-Za-z0-9]+)"', re.I)
 
 
 def find_models(directories):
@@ -237,7 +239,7 @@ def find_models(directories):
                 data = path.read_bytes()
             except OSError:
                 continue
-            types = {m.group(1).decode("ascii", "ignore").lower() for m in BLOCK_LINE.finditer(data)}
+            types = {m.group(1).decode("ascii", "ignore").lower() for rx in (BLOCK_LINE, BLKTYPE_ATTR) for m in rx.finditer(data)}
             for t in TARGET_TYPES:
                 if t.lower() in types:
                     found[t].append((len(data), str(path)))

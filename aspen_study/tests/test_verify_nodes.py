@@ -91,7 +91,7 @@ class VerifyTests(unittest.TestCase):
                          ("turbine", "negative", "negative", "consistent"))
         self.assertEqual(by_id["MC"]["work_sign"]["verdict"], "consistent")
         self.assertEqual(by_id["R1"]["energy_read"][0]["unit"], "cal/sec")
-        self.assertEqual(by_id["R1"]["recipe"], "unverified")
+        self.assertEqual(by_id["R1"]["recipe"], "verified")  # RStoic QCALC was verified live (NGCC, Methane Pyrolysis)
         # the same run also yields a valid probe summary + graph (a ready-made result package)
         from aspen_study.schema_check import validate
         validate(summary, "probe")

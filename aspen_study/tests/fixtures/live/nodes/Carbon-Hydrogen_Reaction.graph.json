@@ -1,0 +1,278 @@
+{
+ "schema": "aspen-model-graph/1",
+ "model": {
+  "file": "Carbon-Hydrogen Reaction.bkp",
+  "sha256": "0773ce33ca2537ba04a27ad1ad0b073760cc4f44386397d6043e07a74b69840e",
+  "simulator": "aspen-plus",
+  "version": "41.0",
+  "progid": "Apwn.Document.41.0",
+  "adapter": "aspen-plus-com"
+ },
+ "status": {
+  "run_completed": true,
+  "errors": [],
+  "warnings": [],
+  "block_status": {
+   "RGIBBS": 0
+  },
+  "block_status_accepted": [
+   0,
+   2
+  ]
+ },
+ "components": [
+  {
+   "id": "C",
+   "alias": "C",
+   "cas": "7440-44-0",
+   "type": "CONV"
+  },
+  {
+   "id": "H2",
+   "alias": "H2",
+   "cas": "1333-74-0",
+   "type": "CONV"
+  },
+  {
+   "id": "CH4",
+   "alias": "CH4",
+   "cas": "74-82-8",
+   "type": "CONV"
+  },
+  {
+   "id": "C2H6",
+   "alias": "C2H6",
+   "cas": "74-84-0",
+   "type": "CONV"
+  },
+  {
+   "id": "C2H4",
+   "alias": "C2H4",
+   "cas": "74-85-1",
+   "type": "CONV"
+  },
+  {
+   "id": "C2H2",
+   "alias": "C2H2",
+   "cas": "74-86-2",
+   "type": "CONV"
+  },
+  {
+   "id": "C3H8",
+   "alias": "C3H8",
+   "cas": "74-98-6",
+   "type": "CONV"
+  },
+  {
+   "id": "C-C3",
+   "alias": "C3H6-1",
+   "cas": "75-19-4",
+   "type": "CONV"
+  },
+  {
+   "id": "C3=",
+   "alias": "C3H6-2",
+   "cas": "115-07-1",
+   "type": "CONV"
+  },
+  {
+   "id": "N-C4",
+   "alias": "C4H10-1",
+   "cas": "106-97-8",
+   "type": "CONV"
+  },
+  {
+   "id": "I-C4",
+   "alias": "C4H10-2",
+   "cas": "75-28-5",
+   "type": "CONV"
+  },
+  {
+   "id": "1-BUTENE",
+   "alias": "C4H8-1",
+   "cas": "106-98-9",
+   "type": "CONV"
+  },
+  {
+   "id": "C-2-C4=",
+   "alias": "C4H8-2",
+   "cas": "590-18-1",
+   "type": "CONV"
+  },
+  {
+   "id": "T-2-C4=",
+   "alias": "C4H8-3",
+   "cas": "624-64-6",
+   "type": "CONV"
+  },
+  {
+   "id": "I-BUTYL",
+   "alias": "C4H8-5",
+   "cas": "115-11-7",
+   "type": "CONV"
+  }
+ ],
+ "blocks": [
+  {
+   "id": "RGIBBS",
+   "type": "RGibbs",
+   "ports": {
+    "in": [
+     "H2",
+     "C"
+    ],
+    "out": [
+     "PRODUCTS"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 0.157882866,
+     "unit": "Gcal/hr",
+     "path": "\\Data\\Blocks\\RGIBBS\\Output\\QCALC"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 764.229764,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\RGIBBS\\Output\\B_TEMP"
+   }
+  }
+ ],
+ "streams": [
+  {
+   "id": "C",
+   "class": "MATERIAL",
+   "from": "BOUNDARY",
+   "to": "RGIBBS",
+   "total": {
+    "mass_flow": 1201.1,
+    "mass_unit": "kg/hr",
+    "h_mass": 781.917513,
+    "h_unit": "kcal/kg",
+    "enthalpy_flow": 0.939161125,
+    "energy_unit": "Gcal/hr",
+    "T": 25.0,
+    "T_unit": "C",
+    "P": 2.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "C": 1201.1,
+      "H2": 0.0,
+      "CH4": 0.0,
+      "C2H6": 0.0,
+      "C2H4": 0.0,
+      "C2H2": 0.0,
+      "C3H8": 0.0,
+      "C-C3": 0.0,
+      "C3=": 0.0,
+      "N-C4": 0.0,
+      "I-C4": 0.0,
+      "1-BUTENE": 0.0,
+      "C-2-C4=": 0.0,
+      "T-2-C4=": 0.0,
+      "I-BUTYL": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "H2",
+   "class": "MATERIAL",
+   "from": "BOUNDARY",
+   "to": "RGIBBS",
+   "total": {
+    "mass_flow": 227.244172,
+    "mass_unit": "kg/hr",
+    "h_mass": 0.267092677,
+    "h_unit": "kcal/kg",
+    "enthalpy_flow": 6.06952544e-05,
+    "energy_unit": "Gcal/hr",
+    "T": 25.0,
+    "T_unit": "C",
+    "P": 2.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "C": 0.0,
+      "H2": 227.244172,
+      "CH4": 0.0,
+      "C2H6": 0.0,
+      "C2H4": 0.0,
+      "C2H2": 0.0,
+      "C3H8": 0.0,
+      "C-C3": 0.0,
+      "C3=": 0.0,
+      "N-C4": 0.0,
+      "I-C4": 0.0,
+      "1-BUTENE": 0.0,
+      "C-2-C4=": 0.0,
+      "T-2-C4=": 0.0,
+      "I-BUTYL": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "PRODUCTS",
+   "class": "MATERIAL",
+   "from": "RGIBBS",
+   "to": "BOUNDARY",
+   "total": {
+    "mass_flow": 1428.34417,
+    "mass_unit": "kg/hr",
+    "h_mass": 768.095468,
+    "h_unit": "kcal/kg",
+    "enthalpy_flow": 1.09710469,
+    "energy_unit": "Gcal/hr",
+    "T": 764.229764,
+    "T_unit": "C",
+    "P": 1.0,
+    "P_unit": "bar"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "C": 6.49070774e-21,
+      "H2": 0.98454358,
+      "CH4": 344.394606,
+      "C2H6": 7.05788463,
+      "C2H4": 533.861541,
+      "C2H2": 246.676218,
+      "C3H8": 0.431021405,
+      "C-C3": 0.135484046,
+      "C3=": 244.849091,
+      "N-C4": 0.0235234078,
+      "I-C4": 0.0113490846,
+      "1-BUTENE": 12.8896522,
+      "C-2-C4=": 9.48919053,
+      "T-2-C4=": 11.0935342,
+      "I-BUTYL": 16.4465336
+     }
+    }
+   }
+  }
+ ],
+ "units": {
+  "INSET": "METCHEM",
+  "OUTSET": "METCHEM",
+  "calorie_J": 4.1868,
+  "note": "块负荷与流股焓流保留各节点自己的 UnitString，不假设 kW（MET 的热负荷是 cal/sec，ENG 是 Btu/hr）。1 cal = 4.1868 J 经真机核对（同一结果在 MET 与 SI 下各读一次，比值 4.1868）。"
+ },
+ "discovery": {
+  "mode": "recipe",
+  "nodes_read": 143,
+  "complete": true,
+  "unmatched_block_types": [],
+  "unverified_paths": []
+ }
+}

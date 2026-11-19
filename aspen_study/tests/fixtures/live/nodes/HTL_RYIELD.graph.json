@@ -1,0 +1,788 @@
+{
+ "schema": "aspen-model-graph/1",
+ "model": {
+  "file": "HTL RYIELD.bkp",
+  "sha256": "670027013270ed4ea17594529eff0fa47b61007c07049a9c0b4fc446edab9779",
+  "simulator": "aspen-plus",
+  "version": null,
+  "progid": "Apwn.Document.41.0",
+  "adapter": "aspen-plus-com"
+ },
+ "status": {
+  "run_completed": true,
+  "errors": [],
+  "warnings": [],
+  "block_status": {
+   "B1": 0,
+   "HTL": 0
+  },
+  "block_status_accepted": [
+   0,
+   2
+  ]
+ },
+ "components": [
+  {
+   "id": "CHAR",
+   "type": "BIO"
+  },
+  {
+   "id": "ALGAE",
+   "type": "BIO"
+  },
+  {
+   "id": "ASH",
+   "alias": "CAO",
+   "cas": "1305-78-8",
+   "type": "SOLID"
+  },
+  {
+   "id": "C",
+   "alias": "C",
+   "cas": "7440-44-0",
+   "type": "SOLID"
+  },
+  {
+   "id": "H2O",
+   "alias": "H2O",
+   "cas": "7732-18-5",
+   "type": "CONV"
+  },
+  {
+   "id": "O2",
+   "alias": "O2",
+   "cas": "7782-44-7",
+   "type": "CONV"
+  },
+  {
+   "id": "N2",
+   "alias": "N2",
+   "cas": "7727-37-9",
+   "type": "CONV"
+  },
+  {
+   "id": "ETHANOL",
+   "alias": "C2H6O-2",
+   "cas": "64-17-5",
+   "type": "CONV"
+  },
+  {
+   "id": "AACID",
+   "alias": "C2H4O2-1",
+   "cas": "64-19-7",
+   "type": "CONV"
+  },
+  {
+   "id": "GLYCEROL",
+   "alias": "C3H8O3",
+   "cas": "56-81-5",
+   "type": "CONV"
+  },
+  {
+   "id": "NH3",
+   "alias": "H3N",
+   "cas": "7664-41-7",
+   "type": "CONV"
+  },
+  {
+   "id": "CO",
+   "alias": "CO",
+   "cas": "630-08-0",
+   "type": "CONV"
+  },
+  {
+   "id": "CO2",
+   "alias": "CO2",
+   "cas": "124-38-9",
+   "type": "CONV"
+  },
+  {
+   "id": "CH4",
+   "alias": "CH4",
+   "cas": "74-82-8",
+   "type": "CONV"
+  },
+  {
+   "id": "H2",
+   "alias": "H2",
+   "cas": "1333-74-0",
+   "type": "CONV"
+  },
+  {
+   "id": "FORMIC",
+   "alias": "CH2O2",
+   "cas": "64-18-6",
+   "type": "CONV"
+  },
+  {
+   "id": "ACETONE",
+   "alias": "C3H6O-1",
+   "cas": "67-64-1",
+   "type": "CONV"
+  },
+  {
+   "id": "METHANOL",
+   "alias": "CH4O",
+   "cas": "67-56-1",
+   "type": "CONV"
+  },
+  {
+   "id": "ETHYLBEN",
+   "alias": "C8H10-4",
+   "cas": "100-41-4",
+   "type": "CONV"
+  },
+  {
+   "id": "4M-PHENO",
+   "alias": "C7H8O-5",
+   "cas": "106-44-5",
+   "type": "CONV"
+  },
+  {
+   "id": "4E-PHENO",
+   "alias": "C8H10O-3",
+   "cas": "123-07-9",
+   "type": "CONV"
+  },
+  {
+   "id": "INDOLE",
+   "alias": "C8H7N",
+   "cas": "120-72-9",
+   "type": "CONV"
+  },
+  {
+   "id": "7MINDOLE",
+   "alias": "C9H9N-N4",
+   "cas": "933-67-5",
+   "type": "CONV"
+  },
+  {
+   "id": "C14AMIDE",
+   "alias": "C14H29NO",
+   "cas": "638-58-4",
+   "type": "CONV"
+  },
+  {
+   "id": "C16AMIDE",
+   "alias": "C16H33NO",
+   "cas": "629-54-9",
+   "type": "CONV"
+  },
+  {
+   "id": "C18AMIDE",
+   "alias": "C18H37NO",
+   "cas": "124-26-5",
+   "type": "CONV"
+  },
+  {
+   "id": "C16:1FA",
+   "alias": "C16H30O2-N4",
+   "cas": "373-49-9",
+   "type": "CONV"
+  },
+  {
+   "id": "C16:0FA",
+   "alias": "C16H32O2",
+   "cas": "57-10-3",
+   "type": "CONV"
+  },
+  {
+   "id": "C18FACID",
+   "alias": "C18H34O2",
+   "cas": "112-80-1",
+   "type": "CONV"
+  },
+  {
+   "id": "NAPHTHAL",
+   "alias": "C10H8",
+   "cas": "91-20-3",
+   "type": "CONV"
+  },
+  {
+   "id": "CHOLESTE",
+   "alias": "C27H46O",
+   "cas": "57-88-5",
+   "type": "CONV"
+  },
+  {
+   "id": "ANILINE",
+   "alias": "C6H7N-1",
+   "cas": "62-53-3",
+   "type": "CONV"
+  },
+  {
+   "id": "C30DICAD",
+   "alias": "C8H6O4-D2",
+   "cas": "88-99-3",
+   "type": "CONV"
+  },
+  {
+   "id": "3-PYRDOL",
+   "alias": "C5H5NO",
+   "cas": "109-00-2",
+   "type": "CONV"
+  }
+ ],
+ "blocks": [
+  {
+   "id": "B1",
+   "type": "Flash3",
+   "ports": {
+    "in": [
+     "S2"
+    ],
+    "out": [
+     "GAS",
+     "BIOCRUDE",
+     "AQ+SOL"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "heat",
+     "value": -0.182312622,
+     "unit": "MMkcal/hr",
+     "path": "\\Data\\Blocks\\B1\\Output\\QCALC"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 60.0,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\B1\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "HTL",
+   "type": "RYield",
+   "ports": {
+    "in": [
+     "BIOMASS"
+    ],
+    "out": [
+     "S2"
+    ]
+   },
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 1.2407358,
+     "unit": "MMkcal/hr",
+     "path": "\\Data\\Blocks\\HTL\\Output\\QCALC"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 350.0,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\HTL\\Output\\B_TEMP"
+   }
+  }
+ ],
+ "streams": [
+  {
+   "id": "AQ+SOL",
+   "class": "MATERIAL",
+   "from": "B1",
+   "to": "BOUNDARY",
+   "total": {
+    "mass_flow": 443.559078,
+    "mass_unit": "kg/hr",
+    "h_mass": -3619.65397,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -1.60553038,
+    "energy_unit": "MMkcal/hr",
+    "T": 60.0,
+    "T_unit": "C",
+    "P": 2.0,
+    "P_unit": "atm"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CHAR": 2.0,
+      "ALGAE": 0.0,
+      "ASH": 0.0,
+      "C": 0.0,
+      "H2O": 398.534695,
+      "O2": 0.0,
+      "N2": 0.0,
+      "ETHANOL": 3.81496667e-05,
+      "AACID": 5.05854641,
+      "GLYCEROL": 3.32400624,
+      "NH3": 0.0,
+      "CO": 1.10389586e-05,
+      "CO2": 0.252524642,
+      "CH4": 3.22910495e-05,
+      "H2": 0.00202825361,
+      "FORMIC": 30.0118038,
+      "ACETONE": 0.0,
+      "METHANOL": 4.18975044,
+      "ETHYLBEN": 0.0,
+      "4M-PHENO": 0.0,
+      "4E-PHENO": 0.0,
+      "INDOLE": 0.168292047,
+      "7MINDOLE": 6.429137e-06,
+      "C14AMIDE": 0.00265707172,
+      "C16AMIDE": 0.000129541767,
+      "C18AMIDE": 4.44418975e-05,
+      "C16:1FA": 0.00119566764,
+      "C16:0FA": 0.000819681248,
+      "C18FACID": 0.000160138728,
+      "NAPHTHAL": 0.0122984313,
+      "CHOLESTE": 0.0,
+      "ANILINE": 3.87997667e-05,
+      "C30DICAD": 0.0,
+      "3-PYRDOL": 0.0
+     }
+    },
+    "CISOLID": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CHAR": 0.0,
+      "ALGAE": 0.0,
+      "ASH": 0.0,
+      "C": 0.0,
+      "H2O": 0.0,
+      "O2": 0.0,
+      "N2": 0.0,
+      "ETHANOL": 0.0,
+      "AACID": 0.0,
+      "GLYCEROL": 0.0,
+      "NH3": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "CH4": 0.0,
+      "H2": 0.0,
+      "FORMIC": 0.0,
+      "ACETONE": 0.0,
+      "METHANOL": 0.0,
+      "ETHYLBEN": 0.0,
+      "4M-PHENO": 0.0,
+      "4E-PHENO": 0.0,
+      "INDOLE": 0.0,
+      "7MINDOLE": 0.0,
+      "C14AMIDE": 0.0,
+      "C16AMIDE": 0.0,
+      "C18AMIDE": 0.0,
+      "C16:1FA": 0.0,
+      "C16:0FA": 0.0,
+      "C18FACID": 0.0,
+      "NAPHTHAL": 0.0,
+      "CHOLESTE": 0.0,
+      "ANILINE": 0.0,
+      "C30DICAD": 0.0,
+      "3-PYRDOL": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "BIOCRUDE",
+   "class": "MATERIAL",
+   "from": "B1",
+   "to": "BOUNDARY",
+   "total": {
+    "mass_flow": 52.0441726,
+    "mass_unit": "kg/hr",
+    "h_mass": -532.930093,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -0.0277359058,
+    "energy_unit": "MMkcal/hr",
+    "T": 60.0,
+    "T_unit": "C",
+    "P": 2.0,
+    "P_unit": "atm"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CHAR": 0.0,
+      "ALGAE": 0.0,
+      "ASH": 0.0,
+      "C": 0.0,
+      "H2O": 1.08535122,
+      "O2": 0.0,
+      "N2": 0.0,
+      "ETHANOL": 1.68628891e-06,
+      "AACID": 0.139292366,
+      "GLYCEROL": 0.00205501629,
+      "NH3": 0.0,
+      "CO": 1.03174639e-05,
+      "CO2": 0.0897744986,
+      "CH4": 4.97804885e-05,
+      "H2": 0.000333017481,
+      "FORMIC": 0.119901906,
+      "ACETONE": 0.0,
+      "METHANOL": 0.0569515633,
+      "ETHYLBEN": 0.0,
+      "4M-PHENO": 0.0,
+      "4E-PHENO": 0.0,
+      "INDOLE": 10.2412689,
+      "7MINDOLE": 6.56334602e-05,
+      "C14AMIDE": 6.09671512,
+      "C16AMIDE": 1.67481204,
+      "C18AMIDE": 2.73574514,
+      "C16:1FA": 10.4218103,
+      "C16:0FA": 9.08343479,
+      "C18FACID": 7.61791066,
+      "NAPHTHAL": 2.6786601,
+      "CHOLESTE": 0.0,
+      "ANILINE": 2.86398354e-05,
+      "C30DICAD": 0.0,
+      "3-PYRDOL": 0.0
+     }
+    },
+    "CISOLID": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CHAR": 0.0,
+      "ALGAE": 0.0,
+      "ASH": 0.0,
+      "C": 0.0,
+      "H2O": 0.0,
+      "O2": 0.0,
+      "N2": 0.0,
+      "ETHANOL": 0.0,
+      "AACID": 0.0,
+      "GLYCEROL": 0.0,
+      "NH3": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "CH4": 0.0,
+      "H2": 0.0,
+      "FORMIC": 0.0,
+      "ACETONE": 0.0,
+      "METHANOL": 0.0,
+      "ETHYLBEN": 0.0,
+      "4M-PHENO": 0.0,
+      "4E-PHENO": 0.0,
+      "INDOLE": 0.0,
+      "7MINDOLE": 0.0,
+      "C14AMIDE": 0.0,
+      "C16AMIDE": 0.0,
+      "C18AMIDE": 0.0,
+      "C16:1FA": 0.0,
+      "C16:0FA": 0.0,
+      "C18FACID": 0.0,
+      "NAPHTHAL": 0.0,
+      "CHOLESTE": 0.0,
+      "ANILINE": 0.0,
+      "C30DICAD": 0.0,
+      "3-PYRDOL": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "BIOMASS",
+   "class": "MATERIAL",
+   "from": "BOUNDARY",
+   "to": "HTL",
+   "total": {
+    "mass_flow": 500.0,
+    "mass_unit": "kg/hr",
+    "h_mass": -5401.77051,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -2.70088526,
+    "energy_unit": "MMkcal/hr",
+    "T": 350.0,
+    "T_unit": "C",
+    "P": 208.0,
+    "P_unit": "atm"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CHAR": 0.0,
+      "ALGAE": 100.0,
+      "ASH": 0.0,
+      "C": 0.0,
+      "H2O": 400.0,
+      "O2": 0.0,
+      "N2": 0.0,
+      "ETHANOL": 0.0,
+      "AACID": 0.0,
+      "GLYCEROL": 0.0,
+      "NH3": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "CH4": 0.0,
+      "H2": 0.0,
+      "FORMIC": 0.0,
+      "ACETONE": 0.0,
+      "METHANOL": 0.0,
+      "ETHYLBEN": 0.0,
+      "4M-PHENO": 0.0,
+      "4E-PHENO": 0.0,
+      "INDOLE": 0.0,
+      "7MINDOLE": 0.0,
+      "C14AMIDE": 0.0,
+      "C16AMIDE": 0.0,
+      "C18AMIDE": 0.0,
+      "C16:1FA": 0.0,
+      "C16:0FA": 0.0,
+      "C18FACID": 0.0,
+      "NAPHTHAL": 0.0,
+      "CHOLESTE": 0.0,
+      "ANILINE": 0.0,
+      "C30DICAD": 0.0,
+      "3-PYRDOL": 0.0
+     }
+    },
+    "CISOLID": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CHAR": 0.0,
+      "ALGAE": 0.0,
+      "ASH": 0.0,
+      "C": 0.0,
+      "H2O": 0.0,
+      "O2": 0.0,
+      "N2": 0.0,
+      "ETHANOL": 0.0,
+      "AACID": 0.0,
+      "GLYCEROL": 0.0,
+      "NH3": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "CH4": 0.0,
+      "H2": 0.0,
+      "FORMIC": 0.0,
+      "ACETONE": 0.0,
+      "METHANOL": 0.0,
+      "ETHYLBEN": 0.0,
+      "4M-PHENO": 0.0,
+      "4E-PHENO": 0.0,
+      "INDOLE": 0.0,
+      "7MINDOLE": 0.0,
+      "C14AMIDE": 0.0,
+      "C16AMIDE": 0.0,
+      "C18AMIDE": 0.0,
+      "C16:1FA": 0.0,
+      "C16:0FA": 0.0,
+      "C18FACID": 0.0,
+      "NAPHTHAL": 0.0,
+      "CHOLESTE": 0.0,
+      "ANILINE": 0.0,
+      "C30DICAD": 0.0,
+      "3-PYRDOL": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "GAS",
+   "class": "MATERIAL",
+   "from": "B1",
+   "to": "BOUNDARY",
+   "total": {
+    "mass_flow": 4.39674909,
+    "mass_unit": "kg/hr",
+    "h_mass": -2091.49937,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -0.00919579794,
+    "energy_unit": "MMkcal/hr",
+    "T": 60.0,
+    "T_unit": "C",
+    "P": 2.0,
+    "P_unit": "atm"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CHAR": 0.0,
+      "ALGAE": 0.0,
+      "ASH": 0.0,
+      "C": 0.0,
+      "H2O": 0.379954031,
+      "O2": 0.0,
+      "N2": 0.0,
+      "ETHANOL": 4.96944356e-07,
+      "AACID": 0.008502718,
+      "GLYCEROL": 2.40404367e-07,
+      "NH3": 0.0,
+      "CO": 0.00367103358,
+      "CO2": 3.68739876,
+      "CH4": 0.00774955846,
+      "H2": 0.223738729,
+      "FORMIC": 0.043461476,
+      "ACETONE": 0.0,
+      "METHANOL": 0.0350286907,
+      "ETHYLBEN": 0.0,
+      "4M-PHENO": 0.0,
+      "4E-PHENO": 0.0,
+      "INDOLE": 0.00213567214,
+      "7MINDOLE": 4.80277051e-09,
+      "C14AMIDE": 1.03753383e-07,
+      "C16AMIDE": 1.2293801e-08,
+      "C18AMIDE": 2.11554068e-07,
+      "C16:1FA": 3.5935311e-07,
+      "C16:0FA": 2.30647508e-08,
+      "C18FACID": 1.19913557e-06,
+      "NAPHTHAL": 0.00510566713,
+      "CHOLESTE": 0.0,
+      "ANILINE": 1.06497919e-07,
+      "C30DICAD": 0.0,
+      "3-PYRDOL": 0.0
+     }
+    },
+    "CISOLID": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CHAR": 0.0,
+      "ALGAE": 0.0,
+      "ASH": 0.0,
+      "C": 0.0,
+      "H2O": 0.0,
+      "O2": 0.0,
+      "N2": 0.0,
+      "ETHANOL": 0.0,
+      "AACID": 0.0,
+      "GLYCEROL": 0.0,
+      "NH3": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "CH4": 0.0,
+      "H2": 0.0,
+      "FORMIC": 0.0,
+      "ACETONE": 0.0,
+      "METHANOL": 0.0,
+      "ETHYLBEN": 0.0,
+      "4M-PHENO": 0.0,
+      "4E-PHENO": 0.0,
+      "INDOLE": 0.0,
+      "7MINDOLE": 0.0,
+      "C14AMIDE": 0.0,
+      "C16AMIDE": 0.0,
+      "C18AMIDE": 0.0,
+      "C16:1FA": 0.0,
+      "C16:0FA": 0.0,
+      "C18FACID": 0.0,
+      "NAPHTHAL": 0.0,
+      "CHOLESTE": 0.0,
+      "ANILINE": 0.0,
+      "C30DICAD": 0.0,
+      "3-PYRDOL": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "S2",
+   "class": "MATERIAL",
+   "from": "HTL",
+   "to": "B1",
+   "total": {
+    "mass_flow": 500.0,
+    "mass_unit": "kg/hr",
+    "h_mass": -2920.29892,
+    "h_unit": "cal/gm",
+    "enthalpy_flow": -1.46014946,
+    "energy_unit": "MMkcal/hr",
+    "T": 350.0,
+    "T_unit": "C",
+    "P": 205.137892,
+    "P_unit": "atm"
+   },
+   "substreams": {
+    "MIXED": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CHAR": 2.0,
+      "ALGAE": 0.0,
+      "ASH": 0.0,
+      "C": 0.0,
+      "H2O": 400.0,
+      "O2": 0.0,
+      "N2": 0.0,
+      "ETHANOL": 4.03329e-05,
+      "AACID": 5.2063415,
+      "GLYCEROL": 3.3260615,
+      "NH3": 0.0,
+      "CO": 0.00369239,
+      "CO2": 4.0296979,
+      "CH4": 0.00783162999,
+      "H2": 0.2261,
+      "FORMIC": 30.1751672,
+      "ACETONE": 0.0,
+      "METHANOL": 4.2817307,
+      "ETHYLBEN": 0.0,
+      "4M-PHENO": 0.0,
+      "4E-PHENO": 0.0,
+      "INDOLE": 10.4116966,
+      "7MINDOLE": 7.20674e-05,
+      "C14AMIDE": 6.0993723,
+      "C16AMIDE": 1.6749416,
+      "C18AMIDE": 2.7357898,
+      "C16:1FA": 10.4230063,
+      "C16:0FA": 9.08425449,
+      "C18FACID": 7.61807199,
+      "NAPHTHAL": 2.6960642,
+      "CHOLESTE": 0.0,
+      "ANILINE": 6.75461e-05,
+      "C30DICAD": 0.0,
+      "3-PYRDOL": 0.0
+     }
+    },
+    "CISOLID": {
+     "mass_unit": "kg/hr",
+     "mass_by_component": {
+      "CHAR": 0.0,
+      "ALGAE": 0.0,
+      "ASH": 0.0,
+      "C": 0.0,
+      "H2O": 0.0,
+      "O2": 0.0,
+      "N2": 0.0,
+      "ETHANOL": 0.0,
+      "AACID": 0.0,
+      "GLYCEROL": 0.0,
+      "NH3": 0.0,
+      "CO": 0.0,
+      "CO2": 0.0,
+      "CH4": 0.0,
+      "H2": 0.0,
+      "FORMIC": 0.0,
+      "ACETONE": 0.0,
+      "METHANOL": 0.0,
+      "ETHYLBEN": 0.0,
+      "4M-PHENO": 0.0,
+      "4E-PHENO": 0.0,
+      "INDOLE": 0.0,
+      "7MINDOLE": 0.0,
+      "C14AMIDE": 0.0,
+      "C16AMIDE": 0.0,
+      "C18AMIDE": 0.0,
+      "C16:1FA": 0.0,
+      "C16:0FA": 0.0,
+      "C18FACID": 0.0,
+      "NAPHTHAL": 0.0,
+      "CHOLESTE": 0.0,
+      "ANILINE": 0.0,
+      "C30DICAD": 0.0,
+      "3-PYRDOL": 0.0
+     }
+    }
+   }
+  }
+ ],
+ "units": {
+  "INSET": "SET3",
+  "OUTSET": "SET3",
+  "calorie_J": 4.1868,
+  "note": "块负荷与流股焓流保留各节点自己的 UnitString，不假设 kW（MET 的热负荷是 cal/sec，ENG 是 Btu/hr）。1 cal = 4.1868 J 经真机核对（同一结果在 MET 与 SI 下各读一次，比值 4.1868）。"
+ },
+ "discovery": {
+  "mode": "recipe",
+  "nodes_read": 534,
+  "complete": true,
+  "unmatched_block_types": [],
+  "unverified_paths": [
+   "非 MIXED 子流股 $TOTAL",
+   "非 MIXED 子流股 CISOLID"
+  ]
+ }
+}

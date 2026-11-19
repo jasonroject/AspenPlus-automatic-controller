@@ -1,0 +1,721 @@
+{
+ "schema": "aspen-probe/1.1",
+ "created": "2026-11-19T23:08:34+08:00",
+ "model": {
+  "file": "Natural Gas Combined Cycle (NGCC) Power Plant.bkp",
+  "sha256": "791f1f7a787509b085d75554e1e4ebcbe701e92751cd25a949bc9c3d80ce39c6",
+  "simulator": "aspen-plus",
+  "version": "41.0",
+  "progid": "Apwn.Document.41.0",
+  "adapter": "aspen-plus-com",
+  "source_unchanged": true
+ },
+ "status": {
+  "state": "ok",
+  "run_completed": true,
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "raw_status": {
+   "UOSSTAT": 0,
+   "UOSSTAT2": 8,
+   "CVSTAT": 0,
+   "CSSTAT": 2,
+   "RSTAT": 0,
+   "PPSTAT": 2,
+   "SENSSTAT": 2,
+   "ITSTAT": 0,
+   "SSTAT": 0
+  },
+  "run_status_lines": [],
+  "run_seconds": 3.0
+ },
+ "units": {
+  "INSET": "US-2",
+  "OUTSET": "US-2",
+  "calorie_J": 4.1868,
+  "note": "块负荷与流股焓流保留各节点自己的 UnitString，不假设 kW（MET 的热负荷是 cal/sec，ENG 是 Btu/hr）。1 cal = 4.1868 J 经真机核对（同一结果在 MET 与 SI 下各读一次，比值 4.1868）。"
+ },
+ "calorie_J": 4.1868,
+ "blocks": [
+  {
+   "id": "AIRCOMPR",
+   "type": "Compr",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "work",
+     "value": 614.501442,
+     "unit": "MW",
+     "kW": 614501.442,
+     "path": "\\Data\\Blocks\\AIRCOMPR\\Output\\BRAKE_POWER",
+     "verified": true
+    }
+   ],
+   "outlet_temperature": {
+    "value": 15.0,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\AIRCOMPR\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "B1",
+   "type": "Mixer",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": []
+  },
+  {
+   "id": "B2",
+   "type": "FSplit",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": []
+  },
+  {
+   "id": "B4",
+   "type": "FSplit",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": []
+  },
+  {
+   "id": "B7",
+   "type": "HeatX",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 0.216835143,
+     "unit": "MW",
+     "kW": 216.83514300000002,
+     "path": "\\Data\\Blocks\\B7\\Output\\HX_DUTY",
+     "verified": true,
+     "role_hint": "exchanged"
+    }
+   ]
+  },
+  {
+   "id": "B8",
+   "type": "Pump",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "work",
+     "value": 139.35914,
+     "unit": "kW",
+     "kW": 139.35914,
+     "path": "\\Data\\Blocks\\B8\\Output\\ELEC_POWER",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "B9",
+   "type": "HeatX",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 0.261113639,
+     "unit": "MW",
+     "kW": 261.113639,
+     "path": "\\Data\\Blocks\\B9\\Output\\HX_DUTY",
+     "verified": true,
+     "role_hint": "exchanged"
+    }
+   ]
+  },
+  {
+   "id": "B10",
+   "type": "Mixer",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": []
+  },
+  {
+   "id": "B17",
+   "type": "Pump",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "work",
+     "value": 4357.22654,
+     "unit": "kW",
+     "kW": 4357.22654,
+     "path": "\\Data\\Blocks\\B17\\Output\\ELEC_POWER",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "B18",
+   "type": "Pump",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "work",
+     "value": 219.952509,
+     "unit": "kW",
+     "kW": 219.952509,
+     "path": "\\Data\\Blocks\\B18\\Output\\ELEC_POWER",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "B20",
+   "type": "FSplit",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": []
+  },
+  {
+   "id": "B23",
+   "type": "Mixer",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": []
+  },
+  {
+   "id": "B27",
+   "type": "Mixer",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": []
+  },
+  {
+   "id": "B29",
+   "type": "Heater",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 408.191845,
+     "unit": "MW",
+     "kW": 408191.845,
+     "path": "\\Data\\Blocks\\B29\\Output\\QCALC",
+     "verified": true
+    }
+   ],
+   "outlet_temperature": {
+    "value": 585.0,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\B29\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "B31",
+   "type": "Heater",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": -674.687338,
+     "unit": "MW",
+     "kW": -674687.338,
+     "path": "\\Data\\Blocks\\B31\\Output\\QCALC",
+     "verified": true
+    }
+   ],
+   "outlet_temperature": {
+    "value": 71.7651839,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\B31\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "B32",
+   "type": "Mixer",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": []
+  },
+  {
+   "id": "COMBUSTI",
+   "type": "RStoic",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 0.0,
+     "unit": "MW",
+     "kW": 0.0,
+     "path": "\\Data\\Blocks\\COMBUSTI\\Output\\QCALC",
+     "verified": true,
+     "explicit_zero": true
+    }
+   ],
+   "outlet_temperature": {
+    "value": 1423.33336,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\COMBUSTI\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "DEAERATE",
+   "type": "Flash2",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": -442.498481,
+     "unit": "MW",
+     "kW": -442498.481,
+     "path": "\\Data\\Blocks\\DEAERATE\\Output\\QCALC",
+     "verified": true
+    }
+   ],
+   "outlet_temperature": {
+    "value": 38.3333333,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\DEAERATE\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "GT",
+   "type": "Compr",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "work",
+     "value": -1107.69625,
+     "unit": "MW",
+     "kW": -1107696.25,
+     "path": "\\Data\\Blocks\\GT\\Output\\BRAKE_POWER",
+     "verified": true
+    }
+   ],
+   "outlet_temperature": {
+    "value": 1423.33336,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\GT\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "HP",
+   "type": "Compr",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "work",
+     "value": -51.652877,
+     "unit": "MW",
+     "kW": -51652.877,
+     "path": "\\Data\\Blocks\\HP\\Output\\BRAKE_POWER",
+     "verified": true
+    }
+   ],
+   "outlet_temperature": {
+    "value": 585.0,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\HP\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "IP",
+   "type": "Compr",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "work",
+     "value": -86.428912,
+     "unit": "MW",
+     "kW": -86428.912,
+     "path": "\\Data\\Blocks\\IP\\Output\\BRAKE_POWER",
+     "verified": true
+    }
+   ],
+   "outlet_temperature": {
+    "value": 584.444444,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\IP\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "IPECO1",
+   "type": "Heater",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 14.8379105,
+     "unit": "MW",
+     "kW": 14837.9105,
+     "path": "\\Data\\Blocks\\IPECO1\\Output\\QCALC",
+     "verified": true
+    }
+   ],
+   "outlet_temperature": {
+    "value": 205.0,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\IPECO1\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "IPREH1",
+   "type": "Heater",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 42.8276736,
+     "unit": "MW",
+     "kW": 42827.673599999995,
+     "path": "\\Data\\Blocks\\IPREH1\\Output\\QCALC",
+     "verified": true
+    }
+   ],
+   "outlet_temperature": {
+    "value": 474.444444,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\IPREH1\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "IPREH2",
+   "type": "Heater",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 39.0945989,
+     "unit": "MW",
+     "kW": 39094.5989,
+     "path": "\\Data\\Blocks\\IPREH2\\Output\\QCALC",
+     "verified": true
+    }
+   ],
+   "outlet_temperature": {
+    "value": 584.444444,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\IPREH2\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "IPSUP",
+   "type": "Heater",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 46.5846285,
+     "unit": "MW",
+     "kW": 46584.6285,
+     "path": "\\Data\\Blocks\\IPSUP\\Output\\QCALC",
+     "verified": true
+    }
+   ],
+   "outlet_temperature": {
+    "value": 331.666667,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\IPSUP\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "LP",
+   "type": "Compr",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "work",
+     "value": -88.6301859,
+     "unit": "MW",
+     "kW": -88630.18590000001,
+     "path": "\\Data\\Blocks\\LP\\Output\\BRAKE_POWER",
+     "verified": true
+    }
+   ],
+   "outlet_temperature": {
+    "value": 304.743447,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\LP\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "LPECO",
+   "type": "Heater",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 71.0715591,
+     "unit": "MW",
+     "kW": 71071.55910000001,
+     "path": "\\Data\\Blocks\\LPECO\\Output\\QCALC",
+     "verified": true
+    }
+   ],
+   "outlet_temperature": {
+    "value": 122.777778,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\LPECO\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "LPEVAP",
+   "type": "FSplit",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": []
+  },
+  {
+   "id": "LPEVAP2",
+   "type": "Heater",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 48.4683739,
+     "unit": "MW",
+     "kW": 48468.373900000006,
+     "path": "\\Data\\Blocks\\LPEVAP2\\Output\\QCALC",
+     "verified": true
+    }
+   ],
+   "outlet_temperature": {
+    "value": 191.666667,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\LPEVAP2\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "LPSUP",
+   "type": "Heater",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 3.61074868,
+     "unit": "MW",
+     "kW": 3610.7486799999997,
+     "path": "\\Data\\Blocks\\LPSUP\\Output\\QCALC",
+     "verified": true
+    }
+   ],
+   "outlet_temperature": {
+    "value": 281.111111,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\LPSUP\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "PREHEATE",
+   "type": "HeatX",
+   "status": "ok",
+   "blkstat": 0,
+   "blkmsg": null,
+   "per_error": [],
+   "per_error_total": 0,
+   "energy": [
+    {
+     "kind": "heat",
+     "value": 10.1561684,
+     "unit": "MW",
+     "kW": 10156.1684,
+     "path": "\\Data\\Blocks\\PREHEATE\\Output\\HX_DUTY",
+     "verified": true,
+     "role_hint": "exchanged"
+    }
+   ]
+  }
+ ],
+ "totals_kW": {
+  "heating": 674687.33818,
+  "cooling": -1117185.819,
+  "work": -715190.244711,
+  "internal_exchange": 10634.117182
+ },
+ "totals_complete": true,
+ "group_totals": {
+  "heating": {
+   "kW": 674687.33818,
+   "complete": true
+  },
+  "cooling": {
+   "kW": -1117185.819,
+   "complete": true
+  },
+  "shaft_work": {
+   "kW": -715190.244711,
+   "complete": true
+  },
+  "internal_exchange": {
+   "kW": 10634.117182,
+   "complete": true
+  },
+  "overall": {
+   "kW": -1157688.725531,
+   "complete": true
+  }
+ },
+ "energy_gaps": [],
+ "unverified_paths": [
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S38",
+   "reason": "HEAT 类流股的负荷节点未读取（块负荷已计）"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S40",
+   "reason": "HEAT 类流股的负荷节点未读取（块负荷已计）"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S41",
+   "reason": "HEAT 类流股的负荷节点未读取（块负荷已计）"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S42",
+   "reason": "HEAT 类流股的负荷节点未读取（块负荷已计）"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S43",
+   "reason": "HEAT 类流股的负荷节点未读取（块负荷已计）"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S44",
+   "reason": "HEAT 类流股的负荷节点未读取（块负荷已计）"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S45",
+   "reason": "HEAT 类流股的负荷节点未读取（块负荷已计）"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S46",
+   "reason": "HEAT 类流股的负荷节点未读取（块负荷已计）"
+  },
+  {
+   "block": null,
+   "path": "\\Data\\Streams\\S47",
+   "reason": "HEAT 类流股的负荷节点未读取（块负荷已计）"
+  }
+ ],
+ "discovery": {
+  "mode": "recipe",
+  "nodes_read": 1240,
+  "complete": true,
+  "unmatched_block_types": []
+ },
+ "cleanup": {
+  "killed_pids": []
+ },
+ "elapsed_seconds": 24.9
+}

@@ -1,0 +1,447 @@
+{
+ "schema": "aspen-node-verification/1",
+ "created": "2026-11-19T23:08:09+08:00",
+ "model": {
+  "file": "HTL RYIELD.bkp",
+  "sha256": "670027013270ed4ea17594529eff0fa47b61007c07049a9c0b4fc446edab9779",
+  "simulator": "aspen-plus",
+  "version": null,
+  "progid": "Apwn.Document.41.0",
+  "adapter": "aspen-plus-com",
+  "source_unchanged": true
+ },
+ "calorie_J": 4.1868,
+ "run": {
+  "state": "ok",
+  "run_completed": true,
+  "run_error": null
+ },
+ "units": {
+  "INSET": "SET3",
+  "OUTSET": "SET3",
+  "calorie_J": 4.1868,
+  "note": "块负荷与流股焓流保留各节点自己的 UnitString，不假设 kW（MET 的热负荷是 cal/sec，ENG 是 Btu/hr）。1 cal = 4.1868 J 经真机核对（同一结果在 MET 与 SI 下各读一次，比值 4.1868）。"
+ },
+ "blocks": [
+  {
+   "id": "B1",
+   "type": "Flash3",
+   "target": true,
+   "recipe": "verified",
+   "status": "ok",
+   "ports": {
+    "in": [
+     "S2"
+    ],
+    "out": [
+     "GAS",
+     "BIOCRUDE",
+     "AQ+SOL"
+    ]
+   },
+   "energy_read": [
+    {
+     "kind": "heat",
+     "value": -0.182312622,
+     "unit": "MMkcal/hr",
+     "path": "\\Data\\Blocks\\B1\\Output\\QCALC"
+    }
+   ],
+   "output_children": [
+    "Unit Set",
+    "Prop Data",
+    "User Table",
+    "User Tree",
+    "BAL_ENTH_GEN",
+    "BAL_ENTH_OUT",
+    "BAL_FEEDCO2E",
+    "BAL_MASG_FLW",
+    "BAL_MASG_TFL",
+    "BAL_MASI_TFL",
+    "BAL_MASO_FLW",
+    "BAL_MASO_TFL",
+    "BAL_MASR_TFL",
+    "BAL_MOLG_FLW",
+    "BAL_MOLG_TFL",
+    "BAL_MOLI_TFL",
+    "BAL_MOLO_FLW",
+    "BAL_MOLO_TFL",
+    "BAL_MOLR_TFL",
+    "BAL_NETSTRCO2E",
+    "BAL_NNCG_FLW",
+    "BAL_NNCI_FLW",
+    "BAL_NNCO_FLW",
+    "BAL_NNCR_FLW",
+    "BAL_PRODCO2E",
+    "BAL_TOTCO2E",
+    "BAL_UTILCO2E",
+    "BETA",
+    "BLKMSG",
+    "BLKSTAT",
+    "B_PRES",
+    "B_PRES_IN",
+    "B_TEMP",
+    "B_TEMP_IN",
+    "B_VFRAC",
+    "B_VFRAC_IN",
+    "CMF_CATT",
+    "CMF_HMX",
+    "CMF_LFRAC",
+    "CMF_MAFL",
+    "CMF_MAMX",
+    "CMF_MOFL",
+    "CMF_MOMX",
+    "CMF_MWMX",
+    "CMF_NBOPST",
+    "CMF_PRES",
+    "CMF_PTARG",
+    "CMF_QTARG",
+    "CMF_RHOMX",
+    "CMF_SATT",
+    "CMF_SMX",
+    "CMF_TEMP",
+    "CMF_TTARG",
+    "CMF_VFRAC",
+    "CMF_VTARG",
+    "COMP_ATTR",
+    "DESCRIPTION",
+    "DUTY_IN",
+    "DUTY_OUT",
+    "F",
+    "GUID",
+    "K1",
+    "K2",
+    "KLL2",
+    "KODE",
+    "KVL",
+    "KVL2",
+    "LENTRN_IN",
+    "LIQ_RATIO",
+    "MVFRAC",
+    "MWMX",
+    "PDROP",
+    "PER_ERROR",
+    "PRES_OUT",
+    "PROPSTAT",
+    "P_EST",
+    "QCALC",
+    "QNET",
+    "RHOMX",
+    "ROWSTAT",
+    "ROWSTATSG",
+    "SUBS_ATTR",
+    "TEMP_OUT",
+    "TOT_ENTH_ABS",
+    "TOT_ENTH_REL",
+    "TOT_MASS_ABS",
+    "TOT_MASS_REL",
+    "TOT_MOLE_ABS",
+    "TOT_MOLE_REL",
+    "T_EST",
+    "UTIL_CO2RATE",
+    "UTIL_COST",
+    "UTIL_DUTY",
+    "UTL_ID",
+    "UTL_USAGE",
+    "VFRAC_OUT",
+    "X1",
+    "X2",
+    "Y"
+   ],
+   "candidates": [
+    {
+     "path": "\\Data\\Blocks\\B1\\Output\\QCALC",
+     "exists": true,
+     "readable": true,
+     "scalar": true,
+     "value": -0.182312622,
+     "unit": "MMkcal/hr"
+    },
+    {
+     "path": "\\Data\\Blocks\\B1\\Output\\QNET",
+     "exists": true,
+     "readable": true,
+     "scalar": true,
+     "value": -0.182312622,
+     "unit": "MMkcal/hr"
+    },
+    {
+     "path": "\\Data\\Blocks\\B1\\Output\\B_TEMP",
+     "exists": true,
+     "readable": true,
+     "scalar": true,
+     "value": 60.0,
+     "unit": "C"
+    },
+    {
+     "path": "\\Data\\Blocks\\B1\\Output\\HX_DUTY",
+     "exists": false,
+     "readable": false,
+     "error": "节点不存在"
+    },
+    {
+     "path": "\\Data\\Blocks\\B1\\Output\\DUTY",
+     "exists": false,
+     "readable": false,
+     "error": "节点不存在"
+    },
+    {
+     "path": "\\Data\\Blocks\\B1\\Output\\NET_DUTY",
+     "exists": false,
+     "readable": false,
+     "error": "节点不存在"
+    },
+    {
+     "path": "\\Data\\Blocks\\B1\\Output\\B_PRES",
+     "exists": true,
+     "readable": true,
+     "scalar": true,
+     "value": 2.0,
+     "unit": "atm"
+    },
+    {
+     "path": "\\Data\\Blocks\\B1\\Output\\POC",
+     "exists": false,
+     "readable": false,
+     "error": "节点不存在"
+    },
+    {
+     "path": "\\Data\\Blocks\\B1\\Output\\PRES_OUT",
+     "exists": true,
+     "readable": true,
+     "scalar": false,
+     "value": 0,
+     "unit": ""
+    }
+   ],
+   "outlet_temperature": {
+    "value": 60.0,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\B1\\Output\\B_TEMP"
+   }
+  },
+  {
+   "id": "HTL",
+   "type": "RYield",
+   "target": true,
+   "recipe": "verified",
+   "status": "ok",
+   "ports": {
+    "in": [
+     "BIOMASS"
+    ],
+    "out": [
+     "S2"
+    ]
+   },
+   "energy_read": [
+    {
+     "kind": "heat",
+     "value": 1.2407358,
+     "unit": "MMkcal/hr",
+     "path": "\\Data\\Blocks\\HTL\\Output\\QCALC"
+    }
+   ],
+   "output_children": [
+    "Unit Set",
+    "Prop Data",
+    "User Table",
+    "User Tree",
+    "AERR",
+    "AMASSGEN",
+    "AMASSIN",
+    "AMASSOUT",
+    "AMOLGEN",
+    "AMOLIN",
+    "AMOLOUT",
+    "ATOM",
+    "BAL_ENTH_GEN",
+    "BAL_ENTH_OUT",
+    "BAL_FEEDCO2E",
+    "BAL_MASG_FLW",
+    "BAL_MASG_TFL",
+    "BAL_MASI_TFL",
+    "BAL_MASO_FLW",
+    "BAL_MASO_TFL",
+    "BAL_MASR_TFL",
+    "BAL_MOLG_FLW",
+    "BAL_MOLG_TFL",
+    "BAL_MOLI_TFL",
+    "BAL_MOLO_FLW",
+    "BAL_MOLO_TFL",
+    "BAL_MOLR_TFL",
+    "BAL_NETSTRCO2E",
+    "BAL_NNCG_FLW",
+    "BAL_NNCI_FLW",
+    "BAL_NNCO_FLW",
+    "BAL_NNCR_FLW",
+    "BAL_PRODCO2E",
+    "BAL_TOTCO2E",
+    "BAL_UTILCO2E",
+    "BLKMSG",
+    "BLKSTAT",
+    "B_CMAP",
+    "B_IDELT",
+    "B_IDUTY",
+    "B_IPRES",
+    "B_ITEMP",
+    "B_K",
+    "B_MYLD",
+    "B_PRES",
+    "B_TEMP",
+    "B_TEMP2",
+    "B_VFRAC",
+    "B_VFRAC2",
+    "COMPID",
+    "C_ARROW",
+    "C_CIN",
+    "C_COUT",
+    "C_RDWF",
+    "DESCRIPTION",
+    "F",
+    "F1",
+    "GUID",
+    "K1",
+    "K2",
+    "KODE",
+    "L1_ENTH",
+    "L1_ENTR",
+    "L1_MW",
+    "L1_RHO",
+    "L2_ENTH",
+    "L2_ENTR",
+    "L2_MW",
+    "L2_RHO",
+    "LIQ_ENTH",
+    "LIQ_RATIO",
+    "LIQ_RATIO2",
+    "L_ENTR",
+    "MASSFRAC",
+    "MASSFRAC2",
+    "MOLEFRAC",
+    "MOLEFRAC2",
+    "MW_GAS",
+    "MW_LIQ",
+    "PDROP",
+    "PER_ERROR",
+    "PROPSTAT",
+    "QCALC",
+    "QNET",
+    "RHO_GAS",
+    "RHO_LIQ",
+    "TOT_ENTH_ABS",
+    "TOT_ENTH_REL",
+    "TOT_MASS_ABS",
+    "TOT_MASS_REL",
+    "TOT_MOLE_ABS",
+    "TOT_MOLE_REL",
+    "UTIL_CO2RATE",
+    "UTIL_COST",
+    "UTIL_DUTY",
+    "UTL_ID",
+    "UTL_USAGE",
+    "VAP_ENTH",
+    "VOLFRAC",
+    "V_ENTR",
+    "X",
+    "X1",
+    "X2",
+    "X3",
+    "X4",
+    "X5",
+    "Y",
+    "Y1",
+    "Y2"
+   ],
+   "candidates": [
+    {
+     "path": "\\Data\\Blocks\\HTL\\Output\\QCALC",
+     "exists": true,
+     "readable": true,
+     "scalar": true,
+     "value": 1.2407358,
+     "unit": "MMkcal/hr"
+    },
+    {
+     "path": "\\Data\\Blocks\\HTL\\Output\\QNET",
+     "exists": true,
+     "readable": true,
+     "scalar": true,
+     "value": 1.2407358,
+     "unit": "MMkcal/hr"
+    },
+    {
+     "path": "\\Data\\Blocks\\HTL\\Output\\B_TEMP",
+     "exists": true,
+     "readable": true,
+     "scalar": true,
+     "value": 350.0,
+     "unit": "C"
+    },
+    {
+     "path": "\\Data\\Blocks\\HTL\\Output\\HX_DUTY",
+     "exists": false,
+     "readable": false,
+     "error": "节点不存在"
+    },
+    {
+     "path": "\\Data\\Blocks\\HTL\\Output\\DUTY",
+     "exists": false,
+     "readable": false,
+     "error": "节点不存在"
+    },
+    {
+     "path": "\\Data\\Blocks\\HTL\\Output\\NET_DUTY",
+     "exists": false,
+     "readable": false,
+     "error": "节点不存在"
+    },
+    {
+     "path": "\\Data\\Blocks\\HTL\\Output\\B_PRES",
+     "exists": true,
+     "readable": true,
+     "scalar": true,
+     "value": 205.137892,
+     "unit": "atm"
+    },
+    {
+     "path": "\\Data\\Blocks\\HTL\\Output\\POC",
+     "exists": false,
+     "readable": false,
+     "error": "节点不存在"
+    },
+    {
+     "path": "\\Data\\Blocks\\HTL\\Output\\PRES_OUT",
+     "exists": false,
+     "readable": false,
+     "error": "节点不存在"
+    }
+   ],
+   "outlet_temperature": {
+    "value": 350.0,
+    "unit": "C",
+    "path": "\\Data\\Blocks\\HTL\\Output\\B_TEMP"
+   }
+  }
+ ],
+ "coverage": {
+  "types": {
+   "Compr": false,
+   "MCompr": false,
+   "RStoic": false,
+   "RYield": true,
+   "RGibbs": false,
+   "RCSTR": false,
+   "Flash3": true
+  },
+  "turbine": false,
+  "missing": [
+   "Compr",
+   "MCompr",
+   "RStoic",
+   "RGibbs",
+   "RCSTR",
+   "turbine"
+  ]
+ }
+}
